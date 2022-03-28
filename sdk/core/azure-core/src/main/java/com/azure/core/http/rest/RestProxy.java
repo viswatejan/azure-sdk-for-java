@@ -176,7 +176,11 @@ public final class RestProxy implements InvocationHandler {
     }
 
     static Flux<ByteBuffer> validateLength(final HttpRequest request) {
-        final Flux<ByteBuffer> bbFlux = request.getBody();
+        final Flux<ByteBuffer> bbFlux = request.getBody().flatMap(
+            // This is done to ensure that the buffer can be reread if possible.
+            buffer -> Flux.just(buffer.duplicate())
+        );
+
         if (bbFlux == null) {
             return Flux.empty();
         }

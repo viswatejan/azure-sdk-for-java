@@ -126,6 +126,7 @@ public final class UtilsImpl {
         policies.add(ClientBuilderUtil.validateAndGetRetryPolicy(retryPolicy, retryOptions));
         policies.add(new CookiePolicy());
         policies.add(new AddDatePolicy());
+        policies.add(new ContainerRegistryRedirectPolicy());
 
         policies.addAll(perRetryPolicies);
         HttpPolicyProviders.addAfterRetryPolicies(policies);
@@ -222,7 +223,7 @@ public final class UtilsImpl {
             return getAcceptedDeleteResponse(responseT, responseT.getStatusCode());
         }
 
-        // In case of 400, we still convert it to success i.e. no-op.
+        // In case of 404, we still convert it to success i.e. no-op.
         return getAcceptedDeleteResponse(responseT, HTTP_STATUS_CODE_ACCEPTED);
     }
 
