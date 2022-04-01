@@ -88,9 +88,9 @@ public final class ContainerRegistryCredentialsPolicy extends BearerTokenAuthent
     @Override
     public Mono<HttpResponse> process(HttpPipelineCallContext context, HttpPipelineNextPolicy next) {
         // Since we will need to replay this call, adding duplicate to make this replayable.
-        if (context.getHttpRequest().getBody() != null) {
-            context.getHttpRequest().setBody(context.getHttpRequest().getBody().map(buffer -> buffer.duplicate()));
-        }
+//        if (context.getHttpRequest().getBody() != null) {
+//            context.getHttpRequest().setBody(context.getHttpRequest().getBody().map(buffer -> buffer.duplicate()));
+//        }
 
         return super.process(context, next);
     }
