@@ -27,15 +27,19 @@ import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.ResponseBase;
 import com.azure.core.http.rest.SimpleResponse;
+import com.azure.core.http.rest.StreamResponse;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.core.util.logging.ClientLogger;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Objects;
 
+import static com.azure.containers.containerregistry.implementation.UtilsImpl.deleteResponseToSuccess;
 import static com.azure.core.util.FluxUtil.monoError;
 import static com.azure.core.util.FluxUtil.withContext;
 
@@ -356,7 +360,13 @@ public class ContainerRegistryBlobAsyncClient {
                     } else {
                         return monoError(logger, new ServiceResponseException("The digest in the response does not match the expected digest."));
                     }
-                });
+                }).doFinally(ignored -> {
+                    try {
+                        streamResponse.close();
+                    } catch (Exception e) {
+                        logger.logThrowableAsError(e);
+                    }
+            });
         }).onErrorMap(UtilsImpl::mapException);
     }
 
@@ -392,7 +402,12 @@ public class ContainerRegistryBlobAsyncClient {
         }
 
         return this.blobsImpl.deleteBlobWithResponseAsync(repositoryName, digest, context)
-            .flatMap(UtilsImpl::deleteResponseToSuccess)
+            .flatMap(streamResponse -> {
+                Mono<Response<Void>> res = deleteResponseToSuccess(streamResponse);
+                // Since we are not passing the streamResponse back to the user, we need to close this.
+                streamResponse.close();
+                return res;
+            })
             .onErrorMap(UtilsImpl::mapException);
     }
 
