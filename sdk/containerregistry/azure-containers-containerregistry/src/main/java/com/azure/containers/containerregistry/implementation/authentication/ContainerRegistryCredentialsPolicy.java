@@ -15,6 +15,7 @@ import reactor.core.publisher.Mono;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,6 +50,7 @@ public final class ContainerRegistryCredentialsPolicy extends BearerTokenAuthent
 
     private final ContainerRegistryTokenService tokenService;
     private final ClientLogger logger = new ClientLogger(ContainerRegistryCredentialsPolicy.class);
+    private static final String AZURE_EAGERLY_READ_RESPONSE = "azure-eagerly-read-response";
 
     /**
      * Creates an instance of ContainerRegistryCredentialsPolicy.
@@ -99,7 +101,28 @@ public final class ContainerRegistryCredentialsPolicy extends BearerTokenAuthent
             current.subscribe().dispose();
         }
 
-        return super.process(context, next);
+        if ("http".equals(context.getHttpRequest().getUrl().getProtocol())) {
+            return Mono.error(new RuntimeException("token credentials require a URL using the HTTPS protocol scheme"));
+        }
+        HttpPipelineNextPolicy nextPolicy = next.clone();
+
+        AtomicReference<HttpResponse> oldResponse = null;
+
+        return authorizeRequest(context)
+            .then(Mono.defer(() -> next.process()))
+            .flatMap(httpResponse -> {
+                String authHeader = httpResponse.getHeaderValue(WWW_AUTHENTICATE);
+                if (httpResponse.getStatusCode() == 401 && authHeader != null) {
+                    return authorizeRequestOnChallenge(context, httpResponse).flatMap(retry -> {
+                        if (retry) {
+                            return nextPolicy.process().doFinally(ignored -> { httpResponse.close();});
+                        } else {
+                            return Mono.just(httpResponse);
+                        }
+                    });
+                }
+                return Mono.just(httpResponse);
+            });
     }
 
     /**
@@ -123,7 +146,8 @@ public final class ContainerRegistryCredentialsPolicy extends BearerTokenAuthent
                     String scope = extractedChallengeParams.get(SCOPES_PARAMETER);
                     String serviceName = extractedChallengeParams.get(SERVICE_PARAMETER);
                     return setAuthorizationHeader(context, new ContainerRegistryTokenRequestContext(serviceName, scope))
-                        .then(Mono.defer(() -> Mono.just(true)));
+                        .then(Mono.defer(() -> {
+                            return Mono.just(true);}));
                 }
 
                 return Mono.just(false);
