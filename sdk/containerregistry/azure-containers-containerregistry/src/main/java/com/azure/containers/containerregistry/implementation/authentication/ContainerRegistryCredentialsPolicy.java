@@ -9,8 +9,10 @@ import com.azure.core.http.HttpPipelineNextPolicy;
 import com.azure.core.http.HttpResponse;
 import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.util.logging.ClientLogger;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -88,9 +90,14 @@ public final class ContainerRegistryCredentialsPolicy extends BearerTokenAuthent
     @Override
     public Mono<HttpResponse> process(HttpPipelineCallContext context, HttpPipelineNextPolicy next) {
         // Since we will need to replay this call, adding duplicate to make this replayable.
-//        if (context.getHttpRequest().getBody() != null) {
-//            context.getHttpRequest().setBody(context.getHttpRequest().getBody().map(buffer -> buffer.duplicate()));
-//        }
+        if (context.getHttpRequest().getBody() != null) {
+            Flux<ByteBuffer> current = context.getHttpRequest().getBody();
+            Flux<ByteBuffer> duplicate = current.map(buffer -> buffer.duplicate());
+            context.getHttpRequest().setBody(duplicate);
+
+            // We do not need to use this one.
+            current.subscribe().dispose();
+        }
 
         return super.process(context, next);
     }
