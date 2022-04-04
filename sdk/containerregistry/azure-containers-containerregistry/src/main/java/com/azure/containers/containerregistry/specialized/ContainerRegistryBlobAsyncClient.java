@@ -400,12 +400,7 @@ public class ContainerRegistryBlobAsyncClient {
         }
 
         return this.blobsImpl.deleteBlobWithResponseAsync(repositoryName, digest, context)
-            .flatMap(streamResponse -> {
-                Mono<Response<Void>> res = deleteResponseToSuccess(streamResponse);
-                // Since we are not passing the streamResponse back to the user, we need to close this.
-                streamResponse.close();
-                return res;
-            })
+            .flatMap(UtilsImpl::deleteResponseToSuccess)
             .onErrorMap(UtilsImpl::mapException);
     }
 

@@ -228,6 +228,9 @@ public final class UtilsImpl {
     }
 
     static <T> Mono<Response<Void>> getAcceptedDeleteResponse(Response<T> responseT, int statusCode) {
+        // Read the response to ensure memory is released.
+        responseT.getValue();
+
         return Mono.just(new SimpleResponse<Void>(
             responseT.getRequest(),
             statusCode,
