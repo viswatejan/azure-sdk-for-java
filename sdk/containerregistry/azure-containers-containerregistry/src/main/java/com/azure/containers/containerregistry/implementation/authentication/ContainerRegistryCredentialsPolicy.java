@@ -93,12 +93,7 @@ public final class ContainerRegistryCredentialsPolicy extends BearerTokenAuthent
     public Mono<HttpResponse> process(HttpPipelineCallContext context, HttpPipelineNextPolicy next) {
         // Since we will need to replay this call, adding duplicate to make this replayable.
         if (context.getHttpRequest().getBody() != null) {
-            Flux<ByteBuffer> current = context.getHttpRequest().getBody();
-            Flux<ByteBuffer> duplicate = current.map(buffer -> buffer.duplicate());
-            context.getHttpRequest().setBody(duplicate);
-
-            // We do not need to use this one.
-            current.subscribe().dispose();
+            context.getHttpRequest().setBody(context.getHttpRequest().getBody().map(buffer -> buffer.duplicate()));
         }
 
         if ("http".equals(context.getHttpRequest().getUrl().getProtocol())) {
