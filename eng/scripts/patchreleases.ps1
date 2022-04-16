@@ -1,6 +1,5 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-
 param(
     [string]$GroupId = "com.azure"
 )
@@ -45,6 +44,29 @@ function ConvertToPatchInfo([ArtifactInfo]$ArInfo) {
     $patchInfo.FutureReleasePatchVersion = $arInfo.FutureReleasePatchVersion
 
     return $patchInfo    
+}
+
+function ConvertToPatchInfos($ArtifactPatchInfos, $ArtifactInfos) {
+    $patchInfos = @()
+    foreach ($artifactId in $ArtifactPatchInfos) {
+        $arInfo = $ArtifactInfos[$artifactId]
+        $patchInfo = [ArtifactPatchInfo]::new()
+        $patchInfo = ConvertToPatchInfo -ArInfo $arInfo
+        $patchInfo = [ArtifactPatchInfo]::new()
+        $patchInfo.ArtifactId = $ArInfo.ArtifactId
+        $patchInfo.ServiceDirectoryName = $ArInfo.ServiceDirectoryName
+        $patchInfo.ArtifactDirPath = $ArInfo.ArtifactDirPath
+        $patchInfo.LatestGAOrPatchVersion = $ArInfo.LatestGAOrPatchVersion
+        $patchInfo.CurrentPomFileVersion = $ArInfo.CurrentPomFileVersion
+        $patchInfo.ChangeLogPath = $ArInfo.ChangeLogPath
+        $patchInfo.ReadMePath = $ArInfo.ReadMePath
+        $patchInfo.PipelineName = $ArInfo.PipelineName
+        $patchInfo.FutureReleasePatchVersion = $arInfo.FutureReleasePatchVersion
+        
+        $patchInfos += $patchInfo
+    }
+
+    return $patchInfos
 }
 
 function GetVersionInfoForAllMavenArtifacts([string]$GroupId = "com.azure") {
@@ -173,6 +195,7 @@ function FindAllArtifactsToBePatched([String]$DependencyId, [String]$PatchVersio
     return $artifactsToPatch
 }
 
+
 function GetPatchSets($artifactsToPatch, [hashtable]$ArtifactInfos) {
     $patchSets = @()
 
@@ -204,6 +227,7 @@ function GetPatchSets($artifactsToPatch, [hashtable]$ArtifactInfos) {
 
     return $patchSets
 }
+
 function UpdateDependenciesInVersionClient([string]$ArtifactId, [hashtable]$ArtifactInfos, [string]$GroupId = "com.azure") {
     ## We need to update the version_client.txt to have the correct versions in place.
     $arInfo = $ArtifactInfos[$ArtifactId]
@@ -221,12 +245,12 @@ function UpdateDependenciesInVersionClient([string]$ArtifactId, [hashtable]$Arti
         }
     }
 }
+
 function UndoVersionClientFile() {
     $repoRoot = Resolve-Path "${PSScriptRoot}../../.."
     $versionClientFile = Join-Path $repoRoot "eng" "versioning" "version_client.txt"
     $cmdOutput = git checkout $versionClientFile
 }
-
 
 $ArtifactInfos = GetVersionInfoForAllMavenArtifacts -GroupId $GroupId
 $IgnoreList = @(
@@ -251,46 +275,48 @@ $AzCoreArtifactId = "azure-core"
 $AzCoreVersion = $ArtifactInfos[$AzCoreArtifactId].LatestGAOrPatchVersion
 
 # For testing only.
-# $AzCoreVersion = "1.26.0"
-# $ArtifactInfos[$AzCoreArtifactId].FutureReleasePatchVersion = $AzCoreVersion
-# $AzCoreNettyArtifactId = "azure-core-http-netty"
-# $ArtifactInfos[$AzCoreNettyArtifactId].Dependencies[$AzCoreArtifactId] = $AzCoreVersion
+$AzCoreVersion = "1.28.0"
+$ArtifactInfos[$AzCoreArtifactId].FutureReleasePatchVersion = $AzCoreVersion
+$AzCoreNettyArtifactId = "azure-core-http-netty"
+$ArtifactInfos[$AzCoreNettyArtifactId].Dependencies[$AzCoreArtifactId] = $AzCoreVersion
 
 $ArtifactsToPatch = FindAllArtifactsToBePatched -DependencyId $AzCoreArtifactId -PatchVersion $AzCoreVersion -ArtifactInfos $ArtifactInfos
-$ReleaseSets = GetPatchSets -ArtifactsToPatch $ArtifactsToPatch -ArtifactInfos $ArtifactInfos
-$RemoteName = GetRemoteName
-$CurrentBranchName = GetCurrentBranchName
-if ($LASTEXITCODE -ne 0) {
-    LogError "Could not correctly get the current branch name."
-    exit 1
-}
-# UpdateCIInformation -ArtifactsToPatch $ArtifactsToPatch.Keys -ArtifactInfos $ArtifactInfos
+# $ReleaseSets = GetPatchSets -ArtifactsToPatch $ArtifactsToPatch -ArtifactInfos $ArtifactInfos
+# $RemoteName = GetRemoteName
+# $CurrentBranchName = GetCurrentBranchName
+# if ($LASTEXITCODE -ne 0) {
+#     LogError "Could not correctly get the current branch name."
+#     exit 1
+# }
+UpdateCIInformation -ArtifactsToPatch $ArtifactsToPatch.Keys -ArtifactInfos $ArtifactInfos
+$ArtifactsToPatch = ConvertToPatchInfos -ArtifactPatchInfos $ArtifactsToPatch -ArtifactInfos $ArtifactInfos
+$ArtifactsToPatch | ConvertTo-Json | Out-File -FilePath "ArtifactPathInfo.json"
 
-$fileContent = [System.Text.StringBuilder]::new()
-$fileContent.AppendLine("BranchName;ArtifactId");
-Write-Output "Preparing patch releases for BOM updates."
-## We now can run the generate_patch script for all those dependencies.
-foreach ($patchSet in $ReleaseSets) {
-    try {
-        $patchInfos = [ArtifactPatchInfo[]]@()
-        foreach ($artifactId in $patchSet.Keys) {
-            $arInfo = $ArtifactInfos[$artifactId]
-            $patchInfo = [ArtifactPatchInfo]::new()
-            $patchInfo = ConvertToPatchInfo -ArInfo $arInfo
-            $patchInfos += $patchInfo
-            UpdateDependenciesInVersionClient -ArtifactId $artifactId -ArtifactInfos $ArtifactInfos
-        }
+# $fileContent = [System.Text.StringBuilder]::new()
+# $fileContent.AppendLine("BranchName;ArtifactId");
+# Write-Output "Preparing patch releases for BOM updates."
+# ## We now can run the generate_patch script for all those dependencies.
+# foreach ($patchSet in $ReleaseSets) {
+#     try {
+#         $patchInfos = [ArtifactPatchInfo[]]@()
+#         foreach ($artifactId in $patchSet.Keys) {
+#             $arInfo = $ArtifactInfos[$artifactId]
+#             $patchInfo = [ArtifactPatchInfo]::new()
+#             $patchInfo = ConvertToPatchInfo -ArInfo $arInfo
+#             $patchInfos += $patchInfo
+#             UpdateDependenciesInVersionClient -ArtifactId $artifactId -ArtifactInfos $ArtifactInfos
+#         }
 
-        $remoteBranchName = GetBranchName -ArtifactId "PatchSet"
-        GeneratePatches -ArtifactPatchInfos $patchInfos -BranchName $remoteBranchName -RemoteName $RemoteName -GroupId $GroupId
+#         $remoteBranchName = GetBranchName -ArtifactId "PatchSet"
+#         GeneratePatches -ArtifactPatchInfos $patchInfos -BranchName $remoteBranchName -RemoteName $RemoteName -GroupId $GroupId
 
-        $artifactIds = @()
-        $patchInfos | ForEach-Object { $artifactIds += $_.ArtifactId }
-        $fileContent.AppendLine("$remoteBranchName;$($artifactIds);");
-    }
-    finally {
-        $cmdOutput = git checkout $CurrentBranchName
-    }
-}
+#         $artifactIds = @()
+#         $patchInfos | ForEach-Object { $artifactIds += $_.ArtifactId }
+#         $fileContent.AppendLine("$remoteBranchName;$($artifactIds);");
+#     }
+#     finally {
+#         $cmdOutput = git checkout $CurrentBranchName
+#     }
+# }
 
-New-Item -Path . -Name "ReleasePatchInfo.csv" -ItemType "file" -Value $fileContent.ToString() -Force
+# New-Item -Path . -Name "ReleasePatchInfo.csv" -ItemType "file" -Value $fileContent.ToString() -Force
