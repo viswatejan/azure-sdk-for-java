@@ -251,10 +251,10 @@ $AzCoreArtifactId = "azure-core"
 $AzCoreVersion = $ArtifactInfos[$AzCoreArtifactId].LatestGAOrPatchVersion
 
 # For testing only.
-# $AzCoreVersion = "1.26.0"
-# $ArtifactInfos[$AzCoreArtifactId].FutureReleasePatchVersion = $AzCoreVersion
-# $AzCoreNettyArtifactId = "azure-core-http-netty"
-# $ArtifactInfos[$AzCoreNettyArtifactId].Dependencies[$AzCoreArtifactId] = $AzCoreVersion
+$AzCoreVersion = "1.28.0"
+$ArtifactInfos[$AzCoreArtifactId].FutureReleasePatchVersion = $AzCoreVersion
+$AzCoreNettyArtifactId = "azure-core-http-netty"
+$ArtifactInfos[$AzCoreNettyArtifactId].Dependencies[$AzCoreArtifactId] = $AzCoreVersion
 
 $ArtifactsToPatch = FindAllArtifactsToBePatched -DependencyId $AzCoreArtifactId -PatchVersion $AzCoreVersion -ArtifactInfos $ArtifactInfos
 $ReleaseSets = GetPatchSets -ArtifactsToPatch $ArtifactsToPatch -ArtifactInfos $ArtifactInfos
@@ -264,11 +264,8 @@ if ($LASTEXITCODE -ne 0) {
     LogError "Could not correctly get the current branch name."
     exit 1
 }
-# UpdateCIInformation -ArtifactsToPatch $ArtifactsToPatch.Keys -ArtifactInfos $ArtifactInfos
-
-$fileContent = [System.Text.StringBuilder]::new()
-$fileContent.AppendLine("BranchName;ArtifactId");
-Write-Output "Preparing patch releases for BOM updates."
+UpdateCIInformation -ArtifactsToPatch $ArtifactsToPatch.Keys -ArtifactInfos $ArtifactInfos
+$patches = @()
 ## We now can run the generate_patch script for all those dependencies.
 foreach ($patchSet in $ReleaseSets) {
     try {
@@ -286,11 +283,20 @@ foreach ($patchSet in $ReleaseSets) {
 
         $artifactIds = @()
         $patchInfos | ForEach-Object { $artifactIds += $_.ArtifactId }
-        $fileContent.AppendLine("$remoteBranchName;$($artifactIds);");
+        $patch = @{
+            Artifacts = $artifactIds
+            BranchName = $Branch
+        }
+        $patches += $patch
     }
     finally {
         $cmdOutput = git checkout $CurrentBranchName
     }
 }
 
-New-Item -Path . -Name "ReleasePatchInfo.csv" -ItemType "file" -Value $fileContent.ToString() -Force
+$allInfos = @{
+    Patch = $patches
+    Artifacts = $artifactIds
+}
+
+$allInfos | ConvertTo-Json -Depth 3
