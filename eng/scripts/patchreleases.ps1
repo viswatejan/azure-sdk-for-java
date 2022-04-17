@@ -296,7 +296,7 @@ foreach ($patchSet in $ReleaseSets) {
 
 $allInfos = @{
     Patch = $patches
-    Artifacts = $artifactIds
+    Artifacts = $ArtifactInfos
 }
 
-$allInfos | ConvertTo-Json -Depth 3
+$allInfos | ConvertTo-Json -Depth 3 | Out-File "ArtifactPatchInfo.json"
