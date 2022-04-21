@@ -4,44 +4,42 @@
 
 package com.azure.resourcemanager.azurestackhci.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Localized display information for this particular operation. */
-@Immutable
+/** Operation display payload. */
+@Fluent
 public final class OperationDisplay {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationDisplay.class);
+
     /*
-     * The localized friendly form of the resource provider name, e.g.
-     * "Microsoft Monitoring Insights" or "Microsoft Compute".
+     * Resource provider of the operation
      */
-    @JsonProperty(value = "provider", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "provider")
     private String provider;
 
     /*
-     * The localized friendly name of the resource type related to this
-     * operation. E.g. "Virtual Machines" or "Job Schedule Collections".
+     * Resource of the operation
      */
-    @JsonProperty(value = "resource", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "resource")
     private String resource;
 
     /*
-     * The concise, localized friendly name for the operation; suitable for
-     * dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual
-     * Machine".
+     * Localized friendly name for the operation
      */
-    @JsonProperty(value = "operation", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "operation")
     private String operation;
 
     /*
-     * The short, localized friendly description of the operation; suitable for
-     * tool tips and detailed views.
+     * Localized friendly description for the operation
      */
-    @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "description")
     private String description;
 
     /**
-     * Get the provider property: The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring
-     * Insights" or "Microsoft Compute".
+     * Get the provider property: Resource provider of the operation.
      *
      * @return the provider value.
      */
@@ -50,8 +48,18 @@ public final class OperationDisplay {
     }
 
     /**
-     * Get the resource property: The localized friendly name of the resource type related to this operation. E.g.
-     * "Virtual Machines" or "Job Schedule Collections".
+     * Set the provider property: Resource provider of the operation.
+     *
+     * @param provider the provider value to set.
+     * @return the OperationDisplay object itself.
+     */
+    public OperationDisplay withProvider(String provider) {
+        this.provider = provider;
+        return this;
+    }
+
+    /**
+     * Get the resource property: Resource of the operation.
      *
      * @return the resource value.
      */
@@ -60,8 +68,18 @@ public final class OperationDisplay {
     }
 
     /**
-     * Get the operation property: The concise, localized friendly name for the operation; suitable for dropdowns. E.g.
-     * "Create or Update Virtual Machine", "Restart Virtual Machine".
+     * Set the resource property: Resource of the operation.
+     *
+     * @param resource the resource value to set.
+     * @return the OperationDisplay object itself.
+     */
+    public OperationDisplay withResource(String resource) {
+        this.resource = resource;
+        return this;
+    }
+
+    /**
+     * Get the operation property: Localized friendly name for the operation.
      *
      * @return the operation value.
      */
@@ -70,13 +88,34 @@ public final class OperationDisplay {
     }
 
     /**
-     * Get the description property: The short, localized friendly description of the operation; suitable for tool tips
-     * and detailed views.
+     * Set the operation property: Localized friendly name for the operation.
+     *
+     * @param operation the operation value to set.
+     * @return the OperationDisplay object itself.
+     */
+    public OperationDisplay withOperation(String operation) {
+        this.operation = operation;
+        return this;
+    }
+
+    /**
+     * Get the description property: Localized friendly description for the operation.
      *
      * @return the description value.
      */
     public String description() {
         return this.description;
+    }
+
+    /**
+     * Set the description property: Localized friendly description for the operation.
+     *
+     * @param description the description value to set.
+     * @return the OperationDisplay object itself.
+     */
+    public OperationDisplay withDescription(String description) {
+        this.description = description;
+        return this;
     }
 
     /**

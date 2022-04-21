@@ -11,11 +11,14 @@ import com.azure.resourcemanager.mobilenetwork.models.CustomLocationResourceId;
 import com.azure.resourcemanager.mobilenetwork.models.InterfaceProperties;
 import com.azure.resourcemanager.mobilenetwork.models.MobileNetworkResourceId;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** PacketCoreControlPlane properties. */
 @Fluent
 public final class PacketCoreControlPlanePropertiesFormat {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PacketCoreControlPlanePropertiesFormat.class);
+
     /*
      * The provisioning state of the packet core control plane resource.
      */
@@ -173,7 +176,7 @@ public final class PacketCoreControlPlanePropertiesFormat {
      */
     public void validate() {
         if (mobileNetwork() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property mobileNetwork in model PacketCoreControlPlanePropertiesFormat"));
@@ -184,7 +187,7 @@ public final class PacketCoreControlPlanePropertiesFormat {
             customLocation().validate();
         }
         if (controlPlaneAccessInterface() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property controlPlaneAccessInterface in model"
@@ -193,6 +196,4 @@ public final class PacketCoreControlPlanePropertiesFormat {
             controlPlaneAccessInterface().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PacketCoreControlPlanePropertiesFormat.class);
 }

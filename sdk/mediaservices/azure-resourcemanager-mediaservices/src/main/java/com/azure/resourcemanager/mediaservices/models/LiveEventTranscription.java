@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -14,6 +16,8 @@ import java.util.List;
  */
 @Fluent
 public final class LiveEventTranscription {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LiveEventTranscription.class);
+
     /*
      * Specifies the language (locale) to be used for speech-to-text
      * transcription – it should match the spoken language in the audio track.

@@ -7,12 +7,15 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.PrivateLinkResource;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Wrapper for a collection of private link resources. */
 @Fluent
 public final class PrivateLinkResourcesWrapperInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateLinkResourcesWrapperInner.class);
+
     /*
      * The value property.
      */
@@ -46,7 +49,7 @@ public final class PrivateLinkResourcesWrapperInner {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model PrivateLinkResourcesWrapperInner"));
@@ -54,6 +57,4 @@ public final class PrivateLinkResourcesWrapperInner {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateLinkResourcesWrapperInner.class);
 }

@@ -28,6 +28,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentCommentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.IncidentCommentInner;
 import com.azure.resourcemanager.securityinsights.models.IncidentCommentList;
@@ -35,6 +36,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in IncidentCommentsClient. */
 public final class IncidentCommentsClientImpl implements IncidentCommentsClient {
+    private final ClientLogger logger = new ClientLogger(IncidentCommentsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final IncidentCommentsService service;
 
@@ -315,7 +318,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments as paginated response with {@link PagedFlux}.
+     * @return all incident comments.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<IncidentCommentInner> listAsync(
@@ -340,7 +343,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments as paginated response with {@link PagedFlux}.
+     * @return all incident comments.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<IncidentCommentInner> listAsync(
@@ -370,7 +373,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments as paginated response with {@link PagedFlux}.
+     * @return all incident comments.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<IncidentCommentInner> listAsync(
@@ -398,7 +401,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments as paginated response with {@link PagedIterable}.
+     * @return all incident comments.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<IncidentCommentInner> list(String resourceGroupName, String workspaceName, String incidentId) {
@@ -426,7 +429,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments as paginated response with {@link PagedIterable}.
+     * @return all incident comments.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<IncidentCommentInner> list(

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 package com.azure.spring.cloud.config.properties;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,8 +55,6 @@ public final class AppConfigurationProperties {
     private AppConfigManagedIdentityProperties managedIdentity;
 
     private boolean pushRefresh = true;
-
-    private Duration refreshInterval;
 
     /**
      * @return the enabled
@@ -157,20 +154,6 @@ public final class AppConfigurationProperties {
     }
 
     /**
-     * @return the refreshInterval
-     */
-    public Duration getRefreshInterval() {
-        return refreshInterval;
-    }
-
-    /**
-     * @param refreshInterval the refreshInterval to set
-     */
-    public void setRefreshInterval(Duration refreshInterval) {
-        this.refreshInterval = refreshInterval;
-    }
-
-    /**
      * Validates at least one store is configured for use and they are valid.
      */
     @PostConstruct
@@ -186,8 +169,5 @@ public final class AppConfigurationProperties {
 
         int uniqueStoreSize = (int) this.stores.stream().map(ConfigStore::getEndpoint).distinct().count();
         Assert.isTrue(this.stores.size() == uniqueStoreSize, "Duplicate store name exists.");
-        if (refreshInterval != null) {
-            Assert.isTrue(refreshInterval.getSeconds() >= 1, "Minimum refresh interval time is 1 Second.");
-        }
     }
 }

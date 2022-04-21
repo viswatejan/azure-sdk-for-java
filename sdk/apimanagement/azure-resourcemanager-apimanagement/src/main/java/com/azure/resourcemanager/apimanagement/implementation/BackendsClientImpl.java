@@ -31,6 +31,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.BackendsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.BackendContractInner;
 import com.azure.resourcemanager.apimanagement.models.BackendCollection;
@@ -44,6 +45,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in BackendsClient. */
 public final class BackendsClientImpl implements BackendsClient {
+    private final ClientLogger logger = new ClientLogger(BackendsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final BackendsService service;
 
@@ -213,8 +216,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Backend list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Backend list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackendContractInner>> listByServiceSinglePageAsync(
@@ -282,8 +284,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Backend list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Backend list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackendContractInner>> listByServiceSinglePageAsync(
@@ -347,7 +348,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Backend list representation as paginated response with {@link PagedFlux}.
+     * @return paged Backend list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BackendContractInner> listByServiceAsync(
@@ -365,7 +366,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Backend list representation as paginated response with {@link PagedFlux}.
+     * @return paged Backend list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BackendContractInner> listByServiceAsync(String resourceGroupName, String serviceName) {
@@ -393,7 +394,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Backend list representation as paginated response with {@link PagedFlux}.
+     * @return paged Backend list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BackendContractInner> listByServiceAsync(
@@ -411,7 +412,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Backend list representation as paginated response with {@link PagedIterable}.
+     * @return paged Backend list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BackendContractInner> listByService(String resourceGroupName, String serviceName) {
@@ -437,7 +438,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Backend list representation as paginated response with {@link PagedIterable}.
+     * @return paged Backend list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BackendContractInner> listByService(
@@ -454,8 +455,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the backend specified by its identifier on successful completion of
-     *     {@link Mono}.
+     * @return the entity state (Etag) version of the backend specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendsGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -509,8 +509,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the backend specified by its identifier on successful completion of
-     *     {@link Mono}.
+     * @return the entity state (Etag) version of the backend specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendsGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -560,8 +559,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the backend specified by its identifier on successful completion of
-     *     {@link Mono}.
+     * @return the entity state (Etag) version of the backend specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(String resourceGroupName, String serviceName, String backendId) {
@@ -611,7 +609,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the backend specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the backend specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendsGetResponse> getWithResponseAsync(
@@ -665,7 +663,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the backend specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the backend specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendsGetResponse> getWithResponseAsync(
@@ -715,7 +713,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the backend specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the backend specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendContractInner> getAsync(String resourceGroupName, String serviceName, String backendId) {
@@ -775,7 +773,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backend details on successful completion of {@link Mono}.
+     * @return backend details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -842,7 +840,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backend details on successful completion of {@link Mono}.
+     * @return backend details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -906,7 +904,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backend details on successful completion of {@link Mono}.
+     * @return backend details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendContractInner> createOrUpdateAsync(
@@ -936,7 +934,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backend details on successful completion of {@link Mono}.
+     * @return backend details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendContractInner> createOrUpdateAsync(
@@ -1010,7 +1008,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backend details on successful completion of {@link Mono}.
+     * @return backend details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendsUpdateResponse> updateWithResponseAsync(
@@ -1081,7 +1079,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backend details on successful completion of {@link Mono}.
+     * @return backend details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendsUpdateResponse> updateWithResponseAsync(
@@ -1149,7 +1147,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backend details on successful completion of {@link Mono}.
+     * @return backend details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendContractInner> updateAsync(
@@ -1230,7 +1228,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1290,7 +1288,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1346,7 +1344,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String backendId, String ifMatch) {
@@ -1383,7 +1381,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1402,7 +1400,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> reconnectWithResponseAsync(
@@ -1462,7 +1460,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> reconnectWithResponseAsync(
@@ -1522,7 +1520,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> reconnectAsync(
@@ -1541,7 +1539,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> reconnectAsync(String resourceGroupName, String serviceName, String backendId) {
@@ -1579,7 +1577,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> reconnectWithResponse(
@@ -1598,8 +1596,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Backend list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Backend list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackendContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -1635,8 +1632,7 @@ public final class BackendsClientImpl implements BackendsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Backend list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Backend list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackendContractInner>> listByServiceNextSinglePageAsync(

@@ -18,7 +18,7 @@ public interface Assets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of Asset items as paginated response with {@link PagedIterable}.
+     * @return a collection of Asset items.
      */
     PagedIterable<Asset> list(String resourceGroupName, String accountName);
 
@@ -35,7 +35,7 @@ public interface Assets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of Asset items as paginated response with {@link PagedIterable}.
+     * @return a collection of Asset items.
      */
     PagedIterable<Asset> list(
         String resourceGroupName, String accountName, String filter, Integer top, String orderby, Context context);
@@ -63,7 +63,7 @@ public interface Assets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Asset in the Media Services account along with {@link Response}.
+     * @return the details of an Asset in the Media Services account.
      */
     Response<Asset> getWithResponse(String resourceGroupName, String accountName, String assetName, Context context);
 
@@ -89,7 +89,7 @@ public interface Assets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(String resourceGroupName, String accountName, String assetName, Context context);
 
@@ -121,7 +121,7 @@ public interface Assets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Asset Storage container SAS URLs along with {@link Response}.
+     * @return the Asset Storage container SAS URLs.
      */
     Response<AssetContainerSas> listContainerSasWithResponse(
         String resourceGroupName,
@@ -154,8 +154,7 @@ public interface Assets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Asset storage encryption keys used to decrypt content created by version 2 of the Media Services API
-     *     along with {@link Response}.
+     * @return the Asset storage encryption keys used to decrypt content created by version 2 of the Media Services API.
      */
     Response<StorageEncryptedAssetDecryptionData> getEncryptionKeyWithResponse(
         String resourceGroupName, String accountName, String assetName, Context context);
@@ -183,7 +182,7 @@ public interface Assets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Streaming Locators associated with this Asset along with {@link Response}.
+     * @return the Streaming Locators associated with this Asset.
      */
     Response<ListStreamingLocatorsResponse> listStreamingLocatorsWithResponse(
         String resourceGroupName, String accountName, String assetName, Context context);
@@ -195,7 +194,7 @@ public interface Assets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Asset in the Media Services account along with {@link Response}.
+     * @return the details of an Asset in the Media Services account.
      */
     Asset getById(String id);
 
@@ -207,7 +206,7 @@ public interface Assets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Asset in the Media Services account along with {@link Response}.
+     * @return the details of an Asset in the Media Services account.
      */
     Response<Asset> getByIdWithResponse(String id, Context context);
 
@@ -229,7 +228,7 @@ public interface Assets {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

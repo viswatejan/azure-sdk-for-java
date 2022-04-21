@@ -3,7 +3,6 @@
 
 package com.azure.core.implementation.logging;
 
-import com.azure.core.implementation.util.EnvironmentConfiguration;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.LogLevel;
 import org.slf4j.helpers.FormattingTuple;
@@ -68,7 +67,8 @@ public final class DefaultLogger extends MarkerIgnoringBase {
             classPath = className;
         }
         this.classPath = classPath;
-        int configuredLogLevel = fromEnvironment().getLogLevel();
+        int configuredLogLevel = LogLevel.fromString(Configuration.getGlobalConfiguration().get(Configuration.PROPERTY_AZURE_LOG_LEVEL))
+            .getLogLevel();
 
         isTraceEnabled = LogLevel.VERBOSE.getLogLevel() > configuredLogLevel;
         isDebugEnabled = LogLevel.VERBOSE.getLogLevel() >= configuredLogLevel;
@@ -76,12 +76,6 @@ public final class DefaultLogger extends MarkerIgnoringBase {
         isWarnEnabled = LogLevel.WARNING.getLogLevel() >= configuredLogLevel;
         isErrorEnabled = LogLevel.ERROR.getLogLevel() >= configuredLogLevel;
 
-    }
-
-    private static LogLevel fromEnvironment() {
-        // LogLevel is so basic, we can't use configuration to read it (since Configuration needs to log too)
-        String level = EnvironmentConfiguration.getGlobalConfiguration().get(Configuration.PROPERTY_AZURE_LOG_LEVEL);
-        return LogLevel.fromString(level);
     }
 
     /**
@@ -352,9 +346,7 @@ public final class DefaultLogger extends MarkerIgnoringBase {
     private void log(String levelName, String message, Throwable t) {
         String dateTime = getFormattedDate();
         String threadName = Thread.currentThread().getName();
-        // Use a larger initial buffer for the StringBuilder as it defaults to 16 and non-empty information is expected
-        // to be much larger than that. This will reduce the amount of resizing and copying needed to be done.
-        StringBuilder stringBuilder = new StringBuilder(256);
+        StringBuilder stringBuilder = new StringBuilder();
         stringBuilder
             .append(dateTime)
             .append(OPEN_BRACKET)

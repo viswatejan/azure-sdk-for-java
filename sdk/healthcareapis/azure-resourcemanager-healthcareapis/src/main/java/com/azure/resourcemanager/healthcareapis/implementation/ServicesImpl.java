@@ -16,9 +16,10 @@ import com.azure.resourcemanager.healthcareapis.models.CheckNameAvailabilityPara
 import com.azure.resourcemanager.healthcareapis.models.Services;
 import com.azure.resourcemanager.healthcareapis.models.ServicesDescription;
 import com.azure.resourcemanager.healthcareapis.models.ServicesNameAvailabilityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ServicesImpl implements Services {
-    private static final ClientLogger LOGGER = new ClientLogger(ServicesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ServicesImpl.class);
 
     private final ServicesClient innerClient;
 
@@ -112,7 +113,7 @@ public final class ServicesImpl implements Services {
     public ServicesDescription getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -120,7 +121,7 @@ public final class ServicesImpl implements Services {
         }
         String resourceName = Utils.getValueFromIdByName(id, "services");
         if (resourceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'services'.", id)));
@@ -131,7 +132,7 @@ public final class ServicesImpl implements Services {
     public Response<ServicesDescription> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -139,7 +140,7 @@ public final class ServicesImpl implements Services {
         }
         String resourceName = Utils.getValueFromIdByName(id, "services");
         if (resourceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'services'.", id)));
@@ -150,7 +151,7 @@ public final class ServicesImpl implements Services {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -158,7 +159,7 @@ public final class ServicesImpl implements Services {
         }
         String resourceName = Utils.getValueFromIdByName(id, "services");
         if (resourceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'services'.", id)));
@@ -169,7 +170,7 @@ public final class ServicesImpl implements Services {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -177,7 +178,7 @@ public final class ServicesImpl implements Services {
         }
         String resourceName = Utils.getValueFromIdByName(id, "services");
         if (resourceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'services'.", id)));

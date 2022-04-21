@@ -105,7 +105,7 @@ public final class BlobUrlParts {
             this.isIpUrl = ModelHelper.determineAuthorityIsIpStyle(host);
         } catch (MalformedURLException e) {
             throw LOGGER.logExceptionAsError(new IllegalStateException("Authority is malformed. Host: "
-                + host, e));
+                + host));
         }
         return this;
     }
@@ -346,7 +346,7 @@ public final class BlobUrlParts {
         try {
             return parse(new URL(url));
         } catch (MalformedURLException e) {
-            throw new IllegalArgumentException("Invalid URL format. URL: " + url, e);
+            throw new IllegalArgumentException("Invalid URL format. URL: " + url);
         }
     }
 
@@ -375,7 +375,7 @@ public final class BlobUrlParts {
             }
         } catch (MalformedURLException e) {
             throw LOGGER.logExceptionAsError(new IllegalStateException("Authority is malformed. Host: "
-                + url.getAuthority(), e));
+                + url.getAuthority()));
         }
 
         Map<String, String[]> queryParamsMap = SasImplUtils.parseQueryString(url.getQuery());

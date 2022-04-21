@@ -45,6 +45,8 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the CognitiveServicesManagementClientImpl type. */
 @ServiceClient(builder = CognitiveServicesManagementClientBuilder.class)
 public final class CognitiveServicesManagementClientImpl implements CognitiveServicesManagementClient {
+    private final ClientLogger logger = new ClientLogger(CognitiveServicesManagementClientImpl.class);
+
     /** The ID of the target subscription. */
     private final String subscriptionId;
 
@@ -259,7 +261,7 @@ public final class CognitiveServicesManagementClientImpl implements CognitiveSer
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-03-01";
+        this.apiVersion = "2021-10-01";
         this.accounts = new AccountsClientImpl(this);
         this.deletedAccounts = new DeletedAccountsClientImpl(this);
         this.resourceSkus = new ResourceSkusClientImpl(this);
@@ -355,7 +357,7 @@ public final class CognitiveServicesManagementClientImpl implements CognitiveSer
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        LOGGER.logThrowableAsWarning(ioe);
+                        logger.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -414,6 +416,4 @@ public final class CognitiveServicesManagementClientImpl implements CognitiveSer
             return Mono.just(new String(responseBody, charset));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CognitiveServicesManagementClientImpl.class);
 }

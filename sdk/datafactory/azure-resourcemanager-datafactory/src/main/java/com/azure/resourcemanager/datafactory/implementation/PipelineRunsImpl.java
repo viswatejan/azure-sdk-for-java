@@ -15,9 +15,10 @@ import com.azure.resourcemanager.datafactory.models.PipelineRun;
 import com.azure.resourcemanager.datafactory.models.PipelineRuns;
 import com.azure.resourcemanager.datafactory.models.PipelineRunsQueryResponse;
 import com.azure.resourcemanager.datafactory.models.RunFilterParameters;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PipelineRunsImpl implements PipelineRuns {
-    private static final ClientLogger LOGGER = new ClientLogger(PipelineRunsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PipelineRunsImpl.class);
 
     private final PipelineRunsClient innerClient;
 

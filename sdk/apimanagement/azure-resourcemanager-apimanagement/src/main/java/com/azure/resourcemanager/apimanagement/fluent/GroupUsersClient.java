@@ -22,7 +22,7 @@ public interface GroupUsersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Users list representation as paginated response with {@link PagedIterable}.
+     * @return paged Users list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<UserContractInner> list(String resourceGroupName, String serviceName, String groupId);
@@ -47,7 +47,7 @@ public interface GroupUsersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Users list representation as paginated response with {@link PagedIterable}.
+     * @return paged Users list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<UserContractInner> list(
@@ -85,7 +85,7 @@ public interface GroupUsersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return whether resource exists along with {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Boolean> checkEntityExistsWithResponse(
@@ -117,7 +117,7 @@ public interface GroupUsersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user details along with {@link Response}.
+     * @return user details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<UserContractInner> createWithResponse(
@@ -148,7 +148,7 @@ public interface GroupUsersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(

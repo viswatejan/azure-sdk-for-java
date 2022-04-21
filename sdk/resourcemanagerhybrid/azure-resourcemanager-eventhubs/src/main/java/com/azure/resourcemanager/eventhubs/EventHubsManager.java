@@ -28,8 +28,6 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.resourcemanager.resources.fluentcore.utils.HttpPipelineProvider;
 import com.azure.resourcemanager.storage.StorageManager;
 
-import java.util.Objects;
-
 /**
  * Entry point to Azure EventHub resource management.
  */
@@ -61,8 +59,6 @@ public final class EventHubsManager extends Manager<EventHubManagementClient> {
      * @return the EventHubsManager
      */
     public static EventHubsManager authenticate(TokenCredential credential, AzureProfile profile) {
-        Objects.requireNonNull(credential, "'credential' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
         return authenticate(HttpPipelineProvider.buildHttpPipeline(credential, profile), profile);
     }
 
@@ -73,9 +69,7 @@ public final class EventHubsManager extends Manager<EventHubManagementClient> {
      * @param profile the profile to use
      * @return the EventHubsManager
      */
-    public static EventHubsManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
-        Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
+    private static EventHubsManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         return new EventHubsManager(httpPipeline, profile);
     }
 
@@ -109,7 +103,8 @@ public final class EventHubsManager extends Manager<EventHubManagementClient> {
                 .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
                 .subscriptionId(profile.getSubscriptionId())
                 .buildClient());
-        storageManager = StorageManager.authenticate(httpPipeline, profile);
+        storageManager = AzureConfigurableImpl.configureHttpPipeline(httpPipeline, StorageManager.configure())
+            .authenticate(null, profile);
     }
 
     /**

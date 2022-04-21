@@ -31,11 +31,11 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.mediaservices.fluent.StreamingEndpointsClient;
 import com.azure.resourcemanager.mediaservices.fluent.models.StreamingEndpointInner;
-import com.azure.resourcemanager.mediaservices.fluent.models.StreamingEndpointSkuInfoListResultInner;
 import com.azure.resourcemanager.mediaservices.models.StreamingEndpointListResult;
 import com.azure.resourcemanager.mediaservices.models.StreamingEntityScaleUnit;
 import java.nio.ByteBuffer;
@@ -44,6 +44,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in StreamingEndpointsClient. */
 public final class StreamingEndpointsClientImpl implements StreamingEndpointsClient {
+    private final ClientLogger logger = new ClientLogger(StreamingEndpointsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final StreamingEndpointsService service;
 
@@ -151,22 +153,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaservices"
-                + "/{accountName}/streamingEndpoints/{streamingEndpointName}/skus")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<StreamingEndpointSkuInfoListResultInner>> skus(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("accountName") String accountName,
-            @PathParam("streamingEndpointName") String streamingEndpointName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Media/mediaservices"
                 + "/{accountName}/streamingEndpoints/{streamingEndpointName}/start")
@@ -234,7 +220,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return streamingEndpointListResult along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the streaming endpoint list result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StreamingEndpointInner>> listSinglePageAsync(
@@ -258,7 +244,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -269,7 +254,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             accountName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .<PagedResponse<StreamingEndpointInner>>map(
@@ -293,7 +278,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return streamingEndpointListResult along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the streaming endpoint list result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StreamingEndpointInner>> listSinglePageAsync(
@@ -317,7 +302,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -326,7 +310,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 accountName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context)
             .map(
@@ -348,7 +332,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return streamingEndpointListResult as paginated response with {@link PagedFlux}.
+     * @return the streaming endpoint list result.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<StreamingEndpointInner> listAsync(String resourceGroupName, String accountName) {
@@ -365,7 +349,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return streamingEndpointListResult as paginated response with {@link PagedFlux}.
+     * @return the streaming endpoint list result.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<StreamingEndpointInner> listAsync(String resourceGroupName, String accountName, Context context) {
@@ -382,7 +366,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return streamingEndpointListResult as paginated response with {@link PagedIterable}.
+     * @return the streaming endpoint list result.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<StreamingEndpointInner> list(String resourceGroupName, String accountName) {
@@ -398,7 +382,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return streamingEndpointListResult as paginated response with {@link PagedIterable}.
+     * @return the streaming endpoint list result.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<StreamingEndpointInner> list(String resourceGroupName, String accountName, Context context) {
@@ -414,7 +398,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a streaming endpoint along with {@link Response} on successful completion of {@link Mono}.
+     * @return a streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<StreamingEndpointInner>> getWithResponseAsync(
@@ -442,7 +426,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingEndpointName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -454,7 +437,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                             resourceGroupName,
                             accountName,
                             streamingEndpointName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -470,7 +453,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a streaming endpoint along with {@link Response} on successful completion of {@link Mono}.
+     * @return a streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<StreamingEndpointInner>> getWithResponseAsync(
@@ -498,7 +481,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingEndpointName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -508,7 +490,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                 resourceGroupName,
                 accountName,
                 streamingEndpointName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -522,7 +504,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a streaming endpoint on successful completion of {@link Mono}.
+     * @return a streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StreamingEndpointInner> getAsync(
@@ -564,7 +546,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a streaming endpoint along with {@link Response}.
+     * @return a streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<StreamingEndpointInner> getWithResponse(
@@ -583,7 +565,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the streaming endpoint along with {@link Response} on successful completion of {@link Mono}.
+     * @return the streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -620,7 +602,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -632,7 +613,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                             resourceGroupName,
                             accountName,
                             streamingEndpointName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             autoStart,
                             parameters,
                             accept,
@@ -652,7 +633,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the streaming endpoint along with {@link Response} on successful completion of {@link Mono}.
+     * @return the streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -690,7 +671,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -700,7 +680,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                 resourceGroupName,
                 accountName,
                 streamingEndpointName,
-                apiVersion,
+                this.client.getApiVersion(),
                 autoStart,
                 parameters,
                 accept,
@@ -718,9 +698,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the streaming endpoint.
+     * @return the streaming endpoint.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<StreamingEndpointInner>, StreamingEndpointInner> beginCreateAsync(
         String resourceGroupName,
         String accountName,
@@ -736,7 +716,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                 this.client.getHttpPipeline(),
                 StreamingEndpointInner.class,
                 StreamingEndpointInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -751,9 +731,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the streaming endpoint.
+     * @return the streaming endpoint.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<StreamingEndpointInner>, StreamingEndpointInner> beginCreateAsync(
         String resourceGroupName,
         String accountName,
@@ -786,9 +766,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the streaming endpoint.
+     * @return the streaming endpoint.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<StreamingEndpointInner>, StreamingEndpointInner> beginCreate(
         String resourceGroupName,
         String accountName,
@@ -811,9 +791,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the streaming endpoint.
+     * @return the streaming endpoint.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<StreamingEndpointInner>, StreamingEndpointInner> beginCreate(
         String resourceGroupName,
         String accountName,
@@ -836,7 +816,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the streaming endpoint on successful completion of {@link Mono}.
+     * @return the streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StreamingEndpointInner> createAsync(
@@ -860,7 +840,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the streaming endpoint on successful completion of {@link Mono}.
+     * @return the streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StreamingEndpointInner> createAsync(
@@ -883,7 +863,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the streaming endpoint on successful completion of {@link Mono}.
+     * @return the streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StreamingEndpointInner> createAsync(
@@ -976,7 +956,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the streaming endpoint along with {@link Response} on successful completion of {@link Mono}.
+     * @return the streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1009,7 +989,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1021,7 +1000,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                             resourceGroupName,
                             accountName,
                             streamingEndpointName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             parameters,
                             accept,
                             context))
@@ -1039,7 +1018,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the streaming endpoint along with {@link Response} on successful completion of {@link Mono}.
+     * @return the streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1076,7 +1055,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1086,7 +1064,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                 resourceGroupName,
                 accountName,
                 streamingEndpointName,
-                apiVersion,
+                this.client.getApiVersion(),
                 parameters,
                 accept,
                 context);
@@ -1102,9 +1080,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the streaming endpoint.
+     * @return the streaming endpoint.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<StreamingEndpointInner>, StreamingEndpointInner> beginUpdateAsync(
         String resourceGroupName, String accountName, String streamingEndpointName, StreamingEndpointInner parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -1116,7 +1094,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                 this.client.getHttpPipeline(),
                 StreamingEndpointInner.class,
                 StreamingEndpointInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -1130,9 +1108,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the streaming endpoint.
+     * @return the streaming endpoint.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<StreamingEndpointInner>, StreamingEndpointInner> beginUpdateAsync(
         String resourceGroupName,
         String accountName,
@@ -1162,9 +1140,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the streaming endpoint.
+     * @return the streaming endpoint.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<StreamingEndpointInner>, StreamingEndpointInner> beginUpdate(
         String resourceGroupName, String accountName, String streamingEndpointName, StreamingEndpointInner parameters) {
         return beginUpdateAsync(resourceGroupName, accountName, streamingEndpointName, parameters).getSyncPoller();
@@ -1181,9 +1159,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the streaming endpoint.
+     * @return the streaming endpoint.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<StreamingEndpointInner>, StreamingEndpointInner> beginUpdate(
         String resourceGroupName,
         String accountName,
@@ -1204,7 +1182,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the streaming endpoint on successful completion of {@link Mono}.
+     * @return the streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StreamingEndpointInner> updateAsync(
@@ -1225,7 +1203,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the streaming endpoint on successful completion of {@link Mono}.
+     * @return the streaming endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StreamingEndpointInner> updateAsync(
@@ -1289,7 +1267,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1317,7 +1295,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingEndpointName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1329,7 +1306,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                             resourceGroupName,
                             accountName,
                             streamingEndpointName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1345,7 +1322,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1373,7 +1350,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingEndpointName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1383,7 +1359,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                 resourceGroupName,
                 accountName,
                 streamingEndpointName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -1397,17 +1373,16 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String accountName, String streamingEndpointName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
             deleteWithResponseAsync(resourceGroupName, accountName, streamingEndpointName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -1420,9 +1395,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String accountName, String streamingEndpointName, Context context) {
         context = this.client.mergeContext(context);
@@ -1442,9 +1417,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String accountName, String streamingEndpointName) {
         return beginDeleteAsync(resourceGroupName, accountName, streamingEndpointName).getSyncPoller();
@@ -1460,9 +1435,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String accountName, String streamingEndpointName, Context context) {
         return beginDeleteAsync(resourceGroupName, accountName, streamingEndpointName, context).getSyncPoller();
@@ -1477,7 +1452,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String accountName, String streamingEndpointName) {
@@ -1496,7 +1471,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1538,174 +1513,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * List streaming endpoint supported skus.
-     *
-     * @param resourceGroupName The name of the resource group within the Azure subscription.
-     * @param accountName The Media Services account name.
-     * @param streamingEndpointName The name of the streaming endpoint, maximum length is 24.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<StreamingEndpointSkuInfoListResultInner>> skusWithResponseAsync(
-        String resourceGroupName, String accountName, String streamingEndpointName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (accountName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
-        }
-        if (streamingEndpointName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter streamingEndpointName is required and cannot be null."));
-        }
-        final String apiVersion = "2021-11-01";
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .skus(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            accountName,
-                            streamingEndpointName,
-                            apiVersion,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * List streaming endpoint supported skus.
-     *
-     * @param resourceGroupName The name of the resource group within the Azure subscription.
-     * @param accountName The Media Services account name.
-     * @param streamingEndpointName The name of the streaming endpoint, maximum length is 24.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<StreamingEndpointSkuInfoListResultInner>> skusWithResponseAsync(
-        String resourceGroupName, String accountName, String streamingEndpointName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (accountName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
-        }
-        if (streamingEndpointName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter streamingEndpointName is required and cannot be null."));
-        }
-        final String apiVersion = "2021-11-01";
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .skus(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                accountName,
-                streamingEndpointName,
-                apiVersion,
-                accept,
-                context);
-    }
-
-    /**
-     * List streaming endpoint supported skus.
-     *
-     * @param resourceGroupName The name of the resource group within the Azure subscription.
-     * @param accountName The Media Services account name.
-     * @param streamingEndpointName The name of the streaming endpoint, maximum length is 24.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<StreamingEndpointSkuInfoListResultInner> skusAsync(
-        String resourceGroupName, String accountName, String streamingEndpointName) {
-        return skusWithResponseAsync(resourceGroupName, accountName, streamingEndpointName)
-            .flatMap(
-                (Response<StreamingEndpointSkuInfoListResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * List streaming endpoint supported skus.
-     *
-     * @param resourceGroupName The name of the resource group within the Azure subscription.
-     * @param accountName The Media Services account name.
-     * @param streamingEndpointName The name of the streaming endpoint, maximum length is 24.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public StreamingEndpointSkuInfoListResultInner skus(
-        String resourceGroupName, String accountName, String streamingEndpointName) {
-        return skusAsync(resourceGroupName, accountName, streamingEndpointName).block();
-    }
-
-    /**
-     * List streaming endpoint supported skus.
-     *
-     * @param resourceGroupName The name of the resource group within the Azure subscription.
-     * @param accountName The Media Services account name.
-     * @param streamingEndpointName The name of the streaming endpoint, maximum length is 24.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<StreamingEndpointSkuInfoListResultInner> skusWithResponse(
-        String resourceGroupName, String accountName, String streamingEndpointName, Context context) {
-        return skusWithResponseAsync(resourceGroupName, accountName, streamingEndpointName, context).block();
-    }
-
-    /**
      * Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
@@ -1714,7 +1521,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(
@@ -1742,7 +1549,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingEndpointName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1754,7 +1560,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                             resourceGroupName,
                             accountName,
                             streamingEndpointName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1770,7 +1576,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(
@@ -1798,7 +1604,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingEndpointName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1808,7 +1613,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                 resourceGroupName,
                 accountName,
                 streamingEndpointName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -1822,17 +1627,16 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginStartAsync(
         String resourceGroupName, String accountName, String streamingEndpointName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
             startWithResponseAsync(resourceGroupName, accountName, streamingEndpointName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -1845,9 +1649,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginStartAsync(
         String resourceGroupName, String accountName, String streamingEndpointName, Context context) {
         context = this.client.mergeContext(context);
@@ -1867,9 +1671,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginStart(
         String resourceGroupName, String accountName, String streamingEndpointName) {
         return beginStartAsync(resourceGroupName, accountName, streamingEndpointName).getSyncPoller();
@@ -1885,9 +1689,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginStart(
         String resourceGroupName, String accountName, String streamingEndpointName, Context context) {
         return beginStartAsync(resourceGroupName, accountName, streamingEndpointName, context).getSyncPoller();
@@ -1902,7 +1706,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> startAsync(String resourceGroupName, String accountName, String streamingEndpointName) {
@@ -1921,7 +1725,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> startAsync(
@@ -1971,7 +1775,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> stopWithResponseAsync(
@@ -1999,7 +1803,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingEndpointName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2011,7 +1814,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                             resourceGroupName,
                             accountName,
                             streamingEndpointName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -2027,7 +1830,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> stopWithResponseAsync(
@@ -2055,7 +1858,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingEndpointName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2065,7 +1867,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                 resourceGroupName,
                 accountName,
                 streamingEndpointName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -2079,17 +1881,16 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginStopAsync(
         String resourceGroupName, String accountName, String streamingEndpointName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
             stopWithResponseAsync(resourceGroupName, accountName, streamingEndpointName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -2102,9 +1903,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginStopAsync(
         String resourceGroupName, String accountName, String streamingEndpointName, Context context) {
         context = this.client.mergeContext(context);
@@ -2124,9 +1925,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginStop(
         String resourceGroupName, String accountName, String streamingEndpointName) {
         return beginStopAsync(resourceGroupName, accountName, streamingEndpointName).getSyncPoller();
@@ -2142,9 +1943,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginStop(
         String resourceGroupName, String accountName, String streamingEndpointName, Context context) {
         return beginStopAsync(resourceGroupName, accountName, streamingEndpointName, context).getSyncPoller();
@@ -2159,7 +1960,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> stopAsync(String resourceGroupName, String accountName, String streamingEndpointName) {
@@ -2178,7 +1979,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> stopAsync(
@@ -2229,7 +2030,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> scaleWithResponseAsync(
@@ -2265,7 +2066,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2277,7 +2077,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                             resourceGroupName,
                             accountName,
                             streamingEndpointName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             parameters,
                             accept,
                             context))
@@ -2295,7 +2095,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> scaleWithResponseAsync(
@@ -2332,7 +2132,6 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2342,7 +2141,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
                 resourceGroupName,
                 accountName,
                 streamingEndpointName,
-                apiVersion,
+                this.client.getApiVersion(),
                 parameters,
                 accept,
                 context);
@@ -2358,9 +2157,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginScaleAsync(
         String resourceGroupName,
         String accountName,
@@ -2370,8 +2169,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
             scaleWithResponseAsync(resourceGroupName, accountName, streamingEndpointName, parameters);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -2385,9 +2183,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginScaleAsync(
         String resourceGroupName,
         String accountName,
@@ -2412,9 +2210,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginScale(
         String resourceGroupName,
         String accountName,
@@ -2434,9 +2232,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginScale(
         String resourceGroupName,
         String accountName,
@@ -2457,7 +2255,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> scaleAsync(
@@ -2481,7 +2279,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> scaleAsync(
@@ -2544,7 +2342,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return streamingEndpointListResult along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the streaming endpoint list result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StreamingEndpointInner>> listNextSinglePageAsync(String nextLink) {
@@ -2580,7 +2378,7 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return streamingEndpointListResult along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return the streaming endpoint list result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StreamingEndpointInner>> listNextSinglePageAsync(String nextLink, Context context) {

@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.DatasetCompression;
 import com.azure.resourcemanager.datafactory.models.DatasetLocation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Binary dataset properties. */
 @Fluent
 public final class BinaryDatasetTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BinaryDatasetTypeProperties.class);
+
     /*
      * The location of the Binary storage.
      */
@@ -72,7 +75,7 @@ public final class BinaryDatasetTypeProperties {
      */
     public void validate() {
         if (location() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property location in model BinaryDatasetTypeProperties"));
@@ -83,6 +86,4 @@ public final class BinaryDatasetTypeProperties {
             compression().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BinaryDatasetTypeProperties.class);
 }

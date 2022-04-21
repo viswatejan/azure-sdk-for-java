@@ -9,11 +9,14 @@ import com.azure.core.management.SubResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.models.IpAllocationMethod;
 import com.azure.resourcemanager.network.models.ProvisioningState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of IP configuration of an Bastion Host. */
 @Fluent
 public final class BastionHostIpConfigurationPropertiesFormat {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BastionHostIpConfigurationPropertiesFormat.class);
+
     /*
      * Reference of the subnet resource.
      */
@@ -115,19 +118,17 @@ public final class BastionHostIpConfigurationPropertiesFormat {
      */
     public void validate() {
         if (subnet() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property subnet in model BastionHostIpConfigurationPropertiesFormat"));
         }
         if (publicIpAddress() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property publicIpAddress in model"
                             + " BastionHostIpConfigurationPropertiesFormat"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BastionHostIpConfigurationPropertiesFormat.class);
 }

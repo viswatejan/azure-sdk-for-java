@@ -22,6 +22,8 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.resourcehealth.fluent.AvailabilityStatusesClient;
+import com.azure.resourcemanager.resourcehealth.fluent.EmergingIssuesClient;
+import com.azure.resourcemanager.resourcehealth.fluent.EventsOperationsClient;
 import com.azure.resourcemanager.resourcehealth.fluent.MicrosoftResourceHealth;
 import com.azure.resourcemanager.resourcehealth.fluent.OperationsClient;
 import java.io.IOException;
@@ -37,6 +39,8 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the MicrosoftResourceHealthImpl type. */
 @ServiceClient(builder = MicrosoftResourceHealthBuilder.class)
 public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealth {
+    private final ClientLogger logger = new ClientLogger(MicrosoftResourceHealthImpl.class);
+
     /**
      * Subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of
      * the URI for every service call.
@@ -113,6 +117,18 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         return this.defaultPollInterval;
     }
 
+    /** The EventsOperationsClient object to access its operations. */
+    private final EventsOperationsClient eventsOperations;
+
+    /**
+     * Gets the EventsOperationsClient object to access its operations.
+     *
+     * @return the EventsOperationsClient object.
+     */
+    public EventsOperationsClient getEventsOperations() {
+        return this.eventsOperations;
+    }
+
     /** The AvailabilityStatusesClient object to access its operations. */
     private final AvailabilityStatusesClient availabilityStatuses;
 
@@ -135,6 +151,18 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
      */
     public OperationsClient getOperations() {
         return this.operations;
+    }
+
+    /** The EmergingIssuesClient object to access its operations. */
+    private final EmergingIssuesClient emergingIssues;
+
+    /**
+     * Gets the EmergingIssuesClient object to access its operations.
+     *
+     * @return the EmergingIssuesClient object.
+     */
+    public EmergingIssuesClient getEmergingIssues() {
+        return this.emergingIssues;
     }
 
     /**
@@ -160,9 +188,11 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2020-05-01";
+        this.apiVersion = "2018-07-01";
+        this.eventsOperations = new EventsOperationsClientImpl(this);
         this.availabilityStatuses = new AvailabilityStatusesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.emergingIssues = new EmergingIssuesClientImpl(this);
     }
 
     /**
@@ -248,7 +278,7 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        LOGGER.logThrowableAsWarning(ioe);
+                        logger.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -307,6 +337,4 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
             return Mono.just(new String(responseBody, charset));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MicrosoftResourceHealthImpl.class);
 }

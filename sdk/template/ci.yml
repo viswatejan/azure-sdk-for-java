@@ -14,8 +14,6 @@ trigger:
     exclude:
       - sdk/template/pom.xml
       - sdk/template/azure-sdk-template/pom.xml
-      - sdk/template/azure-sdk-template-two/pom.xml
-      - sdk/template/azure-sdk-template-three/pom.xml
       - sdk/template/azure-template-perf/pom.xml
 
 pr:
@@ -35,8 +33,6 @@ pr:
     exclude:
       - sdk/template/pom.xml
       - sdk/template/azure-sdk-template/pom.xml
-      - sdk/template/azure-sdk-template-two/pom.xml
-      - sdk/template/azure-sdk-template-three/pom.xml
       - sdk/template/azure-template-perf/pom.xml
 
 extends:
@@ -47,12 +43,6 @@ extends:
       - name: azure-sdk-template
         groupId: com.azure
         safeName: azuresdktemplate
-      - name: azure-sdk-template-two
-        groupId: com.azure
-        safeName: azuresdktemplatetwo
-      - name: azure-sdk-template-three
-        groupId: com.azure
-        safeName: azuresdktemplatethree
     AdditionalModules:
       - name: azure-template-perf
         groupId: com.azure

@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
 import com.azure.resourcemanager.datafactory.models.SybaseAuthenticationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Sybase linked service properties. */
 @Fluent
 public final class SybaseLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SybaseLinkedServiceTypeProperties.class);
+
     /*
      * Server name for connection. Type: string (or Expression with resultType
      * string).
@@ -210,13 +213,13 @@ public final class SybaseLinkedServiceTypeProperties {
      */
     public void validate() {
         if (server() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property server in model SybaseLinkedServiceTypeProperties"));
         }
         if (database() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property database in model SybaseLinkedServiceTypeProperties"));
@@ -225,6 +228,4 @@ public final class SybaseLinkedServiceTypeProperties {
             password().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SybaseLinkedServiceTypeProperties.class);
 }

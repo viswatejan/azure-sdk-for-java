@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.resources.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The definition of a parameter that can be provided to the policy. */
 @Fluent
 public final class ParameterDefinitionsValue {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ParameterDefinitionsValue.class);
+
     /*
      * The data type of the parameter.
      */

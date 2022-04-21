@@ -29,6 +29,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.applicationinsights.fluent.WebTestsClient;
 import com.azure.resourcemanager.applicationinsights.fluent.models.WebTestInner;
 import com.azure.resourcemanager.applicationinsights.models.TagsResource;
@@ -37,6 +38,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in WebTestsClient. */
 public final class WebTestsClientImpl implements WebTestsClient {
+    private final ClientLogger logger = new ClientLogger(WebTestsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final WebTestsService service;
 
@@ -302,8 +305,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined within a specified resource group as paginated response with
-     *     {@link PagedFlux}.
+     * @return all Application Insights web tests defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WebTestInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -320,8 +322,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined within a specified resource group as paginated response with
-     *     {@link PagedFlux}.
+     * @return all Application Insights web tests defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WebTestInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -337,8 +338,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined within a specified resource group as paginated response with
-     *     {@link PagedIterable}.
+     * @return all Application Insights web tests defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WebTestInner> listByResourceGroup(String resourceGroupName) {
@@ -353,8 +353,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined within a specified resource group as paginated response with
-     *     {@link PagedIterable}.
+     * @return all Application Insights web tests defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WebTestInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -1084,8 +1083,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web test alerts definitions within a subscription as paginated response with
-     *     {@link PagedFlux}.
+     * @return all Application Insights web test alerts definitions within a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WebTestInner> listAsync() {
@@ -1099,8 +1097,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web test alerts definitions within a subscription as paginated response with
-     *     {@link PagedFlux}.
+     * @return all Application Insights web test alerts definitions within a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WebTestInner> listAsync(Context context) {
@@ -1113,8 +1110,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web test alerts definitions within a subscription as paginated response with
-     *     {@link PagedIterable}.
+     * @return all Application Insights web test alerts definitions within a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WebTestInner> list() {
@@ -1128,8 +1124,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web test alerts definitions within a subscription as paginated response with
-     *     {@link PagedIterable}.
+     * @return all Application Insights web test alerts definitions within a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WebTestInner> list(Context context) {
@@ -1260,8 +1255,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined for the specified component as paginated response with {@link
-     *     PagedFlux}.
+     * @return all Application Insights web tests defined for the specified component.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WebTestInner> listByComponentAsync(String componentName, String resourceGroupName) {
@@ -1279,8 +1273,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined for the specified component as paginated response with {@link
-     *     PagedFlux}.
+     * @return all Application Insights web tests defined for the specified component.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WebTestInner> listByComponentAsync(
@@ -1298,8 +1291,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined for the specified component as paginated response with {@link
-     *     PagedIterable}.
+     * @return all Application Insights web tests defined for the specified component.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WebTestInner> listByComponent(String componentName, String resourceGroupName) {
@@ -1315,8 +1307,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined for the specified component as paginated response with {@link
-     *     PagedIterable}.
+     * @return all Application Insights web tests defined for the specified component.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WebTestInner> listByComponent(

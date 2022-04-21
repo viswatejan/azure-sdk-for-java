@@ -6,11 +6,14 @@ package com.azure.resourcemanager.resources.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Entity representing the reference to the deployment parameters. */
 @Fluent
 public final class ParametersLink {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ParametersLink.class);
+
     /*
      * The URI of the parameters file.
      */
@@ -70,11 +73,9 @@ public final class ParametersLink {
      */
     public void validate() {
         if (uri() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property uri in model ParametersLink"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ParametersLink.class);
 }

@@ -4,13 +4,16 @@
 package com.azure.core.models;
 
 import com.azure.core.implementation.Option;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.JsonSerializer;
 import com.azure.core.util.serializer.JsonSerializerProviders;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import java.nio.charset.StandardCharsets;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +24,10 @@ import java.util.Objects;
 public final class JsonPatchDocument {
     private static final Object SERIALIZER_INSTANTIATION_SYNCHRONIZER = new Object();
     private static volatile JsonSerializer defaultSerializer;
+
+    // JsonPatchDocument is a commonly used model, use a static logger.
+    @JsonIgnore
+    private static final ClientLogger LOGGER = new ClientLogger(JsonPatchDocument.class);
 
     @JsonIgnore
     private final JsonSerializer serializer;
@@ -452,22 +459,30 @@ public final class JsonPatchDocument {
             return Option.empty();
         }
 
-        byte[] bytes;
-        if (serializer == null) {
-            if (defaultSerializer == null) {
-                synchronized (SERIALIZER_INSTANTIATION_SYNCHRONIZER) {
-                    if (defaultSerializer == null) {
-                        defaultSerializer = JsonSerializerProviders.createInstance();
+        String rawValue;
+        try {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+            if (serializer == null) {
+                if (defaultSerializer == null) {
+                    synchronized (SERIALIZER_INSTANTIATION_SYNCHRONIZER) {
+                        if (defaultSerializer == null) {
+                            defaultSerializer = JsonSerializerProviders.createInstance();
+                        }
                     }
                 }
+
+                defaultSerializer.serialize(outputStream, value);
+            } else {
+                serializer.serialize(outputStream, value);
             }
 
-            bytes = defaultSerializer.serializeToBytes(value);
-        } else {
-            bytes = serializer.serializeToBytes(value);
+            rawValue = outputStream.toString("UTF-8");
+        } catch (IOException ex) {
+            throw LOGGER.logExceptionAsError(new UncheckedIOException(ex));
         }
 
-        return Option.of(new String(bytes, StandardCharsets.UTF_8));
+        return Option.of(rawValue);
     }
 
     private JsonPatchDocument appendOperation(JsonPatchOperationKind operationKind, String from, String path,
@@ -479,7 +494,7 @@ public final class JsonPatchDocument {
     /**
      * Gets a formatted JSON string representation of this JSON Patch document.
      *
-     * @return The formatted JSON String representing this JSON Patch document.
+     * @return The formatted JSON String representing this JSON Patch docuemnt.
      */
     @Override
     public String toString() {

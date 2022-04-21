@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.UserGroupsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.GroupContractInner;
 import com.azure.resourcemanager.apimanagement.models.GroupCollection;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in UserGroupsClient. */
 public final class UserGroupsClientImpl implements UserGroupsClient {
+    private final ClientLogger logger = new ClientLogger(UserGroupsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final UserGroupsService service;
 
@@ -102,8 +105,7 @@ public final class UserGroupsClientImpl implements UserGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Group list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Group list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GroupContractInner>> listSinglePageAsync(
@@ -176,8 +178,7 @@ public final class UserGroupsClientImpl implements UserGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Group list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Group list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GroupContractInner>> listSinglePageAsync(
@@ -252,7 +253,7 @@ public final class UserGroupsClientImpl implements UserGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Group list representation as paginated response with {@link PagedFlux}.
+     * @return paged Group list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<GroupContractInner> listAsync(
@@ -271,7 +272,7 @@ public final class UserGroupsClientImpl implements UserGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Group list representation as paginated response with {@link PagedFlux}.
+     * @return paged Group list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<GroupContractInner> listAsync(String resourceGroupName, String serviceName, String userId) {
@@ -300,7 +301,7 @@ public final class UserGroupsClientImpl implements UserGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Group list representation as paginated response with {@link PagedFlux}.
+     * @return paged Group list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<GroupContractInner> listAsync(
@@ -325,7 +326,7 @@ public final class UserGroupsClientImpl implements UserGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Group list representation as paginated response with {@link PagedIterable}.
+     * @return paged Group list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<GroupContractInner> list(String resourceGroupName, String serviceName, String userId) {
@@ -352,7 +353,7 @@ public final class UserGroupsClientImpl implements UserGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Group list representation as paginated response with {@link PagedIterable}.
+     * @return paged Group list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<GroupContractInner> list(
@@ -373,8 +374,7 @@ public final class UserGroupsClientImpl implements UserGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Group list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Group list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GroupContractInner>> listNextSinglePageAsync(String nextLink) {
@@ -410,8 +410,7 @@ public final class UserGroupsClientImpl implements UserGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Group list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Group list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GroupContractInner>> listNextSinglePageAsync(String nextLink, Context context) {

@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.apimanagement.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Operation Entity contract Properties. */
 @Fluent
 public final class OperationTagResourceContractProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationTagResourceContractProperties.class);
+
     /*
      * Identifier of the operation in form /operations/{operationId}.
      */
@@ -23,19 +27,19 @@ public final class OperationTagResourceContractProperties {
     private String name;
 
     /*
-     * API Name.
+     * Api Name.
      */
     @JsonProperty(value = "apiName", access = JsonProperty.Access.WRITE_ONLY)
     private String apiName;
 
     /*
-     * API Revision.
+     * Api Revision.
      */
     @JsonProperty(value = "apiRevision", access = JsonProperty.Access.WRITE_ONLY)
     private String apiRevision;
 
     /*
-     * API Version.
+     * Api Version.
      */
     @JsonProperty(value = "apiVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String apiVersion;
@@ -91,7 +95,7 @@ public final class OperationTagResourceContractProperties {
     }
 
     /**
-     * Get the apiName property: API Name.
+     * Get the apiName property: Api Name.
      *
      * @return the apiName value.
      */
@@ -100,7 +104,7 @@ public final class OperationTagResourceContractProperties {
     }
 
     /**
-     * Get the apiRevision property: API Revision.
+     * Get the apiRevision property: Api Revision.
      *
      * @return the apiRevision value.
      */
@@ -109,7 +113,7 @@ public final class OperationTagResourceContractProperties {
     }
 
     /**
-     * Get the apiVersion property: API Version.
+     * Get the apiVersion property: Api Version.
      *
      * @return the apiVersion value.
      */

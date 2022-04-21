@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
 /** Information on the user an incident is assigned to. */
 @Fluent
 public final class IncidentOwnerInfo {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(IncidentOwnerInfo.class);
+
     /*
      * The email of the user the incident is assigned to.
      */

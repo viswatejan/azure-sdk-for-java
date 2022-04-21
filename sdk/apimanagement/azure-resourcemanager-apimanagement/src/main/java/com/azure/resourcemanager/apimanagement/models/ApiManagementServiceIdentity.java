@@ -6,6 +6,7 @@ package com.azure.resourcemanager.apimanagement.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -14,6 +15,8 @@ import java.util.UUID;
 /** Identity properties of the Api Management service resource. */
 @Fluent
 public class ApiManagementServiceIdentity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiManagementServiceIdentity.class);
+
     /*
      * The type of identity used for the resource. The type 'SystemAssigned,
      * UserAssigned' includes both an implicitly created identity and a set of
@@ -122,7 +125,7 @@ public class ApiManagementServiceIdentity {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property type in model ApiManagementServiceIdentity"));
@@ -138,6 +141,4 @@ public class ApiManagementServiceIdentity {
                     });
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ApiManagementServiceIdentity.class);
 }

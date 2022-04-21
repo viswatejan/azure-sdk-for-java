@@ -12,11 +12,14 @@ import com.azure.resourcemanager.apimanagement.models.BackendProperties;
 import com.azure.resourcemanager.apimanagement.models.BackendProtocol;
 import com.azure.resourcemanager.apimanagement.models.BackendProxyContract;
 import com.azure.resourcemanager.apimanagement.models.BackendTlsProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters supplied to the Create Backend operation. */
 @Fluent
 public final class BackendContractProperties extends BackendBaseParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackendContractProperties.class);
+
     /*
      * Runtime Url of the Backend.
      */
@@ -127,17 +130,15 @@ public final class BackendContractProperties extends BackendBaseParameters {
     public void validate() {
         super.validate();
         if (url() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property url in model BackendContractProperties"));
         }
         if (protocol() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property protocol in model BackendContractProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BackendContractProperties.class);
 }

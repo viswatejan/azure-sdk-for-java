@@ -28,6 +28,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.serializer.CollectionFormat;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.resourcemanager.applicationinsights.fluent.MyWorkbooksClient;
@@ -40,6 +41,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in MyWorkbooksClient. */
 public final class MyWorkbooksClientImpl implements MyWorkbooksClient {
+    private final ClientLogger logger = new ClientLogger(MyWorkbooksClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final MyWorkbooksService service;
 
@@ -332,8 +335,7 @@ public final class MyWorkbooksClientImpl implements MyWorkbooksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDefinitionException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified resource group and category as paginated response with
-     *     {@link PagedFlux}.
+     * @return all private workbooks defined within a specified resource group and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MyWorkbookInner> listByResourceGroupAsync(
@@ -351,8 +353,7 @@ public final class MyWorkbooksClientImpl implements MyWorkbooksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDefinitionException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified resource group and category as paginated response with
-     *     {@link PagedFlux}.
+     * @return all private workbooks defined within a specified resource group and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MyWorkbookInner> listByResourceGroupAsync(String resourceGroupName, CategoryType category) {
@@ -377,8 +378,7 @@ public final class MyWorkbooksClientImpl implements MyWorkbooksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDefinitionException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified resource group and category as paginated response with
-     *     {@link PagedFlux}.
+     * @return all private workbooks defined within a specified resource group and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MyWorkbookInner> listByResourceGroupAsync(
@@ -403,8 +403,7 @@ public final class MyWorkbooksClientImpl implements MyWorkbooksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDefinitionException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified resource group and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified resource group and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MyWorkbookInner> listByResourceGroup(String resourceGroupName, CategoryType category) {
@@ -428,8 +427,7 @@ public final class MyWorkbooksClientImpl implements MyWorkbooksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDefinitionException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified resource group and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified resource group and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MyWorkbookInner> listByResourceGroup(
@@ -571,8 +569,7 @@ public final class MyWorkbooksClientImpl implements MyWorkbooksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDefinitionException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified subscription and category as paginated response with
-     *     {@link PagedFlux}.
+     * @return all private workbooks defined within a specified subscription and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MyWorkbookInner> listAsync(CategoryType category, List<String> tags, Boolean canFetchContent) {
@@ -588,8 +585,7 @@ public final class MyWorkbooksClientImpl implements MyWorkbooksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDefinitionException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified subscription and category as paginated response with
-     *     {@link PagedFlux}.
+     * @return all private workbooks defined within a specified subscription and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MyWorkbookInner> listAsync(CategoryType category) {
@@ -611,8 +607,7 @@ public final class MyWorkbooksClientImpl implements MyWorkbooksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDefinitionException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified subscription and category as paginated response with
-     *     {@link PagedFlux}.
+     * @return all private workbooks defined within a specified subscription and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MyWorkbookInner> listAsync(
@@ -629,8 +624,7 @@ public final class MyWorkbooksClientImpl implements MyWorkbooksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDefinitionException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified subscription and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified subscription and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MyWorkbookInner> list(CategoryType category) {
@@ -650,8 +644,7 @@ public final class MyWorkbooksClientImpl implements MyWorkbooksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDefinitionException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified subscription and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified subscription and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MyWorkbookInner> list(

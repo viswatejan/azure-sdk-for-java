@@ -28,7 +28,7 @@ public class UnexpectedExceptionInformation {
         try {
             final Method exceptionBodyMethod = exceptionType.getDeclaredMethod(EXCEPTION_BODY_METHOD);
             exceptionBodyType = exceptionBodyMethod.getReturnType();
-        } catch (NoSuchMethodException ignored) {
+        } catch (NoSuchMethodException e) {
             // no-op
         }
         this.exceptionBodyType = exceptionBodyType;

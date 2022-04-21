@@ -6,12 +6,15 @@ package com.azure.resourcemanager.storagecache.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A set of rules describing access policies applied to NFSv3 clients of the cache. */
 @Fluent
 public final class NfsAccessPolicy {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(NfsAccessPolicy.class);
+
     /*
      * Name identifying this policy. Access Policy names are not case
      * sensitive.
@@ -72,18 +75,16 @@ public final class NfsAccessPolicy {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model NfsAccessPolicy"));
         }
         if (accessRules() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property accessRules in model NfsAccessPolicy"));
         } else {
             accessRules().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(NfsAccessPolicy.class);
 }

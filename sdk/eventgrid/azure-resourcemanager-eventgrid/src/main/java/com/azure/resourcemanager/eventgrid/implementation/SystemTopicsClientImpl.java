@@ -30,6 +30,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.eventgrid.fluent.SystemTopicsClient;
@@ -42,6 +43,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in SystemTopicsClient. */
 public final class SystemTopicsClientImpl implements SystemTopicsClient {
+    private final ClientLogger logger = new ClientLogger(SystemTopicsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final SystemTopicsService service;
 
@@ -449,7 +452,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of eventGrid System Topic.
+     * @return eventGrid System Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SystemTopicInner>, SystemTopicInner> beginCreateOrUpdateAsync(
@@ -476,7 +479,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of eventGrid System Topic.
+     * @return eventGrid System Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SystemTopicInner>, SystemTopicInner> beginCreateOrUpdateAsync(
@@ -499,7 +502,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of eventGrid System Topic.
+     * @return eventGrid System Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SystemTopicInner>, SystemTopicInner> beginCreateOrUpdate(
@@ -517,7 +520,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of eventGrid System Topic.
+     * @return eventGrid System Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SystemTopicInner>, SystemTopicInner> beginCreateOrUpdate(
@@ -698,7 +701,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String systemTopicName) {
@@ -718,7 +721,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -738,7 +741,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String systemTopicName) {
@@ -754,7 +757,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -954,7 +957,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of eventGrid System Topic.
+     * @return eventGrid System Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SystemTopicInner>, SystemTopicInner> beginUpdateAsync(
@@ -981,7 +984,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of eventGrid System Topic.
+     * @return eventGrid System Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SystemTopicInner>, SystemTopicInner> beginUpdateAsync(
@@ -1007,7 +1010,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of eventGrid System Topic.
+     * @return eventGrid System Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SystemTopicInner>, SystemTopicInner> beginUpdate(
@@ -1025,7 +1028,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of eventGrid System Topic.
+     * @return eventGrid System Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SystemTopicInner>, SystemTopicInner> beginUpdate(
@@ -1241,7 +1244,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List System topics operation as paginated response with {@link PagedFlux}.
+     * @return result of the List System topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SystemTopicInner> listAsync(String filter, Integer top) {
@@ -1254,7 +1257,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List System topics operation as paginated response with {@link PagedFlux}.
+     * @return result of the List System topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SystemTopicInner> listAsync() {
@@ -1279,7 +1282,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List System topics operation as paginated response with {@link PagedFlux}.
+     * @return result of the List System topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SystemTopicInner> listAsync(String filter, Integer top, Context context) {
@@ -1293,7 +1296,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List System topics operation as paginated response with {@link PagedIterable}.
+     * @return result of the List System topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SystemTopicInner> list() {
@@ -1317,7 +1320,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List System topics operation as paginated response with {@link PagedIterable}.
+     * @return result of the List System topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SystemTopicInner> list(String filter, Integer top, Context context) {
@@ -1463,7 +1466,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List System topics operation as paginated response with {@link PagedFlux}.
+     * @return result of the List System topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SystemTopicInner> listByResourceGroupAsync(String resourceGroupName, String filter, Integer top) {
@@ -1479,7 +1482,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List System topics operation as paginated response with {@link PagedFlux}.
+     * @return result of the List System topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SystemTopicInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -1506,7 +1509,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List System topics operation as paginated response with {@link PagedFlux}.
+     * @return result of the List System topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SystemTopicInner> listByResourceGroupAsync(
@@ -1523,7 +1526,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List System topics operation as paginated response with {@link PagedIterable}.
+     * @return result of the List System topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SystemTopicInner> listByResourceGroup(String resourceGroupName) {
@@ -1548,7 +1551,7 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List System topics operation as paginated response with {@link PagedIterable}.
+     * @return result of the List System topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SystemTopicInner> listByResourceGroup(

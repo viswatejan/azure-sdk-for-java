@@ -140,8 +140,8 @@ public final class AccessTokenCache {
                         return sinksOne.asMono().switchIfEmpty(Mono.defer(() -> Mono.just(cache)));
                     }
                 }
-            } catch (Exception ex) {
-                return Mono.error(ex);
+            } catch (Throwable t) {
+                return Mono.error(t);
             }
         };
     }

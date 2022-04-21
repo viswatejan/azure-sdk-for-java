@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -25,6 +26,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Fluent
 public class TriggerDependencyReference extends DependencyReference {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TriggerDependencyReference.class);
+
     /*
      * Referenced trigger.
      */
@@ -60,7 +63,7 @@ public class TriggerDependencyReference extends DependencyReference {
     public void validate() {
         super.validate();
         if (referenceTrigger() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property referenceTrigger in model TriggerDependencyReference"));
@@ -68,6 +71,4 @@ public class TriggerDependencyReference extends DependencyReference {
             referenceTrigger().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TriggerDependencyReference.class);
 }

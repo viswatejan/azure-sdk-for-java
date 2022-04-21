@@ -6,11 +6,14 @@ package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Lease Share request schema. */
 @Fluent
 public final class LeaseShareRequest {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LeaseShareRequest.class);
+
     /*
      * Specifies the lease action. Can be one of the available actions.
      */
@@ -157,11 +160,9 @@ public final class LeaseShareRequest {
      */
     public void validate() {
         if (action() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property action in model LeaseShareRequest"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LeaseShareRequest.class);
 }

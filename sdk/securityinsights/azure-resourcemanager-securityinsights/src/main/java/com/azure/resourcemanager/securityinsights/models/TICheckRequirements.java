@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.models.TICheckRequirementsProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -15,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("ThreatIntelligence")
 @Fluent
 public final class TICheckRequirements extends DataConnectorsCheckRequirements {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TICheckRequirements.class);
+
     /*
      * Threat Intelligence Platforms data connector check required properties
      */

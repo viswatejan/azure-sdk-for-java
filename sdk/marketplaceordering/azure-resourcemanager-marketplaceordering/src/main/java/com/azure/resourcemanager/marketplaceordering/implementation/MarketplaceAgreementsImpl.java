@@ -13,12 +13,13 @@ import com.azure.resourcemanager.marketplaceordering.fluent.models.AgreementTerm
 import com.azure.resourcemanager.marketplaceordering.models.AgreementTerms;
 import com.azure.resourcemanager.marketplaceordering.models.MarketplaceAgreements;
 import com.azure.resourcemanager.marketplaceordering.models.OfferType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public final class MarketplaceAgreementsImpl implements MarketplaceAgreements {
-    private static final ClientLogger LOGGER = new ClientLogger(MarketplaceAgreementsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MarketplaceAgreementsImpl.class);
 
     private final MarketplaceAgreementsClient innerClient;
 

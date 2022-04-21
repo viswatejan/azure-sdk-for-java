@@ -31,6 +31,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.apimanagement.fluent.ApisClient;
@@ -49,6 +50,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ApisClient. */
 public final class ApisClientImpl implements ApisClient {
+    private final ClientLogger logger = new ClientLogger(ApisClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ApisService service;
 
@@ -112,7 +115,7 @@ public final class ApisClientImpl implements ApisClient {
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement"
                 + "/service/{serviceName}/apis/{apiId}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<ApisGetResponse> get(
             @HostParam("$host") String endpoint,
@@ -237,7 +240,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiContractInner>> listByServiceSinglePageAsync(
@@ -317,7 +320,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiContractInner>> listByServiceSinglePageAsync(
@@ -394,7 +397,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedFlux}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiContractInner> listByServiceAsync(
@@ -420,7 +423,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedFlux}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiContractInner> listByServiceAsync(String resourceGroupName, String serviceName) {
@@ -456,7 +459,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedFlux}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiContractInner> listByServiceAsync(
@@ -483,7 +486,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedIterable}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiContractInner> listByService(String resourceGroupName, String serviceName) {
@@ -516,7 +519,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedIterable}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiContractInner> listByService(
@@ -542,8 +545,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the API specified by its identifier on successful completion of {@link
-     *     Mono}.
+     * @return the entity state (Etag) version of the API specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -598,8 +600,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the API specified by its identifier on successful completion of {@link
-     *     Mono}.
+     * @return the entity state (Etag) version of the API specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -650,8 +651,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the API specified by its identifier on successful completion of {@link
-     *     Mono}.
+     * @return the entity state (Etag) version of the API specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(String resourceGroupName, String serviceName, String apiId) {
@@ -704,7 +704,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the API specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the API specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName, String apiId) {
@@ -730,7 +730,9 @@ public final class ApisClientImpl implements ApisClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String accept = "application/json";
+        final String accept =
+            "application/json, application/vnd.swagger.doc+json, application/vnd.oai.openapi+json,"
+                + " application/vnd.sun.wadl+xml, application/wsdl+xml";
         return FluxUtil
             .withContext(
                 context ->
@@ -758,7 +760,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the API specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the API specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisGetResponse> getWithResponseAsync(
@@ -785,7 +787,9 @@ public final class ApisClientImpl implements ApisClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String accept = "application/json";
+        final String accept =
+            "application/json, application/vnd.swagger.doc+json, application/vnd.oai.openapi+json,"
+                + " application/vnd.sun.wadl+xml, application/wsdl+xml";
         context = this.client.mergeContext(context);
         return service
             .get(
@@ -809,7 +813,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the API specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the API specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiContractInner> getAsync(String resourceGroupName, String serviceName, String apiId) {
@@ -872,7 +876,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details along with {@link Response} on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -940,7 +944,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details along with {@link Response} on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -1005,9 +1009,9 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of aPI details.
+     * @return api details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<ApiContractInner>, ApiContractInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serviceName,
@@ -1019,11 +1023,7 @@ public final class ApisClientImpl implements ApisClient {
         return this
             .client
             .<ApiContractInner, ApiContractInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ApiContractInner.class,
-                ApiContractInner.class,
-                this.client.getContext());
+                mono, this.client.getHttpPipeline(), ApiContractInner.class, ApiContractInner.class, Context.NONE);
     }
 
     /**
@@ -1039,9 +1039,9 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of aPI details.
+     * @return api details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<ApiContractInner>, ApiContractInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serviceName,
@@ -1070,9 +1070,9 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of aPI details.
+     * @return api details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<ApiContractInner>, ApiContractInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serviceName,
@@ -1095,9 +1095,9 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of aPI details.
+     * @return api details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<ApiContractInner>, ApiContractInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serviceName,
@@ -1121,7 +1121,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiContractInner> createOrUpdateAsync(
@@ -1146,7 +1146,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiContractInner> createOrUpdateAsync(
@@ -1170,7 +1170,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiContractInner> createOrUpdateAsync(
@@ -1197,7 +1197,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiContractInner createOrUpdate(
@@ -1220,7 +1220,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiContractInner createOrUpdate(
@@ -1242,7 +1242,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiContractInner createOrUpdate(
@@ -1268,7 +1268,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisUpdateResponse> updateWithResponseAsync(
@@ -1336,7 +1336,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisUpdateResponse> updateWithResponseAsync(
@@ -1405,7 +1405,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiContractInner> updateAsync(
@@ -1434,7 +1434,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiContractInner update(
@@ -1456,7 +1456,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApisUpdateResponse updateWithResponse(
@@ -1482,7 +1482,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1545,7 +1545,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1609,7 +1609,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1630,7 +1630,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String apiId, String ifMatch) {
@@ -1672,7 +1672,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1705,7 +1705,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagResourceContractInner>> listByTagsSinglePageAsync(
@@ -1783,7 +1783,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagResourceContractInner>> listByTagsSinglePageAsync(
@@ -1858,7 +1858,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagResourceContractInner> listByTagsAsync(
@@ -1881,7 +1881,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagResourceContractInner> listByTagsAsync(String resourceGroupName, String serviceName) {
@@ -1914,7 +1914,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagResourceContractInner> listByTagsAsync(
@@ -1940,7 +1940,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedIterable}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TagResourceContractInner> listByTags(String resourceGroupName, String serviceName) {
@@ -1972,7 +1972,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedIterable}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TagResourceContractInner> listByTags(
@@ -1994,7 +1994,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -2030,7 +2030,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiContractInner>> listByServiceNextSinglePageAsync(String nextLink, Context context) {
@@ -2065,7 +2065,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagResourceContractInner>> listByTagsNextSinglePageAsync(String nextLink) {
@@ -2101,7 +2101,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagResourceContractInner>> listByTagsNextSinglePageAsync(

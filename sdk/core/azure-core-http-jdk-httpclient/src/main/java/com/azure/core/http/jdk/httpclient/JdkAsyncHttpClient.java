@@ -160,7 +160,7 @@ class JdkAsyncHttpClient implements HttpClient {
             }
             try {
                 return Integer.parseInt(version.substring(2, 3));
-            } catch (Exception t) {
+            } catch (Throwable t) {
                 throw LOGGER.logExceptionAsError(new RuntimeException("Can't parse 'java.version':" + version, t));
             }
         } else {
@@ -171,7 +171,7 @@ class JdkAsyncHttpClient implements HttpClient {
             }
             try {
                 return Integer.parseInt(version.substring(0, idx));
-            } catch (Exception t) {
+            } catch (Throwable t) {
                 throw LOGGER.logExceptionAsError(new RuntimeException("Can't parse 'java.version':" + version, t));
             }
         }

@@ -17,9 +17,10 @@ import com.azure.resourcemanager.apimanagement.models.Apis;
 import com.azure.resourcemanager.apimanagement.models.ApisGetEntityTagResponse;
 import com.azure.resourcemanager.apimanagement.models.ApisGetResponse;
 import com.azure.resourcemanager.apimanagement.models.TagResourceContract;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ApisImpl implements Apis {
-    private static final ClientLogger LOGGER = new ClientLogger(ApisImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApisImpl.class);
 
     private final ApisClient innerClient;
 
@@ -123,7 +124,7 @@ public final class ApisImpl implements Apis {
     public ApiContract getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -131,14 +132,14 @@ public final class ApisImpl implements Apis {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));
@@ -149,7 +150,7 @@ public final class ApisImpl implements Apis {
     public Response<ApiContract> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -157,14 +158,14 @@ public final class ApisImpl implements Apis {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));
@@ -175,7 +176,7 @@ public final class ApisImpl implements Apis {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -183,14 +184,14 @@ public final class ApisImpl implements Apis {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));
@@ -198,14 +199,14 @@ public final class ApisImpl implements Apis {
         String localIfMatch = null;
         Boolean localDeleteRevisions = null;
         this
-            .deleteWithResponse(
-                resourceGroupName, serviceName, apiId, localIfMatch, localDeleteRevisions, Context.NONE);
+            .deleteWithResponse(resourceGroupName, serviceName, apiId, localIfMatch, localDeleteRevisions, Context.NONE)
+            .getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, String ifMatch, Boolean deleteRevisions, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -213,14 +214,14 @@ public final class ApisImpl implements Apis {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));

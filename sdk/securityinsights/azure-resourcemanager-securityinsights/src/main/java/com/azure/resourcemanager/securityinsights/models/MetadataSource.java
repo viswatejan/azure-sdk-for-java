@@ -6,11 +6,14 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The original source of the content item, where it comes from. */
 @Fluent
 public final class MetadataSource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MetadataSource.class);
+
     /*
      * Source type of the content
      */
@@ -97,11 +100,9 @@ public final class MetadataSource {
      */
     public void validate() {
         if (kind() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property kind in model MetadataSource"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MetadataSource.class);
 }

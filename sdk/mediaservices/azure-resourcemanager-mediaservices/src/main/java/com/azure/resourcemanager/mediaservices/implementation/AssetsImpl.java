@@ -20,9 +20,10 @@ import com.azure.resourcemanager.mediaservices.models.Assets;
 import com.azure.resourcemanager.mediaservices.models.ListContainerSasInput;
 import com.azure.resourcemanager.mediaservices.models.ListStreamingLocatorsResponse;
 import com.azure.resourcemanager.mediaservices.models.StorageEncryptedAssetDecryptionData;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class AssetsImpl implements Assets {
-    private static final ClientLogger LOGGER = new ClientLogger(AssetsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AssetsImpl.class);
 
     private final AssetsClient innerClient;
 
@@ -166,7 +167,7 @@ public final class AssetsImpl implements Assets {
     public Asset getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -174,14 +175,14 @@ public final class AssetsImpl implements Assets {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String assetName = Utils.getValueFromIdByName(id, "assets");
         if (assetName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'assets'.", id)));
@@ -192,7 +193,7 @@ public final class AssetsImpl implements Assets {
     public Response<Asset> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -200,14 +201,14 @@ public final class AssetsImpl implements Assets {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String assetName = Utils.getValueFromIdByName(id, "assets");
         if (assetName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'assets'.", id)));
@@ -218,7 +219,7 @@ public final class AssetsImpl implements Assets {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -226,25 +227,25 @@ public final class AssetsImpl implements Assets {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String assetName = Utils.getValueFromIdByName(id, "assets");
         if (assetName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'assets'.", id)));
         }
-        this.deleteWithResponse(resourceGroupName, accountName, assetName, Context.NONE);
+        this.deleteWithResponse(resourceGroupName, accountName, assetName, Context.NONE).getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -252,14 +253,14 @@ public final class AssetsImpl implements Assets {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String assetName = Utils.getValueFromIdByName(id, "assets");
         if (assetName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'assets'.", id)));

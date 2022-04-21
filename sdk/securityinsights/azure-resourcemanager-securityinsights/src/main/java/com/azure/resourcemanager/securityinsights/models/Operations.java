@@ -14,8 +14,7 @@ public interface Operations {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists the operations available in the SecurityInsights RP as paginated response with {@link
-     *     PagedIterable}.
+     * @return lists the operations available in the SecurityInsights RP.
      */
     PagedIterable<Operation> list();
 
@@ -26,8 +25,7 @@ public interface Operations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lists the operations available in the SecurityInsights RP as paginated response with {@link
-     *     PagedIterable}.
+     * @return lists the operations available in the SecurityInsights RP.
      */
     PagedIterable<Operation> list(Context context);
 }

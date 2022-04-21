@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** team. */
 @Fluent
 public final class MicrosoftGraphTeamInner extends MicrosoftGraphEntity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphTeamInner.class);
+
     /*
      * An optional label. Typically describes the data or business sensitivity
      * of the team. Must match one of a pre-configured set in the tenant's
@@ -74,13 +77,13 @@ public final class MicrosoftGraphTeamInner extends MicrosoftGraphEntity {
     private MicrosoftGraphTeamMessagingSettings messagingSettings;
 
     /*
-     * teamSpecialization
+     * The specialization property.
      */
     @JsonProperty(value = "specialization")
     private MicrosoftGraphTeamSpecialization specialization;
 
     /*
-     * teamVisibilityType
+     * The visibility property.
      */
     @JsonProperty(value = "visibility")
     private MicrosoftGraphTeamVisibilityType visibility;
@@ -107,8 +110,8 @@ public final class MicrosoftGraphTeamInner extends MicrosoftGraphEntity {
     private List<MicrosoftGraphChannel> channels;
 
     /*
-     * group Represents an Azure Active Directory object. The directoryObject
-     * type is the base type for many other directory entity types.
+     * Represents an Azure Active Directory object. The directoryObject type is
+     * the base type for many other directory entity types.
      */
     @JsonProperty(value = "group")
     private MicrosoftGraphGroupInner group;
@@ -333,7 +336,7 @@ public final class MicrosoftGraphTeamInner extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the specialization property: teamSpecialization.
+     * Get the specialization property: The specialization property.
      *
      * @return the specialization value.
      */
@@ -342,7 +345,7 @@ public final class MicrosoftGraphTeamInner extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the specialization property: teamSpecialization.
+     * Set the specialization property: The specialization property.
      *
      * @param specialization the specialization value to set.
      * @return the MicrosoftGraphTeamInner object itself.
@@ -353,7 +356,7 @@ public final class MicrosoftGraphTeamInner extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the visibility property: teamVisibilityType.
+     * Get the visibility property: The visibility property.
      *
      * @return the visibility value.
      */
@@ -362,7 +365,7 @@ public final class MicrosoftGraphTeamInner extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the visibility property: teamVisibilityType.
+     * Set the visibility property: The visibility property.
      *
      * @param visibility the visibility value to set.
      * @return the MicrosoftGraphTeamInner object itself.
@@ -437,8 +440,8 @@ public final class MicrosoftGraphTeamInner extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the group property: group Represents an Azure Active Directory object. The directoryObject type is the base
-     * type for many other directory entity types.
+     * Get the group property: Represents an Azure Active Directory object. The directoryObject type is the base type
+     * for many other directory entity types.
      *
      * @return the group value.
      */
@@ -447,8 +450,8 @@ public final class MicrosoftGraphTeamInner extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the group property: group Represents an Azure Active Directory object. The directoryObject type is the base
-     * type for many other directory entity types.
+     * Set the group property: Represents an Azure Active Directory object. The directoryObject type is the base type
+     * for many other directory entity types.
      *
      * @param group the group value to set.
      * @return the MicrosoftGraphTeamInner object itself.

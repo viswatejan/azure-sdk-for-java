@@ -12,9 +12,10 @@ import com.azure.resourcemanager.mediaservices.fluent.OperationsClient;
 import com.azure.resourcemanager.mediaservices.fluent.models.OperationCollectionInner;
 import com.azure.resourcemanager.mediaservices.models.OperationCollection;
 import com.azure.resourcemanager.mediaservices.models.Operations;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class OperationsImpl implements Operations {
-    private static final ClientLogger LOGGER = new ClientLogger(OperationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationsImpl.class);
 
     private final OperationsClient innerClient;
 

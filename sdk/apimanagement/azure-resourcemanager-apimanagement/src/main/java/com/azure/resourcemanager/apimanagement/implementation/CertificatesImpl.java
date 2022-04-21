@@ -16,9 +16,10 @@ import com.azure.resourcemanager.apimanagement.models.Certificates;
 import com.azure.resourcemanager.apimanagement.models.CertificatesGetEntityTagResponse;
 import com.azure.resourcemanager.apimanagement.models.CertificatesGetResponse;
 import com.azure.resourcemanager.apimanagement.models.CertificatesRefreshSecretResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class CertificatesImpl implements Certificates {
-    private static final ClientLogger LOGGER = new ClientLogger(CertificatesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CertificatesImpl.class);
 
     private final CertificatesClient innerClient;
 
@@ -121,7 +122,7 @@ public final class CertificatesImpl implements Certificates {
     public CertificateContract getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -129,14 +130,14 @@ public final class CertificatesImpl implements Certificates {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String certificateId = Utils.getValueFromIdByName(id, "certificates");
         if (certificateId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'certificates'.", id)));
@@ -147,7 +148,7 @@ public final class CertificatesImpl implements Certificates {
     public Response<CertificateContract> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -155,14 +156,14 @@ public final class CertificatesImpl implements Certificates {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String certificateId = Utils.getValueFromIdByName(id, "certificates");
         if (certificateId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'certificates'.", id)));
@@ -173,7 +174,7 @@ public final class CertificatesImpl implements Certificates {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -181,26 +182,26 @@ public final class CertificatesImpl implements Certificates {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String certificateId = Utils.getValueFromIdByName(id, "certificates");
         if (certificateId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'certificates'.", id)));
         }
         String localIfMatch = null;
-        this.deleteWithResponse(resourceGroupName, serviceName, certificateId, localIfMatch, Context.NONE);
+        this.deleteWithResponse(resourceGroupName, serviceName, certificateId, localIfMatch, Context.NONE).getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -208,14 +209,14 @@ public final class CertificatesImpl implements Certificates {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String certificateId = Utils.getValueFromIdByName(id, "certificates");
         if (certificateId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'certificates'.", id)));

@@ -5,10 +5,14 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /** Logs data type. */
 @Fluent
 public final class AwsCloudTrailDataConnectorDataTypesLogs extends DataConnectorDataTypeCommon {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AwsCloudTrailDataConnectorDataTypesLogs.class);
+
     /** {@inheritDoc} */
     @Override
     public AwsCloudTrailDataConnectorDataTypesLogs withState(DataTypeState state) {

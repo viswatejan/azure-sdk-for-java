@@ -10,18 +10,21 @@ import com.azure.resourcemanager.securityinsights.models.AutomationRuleAction;
 import com.azure.resourcemanager.securityinsights.models.AutomationRuleTriggeringLogic;
 import com.azure.resourcemanager.securityinsights.models.ClientInfo;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The AutomationRule model. */
+/** Represents an automation rule. */
 @Fluent
 public final class AutomationRuleInner extends ResourceWithEtag {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AutomationRuleInner.class);
+
     /*
      * Automation rule properties
      */
-    @JsonProperty(value = "properties", required = true)
-    private AutomationRuleProperties innerProperties = new AutomationRuleProperties();
+    @JsonProperty(value = "properties")
+    private AutomationRuleProperties innerProperties;
 
     /**
      * Get the innerProperties property: Automation rule properties.
@@ -67,8 +70,8 @@ public final class AutomationRuleInner extends ResourceWithEtag {
      *
      * @return the order value.
      */
-    public int order() {
-        return this.innerProperties() == null ? 0 : this.innerProperties().order();
+    public Integer order() {
+        return this.innerProperties() == null ? null : this.innerProperties().order();
     }
 
     /**
@@ -77,7 +80,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
      * @param order the order value to set.
      * @return the AutomationRuleInner object itself.
      */
-    public AutomationRuleInner withOrder(int order) {
+    public AutomationRuleInner withOrder(Integer order) {
         if (this.innerProperties() == null) {
             this.innerProperties = new AutomationRuleProperties();
         }
@@ -86,7 +89,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the triggeringLogic property: Describes automation rule triggering logic.
+     * Get the triggeringLogic property: The triggering logic of the automation rule.
      *
      * @return the triggeringLogic value.
      */
@@ -95,7 +98,7 @@ public final class AutomationRuleInner extends ResourceWithEtag {
     }
 
     /**
-     * Set the triggeringLogic property: Describes automation rule triggering logic.
+     * Set the triggeringLogic property: The triggering logic of the automation rule.
      *
      * @param triggeringLogic the triggeringLogic value to set.
      * @return the AutomationRuleInner object itself.
@@ -132,15 +135,6 @@ public final class AutomationRuleInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the lastModifiedTimeUtc property: The last time the automation rule was updated.
-     *
-     * @return the lastModifiedTimeUtc value.
-     */
-    public OffsetDateTime lastModifiedTimeUtc() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastModifiedTimeUtc();
-    }
-
-    /**
      * Get the createdTimeUtc property: The time the automation rule was created.
      *
      * @return the createdTimeUtc value.
@@ -150,21 +144,30 @@ public final class AutomationRuleInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the lastModifiedBy property: Information on the client (user or application) that made some action.
+     * Get the lastModifiedTimeUtc property: The last time the automation rule was updated.
      *
-     * @return the lastModifiedBy value.
+     * @return the lastModifiedTimeUtc value.
      */
-    public ClientInfo lastModifiedBy() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastModifiedBy();
+    public OffsetDateTime lastModifiedTimeUtc() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastModifiedTimeUtc();
     }
 
     /**
-     * Get the createdBy property: Information on the client (user or application) that made some action.
+     * Get the createdBy property: Describes the client that created the automation rule.
      *
      * @return the createdBy value.
      */
     public ClientInfo createdBy() {
         return this.innerProperties() == null ? null : this.innerProperties().createdBy();
+    }
+
+    /**
+     * Get the lastModifiedBy property: Describes the client that last updated the automation rule.
+     *
+     * @return the lastModifiedBy value.
+     */
+    public ClientInfo lastModifiedBy() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastModifiedBy();
     }
 
     /**
@@ -175,15 +178,8 @@ public final class AutomationRuleInner extends ResourceWithEtag {
     @Override
     public void validate() {
         super.validate();
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model AutomationRuleInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AutomationRuleInner.class);
 }

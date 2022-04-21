@@ -5,11 +5,17 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 
 /** The CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem model. */
 @Fluent
 public final class CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem extends ConnectivityCriteria {
+    @JsonIgnore
+    private final ClientLogger logger =
+        new ClientLogger(CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem.class);
+
     /** {@inheritDoc} */
     @Override
     public CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem withType(ConnectivityType type) {

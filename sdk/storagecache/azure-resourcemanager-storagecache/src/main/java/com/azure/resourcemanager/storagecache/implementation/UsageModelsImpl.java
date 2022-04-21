@@ -11,9 +11,10 @@ import com.azure.resourcemanager.storagecache.fluent.UsageModelsClient;
 import com.azure.resourcemanager.storagecache.fluent.models.UsageModelInner;
 import com.azure.resourcemanager.storagecache.models.UsageModel;
 import com.azure.resourcemanager.storagecache.models.UsageModels;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class UsageModelsImpl implements UsageModels {
-    private static final ClientLogger LOGGER = new ClientLogger(UsageModelsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(UsageModelsImpl.class);
 
     private final UsageModelsClient innerClient;
 

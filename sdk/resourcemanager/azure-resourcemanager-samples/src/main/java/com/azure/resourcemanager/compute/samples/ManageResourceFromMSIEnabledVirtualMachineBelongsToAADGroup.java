@@ -51,14 +51,12 @@ public final class ManageResourceFromMSIEnabledVirtualMachineBelongsToAADGroup {
         final String pipName = Utils.randomResourceName(azureResourceManager, "pip1", 15);
         final String userName = "tirekicker";
         final String sshPublicKey = Utils.sshPublicKey();
-        final Region region = Region.US_EAST;
+        final Region region = Region.US_SOUTH_CENTRAL;
 
         final String installScript = "https://raw.githubusercontent.com/Azure/azure-sdk-for-java/main/sdk/resourcemanager/azure-resourcemanager-samples/src/main/resources/create_resources_with_msi.sh";
         String installCommand = "bash create_resources_with_msi.sh {stgName} {rgName} {location}";
         List<String> fileUris = new ArrayList<>();
         fileUris.add(installScript);
-
-        ActiveDirectoryGroup activeDirectoryGroup = null;
 
         try {
 
@@ -67,7 +65,7 @@ public final class ManageResourceFromMSIEnabledVirtualMachineBelongsToAADGroup {
 
             System.out.println("Creating a AAD security group");
 
-            activeDirectoryGroup = azureResourceManager.accessManagement()
+            ActiveDirectoryGroup activeDirectoryGroup = azureResourceManager.accessManagement()
                     .activeDirectoryGroups()
                     .define(groupName)
                         .withEmailAlias(groupName)
@@ -129,11 +127,11 @@ public final class ManageResourceFromMSIEnabledVirtualMachineBelongsToAADGroup {
 
             System.out.println("Added virtual machine MSI service principal to the AAD group");
 
-            System.out.println("Waiting 10 minutes to MSI extension in the VM to refresh the token");
+            System.out.println("Waiting 15 minutes to MSI extension in the VM to refresh the token");
 
             ResourceManagerUtils.sleep(Duration.ofMinutes(10));
 
-            // Prepare custom script to install az cli that uses MSI to create a storage account
+            // Prepare custom script t install az cli that uses MSI to create a storage account
             //
             final String stgName = Utils.randomResourceName(azureResourceManager, "st44", 15);
             installCommand = installCommand.replace("{stgName}", stgName)
@@ -147,10 +145,10 @@ public final class ManageResourceFromMSIEnabledVirtualMachineBelongsToAADGroup {
 
             virtualMachine
                     .update()
-                        .defineNewExtension("az-create-storage-account")
-                            .withPublisher("Microsoft.Azure.Extensions")
-                            .withType("CustomScript")
-                            .withVersion("2.1")
+                        .defineNewExtension("CustomScriptForLinux")
+                            .withPublisher("Microsoft.OSTCExtensions")
+                            .withType("CustomScriptForLinux")
+                            .withVersion("1.4")
                             .withMinorVersionAutoUpgrade()
                             .withPublicSetting("fileUris", fileUris)
                             .withPublicSetting("commandToExecute", installCommand)
@@ -166,15 +164,6 @@ public final class ManageResourceFromMSIEnabledVirtualMachineBelongsToAADGroup {
             Utils.print(storageAccount);
             return true;
         } finally {
-            try {
-                if (activeDirectoryGroup != null) {
-                    System.out.println("Deleting AAD Group: " + activeDirectoryGroup.name());
-                    azureResourceManager.accessManagement().activeDirectoryGroups()
-                        .deleteById(activeDirectoryGroup.id());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             try {
                 System.out.println("Deleting Resource Group: " + rgName);
                 azureResourceManager.resourceGroups().beginDeleteByName(rgName);

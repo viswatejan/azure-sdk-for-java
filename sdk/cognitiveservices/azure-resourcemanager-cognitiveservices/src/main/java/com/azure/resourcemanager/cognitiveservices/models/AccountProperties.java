@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.cognitiveservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.cognitiveservices.fluent.models.PrivateEndpointConnectionInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -14,6 +16,8 @@ import java.util.Map;
 /** Properties of Cognitive Services account. */
 @Fluent
 public final class AccountProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AccountProperties.class);
+
     /*
      * Gets the status of the cognitive services account at the time the
      * operation was called.
@@ -92,7 +96,8 @@ public final class AccountProperties {
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
 
     /*
-     * Whether or not public endpoint access is allowed for this account.
+     * Whether or not public endpoint access is allowed for this account. Value
+     * is optional but if passed in, must be 'Enabled' or 'Disabled'
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
@@ -114,12 +119,6 @@ public final class AccountProperties {
      */
     @JsonProperty(value = "callRateLimit", access = JsonProperty.Access.WRITE_ONLY)
     private CallRateLimit callRateLimit;
-
-    /*
-     * The flag to enable dynamic throttling.
-     */
-    @JsonProperty(value = "dynamicThrottlingEnabled")
-    private Boolean dynamicThrottlingEnabled;
 
     /*
      * The quotaLimit property.
@@ -157,18 +156,6 @@ public final class AccountProperties {
      */
     @JsonProperty(value = "restore")
     private Boolean restore;
-
-    /*
-     * The deletion date, only available for deleted account.
-     */
-    @JsonProperty(value = "deletionDate", access = JsonProperty.Access.WRITE_ONLY)
-    private String deletionDate;
-
-    /*
-     * The scheduled purge date, only available for deleted account.
-     */
-    @JsonProperty(value = "scheduledPurgeDate", access = JsonProperty.Access.WRITE_ONLY)
-    private String scheduledPurgeDate;
 
     /**
      * Get the provisioningState property: Gets the status of the cognitive services account at the time the operation
@@ -337,7 +324,8 @@ public final class AccountProperties {
     }
 
     /**
-     * Get the publicNetworkAccess property: Whether or not public endpoint access is allowed for this account.
+     * Get the publicNetworkAccess property: Whether or not public endpoint access is allowed for this account. Value is
+     * optional but if passed in, must be 'Enabled' or 'Disabled'.
      *
      * @return the publicNetworkAccess value.
      */
@@ -346,7 +334,8 @@ public final class AccountProperties {
     }
 
     /**
-     * Set the publicNetworkAccess property: Whether or not public endpoint access is allowed for this account.
+     * Set the publicNetworkAccess property: Whether or not public endpoint access is allowed for this account. Value is
+     * optional but if passed in, must be 'Enabled' or 'Disabled'.
      *
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the AccountProperties object itself.
@@ -392,26 +381,6 @@ public final class AccountProperties {
      */
     public CallRateLimit callRateLimit() {
         return this.callRateLimit;
-    }
-
-    /**
-     * Get the dynamicThrottlingEnabled property: The flag to enable dynamic throttling.
-     *
-     * @return the dynamicThrottlingEnabled value.
-     */
-    public Boolean dynamicThrottlingEnabled() {
-        return this.dynamicThrottlingEnabled;
-    }
-
-    /**
-     * Set the dynamicThrottlingEnabled property: The flag to enable dynamic throttling.
-     *
-     * @param dynamicThrottlingEnabled the dynamicThrottlingEnabled value to set.
-     * @return the AccountProperties object itself.
-     */
-    public AccountProperties withDynamicThrottlingEnabled(Boolean dynamicThrottlingEnabled) {
-        this.dynamicThrottlingEnabled = dynamicThrottlingEnabled;
-        return this;
     }
 
     /**
@@ -510,24 +479,6 @@ public final class AccountProperties {
     public AccountProperties withRestore(Boolean restore) {
         this.restore = restore;
         return this;
-    }
-
-    /**
-     * Get the deletionDate property: The deletion date, only available for deleted account.
-     *
-     * @return the deletionDate value.
-     */
-    public String deletionDate() {
-        return this.deletionDate;
-    }
-
-    /**
-     * Get the scheduledPurgeDate property: The scheduled purge date, only available for deleted account.
-     *
-     * @return the scheduledPurgeDate value.
-     */
-    public String scheduledPurgeDate() {
-        return this.scheduledPurgeDate;
     }
 
     /**

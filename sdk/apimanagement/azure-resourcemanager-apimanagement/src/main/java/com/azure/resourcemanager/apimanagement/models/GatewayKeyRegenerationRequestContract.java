@@ -6,11 +6,14 @@ package com.azure.resourcemanager.apimanagement.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Gateway key regeneration request contract properties. */
 @Fluent
 public final class GatewayKeyRegenerationRequestContract {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GatewayKeyRegenerationRequestContract.class);
+
     /*
      * The Key being regenerated.
      */
@@ -44,12 +47,10 @@ public final class GatewayKeyRegenerationRequestContract {
      */
     public void validate() {
         if (keyType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property keyType in model GatewayKeyRegenerationRequestContract"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(GatewayKeyRegenerationRequestContract.class);
 }

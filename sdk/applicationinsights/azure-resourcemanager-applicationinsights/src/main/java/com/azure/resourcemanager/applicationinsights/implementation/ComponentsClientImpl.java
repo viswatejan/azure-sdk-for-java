@@ -30,6 +30,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.applicationinsights.fluent.ComponentsClient;
 import com.azure.resourcemanager.applicationinsights.fluent.models.ApplicationInsightsComponentInner;
 import com.azure.resourcemanager.applicationinsights.fluent.models.ComponentPurgeResponseInner;
@@ -41,6 +42,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ComponentsClient. */
 public final class ComponentsClientImpl implements ComponentsClient {
+    private final ClientLogger logger = new ClientLogger(ComponentsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ComponentsService service;
 
@@ -291,8 +294,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all Application Insights components within a subscription as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of all Application Insights components within a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApplicationInsightsComponentInner> listAsync() {
@@ -306,8 +308,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all Application Insights components within a subscription as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of all Application Insights components within a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApplicationInsightsComponentInner> listAsync(Context context) {
@@ -320,8 +321,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all Application Insights components within a subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of all Application Insights components within a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApplicationInsightsComponentInner> list() {
@@ -335,8 +335,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all Application Insights components within a subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of all Application Insights components within a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApplicationInsightsComponentInner> list(Context context) {
@@ -456,8 +455,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Application Insights components within a resource group as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of Application Insights components within a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApplicationInsightsComponentInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -474,8 +472,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Application Insights components within a resource group as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of Application Insights components within a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApplicationInsightsComponentInner> listByResourceGroupAsync(
@@ -492,8 +489,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Application Insights components within a resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of Application Insights components within a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApplicationInsightsComponentInner> listByResourceGroup(String resourceGroupName) {
@@ -508,8 +504,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Application Insights components within a resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of Application Insights components within a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApplicationInsightsComponentInner> listByResourceGroup(

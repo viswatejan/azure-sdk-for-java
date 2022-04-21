@@ -152,7 +152,7 @@ public class NettyAsyncHttpClientBuilder {
             ? Configuration.getGlobalConfiguration()
             : configuration;
 
-        ProxyOptions buildProxyOptions = proxyOptions == null
+        ProxyOptions buildProxyOptions = (proxyOptions == null && buildConfiguration != Configuration.NONE)
             ? ProxyOptions.fromConfiguration(buildConfiguration, true)
             : proxyOptions;
 

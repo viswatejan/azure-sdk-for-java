@@ -5,9 +5,11 @@
 package com.azure.resourcemanager.resources.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resources.models.EnforcementMode;
 import com.azure.resourcemanager.resources.models.NonComplianceMessage;
 import com.azure.resourcemanager.resources.models.ParameterValuesValue;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -16,6 +18,8 @@ import java.util.Map;
 /** The policy assignment properties. */
 @Fluent
 public final class PolicyAssignmentProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyAssignmentProperties.class);
+
     /*
      * The display name of the policy assignment.
      */

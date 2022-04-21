@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,6 +18,8 @@ import java.util.Map;
 /** post. */
 @Fluent
 public final class MicrosoftGraphPost extends MicrosoftGraphOutlookItem {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphPost.class);
+
     /*
      * itemBody
      */
@@ -81,7 +84,7 @@ public final class MicrosoftGraphPost extends MicrosoftGraphOutlookItem {
      * Nullable.
      */
     @JsonProperty(value = "extensions")
-    private List<MicrosoftGraphExtension> extensions;
+    private List<MicrosoftGraphExtensionInner> extensions;
 
     /*
      * post
@@ -299,7 +302,7 @@ public final class MicrosoftGraphPost extends MicrosoftGraphOutlookItem {
      *
      * @return the extensions value.
      */
-    public List<MicrosoftGraphExtension> extensions() {
+    public List<MicrosoftGraphExtensionInner> extensions() {
         return this.extensions;
     }
 
@@ -309,7 +312,7 @@ public final class MicrosoftGraphPost extends MicrosoftGraphOutlookItem {
      * @param extensions the extensions value to set.
      * @return the MicrosoftGraphPost object itself.
      */
-    public MicrosoftGraphPost withExtensions(List<MicrosoftGraphExtension> extensions) {
+    public MicrosoftGraphPost withExtensions(List<MicrosoftGraphExtensionInner> extensions) {
         this.extensions = extensions;
         return this;
     }

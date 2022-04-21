@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -20,6 +22,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({@JsonSubTypes.Type(name = "Insight", value = InsightQueryItem.class)})
 @Fluent
 public class EntityQueryItem {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(EntityQueryItem.class);
+
     /*
      * Query Template ARM ID
      */

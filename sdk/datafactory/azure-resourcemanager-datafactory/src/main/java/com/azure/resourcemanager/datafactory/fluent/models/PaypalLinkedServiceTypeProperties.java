@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Paypal Service linked service properties. */
 @Fluent
 public final class PaypalLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PaypalLinkedServiceTypeProperties.class);
+
     /*
      * The URL of the PayPal instance. (i.e. api.sandbox.paypal.com)
      */
@@ -215,13 +218,13 @@ public final class PaypalLinkedServiceTypeProperties {
      */
     public void validate() {
         if (host() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property host in model PaypalLinkedServiceTypeProperties"));
         }
         if (clientId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property clientId in model PaypalLinkedServiceTypeProperties"));
@@ -230,6 +233,4 @@ public final class PaypalLinkedServiceTypeProperties {
             clientSecret().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PaypalLinkedServiceTypeProperties.class);
 }

@@ -30,6 +30,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.ApiVersionSetsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.ApiVersionSetContractInner;
 import com.azure.resourcemanager.apimanagement.models.ApiVersionSetCollection;
@@ -42,6 +43,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ApiVersionSetsClient. */
 public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
+    private final ClientLogger logger = new ClientLogger(ApiVersionSetsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ApiVersionSetsService service;
 
@@ -192,8 +195,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API Version Set list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Api Version Set list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiVersionSetContractInner>> listByServiceSinglePageAsync(
@@ -258,8 +260,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API Version Set list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Api Version Set list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiVersionSetContractInner>> listByServiceSinglePageAsync(
@@ -320,7 +321,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API Version Set list representation as paginated response with {@link PagedFlux}.
+     * @return paged Api Version Set list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiVersionSetContractInner> listByServiceAsync(
@@ -338,7 +339,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API Version Set list representation as paginated response with {@link PagedFlux}.
+     * @return paged Api Version Set list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiVersionSetContractInner> listByServiceAsync(String resourceGroupName, String serviceName) {
@@ -363,7 +364,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API Version Set list representation as paginated response with {@link PagedFlux}.
+     * @return paged Api Version Set list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiVersionSetContractInner> listByServiceAsync(
@@ -381,7 +382,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API Version Set list representation as paginated response with {@link PagedIterable}.
+     * @return paged Api Version Set list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiVersionSetContractInner> listByService(String resourceGroupName, String serviceName) {
@@ -404,7 +405,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API Version Set list representation as paginated response with {@link PagedIterable}.
+     * @return paged Api Version Set list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiVersionSetContractInner> listByService(
@@ -421,8 +422,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the Api Version Set specified by its identifier on successful
-     *     completion of {@link Mono}.
+     * @return the entity state (Etag) version of the Api Version Set specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetsGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -476,8 +476,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the Api Version Set specified by its identifier on successful
-     *     completion of {@link Mono}.
+     * @return the entity state (Etag) version of the Api Version Set specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetsGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -527,8 +526,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the Api Version Set specified by its identifier on successful
-     *     completion of {@link Mono}.
+     * @return the entity state (Etag) version of the Api Version Set specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(String resourceGroupName, String serviceName, String versionSetId) {
@@ -578,7 +576,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the Api Version Set specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the Api Version Set specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetsGetResponse> getWithResponseAsync(
@@ -632,7 +630,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the Api Version Set specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the Api Version Set specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetsGetResponse> getWithResponseAsync(
@@ -682,7 +680,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the Api Version Set specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the Api Version Set specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetContractInner> getAsync(
@@ -743,7 +741,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Version Set Contract details on successful completion of {@link Mono}.
+     * @return api Version Set Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -810,7 +808,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Version Set Contract details on successful completion of {@link Mono}.
+     * @return api Version Set Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -874,7 +872,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Version Set Contract details on successful completion of {@link Mono}.
+     * @return api Version Set Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetContractInner> createOrUpdateAsync(
@@ -904,7 +902,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Version Set Contract details on successful completion of {@link Mono}.
+     * @return api Version Set Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetContractInner> createOrUpdateAsync(
@@ -931,7 +929,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Version Set Contract details.
+     * @return api Version Set Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiVersionSetContractInner createOrUpdate(
@@ -952,7 +950,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Version Set Contract details.
+     * @return api Version Set Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiVersionSetsCreateOrUpdateResponse createOrUpdateWithResponse(
@@ -979,7 +977,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Version Set Contract details on successful completion of {@link Mono}.
+     * @return api Version Set Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetsUpdateResponse> updateWithResponseAsync(
@@ -1050,7 +1048,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Version Set Contract details on successful completion of {@link Mono}.
+     * @return api Version Set Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetsUpdateResponse> updateWithResponseAsync(
@@ -1118,7 +1116,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Version Set Contract details on successful completion of {@link Mono}.
+     * @return api Version Set Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionSetContractInner> updateAsync(
@@ -1150,7 +1148,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Version Set Contract details.
+     * @return api Version Set Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiVersionSetContractInner update(
@@ -1175,7 +1173,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Version Set Contract details.
+     * @return api Version Set Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiVersionSetsUpdateResponse updateWithResponse(
@@ -1200,7 +1198,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1260,7 +1258,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1316,7 +1314,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String versionSetId, String ifMatch) {
@@ -1353,7 +1351,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1368,8 +1366,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API Version Set list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Api Version Set list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiVersionSetContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -1405,8 +1402,7 @@ public final class ApiVersionSetsClientImpl implements ApiVersionSetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API Version Set list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Api Version Set list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiVersionSetContractInner>> listByServiceNextSinglePageAsync(

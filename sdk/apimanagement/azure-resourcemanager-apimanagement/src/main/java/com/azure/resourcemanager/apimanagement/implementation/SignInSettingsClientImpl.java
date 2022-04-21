@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.SignInSettingsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.PortalSigninSettingsInner;
 import com.azure.resourcemanager.apimanagement.models.SignInSettingsGetEntityTagResponse;
@@ -33,6 +34,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in SignInSettingsClient. */
 public final class SignInSettingsClientImpl implements SignInSettingsClient {
+    private final ClientLogger logger = new ClientLogger(SignInSettingsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final SignInSettingsService service;
 
@@ -130,7 +133,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the SignInSettings on successful completion of {@link Mono}.
+     * @return the entity state (Etag) version of the SignInSettings.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignInSettingsGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -179,7 +182,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the SignInSettings on successful completion of {@link Mono}.
+     * @return the entity state (Etag) version of the SignInSettings.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignInSettingsGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -224,7 +227,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the SignInSettings on successful completion of {@link Mono}.
+     * @return the entity state (Etag) version of the SignInSettings.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(String resourceGroupName, String serviceName) {
@@ -271,7 +274,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sign In Settings for the Portal on successful completion of {@link Mono}.
+     * @return sign In Settings for the Portal.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignInSettingsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName) {
@@ -319,7 +322,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sign In Settings for the Portal on successful completion of {@link Mono}.
+     * @return sign In Settings for the Portal.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignInSettingsGetResponse> getWithResponseAsync(
@@ -364,7 +367,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sign In Settings for the Portal on successful completion of {@link Mono}.
+     * @return sign In Settings for the Portal.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalSigninSettingsInner> getAsync(String resourceGroupName, String serviceName) {
@@ -421,7 +424,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateWithResponseAsync(
@@ -483,7 +486,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateWithResponseAsync(
@@ -545,7 +548,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> updateAsync(
@@ -584,7 +587,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> updateWithResponse(
@@ -606,8 +609,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sign-In settings for the Developer Portal along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return sign-In settings for the Developer Portal.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PortalSigninSettingsInner>> createOrUpdateWithResponseAsync(
@@ -665,8 +667,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sign-In settings for the Developer Portal along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return sign-In settings for the Developer Portal.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PortalSigninSettingsInner>> createOrUpdateWithResponseAsync(
@@ -724,7 +725,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sign-In settings for the Developer Portal on successful completion of {@link Mono}.
+     * @return sign-In settings for the Developer Portal.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalSigninSettingsInner> createOrUpdateAsync(
@@ -749,7 +750,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sign-In settings for the Developer Portal on successful completion of {@link Mono}.
+     * @return sign-In settings for the Developer Portal.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalSigninSettingsInner> createOrUpdateAsync(
@@ -795,7 +796,7 @@ public final class SignInSettingsClientImpl implements SignInSettingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sign-In settings for the Developer Portal along with {@link Response}.
+     * @return sign-In settings for the Developer Portal.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PortalSigninSettingsInner> createOrUpdateWithResponse(

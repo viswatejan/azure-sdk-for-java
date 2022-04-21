@@ -18,8 +18,7 @@ public interface IdentityProviders {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the Identity Providers configured on the service instance as paginated response with {@link
-     *     PagedIterable}.
+     * @return list of all the Identity Providers configured on the service instance.
      */
     PagedIterable<IdentityProviderContract> listByService(String resourceGroupName, String serviceName);
 
@@ -32,8 +31,7 @@ public interface IdentityProviders {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the Identity Providers configured on the service instance as paginated response with {@link
-     *     PagedIterable}.
+     * @return list of all the Identity Providers configured on the service instance.
      */
     PagedIterable<IdentityProviderContract> listByService(
         String resourceGroupName, String serviceName, Context context);
@@ -121,7 +119,7 @@ public interface IdentityProviders {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName,
@@ -202,7 +200,7 @@ public interface IdentityProviders {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context);
 

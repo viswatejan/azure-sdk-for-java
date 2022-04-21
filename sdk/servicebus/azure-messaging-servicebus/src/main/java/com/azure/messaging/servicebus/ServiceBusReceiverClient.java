@@ -18,7 +18,6 @@ import reactor.core.publisher.Sinks;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
@@ -61,8 +60,6 @@ public final class ServiceBusReceiverClient implements AutoCloseable {
 
     /* To hold each receive work item to be processed.*/
     private final AtomicReference<SynchronousMessageSubscriber> synchronousMessageSubscriber = new AtomicReference<>();
-    /* To ensure synchronousMessageSubscriber is subscribed only once. */
-    private final AtomicBoolean syncSubscribed = new AtomicBoolean(false);
 
     /**
      * Creates a synchronous receiver given its asynchronous counterpart.
@@ -722,36 +719,28 @@ public final class ServiceBusReceiverClient implements AutoCloseable {
 
         final long id = idGenerator.getAndIncrement();
         final SynchronousReceiveWork work = new SynchronousReceiveWork(id, maximumMessageCount, maxWaitTime, emitter);
-        SynchronousMessageSubscriber messageSubscriber = synchronousMessageSubscriber.get();
+        final SynchronousMessageSubscriber messageSubscriber = synchronousMessageSubscriber.get();
 
         if (messageSubscriber != null) {
             messageSubscriber.queueWork(work);
             return;
         }
 
-        messageSubscriber = synchronousMessageSubscriber.updateAndGet(subscriber -> {
-            // Ensuring we create SynchronousMessageSubscriber only once.
-            if (subscriber == null) {
-                return new SynchronousMessageSubscriber(asyncClient,
-                    work,
-                    isPrefetchDisabled,
-                    operationTimeout);
-            } else {
-                return subscriber;
-            }
-        });
+        final SynchronousMessageSubscriber newSubscriber = new SynchronousMessageSubscriber(asyncClient,
+            work,
+            isPrefetchDisabled,
+            operationTimeout);
 
         // NOTE: We asynchronously send the credit to the service as soon as receiveMessage() API is called (for first
         // time).
         // This means that there may be messages internally buffered before users start iterating the IterableStream.
         // If users do not iterate through the stream and their lock duration expires, it is possible that the
         // Service Bus message's delivery count will be incremented.
-        if (!syncSubscribed.getAndSet(true)) {
-            // The 'subscribeWith' has side effects hence must not be called from
-            // the above updateFunction of AtomicReference::updateAndGet.
-            asyncClient.receiveMessagesNoBackPressure().subscribeWith(messageSubscriber);
+        if (synchronousMessageSubscriber.compareAndSet(null, newSubscriber)) {
+            asyncClient.receiveMessagesNoBackPressure().subscribeWith(newSubscriber);
         } else {
-            messageSubscriber.queueWork(work);
+            newSubscriber.dispose();
+            synchronousMessageSubscriber.get().queueWork(work);
         }
 
         logger.atVerbose()

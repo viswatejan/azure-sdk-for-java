@@ -8,12 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.Activity;
 import com.azure.resourcemanager.datafactory.models.Expression;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Until activity properties. */
 @Fluent
 public final class UntilActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(UntilActivityTypeProperties.class);
+
     /*
      * An expression that would evaluate to Boolean. The loop will continue
      * until this expression evaluates to true
@@ -113,7 +116,7 @@ public final class UntilActivityTypeProperties {
      */
     public void validate() {
         if (expression() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property expression in model UntilActivityTypeProperties"));
@@ -121,7 +124,7 @@ public final class UntilActivityTypeProperties {
             expression().validate();
         }
         if (activities() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property activities in model UntilActivityTypeProperties"));
@@ -129,6 +132,4 @@ public final class UntilActivityTypeProperties {
             activities().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(UntilActivityTypeProperties.class);
 }

@@ -6,11 +6,14 @@ package com.azure.resourcemanager.apimanagement.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters supplied to the Deploy Configuration operation. */
 @Fluent
 public final class DeployConfigurationParameterProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DeployConfigurationParameterProperties.class);
+
     /*
      * The name of the Git branch from which the configuration is to be
      * deployed to the configuration database.
@@ -74,12 +77,10 @@ public final class DeployConfigurationParameterProperties {
      */
     public void validate() {
         if (branch() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property branch in model DeployConfigurationParameterProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DeployConfigurationParameterProperties.class);
 }

@@ -107,8 +107,6 @@ public final class SecurityInsightsManager {
 
     private AutomationRules automationRules;
 
-    private Incidents incidents;
-
     private Bookmarks bookmarks;
 
     private BookmarkRelations bookmarkRelations;
@@ -119,6 +117,8 @@ public final class SecurityInsightsManager {
 
     private DomainWhois domainWhois;
 
+    private EntityQueries entityQueries;
+
     private Entities entities;
 
     private EntitiesGetTimelines entitiesGetTimelines;
@@ -127,17 +127,13 @@ public final class SecurityInsightsManager {
 
     private EntityRelations entityRelations;
 
-    private EntityQueries entityQueries;
-
-    private EntityQueryTemplates entityQueryTemplates;
+    private Incidents incidents;
 
     private IncidentComments incidentComments;
 
     private IncidentRelations incidentRelations;
 
     private Metadatas metadatas;
-
-    private OfficeConsents officeConsents;
 
     private SentinelOnboardingStates sentinelOnboardingStates;
 
@@ -147,12 +143,6 @@ public final class SecurityInsightsManager {
 
     private SourceControlsOperations sourceControlsOperations;
 
-    private ThreatIntelligenceIndicators threatIntelligenceIndicators;
-
-    private ThreatIntelligenceIndicatorsOperations threatIntelligenceIndicatorsOperations;
-
-    private ThreatIntelligenceIndicatorMetrics threatIntelligenceIndicatorMetrics;
-
     private Watchlists watchlists;
 
     private WatchlistItems watchlistItems;
@@ -161,7 +151,17 @@ public final class SecurityInsightsManager {
 
     private DataConnectorsCheckRequirementsOperations dataConnectorsCheckRequirementsOperations;
 
+    private ThreatIntelligenceIndicators threatIntelligenceIndicators;
+
+    private ThreatIntelligenceIndicatorsOperations threatIntelligenceIndicatorsOperations;
+
+    private ThreatIntelligenceIndicatorMetrics threatIntelligenceIndicatorMetrics;
+
     private Operations operations;
+
+    private OfficeConsents officeConsents;
+
+    private EntityQueryTemplates entityQueryTemplates;
 
     private final SecurityInsights clientObject;
 
@@ -201,7 +201,7 @@ public final class SecurityInsightsManager {
 
     /** The Configurable allowing configurations to be set. */
     public static final class Configurable {
-        private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
+        private final ClientLogger logger = new ClientLogger(Configurable.class);
 
         private HttpClient httpClient;
         private HttpLogOptions httpLogOptions;
@@ -275,11 +275,9 @@ public final class SecurityInsightsManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval = Objects.requireNonNull(defaultPollInterval, "'retryPolicy' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
-                throw LOGGER
-                    .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
+                throw logger.logExceptionAsError(new IllegalArgumentException("'httpPipeline' cannot be negative"));
             }
             return this;
         }
@@ -301,7 +299,7 @@ public final class SecurityInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.securityinsights")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -385,14 +383,6 @@ public final class SecurityInsightsManager {
         return automationRules;
     }
 
-    /** @return Resource collection API of Incidents. */
-    public Incidents incidents() {
-        if (this.incidents == null) {
-            this.incidents = new IncidentsImpl(clientObject.getIncidents(), this);
-        }
-        return incidents;
-    }
-
     /** @return Resource collection API of Bookmarks. */
     public Bookmarks bookmarks() {
         if (this.bookmarks == null) {
@@ -433,6 +423,14 @@ public final class SecurityInsightsManager {
         return domainWhois;
     }
 
+    /** @return Resource collection API of EntityQueries. */
+    public EntityQueries entityQueries() {
+        if (this.entityQueries == null) {
+            this.entityQueries = new EntityQueriesImpl(clientObject.getEntityQueries(), this);
+        }
+        return entityQueries;
+    }
+
     /** @return Resource collection API of Entities. */
     public Entities entities() {
         if (this.entities == null) {
@@ -465,20 +463,12 @@ public final class SecurityInsightsManager {
         return entityRelations;
     }
 
-    /** @return Resource collection API of EntityQueries. */
-    public EntityQueries entityQueries() {
-        if (this.entityQueries == null) {
-            this.entityQueries = new EntityQueriesImpl(clientObject.getEntityQueries(), this);
+    /** @return Resource collection API of Incidents. */
+    public Incidents incidents() {
+        if (this.incidents == null) {
+            this.incidents = new IncidentsImpl(clientObject.getIncidents(), this);
         }
-        return entityQueries;
-    }
-
-    /** @return Resource collection API of EntityQueryTemplates. */
-    public EntityQueryTemplates entityQueryTemplates() {
-        if (this.entityQueryTemplates == null) {
-            this.entityQueryTemplates = new EntityQueryTemplatesImpl(clientObject.getEntityQueryTemplates(), this);
-        }
-        return entityQueryTemplates;
+        return incidents;
     }
 
     /** @return Resource collection API of IncidentComments. */
@@ -503,14 +493,6 @@ public final class SecurityInsightsManager {
             this.metadatas = new MetadatasImpl(clientObject.getMetadatas(), this);
         }
         return metadatas;
-    }
-
-    /** @return Resource collection API of OfficeConsents. */
-    public OfficeConsents officeConsents() {
-        if (this.officeConsents == null) {
-            this.officeConsents = new OfficeConsentsImpl(clientObject.getOfficeConsents(), this);
-        }
-        return officeConsents;
     }
 
     /** @return Resource collection API of SentinelOnboardingStates. */
@@ -547,34 +529,6 @@ public final class SecurityInsightsManager {
         return sourceControlsOperations;
     }
 
-    /** @return Resource collection API of ThreatIntelligenceIndicators. */
-    public ThreatIntelligenceIndicators threatIntelligenceIndicators() {
-        if (this.threatIntelligenceIndicators == null) {
-            this.threatIntelligenceIndicators =
-                new ThreatIntelligenceIndicatorsImpl(clientObject.getThreatIntelligenceIndicators(), this);
-        }
-        return threatIntelligenceIndicators;
-    }
-
-    /** @return Resource collection API of ThreatIntelligenceIndicatorsOperations. */
-    public ThreatIntelligenceIndicatorsOperations threatIntelligenceIndicatorsOperations() {
-        if (this.threatIntelligenceIndicatorsOperations == null) {
-            this.threatIntelligenceIndicatorsOperations =
-                new ThreatIntelligenceIndicatorsOperationsImpl(
-                    clientObject.getThreatIntelligenceIndicatorsOperations(), this);
-        }
-        return threatIntelligenceIndicatorsOperations;
-    }
-
-    /** @return Resource collection API of ThreatIntelligenceIndicatorMetrics. */
-    public ThreatIntelligenceIndicatorMetrics threatIntelligenceIndicatorMetrics() {
-        if (this.threatIntelligenceIndicatorMetrics == null) {
-            this.threatIntelligenceIndicatorMetrics =
-                new ThreatIntelligenceIndicatorMetricsImpl(clientObject.getThreatIntelligenceIndicatorMetrics(), this);
-        }
-        return threatIntelligenceIndicatorMetrics;
-    }
-
     /** @return Resource collection API of Watchlists. */
     public Watchlists watchlists() {
         if (this.watchlists == null) {
@@ -609,12 +563,56 @@ public final class SecurityInsightsManager {
         return dataConnectorsCheckRequirementsOperations;
     }
 
+    /** @return Resource collection API of ThreatIntelligenceIndicators. */
+    public ThreatIntelligenceIndicators threatIntelligenceIndicators() {
+        if (this.threatIntelligenceIndicators == null) {
+            this.threatIntelligenceIndicators =
+                new ThreatIntelligenceIndicatorsImpl(clientObject.getThreatIntelligenceIndicators(), this);
+        }
+        return threatIntelligenceIndicators;
+    }
+
+    /** @return Resource collection API of ThreatIntelligenceIndicatorsOperations. */
+    public ThreatIntelligenceIndicatorsOperations threatIntelligenceIndicatorsOperations() {
+        if (this.threatIntelligenceIndicatorsOperations == null) {
+            this.threatIntelligenceIndicatorsOperations =
+                new ThreatIntelligenceIndicatorsOperationsImpl(
+                    clientObject.getThreatIntelligenceIndicatorsOperations(), this);
+        }
+        return threatIntelligenceIndicatorsOperations;
+    }
+
+    /** @return Resource collection API of ThreatIntelligenceIndicatorMetrics. */
+    public ThreatIntelligenceIndicatorMetrics threatIntelligenceIndicatorMetrics() {
+        if (this.threatIntelligenceIndicatorMetrics == null) {
+            this.threatIntelligenceIndicatorMetrics =
+                new ThreatIntelligenceIndicatorMetricsImpl(clientObject.getThreatIntelligenceIndicatorMetrics(), this);
+        }
+        return threatIntelligenceIndicatorMetrics;
+    }
+
     /** @return Resource collection API of Operations. */
     public Operations operations() {
         if (this.operations == null) {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /** @return Resource collection API of OfficeConsents. */
+    public OfficeConsents officeConsents() {
+        if (this.officeConsents == null) {
+            this.officeConsents = new OfficeConsentsImpl(clientObject.getOfficeConsents(), this);
+        }
+        return officeConsents;
+    }
+
+    /** @return Resource collection API of EntityQueryTemplates. */
+    public EntityQueryTemplates entityQueryTemplates() {
+        if (this.entityQueryTemplates == null) {
+            this.entityQueryTemplates = new EntityQueryTemplatesImpl(clientObject.getEntityQueryTemplates(), this);
+        }
+        return entityQueryTemplates;
     }
 
     /**

@@ -6,11 +6,14 @@ package com.azure.resourcemanager.apimanagement.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Custom hostname configuration. */
 @Fluent
 public final class HostnameConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(HostnameConfiguration.class);
+
     /*
      * Hostname type.
      */
@@ -74,18 +77,6 @@ public final class HostnameConfiguration {
      */
     @JsonProperty(value = "certificate")
     private CertificateInformation certificate;
-
-    /*
-     * Certificate Source.
-     */
-    @JsonProperty(value = "certificateSource")
-    private CertificateSource certificateSource;
-
-    /*
-     * Certificate Status.
-     */
-    @JsonProperty(value = "certificateStatus")
-    private CertificateStatus certificateStatus;
 
     /**
      * Get the type property: Hostname type.
@@ -282,58 +273,18 @@ public final class HostnameConfiguration {
     }
 
     /**
-     * Get the certificateSource property: Certificate Source.
-     *
-     * @return the certificateSource value.
-     */
-    public CertificateSource certificateSource() {
-        return this.certificateSource;
-    }
-
-    /**
-     * Set the certificateSource property: Certificate Source.
-     *
-     * @param certificateSource the certificateSource value to set.
-     * @return the HostnameConfiguration object itself.
-     */
-    public HostnameConfiguration withCertificateSource(CertificateSource certificateSource) {
-        this.certificateSource = certificateSource;
-        return this;
-    }
-
-    /**
-     * Get the certificateStatus property: Certificate Status.
-     *
-     * @return the certificateStatus value.
-     */
-    public CertificateStatus certificateStatus() {
-        return this.certificateStatus;
-    }
-
-    /**
-     * Set the certificateStatus property: Certificate Status.
-     *
-     * @param certificateStatus the certificateStatus value to set.
-     * @return the HostnameConfiguration object itself.
-     */
-    public HostnameConfiguration withCertificateStatus(CertificateStatus certificateStatus) {
-        this.certificateStatus = certificateStatus;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property type in model HostnameConfiguration"));
         }
         if (hostname() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property hostname in model HostnameConfiguration"));
         }
@@ -341,6 +292,4 @@ public final class HostnameConfiguration {
             certificate().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(HostnameConfiguration.class);
 }

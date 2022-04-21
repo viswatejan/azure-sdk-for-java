@@ -57,6 +57,6 @@ public interface RetryStrategy {
      * @return Whether a retry should be attempted.
      */
     default boolean shouldRetryException(Throwable throwable) {
-        return throwable instanceof Exception;
+        return true;
     }
 }

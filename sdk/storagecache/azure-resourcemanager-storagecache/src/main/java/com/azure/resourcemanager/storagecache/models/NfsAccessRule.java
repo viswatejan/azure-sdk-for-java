@@ -6,11 +6,14 @@ package com.azure.resourcemanager.storagecache.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Rule to place restrictions on portions of the cache namespace being presented to clients. */
 @Fluent
 public final class NfsAccessRule {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(NfsAccessRule.class);
+
     /*
      * Scope for this rule. The scope and filter determine which clients match
      * the rule.
@@ -250,16 +253,14 @@ public final class NfsAccessRule {
      */
     public void validate() {
         if (scope() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property scope in model NfsAccessRule"));
         }
         if (access() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property access in model NfsAccessRule"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(NfsAccessRule.class);
 }

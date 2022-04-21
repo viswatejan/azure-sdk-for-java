@@ -18,7 +18,7 @@ public interface LiveEvents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return liveEventListResult as paginated response with {@link PagedIterable}.
+     * @return the LiveEvent list result.
      */
     PagedIterable<LiveEvent> list(String resourceGroupName, String accountName);
 
@@ -31,7 +31,7 @@ public interface LiveEvents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return liveEventListResult as paginated response with {@link PagedIterable}.
+     * @return the LiveEvent list result.
      */
     PagedIterable<LiveEvent> list(String resourceGroupName, String accountName, Context context);
 
@@ -58,7 +58,7 @@ public interface LiveEvents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a live event along with {@link Response}.
+     * @return properties of a live event.
      */
     Response<LiveEvent> getWithResponse(
         String resourceGroupName, String accountName, String liveEventName, Context context);
@@ -206,7 +206,7 @@ public interface LiveEvents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a live event along with {@link Response}.
+     * @return properties of a live event.
      */
     LiveEvent getById(String id);
 
@@ -218,7 +218,7 @@ public interface LiveEvents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a live event along with {@link Response}.
+     * @return properties of a live event.
      */
     Response<LiveEvent> getByIdWithResponse(String id, Context context);
 

@@ -36,7 +36,7 @@ public final class AppConfigurationRefreshEventListener implements ApplicationLi
     @Override
     public void onApplicationEvent(AppConfigurationRefreshEvent event) {
         try {
-            appConfigurationRefresh.expireRefreshInterval(event.getEndpoint(), event.getSyncToken());
+            appConfigurationRefresh.expireRefreshInterval(event.getEndpoint());
         } catch (Exception e) {
             LOGGER.error("Refresh failed with unexpected exception.", e);
         }

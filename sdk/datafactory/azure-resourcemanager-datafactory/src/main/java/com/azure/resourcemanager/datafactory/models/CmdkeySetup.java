@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.CmdkeySetupTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("CmdkeySetup")
 @Fluent
 public final class CmdkeySetup extends CustomSetupBase {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CmdkeySetup.class);
+
     /*
      * Cmdkey command custom setup type properties.
      */
@@ -109,13 +112,11 @@ public final class CmdkeySetup extends CustomSetupBase {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property innerTypeProperties in model CmdkeySetup"));
         } else {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CmdkeySetup.class);
 }

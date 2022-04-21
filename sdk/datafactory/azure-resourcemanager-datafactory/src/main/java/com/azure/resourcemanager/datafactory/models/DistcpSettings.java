@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Distcp settings. */
 @Fluent
 public final class DistcpSettings {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DistcpSettings.class);
+
     /*
      * Specifies the Yarn ResourceManager endpoint. Type: string (or Expression
      * with resultType string).
@@ -109,17 +112,15 @@ public final class DistcpSettings {
      */
     public void validate() {
         if (resourceManagerEndpoint() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property resourceManagerEndpoint in model DistcpSettings"));
         }
         if (tempScriptPath() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property tempScriptPath in model DistcpSettings"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DistcpSettings.class);
 }

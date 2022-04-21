@@ -23,6 +23,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.fluent.FirewallPolicyIdpsSignaturesOverridesClient;
 import com.azure.resourcemanager.network.fluent.models.SignaturesOverridesInner;
 import com.azure.resourcemanager.network.fluent.models.SignaturesOverridesListInner;
@@ -34,6 +35,8 @@ import reactor.core.publisher.Mono;
  */
 public final class FirewallPolicyIdpsSignaturesOverridesClientImpl
     implements FirewallPolicyIdpsSignaturesOverridesClient {
+    private final ClientLogger logger = new ClientLogger(FirewallPolicyIdpsSignaturesOverridesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final FirewallPolicyIdpsSignaturesOverridesService service;
 

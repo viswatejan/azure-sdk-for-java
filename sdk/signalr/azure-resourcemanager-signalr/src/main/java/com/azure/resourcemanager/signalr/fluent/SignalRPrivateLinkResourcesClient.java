@@ -21,8 +21,7 @@ public interface SignalRPrivateLinkResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a resource as paginated response with {@link
-     *     PagedIterable}.
+     * @return the private link resources that need to be created for a resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PrivateLinkResourceInner> list(String resourceGroupName, String resourceName);
@@ -37,8 +36,7 @@ public interface SignalRPrivateLinkResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a resource as paginated response with {@link
-     *     PagedIterable}.
+     * @return the private link resources that need to be created for a resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PrivateLinkResourceInner> list(String resourceGroupName, String resourceName, Context context);

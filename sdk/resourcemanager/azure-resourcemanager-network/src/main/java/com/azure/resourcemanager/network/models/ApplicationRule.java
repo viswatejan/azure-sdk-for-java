@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -15,6 +17,8 @@ import java.util.List;
 @JsonTypeName("ApplicationRule")
 @Fluent
 public final class ApplicationRule extends FirewallPolicyRule {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApplicationRule.class);
+
     /*
      * List of source IP addresses for this rule.
      */

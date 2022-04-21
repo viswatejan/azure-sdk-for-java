@@ -6,12 +6,15 @@ package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List of Vpn-Sites. */
 @Fluent
 public final class GetVpnSitesConfigurationRequest {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GetVpnSitesConfigurationRequest.class);
+
     /*
      * List of resource-ids of the vpn-sites for which config is to be
      * downloaded.
@@ -72,12 +75,10 @@ public final class GetVpnSitesConfigurationRequest {
      */
     public void validate() {
         if (outputBlobSasUrl() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property outputBlobSasUrl in model GetVpnSitesConfigurationRequest"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(GetVpnSitesConfigurationRequest.class);
 }

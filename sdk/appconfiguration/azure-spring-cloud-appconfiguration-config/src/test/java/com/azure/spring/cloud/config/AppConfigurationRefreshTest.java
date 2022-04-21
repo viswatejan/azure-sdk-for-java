@@ -43,9 +43,6 @@ import com.azure.spring.cloud.config.properties.ConfigStore;
 import com.azure.spring.cloud.config.properties.FeatureFlagStore;
 import com.azure.spring.cloud.config.stores.ClientStore;
 
-import net.jcip.annotations.NotThreadSafe;
-
-@NotThreadSafe
 public class AppConfigurationRefreshTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AppConfigurationRefreshTest.class);
@@ -108,7 +105,6 @@ public class AppConfigurationRefreshTest {
 
         properties = new AppConfigurationProperties();
         properties.setStores(Arrays.asList(store));
-        properties.setRefreshInterval(null);
 
         contextsMap = new ConcurrentHashMap<>();
         contextsMap.put(TEST_STORE_NAME + testInfo.getDisplayName(), Arrays.asList(TEST_ETAG));
@@ -121,7 +117,7 @@ public class AppConfigurationRefreshTest {
         ConfigurationSetting item = new ConfigurationSetting();
         item.setKey("fake-etag/application/test.key");
         item.setETag("fake-etag");
-        configRefresh = new AppConfigurationRefresh(properties, null, clientStoreMock);
+        configRefresh = new AppConfigurationRefresh(properties, clientStoreMock);
         StateHolder.setLoadState(TEST_STORE_NAME + testInfo.getDisplayName(), true);
         StateHolder.setLoadStateFeatureFlag(TEST_STORE_NAME + testInfo.getDisplayName(), true);
 
@@ -305,7 +301,7 @@ public class AppConfigurationRefreshTest {
         AppConfigurationProperties propertiesLost = new AppConfigurationProperties();
         propertiesLost.setStores(Arrays.asList(store));
 
-        AppConfigurationRefresh configRefreshLost = new AppConfigurationRefresh(propertiesLost, null,
+        AppConfigurationRefresh configRefreshLost = new AppConfigurationRefresh(propertiesLost,
             clientStoreMock);
         when(clientStoreMock.getWatchKey(Mockito.anyString(), Mockito.anyString(), Mockito.anyString()))
             .thenReturn(null);
@@ -333,7 +329,7 @@ public class AppConfigurationRefreshTest {
         AppConfigurationProperties properties = new AppConfigurationProperties();
         properties.setStores(Arrays.asList(store));
 
-        AppConfigurationRefresh watchLargeDelay = new AppConfigurationRefresh(properties, null, clientStoreMock);
+        AppConfigurationRefresh watchLargeDelay = new AppConfigurationRefresh(properties, clientStoreMock);
 
         watchLargeDelay.setApplicationEventPublisher(eventPublisher);
         watchLargeDelay.refreshConfigurations().get();
@@ -356,7 +352,7 @@ public class AppConfigurationRefreshTest {
         AppConfigurationProperties properties = new AppConfigurationProperties();
         properties.setStores(Arrays.asList(store));
 
-        AppConfigurationRefresh refresh = new AppConfigurationRefresh(properties, null, clientStoreMock);
+        AppConfigurationRefresh refresh = new AppConfigurationRefresh(properties, clientStoreMock);
 
         refresh.setApplicationEventPublisher(eventPublisher);
         refresh.refreshConfigurations().get();

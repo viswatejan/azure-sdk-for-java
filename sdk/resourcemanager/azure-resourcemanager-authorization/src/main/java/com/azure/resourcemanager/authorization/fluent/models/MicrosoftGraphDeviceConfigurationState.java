@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,9 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** deviceConfigurationState Device Configuration State for a given device. */
+/** Device Configuration State for a given device. */
 @Fluent
 public final class MicrosoftGraphDeviceConfigurationState extends MicrosoftGraphEntity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphDeviceConfigurationState.class);
+
     /*
      * The name of the policy for this policyBase
      */
@@ -23,7 +26,7 @@ public final class MicrosoftGraphDeviceConfigurationState extends MicrosoftGraph
     private String displayName;
 
     /*
-     * policyPlatformType
+     * The platformType property.
      */
     @JsonProperty(value = "platformType")
     private MicrosoftGraphPolicyPlatformType platformType;
@@ -41,7 +44,7 @@ public final class MicrosoftGraphDeviceConfigurationState extends MicrosoftGraph
     private List<MicrosoftGraphDeviceConfigurationSettingState> settingStates;
 
     /*
-     * complianceStatus
+     * The state property.
      */
     @JsonProperty(value = "state")
     private MicrosoftGraphComplianceStatus state;
@@ -78,7 +81,7 @@ public final class MicrosoftGraphDeviceConfigurationState extends MicrosoftGraph
     }
 
     /**
-     * Get the platformType property: policyPlatformType.
+     * Get the platformType property: The platformType property.
      *
      * @return the platformType value.
      */
@@ -87,7 +90,7 @@ public final class MicrosoftGraphDeviceConfigurationState extends MicrosoftGraph
     }
 
     /**
-     * Set the platformType property: policyPlatformType.
+     * Set the platformType property: The platformType property.
      *
      * @param platformType the platformType value to set.
      * @return the MicrosoftGraphDeviceConfigurationState object itself.
@@ -139,7 +142,7 @@ public final class MicrosoftGraphDeviceConfigurationState extends MicrosoftGraph
     }
 
     /**
-     * Get the state property: complianceStatus.
+     * Get the state property: The state property.
      *
      * @return the state value.
      */
@@ -148,7 +151,7 @@ public final class MicrosoftGraphDeviceConfigurationState extends MicrosoftGraph
     }
 
     /**
-     * Set the state property: complianceStatus.
+     * Set the state property: The state property.
      *
      * @param state the state value to set.
      * @return the MicrosoftGraphDeviceConfigurationState object itself.

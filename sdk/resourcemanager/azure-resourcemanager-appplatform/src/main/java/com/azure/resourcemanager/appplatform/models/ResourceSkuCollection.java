@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.appplatform.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Object that includes an array of Azure Spring Cloud SKU and a possible link for next set. */
 @Fluent
 public final class ResourceSkuCollection {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceSkuCollection.class);
+
     /*
      * Collection of resource SKU
      */

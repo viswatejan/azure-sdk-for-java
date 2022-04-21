@@ -11,9 +11,10 @@ import com.azure.resourcemanager.datafactory.fluent.PrivateEndPointConnectionsCl
 import com.azure.resourcemanager.datafactory.fluent.models.PrivateEndpointConnectionResourceInner;
 import com.azure.resourcemanager.datafactory.models.PrivateEndPointConnections;
 import com.azure.resourcemanager.datafactory.models.PrivateEndpointConnectionResource;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PrivateEndPointConnectionsImpl implements PrivateEndPointConnections {
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateEndPointConnectionsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateEndPointConnectionsImpl.class);
 
     private final PrivateEndPointConnectionsClient innerClient;
 

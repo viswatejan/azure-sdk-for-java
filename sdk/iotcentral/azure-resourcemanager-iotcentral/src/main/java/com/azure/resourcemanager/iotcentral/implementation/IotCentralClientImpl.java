@@ -24,8 +24,6 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.iotcentral.fluent.AppsClient;
 import com.azure.resourcemanager.iotcentral.fluent.IotCentralClient;
 import com.azure.resourcemanager.iotcentral.fluent.OperationsClient;
-import com.azure.resourcemanager.iotcentral.fluent.PrivateEndpointConnectionsClient;
-import com.azure.resourcemanager.iotcentral.fluent.PrivateLinksClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -39,6 +37,8 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the IotCentralClientImpl type. */
 @ServiceClient(builder = IotCentralClientBuilder.class)
 public final class IotCentralClientImpl implements IotCentralClient {
+    private final ClientLogger logger = new ClientLogger(IotCentralClientImpl.class);
+
     /** The subscription identifier. */
     private final String subscriptionId;
 
@@ -123,30 +123,6 @@ public final class IotCentralClientImpl implements IotCentralClient {
         return this.apps;
     }
 
-    /** The PrivateEndpointConnectionsClient object to access its operations. */
-    private final PrivateEndpointConnectionsClient privateEndpointConnections;
-
-    /**
-     * Gets the PrivateEndpointConnectionsClient object to access its operations.
-     *
-     * @return the PrivateEndpointConnectionsClient object.
-     */
-    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
-        return this.privateEndpointConnections;
-    }
-
-    /** The PrivateLinksClient object to access its operations. */
-    private final PrivateLinksClient privateLinks;
-
-    /**
-     * Gets the PrivateLinksClient object to access its operations.
-     *
-     * @return the PrivateLinksClient object.
-     */
-    public PrivateLinksClient getPrivateLinks() {
-        return this.privateLinks;
-    }
-
     /** The OperationsClient object to access its operations. */
     private final OperationsClient operations;
 
@@ -181,10 +157,8 @@ public final class IotCentralClientImpl implements IotCentralClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-11-01-preview";
+        this.apiVersion = "2021-06-01";
         this.apps = new AppsClientImpl(this);
-        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
-        this.privateLinks = new PrivateLinksClientImpl(this);
         this.operations = new OperationsClientImpl(this);
     }
 
@@ -271,7 +245,7 @@ public final class IotCentralClientImpl implements IotCentralClient {
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        LOGGER.logThrowableAsWarning(ioe);
+                        logger.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -330,6 +304,4 @@ public final class IotCentralClientImpl implements IotCentralClient {
             return Mono.just(new String(responseBody, charset));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(IotCentralClientImpl.class);
 }

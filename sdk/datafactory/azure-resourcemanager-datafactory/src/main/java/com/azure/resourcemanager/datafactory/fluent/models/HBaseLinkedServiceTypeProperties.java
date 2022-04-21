@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.HBaseAuthenticationType;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** HBase server linked service properties. */
 @Fluent
 public final class HBaseLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(HBaseLinkedServiceTypeProperties.class);
+
     /*
      * The IP address or host name of the HBase server. (i.e. 192.168.222.160)
      */
@@ -333,13 +336,13 @@ public final class HBaseLinkedServiceTypeProperties {
      */
     public void validate() {
         if (host() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property host in model HBaseLinkedServiceTypeProperties"));
         }
         if (authenticationType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property authenticationType in model HBaseLinkedServiceTypeProperties"));
@@ -348,6 +351,4 @@ public final class HBaseLinkedServiceTypeProperties {
             password().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(HBaseLinkedServiceTypeProperties.class);
 }

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -28,6 +29,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Fluent
 public class WebLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(WebLinkedServiceTypeProperties.class);
+
     /*
      * The URL of the web service endpoint, e.g. http://www.microsoft.com .
      * Type: string (or Expression with resultType string).
@@ -64,12 +67,10 @@ public class WebLinkedServiceTypeProperties {
      */
     public void validate() {
         if (url() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property url in model WebLinkedServiceTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(WebLinkedServiceTypeProperties.class);
 }

@@ -23,7 +23,7 @@ public interface Operation {
     Boolean isDataAction();
 
     /**
-     * Gets the display property: The object that describes a operation.
+     * Gets the display property: The object that describes the operation.
      *
      * @return the display value.
      */
@@ -38,7 +38,7 @@ public interface Operation {
     String origin();
 
     /**
-     * Gets the properties property: Extra Operation properties.
+     * Gets the properties property: Extra properties for the operation.
      *
      * @return the properties value.
      */

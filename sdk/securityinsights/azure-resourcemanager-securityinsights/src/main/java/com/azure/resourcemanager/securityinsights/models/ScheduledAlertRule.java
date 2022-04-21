@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.models.AlertRuleInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.ScheduledAlertRuleProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -20,6 +22,8 @@ import java.util.Map;
 @JsonTypeName("Scheduled")
 @Fluent
 public final class ScheduledAlertRule extends AlertRuleInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScheduledAlertRule.class);
+
     /*
      * Scheduled alert rule properties
      */
@@ -110,6 +114,29 @@ public final class ScheduledAlertRule extends AlertRuleInner {
             this.innerProperties = new ScheduledAlertRuleProperties();
         }
         this.innerProperties().withDescription(description);
+        return this;
+    }
+
+    /**
+     * Get the query property: The query that creates alerts for this rule.
+     *
+     * @return the query value.
+     */
+    public String query() {
+        return this.innerProperties() == null ? null : this.innerProperties().query();
+    }
+
+    /**
+     * Set the query property: The query that creates alerts for this rule.
+     *
+     * @param query the query value to set.
+     * @return the ScheduledAlertRule object itself.
+     */
+    public ScheduledAlertRule withQuery(String query) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleProperties();
+        }
+        this.innerProperties().withQuery(query);
         return this;
     }
 
@@ -219,6 +246,29 @@ public final class ScheduledAlertRule extends AlertRuleInner {
     }
 
     /**
+     * Get the severity property: The severity for alerts created by this alert rule.
+     *
+     * @return the severity value.
+     */
+    public AlertSeverity severity() {
+        return this.innerProperties() == null ? null : this.innerProperties().severity();
+    }
+
+    /**
+     * Set the severity property: The severity for alerts created by this alert rule.
+     *
+     * @param severity the severity value to set.
+     * @return the ScheduledAlertRule object itself.
+     */
+    public ScheduledAlertRule withSeverity(AlertSeverity severity) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleProperties();
+        }
+        this.innerProperties().withSeverity(severity);
+        return this;
+    }
+
+    /**
      * Get the tactics property: The tactics of the alert rule.
      *
      * @return the tactics value.
@@ -238,29 +288,6 @@ public final class ScheduledAlertRule extends AlertRuleInner {
             this.innerProperties = new ScheduledAlertRuleProperties();
         }
         this.innerProperties().withTactics(tactics);
-        return this;
-    }
-
-    /**
-     * Get the techniques property: The techniques of the alert rule.
-     *
-     * @return the techniques value.
-     */
-    public List<String> techniques() {
-        return this.innerProperties() == null ? null : this.innerProperties().techniques();
-    }
-
-    /**
-     * Set the techniques property: The techniques of the alert rule.
-     *
-     * @param techniques the techniques value to set.
-     * @return the ScheduledAlertRule object itself.
-     */
-    public ScheduledAlertRule withTechniques(List<String> techniques) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduledAlertRuleProperties();
-        }
-        this.innerProperties().withTechniques(techniques);
         return this;
     }
 
@@ -286,167 +313,6 @@ public final class ScheduledAlertRule extends AlertRuleInner {
             this.innerProperties = new ScheduledAlertRuleProperties();
         }
         this.innerProperties().withIncidentConfiguration(incidentConfiguration);
-        return this;
-    }
-
-    /**
-     * Get the query property: The query that creates alerts for this rule.
-     *
-     * @return the query value.
-     */
-    public String query() {
-        return this.innerProperties() == null ? null : this.innerProperties().query();
-    }
-
-    /**
-     * Set the query property: The query that creates alerts for this rule.
-     *
-     * @param query the query value to set.
-     * @return the ScheduledAlertRule object itself.
-     */
-    public ScheduledAlertRule withQuery(String query) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduledAlertRuleProperties();
-        }
-        this.innerProperties().withQuery(query);
-        return this;
-    }
-
-    /**
-     * Get the queryFrequency property: The frequency (in ISO 8601 duration format) for this alert rule to run.
-     *
-     * @return the queryFrequency value.
-     */
-    public Duration queryFrequency() {
-        return this.innerProperties() == null ? null : this.innerProperties().queryFrequency();
-    }
-
-    /**
-     * Set the queryFrequency property: The frequency (in ISO 8601 duration format) for this alert rule to run.
-     *
-     * @param queryFrequency the queryFrequency value to set.
-     * @return the ScheduledAlertRule object itself.
-     */
-    public ScheduledAlertRule withQueryFrequency(Duration queryFrequency) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduledAlertRuleProperties();
-        }
-        this.innerProperties().withQueryFrequency(queryFrequency);
-        return this;
-    }
-
-    /**
-     * Get the queryPeriod property: The period (in ISO 8601 duration format) that this alert rule looks at.
-     *
-     * @return the queryPeriod value.
-     */
-    public Duration queryPeriod() {
-        return this.innerProperties() == null ? null : this.innerProperties().queryPeriod();
-    }
-
-    /**
-     * Set the queryPeriod property: The period (in ISO 8601 duration format) that this alert rule looks at.
-     *
-     * @param queryPeriod the queryPeriod value to set.
-     * @return the ScheduledAlertRule object itself.
-     */
-    public ScheduledAlertRule withQueryPeriod(Duration queryPeriod) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduledAlertRuleProperties();
-        }
-        this.innerProperties().withQueryPeriod(queryPeriod);
-        return this;
-    }
-
-    /**
-     * Get the severity property: The severity for alerts created by this alert rule.
-     *
-     * @return the severity value.
-     */
-    public AlertSeverity severity() {
-        return this.innerProperties() == null ? null : this.innerProperties().severity();
-    }
-
-    /**
-     * Set the severity property: The severity for alerts created by this alert rule.
-     *
-     * @param severity the severity value to set.
-     * @return the ScheduledAlertRule object itself.
-     */
-    public ScheduledAlertRule withSeverity(AlertSeverity severity) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduledAlertRuleProperties();
-        }
-        this.innerProperties().withSeverity(severity);
-        return this;
-    }
-
-    /**
-     * Get the triggerOperator property: The operation against the threshold that triggers alert rule.
-     *
-     * @return the triggerOperator value.
-     */
-    public TriggerOperator triggerOperator() {
-        return this.innerProperties() == null ? null : this.innerProperties().triggerOperator();
-    }
-
-    /**
-     * Set the triggerOperator property: The operation against the threshold that triggers alert rule.
-     *
-     * @param triggerOperator the triggerOperator value to set.
-     * @return the ScheduledAlertRule object itself.
-     */
-    public ScheduledAlertRule withTriggerOperator(TriggerOperator triggerOperator) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduledAlertRuleProperties();
-        }
-        this.innerProperties().withTriggerOperator(triggerOperator);
-        return this;
-    }
-
-    /**
-     * Get the triggerThreshold property: The threshold triggers this alert rule.
-     *
-     * @return the triggerThreshold value.
-     */
-    public Integer triggerThreshold() {
-        return this.innerProperties() == null ? null : this.innerProperties().triggerThreshold();
-    }
-
-    /**
-     * Set the triggerThreshold property: The threshold triggers this alert rule.
-     *
-     * @param triggerThreshold the triggerThreshold value to set.
-     * @return the ScheduledAlertRule object itself.
-     */
-    public ScheduledAlertRule withTriggerThreshold(Integer triggerThreshold) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduledAlertRuleProperties();
-        }
-        this.innerProperties().withTriggerThreshold(triggerThreshold);
-        return this;
-    }
-
-    /**
-     * Get the eventGroupingSettings property: The event grouping settings.
-     *
-     * @return the eventGroupingSettings value.
-     */
-    public EventGroupingSettings eventGroupingSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().eventGroupingSettings();
-    }
-
-    /**
-     * Set the eventGroupingSettings property: The event grouping settings.
-     *
-     * @param eventGroupingSettings the eventGroupingSettings value to set.
-     * @return the ScheduledAlertRule object itself.
-     */
-    public ScheduledAlertRule withEventGroupingSettings(EventGroupingSettings eventGroupingSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduledAlertRuleProperties();
-        }
-        this.innerProperties().withEventGroupingSettings(eventGroupingSettings);
         return this;
     }
 
@@ -516,6 +382,121 @@ public final class ScheduledAlertRule extends AlertRuleInner {
             this.innerProperties = new ScheduledAlertRuleProperties();
         }
         this.innerProperties().withAlertDetailsOverride(alertDetailsOverride);
+        return this;
+    }
+
+    /**
+     * Get the queryFrequency property: The frequency (in ISO 8601 duration format) for this alert rule to run.
+     *
+     * @return the queryFrequency value.
+     */
+    public Duration queryFrequency() {
+        return this.innerProperties() == null ? null : this.innerProperties().queryFrequency();
+    }
+
+    /**
+     * Set the queryFrequency property: The frequency (in ISO 8601 duration format) for this alert rule to run.
+     *
+     * @param queryFrequency the queryFrequency value to set.
+     * @return the ScheduledAlertRule object itself.
+     */
+    public ScheduledAlertRule withQueryFrequency(Duration queryFrequency) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleProperties();
+        }
+        this.innerProperties().withQueryFrequency(queryFrequency);
+        return this;
+    }
+
+    /**
+     * Get the queryPeriod property: The period (in ISO 8601 duration format) that this alert rule looks at.
+     *
+     * @return the queryPeriod value.
+     */
+    public Duration queryPeriod() {
+        return this.innerProperties() == null ? null : this.innerProperties().queryPeriod();
+    }
+
+    /**
+     * Set the queryPeriod property: The period (in ISO 8601 duration format) that this alert rule looks at.
+     *
+     * @param queryPeriod the queryPeriod value to set.
+     * @return the ScheduledAlertRule object itself.
+     */
+    public ScheduledAlertRule withQueryPeriod(Duration queryPeriod) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleProperties();
+        }
+        this.innerProperties().withQueryPeriod(queryPeriod);
+        return this;
+    }
+
+    /**
+     * Get the triggerOperator property: The operation against the threshold that triggers alert rule.
+     *
+     * @return the triggerOperator value.
+     */
+    public TriggerOperator triggerOperator() {
+        return this.innerProperties() == null ? null : this.innerProperties().triggerOperator();
+    }
+
+    /**
+     * Set the triggerOperator property: The operation against the threshold that triggers alert rule.
+     *
+     * @param triggerOperator the triggerOperator value to set.
+     * @return the ScheduledAlertRule object itself.
+     */
+    public ScheduledAlertRule withTriggerOperator(TriggerOperator triggerOperator) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleProperties();
+        }
+        this.innerProperties().withTriggerOperator(triggerOperator);
+        return this;
+    }
+
+    /**
+     * Get the triggerThreshold property: The threshold triggers this alert rule.
+     *
+     * @return the triggerThreshold value.
+     */
+    public Integer triggerThreshold() {
+        return this.innerProperties() == null ? null : this.innerProperties().triggerThreshold();
+    }
+
+    /**
+     * Set the triggerThreshold property: The threshold triggers this alert rule.
+     *
+     * @param triggerThreshold the triggerThreshold value to set.
+     * @return the ScheduledAlertRule object itself.
+     */
+    public ScheduledAlertRule withTriggerThreshold(Integer triggerThreshold) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleProperties();
+        }
+        this.innerProperties().withTriggerThreshold(triggerThreshold);
+        return this;
+    }
+
+    /**
+     * Get the eventGroupingSettings property: The event grouping settings.
+     *
+     * @return the eventGroupingSettings value.
+     */
+    public EventGroupingSettings eventGroupingSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().eventGroupingSettings();
+    }
+
+    /**
+     * Set the eventGroupingSettings property: The event grouping settings.
+     *
+     * @param eventGroupingSettings the eventGroupingSettings value to set.
+     * @return the ScheduledAlertRule object itself.
+     */
+    public ScheduledAlertRule withEventGroupingSettings(EventGroupingSettings eventGroupingSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduledAlertRuleProperties();
+        }
+        this.innerProperties().withEventGroupingSettings(eventGroupingSettings);
         return this;
     }
 

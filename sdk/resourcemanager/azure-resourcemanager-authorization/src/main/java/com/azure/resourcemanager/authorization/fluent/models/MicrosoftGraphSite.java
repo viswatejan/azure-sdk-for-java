@@ -5,10 +5,10 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -18,6 +18,8 @@ import java.util.Map;
 /** site. */
 @Fluent
 public final class MicrosoftGraphSite extends MicrosoftGraphBaseItemInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphSite.class);
+
     /*
      * The full title for the site. Read-only.
      */
@@ -34,7 +36,6 @@ public final class MicrosoftGraphSite extends MicrosoftGraphBaseItemInner {
      * root
      */
     @JsonProperty(value = "root")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> root;
 
     /*

@@ -21,7 +21,7 @@ public class SpringAppDomainImpl
     @Override
     public Mono<SpringAppDomain> createResourceAsync() {
         return manager().serviceClient().getCustomDomains().createOrUpdateAsync(
-            parent().parent().resourceGroupName(), parent().parent().name(), parent().name(), name(), innerModel()
+            parent().parent().resourceGroupName(), parent().parent().name(), parent().name(), name(), properties()
         )
             .map(inner -> {
                 setInner(inner);

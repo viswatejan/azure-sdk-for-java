@@ -6,12 +6,15 @@ package com.azure.resourcemanager.appplatform.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Git repository property payload for config server. */
+/** Git repository property payload. */
 @Fluent
 public final class GitPatternRepository {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GitPatternRepository.class);
+
     /*
      * Name of the repository
      */
@@ -305,16 +308,14 @@ public final class GitPatternRepository {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model GitPatternRepository"));
         }
         if (uri() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property uri in model GitPatternRepository"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(GitPatternRepository.class);
 }

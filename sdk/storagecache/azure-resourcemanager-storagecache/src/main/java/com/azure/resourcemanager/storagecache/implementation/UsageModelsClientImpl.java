@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.storagecache.fluent.UsageModelsClient;
 import com.azure.resourcemanager.storagecache.fluent.models.UsageModelInner;
 import com.azure.resourcemanager.storagecache.models.UsageModelsResult;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in UsageModelsClient. */
 public final class UsageModelsClientImpl implements UsageModelsClient {
+    private final ClientLogger logger = new ClientLogger(UsageModelsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final UsageModelsService service;
 
@@ -83,8 +86,7 @@ public final class UsageModelsClientImpl implements UsageModelsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Cache Usage Models available to this subscription along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return the list of Cache Usage Models available to this subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageModelInner>> listSinglePageAsync() {
@@ -130,8 +132,7 @@ public final class UsageModelsClientImpl implements UsageModelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Cache Usage Models available to this subscription along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return the list of Cache Usage Models available to this subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageModelInner>> listSinglePageAsync(Context context) {
@@ -172,8 +173,7 @@ public final class UsageModelsClientImpl implements UsageModelsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Cache Usage Models available to this subscription as paginated response with {@link
-     *     PagedFlux}.
+     * @return the list of Cache Usage Models available to this subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<UsageModelInner> listAsync() {
@@ -187,8 +187,7 @@ public final class UsageModelsClientImpl implements UsageModelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Cache Usage Models available to this subscription as paginated response with {@link
-     *     PagedFlux}.
+     * @return the list of Cache Usage Models available to this subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<UsageModelInner> listAsync(Context context) {
@@ -201,8 +200,7 @@ public final class UsageModelsClientImpl implements UsageModelsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Cache Usage Models available to this subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of Cache Usage Models available to this subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<UsageModelInner> list() {
@@ -216,8 +214,7 @@ public final class UsageModelsClientImpl implements UsageModelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Cache Usage Models available to this subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of Cache Usage Models available to this subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<UsageModelInner> list(Context context) {
@@ -231,7 +228,7 @@ public final class UsageModelsClientImpl implements UsageModelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Cache usage models along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of Cache usage models.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageModelInner>> listNextSinglePageAsync(String nextLink) {
@@ -267,7 +264,7 @@ public final class UsageModelsClientImpl implements UsageModelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Cache usage models along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of Cache usage models.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageModelInner>> listNextSinglePageAsync(String nextLink, Context context) {

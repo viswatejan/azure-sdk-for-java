@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.PlmnId;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Mobile network properties. */
 @Fluent
 public final class MobileNetworkPropertiesFormat {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MobileNetworkPropertiesFormat.class);
+
     /*
      * The provisioning state of the mobile network resource.
      */
@@ -87,7 +90,7 @@ public final class MobileNetworkPropertiesFormat {
      */
     public void validate() {
         if (publicLandMobileNetworkIdentifier() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property publicLandMobileNetworkIdentifier in model"
@@ -96,6 +99,4 @@ public final class MobileNetworkPropertiesFormat {
             publicLandMobileNetworkIdentifier().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MobileNetworkPropertiesFormat.class);
 }

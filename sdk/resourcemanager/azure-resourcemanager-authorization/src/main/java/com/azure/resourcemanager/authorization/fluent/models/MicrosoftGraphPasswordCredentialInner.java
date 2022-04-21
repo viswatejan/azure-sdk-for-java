@@ -7,6 +7,7 @@ package com.azure.resourcemanager.authorization.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.Base64Url;
 import com.azure.core.util.CoreUtils;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,6 +20,8 @@ import java.util.UUID;
 /** passwordCredential. */
 @Fluent
 public final class MicrosoftGraphPasswordCredentialInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphPasswordCredentialInner.class);
+
     /*
      * Do not use.
      */
@@ -81,7 +84,7 @@ public final class MicrosoftGraphPasswordCredentialInner {
      */
     public byte[] customKeyIdentifier() {
         if (this.customKeyIdentifier == null) {
-            return new byte[0];
+            return null;
         }
         return this.customKeyIdentifier.decodedBytes();
     }

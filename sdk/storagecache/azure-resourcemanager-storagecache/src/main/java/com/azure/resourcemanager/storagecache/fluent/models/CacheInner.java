@@ -7,6 +7,7 @@ package com.azure.resourcemanager.storagecache.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.storagecache.models.CacheDirectorySettings;
 import com.azure.resourcemanager.storagecache.models.CacheEncryptionSettings;
 import com.azure.resourcemanager.storagecache.models.CacheHealth;
@@ -16,6 +17,7 @@ import com.azure.resourcemanager.storagecache.models.CacheSecuritySettings;
 import com.azure.resourcemanager.storagecache.models.CacheSku;
 import com.azure.resourcemanager.storagecache.models.CacheUpgradeStatus;
 import com.azure.resourcemanager.storagecache.models.ProvisioningStateType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +28,8 @@ import java.util.Map;
  */
 @Fluent
 public final class CacheInner extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CacheInner.class);
+
     /*
      * The identity of the cache, if configured.
      */
@@ -294,31 +298,6 @@ public final class CacheInner extends Resource {
             this.innerProperties = new CacheProperties();
         }
         this.innerProperties().withDirectoryServicesSettings(directoryServicesSettings);
-        return this;
-    }
-
-    /**
-     * Get the zones property: Availability zones for resources. This field should only contain a single element in the
-     * array.
-     *
-     * @return the zones value.
-     */
-    public List<String> zones() {
-        return this.innerProperties() == null ? null : this.innerProperties().zones();
-    }
-
-    /**
-     * Set the zones property: Availability zones for resources. This field should only contain a single element in the
-     * array.
-     *
-     * @param zones the zones value to set.
-     * @return the CacheInner object itself.
-     */
-    public CacheInner withZones(List<String> zones) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CacheProperties();
-        }
-        this.innerProperties().withZones(zones);
         return this;
     }
 

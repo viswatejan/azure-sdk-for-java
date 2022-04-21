@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Environment variable custom setup type properties. */
 @Fluent
 public final class EnvironmentVariableSetupTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(EnvironmentVariableSetupTypeProperties.class);
+
     /*
      * The name of the environment variable.
      */
@@ -70,18 +73,16 @@ public final class EnvironmentVariableSetupTypeProperties {
      */
     public void validate() {
         if (variableName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property variableName in model EnvironmentVariableSetupTypeProperties"));
         }
         if (variableValue() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property variableValue in model EnvironmentVariableSetupTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(EnvironmentVariableSetupTypeProperties.class);
 }

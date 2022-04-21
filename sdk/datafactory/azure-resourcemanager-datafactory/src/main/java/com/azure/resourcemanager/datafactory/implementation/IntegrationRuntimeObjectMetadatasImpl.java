@@ -15,9 +15,10 @@ import com.azure.resourcemanager.datafactory.models.GetSsisObjectMetadataRequest
 import com.azure.resourcemanager.datafactory.models.IntegrationRuntimeObjectMetadatas;
 import com.azure.resourcemanager.datafactory.models.SsisObjectMetadataListResponse;
 import com.azure.resourcemanager.datafactory.models.SsisObjectMetadataStatusResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class IntegrationRuntimeObjectMetadatasImpl implements IntegrationRuntimeObjectMetadatas {
-    private static final ClientLogger LOGGER = new ClientLogger(IntegrationRuntimeObjectMetadatasImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(IntegrationRuntimeObjectMetadatasImpl.class);
 
     private final IntegrationRuntimeObjectMetadatasClient innerClient;
 

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,6 +16,8 @@ import java.util.Map;
 /** scoredEmailAddress. */
 @Fluent
 public final class MicrosoftGraphScoredEmailAddress {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphScoredEmailAddress.class);
+
     /*
      * The email address.
      */
@@ -38,7 +41,7 @@ public final class MicrosoftGraphScoredEmailAddress {
     private Double relevanceScore;
 
     /*
-     * selectionLikelihoodInfo
+     * The selectionLikelihood property.
      */
     @JsonProperty(value = "selectionLikelihood")
     private MicrosoftGraphSelectionLikelihoodInfo selectionLikelihood;
@@ -115,7 +118,7 @@ public final class MicrosoftGraphScoredEmailAddress {
     }
 
     /**
-     * Get the selectionLikelihood property: selectionLikelihoodInfo.
+     * Get the selectionLikelihood property: The selectionLikelihood property.
      *
      * @return the selectionLikelihood value.
      */
@@ -124,7 +127,7 @@ public final class MicrosoftGraphScoredEmailAddress {
     }
 
     /**
-     * Set the selectionLikelihood property: selectionLikelihoodInfo.
+     * Set the selectionLikelihood property: The selectionLikelihood property.
      *
      * @param selectionLikelihood the selectionLikelihood value to set.
      * @return the MicrosoftGraphScoredEmailAddress object itself.

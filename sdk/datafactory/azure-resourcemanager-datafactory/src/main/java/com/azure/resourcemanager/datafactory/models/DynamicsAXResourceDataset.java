@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.DynamicsAXResourceDatasetTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("DynamicsAXResource")
 @Fluent
 public final class DynamicsAXResourceDataset extends Dataset {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DynamicsAXResourceDataset.class);
+
     /*
      * Dynamics AX OData resource dataset properties.
      */
@@ -116,7 +119,7 @@ public final class DynamicsAXResourceDataset extends Dataset {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model DynamicsAXResourceDataset"));
@@ -124,6 +127,4 @@ public final class DynamicsAXResourceDataset extends Dataset {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DynamicsAXResourceDataset.class);
 }

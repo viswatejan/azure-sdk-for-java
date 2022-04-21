@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.SmartsheetLinkedServiceTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("Smartsheet")
 @Fluent
 public final class SmartsheetLinkedService extends LinkedService {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SmartsheetLinkedService.class);
+
     /*
      * Smartsheet linked service properties.
      */
@@ -118,7 +121,7 @@ public final class SmartsheetLinkedService extends LinkedService {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model SmartsheetLinkedService"));
@@ -126,6 +129,4 @@ public final class SmartsheetLinkedService extends LinkedService {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SmartsheetLinkedService.class);
 }

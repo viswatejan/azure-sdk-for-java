@@ -9,12 +9,15 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resources.models.LockLevel;
 import com.azure.resourcemanager.resources.models.ManagementLockOwner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The lock information. */
 @Fluent
 public final class ManagementLockObjectInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagementLockObjectInner.class);
+
     /*
      * The properties of the lock.
      */
@@ -110,7 +113,7 @@ public final class ManagementLockObjectInner extends ProxyResource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model ManagementLockObjectInner"));
@@ -118,6 +121,4 @@ public final class ManagementLockObjectInner extends ProxyResource {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ManagementLockObjectInner.class);
 }

@@ -24,6 +24,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.storage.fluent.ManagementPoliciesClient;
 import com.azure.resourcemanager.storage.fluent.models.ManagementPolicyInner;
 import com.azure.resourcemanager.storage.models.ManagementPolicyName;
@@ -31,6 +32,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ManagementPoliciesClient. */
 public final class ManagementPoliciesClientImpl implements ManagementPoliciesClient {
+    private final ClientLogger logger = new ClientLogger(ManagementPoliciesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ManagementPoliciesService service;
 

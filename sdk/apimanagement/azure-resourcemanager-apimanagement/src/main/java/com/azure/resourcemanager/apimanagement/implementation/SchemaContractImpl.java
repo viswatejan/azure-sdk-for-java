@@ -37,10 +37,6 @@ public final class SchemaContractImpl implements SchemaContract, SchemaContract.
         return this.innerModel().definitions();
     }
 
-    public Object components() {
-        return this.innerModel().components();
-    }
-
     public SchemaContractInner innerModel() {
         return this.innerObject;
     }
@@ -162,11 +158,6 @@ public final class SchemaContractImpl implements SchemaContract, SchemaContract.
 
     public SchemaContractImpl withDefinitions(Object definitions) {
         this.innerModel().withDefinitions(definitions);
-        return this;
-    }
-
-    public SchemaContractImpl withComponents(Object components) {
-        this.innerModel().withComponents(components);
         return this;
     }
 

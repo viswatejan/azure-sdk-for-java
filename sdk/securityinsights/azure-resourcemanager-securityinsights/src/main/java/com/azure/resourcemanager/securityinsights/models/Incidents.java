@@ -11,39 +11,6 @@ import com.azure.core.util.Context;
 /** Resource collection API of Incidents. */
 public interface Incidents {
     /**
-     * Triggers playbook on a specific incident.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentIdentifier The incidentIdentifier parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
-     */
-    Object runPlaybook(String resourceGroupName, String workspaceName, String incidentIdentifier);
-
-    /**
-     * Triggers playbook on a specific incident.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentIdentifier The incidentIdentifier parameter.
-     * @param requestBody The requestBody parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response}.
-     */
-    Response<Object> runPlaybookWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String incidentIdentifier,
-        ManualTriggerRequestBody requestBody,
-        Context context);
-
-    /**
      * Gets all incidents.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -51,7 +18,7 @@ public interface Incidents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incidents as paginated response with {@link PagedIterable}.
+     * @return all incidents.
      */
     PagedIterable<Incident> list(String resourceGroupName, String workspaceName);
 
@@ -70,7 +37,7 @@ public interface Incidents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incidents as paginated response with {@link PagedIterable}.
+     * @return all incidents.
      */
     PagedIterable<Incident> list(
         String resourceGroupName,

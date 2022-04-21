@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,6 +18,8 @@ import java.util.UUID;
 /** appRole. */
 @Fluent
 public final class MicrosoftGraphAppRole {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphAppRole.class);
+
     /*
      * Specifies whether this app role can be assigned to users and groups (by
      * setting to ['User']), to other application's (by setting to

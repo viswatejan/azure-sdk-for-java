@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.ApiProductsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.ProductContractInner;
 import com.azure.resourcemanager.apimanagement.models.ProductCollection;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ApiProductsClient. */
 public final class ApiProductsClientImpl implements ApiProductsClient {
+    private final ClientLogger logger = new ClientLogger(ApiProductsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ApiProductsService service;
 
@@ -100,8 +103,7 @@ public final class ApiProductsClientImpl implements ApiProductsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Products list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Products list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProductContractInner>> listByApisSinglePageAsync(
@@ -172,8 +174,7 @@ public final class ApiProductsClientImpl implements ApiProductsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Products list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Products list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProductContractInner>> listByApisSinglePageAsync(
@@ -246,7 +247,7 @@ public final class ApiProductsClientImpl implements ApiProductsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Products list representation as paginated response with {@link PagedFlux}.
+     * @return paged Products list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProductContractInner> listByApisAsync(
@@ -265,7 +266,7 @@ public final class ApiProductsClientImpl implements ApiProductsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Products list representation as paginated response with {@link PagedFlux}.
+     * @return paged Products list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProductContractInner> listByApisAsync(
@@ -293,7 +294,7 @@ public final class ApiProductsClientImpl implements ApiProductsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Products list representation as paginated response with {@link PagedFlux}.
+     * @return paged Products list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProductContractInner> listByApisAsync(
@@ -318,7 +319,7 @@ public final class ApiProductsClientImpl implements ApiProductsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Products list representation as paginated response with {@link PagedIterable}.
+     * @return paged Products list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProductContractInner> listByApis(String resourceGroupName, String serviceName, String apiId) {
@@ -343,7 +344,7 @@ public final class ApiProductsClientImpl implements ApiProductsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Products list representation as paginated response with {@link PagedIterable}.
+     * @return paged Products list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProductContractInner> listByApis(
@@ -364,8 +365,7 @@ public final class ApiProductsClientImpl implements ApiProductsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Products list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Products list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProductContractInner>> listByApisNextSinglePageAsync(String nextLink) {
@@ -401,8 +401,7 @@ public final class ApiProductsClientImpl implements ApiProductsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Products list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Products list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProductContractInner>> listByApisNextSinglePageAsync(String nextLink, Context context) {

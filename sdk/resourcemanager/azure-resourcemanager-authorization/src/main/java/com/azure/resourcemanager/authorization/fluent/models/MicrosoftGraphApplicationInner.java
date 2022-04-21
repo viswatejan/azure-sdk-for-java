@@ -7,6 +7,7 @@ package com.azure.resourcemanager.authorization.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.Base64Url;
 import com.azure.core.util.CoreUtils;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,11 +19,13 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * application Represents an Azure Active Directory object. The directoryObject type is the base type for many other
- * directory entity types.
+ * Represents an Azure Active Directory object. The directoryObject type is the base type for many other directory
+ * entity types.
  */
 @Fluent
 public final class MicrosoftGraphApplicationInner extends MicrosoftGraphDirectoryObjectInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphApplicationInner.class);
+
     /*
      * Defines custom behavior that a consuming service can use to call an app
      * in specific contexts. For example, applications that can render file
@@ -230,9 +233,8 @@ public final class MicrosoftGraphApplicationInner extends MicrosoftGraphDirector
     private MicrosoftGraphWebApplication web;
 
     /*
-     * directoryObject Represents an Azure Active Directory object. The
-     * directoryObject type is the base type for many other directory entity
-     * types.
+     * Represents an Azure Active Directory object. The directoryObject type is
+     * the base type for many other directory entity types.
      */
     @JsonProperty(value = "createdOnBehalfOf")
     private MicrosoftGraphDirectoryObjectInner createdOnBehalfOf;
@@ -261,13 +263,13 @@ public final class MicrosoftGraphApplicationInner extends MicrosoftGraphDirector
      * The tokenIssuancePolicies property.
      */
     @JsonProperty(value = "tokenIssuancePolicies")
-    private List<MicrosoftGraphTokenIssuancePolicy> tokenIssuancePolicies;
+    private List<MicrosoftGraphTokenIssuancePolicyInner> tokenIssuancePolicies;
 
     /*
      * The tokenLifetimePolicies property.
      */
     @JsonProperty(value = "tokenLifetimePolicies")
-    private List<MicrosoftGraphTokenLifetimePolicy> tokenLifetimePolicies;
+    private List<MicrosoftGraphTokenLifetimePolicyInner> tokenLifetimePolicies;
 
     /*
      * Represents an Azure Active Directory object. The directoryObject type is
@@ -592,7 +594,7 @@ public final class MicrosoftGraphApplicationInner extends MicrosoftGraphDirector
      */
     public byte[] logo() {
         if (this.logo == null) {
-            return new byte[0];
+            return null;
         }
         return this.logo.decodedBytes();
     }
@@ -882,8 +884,8 @@ public final class MicrosoftGraphApplicationInner extends MicrosoftGraphDirector
     }
 
     /**
-     * Get the createdOnBehalfOf property: directoryObject Represents an Azure Active Directory object. The
-     * directoryObject type is the base type for many other directory entity types.
+     * Get the createdOnBehalfOf property: Represents an Azure Active Directory object. The directoryObject type is the
+     * base type for many other directory entity types.
      *
      * @return the createdOnBehalfOf value.
      */
@@ -892,8 +894,8 @@ public final class MicrosoftGraphApplicationInner extends MicrosoftGraphDirector
     }
 
     /**
-     * Set the createdOnBehalfOf property: directoryObject Represents an Azure Active Directory object. The
-     * directoryObject type is the base type for many other directory entity types.
+     * Set the createdOnBehalfOf property: Represents an Azure Active Directory object. The directoryObject type is the
+     * base type for many other directory entity types.
      *
      * @param createdOnBehalfOf the createdOnBehalfOf value to set.
      * @return the MicrosoftGraphApplicationInner object itself.
@@ -972,7 +974,7 @@ public final class MicrosoftGraphApplicationInner extends MicrosoftGraphDirector
      *
      * @return the tokenIssuancePolicies value.
      */
-    public List<MicrosoftGraphTokenIssuancePolicy> tokenIssuancePolicies() {
+    public List<MicrosoftGraphTokenIssuancePolicyInner> tokenIssuancePolicies() {
         return this.tokenIssuancePolicies;
     }
 
@@ -983,7 +985,7 @@ public final class MicrosoftGraphApplicationInner extends MicrosoftGraphDirector
      * @return the MicrosoftGraphApplicationInner object itself.
      */
     public MicrosoftGraphApplicationInner withTokenIssuancePolicies(
-        List<MicrosoftGraphTokenIssuancePolicy> tokenIssuancePolicies) {
+        List<MicrosoftGraphTokenIssuancePolicyInner> tokenIssuancePolicies) {
         this.tokenIssuancePolicies = tokenIssuancePolicies;
         return this;
     }
@@ -993,7 +995,7 @@ public final class MicrosoftGraphApplicationInner extends MicrosoftGraphDirector
      *
      * @return the tokenLifetimePolicies value.
      */
-    public List<MicrosoftGraphTokenLifetimePolicy> tokenLifetimePolicies() {
+    public List<MicrosoftGraphTokenLifetimePolicyInner> tokenLifetimePolicies() {
         return this.tokenLifetimePolicies;
     }
 
@@ -1004,7 +1006,7 @@ public final class MicrosoftGraphApplicationInner extends MicrosoftGraphDirector
      * @return the MicrosoftGraphApplicationInner object itself.
      */
     public MicrosoftGraphApplicationInner withTokenLifetimePolicies(
-        List<MicrosoftGraphTokenLifetimePolicy> tokenLifetimePolicies) {
+        List<MicrosoftGraphTokenLifetimePolicyInner> tokenLifetimePolicies) {
         this.tokenLifetimePolicies = tokenLifetimePolicies;
         return this;
     }

@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Definition of a single parameter for an entity. */
 @Fluent
 public final class ParameterSpecification {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ParameterSpecification.class);
+
     /*
      * Parameter type.
      */
@@ -70,11 +73,9 @@ public final class ParameterSpecification {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property type in model ParameterSpecification"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ParameterSpecification.class);
 }

@@ -6,11 +6,14 @@ package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Settings properties for Active Directory (AD). */
 @Fluent
 public final class ActiveDirectoryProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ActiveDirectoryProperties.class);
+
     /*
      * Specifies the primary domain that the AD DNS server is authoritative
      * for.
@@ -227,42 +230,40 @@ public final class ActiveDirectoryProperties {
      */
     public void validate() {
         if (domainName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property domainName in model ActiveDirectoryProperties"));
         }
         if (netBiosDomainName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property netBiosDomainName in model ActiveDirectoryProperties"));
         }
         if (forestName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property forestName in model ActiveDirectoryProperties"));
         }
         if (domainGuid() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property domainGuid in model ActiveDirectoryProperties"));
         }
         if (domainSid() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property domainSid in model ActiveDirectoryProperties"));
         }
         if (azureStorageSid() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property azureStorageSid in model ActiveDirectoryProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ActiveDirectoryProperties.class);
 }

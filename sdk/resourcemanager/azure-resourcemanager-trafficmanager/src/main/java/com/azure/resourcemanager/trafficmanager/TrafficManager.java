@@ -7,15 +7,13 @@ import com.azure.core.credential.TokenCredential;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.resourcemanager.resources.fluentcore.arm.AzureConfigurable;
-import com.azure.resourcemanager.resources.fluentcore.arm.Manager;
 import com.azure.resourcemanager.resources.fluentcore.arm.implementation.AzureConfigurableImpl;
+import com.azure.resourcemanager.resources.fluentcore.arm.Manager;
 import com.azure.resourcemanager.resources.fluentcore.utils.HttpPipelineProvider;
 import com.azure.resourcemanager.trafficmanager.fluent.TrafficManagerManagementClient;
 import com.azure.resourcemanager.trafficmanager.implementation.TrafficManagerManagementClientBuilder;
 import com.azure.resourcemanager.trafficmanager.implementation.TrafficManagerProfilesImpl;
 import com.azure.resourcemanager.trafficmanager.models.TrafficManagerProfiles;
-
-import java.util.Objects;
 
 /** Entry point to Azure traffic manager management. */
 public final class TrafficManager extends Manager<TrafficManagerManagementClient> {
@@ -39,21 +37,17 @@ public final class TrafficManager extends Manager<TrafficManagerManagementClient
      * @return the TrafficManager
      */
     public static TrafficManager authenticate(TokenCredential credential, AzureProfile profile) {
-        Objects.requireNonNull(credential, "'credential' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
         return authenticate(HttpPipelineProvider.buildHttpPipeline(credential, profile), profile);
     }
 
     /**
      * Creates an instance of TrafficManager that exposes traffic manager management API entry points.
      *
-     * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
+     * @param httpPipeline the RestClient to be used for API calls.
      * @param profile the profile to use
      * @return the TrafficManager
      */
-    public static TrafficManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
-        Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
+    private static TrafficManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         return new TrafficManager(httpPipeline, profile);
     }
 

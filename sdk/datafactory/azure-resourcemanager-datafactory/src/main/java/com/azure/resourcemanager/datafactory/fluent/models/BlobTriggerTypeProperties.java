@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.LinkedServiceReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Blob Trigger properties. */
 @Fluent
 public final class BlobTriggerTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BlobTriggerTypeProperties.class);
+
     /*
      * The path of the container/folder that will trigger the pipeline.
      */
@@ -97,13 +100,13 @@ public final class BlobTriggerTypeProperties {
      */
     public void validate() {
         if (folderPath() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property folderPath in model BlobTriggerTypeProperties"));
         }
         if (linkedService() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property linkedService in model BlobTriggerTypeProperties"));
@@ -111,6 +114,4 @@ public final class BlobTriggerTypeProperties {
             linkedService().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BlobTriggerTypeProperties.class);
 }

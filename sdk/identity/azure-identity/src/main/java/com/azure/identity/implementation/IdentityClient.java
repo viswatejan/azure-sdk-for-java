@@ -234,7 +234,8 @@ public class IdentityClient {
             ConfidentialClientApplication.Builder applicationBuilder =
                 ConfidentialClientApplication.builder(clientId, credential);
             try {
-                applicationBuilder = applicationBuilder.authority(authorityUrl);
+                applicationBuilder = applicationBuilder.authority(authorityUrl)
+                    .validateAuthority(options.getAuthorityValidationSafetyCheck());
             } catch (MalformedURLException e) {
                 return Mono.error(LOGGER.logExceptionAsWarning(new IllegalStateException(e)));
             }
@@ -302,7 +303,8 @@ public class IdentityClient {
                 + tenantId;
             PublicClientApplication.Builder publicClientApplicationBuilder = PublicClientApplication.builder(clientId);
             try {
-                publicClientApplicationBuilder = publicClientApplicationBuilder.authority(authorityUrl);
+                publicClientApplicationBuilder = publicClientApplicationBuilder.authority(authorityUrl)
+                    .validateAuthority(options.getAuthorityValidationSafetyCheck());
             } catch (MalformedURLException e) {
                 throw LOGGER.logExceptionAsWarning(new IllegalStateException(e));
             }
@@ -368,7 +370,7 @@ public class IdentityClient {
                     ConfidentialClientApplication.Builder applicationBuilder =
                         ConfidentialClientApplication.builder(spDetails.get("client"),
                             ClientCredentialFactory.createFromSecret(spDetails.get("key")))
-                            .authority(authorityUrl);
+                            .authority(authorityUrl).validateAuthority(options.getAuthorityValidationSafetyCheck());
 
                     // If http pipeline is available, then it should override the proxy options if any configured.
                     if (httpPipelineAdapter != null) {
@@ -680,10 +682,6 @@ public class IdentityClient {
                     ClientCredentialParameters.builder(new HashSet<>(request.getScopes()))
                         .tenant(IdentityUtil
                             .resolveTenantId(tenantId, request, options));
-                if (clientAssertionSupplier != null) {
-                    builder.clientCredential(ClientCredentialFactory
-                        .createFromClientAssertion(clientAssertionSupplier.get()));
-                }
                 return confidentialClient.acquireToken(builder.build());
             }
         )).map(MsalToken::new);
@@ -727,7 +725,7 @@ public class IdentityClient {
                }
                )).onErrorMap(t -> new ClientAuthenticationException("Failed to acquire token with username and "
                 + "password. To mitigate this issue, please refer to the troubleshooting guidelines "
-                + "here at https://aka.ms/azsdk/java/identity/usernamepasswordcredential/troubleshoot",
+                + "here at https://aka.ms/azsdk/net/identity/usernamepasswordcredential/troubleshoot",
                 null, t)).map(MsalToken::new);
     }
 
@@ -852,7 +850,7 @@ public class IdentityClient {
                 new CredentialUnavailableException("VsCodeCredential  "
                 + "authentication unavailable. ADFS tenant/authorities are not supported. "
                 + "To mitigate this issue, please refer to the troubleshooting guidelines here at "
-                + "https://aka.ms/azsdk/java/identity/vscodecredential/troubleshoot")));
+                + "https://aka.ms/azsdk/net/identity/vscodecredential/troubleshoot")));
         }
         VisualStudioCacheAccessor accessor = new VisualStudioCacheAccessor();
 
@@ -879,7 +877,7 @@ public class IdentityClient {
                             new CredentialUnavailableException("Failed to acquire token with"
                             + " VS code credential."
                             + " To mitigate this issue, please refer to the troubleshooting guidelines here at "
-                            + "https://aka.ms/azsdk/java/identity/vscodecredential/troubleshoot", t)));
+                            + "https://aka.ms/azsdk/net/identity/vscodecredential/troubleshoot", t)));
                     }
                     return Mono.error(new ClientAuthenticationException("Failed to acquire token with"
                         + " VS code credential", null, t));
@@ -1203,13 +1201,11 @@ public class IdentityClient {
             payload.append("&api-version=");
             payload.append(URLEncoder.encode(endpointVersion, StandardCharsets.UTF_8.name()));
             if (clientId != null) {
-                LOGGER.warning("User assigned managed identities are not supported in the Service Fabric environment.");
                 payload.append("&client_id=");
                 payload.append(URLEncoder.encode(clientId, StandardCharsets.UTF_8.name()));
             }
 
             if (resourceId != null) {
-                LOGGER.warning("User assigned managed identities are not supported in the Service Fabric environment.");
                 payload.append("&mi_res_id=");
                 payload.append(URLEncoder.encode(resourceId, StandardCharsets.UTF_8.name()));
             }
@@ -1287,19 +1283,11 @@ public class IdentityClient {
                 if (endpointVersion.equals(IDENTITY_ENDPOINT_VERSION)) {
                     payload.append("&client_id=");
                 } else {
-                    if (headerValue == null) {
-                        // This is the Cloud Shell case. If a clientId is specified, warn the user.
-                        LOGGER.warning("User assigned managed identities are not supported in the Cloud Shell environment.");
-                    }
                     payload.append("&clientid=");
                 }
                 payload.append(URLEncoder.encode(clientId, StandardCharsets.UTF_8.name()));
             }
             if (resourceId != null) {
-                if (endpointVersion.equals(MSI_ENDPOINT_VERSION) && headerValue == null) {
-                    // This is the Cloud Shell case. If a clientId is specified, warn the user.
-                    LOGGER.warning("User assigned managed identities are not supported in the Cloud Shell environment.");
-                }
                 payload.append("&mi_res_id=");
                 payload.append(URLEncoder.encode(resourceId, StandardCharsets.UTF_8.name()));
             }

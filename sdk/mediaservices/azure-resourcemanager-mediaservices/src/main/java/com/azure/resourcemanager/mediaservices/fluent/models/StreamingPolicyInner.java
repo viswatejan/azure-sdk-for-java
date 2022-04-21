@@ -5,23 +5,23 @@
 package com.azure.resourcemanager.mediaservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mediaservices.models.CommonEncryptionCbcs;
 import com.azure.resourcemanager.mediaservices.models.CommonEncryptionCenc;
 import com.azure.resourcemanager.mediaservices.models.EnvelopeEncryption;
 import com.azure.resourcemanager.mediaservices.models.NoEncryption;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** A Streaming Policy resource. */
+@JsonFlatten
 @Fluent
-public final class StreamingPolicyInner extends ProxyResource {
-    /*
-     * Class to specify properties of Streaming Policy
-     */
-    @JsonProperty(value = "properties")
-    private StreamingPolicyProperties innerProperties;
+public class StreamingPolicyInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(StreamingPolicyInner.class);
 
     /*
      * The system metadata relating to this resource.
@@ -29,14 +29,41 @@ public final class StreamingPolicyInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /**
-     * Get the innerProperties property: Class to specify properties of Streaming Policy.
-     *
-     * @return the innerProperties value.
+    /*
+     * Creation time of Streaming Policy
      */
-    private StreamingPolicyProperties innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.created", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime created;
+
+    /*
+     * Default ContentKey used by current Streaming Policy
+     */
+    @JsonProperty(value = "properties.defaultContentKeyPolicyName")
+    private String defaultContentKeyPolicyName;
+
+    /*
+     * Configuration of EnvelopeEncryption
+     */
+    @JsonProperty(value = "properties.envelopeEncryption")
+    private EnvelopeEncryption envelopeEncryption;
+
+    /*
+     * Configuration of CommonEncryptionCenc
+     */
+    @JsonProperty(value = "properties.commonEncryptionCenc")
+    private CommonEncryptionCenc commonEncryptionCenc;
+
+    /*
+     * Configuration of CommonEncryptionCbcs
+     */
+    @JsonProperty(value = "properties.commonEncryptionCbcs")
+    private CommonEncryptionCbcs commonEncryptionCbcs;
+
+    /*
+     * Configurations of NoEncryption
+     */
+    @JsonProperty(value = "properties.noEncryption")
+    private NoEncryption noEncryption;
 
     /**
      * Get the systemData property: The system metadata relating to this resource.
@@ -53,7 +80,7 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @return the created value.
      */
     public OffsetDateTime created() {
-        return this.innerProperties() == null ? null : this.innerProperties().created();
+        return this.created;
     }
 
     /**
@@ -62,7 +89,7 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @return the defaultContentKeyPolicyName value.
      */
     public String defaultContentKeyPolicyName() {
-        return this.innerProperties() == null ? null : this.innerProperties().defaultContentKeyPolicyName();
+        return this.defaultContentKeyPolicyName;
     }
 
     /**
@@ -72,10 +99,7 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @return the StreamingPolicyInner object itself.
      */
     public StreamingPolicyInner withDefaultContentKeyPolicyName(String defaultContentKeyPolicyName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingPolicyProperties();
-        }
-        this.innerProperties().withDefaultContentKeyPolicyName(defaultContentKeyPolicyName);
+        this.defaultContentKeyPolicyName = defaultContentKeyPolicyName;
         return this;
     }
 
@@ -85,7 +109,7 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @return the envelopeEncryption value.
      */
     public EnvelopeEncryption envelopeEncryption() {
-        return this.innerProperties() == null ? null : this.innerProperties().envelopeEncryption();
+        return this.envelopeEncryption;
     }
 
     /**
@@ -95,10 +119,7 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @return the StreamingPolicyInner object itself.
      */
     public StreamingPolicyInner withEnvelopeEncryption(EnvelopeEncryption envelopeEncryption) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingPolicyProperties();
-        }
-        this.innerProperties().withEnvelopeEncryption(envelopeEncryption);
+        this.envelopeEncryption = envelopeEncryption;
         return this;
     }
 
@@ -108,7 +129,7 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @return the commonEncryptionCenc value.
      */
     public CommonEncryptionCenc commonEncryptionCenc() {
-        return this.innerProperties() == null ? null : this.innerProperties().commonEncryptionCenc();
+        return this.commonEncryptionCenc;
     }
 
     /**
@@ -118,10 +139,7 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @return the StreamingPolicyInner object itself.
      */
     public StreamingPolicyInner withCommonEncryptionCenc(CommonEncryptionCenc commonEncryptionCenc) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingPolicyProperties();
-        }
-        this.innerProperties().withCommonEncryptionCenc(commonEncryptionCenc);
+        this.commonEncryptionCenc = commonEncryptionCenc;
         return this;
     }
 
@@ -131,7 +149,7 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @return the commonEncryptionCbcs value.
      */
     public CommonEncryptionCbcs commonEncryptionCbcs() {
-        return this.innerProperties() == null ? null : this.innerProperties().commonEncryptionCbcs();
+        return this.commonEncryptionCbcs;
     }
 
     /**
@@ -141,10 +159,7 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @return the StreamingPolicyInner object itself.
      */
     public StreamingPolicyInner withCommonEncryptionCbcs(CommonEncryptionCbcs commonEncryptionCbcs) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingPolicyProperties();
-        }
-        this.innerProperties().withCommonEncryptionCbcs(commonEncryptionCbcs);
+        this.commonEncryptionCbcs = commonEncryptionCbcs;
         return this;
     }
 
@@ -154,7 +169,7 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @return the noEncryption value.
      */
     public NoEncryption noEncryption() {
-        return this.innerProperties() == null ? null : this.innerProperties().noEncryption();
+        return this.noEncryption;
     }
 
     /**
@@ -164,10 +179,7 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @return the StreamingPolicyInner object itself.
      */
     public StreamingPolicyInner withNoEncryption(NoEncryption noEncryption) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingPolicyProperties();
-        }
-        this.innerProperties().withNoEncryption(noEncryption);
+        this.noEncryption = noEncryption;
         return this;
     }
 
@@ -177,8 +189,17 @@ public final class StreamingPolicyInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (envelopeEncryption() != null) {
+            envelopeEncryption().validate();
+        }
+        if (commonEncryptionCenc() != null) {
+            commonEncryptionCenc().validate();
+        }
+        if (commonEncryptionCbcs() != null) {
+            commonEncryptionCbcs().validate();
+        }
+        if (noEncryption() != null) {
+            noEncryption().validate();
         }
     }
 }

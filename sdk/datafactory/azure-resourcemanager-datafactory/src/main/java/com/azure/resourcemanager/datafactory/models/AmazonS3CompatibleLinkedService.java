@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.AmazonS3CompatibleLinkedServiceTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("AmazonS3Compatible")
 @Fluent
 public final class AmazonS3CompatibleLinkedService extends LinkedService {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AmazonS3CompatibleLinkedService.class);
+
     /*
      * Amazon S3 Compatible linked service properties.
      */
@@ -198,7 +201,7 @@ public final class AmazonS3CompatibleLinkedService extends LinkedService {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model AmazonS3CompatibleLinkedService"));
@@ -206,6 +209,4 @@ public final class AmazonS3CompatibleLinkedService extends LinkedService {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AmazonS3CompatibleLinkedService.class);
 }

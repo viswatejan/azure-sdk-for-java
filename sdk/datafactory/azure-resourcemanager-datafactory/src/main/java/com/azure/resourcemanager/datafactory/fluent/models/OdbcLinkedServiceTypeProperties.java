@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** ODBC linked service properties. */
 @Fluent
 public final class OdbcLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OdbcLinkedServiceTypeProperties.class);
+
     /*
      * The non-access credential portion of the connection string as well as an
      * optional encrypted credential. Type: string, SecureString or
@@ -193,7 +196,7 @@ public final class OdbcLinkedServiceTypeProperties {
      */
     public void validate() {
         if (connectionString() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property connectionString in model OdbcLinkedServiceTypeProperties"));
@@ -205,6 +208,4 @@ public final class OdbcLinkedServiceTypeProperties {
             password().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OdbcLinkedServiceTypeProperties.class);
 }

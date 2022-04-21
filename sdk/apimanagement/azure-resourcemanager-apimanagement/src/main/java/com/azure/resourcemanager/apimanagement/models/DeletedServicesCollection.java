@@ -5,13 +5,17 @@
 package com.azure.resourcemanager.apimanagement.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.models.DeletedServiceContractInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Paged deleted API Management Services List Representation. */
+/** Paged deleted Api Management Services List Representation. */
 @Immutable
 public final class DeletedServicesCollection {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DeletedServicesCollection.class);
+
     /*
      * Page values.
      */

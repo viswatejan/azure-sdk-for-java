@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.SelfHostedIntegrationRuntimeNodeInner;
 import com.azure.resourcemanager.datafactory.fluent.models.SelfHostedIntegrationRuntimeStatusTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -20,6 +21,8 @@ import java.util.Map;
 @JsonTypeName("SelfHosted")
 @Fluent
 public final class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntimeStatus {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SelfHostedIntegrationRuntimeStatus.class);
+
     /*
      * Self-hosted integration runtime status type properties.
      */
@@ -222,7 +225,7 @@ public final class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntime
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model SelfHostedIntegrationRuntimeStatus"));
@@ -230,6 +233,4 @@ public final class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntime
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SelfHostedIntegrationRuntimeStatus.class);
 }

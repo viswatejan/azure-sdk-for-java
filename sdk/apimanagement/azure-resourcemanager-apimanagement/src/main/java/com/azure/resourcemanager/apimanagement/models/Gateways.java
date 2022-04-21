@@ -18,7 +18,7 @@ public interface Gateways {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway list representation as paginated response with {@link PagedIterable}.
+     * @return paged Gateway list representation.
      */
     PagedIterable<GatewayContract> listByService(String resourceGroupName, String serviceName);
 
@@ -38,7 +38,7 @@ public interface Gateways {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway list representation as paginated response with {@link PagedIterable}.
+     * @return paged Gateway list representation.
      */
     PagedIterable<GatewayContract> listByService(
         String resourceGroupName, String serviceName, String filter, Integer top, Integer skip, Context context);
@@ -130,7 +130,7 @@ public interface Gateways {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String serviceName, String gatewayId, String ifMatch, Context context);
@@ -195,7 +195,7 @@ public interface Gateways {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> regenerateKeyWithResponse(
         String resourceGroupName,
@@ -232,7 +232,7 @@ public interface Gateways {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Shared Access Authorization Token for the gateway along with {@link Response}.
+     * @return the Shared Access Authorization Token for the gateway.
      */
     Response<GatewayTokenContract> generateTokenWithResponse(
         String resourceGroupName,
@@ -284,7 +284,7 @@ public interface Gateways {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context);
 

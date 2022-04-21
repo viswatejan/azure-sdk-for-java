@@ -21,7 +21,7 @@ public class SpringAppServiceBindingImpl
     @Override
     public Mono<SpringAppServiceBinding> createResourceAsync() {
         return manager().serviceClient().getBindings().createOrUpdateAsync(
-            parent().parent().resourceGroupName(), parent().parent().name(), parent().name(), name(), innerModel()
+            parent().parent().resourceGroupName(), parent().parent().name(), parent().name(), name(), properties()
         )
             .map(inner -> {
                 setInner(inner);

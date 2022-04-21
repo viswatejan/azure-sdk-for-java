@@ -29,6 +29,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.GatewayApisClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.ApiContractInner;
 import com.azure.resourcemanager.apimanagement.models.ApiCollection;
@@ -38,6 +39,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in GatewayApisClient. */
 public final class GatewayApisClientImpl implements GatewayApisClient {
+    private final ClientLogger logger = new ClientLogger(GatewayApisClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final GatewayApisService service;
 
@@ -159,7 +162,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiContractInner>> listByServiceSinglePageAsync(
@@ -231,7 +234,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiContractInner>> listByServiceSinglePageAsync(
@@ -305,7 +308,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedFlux}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiContractInner> listByServiceAsync(
@@ -325,7 +328,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedFlux}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiContractInner> listByServiceAsync(
@@ -354,7 +357,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedFlux}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiContractInner> listByServiceAsync(
@@ -380,7 +383,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedIterable}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiContractInner> listByService(
@@ -407,7 +410,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedIterable}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiContractInner> listByService(
@@ -433,7 +436,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GatewayApisGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -493,7 +496,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GatewayApisGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -549,7 +552,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(String resourceGroupName, String serviceName, String gatewayId, String apiId) {
@@ -606,7 +609,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details along with {@link Response} on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApiContractInner>> createOrUpdateWithResponseAsync(
@@ -671,7 +674,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details along with {@link Response} on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApiContractInner>> createOrUpdateWithResponseAsync(
@@ -737,7 +740,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiContractInner> createOrUpdateAsync(
@@ -764,7 +767,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details on successful completion of {@link Mono}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiContractInner> createOrUpdateAsync(
@@ -792,7 +795,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiContractInner createOrUpdate(
@@ -814,7 +817,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details along with {@link Response}.
+     * @return api details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ApiContractInner> createOrUpdateWithResponse(
@@ -839,7 +842,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -899,7 +902,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -955,7 +958,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String gatewayId, String apiId) {
@@ -992,7 +995,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1007,7 +1010,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -1043,7 +1046,7 @@ public final class GatewayApisClientImpl implements GatewayApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Api list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiContractInner>> listByServiceNextSinglePageAsync(String nextLink, Context context) {

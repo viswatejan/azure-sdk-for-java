@@ -22,7 +22,7 @@ public final class SparkConfigurationAsyncClient {
     @Generated private final SparkConfigurationsImpl serviceClient;
 
     /**
-     * Initializes an instance of SparkConfigurationAsyncClient class.
+     * Initializes an instance of SparkConfigurations client.
      *
      * @param serviceClient the service client implementation.
      */

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.FailActivityTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -22,6 +23,8 @@ import java.util.List;
 @JsonTypeName("Fail")
 @Fluent
 public final class FailActivity extends ControlActivity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FailActivity.class);
+
     /*
      * Fail activity properties.
      */
@@ -126,7 +129,7 @@ public final class FailActivity extends ControlActivity {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model FailActivity"));
@@ -134,6 +137,4 @@ public final class FailActivity extends ControlActivity {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(FailActivity.class);
 }

@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.signalr.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.signalr.models.LiveTraceConfiguration;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
 import com.azure.resourcemanager.signalr.models.ResourceLogConfiguration;
 import com.azure.resourcemanager.signalr.models.ServerlessUpstreamSettings;
@@ -13,12 +13,15 @@ import com.azure.resourcemanager.signalr.models.SignalRCorsSettings;
 import com.azure.resourcemanager.signalr.models.SignalRFeature;
 import com.azure.resourcemanager.signalr.models.SignalRNetworkACLs;
 import com.azure.resourcemanager.signalr.models.SignalRTlsSettings;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A class that describes the properties of the resource. */
 @Fluent
 public final class SignalRProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SignalRProperties.class);
+
     /*
      * Provisioning state of the resource.
      */
@@ -71,7 +74,7 @@ public final class SignalRProperties {
     private List<SharedPrivateLinkResourceInner> sharedPrivateLinkResources;
 
     /*
-     * TLS settings for the resource
+     * TLS settings.
      */
     @JsonProperty(value = "tls")
     private SignalRTlsSettings tls;
@@ -97,13 +100,11 @@ public final class SignalRProperties {
     private List<SignalRFeature> features;
 
     /*
-     * Live trace configuration of a Microsoft.SignalRService resource.
-     */
-    @JsonProperty(value = "liveTraceConfiguration")
-    private LiveTraceConfiguration liveTraceConfiguration;
-
-    /*
      * Resource log configuration of a Microsoft.SignalRService resource.
+     * If resourceLogConfiguration isn't null or empty, it will override
+     * options "EnableConnectivityLog" and "EnableMessagingLogs" in features.
+     * Otherwise, use options "EnableConnectivityLog" and "EnableMessagingLogs"
+     * in features.
      */
     @JsonProperty(value = "resourceLogConfiguration")
     private ResourceLogConfiguration resourceLogConfiguration;
@@ -115,13 +116,13 @@ public final class SignalRProperties {
     private SignalRCorsSettings cors;
 
     /*
-     * The settings for the Upstream when the service is in server-less mode.
+     * Upstream settings when the service is in server-less mode.
      */
     @JsonProperty(value = "upstream")
     private ServerlessUpstreamSettings upstream;
 
     /*
-     * Network ACLs for the resource
+     * Network ACLs
      */
     @JsonProperty(value = "networkACLs")
     private SignalRNetworkACLs networkACLs;
@@ -226,7 +227,7 @@ public final class SignalRProperties {
     }
 
     /**
-     * Get the tls property: TLS settings for the resource.
+     * Get the tls property: TLS settings.
      *
      * @return the tls value.
      */
@@ -235,7 +236,7 @@ public final class SignalRProperties {
     }
 
     /**
-     * Set the tls property: TLS settings for the resource.
+     * Set the tls property: TLS settings.
      *
      * @param tls the tls value to set.
      * @return the SignalRProperties object itself.
@@ -285,27 +286,10 @@ public final class SignalRProperties {
     }
 
     /**
-     * Get the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService resource.
-     *
-     * @return the liveTraceConfiguration value.
-     */
-    public LiveTraceConfiguration liveTraceConfiguration() {
-        return this.liveTraceConfiguration;
-    }
-
-    /**
-     * Set the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService resource.
-     *
-     * @param liveTraceConfiguration the liveTraceConfiguration value to set.
-     * @return the SignalRProperties object itself.
-     */
-    public SignalRProperties withLiveTraceConfiguration(LiveTraceConfiguration liveTraceConfiguration) {
-        this.liveTraceConfiguration = liveTraceConfiguration;
-        return this;
-    }
-
-    /**
-     * Get the resourceLogConfiguration property: Resource log configuration of a Microsoft.SignalRService resource.
+     * Get the resourceLogConfiguration property: Resource log configuration of a Microsoft.SignalRService resource. If
+     * resourceLogConfiguration isn't null or empty, it will override options "EnableConnectivityLog" and
+     * "EnableMessagingLogs" in features. Otherwise, use options "EnableConnectivityLog" and "EnableMessagingLogs" in
+     * features.
      *
      * @return the resourceLogConfiguration value.
      */
@@ -314,7 +298,10 @@ public final class SignalRProperties {
     }
 
     /**
-     * Set the resourceLogConfiguration property: Resource log configuration of a Microsoft.SignalRService resource.
+     * Set the resourceLogConfiguration property: Resource log configuration of a Microsoft.SignalRService resource. If
+     * resourceLogConfiguration isn't null or empty, it will override options "EnableConnectivityLog" and
+     * "EnableMessagingLogs" in features. Otherwise, use options "EnableConnectivityLog" and "EnableMessagingLogs" in
+     * features.
      *
      * @param resourceLogConfiguration the resourceLogConfiguration value to set.
      * @return the SignalRProperties object itself.
@@ -345,7 +332,7 @@ public final class SignalRProperties {
     }
 
     /**
-     * Get the upstream property: The settings for the Upstream when the service is in server-less mode.
+     * Get the upstream property: Upstream settings when the service is in server-less mode.
      *
      * @return the upstream value.
      */
@@ -354,7 +341,7 @@ public final class SignalRProperties {
     }
 
     /**
-     * Set the upstream property: The settings for the Upstream when the service is in server-less mode.
+     * Set the upstream property: Upstream settings when the service is in server-less mode.
      *
      * @param upstream the upstream value to set.
      * @return the SignalRProperties object itself.
@@ -365,7 +352,7 @@ public final class SignalRProperties {
     }
 
     /**
-     * Get the networkACLs property: Network ACLs for the resource.
+     * Get the networkACLs property: Network ACLs.
      *
      * @return the networkACLs value.
      */
@@ -374,7 +361,7 @@ public final class SignalRProperties {
     }
 
     /**
-     * Set the networkACLs property: Network ACLs for the resource.
+     * Set the networkACLs property: Network ACLs.
      *
      * @param networkACLs the networkACLs value to set.
      * @return the SignalRProperties object itself.
@@ -469,9 +456,6 @@ public final class SignalRProperties {
         }
         if (features() != null) {
             features().forEach(e -> e.validate());
-        }
-        if (liveTraceConfiguration() != null) {
-            liveTraceConfiguration().validate();
         }
         if (resourceLogConfiguration() != null) {
             resourceLogConfiguration().validate();

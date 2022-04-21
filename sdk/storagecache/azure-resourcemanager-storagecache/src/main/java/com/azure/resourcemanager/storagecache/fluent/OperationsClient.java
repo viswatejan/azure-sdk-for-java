@@ -17,8 +17,7 @@ public interface OperationsClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list Resource Provider operations as paginated response with {@link
-     *     PagedIterable}.
+     * @return result of the request to list Resource Provider operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiOperationInner> list();
@@ -30,8 +29,7 @@ public interface OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list Resource Provider operations as paginated response with {@link
-     *     PagedIterable}.
+     * @return result of the request to list Resource Provider operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiOperationInner> list(Context context);

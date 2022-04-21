@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.apimanagement.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.models.ProductUpdateProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Product Update parameters. */
 @Fluent
 public final class ProductUpdateParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ProductUpdateParameters.class);
+
     /*
      * Product entity Update contract properties.
      */

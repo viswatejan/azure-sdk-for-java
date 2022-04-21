@@ -6,11 +6,15 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Sap Cloud For Customer OData resource dataset properties. */
 @Fluent
 public final class SapCloudForCustomerResourceDatasetTypeProperties {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(SapCloudForCustomerResourceDatasetTypeProperties.class);
+
     /*
      * The path of the SAP Cloud for Customer OData entity. Type: string (or
      * Expression with resultType string).
@@ -47,12 +51,10 @@ public final class SapCloudForCustomerResourceDatasetTypeProperties {
      */
     public void validate() {
         if (path() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property path in model SapCloudForCustomerResourceDatasetTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SapCloudForCustomerResourceDatasetTypeProperties.class);
 }

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,8 +17,10 @@ import java.util.Map;
 /** responseStatus. */
 @Fluent
 public final class MicrosoftGraphResponseStatus {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphResponseStatus.class);
+
     /*
-     * responseType
+     * The response property.
      */
     @JsonProperty(value = "response")
     private MicrosoftGraphResponseType response;
@@ -36,7 +39,7 @@ public final class MicrosoftGraphResponseStatus {
     @JsonIgnore private Map<String, Object> additionalProperties;
 
     /**
-     * Get the response property: responseType.
+     * Get the response property: The response property.
      *
      * @return the response value.
      */
@@ -45,7 +48,7 @@ public final class MicrosoftGraphResponseStatus {
     }
 
     /**
-     * Set the response property: responseType.
+     * Set the response property: The response property.
      *
      * @param response the response value to set.
      * @return the MicrosoftGraphResponseStatus object itself.

@@ -19,7 +19,7 @@ public interface LiveOutputs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return liveOutputListResult as paginated response with {@link PagedIterable}.
+     * @return the LiveOutput list result.
      */
     PagedIterable<LiveOutput> list(String resourceGroupName, String accountName, String liveEventName);
 
@@ -33,7 +33,7 @@ public interface LiveOutputs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return liveOutputListResult as paginated response with {@link PagedIterable}.
+     * @return the LiveOutput list result.
      */
     PagedIterable<LiveOutput> list(String resourceGroupName, String accountName, String liveEventName, Context context);
 
@@ -62,7 +62,7 @@ public interface LiveOutputs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a live output along with {@link Response}.
+     * @return a live output.
      */
     Response<LiveOutput> getWithResponse(
         String resourceGroupName, String accountName, String liveEventName, String liveOutputName, Context context);
@@ -102,7 +102,7 @@ public interface LiveOutputs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a live output along with {@link Response}.
+     * @return a live output.
      */
     LiveOutput getById(String id);
 
@@ -114,7 +114,7 @@ public interface LiveOutputs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a live output along with {@link Response}.
+     * @return a live output.
      */
     Response<LiveOutput> getByIdWithResponse(String id, Context context);
 

@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.mobilenetwork.models;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.SimInner;
 import java.util.List;
@@ -49,13 +48,6 @@ public interface Sim {
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
      * Gets the provisioningState property: The provisioning state of the sim resource.
      *
      * @return the provisioningState value.
@@ -63,11 +55,11 @@ public interface Sim {
     ProvisioningState provisioningState();
 
     /**
-     * Gets the simState property: The state of the sim resource.
+     * Gets the configurationState property: The configuration state of the sim resource - complete or incomplete.
      *
-     * @return the simState value.
+     * @return the configurationState value.
      */
-    SimState simState();
+    ConfigurationState configurationState();
 
     /**
      * Gets the internationalMobileSubscriberIdentity property: The International Mobile Subscriber Identity (IMSI) for

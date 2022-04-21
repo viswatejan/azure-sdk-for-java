@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.AzureKeyVaultSecretReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Snowflake linked service properties. */
 @Fluent
 public final class SnowflakeLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SnowflakeLinkedServiceTypeProperties.class);
+
     /*
      * The connection string of snowflake. Type: string, SecureString.
      */
@@ -101,7 +104,7 @@ public final class SnowflakeLinkedServiceTypeProperties {
      */
     public void validate() {
         if (connectionString() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property connectionString in model SnowflakeLinkedServiceTypeProperties"));
@@ -110,6 +113,4 @@ public final class SnowflakeLinkedServiceTypeProperties {
             password().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SnowflakeLinkedServiceTypeProperties.class);
 }

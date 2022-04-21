@@ -6,11 +6,14 @@ package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Describes a connection monitor test configuration. */
 @Fluent
 public final class ConnectionMonitorTestConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ConnectionMonitorTestConfiguration.class);
+
     /*
      * The name of the connection monitor test configuration.
      */
@@ -232,13 +235,13 @@ public final class ConnectionMonitorTestConfiguration {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property name in model ConnectionMonitorTestConfiguration"));
         }
         if (protocol() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property protocol in model ConnectionMonitorTestConfiguration"));
@@ -256,6 +259,4 @@ public final class ConnectionMonitorTestConfiguration {
             successThreshold().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ConnectionMonitorTestConfiguration.class);
 }

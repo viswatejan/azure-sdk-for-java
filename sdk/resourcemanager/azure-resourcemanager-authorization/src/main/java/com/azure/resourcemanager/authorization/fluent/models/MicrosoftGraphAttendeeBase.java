@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,8 +16,10 @@ import java.util.Map;
 /** attendeeBase. */
 @Fluent
 public class MicrosoftGraphAttendeeBase extends MicrosoftGraphRecipient {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphAttendeeBase.class);
+
     /*
-     * attendeeType
+     * The type property.
      */
     @JsonProperty(value = "type")
     private MicrosoftGraphAttendeeType type;
@@ -27,7 +30,7 @@ public class MicrosoftGraphAttendeeBase extends MicrosoftGraphRecipient {
     @JsonIgnore private Map<String, Object> additionalProperties;
 
     /**
-     * Get the type property: attendeeType.
+     * Get the type property: The type property.
      *
      * @return the type value.
      */
@@ -36,7 +39,7 @@ public class MicrosoftGraphAttendeeBase extends MicrosoftGraphRecipient {
     }
 
     /**
-     * Set the type property: attendeeType.
+     * Set the type property: The type property.
      *
      * @param type the type value to set.
      * @return the MicrosoftGraphAttendeeBase object itself.

@@ -6,19 +6,23 @@ package com.azure.resourcemanager.apimanagement.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** API Schema Contract details. */
+/** Schema Contract details. */
 @Fluent
 public final class SchemaContractInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SchemaContractInner.class);
+
     /*
-     * Properties of the API Schema.
+     * Properties of the Schema.
      */
     @JsonProperty(value = "properties")
     private SchemaContractProperties innerProperties;
 
     /**
-     * Get the innerProperties property: Properties of the API Schema.
+     * Get the innerProperties property: Properties of the Schema.
      *
      * @return the innerProperties value.
      */
@@ -85,7 +89,7 @@ public final class SchemaContractInner extends ProxyResource {
     }
 
     /**
-     * Get the definitions property: Types definitions. Used for Swagger/OpenAPI v1 schemas only, null otherwise.
+     * Get the definitions property: Types definitions. Used for Swagger/OpenAPI schemas only, null otherwise.
      *
      * @return the definitions value.
      */
@@ -94,7 +98,7 @@ public final class SchemaContractInner extends ProxyResource {
     }
 
     /**
-     * Set the definitions property: Types definitions. Used for Swagger/OpenAPI v1 schemas only, null otherwise.
+     * Set the definitions property: Types definitions. Used for Swagger/OpenAPI schemas only, null otherwise.
      *
      * @param definitions the definitions value to set.
      * @return the SchemaContractInner object itself.
@@ -104,29 +108,6 @@ public final class SchemaContractInner extends ProxyResource {
             this.innerProperties = new SchemaContractProperties();
         }
         this.innerProperties().withDefinitions(definitions);
-        return this;
-    }
-
-    /**
-     * Get the components property: Types definitions. Used for Swagger/OpenAPI v2/v3 schemas only, null otherwise.
-     *
-     * @return the components value.
-     */
-    public Object components() {
-        return this.innerProperties() == null ? null : this.innerProperties().components();
-    }
-
-    /**
-     * Set the components property: Types definitions. Used for Swagger/OpenAPI v2/v3 schemas only, null otherwise.
-     *
-     * @param components the components value to set.
-     * @return the SchemaContractInner object itself.
-     */
-    public SchemaContractInner withComponents(Object components) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SchemaContractProperties();
-        }
-        this.innerProperties().withComponents(components);
         return this;
     }
 

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.applicationinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -14,6 +15,8 @@ import java.util.UUID;
 /** Managed service identity (system assigned and/or user assigned identities). */
 @Fluent
 public class ManagedServiceIdentity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedServiceIdentity.class);
+
     /*
      * The service principal ID of the system assigned identity. This property
      * will only be provided for a system assigned identity.
@@ -121,7 +124,7 @@ public class ManagedServiceIdentity {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property type in model ManagedServiceIdentity"));
         }
@@ -136,6 +139,4 @@ public class ManagedServiceIdentity {
                     });
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ManagedServiceIdentity.class);
 }

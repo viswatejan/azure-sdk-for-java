@@ -33,11 +33,13 @@ final class ObjectMapperFactory {
     private static final String COERCION_INPUT_SHAPE = "com.fasterxml.jackson.databind.cfg.CoercionInputShape";
     private static final String COERCION_ACTION = "com.fasterxml.jackson.databind.cfg.CoercionAction";
 
-    private MethodHandle coercionConfigDefaults;
+    private MethodHandle coersionConfigDefaults;
     private MethodHandle setCoercion;
     private Object coercionInputShapeEmptyString;
     private Object coercionActionAsNull;
     private boolean useReflectionToSetCoercion;
+
+    private static ObjectMapperFactory instance;
 
     public  static final ObjectMapperFactory INSTANCE = new ObjectMapperFactory();
 
@@ -49,7 +51,7 @@ final class ObjectMapperFactory {
             Class<?> coercionInputShapeClass = Class.forName(COERCION_INPUT_SHAPE);
             Class<?> coercionActionClass = Class.forName(COERCION_ACTION);
 
-            coercionConfigDefaults = publicLookup.findVirtual(ObjectMapper.class, "coercionConfigDefaults",
+            coersionConfigDefaults = publicLookup.findVirtual(ObjectMapper.class, "coercionConfigDefaults",
                 MethodType.methodType(mutableCoercionConfig));
             setCoercion = publicLookup.findVirtual(mutableCoercionConfig, "setCoercion",
                 MethodType.methodType(mutableCoercionConfig, coercionInputShapeClass, coercionActionClass));
@@ -59,12 +61,6 @@ final class ObjectMapperFactory {
                 .invoke();
             useReflectionToSetCoercion = true;
         } catch (Throwable ex) {
-            // Throw the Error only if it isn't a LinkageError.
-            // This initialization is attempting to use classes that may not exist.
-            if (ex instanceof Error && !(ex instanceof LinkageError)) {
-                throw (Error) ex;
-            }
-
             LOGGER.verbose("Failed to retrieve MethodHandles used to set coercion configurations. "
                 + "Setting coercion configurations will be skipped.", ex);
         }
@@ -98,13 +94,9 @@ final class ObjectMapperFactory {
 
         if (useReflectionToSetCoercion) {
             try {
-                Object object = coercionConfigDefaults.invoke(xmlMapper);
+                Object object = coersionConfigDefaults.invoke(xmlMapper);
                 setCoercion.invoke(object, coercionInputShapeEmptyString, coercionActionAsNull);
             } catch (Throwable e) {
-                if (e instanceof Error) {
-                    throw (Error) e;
-                }
-
                 LOGGER.verbose("Failed to set coercion actions.", e);
             }
         } else {

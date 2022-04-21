@@ -5,10 +5,14 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /** Exchange data type connection. */
 @Fluent
 public final class OfficeDataConnectorDataTypesExchange extends DataConnectorDataTypeCommon {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OfficeDataConnectorDataTypesExchange.class);
+
     /** {@inheritDoc} */
     @Override
     public OfficeDataConnectorDataTypesExchange withState(DataTypeState state) {

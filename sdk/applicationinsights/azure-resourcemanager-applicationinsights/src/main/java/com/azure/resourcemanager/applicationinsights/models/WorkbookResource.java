@@ -6,12 +6,16 @@ package com.azure.resourcemanager.applicationinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** An azure resource object. */
 @Fluent
 public class WorkbookResource extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(WorkbookResource.class);
+
     /*
      * Identity used for BYOS
      */
@@ -19,7 +23,7 @@ public class WorkbookResource extends Resource {
     private WorkbookResourceIdentity identity;
 
     /*
-     * The kind of workbook. Only valid value is shared.
+     * The kind of workbook. Choices are user and shared.
      */
     @JsonProperty(value = "kind")
     private Kind kind;
@@ -51,7 +55,7 @@ public class WorkbookResource extends Resource {
     }
 
     /**
-     * Get the kind property: The kind of workbook. Only valid value is shared.
+     * Get the kind property: The kind of workbook. Choices are user and shared.
      *
      * @return the kind value.
      */
@@ -60,7 +64,7 @@ public class WorkbookResource extends Resource {
     }
 
     /**
-     * Set the kind property: The kind of workbook. Only valid value is shared.
+     * Set the kind property: The kind of workbook. Choices are user and shared.
      *
      * @param kind the kind value to set.
      * @return the WorkbookResource object itself.

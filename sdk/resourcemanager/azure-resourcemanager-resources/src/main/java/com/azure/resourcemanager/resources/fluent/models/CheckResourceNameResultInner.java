@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.resources.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resources.models.ResourceNameStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -13,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public final class CheckResourceNameResultInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CheckResourceNameResultInner.class);
+
     /*
      * Name of Resource
      */

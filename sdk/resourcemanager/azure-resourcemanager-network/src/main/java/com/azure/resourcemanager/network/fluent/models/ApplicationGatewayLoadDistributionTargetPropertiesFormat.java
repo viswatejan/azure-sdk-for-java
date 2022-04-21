@@ -6,11 +6,17 @@ package com.azure.resourcemanager.network.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SubResource;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The ApplicationGatewayLoadDistributionTargetPropertiesFormat model. */
 @Fluent
 public final class ApplicationGatewayLoadDistributionTargetPropertiesFormat {
+    @JsonIgnore
+    private final ClientLogger logger =
+        new ClientLogger(ApplicationGatewayLoadDistributionTargetPropertiesFormat.class);
+
     /*
      * Weight per server. Range between 1 and 100.
      */

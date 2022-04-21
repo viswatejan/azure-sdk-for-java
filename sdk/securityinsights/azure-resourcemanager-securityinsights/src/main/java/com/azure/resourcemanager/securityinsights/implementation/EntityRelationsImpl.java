@@ -12,9 +12,10 @@ import com.azure.resourcemanager.securityinsights.fluent.EntityRelationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.RelationInner;
 import com.azure.resourcemanager.securityinsights.models.EntityRelations;
 import com.azure.resourcemanager.securityinsights.models.Relation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class EntityRelationsImpl implements EntityRelations {
-    private static final ClientLogger LOGGER = new ClientLogger(EntityRelationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(EntityRelationsImpl.class);
 
     private final EntityRelationsClient innerClient;
 

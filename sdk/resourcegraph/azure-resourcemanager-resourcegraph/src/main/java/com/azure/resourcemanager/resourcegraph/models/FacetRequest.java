@@ -6,11 +6,14 @@ package com.azure.resourcemanager.resourcegraph.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A request to compute additional statistics (facets) over the query results. */
 @Fluent
 public final class FacetRequest {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FacetRequest.class);
+
     /*
      * The column or list of columns to summarize by
      */
@@ -70,7 +73,7 @@ public final class FacetRequest {
      */
     public void validate() {
         if (expression() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property expression in model FacetRequest"));
         }
@@ -78,6 +81,4 @@ public final class FacetRequest {
             options().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(FacetRequest.class);
 }

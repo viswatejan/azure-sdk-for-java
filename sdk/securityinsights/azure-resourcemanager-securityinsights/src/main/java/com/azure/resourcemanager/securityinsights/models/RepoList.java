@@ -7,12 +7,15 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.models.RepoInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List all the source controls. */
 @Fluent
 public final class RepoList {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RepoList.class);
+
     /*
      * URL to fetch the next set of repositories.
      */
@@ -61,12 +64,10 @@ public final class RepoList {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(new IllegalArgumentException("Missing required property value in model RepoList"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RepoList.class);
 }

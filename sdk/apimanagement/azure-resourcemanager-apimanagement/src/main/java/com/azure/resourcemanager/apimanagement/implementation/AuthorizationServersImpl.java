@@ -18,9 +18,10 @@ import com.azure.resourcemanager.apimanagement.models.AuthorizationServers;
 import com.azure.resourcemanager.apimanagement.models.AuthorizationServersGetEntityTagResponse;
 import com.azure.resourcemanager.apimanagement.models.AuthorizationServersGetResponse;
 import com.azure.resourcemanager.apimanagement.models.AuthorizationServersListSecretsResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class AuthorizationServersImpl implements AuthorizationServers {
-    private static final ClientLogger LOGGER = new ClientLogger(AuthorizationServersImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AuthorizationServersImpl.class);
 
     private final AuthorizationServersClient innerClient;
 
@@ -117,7 +118,7 @@ public final class AuthorizationServersImpl implements AuthorizationServers {
     public AuthorizationServerContract getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -125,14 +126,14 @@ public final class AuthorizationServersImpl implements AuthorizationServers {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String authsid = Utils.getValueFromIdByName(id, "authorizationServers");
         if (authsid == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -146,7 +147,7 @@ public final class AuthorizationServersImpl implements AuthorizationServers {
     public Response<AuthorizationServerContract> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -154,14 +155,14 @@ public final class AuthorizationServersImpl implements AuthorizationServers {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String authsid = Utils.getValueFromIdByName(id, "authorizationServers");
         if (authsid == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -175,7 +176,7 @@ public final class AuthorizationServersImpl implements AuthorizationServers {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -183,14 +184,14 @@ public final class AuthorizationServersImpl implements AuthorizationServers {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String authsid = Utils.getValueFromIdByName(id, "authorizationServers");
         if (authsid == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -199,13 +200,13 @@ public final class AuthorizationServersImpl implements AuthorizationServers {
                                 id)));
         }
         String localIfMatch = null;
-        this.deleteWithResponse(resourceGroupName, serviceName, authsid, localIfMatch, Context.NONE);
+        this.deleteWithResponse(resourceGroupName, serviceName, authsid, localIfMatch, Context.NONE).getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -213,14 +214,14 @@ public final class AuthorizationServersImpl implements AuthorizationServers {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String authsid = Utils.getValueFromIdByName(id, "authorizationServers");
         if (authsid == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

@@ -21,7 +21,7 @@ public interface TransformsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of Transform items as paginated response with {@link PagedIterable}.
+     * @return a collection of Transform items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TransformInner> list(String resourceGroupName, String accountName);
@@ -37,7 +37,7 @@ public interface TransformsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of Transform items as paginated response with {@link PagedIterable}.
+     * @return a collection of Transform items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TransformInner> list(
@@ -67,7 +67,7 @@ public interface TransformsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Transform along with {@link Response}.
+     * @return a Transform.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TransformInner> getWithResponse(
@@ -102,7 +102,7 @@ public interface TransformsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Transform encapsulates the rules or instructions for generating desired outputs from input media, such
-     *     as by transcoding or by extracting insights along with {@link Response}.
+     *     as by transcoding or by extracting insights.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TransformInner> createOrUpdateWithResponse(
@@ -131,7 +131,7 @@ public interface TransformsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
@@ -166,7 +166,7 @@ public interface TransformsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Transform encapsulates the rules or instructions for generating desired outputs from input media, such
-     *     as by transcoding or by extracting insights along with {@link Response}.
+     *     as by transcoding or by extracting insights.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TransformInner> updateWithResponse(

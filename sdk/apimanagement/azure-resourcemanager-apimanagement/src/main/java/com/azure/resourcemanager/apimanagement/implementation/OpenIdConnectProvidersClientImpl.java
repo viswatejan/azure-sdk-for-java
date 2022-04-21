@@ -31,6 +31,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.OpenIdConnectProvidersClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.ClientSecretContractInner;
 import com.azure.resourcemanager.apimanagement.fluent.models.OpenidConnectProviderContractInner;
@@ -45,6 +46,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in OpenIdConnectProvidersClient. */
 public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProvidersClient {
+    private final ClientLogger logger = new ClientLogger(OpenIdConnectProvidersClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final OpenIdConnectProvidersService service;
 
@@ -214,8 +217,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged OpenIdProviders list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged OpenIdProviders list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OpenidConnectProviderContractInner>> listByServiceSinglePageAsync(
@@ -282,8 +284,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged OpenIdProviders list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged OpenIdProviders list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OpenidConnectProviderContractInner>> listByServiceSinglePageAsync(
@@ -346,7 +347,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged OpenIdProviders list representation as paginated response with {@link PagedFlux}.
+     * @return paged OpenIdProviders list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OpenidConnectProviderContractInner> listByServiceAsync(
@@ -364,7 +365,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged OpenIdProviders list representation as paginated response with {@link PagedFlux}.
+     * @return paged OpenIdProviders list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OpenidConnectProviderContractInner> listByServiceAsync(
@@ -392,7 +393,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged OpenIdProviders list representation as paginated response with {@link PagedFlux}.
+     * @return paged OpenIdProviders list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OpenidConnectProviderContractInner> listByServiceAsync(
@@ -410,7 +411,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged OpenIdProviders list representation as paginated response with {@link PagedIterable}.
+     * @return paged OpenIdProviders list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OpenidConnectProviderContractInner> listByService(
@@ -436,7 +437,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged OpenIdProviders list representation as paginated response with {@link PagedIterable}.
+     * @return paged OpenIdProviders list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OpenidConnectProviderContractInner> listByService(
@@ -453,8 +454,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the openIdConnectProvider specified by its identifier on successful
-     *     completion of {@link Mono}.
+     * @return the entity state (Etag) version of the openIdConnectProvider specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenIdConnectProvidersGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -508,8 +508,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the openIdConnectProvider specified by its identifier on successful
-     *     completion of {@link Mono}.
+     * @return the entity state (Etag) version of the openIdConnectProvider specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenIdConnectProvidersGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -559,8 +558,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the openIdConnectProvider specified by its identifier on successful
-     *     completion of {@link Mono}.
+     * @return the entity state (Etag) version of the openIdConnectProvider specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(String resourceGroupName, String serviceName, String opid) {
@@ -610,7 +608,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specific OpenID Connect Provider without secrets on successful completion of {@link Mono}.
+     * @return specific OpenID Connect Provider without secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenIdConnectProvidersGetResponse> getWithResponseAsync(
@@ -664,7 +662,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specific OpenID Connect Provider without secrets on successful completion of {@link Mono}.
+     * @return specific OpenID Connect Provider without secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenIdConnectProvidersGetResponse> getWithResponseAsync(
@@ -714,7 +712,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specific OpenID Connect Provider without secrets on successful completion of {@link Mono}.
+     * @return specific OpenID Connect Provider without secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenidConnectProviderContractInner> getAsync(
@@ -775,7 +773,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return openId Connect Provider details on successful completion of {@link Mono}.
+     * @return openId Connect Provider details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenIdConnectProvidersCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -842,7 +840,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return openId Connect Provider details on successful completion of {@link Mono}.
+     * @return openId Connect Provider details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenIdConnectProvidersCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -906,7 +904,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return openId Connect Provider details on successful completion of {@link Mono}.
+     * @return openId Connect Provider details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenidConnectProviderContractInner> createOrUpdateAsync(
@@ -936,7 +934,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return openId Connect Provider details on successful completion of {@link Mono}.
+     * @return openId Connect Provider details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenidConnectProviderContractInner> createOrUpdateAsync(
@@ -1010,7 +1008,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return openId Connect Provider details on successful completion of {@link Mono}.
+     * @return openId Connect Provider details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenIdConnectProvidersUpdateResponse> updateWithResponseAsync(
@@ -1081,7 +1079,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return openId Connect Provider details on successful completion of {@link Mono}.
+     * @return openId Connect Provider details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenIdConnectProvidersUpdateResponse> updateWithResponseAsync(
@@ -1149,7 +1147,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return openId Connect Provider details on successful completion of {@link Mono}.
+     * @return openId Connect Provider details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenidConnectProviderContractInner> updateAsync(
@@ -1230,7 +1228,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1290,7 +1288,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1346,7 +1344,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String opid, String ifMatch) {
@@ -1383,7 +1381,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1400,7 +1398,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the client secret details of the OpenID Connect Provider on successful completion of {@link Mono}.
+     * @return the client secret details of the OpenID Connect Provider.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenIdConnectProvidersListSecretsResponse> listSecretsWithResponseAsync(
@@ -1454,7 +1452,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the client secret details of the OpenID Connect Provider on successful completion of {@link Mono}.
+     * @return the client secret details of the OpenID Connect Provider.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OpenIdConnectProvidersListSecretsResponse> listSecretsWithResponseAsync(
@@ -1504,7 +1502,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the client secret details of the OpenID Connect Provider on successful completion of {@link Mono}.
+     * @return the client secret details of the OpenID Connect Provider.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClientSecretContractInner> listSecretsAsync(
@@ -1561,8 +1559,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged OpenIdProviders list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged OpenIdProviders list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OpenidConnectProviderContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -1598,8 +1595,7 @@ public final class OpenIdConnectProvidersClientImpl implements OpenIdConnectProv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged OpenIdProviders list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged OpenIdProviders list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OpenidConnectProviderContractInner>> listByServiceNextSinglePageAsync(

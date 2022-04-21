@@ -276,18 +276,4 @@ public class TumblingWindowTrigger extends Trigger {
         this.dependsOn = dependsOn;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public TumblingWindowTrigger setDescription(String description) {
-        super.setDescription(description);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public TumblingWindowTrigger setAnnotations(List<Object> annotations) {
-        super.setAnnotations(annotations);
-        return this;
-    }
 }

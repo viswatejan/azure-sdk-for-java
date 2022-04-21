@@ -5,12 +5,17 @@
 package com.azure.resourcemanager.apimanagement.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Tenant Configuration Synchronization State. */
 @Fluent
 public final class TenantConfigurationSyncStateContractProperties {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(TenantConfigurationSyncStateContractProperties.class);
+
     /*
      * The name of Git branch.
      */

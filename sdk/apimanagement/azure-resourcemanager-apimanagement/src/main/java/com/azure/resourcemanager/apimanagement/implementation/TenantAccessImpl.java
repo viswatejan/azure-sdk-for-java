@@ -19,9 +19,10 @@ import com.azure.resourcemanager.apimanagement.models.TenantAccess;
 import com.azure.resourcemanager.apimanagement.models.TenantAccessGetEntityTagResponse;
 import com.azure.resourcemanager.apimanagement.models.TenantAccessGetResponse;
 import com.azure.resourcemanager.apimanagement.models.TenantAccessListSecretsResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class TenantAccessImpl implements TenantAccess {
-    private static final ClientLogger LOGGER = new ClientLogger(TenantAccessImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TenantAccessImpl.class);
 
     private final TenantAccessClient innerClient;
 
@@ -130,7 +131,7 @@ public final class TenantAccessImpl implements TenantAccess {
     public AccessInformationContract getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -138,14 +139,14 @@ public final class TenantAccessImpl implements TenantAccess {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         AccessIdName accessName = AccessIdName.fromString(Utils.getValueFromIdByName(id, "tenant"));
         if (accessName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'tenant'.", id)));
@@ -156,7 +157,7 @@ public final class TenantAccessImpl implements TenantAccess {
     public Response<AccessInformationContract> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -164,14 +165,14 @@ public final class TenantAccessImpl implements TenantAccess {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         AccessIdName accessName = AccessIdName.fromString(Utils.getValueFromIdByName(id, "tenant"));
         if (accessName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'tenant'.", id)));

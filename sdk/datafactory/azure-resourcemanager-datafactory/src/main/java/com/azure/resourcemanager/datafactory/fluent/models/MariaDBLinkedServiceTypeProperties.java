@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.AzureKeyVaultSecretReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** MariaDB server linked service properties. */
 @Fluent
 public final class MariaDBLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MariaDBLinkedServiceTypeProperties.class);
+
     /*
      * An ODBC connection string. Type: string, SecureString or
      * AzureKeyVaultSecretReference.

@@ -27,6 +27,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.cognitiveservices.fluent.DeletedAccountsClient;
@@ -38,6 +39,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in DeletedAccountsClient. */
 public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
+    private final ClientLogger logger = new ClientLogger(DeletedAccountsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final DeletedAccountsService service;
 
@@ -126,7 +129,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cognitive Services account is an Azure resource representing the provisioned account, it's type, location
-     *     and SKU along with {@link Response} on successful completion of {@link Mono}.
+     *     and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AccountInner>> getWithResponseAsync(
@@ -181,7 +184,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cognitive Services account is an Azure resource representing the provisioned account, it's type, location
-     *     and SKU along with {@link Response} on successful completion of {@link Mono}.
+     *     and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AccountInner>> getWithResponseAsync(
@@ -232,7 +235,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cognitive Services account is an Azure resource representing the provisioned account, it's type, location
-     *     and SKU on successful completion of {@link Mono}.
+     *     and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AccountInner> getAsync(String location, String resourceGroupName, String accountName) {
@@ -275,7 +278,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cognitive Services account is an Azure resource representing the provisioned account, it's type, location
-     *     and SKU along with {@link Response}.
+     *     and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AccountInner> getWithResponse(
@@ -292,7 +295,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> purgeWithResponseAsync(
@@ -346,7 +349,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> purgeWithResponseAsync(
@@ -396,7 +399,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginPurgeAsync(
@@ -404,8 +407,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
         Mono<Response<Flux<ByteBuffer>>> mono = purgeWithResponseAsync(location, resourceGroupName, accountName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -418,7 +420,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginPurgeAsync(
@@ -440,7 +442,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginPurge(
@@ -458,7 +460,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginPurge(
@@ -475,7 +477,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> purgeAsync(String location, String resourceGroupName, String accountName) {
@@ -494,7 +496,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> purgeAsync(String location, String resourceGroupName, String accountName, Context context) {
@@ -539,8 +541,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AccountInner>> listSinglePageAsync() {
@@ -586,8 +587,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AccountInner>> listSinglePageAsync(Context context) {
@@ -628,7 +628,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response as paginated response with {@link PagedFlux}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AccountInner> listAsync() {
@@ -642,7 +642,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response as paginated response with {@link PagedFlux}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AccountInner> listAsync(Context context) {
@@ -655,8 +655,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AccountInner> list() {
@@ -670,8 +669,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AccountInner> list(Context context) {
@@ -685,8 +683,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AccountInner>> listNextSinglePageAsync(String nextLink) {
@@ -722,8 +719,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AccountInner>> listNextSinglePageAsync(String nextLink, Context context) {

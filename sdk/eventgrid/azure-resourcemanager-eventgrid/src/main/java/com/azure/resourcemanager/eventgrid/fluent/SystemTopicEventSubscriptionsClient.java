@@ -15,6 +15,7 @@ import com.azure.resourcemanager.eventgrid.fluent.models.DeliveryAttributeListRe
 import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionFullUrlInner;
 import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParameters;
+import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in SystemTopicEventSubscriptionsClient. */
 public interface SystemTopicEventSubscriptionsClient {
@@ -62,7 +63,7 @@ public interface SystemTopicEventSubscriptionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of event Subscription.
+     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginCreateOrUpdate(
@@ -84,7 +85,7 @@ public interface SystemTopicEventSubscriptionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of event Subscription.
+     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginCreateOrUpdate(
@@ -139,7 +140,7 @@ public interface SystemTopicEventSubscriptionsClient {
         Context context);
 
     /**
-     * Delete an existing event subscription of a system topic.
+     * Delete an event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -148,14 +149,14 @@ public interface SystemTopicEventSubscriptionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String systemTopicName, String eventSubscriptionName);
 
     /**
-     * Delete an existing event subscription of a system topic.
+     * Delete an event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -165,14 +166,14 @@ public interface SystemTopicEventSubscriptionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String systemTopicName, String eventSubscriptionName, Context context);
 
     /**
-     * Delete an existing event subscription of a system topic.
+     * Delete an event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -186,7 +187,7 @@ public interface SystemTopicEventSubscriptionsClient {
     void delete(String resourceGroupName, String systemTopicName, String eventSubscriptionName);
 
     /**
-     * Delete an existing event subscription of a system topic.
+     * Delete an event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -201,7 +202,7 @@ public interface SystemTopicEventSubscriptionsClient {
     void delete(String resourceGroupName, String systemTopicName, String eventSubscriptionName, Context context);
 
     /**
-     * Update an existing event subscription of a system topic.
+     * Update event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -211,7 +212,7 @@ public interface SystemTopicEventSubscriptionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of event Subscription.
+     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginUpdate(
@@ -221,7 +222,7 @@ public interface SystemTopicEventSubscriptionsClient {
         EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters);
 
     /**
-     * Update an existing event subscription of a system topic.
+     * Update event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -232,7 +233,7 @@ public interface SystemTopicEventSubscriptionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of event Subscription.
+     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginUpdate(
@@ -243,7 +244,7 @@ public interface SystemTopicEventSubscriptionsClient {
         Context context);
 
     /**
-     * Update an existing event subscription of a system topic.
+     * Update event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -263,7 +264,7 @@ public interface SystemTopicEventSubscriptionsClient {
         EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters);
 
     /**
-     * Update an existing event subscription of a system topic.
+     * Update event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -325,7 +326,7 @@ public interface SystemTopicEventSubscriptionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List EventSubscriptions operation as paginated response with {@link PagedIterable}.
+     * @return result of the List EventSubscriptions operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<EventSubscriptionInner> listBySystemTopic(String resourceGroupName, String systemTopicName);
@@ -347,7 +348,7 @@ public interface SystemTopicEventSubscriptionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List EventSubscriptions operation as paginated response with {@link PagedIterable}.
+     * @return result of the List EventSubscriptions operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<EventSubscriptionInner> listBySystemTopic(

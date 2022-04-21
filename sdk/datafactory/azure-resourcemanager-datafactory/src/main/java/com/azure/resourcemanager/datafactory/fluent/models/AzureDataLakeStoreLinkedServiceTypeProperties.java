@@ -8,11 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.CredentialReference;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Azure Data Lake Store linked service properties. */
 @Fluent
 public final class AzureDataLakeStoreLinkedServiceTypeProperties {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(AzureDataLakeStoreLinkedServiceTypeProperties.class);
+
     /*
      * Data Lake Store service URI. Type: string (or Expression with resultType
      * string).
@@ -310,7 +314,7 @@ public final class AzureDataLakeStoreLinkedServiceTypeProperties {
      */
     public void validate() {
         if (dataLakeStoreUri() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property dataLakeStoreUri in model"
@@ -323,6 +327,4 @@ public final class AzureDataLakeStoreLinkedServiceTypeProperties {
             credential().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AzureDataLakeStoreLinkedServiceTypeProperties.class);
 }

@@ -6,9 +6,7 @@ package com.azure.security.keyvault.keys.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * The release result, containing the released key.
- */
+/** The release result, containing the released key. */
 @Immutable
 public final class ReleaseKeyResult {
     /*

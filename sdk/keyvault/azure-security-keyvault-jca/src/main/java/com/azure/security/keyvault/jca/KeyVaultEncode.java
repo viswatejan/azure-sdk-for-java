@@ -7,8 +7,7 @@ import java.math.BigInteger;
 
 /**
  * encode signature
- *
- * @see <a href="https://docs.microsoft.com/windows/win32/seccertenroll/about-der-encoding-of-asn-1-types">reference doc</a>
+ * Ref: https://docs.microsoft.com/windows/win32/seccertenroll/about-der-encoding-of-asn-1-types
  */
 public class KeyVaultEncode {
 
@@ -17,7 +16,6 @@ public class KeyVaultEncode {
 
     /**
      * Decode signatures imitating ECUtil
-     *
      * @param signature signature get by keyvault
      * @return decoded signatures
      */
@@ -29,14 +27,6 @@ public class KeyVaultEncode {
         return concatBytes(resultLengthBytes, leftResult, rightResult);
     }
 
-    /**
-     * Convert to big integer bytes.
-     *
-     * @param bytes signature obtained
-     * @param offset the offset in the byte array
-     * @param length the number of bytes to convert
-     * @return the byte array which holds the big integer.
-     */
     static byte[] toBigIntegerBytesWithLengthPrefix(byte[] bytes, int offset, int length) {
         byte[] magnitude = new byte[length];
         System.arraycopy(bytes, offset, magnitude, 0, length);
@@ -45,13 +35,6 @@ public class KeyVaultEncode {
         return concatBytes(buildLengthBytes(TAG_INTEGER, bigIntegerArray.length), bigIntegerArray);
     }
 
-    /**
-     * Concatenate 2 byte arrays.
-     *
-     * @param bytes1 the first byte array
-     * @param bytes2 the second byte array
-     * @return the concatenated array
-     */
     static byte[] concatBytes(byte[] bytes1, byte[] bytes2) {
         byte[] result = new byte[bytes1.length + bytes2.length];
         System.arraycopy(bytes1, 0, result, 0, bytes1.length);
@@ -59,14 +42,6 @@ public class KeyVaultEncode {
         return result;
     }
 
-    /**
-     * Concatenate 3 byte arrays.
-     *
-     * @param bytes1 the first byte array
-     * @param bytes2 the second byte array
-     * @param bytes3 the third byte array
-     * @return the concatenated array
-     */
     static byte[] concatBytes(byte[] bytes1, byte[] bytes2, byte[] bytes3) {
         byte[] result = new byte[bytes1.length + bytes2.length + bytes3.length];
         System.arraycopy(bytes1, 0, result, 0, bytes1.length);
@@ -75,13 +50,6 @@ public class KeyVaultEncode {
         return result;
     }
 
-    /**
-     * Create byte array with specific prefix value and hold the length value.
-     *
-     * @param tag the tag value
-     * @param len the content length
-     * @return the integer value
-     */
     static byte[] buildLengthBytes(byte tag, int len) {
         if (len < 128) {
             return new byte[] {tag, ((byte) len)};

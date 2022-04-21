@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.DatasetCompression;
 import com.azure.resourcemanager.datafactory.models.DatasetStorageFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Amazon S3 dataset properties. */
 @Fluent
 public final class AmazonS3DatasetTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AmazonS3DatasetTypeProperties.class);
+
     /*
      * The name of the Amazon S3 bucket. Type: string (or Expression with
      * resultType string).
@@ -242,7 +245,7 @@ public final class AmazonS3DatasetTypeProperties {
      */
     public void validate() {
         if (bucketName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property bucketName in model AmazonS3DatasetTypeProperties"));
@@ -254,6 +257,4 @@ public final class AmazonS3DatasetTypeProperties {
             compression().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AmazonS3DatasetTypeProperties.class);
 }

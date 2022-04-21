@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.fluent.AvailableEndpointServicesClient;
 import com.azure.resourcemanager.network.fluent.models.EndpointServiceResultInner;
 import com.azure.resourcemanager.network.models.EndpointServicesListResult;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in AvailableEndpointServicesClient. */
 public final class AvailableEndpointServicesClientImpl implements AvailableEndpointServicesClient {
+    private final ClientLogger logger = new ClientLogger(AvailableEndpointServicesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final AvailableEndpointServicesService service;
 

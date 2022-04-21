@@ -29,9 +29,9 @@ public interface TenantConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long Running Git Operation Results.
+     * @return long Running Git Operation Results.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<OperationResultContractInner>, OperationResultContractInner> beginDeploy(
         String resourceGroupName,
         String serviceName,
@@ -50,9 +50,9 @@ public interface TenantConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long Running Git Operation Results.
+     * @return long Running Git Operation Results.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<OperationResultContractInner>, OperationResultContractInner> beginDeploy(
         String resourceGroupName,
         String serviceName,
@@ -113,9 +113,9 @@ public interface TenantConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long Running Git Operation Results.
+     * @return long Running Git Operation Results.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<OperationResultContractInner>, OperationResultContractInner> beginSave(
         String resourceGroupName,
         String serviceName,
@@ -134,9 +134,9 @@ public interface TenantConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long Running Git Operation Results.
+     * @return long Running Git Operation Results.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<OperationResultContractInner>, OperationResultContractInner> beginSave(
         String resourceGroupName,
         String serviceName,
@@ -197,9 +197,9 @@ public interface TenantConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long Running Git Operation Results.
+     * @return long Running Git Operation Results.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<OperationResultContractInner>, OperationResultContractInner> beginValidate(
         String resourceGroupName,
         String serviceName,
@@ -218,9 +218,9 @@ public interface TenantConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long Running Git Operation Results.
+     * @return long Running Git Operation Results.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<OperationResultContractInner>, OperationResultContractInner> beginValidate(
         String resourceGroupName,
         String serviceName,
@@ -295,8 +295,7 @@ public interface TenantConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of the most recent synchronization between the configuration database and the Git repository
-     *     along with {@link Response}.
+     * @return the status of the most recent synchronization between the configuration database and the Git repository.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TenantConfigurationSyncStateContractInner> getSyncStateWithResponse(

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -14,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public final class LiveEventOutputTranscriptionTrack {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LiveEventOutputTranscriptionTrack.class);
+
     /*
      * The output track name. This property is reserved for future use, any
      * value set on this property will be ignored.
@@ -50,12 +53,10 @@ public final class LiveEventOutputTranscriptionTrack {
      */
     public void validate() {
         if (trackName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property trackName in model LiveEventOutputTranscriptionTrack"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LiveEventOutputTranscriptionTrack.class);
 }

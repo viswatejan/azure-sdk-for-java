@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.fluent.LoadBalancerFrontendIpConfigurationsClient;
 import com.azure.resourcemanager.network.fluent.models.FrontendIpConfigurationInner;
 import com.azure.resourcemanager.network.models.LoadBalancerFrontendIpConfigurationListResult;
@@ -36,6 +37,8 @@ import reactor.core.publisher.Mono;
  */
 public final class LoadBalancerFrontendIpConfigurationsClientImpl
     implements LoadBalancerFrontendIpConfigurationsClient {
+    private final ClientLogger logger = new ClientLogger(LoadBalancerFrontendIpConfigurationsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final LoadBalancerFrontendIpConfigurationsService service;
 

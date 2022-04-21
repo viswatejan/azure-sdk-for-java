@@ -6,11 +6,14 @@ package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The deleted share to be restored. */
 @Fluent
 public final class DeletedShare {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DeletedShare.class);
+
     /*
      * Required. Identify the name of the deleted share that will be restored.
      */
@@ -71,17 +74,15 @@ public final class DeletedShare {
      */
     public void validate() {
         if (deletedShareName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property deletedShareName in model DeletedShare"));
         }
         if (deletedShareVersion() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property deletedShareVersion in model DeletedShare"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DeletedShare.class);
 }

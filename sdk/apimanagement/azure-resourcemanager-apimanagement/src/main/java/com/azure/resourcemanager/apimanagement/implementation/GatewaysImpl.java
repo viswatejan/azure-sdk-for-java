@@ -22,9 +22,10 @@ import com.azure.resourcemanager.apimanagement.models.Gateways;
 import com.azure.resourcemanager.apimanagement.models.GatewaysGetEntityTagResponse;
 import com.azure.resourcemanager.apimanagement.models.GatewaysGetResponse;
 import com.azure.resourcemanager.apimanagement.models.GatewaysListKeysResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class GatewaysImpl implements Gateways {
-    private static final ClientLogger LOGGER = new ClientLogger(GatewaysImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GatewaysImpl.class);
 
     private final GatewaysClient innerClient;
 
@@ -168,7 +169,7 @@ public final class GatewaysImpl implements Gateways {
     public GatewayContract getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -176,14 +177,14 @@ public final class GatewaysImpl implements Gateways {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String gatewayId = Utils.getValueFromIdByName(id, "gateways");
         if (gatewayId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'gateways'.", id)));
@@ -194,7 +195,7 @@ public final class GatewaysImpl implements Gateways {
     public Response<GatewayContract> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -202,14 +203,14 @@ public final class GatewaysImpl implements Gateways {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String gatewayId = Utils.getValueFromIdByName(id, "gateways");
         if (gatewayId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'gateways'.", id)));
@@ -220,7 +221,7 @@ public final class GatewaysImpl implements Gateways {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -228,26 +229,26 @@ public final class GatewaysImpl implements Gateways {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String gatewayId = Utils.getValueFromIdByName(id, "gateways");
         if (gatewayId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'gateways'.", id)));
         }
         String localIfMatch = null;
-        this.deleteWithResponse(resourceGroupName, serviceName, gatewayId, localIfMatch, Context.NONE);
+        this.deleteWithResponse(resourceGroupName, serviceName, gatewayId, localIfMatch, Context.NONE).getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -255,14 +256,14 @@ public final class GatewaysImpl implements Gateways {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String gatewayId = Utils.getValueFromIdByName(id, "gateways");
         if (gatewayId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'gateways'.", id)));

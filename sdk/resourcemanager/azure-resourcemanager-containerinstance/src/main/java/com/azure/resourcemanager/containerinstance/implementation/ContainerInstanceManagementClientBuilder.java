@@ -7,6 +7,7 @@ package com.azure.resourcemanager.containerinstance.implementation;
 import com.azure.core.annotation.ServiceClientBuilder;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpPipelineBuilder;
+import com.azure.core.http.policy.CookiePolicy;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.AzureEnvironment;
@@ -69,22 +70,6 @@ public final class ContainerInstanceManagementClientBuilder {
     }
 
     /*
-     * The HTTP pipeline to send requests through
-     */
-    private HttpPipeline pipeline;
-
-    /**
-     * Sets The HTTP pipeline to send requests through.
-     *
-     * @param pipeline the pipeline value.
-     * @return the ContainerInstanceManagementClientBuilder.
-     */
-    public ContainerInstanceManagementClientBuilder pipeline(HttpPipeline pipeline) {
-        this.pipeline = pipeline;
-        return this;
-    }
-
-    /*
      * The default poll interval for long-running operation
      */
     private Duration defaultPollInterval;
@@ -97,6 +82,22 @@ public final class ContainerInstanceManagementClientBuilder {
      */
     public ContainerInstanceManagementClientBuilder defaultPollInterval(Duration defaultPollInterval) {
         this.defaultPollInterval = defaultPollInterval;
+        return this;
+    }
+
+    /*
+     * The HTTP pipeline to send requests through
+     */
+    private HttpPipeline pipeline;
+
+    /**
+     * Sets The HTTP pipeline to send requests through.
+     *
+     * @param pipeline the pipeline value.
+     * @return the ContainerInstanceManagementClientBuilder.
+     */
+    public ContainerInstanceManagementClientBuilder pipeline(HttpPipeline pipeline) {
+        this.pipeline = pipeline;
         return this;
     }
 
@@ -122,20 +123,20 @@ public final class ContainerInstanceManagementClientBuilder {
      * @return an instance of ContainerInstanceManagementClientImpl.
      */
     public ContainerInstanceManagementClientImpl buildClient() {
-        if (pipeline == null) {
-            this.pipeline = new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build();
-        }
         if (endpoint == null) {
             this.endpoint = "https://management.azure.com";
         }
         if (environment == null) {
             this.environment = AzureEnvironment.AZURE;
         }
-        if (pipeline == null) {
-            this.pipeline = new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build();
-        }
         if (defaultPollInterval == null) {
             this.defaultPollInterval = Duration.ofSeconds(30);
+        }
+        if (pipeline == null) {
+            this.pipeline =
+                new HttpPipelineBuilder()
+                    .policies(new UserAgentPolicy(), new RetryPolicy(), new CookiePolicy())
+                    .build();
         }
         if (serializerAdapter == null) {
             this.serializerAdapter = SerializerFactory.createDefaultManagementSerializerAdapter();

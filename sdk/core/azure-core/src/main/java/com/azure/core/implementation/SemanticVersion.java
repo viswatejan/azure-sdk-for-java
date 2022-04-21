@@ -4,7 +4,6 @@
 package com.azure.core.implementation;
 
 import com.azure.core.util.CoreUtils;
-
 import java.io.IOException;
 import java.util.Objects;
 import java.util.jar.JarFile;
@@ -35,7 +34,7 @@ public final class SemanticVersion implements Comparable<SemanticVersion> {
     public static SemanticVersion getPackageVersionForClass(String className) {
         try {
             return getPackageVersion(Class.forName(className));
-        } catch (Exception ignored) {
+        } catch (Throwable e) {
             return SemanticVersion.createInvalid();
         }
     }
@@ -61,7 +60,7 @@ public final class SemanticVersion implements Comparable<SemanticVersion> {
 
         int patchEndIdx = minorDotIdx + 1;
         while (patchEndIdx < version.length()) {
-            char ch = version.charAt(patchEndIdx);
+            Character ch = version.charAt(patchEndIdx);
 
             // accommodate common broken semantic versions (e.g. 1.2.3.4)
             if (ch == '.' || ch == '-' || ch == '+') {
@@ -77,13 +76,13 @@ public final class SemanticVersion implements Comparable<SemanticVersion> {
         }
 
         try {
-            int major = Integer.parseInt(version.substring(0, majorDotIdx));
-            int minor = Integer.parseInt(version.substring(majorDotIdx + 1, minorDotIdx));
-            int patch = Integer.parseInt(version.substring(minorDotIdx + 1, patchEndIdx));
+            Integer major = Integer.valueOf(version.substring(0, majorDotIdx));
+            Integer minor = Integer.valueOf(version.substring(majorDotIdx + 1, minorDotIdx));
+            Integer patch = Integer.valueOf(version.substring(minorDotIdx + 1, patchEndIdx));
 
             String prerelease = (patchEndIdx == extEndIdx) ? "" : version.substring(patchEndIdx + 1, extEndIdx);
             return new SemanticVersion(major, minor, patch, prerelease, version);
-        } catch (NumberFormatException | NullPointerException ignored) {
+        } catch (Throwable ex) {
             return createInvalid(version);
         }
     }
@@ -107,15 +106,25 @@ public final class SemanticVersion implements Comparable<SemanticVersion> {
         }
 
         // if versionStr is null, try loading the version from the manifest in the jar file
-        try (JarFile jar = new JarFile(clazz.getProtectionDomain().getCodeSource().getLocation().getFile())) {
+        JarFile jar = null;
+        try {
+            jar = new JarFile(clazz.getProtectionDomain().getCodeSource().getLocation().getFile());
             Manifest manifest = jar.getManifest();
             versionStr = manifest.getMainAttributes().getValue("Implementation-Version");
             if (versionStr == null) {
                 versionStr = manifest.getMainAttributes().getValue("Bundle-Version");
             }
             return parse(versionStr);
-        } catch (IOException | SecurityException ignored) {
+        } catch (Throwable t) {
             return createInvalid();
+        } finally {
+            if (jar != null) {
+                try {
+                    jar.close();
+                } catch (IOException e) {
+                    // ignored
+                }
+            }
         }
     }
 

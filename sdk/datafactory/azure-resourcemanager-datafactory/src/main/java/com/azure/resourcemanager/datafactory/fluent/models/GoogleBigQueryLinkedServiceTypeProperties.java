@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.GoogleBigQueryAuthenticationType;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Google BigQuery service linked service properties. */
 @Fluent
 public final class GoogleBigQueryLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GoogleBigQueryLinkedServiceTypeProperties.class);
+
     /*
      * The default BigQuery project to query against.
      */
@@ -369,13 +372,13 @@ public final class GoogleBigQueryLinkedServiceTypeProperties {
      */
     public void validate() {
         if (project() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property project in model GoogleBigQueryLinkedServiceTypeProperties"));
         }
         if (authenticationType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property authenticationType in model"
@@ -388,6 +391,4 @@ public final class GoogleBigQueryLinkedServiceTypeProperties {
             clientSecret().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(GoogleBigQueryLinkedServiceTypeProperties.class);
 }

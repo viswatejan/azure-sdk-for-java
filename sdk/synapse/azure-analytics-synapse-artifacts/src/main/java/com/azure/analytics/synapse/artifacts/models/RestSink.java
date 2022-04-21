@@ -160,39 +160,4 @@ public final class RestSink extends CopySink {
         this.httpCompressionType = httpCompressionType;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public RestSink setWriteBatchSize(Object writeBatchSize) {
-        super.setWriteBatchSize(writeBatchSize);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public RestSink setWriteBatchTimeout(Object writeBatchTimeout) {
-        super.setWriteBatchTimeout(writeBatchTimeout);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public RestSink setSinkRetryCount(Object sinkRetryCount) {
-        super.setSinkRetryCount(sinkRetryCount);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public RestSink setSinkRetryWait(Object sinkRetryWait) {
-        super.setSinkRetryWait(sinkRetryWait);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public RestSink setMaxConcurrentConnections(Object maxConcurrentConnections) {
-        super.setMaxConcurrentConnections(maxConcurrentConnections);
-        return this;
-    }
 }

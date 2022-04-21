@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Dynamics AX linked service properties. */
 @Fluent
 public final class DynamicsAXLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DynamicsAXLinkedServiceTypeProperties.class);
+
     /*
      * The Dynamics AX (or Dynamics 365 Finance and Operations) instance OData
      * endpoint.
@@ -199,19 +202,19 @@ public final class DynamicsAXLinkedServiceTypeProperties {
      */
     public void validate() {
         if (url() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property url in model DynamicsAXLinkedServiceTypeProperties"));
         }
         if (servicePrincipalId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property servicePrincipalId in model DynamicsAXLinkedServiceTypeProperties"));
         }
         if (servicePrincipalKey() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property servicePrincipalKey in model"
@@ -220,18 +223,16 @@ public final class DynamicsAXLinkedServiceTypeProperties {
             servicePrincipalKey().validate();
         }
         if (tenant() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property tenant in model DynamicsAXLinkedServiceTypeProperties"));
         }
         if (aadResourceId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property aadResourceId in model DynamicsAXLinkedServiceTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DynamicsAXLinkedServiceTypeProperties.class);
 }

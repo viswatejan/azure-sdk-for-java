@@ -10,12 +10,10 @@ import com.azure.resourcemanager.appplatform.implementation.AppPlatformManagemen
 import com.azure.resourcemanager.appplatform.implementation.SpringServicesImpl;
 import com.azure.resourcemanager.appplatform.models.SpringServices;
 import com.azure.resourcemanager.resources.fluentcore.arm.AzureConfigurable;
+import com.azure.resourcemanager.resources.fluentcore.arm.implementation.AzureConfigurableImpl;
 import com.azure.resourcemanager.resources.fluentcore.arm.Manager;
 import com.azure.core.management.profile.AzureProfile;
-import com.azure.resourcemanager.resources.fluentcore.arm.implementation.AzureConfigurableImpl;
 import com.azure.resourcemanager.resources.fluentcore.utils.HttpPipelineProvider;
-
-import java.util.Objects;
 
 /** Entry point to Azure App Platform management. */
 public final class AppPlatformManager extends Manager<AppPlatformManagementClient> {
@@ -38,21 +36,17 @@ public final class AppPlatformManager extends Manager<AppPlatformManagementClien
      * @return the AppPlatformManager
      */
     public static AppPlatformManager authenticate(TokenCredential credential, AzureProfile profile) {
-        Objects.requireNonNull(credential, "'credential' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
         return authenticate(HttpPipelineProvider.buildHttpPipeline(credential, profile), profile);
     }
 
     /**
      * Creates an instance of AppPlatformManager that exposes app platform resource management API entry points.
      *
-     * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
+     * @param httpPipeline the HttpPipeline to be used for API calls.
      * @param profile the profile to use
      * @return the AppPlatformManager
      */
-    public static AppPlatformManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
-        Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
+    private static AppPlatformManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         return new AppPlatformManager(httpPipeline, profile);
     }
 

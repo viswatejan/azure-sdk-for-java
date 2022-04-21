@@ -7,12 +7,15 @@ package com.azure.resourcemanager.apimanagement.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.models.KeyVaultContractProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Properties of the Certificate contract. */
 @Fluent
 public final class CertificateContractProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CertificateContractProperties.class);
+
     /*
      * Subject attribute of the certificate.
      */
@@ -128,19 +131,19 @@ public final class CertificateContractProperties {
      */
     public void validate() {
         if (subject() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property subject in model CertificateContractProperties"));
         }
         if (thumbprint() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property thumbprint in model CertificateContractProperties"));
         }
         if (expirationDate() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property expirationDate in model CertificateContractProperties"));
@@ -149,6 +152,4 @@ public final class CertificateContractProperties {
             keyVault().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CertificateContractProperties.class);
 }

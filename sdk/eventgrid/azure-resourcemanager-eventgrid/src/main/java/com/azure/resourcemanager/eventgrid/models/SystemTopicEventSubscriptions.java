@@ -84,7 +84,7 @@ public interface SystemTopicEventSubscriptions {
         Context context);
 
     /**
-     * Delete an existing event subscription of a system topic.
+     * Delete an event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -97,7 +97,7 @@ public interface SystemTopicEventSubscriptions {
     void delete(String resourceGroupName, String systemTopicName, String eventSubscriptionName);
 
     /**
-     * Delete an existing event subscription of a system topic.
+     * Delete an event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -111,7 +111,7 @@ public interface SystemTopicEventSubscriptions {
     void delete(String resourceGroupName, String systemTopicName, String eventSubscriptionName, Context context);
 
     /**
-     * Update an existing event subscription of a system topic.
+     * Update event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -130,7 +130,7 @@ public interface SystemTopicEventSubscriptions {
         EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters);
 
     /**
-     * Update an existing event subscription of a system topic.
+     * Update event subscription of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -188,7 +188,7 @@ public interface SystemTopicEventSubscriptions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List EventSubscriptions operation as paginated response with {@link PagedIterable}.
+     * @return result of the List EventSubscriptions operation.
      */
     PagedIterable<EventSubscription> listBySystemTopic(String resourceGroupName, String systemTopicName);
 
@@ -209,7 +209,7 @@ public interface SystemTopicEventSubscriptions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List EventSubscriptions operation as paginated response with {@link PagedIterable}.
+     * @return result of the List EventSubscriptions operation.
      */
     PagedIterable<EventSubscription> listBySystemTopic(
         String resourceGroupName, String systemTopicName, String filter, Integer top, Context context);

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,8 +17,10 @@ import java.util.Map;
 /** scheduleChangeRequest. */
 @Fluent
 public class MicrosoftGraphScheduleChangeRequest extends MicrosoftGraphChangeTrackedEntity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphScheduleChangeRequest.class);
+
     /*
-     * scheduleChangeRequestActor
+     * The assignedTo property.
      */
     @JsonProperty(value = "assignedTo")
     private MicrosoftGraphScheduleChangeRequestActor assignedTo;
@@ -59,7 +62,7 @@ public class MicrosoftGraphScheduleChangeRequest extends MicrosoftGraphChangeTra
     private String senderUserId;
 
     /*
-     * scheduleChangeState
+     * The state property.
      */
     @JsonProperty(value = "state")
     private MicrosoftGraphScheduleChangeState state;
@@ -70,7 +73,7 @@ public class MicrosoftGraphScheduleChangeRequest extends MicrosoftGraphChangeTra
     @JsonIgnore private Map<String, Object> additionalProperties;
 
     /**
-     * Get the assignedTo property: scheduleChangeRequestActor.
+     * Get the assignedTo property: The assignedTo property.
      *
      * @return the assignedTo value.
      */
@@ -79,7 +82,7 @@ public class MicrosoftGraphScheduleChangeRequest extends MicrosoftGraphChangeTra
     }
 
     /**
-     * Set the assignedTo property: scheduleChangeRequestActor.
+     * Set the assignedTo property: The assignedTo property.
      *
      * @param assignedTo the assignedTo value to set.
      * @return the MicrosoftGraphScheduleChangeRequest object itself.
@@ -210,7 +213,7 @@ public class MicrosoftGraphScheduleChangeRequest extends MicrosoftGraphChangeTra
     }
 
     /**
-     * Get the state property: scheduleChangeState.
+     * Get the state property: The state property.
      *
      * @return the state value.
      */
@@ -219,7 +222,7 @@ public class MicrosoftGraphScheduleChangeRequest extends MicrosoftGraphChangeTra
     }
 
     /**
-     * Set the state property: scheduleChangeState.
+     * Set the state property: The state property.
      *
      * @param state the state value to set.
      * @return the MicrosoftGraphScheduleChangeRequest object itself.

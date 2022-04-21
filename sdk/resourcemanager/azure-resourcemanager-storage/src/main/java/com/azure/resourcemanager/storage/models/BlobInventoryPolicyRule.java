@@ -6,11 +6,14 @@ package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** An object that wraps the blob inventory rule. Each rule is uniquely defined by name. */
 @Fluent
 public final class BlobInventoryPolicyRule {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BlobInventoryPolicyRule.class);
+
     /*
      * Rule is enabled when set to true.
      */
@@ -126,18 +129,18 @@ public final class BlobInventoryPolicyRule {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model BlobInventoryPolicyRule"));
         }
         if (destination() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property destination in model BlobInventoryPolicyRule"));
         }
         if (definition() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property definition in model BlobInventoryPolicyRule"));
@@ -145,6 +148,4 @@ public final class BlobInventoryPolicyRule {
             definition().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BlobInventoryPolicyRule.class);
 }

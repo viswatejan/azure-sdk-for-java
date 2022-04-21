@@ -10,12 +10,15 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.models.AddressSpace;
 import com.azure.resourcemanager.network.models.BgpSettings;
 import com.azure.resourcemanager.network.models.ProvisioningState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** A common class for general resource information. */
 @Fluent
 public final class LocalNetworkGatewayInner extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LocalNetworkGatewayInner.class);
+
     /*
      * Properties of the local network gateway.
      */
@@ -203,7 +206,7 @@ public final class LocalNetworkGatewayInner extends Resource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model LocalNetworkGatewayInner"));
@@ -211,6 +214,4 @@ public final class LocalNetworkGatewayInner extends Resource {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LocalNetworkGatewayInner.class);
 }

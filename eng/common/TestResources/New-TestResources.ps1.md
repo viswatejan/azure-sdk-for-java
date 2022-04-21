@@ -143,6 +143,7 @@ the SecureString to plaintext by another means.
 ### EXAMPLE 5
 ```
 New-TestResources.ps1 `
+    -BaseName 'Generated' `
     -ServiceDirectory '$(ServiceDirectory)' `
     -TenantId '$(TenantId)' `
     -ProvisionerApplicationId '$(ProvisionerId)' `

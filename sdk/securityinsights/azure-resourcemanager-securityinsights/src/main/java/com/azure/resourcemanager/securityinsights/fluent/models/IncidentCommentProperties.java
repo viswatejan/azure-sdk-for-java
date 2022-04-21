@@ -7,12 +7,15 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.ClientInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Incident comment property bag. */
 @Fluent
 public final class IncidentCommentProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(IncidentCommentProperties.class);
+
     /*
      * The time the comment was created
      */
@@ -91,7 +94,7 @@ public final class IncidentCommentProperties {
      */
     public void validate() {
         if (message() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property message in model IncidentCommentProperties"));
@@ -100,6 +103,4 @@ public final class IncidentCommentProperties {
             author().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(IncidentCommentProperties.class);
 }

@@ -14,9 +14,10 @@ import com.azure.resourcemanager.apimanagement.models.ApiExportResult;
 import com.azure.resourcemanager.apimanagement.models.ApiExports;
 import com.azure.resourcemanager.apimanagement.models.ExportApi;
 import com.azure.resourcemanager.apimanagement.models.ExportFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ApiExportsImpl implements ApiExports {
-    private static final ClientLogger LOGGER = new ClientLogger(ApiExportsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiExportsImpl.class);
 
     private final ApiExportsClient innerClient;
 

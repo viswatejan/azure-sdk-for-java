@@ -6,11 +6,15 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** CosmosDB (MongoDB API) database dataset properties. */
 @Fluent
 public final class CosmosDbMongoDbApiCollectionDatasetTypeProperties {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(CosmosDbMongoDbApiCollectionDatasetTypeProperties.class);
+
     /*
      * The collection name of the CosmosDB (MongoDB API) database. Type: string
      * (or Expression with resultType string).
@@ -47,14 +51,11 @@ public final class CosmosDbMongoDbApiCollectionDatasetTypeProperties {
      */
     public void validate() {
         if (collection() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property collection in model"
                             + " CosmosDbMongoDbApiCollectionDatasetTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER =
-        new ClientLogger(CosmosDbMongoDbApiCollectionDatasetTypeProperties.class);
 }

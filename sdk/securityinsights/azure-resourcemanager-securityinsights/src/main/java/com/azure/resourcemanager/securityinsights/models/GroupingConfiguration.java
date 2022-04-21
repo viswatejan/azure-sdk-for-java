@@ -6,6 +6,7 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.List;
 /** Grouping configuration property bag. */
 @Fluent
 public final class GroupingConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GroupingConfiguration.class);
+
     /*
      * Grouping enabled
      */
@@ -215,18 +218,16 @@ public final class GroupingConfiguration {
      */
     public void validate() {
         if (lookbackDuration() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property lookbackDuration in model GroupingConfiguration"));
         }
         if (matchingMethod() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property matchingMethod in model GroupingConfiguration"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(GroupingConfiguration.class);
 }

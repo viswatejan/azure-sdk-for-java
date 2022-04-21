@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.DatasetLocation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** DelimitedText dataset properties. */
 @Fluent
 public final class DelimitedTextDatasetTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DelimitedTextDatasetTypeProperties.class);
+
     /*
      * The location of the delimited text storage.
      */
@@ -303,7 +306,7 @@ public final class DelimitedTextDatasetTypeProperties {
      */
     public void validate() {
         if (location() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property location in model DelimitedTextDatasetTypeProperties"));
@@ -311,6 +314,4 @@ public final class DelimitedTextDatasetTypeProperties {
             location().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DelimitedTextDatasetTypeProperties.class);
 }

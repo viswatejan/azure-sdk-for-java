@@ -15,8 +15,6 @@ import com.azure.resourcemanager.resources.fluentcore.arm.Manager;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.resourcemanager.resources.fluentcore.utils.HttpPipelineProvider;
 
-import java.util.Objects;
-
 /** Entry point to Azure DNS zone management. */
 public final class DnsZoneManager extends Manager<DnsManagementClient> {
     // Collections
@@ -39,8 +37,6 @@ public final class DnsZoneManager extends Manager<DnsManagementClient> {
      * @return the DnsZoneManager
      */
     public static DnsZoneManager authenticate(TokenCredential credential, AzureProfile profile) {
-        Objects.requireNonNull(credential, "'credential' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
         return authenticate(HttpPipelineProvider.buildHttpPipeline(credential, profile), profile);
     }
 
@@ -51,9 +47,7 @@ public final class DnsZoneManager extends Manager<DnsManagementClient> {
      * @param profile the profile to use
      * @return the DnsZoneManager
      */
-    public static DnsZoneManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
-        Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
+    private static DnsZoneManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         return new DnsZoneManager(httpPipeline, profile);
     }
 

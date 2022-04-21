@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.storagecache.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -12,6 +14,8 @@ import java.util.Map;
 /** Cache identity properties. */
 @Fluent
 public class CacheIdentity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CacheIdentity.class);
+
     /*
      * The principal ID for the system-assigned identity of the cache.
      */

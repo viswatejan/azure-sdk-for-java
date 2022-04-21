@@ -8,11 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.management.exception.ManagementError;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ExtensionPropertiesAksAssignedIdentity;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ExtensionStatus;
 import com.azure.resourcemanager.kubernetesconfiguration.models.Identity;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ProvisioningState;
 import com.azure.resourcemanager.kubernetesconfiguration.models.Scope;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,8 @@ import java.util.Map;
 /** The Extension object. */
 @Fluent
 public final class ExtensionInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ExtensionInner.class);
+
     /*
      * Properties of an Extension resource
      */
@@ -154,7 +158,7 @@ public final class ExtensionInner extends ProxyResource {
     }
 
     /**
-     * Get the version property: User-specified version of the extension for this extension to 'pin'. To use 'version',
+     * Get the version property: Version of the extension for this extension, if it is 'pinned' to a specific version.
      * autoUpgradeMinorVersion must be 'false'.
      *
      * @return the version value.
@@ -164,7 +168,7 @@ public final class ExtensionInner extends ProxyResource {
     }
 
     /**
-     * Set the version property: User-specified version of the extension for this extension to 'pin'. To use 'version',
+     * Set the version property: Version of the extension for this extension, if it is 'pinned' to a specific version.
      * autoUpgradeMinorVersion must be 'false'.
      *
      * @param version the version value to set.
@@ -252,16 +256,7 @@ public final class ExtensionInner extends ProxyResource {
     }
 
     /**
-     * Get the installedVersion property: Installed version of the extension.
-     *
-     * @return the installedVersion value.
-     */
-    public String installedVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().installedVersion();
-    }
-
-    /**
-     * Get the provisioningState property: Status of installation of this extension.
+     * Get the provisioningState property: The provisioning state of the extension resource.
      *
      * @return the provisioningState value.
      */
@@ -293,12 +288,26 @@ public final class ExtensionInner extends ProxyResource {
     }
 
     /**
-     * Get the errorInfo property: Error information from the Agent - e.g. errors during installation.
+     * Get the errorInfo property: The error detail.
      *
      * @return the errorInfo value.
      */
     public ManagementError errorInfo() {
         return this.innerProperties() == null ? null : this.innerProperties().errorInfo();
+    }
+
+    /**
+     * Set the errorInfo property: The error detail.
+     *
+     * @param errorInfo the errorInfo value to set.
+     * @return the ExtensionInner object itself.
+     */
+    public ExtensionInner withErrorInfo(ManagementError errorInfo) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ExtensionProperties();
+        }
+        this.innerProperties().withErrorInfo(errorInfo);
+        return this;
     }
 
     /**

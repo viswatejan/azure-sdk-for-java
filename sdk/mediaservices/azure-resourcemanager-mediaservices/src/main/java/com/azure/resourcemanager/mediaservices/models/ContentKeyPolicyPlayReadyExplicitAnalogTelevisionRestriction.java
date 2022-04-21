@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -13,6 +15,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public final class ContentKeyPolicyPlayReadyExplicitAnalogTelevisionRestriction {
+    @JsonIgnore
+    private final ClientLogger logger =
+        new ClientLogger(ContentKeyPolicyPlayReadyExplicitAnalogTelevisionRestriction.class);
+
     /*
      * Indicates whether this restriction is enforced on a Best Effort basis.
      */

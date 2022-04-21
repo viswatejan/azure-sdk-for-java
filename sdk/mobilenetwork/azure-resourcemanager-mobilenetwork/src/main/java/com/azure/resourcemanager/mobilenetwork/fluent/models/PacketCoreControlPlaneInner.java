@@ -13,12 +13,15 @@ import com.azure.resourcemanager.mobilenetwork.models.CustomLocationResourceId;
 import com.azure.resourcemanager.mobilenetwork.models.InterfaceProperties;
 import com.azure.resourcemanager.mobilenetwork.models.MobileNetworkResourceId;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** Packet core control plane resource. */
 @Fluent
 public final class PacketCoreControlPlaneInner extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PacketCoreControlPlaneInner.class);
+
     /*
      * Packet core control plane Properties.
      */
@@ -26,11 +29,10 @@ public final class PacketCoreControlPlaneInner extends Resource {
     private PacketCoreControlPlanePropertiesFormat innerProperties = new PacketCoreControlPlanePropertiesFormat();
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Metadata pertaining to creation and last modification of the resource.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    private SystemData innerSystemData;
 
     /**
      * Get the innerProperties property: Packet core control plane Properties.
@@ -41,14 +43,14 @@ public final class PacketCoreControlPlaneInner extends Resource {
         return this.innerProperties;
     }
 
-    /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
+//    /**
+//     * Get the innerSystemData property: Metadata pertaining to creation and last modification of the resource.
+//     *
+//     * @return the innerSystemData value.
+//     */
+//    private SystemData innerSystemData() {
+//        return this.innerSystemData;
+//    }
 
     /** {@inheritDoc} */
     @Override
@@ -198,7 +200,7 @@ public final class PacketCoreControlPlaneInner extends Resource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model PacketCoreControlPlaneInner"));
@@ -206,6 +208,4 @@ public final class PacketCoreControlPlaneInner extends Resource {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PacketCoreControlPlaneInner.class);
 }

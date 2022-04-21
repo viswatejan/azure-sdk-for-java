@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.storage.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.storage.models.AzureEntityResource;
 import com.azure.resourcemanager.storage.models.EnabledProtocols;
 import com.azure.resourcemanager.storage.models.LeaseDuration;
@@ -13,6 +14,7 @@ import com.azure.resourcemanager.storage.models.LeaseStatus;
 import com.azure.resourcemanager.storage.models.RootSquashType;
 import com.azure.resourcemanager.storage.models.ShareAccessTier;
 import com.azure.resourcemanager.storage.models.SignedIdentifier;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -21,6 +23,8 @@ import java.util.Map;
 /** The file share properties be listed out. */
 @Fluent
 public final class FileShareItemInner extends AzureEntityResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FileShareItemInner.class);
+
     /*
      * The file share properties be listed out.
      */

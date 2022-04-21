@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -12,6 +14,8 @@ import java.util.Map;
 /** Pipeline that needs to be triggered with the given parameters. */
 @Fluent
 public final class TriggerPipelineReference {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TriggerPipelineReference.class);
+
     /*
      * Pipeline reference.
      */

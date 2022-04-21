@@ -5,17 +5,22 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** Specifies a RSA key for token validation. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata.type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata\\.type")
 @JsonTypeName("#Microsoft.Media.ContentKeyPolicyRsaTokenKey")
+@JsonFlatten
 @Fluent
-public final class ContentKeyPolicyRsaTokenKey extends ContentKeyPolicyRestrictionTokenKey {
+public class ContentKeyPolicyRsaTokenKey extends ContentKeyPolicyRestrictionTokenKey {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContentKeyPolicyRsaTokenKey.class);
+
     /*
      * The RSA Parameter exponent
      */
@@ -77,18 +82,16 @@ public final class ContentKeyPolicyRsaTokenKey extends ContentKeyPolicyRestricti
     public void validate() {
         super.validate();
         if (exponent() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property exponent in model ContentKeyPolicyRsaTokenKey"));
         }
         if (modulus() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property modulus in model ContentKeyPolicyRsaTokenKey"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ContentKeyPolicyRsaTokenKey.class);
 }

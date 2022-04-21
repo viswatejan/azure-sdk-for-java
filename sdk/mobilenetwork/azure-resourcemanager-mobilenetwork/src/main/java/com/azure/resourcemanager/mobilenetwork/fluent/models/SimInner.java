@@ -8,11 +8,12 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.mobilenetwork.models.ConfigurationState;
 import com.azure.resourcemanager.mobilenetwork.models.MobileNetworkResourceId;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.azure.resourcemanager.mobilenetwork.models.SimPolicyResourceId;
-import com.azure.resourcemanager.mobilenetwork.models.SimState;
 import com.azure.resourcemanager.mobilenetwork.models.SimStaticIpProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,8 @@ import java.util.Map;
 /** Sim resource. */
 @Fluent
 public final class SimInner extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SimInner.class);
+
     /*
      * Sim Properties.
      */
@@ -27,11 +30,10 @@ public final class SimInner extends Resource {
     private SimPropertiesFormat innerProperties = new SimPropertiesFormat();
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Metadata pertaining to creation and last modification of the resource.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    private SystemData innerSystemData;
 
     /**
      * Get the innerProperties property: Sim Properties.
@@ -42,14 +44,14 @@ public final class SimInner extends Resource {
         return this.innerProperties;
     }
 
-    /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
+//    /**
+//     * Get the innerSystemData property: Metadata pertaining to creation and last modification of the resource.
+//     *
+//     * @return the innerSystemData value.
+//     */
+//    private SystemData innerSystemData() {
+//        return this.innerSystemData;
+//    }
 
     /** {@inheritDoc} */
     @Override
@@ -75,12 +77,12 @@ public final class SimInner extends Resource {
     }
 
     /**
-     * Get the simState property: The state of the sim resource.
+     * Get the configurationState property: The configuration state of the sim resource - complete or incomplete.
      *
-     * @return the simState value.
+     * @return the configurationState value.
      */
-    public SimState simState() {
-        return this.innerProperties() == null ? null : this.innerProperties().simState();
+    public ConfigurationState configurationState() {
+        return this.innerProperties() == null ? null : this.innerProperties().configurationState();
     }
 
     /**
@@ -282,13 +284,11 @@ public final class SimInner extends Resource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property innerProperties in model SimInner"));
         } else {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SimInner.class);
 }

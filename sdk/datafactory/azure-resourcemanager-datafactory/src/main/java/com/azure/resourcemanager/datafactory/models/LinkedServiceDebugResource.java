@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Linked service debug resource. */
 @Fluent
 public final class LinkedServiceDebugResource extends SubResourceDebugResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LinkedServiceDebugResource.class);
+
     /*
      * Properties of linked service.
      */
@@ -53,7 +56,7 @@ public final class LinkedServiceDebugResource extends SubResourceDebugResource {
     public void validate() {
         super.validate();
         if (properties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property properties in model LinkedServiceDebugResource"));
@@ -61,6 +64,4 @@ public final class LinkedServiceDebugResource extends SubResourceDebugResource {
             properties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LinkedServiceDebugResource.class);
 }

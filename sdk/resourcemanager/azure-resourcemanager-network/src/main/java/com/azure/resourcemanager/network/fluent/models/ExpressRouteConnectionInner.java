@@ -10,11 +10,14 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.models.ExpressRouteCircuitPeeringId;
 import com.azure.resourcemanager.network.models.ProvisioningState;
 import com.azure.resourcemanager.network.models.RoutingConfiguration;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** ExpressRouteConnection resource. */
 @Fluent
 public final class ExpressRouteConnectionInner extends SubResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ExpressRouteConnectionInner.class);
+
     /*
      * Properties of the express route connection.
      */
@@ -223,12 +226,10 @@ public final class ExpressRouteConnectionInner extends SubResource {
             innerProperties().validate();
         }
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property name in model ExpressRouteConnectionInner"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ExpressRouteConnectionInner.class);
 }

@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.cognitiveservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of Cognitive Services account deployment model. */
 @Fluent
-public class DeploymentModel {
+public final class DeploymentModel {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DeploymentModel.class);
+
     /*
      * Deployment model format.
      */

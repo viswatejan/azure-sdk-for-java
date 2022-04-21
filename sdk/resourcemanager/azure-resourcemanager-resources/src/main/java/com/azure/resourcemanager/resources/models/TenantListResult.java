@@ -7,12 +7,15 @@ package com.azure.resourcemanager.resources.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resources.fluent.models.TenantIdDescriptionInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Tenant Ids information. */
 @Fluent
 public final class TenantListResult {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TenantListResult.class);
+
     /*
      * An array of tenants.
      */
@@ -75,11 +78,9 @@ public final class TenantListResult {
             value().forEach(e -> e.validate());
         }
         if (nextLink() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property nextLink in model TenantListResult"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TenantListResult.class);
 }

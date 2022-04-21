@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,6 +16,8 @@ import java.util.Map;
 /** followupFlag. */
 @Fluent
 public final class MicrosoftGraphFollowupFlag {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphFollowupFlag.class);
+
     /*
      * dateTimeTimeZone
      */
@@ -28,7 +31,7 @@ public final class MicrosoftGraphFollowupFlag {
     private MicrosoftGraphDateTimeZone dueDateTime;
 
     /*
-     * followupFlagStatus
+     * The flagStatus property.
      */
     @JsonProperty(value = "flagStatus")
     private MicrosoftGraphFollowupFlagStatus flagStatus;
@@ -85,7 +88,7 @@ public final class MicrosoftGraphFollowupFlag {
     }
 
     /**
-     * Get the flagStatus property: followupFlagStatus.
+     * Get the flagStatus property: The flagStatus property.
      *
      * @return the flagStatus value.
      */
@@ -94,7 +97,7 @@ public final class MicrosoftGraphFollowupFlag {
     }
 
     /**
-     * Set the flagStatus property: followupFlagStatus.
+     * Set the flagStatus property: The flagStatus property.
      *
      * @param flagStatus the flagStatus value to set.
      * @return the MicrosoftGraphFollowupFlag object itself.

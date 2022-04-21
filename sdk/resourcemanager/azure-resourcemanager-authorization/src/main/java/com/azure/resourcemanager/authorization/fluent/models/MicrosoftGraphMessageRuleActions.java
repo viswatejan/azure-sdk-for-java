@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** messageRuleActions. */
 @Fluent
 public final class MicrosoftGraphMessageRuleActions {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphMessageRuleActions.class);
+
     /*
      * A list of categories to be assigned to a message.
      */
@@ -55,7 +58,7 @@ public final class MicrosoftGraphMessageRuleActions {
     private Boolean markAsRead;
 
     /*
-     * importance
+     * The markImportance property.
      */
     @JsonProperty(value = "markImportance")
     private MicrosoftGraphImportance markImportance;
@@ -214,7 +217,7 @@ public final class MicrosoftGraphMessageRuleActions {
     }
 
     /**
-     * Get the markImportance property: importance.
+     * Get the markImportance property: The markImportance property.
      *
      * @return the markImportance value.
      */
@@ -223,7 +226,7 @@ public final class MicrosoftGraphMessageRuleActions {
     }
 
     /**
-     * Set the markImportance property: importance.
+     * Set the markImportance property: The markImportance property.
      *
      * @param markImportance the markImportance value to set.
      * @return the MicrosoftGraphMessageRuleActions object itself.

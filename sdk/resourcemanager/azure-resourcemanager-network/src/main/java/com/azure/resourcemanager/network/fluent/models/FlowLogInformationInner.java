@@ -9,11 +9,14 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.models.FlowLogFormatParameters;
 import com.azure.resourcemanager.network.models.RetentionPolicyParameters;
 import com.azure.resourcemanager.network.models.TrafficAnalyticsProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Information on the configuration of flow log and traffic analytics (optional) . */
 @Fluent
 public final class FlowLogInformationInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FlowLogInformationInner.class);
+
     /*
      * The ID of the resource to configure for flow log and traffic analytics
      * (optional) .
@@ -184,13 +187,13 @@ public final class FlowLogInformationInner {
      */
     public void validate() {
         if (targetResourceId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property targetResourceId in model FlowLogInformationInner"));
         }
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model FlowLogInformationInner"));
@@ -201,6 +204,4 @@ public final class FlowLogInformationInner {
             flowAnalyticsConfiguration().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(FlowLogInformationInner.class);
 }

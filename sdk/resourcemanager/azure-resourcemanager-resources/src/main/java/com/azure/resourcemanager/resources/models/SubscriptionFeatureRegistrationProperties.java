@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.resources.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -13,6 +15,8 @@ import java.util.Map;
 /** The SubscriptionFeatureRegistrationProperties model. */
 @Fluent
 public final class SubscriptionFeatureRegistrationProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SubscriptionFeatureRegistrationProperties.class);
+
     /*
      * The tenantId.
      */

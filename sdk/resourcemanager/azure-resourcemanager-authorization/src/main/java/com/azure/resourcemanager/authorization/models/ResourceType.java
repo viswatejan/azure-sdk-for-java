@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.authorization.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Resource Type. */
 @Fluent
 public final class ResourceType {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceType.class);
+
     /*
      * The resource type name.
      */

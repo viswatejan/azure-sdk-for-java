@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.resources.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resources.models.FeatureProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Previewed feature information. */
 @Fluent
 public final class FeatureResultInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FeatureResultInner.class);
+
     /*
      * The name of the feature.
      */

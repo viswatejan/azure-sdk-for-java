@@ -18,7 +18,7 @@ public interface StreamingEndpoints {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return streamingEndpointListResult as paginated response with {@link PagedIterable}.
+     * @return the streaming endpoint list result.
      */
     PagedIterable<StreamingEndpoint> list(String resourceGroupName, String accountName);
 
@@ -31,7 +31,7 @@ public interface StreamingEndpoints {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return streamingEndpointListResult as paginated response with {@link PagedIterable}.
+     * @return the streaming endpoint list result.
      */
     PagedIterable<StreamingEndpoint> list(String resourceGroupName, String accountName, Context context);
 
@@ -58,7 +58,7 @@ public interface StreamingEndpoints {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a streaming endpoint along with {@link Response}.
+     * @return a streaming endpoint.
      */
     Response<StreamingEndpoint> getWithResponse(
         String resourceGroupName, String accountName, String streamingEndpointName, Context context);
@@ -87,34 +87,6 @@ public interface StreamingEndpoints {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void delete(String resourceGroupName, String accountName, String streamingEndpointName, Context context);
-
-    /**
-     * List streaming endpoint supported skus.
-     *
-     * @param resourceGroupName The name of the resource group within the Azure subscription.
-     * @param accountName The Media Services account name.
-     * @param streamingEndpointName The name of the streaming endpoint, maximum length is 24.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    StreamingEndpointSkuInfoListResult skus(String resourceGroupName, String accountName, String streamingEndpointName);
-
-    /**
-     * List streaming endpoint supported skus.
-     *
-     * @param resourceGroupName The name of the resource group within the Azure subscription.
-     * @param accountName The Media Services account name.
-     * @param streamingEndpointName The name of the streaming endpoint, maximum length is 24.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
-     */
-    Response<StreamingEndpointSkuInfoListResult> skusWithResponse(
-        String resourceGroupName, String accountName, String streamingEndpointName, Context context);
 
     /**
      * Starts an existing streaming endpoint.
@@ -209,7 +181,7 @@ public interface StreamingEndpoints {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a streaming endpoint along with {@link Response}.
+     * @return a streaming endpoint.
      */
     StreamingEndpoint getById(String id);
 
@@ -221,7 +193,7 @@ public interface StreamingEndpoints {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a streaming endpoint along with {@link Response}.
+     * @return a streaming endpoint.
      */
     Response<StreamingEndpoint> getByIdWithResponse(String id, Context context);
 

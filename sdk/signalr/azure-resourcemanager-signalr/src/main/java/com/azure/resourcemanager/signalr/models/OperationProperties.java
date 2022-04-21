@@ -5,19 +5,23 @@
 package com.azure.resourcemanager.signalr.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Extra Operation properties. */
 @Fluent
 public final class OperationProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationProperties.class);
+
     /*
-     * An object that describes a specification.
+     * The service specifications.
      */
     @JsonProperty(value = "serviceSpecification")
     private ServiceSpecification serviceSpecification;
 
     /**
-     * Get the serviceSpecification property: An object that describes a specification.
+     * Get the serviceSpecification property: The service specifications.
      *
      * @return the serviceSpecification value.
      */
@@ -26,7 +30,7 @@ public final class OperationProperties {
     }
 
     /**
-     * Set the serviceSpecification property: An object that describes a specification.
+     * Set the serviceSpecification property: The service specifications.
      *
      * @param serviceSpecification the serviceSpecification value to set.
      * @return the OperationProperties object itself.

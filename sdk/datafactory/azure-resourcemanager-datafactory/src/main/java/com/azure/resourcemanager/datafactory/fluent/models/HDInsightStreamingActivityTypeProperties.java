@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.HDInsightActivityDebugInfoOption;
 import com.azure.resourcemanager.datafactory.models.LinkedServiceReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** HDInsight streaming activity properties. */
 @Fluent
 public final class HDInsightStreamingActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(HDInsightStreamingActivityTypeProperties.class);
+
     /*
      * Storage linked service references.
      */
@@ -343,31 +346,31 @@ public final class HDInsightStreamingActivityTypeProperties {
             storageLinkedServices().forEach(e -> e.validate());
         }
         if (mapper() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property mapper in model HDInsightStreamingActivityTypeProperties"));
         }
         if (reducer() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property reducer in model HDInsightStreamingActivityTypeProperties"));
         }
         if (input() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property input in model HDInsightStreamingActivityTypeProperties"));
         }
         if (output() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property output in model HDInsightStreamingActivityTypeProperties"));
         }
         if (filePaths() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property filePaths in model HDInsightStreamingActivityTypeProperties"));
@@ -376,6 +379,4 @@ public final class HDInsightStreamingActivityTypeProperties {
             fileLinkedService().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(HDInsightStreamingActivityTypeProperties.class);
 }

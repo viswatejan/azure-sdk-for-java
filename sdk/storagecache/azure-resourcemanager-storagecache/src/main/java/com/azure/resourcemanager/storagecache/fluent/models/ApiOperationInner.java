@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.storagecache.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.storagecache.models.ApiOperationDisplay;
 import com.azure.resourcemanager.storagecache.models.ApiOperationPropertiesServiceSpecification;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -15,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public final class ApiOperationInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiOperationInner.class);
+
     /*
      * The object that represents the operation.
      */

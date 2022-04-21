@@ -5,27 +5,40 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.models.AutomationRuleInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The AutomationRulesList model. */
+/** List all the automation rules. */
 @Fluent
 public final class AutomationRulesList {
-    /*
-     * The value property.
-     */
-    @JsonProperty(value = "value")
-    private List<AutomationRuleInner> value;
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AutomationRulesList.class);
 
     /*
-     * The nextLink property.
+     * URL to fetch the next set of automation rules.
      */
-    @JsonProperty(value = "nextLink")
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /*
+     * Array of automation rules.
+     */
+    @JsonProperty(value = "value", required = true)
+    private List<AutomationRuleInner> value;
+
     /**
-     * Get the value property: The value property.
+     * Get the nextLink property: URL to fetch the next set of automation rules.
+     *
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
+     * Get the value property: Array of automation rules.
      *
      * @return the value value.
      */
@@ -34,7 +47,7 @@ public final class AutomationRulesList {
     }
 
     /**
-     * Set the value property: The value property.
+     * Set the value property: Array of automation rules.
      *
      * @param value the value value to set.
      * @return the AutomationRulesList object itself.
@@ -45,32 +58,16 @@ public final class AutomationRulesList {
     }
 
     /**
-     * Get the nextLink property: The nextLink property.
-     *
-     * @return the nextLink value.
-     */
-    public String nextLink() {
-        return this.nextLink;
-    }
-
-    /**
-     * Set the nextLink property: The nextLink property.
-     *
-     * @param nextLink the nextLink value to set.
-     * @return the AutomationRulesList object itself.
-     */
-    public AutomationRulesList withNextLink(String nextLink) {
-        this.nextLink = nextLink;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw logger
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property value in model AutomationRulesList"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }

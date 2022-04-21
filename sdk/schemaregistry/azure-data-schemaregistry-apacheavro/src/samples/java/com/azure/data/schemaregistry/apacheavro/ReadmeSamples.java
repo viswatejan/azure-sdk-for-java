@@ -4,7 +4,7 @@
 package com.azure.data.schemaregistry.apacheavro;
 
 import com.azure.core.credential.TokenCredential;
-import com.azure.core.models.MessageContent;
+import com.azure.core.experimental.models.MessageWithMetadata;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.serializer.TypeReference;
 import com.azure.data.schemaregistry.SchemaRegistryAsyncClient;
@@ -56,8 +56,8 @@ public class ReadmeSamples {
         playingCard.setIsFaceCard(false);
         playingCard.setCardValue(5);
 
-        MessageContent message = serializer.serializeMessageData(playingCard,
-            TypeReference.createInstance(MessageContent.class));
+        MessageWithMetadata message = serializer.serializeMessageData(playingCard,
+            TypeReference.createInstance(MessageWithMetadata.class));
         // END: readme-sample-serializeSample
     }
 
@@ -67,7 +67,7 @@ public class ReadmeSamples {
     public void deserializeSample() {
         // BEGIN: readme-sample-deserializeSample
         SchemaRegistryApacheAvroSerializer serializer = createAvroSchemaRegistrySerializer();
-        MessageContent message = getSchemaRegistryAvroMessage();
+        MessageWithMetadata message = getSchemaRegistryAvroMessage();
         PlayingCard playingCard = serializer.deserializeMessageData(message, TypeReference.createInstance(PlayingCard.class));
         // END: readme-sample-deserializeSample
     }
@@ -76,8 +76,8 @@ public class ReadmeSamples {
      * Non-functional method not visible on README sample
      * @return a new message.
      */
-    private MessageContent getSchemaRegistryAvroMessage() {
-        return new MessageContent()
+    private MessageWithMetadata getSchemaRegistryAvroMessage() {
+        return new MessageWithMetadata()
             .setBodyAsBinaryData(BinaryData.fromBytes(new byte[1]))
             .setContentType("avro/binary+schema_id");
     }

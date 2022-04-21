@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The AccessPolicy model. */
 @Fluent
 public final class AccessPolicy {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AccessPolicy.class);
+
     /*
      * Start time of the access policy
      */

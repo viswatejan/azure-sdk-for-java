@@ -22,7 +22,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the usage for a subscription as paginated response with {@link PagedFlux}.
+     * @return the usage for a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<UsageInner> listUsageAsync(String location);
@@ -34,7 +34,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the usage for a subscription as paginated response with {@link PagedIterable}.
+     * @return the usage for a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<UsageInner> listUsage(String location);
@@ -47,7 +47,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the usage for a subscription as paginated response with {@link PagedIterable}.
+     * @return the usage for a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<UsageInner> listUsage(String location, Context context);
@@ -59,8 +59,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cached images on specific OS type for a subscription in a region as paginated response with
-     *     {@link PagedFlux}.
+     * @return the list of cached images on specific OS type for a subscription in a region.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<CachedImages> listCachedImagesAsync(String location);
@@ -72,8 +71,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cached images on specific OS type for a subscription in a region as paginated response with
-     *     {@link PagedIterable}.
+     * @return the list of cached images on specific OS type for a subscription in a region.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CachedImages> listCachedImages(String location);
@@ -86,8 +84,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cached images on specific OS type for a subscription in a region as paginated response with
-     *     {@link PagedIterable}.
+     * @return the list of cached images on specific OS type for a subscription in a region.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CachedImages> listCachedImages(String location, Context context);
@@ -99,7 +96,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of CPU/memory/GPU capabilities of a region as paginated response with {@link PagedFlux}.
+     * @return the list of CPU/memory/GPU capabilities of a region.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<Capabilities> listCapabilitiesAsync(String location);
@@ -111,7 +108,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of CPU/memory/GPU capabilities of a region as paginated response with {@link PagedIterable}.
+     * @return the list of CPU/memory/GPU capabilities of a region.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<Capabilities> listCapabilities(String location);
@@ -124,7 +121,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of CPU/memory/GPU capabilities of a region as paginated response with {@link PagedIterable}.
+     * @return the list of CPU/memory/GPU capabilities of a region.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<Capabilities> listCapabilities(String location, Context context);

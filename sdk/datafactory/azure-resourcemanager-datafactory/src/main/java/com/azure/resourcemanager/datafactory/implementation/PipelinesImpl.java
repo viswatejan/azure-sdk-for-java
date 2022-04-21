@@ -15,10 +15,11 @@ import com.azure.resourcemanager.datafactory.fluent.models.PipelineResourceInner
 import com.azure.resourcemanager.datafactory.models.CreateRunResponse;
 import com.azure.resourcemanager.datafactory.models.PipelineResource;
 import com.azure.resourcemanager.datafactory.models.Pipelines;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Map;
 
 public final class PipelinesImpl implements Pipelines {
-    private static final ClientLogger LOGGER = new ClientLogger(PipelinesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PipelinesImpl.class);
 
     private final PipelinesClient innerClient;
 
@@ -121,7 +122,7 @@ public final class PipelinesImpl implements Pipelines {
     public PipelineResource getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -129,14 +130,14 @@ public final class PipelinesImpl implements Pipelines {
         }
         String factoryName = Utils.getValueFromIdByName(id, "factories");
         if (factoryName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'factories'.", id)));
         }
         String pipelineName = Utils.getValueFromIdByName(id, "pipelines");
         if (pipelineName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'pipelines'.", id)));
@@ -150,7 +151,7 @@ public final class PipelinesImpl implements Pipelines {
     public Response<PipelineResource> getByIdWithResponse(String id, String ifNoneMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -158,14 +159,14 @@ public final class PipelinesImpl implements Pipelines {
         }
         String factoryName = Utils.getValueFromIdByName(id, "factories");
         if (factoryName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'factories'.", id)));
         }
         String pipelineName = Utils.getValueFromIdByName(id, "pipelines");
         if (pipelineName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'pipelines'.", id)));
@@ -176,7 +177,7 @@ public final class PipelinesImpl implements Pipelines {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -184,14 +185,14 @@ public final class PipelinesImpl implements Pipelines {
         }
         String factoryName = Utils.getValueFromIdByName(id, "factories");
         if (factoryName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'factories'.", id)));
         }
         String pipelineName = Utils.getValueFromIdByName(id, "pipelines");
         if (pipelineName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'pipelines'.", id)));
@@ -202,7 +203,7 @@ public final class PipelinesImpl implements Pipelines {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -210,14 +211,14 @@ public final class PipelinesImpl implements Pipelines {
         }
         String factoryName = Utils.getValueFromIdByName(id, "factories");
         if (factoryName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'factories'.", id)));
         }
         String pipelineName = Utils.getValueFromIdByName(id, "pipelines");
         if (pipelineName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'pipelines'.", id)));

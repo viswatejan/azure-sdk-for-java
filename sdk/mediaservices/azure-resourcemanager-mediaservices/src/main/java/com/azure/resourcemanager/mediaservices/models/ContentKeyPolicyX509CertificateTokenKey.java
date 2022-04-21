@@ -5,17 +5,22 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** Specifies a certificate for token validation. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata.type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata\\.type")
 @JsonTypeName("#Microsoft.Media.ContentKeyPolicyX509CertificateTokenKey")
+@JsonFlatten
 @Fluent
-public final class ContentKeyPolicyX509CertificateTokenKey extends ContentKeyPolicyRestrictionTokenKey {
+public class ContentKeyPolicyX509CertificateTokenKey extends ContentKeyPolicyRestrictionTokenKey {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContentKeyPolicyX509CertificateTokenKey.class);
+
     /*
      * The raw data field of a certificate in PKCS 12 format (X509Certificate2
      * in .NET)
@@ -52,12 +57,10 @@ public final class ContentKeyPolicyX509CertificateTokenKey extends ContentKeyPol
     public void validate() {
         super.validate();
         if (rawBody() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property rawBody in model ContentKeyPolicyX509CertificateTokenKey"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ContentKeyPolicyX509CertificateTokenKey.class);
 }

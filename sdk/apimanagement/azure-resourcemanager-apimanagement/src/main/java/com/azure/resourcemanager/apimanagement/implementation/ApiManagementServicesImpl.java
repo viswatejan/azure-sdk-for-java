@@ -22,9 +22,10 @@ import com.azure.resourcemanager.apimanagement.models.ApiManagementServiceGetSso
 import com.azure.resourcemanager.apimanagement.models.ApiManagementServiceNameAvailabilityResult;
 import com.azure.resourcemanager.apimanagement.models.ApiManagementServiceResource;
 import com.azure.resourcemanager.apimanagement.models.ApiManagementServices;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ApiManagementServicesImpl implements ApiManagementServices {
-    private static final ClientLogger LOGGER = new ClientLogger(ApiManagementServicesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiManagementServicesImpl.class);
 
     private final ApiManagementServicesClient innerClient;
 
@@ -267,7 +268,7 @@ public final class ApiManagementServicesImpl implements ApiManagementServices {
     public ApiManagementServiceResource getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -275,7 +276,7 @@ public final class ApiManagementServicesImpl implements ApiManagementServices {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
@@ -286,7 +287,7 @@ public final class ApiManagementServicesImpl implements ApiManagementServices {
     public Response<ApiManagementServiceResource> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -294,7 +295,7 @@ public final class ApiManagementServicesImpl implements ApiManagementServices {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
@@ -305,7 +306,7 @@ public final class ApiManagementServicesImpl implements ApiManagementServices {
     public ApiManagementServiceResource deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -313,7 +314,7 @@ public final class ApiManagementServicesImpl implements ApiManagementServices {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
@@ -324,7 +325,7 @@ public final class ApiManagementServicesImpl implements ApiManagementServices {
     public ApiManagementServiceResource deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -332,7 +333,7 @@ public final class ApiManagementServicesImpl implements ApiManagementServices {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));

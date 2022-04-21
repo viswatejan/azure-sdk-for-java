@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.kubernetesconfiguration.models.ExtensionsClusterResourceName;
+import com.azure.resourcemanager.kubernetesconfiguration.models.ExtensionsClusterRp;
 import com.azure.resourcemanager.kubernetesconfiguration.models.PatchExtension;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +14,7 @@ import java.util.Map;
 /** Samples for Extensions Update. */
 public final class ExtensionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/PatchExtension.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2021-09-01/examples/PatchExtension.json
      */
     /**
      * Sample code: Update Extension.
@@ -25,8 +27,8 @@ public final class ExtensionsUpdateSamples {
             .extensions()
             .update(
                 "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
+                ExtensionsClusterRp.MICROSOFT_KUBERNETES,
+                ExtensionsClusterResourceName.CONNECTED_CLUSTERS,
                 "clusterName1",
                 "ClusterMonitor",
                 new PatchExtension()

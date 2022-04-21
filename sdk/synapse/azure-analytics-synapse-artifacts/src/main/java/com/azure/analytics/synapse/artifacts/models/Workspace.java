@@ -426,18 +426,4 @@ public class Workspace extends TrackedResource {
     public String getAdlaResourceId() {
         return this.adlaResourceId;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public Workspace setTags(Map<String, String> tags) {
-        super.setTags(tags);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Workspace setLocation(String location) {
-        super.setLocation(location);
-        return this;
-    }
 }

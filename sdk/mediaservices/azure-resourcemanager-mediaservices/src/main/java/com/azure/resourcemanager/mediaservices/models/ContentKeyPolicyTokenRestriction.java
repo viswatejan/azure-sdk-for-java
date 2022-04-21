@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -14,10 +16,13 @@ import java.util.List;
 /**
  * Represents a token restriction. Provided token must match these requirements for successful license or key delivery.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata.type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata\\.type")
 @JsonTypeName("#Microsoft.Media.ContentKeyPolicyTokenRestriction")
+@JsonFlatten
 @Fluent
-public final class ContentKeyPolicyTokenRestriction extends ContentKeyPolicyRestriction {
+public class ContentKeyPolicyTokenRestriction extends ContentKeyPolicyRestriction {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContentKeyPolicyTokenRestriction.class);
+
     /*
      * The token issuer.
      */
@@ -212,19 +217,19 @@ public final class ContentKeyPolicyTokenRestriction extends ContentKeyPolicyRest
     public void validate() {
         super.validate();
         if (issuer() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property issuer in model ContentKeyPolicyTokenRestriction"));
         }
         if (audience() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property audience in model ContentKeyPolicyTokenRestriction"));
         }
         if (primaryVerificationKey() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property primaryVerificationKey in model ContentKeyPolicyTokenRestriction"));
@@ -238,12 +243,10 @@ public final class ContentKeyPolicyTokenRestriction extends ContentKeyPolicyRest
             requiredClaims().forEach(e -> e.validate());
         }
         if (restrictionTokenType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property restrictionTokenType in model ContentKeyPolicyTokenRestriction"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ContentKeyPolicyTokenRestriction.class);
 }

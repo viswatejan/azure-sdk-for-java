@@ -13,8 +13,6 @@ import java.util.logging.Logger;
 
 /**
  * The Azure Key Vault variant of the TrustManagerFactory.
- *
- * @see TrustManagerFactorySpi
  */
 public final class KeyVaultTrustManagerFactory extends TrustManagerFactorySpi {
 
@@ -28,23 +26,12 @@ public final class KeyVaultTrustManagerFactory extends TrustManagerFactorySpi {
      */
     private final List<TrustManager> trustManagers = new ArrayList<>();
 
-    /**
-     * Engine init.
-     *
-     * @param keystore the keystore
-     */
     @Override
     protected void engineInit(KeyStore keystore) {
         LOGGER.entering("KeyVaultKeyManagerFactory", "engineInit", keystore);
         trustManagers.add(new KeyVaultTrustManager(keystore));
     }
 
-
-    /**
-     * Engine init.
-     *
-     * @param spec the spec
-     */
     @Override
     //TODO: enable create KeyVaultTrustManager with ManagerFactoryParameters
     protected void engineInit(ManagerFactoryParameters spec) {
@@ -52,11 +39,6 @@ public final class KeyVaultTrustManagerFactory extends TrustManagerFactorySpi {
         trustManagers.add(new KeyVaultTrustManager());
     }
 
-    /**
-     * Get trust managers.
-     *
-     * @return trustManagers the trustManagers
-     */
     @Override
     protected TrustManager[] engineGetTrustManagers() {
         return trustManagers.toArray(new TrustManager[0]);

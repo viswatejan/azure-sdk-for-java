@@ -37,6 +37,8 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the ResourceGraphClientImpl type. */
 @ServiceClient(builder = ResourceGraphClientBuilder.class)
 public final class ResourceGraphClientImpl implements ResourceGraphClient {
+    private final ClientLogger logger = new ClientLogger(ResourceGraphClientImpl.class);
+
     /** server parameter. */
     private final String endpoint;
 
@@ -47,18 +49,6 @@ public final class ResourceGraphClientImpl implements ResourceGraphClient {
      */
     public String getEndpoint() {
         return this.endpoint;
-    }
-
-    /** Api Version. */
-    private final String apiVersion;
-
-    /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    public String getApiVersion() {
-        return this.apiVersion;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -140,7 +130,6 @@ public final class ResourceGraphClientImpl implements ResourceGraphClient {
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-03-01";
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
     }
@@ -228,7 +217,7 @@ public final class ResourceGraphClientImpl implements ResourceGraphClient {
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        LOGGER.logThrowableAsWarning(ioe);
+                        logger.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -287,6 +276,4 @@ public final class ResourceGraphClientImpl implements ResourceGraphClient {
             return Mono.just(new String(responseBody, charset));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ResourceGraphClientImpl.class);
 }

@@ -10,11 +10,14 @@ import com.azure.resourcemanager.network.models.FlowLogFormatParameters;
 import com.azure.resourcemanager.network.models.ProvisioningState;
 import com.azure.resourcemanager.network.models.RetentionPolicyParameters;
 import com.azure.resourcemanager.network.models.TrafficAnalyticsProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters that define the configuration of flow log. */
 @Fluent
 public final class FlowLogPropertiesFormat {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FlowLogPropertiesFormat.class);
+
     /*
      * ID of network security group to which flow log will be applied.
      */
@@ -209,13 +212,13 @@ public final class FlowLogPropertiesFormat {
      */
     public void validate() {
         if (targetResourceId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property targetResourceId in model FlowLogPropertiesFormat"));
         }
         if (storageId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property storageId in model FlowLogPropertiesFormat"));
@@ -230,6 +233,4 @@ public final class FlowLogPropertiesFormat {
             flowAnalyticsConfiguration().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(FlowLogPropertiesFormat.class);
 }

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,8 @@ import java.util.Map;
 /** Databricks SparkJar activity properties. */
 @Fluent
 public final class DatabricksSparkJarActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DatabricksSparkJarActivityTypeProperties.class);
+
     /*
      * The full name of the class containing the main method to be executed.
      * This class must be contained in a JAR provided as a library. Type:
@@ -103,12 +106,10 @@ public final class DatabricksSparkJarActivityTypeProperties {
      */
     public void validate() {
         if (mainClassName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property mainClassName in model DatabricksSparkJarActivityTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DatabricksSparkJarActivityTypeProperties.class);
 }

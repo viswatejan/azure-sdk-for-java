@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.applicationinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -12,6 +14,8 @@ import java.util.Map;
 /** A container holding only the Tags for a resource, allowing the user to update the tags on a WebTest instance. */
 @Fluent
 public final class TagsResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TagsResource.class);
+
     /*
      * Resource tags
      */

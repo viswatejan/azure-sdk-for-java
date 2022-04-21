@@ -31,6 +31,8 @@ import java.util.Map;
 })
 @Fluent
 public class Activity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(Activity.class);
+
     /*
      * Activity name.
      */
@@ -176,7 +178,7 @@ public class Activity {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(new IllegalArgumentException("Missing required property name in model Activity"));
         }
         if (dependsOn() != null) {
@@ -186,6 +188,4 @@ public class Activity {
             userProperties().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(Activity.class);
 }

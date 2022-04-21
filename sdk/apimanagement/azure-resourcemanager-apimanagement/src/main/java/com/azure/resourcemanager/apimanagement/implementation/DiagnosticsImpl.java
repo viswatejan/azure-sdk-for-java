@@ -17,9 +17,10 @@ import com.azure.resourcemanager.apimanagement.models.DiagnosticsCreateOrUpdateR
 import com.azure.resourcemanager.apimanagement.models.DiagnosticsGetEntityTagResponse;
 import com.azure.resourcemanager.apimanagement.models.DiagnosticsGetResponse;
 import com.azure.resourcemanager.apimanagement.models.DiagnosticsUpdateResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class DiagnosticsImpl implements Diagnostics {
-    private static final ClientLogger LOGGER = new ClientLogger(DiagnosticsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DiagnosticsImpl.class);
 
     private final DiagnosticsClient innerClient;
 

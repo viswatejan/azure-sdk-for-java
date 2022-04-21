@@ -13,9 +13,10 @@ import com.azure.resourcemanager.securityinsights.fluent.OfficeConsentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.OfficeConsentInner;
 import com.azure.resourcemanager.securityinsights.models.OfficeConsent;
 import com.azure.resourcemanager.securityinsights.models.OfficeConsents;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class OfficeConsentsImpl implements OfficeConsents {
-    private static final ClientLogger LOGGER = new ClientLogger(OfficeConsentsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OfficeConsentsImpl.class);
 
     private final OfficeConsentsClient innerClient;
 

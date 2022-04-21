@@ -99,7 +99,7 @@ public interface ApiManagementServices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an API Management service resource description along with {@link Response}.
+     * @return an API Management service resource description.
      */
     Response<ApiManagementServiceResource> getByResourceGroupWithResponse(
         String resourceGroupName, String serviceName, Context context);
@@ -136,8 +136,7 @@ public interface ApiManagementServices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List API Management services operation as paginated response with {@link
-     *     PagedIterable}.
+     * @return the response of the List API Management services operation.
      */
     PagedIterable<ApiManagementServiceResource> listByResourceGroup(String resourceGroupName);
 
@@ -149,8 +148,7 @@ public interface ApiManagementServices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List API Management services operation as paginated response with {@link
-     *     PagedIterable}.
+     * @return the response of the List API Management services operation.
      */
     PagedIterable<ApiManagementServiceResource> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -159,8 +157,7 @@ public interface ApiManagementServices {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List API Management services operation as paginated response with {@link
-     *     PagedIterable}.
+     * @return the response of the List API Management services operation.
      */
     PagedIterable<ApiManagementServiceResource> list();
 
@@ -171,8 +168,7 @@ public interface ApiManagementServices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List API Management services operation as paginated response with {@link
-     *     PagedIterable}.
+     * @return the response of the List API Management services operation.
      */
     PagedIterable<ApiManagementServiceResource> list(Context context);
 
@@ -197,8 +193,7 @@ public interface ApiManagementServices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Single-Sign-On token for the API Management Service which is valid for 5 Minutes along with {@link
-     *     Response}.
+     * @return the Single-Sign-On token for the API Management Service which is valid for 5 Minutes.
      */
     Response<ApiManagementServiceGetSsoTokenResult> getSsoTokenWithResponse(
         String resourceGroupName, String serviceName, Context context);
@@ -223,7 +218,7 @@ public interface ApiManagementServices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of the CheckNameAvailability operation along with {@link Response}.
+     * @return response of the CheckNameAvailability operation.
      */
     Response<ApiManagementServiceNameAvailabilityResult> checkNameAvailabilityWithResponse(
         ApiManagementServiceCheckNameAvailabilityParameters parameters, Context context);
@@ -244,7 +239,7 @@ public interface ApiManagementServices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the custom domain ownership identifier for an API Management service along with {@link Response}.
+     * @return the custom domain ownership identifier for an API Management service.
      */
     Response<ApiManagementServiceGetDomainOwnershipIdentifierResult> getDomainOwnershipIdentifierWithResponse(
         Context context);
@@ -306,7 +301,7 @@ public interface ApiManagementServices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an API Management service resource description along with {@link Response}.
+     * @return an API Management service resource description.
      */
     ApiManagementServiceResource getById(String id);
 
@@ -318,7 +313,7 @@ public interface ApiManagementServices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an API Management service resource description along with {@link Response}.
+     * @return an API Management service resource description.
      */
     Response<ApiManagementServiceResource> getByIdWithResponse(String id, Context context);
 

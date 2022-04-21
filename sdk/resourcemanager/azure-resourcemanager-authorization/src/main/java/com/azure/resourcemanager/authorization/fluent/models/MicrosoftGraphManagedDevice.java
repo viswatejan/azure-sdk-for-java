@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,9 +15,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** managedDevice Devices that are managed or pre-enrolled through Intune. */
+/** Devices that are managed or pre-enrolled through Intune. */
 @Fluent
 public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphManagedDevice.class);
+
     /*
      * Code that allows the Activation Lock on a device to be bypassed.
      */
@@ -48,14 +51,13 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     private OffsetDateTime complianceGracePeriodExpirationDateTime;
 
     /*
-     * complianceState
+     * The complianceState property.
      */
     @JsonProperty(value = "complianceState")
     private MicrosoftGraphComplianceState complianceState;
 
     /*
-     * configurationManagerClientEnabledFeatures configuration Manager client
-     * enabled features
+     * configuration Manager client enabled features
      */
     @JsonProperty(value = "configurationManagerClientEnabledFeatures")
     private MicrosoftGraphConfigurationManagerClientEnabledFeatures configurationManagerClientEnabledFeatures;
@@ -73,7 +75,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     private String deviceCategoryDisplayName;
 
     /*
-     * deviceEnrollmentType
+     * The deviceEnrollmentType property.
      */
     @JsonProperty(value = "deviceEnrollmentType")
     private MicrosoftGraphDeviceEnrollmentType deviceEnrollmentType;
@@ -91,7 +93,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     private String deviceName;
 
     /*
-     * deviceRegistrationState
+     * The deviceRegistrationState property.
      */
     @JsonProperty(value = "deviceRegistrationState")
     private MicrosoftGraphDeviceRegistrationState deviceRegistrationState;
@@ -127,13 +129,13 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     private OffsetDateTime enrolledDateTime;
 
     /*
-     * deviceManagementExchangeAccessState
+     * The exchangeAccessState property.
      */
     @JsonProperty(value = "exchangeAccessState")
     private MicrosoftGraphDeviceManagementExchangeAccessState exchangeAccessState;
 
     /*
-     * deviceManagementExchangeAccessStateReason
+     * The exchangeAccessStateReason property.
      */
     @JsonProperty(value = "exchangeAccessStateReason")
     private MicrosoftGraphDeviceManagementExchangeAccessStateReason exchangeAccessStateReason;
@@ -189,13 +191,13 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     private String managedDeviceName;
 
     /*
-     * managedDeviceOwnerType
+     * The managedDeviceOwnerType property.
      */
     @JsonProperty(value = "managedDeviceOwnerType")
     private MicrosoftGraphManagedDeviceOwnerType managedDeviceOwnerType;
 
     /*
-     * managementAgentType
+     * The managementAgent property.
      */
     @JsonProperty(value = "managementAgent")
     private MicrosoftGraphManagementAgentType managementAgent;
@@ -231,7 +233,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     private String osVersion;
 
     /*
-     * managedDevicePartnerReportedHealthState
+     * The partnerReportedThreatState property.
      */
     @JsonProperty(value = "partnerReportedThreatState")
     private MicrosoftGraphManagedDevicePartnerReportedHealthState partnerReportedThreatState;
@@ -311,12 +313,12 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     private List<MicrosoftGraphDeviceConfigurationState> deviceConfigurationStates;
 
     /*
-     * deviceCategory Device categories provides a way to organize your
-     * devices. Using device categories, company administrators can define
-     * their own categories that make sense to their company. These categories
-     * can then be applied to a device in the Intune Azure console or selected
-     * by a user during device enrollment. You can filter reports and create
-     * dynamic Azure Active Directory device groups based on device categories.
+     * Device categories provides a way to organize your devices. Using device
+     * categories, company administrators can define their own categories that
+     * make sense to their company. These categories can then be applied to a
+     * device in the Intune Azure console or selected by a user during device
+     * enrollment. You can filter reports and create dynamic Azure Active
+     * Directory device groups based on device categories.
      */
     @JsonProperty(value = "deviceCategory")
     private MicrosoftGraphDeviceCategory deviceCategory;
@@ -430,7 +432,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the complianceState property: complianceState.
+     * Get the complianceState property: The complianceState property.
      *
      * @return the complianceState value.
      */
@@ -439,7 +441,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the complianceState property: complianceState.
+     * Set the complianceState property: The complianceState property.
      *
      * @param complianceState the complianceState value to set.
      * @return the MicrosoftGraphManagedDevice object itself.
@@ -450,8 +452,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the configurationManagerClientEnabledFeatures property: configurationManagerClientEnabledFeatures
-     * configuration Manager client enabled features.
+     * Get the configurationManagerClientEnabledFeatures property: configuration Manager client enabled features.
      *
      * @return the configurationManagerClientEnabledFeatures value.
      */
@@ -460,8 +461,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the configurationManagerClientEnabledFeatures property: configurationManagerClientEnabledFeatures
-     * configuration Manager client enabled features.
+     * Set the configurationManagerClientEnabledFeatures property: configuration Manager client enabled features.
      *
      * @param configurationManagerClientEnabledFeatures the configurationManagerClientEnabledFeatures value to set.
      * @return the MicrosoftGraphManagedDevice object itself.
@@ -514,7 +514,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the deviceEnrollmentType property: deviceEnrollmentType.
+     * Get the deviceEnrollmentType property: The deviceEnrollmentType property.
      *
      * @return the deviceEnrollmentType value.
      */
@@ -523,7 +523,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the deviceEnrollmentType property: deviceEnrollmentType.
+     * Set the deviceEnrollmentType property: The deviceEnrollmentType property.
      *
      * @param deviceEnrollmentType the deviceEnrollmentType value to set.
      * @return the MicrosoftGraphManagedDevice object itself.
@@ -576,7 +576,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the deviceRegistrationState property: deviceRegistrationState.
+     * Get the deviceRegistrationState property: The deviceRegistrationState property.
      *
      * @return the deviceRegistrationState value.
      */
@@ -585,7 +585,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the deviceRegistrationState property: deviceRegistrationState.
+     * Set the deviceRegistrationState property: The deviceRegistrationState property.
      *
      * @param deviceRegistrationState the deviceRegistrationState value to set.
      * @return the MicrosoftGraphManagedDevice object itself.
@@ -697,7 +697,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the exchangeAccessState property: deviceManagementExchangeAccessState.
+     * Get the exchangeAccessState property: The exchangeAccessState property.
      *
      * @return the exchangeAccessState value.
      */
@@ -706,7 +706,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the exchangeAccessState property: deviceManagementExchangeAccessState.
+     * Set the exchangeAccessState property: The exchangeAccessState property.
      *
      * @param exchangeAccessState the exchangeAccessState value to set.
      * @return the MicrosoftGraphManagedDevice object itself.
@@ -718,7 +718,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the exchangeAccessStateReason property: deviceManagementExchangeAccessStateReason.
+     * Get the exchangeAccessStateReason property: The exchangeAccessStateReason property.
      *
      * @return the exchangeAccessStateReason value.
      */
@@ -727,7 +727,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the exchangeAccessStateReason property: deviceManagementExchangeAccessStateReason.
+     * Set the exchangeAccessStateReason property: The exchangeAccessStateReason property.
      *
      * @param exchangeAccessStateReason the exchangeAccessStateReason value to set.
      * @return the MicrosoftGraphManagedDevice object itself.
@@ -904,7 +904,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the managedDeviceOwnerType property: managedDeviceOwnerType.
+     * Get the managedDeviceOwnerType property: The managedDeviceOwnerType property.
      *
      * @return the managedDeviceOwnerType value.
      */
@@ -913,7 +913,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the managedDeviceOwnerType property: managedDeviceOwnerType.
+     * Set the managedDeviceOwnerType property: The managedDeviceOwnerType property.
      *
      * @param managedDeviceOwnerType the managedDeviceOwnerType value to set.
      * @return the MicrosoftGraphManagedDevice object itself.
@@ -925,7 +925,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the managementAgent property: managementAgentType.
+     * Get the managementAgent property: The managementAgent property.
      *
      * @return the managementAgent value.
      */
@@ -934,7 +934,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the managementAgent property: managementAgentType.
+     * Set the managementAgent property: The managementAgent property.
      *
      * @param managementAgent the managementAgent value to set.
      * @return the MicrosoftGraphManagedDevice object itself.
@@ -1045,7 +1045,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the partnerReportedThreatState property: managedDevicePartnerReportedHealthState.
+     * Get the partnerReportedThreatState property: The partnerReportedThreatState property.
      *
      * @return the partnerReportedThreatState value.
      */
@@ -1054,7 +1054,7 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the partnerReportedThreatState property: managedDevicePartnerReportedHealthState.
+     * Set the partnerReportedThreatState property: The partnerReportedThreatState property.
      *
      * @param partnerReportedThreatState the partnerReportedThreatState value to set.
      * @return the MicrosoftGraphManagedDevice object itself.
@@ -1313,8 +1313,8 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Get the deviceCategory property: deviceCategory Device categories provides a way to organize your devices. Using
-     * device categories, company administrators can define their own categories that make sense to their company. These
+     * Get the deviceCategory property: Device categories provides a way to organize your devices. Using device
+     * categories, company administrators can define their own categories that make sense to their company. These
      * categories can then be applied to a device in the Intune Azure console or selected by a user during device
      * enrollment. You can filter reports and create dynamic Azure Active Directory device groups based on device
      * categories.
@@ -1326,8 +1326,8 @@ public final class MicrosoftGraphManagedDevice extends MicrosoftGraphEntity {
     }
 
     /**
-     * Set the deviceCategory property: deviceCategory Device categories provides a way to organize your devices. Using
-     * device categories, company administrators can define their own categories that make sense to their company. These
+     * Set the deviceCategory property: Device categories provides a way to organize your devices. Using device
+     * categories, company administrators can define their own categories that make sense to their company. These
      * categories can then be applied to a device in the Intune Azure console or selected by a user during device
      * enrollment. You can filter reports and create dynamic Azure Active Directory device groups based on device
      * categories.

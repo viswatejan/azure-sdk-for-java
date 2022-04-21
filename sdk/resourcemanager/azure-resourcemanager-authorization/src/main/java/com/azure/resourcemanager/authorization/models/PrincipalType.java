@@ -22,9 +22,6 @@ public final class PrincipalType extends ExpandableStringEnum<PrincipalType> {
     /** Static value ForeignGroup for PrincipalType. */
     public static final PrincipalType FOREIGN_GROUP = fromString("ForeignGroup");
 
-    /** Static value Device for PrincipalType. */
-    public static final PrincipalType DEVICE = fromString("Device");
-
     /**
      * Creates or finds a PrincipalType from its string representation.
      *

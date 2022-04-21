@@ -4,37 +4,44 @@
 
 package com.azure.resourcemanager.apimanagement.models;
 
-import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import java.util.Collection;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 /** Defines values for Protocol. */
-public final class Protocol extends ExpandableStringEnum<Protocol> {
-    /** Static value http for Protocol. */
-    public static final Protocol HTTP = fromString("http");
+public enum Protocol {
+    /** Enum value http. */
+    HTTP("http"),
 
-    /** Static value https for Protocol. */
-    public static final Protocol HTTPS = fromString("https");
+    /** Enum value https. */
+    HTTPS("https");
 
-    /** Static value ws for Protocol. */
-    public static final Protocol WS = fromString("ws");
+    /** The actual serialized value for a Protocol instance. */
+    private final String value;
 
-    /** Static value wss for Protocol. */
-    public static final Protocol WSS = fromString("wss");
-
-    /**
-     * Creates or finds a Protocol from its string representation.
-     *
-     * @param name a name to look for.
-     * @return the corresponding Protocol.
-     */
-    @JsonCreator
-    public static Protocol fromString(String name) {
-        return fromString(name, Protocol.class);
+    Protocol(String value) {
+        this.value = value;
     }
 
-    /** @return known Protocol values. */
-    public static Collection<Protocol> values() {
-        return values(Protocol.class);
+    /**
+     * Parses a serialized value to a Protocol instance.
+     *
+     * @param value the serialized value to parse.
+     * @return the parsed Protocol object, or null if unable to parse.
+     */
+    @JsonCreator
+    public static Protocol fromString(String value) {
+        Protocol[] items = Protocol.values();
+        for (Protocol item : items) {
+            if (item.toString().equalsIgnoreCase(value)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    @JsonValue
+    @Override
+    public String toString() {
+        return this.value;
     }
 }

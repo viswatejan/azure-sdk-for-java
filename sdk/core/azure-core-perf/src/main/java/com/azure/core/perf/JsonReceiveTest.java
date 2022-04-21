@@ -26,8 +26,14 @@ public class JsonReceiveTest extends RestProxyTestBase<CorePerfStressOptions> {
     }
 
     @Override
-    public Mono<Void> setupAsync() {
-        return service.setUserDatabaseJson(endpoint, id, TestDataFactory.generateUserDatabase(options.getSize()));
+    public Mono<Void> globalSetupAsync() {
+        JsonSendTest sendTest = new JsonSendTest(options);
+        return super.globalSetupAsync()
+            .then(Mono.defer(sendTest::globalSetupAsync))
+            .then(Mono.defer(sendTest::setupAsync))
+            .then(Mono.defer(sendTest::runAsync))
+            .then(Mono.defer(sendTest::cleanupAsync))
+            .then(Mono.defer(sendTest::globalCleanupAsync));
     }
 
     @Override
@@ -37,7 +43,7 @@ public class JsonReceiveTest extends RestProxyTestBase<CorePerfStressOptions> {
 
     @Override
     public Mono<Void> runAsync() {
-        return service.getUserDatabaseJsonAsync(endpoint, id)
+        return service.getUserDatabaseJsonAsync(endpoint)
             .map(userdatabase -> {
                 userdatabase.getValue().getUserList().forEach(sampleUserData -> {
                     sampleUserData.getId();

@@ -35,11 +35,4 @@ public final class DatasetDebugResource extends SubResourceDebugResource {
         this.properties = properties;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public DatasetDebugResource setName(String name) {
-        super.setName(name);
-        return this;
-    }
 }

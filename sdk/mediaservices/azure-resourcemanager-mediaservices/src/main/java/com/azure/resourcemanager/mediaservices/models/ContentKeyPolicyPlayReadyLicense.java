@@ -6,6 +6,7 @@ package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -13,6 +14,8 @@ import java.time.OffsetDateTime;
 /** The PlayReady license. */
 @Fluent
 public final class ContentKeyPolicyPlayReadyLicense {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContentKeyPolicyPlayReadyLicense.class);
+
     /*
      * A flag indicating whether test devices can use the license.
      */
@@ -284,13 +287,13 @@ public final class ContentKeyPolicyPlayReadyLicense {
             playRight().validate();
         }
         if (licenseType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property licenseType in model ContentKeyPolicyPlayReadyLicense"));
         }
         if (contentKeyLocation() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property contentKeyLocation in model ContentKeyPolicyPlayReadyLicense"));
@@ -298,12 +301,10 @@ public final class ContentKeyPolicyPlayReadyLicense {
             contentKeyLocation().validate();
         }
         if (contentType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property contentType in model ContentKeyPolicyPlayReadyLicense"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ContentKeyPolicyPlayReadyLicense.class);
 }

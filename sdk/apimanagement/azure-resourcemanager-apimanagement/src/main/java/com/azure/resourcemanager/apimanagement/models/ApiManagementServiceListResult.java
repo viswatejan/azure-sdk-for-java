@@ -7,12 +7,15 @@ package com.azure.resourcemanager.apimanagement.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.models.ApiManagementServiceResourceInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The response of the List API Management services operation. */
 @Fluent
 public final class ApiManagementServiceListResult {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiManagementServiceListResult.class);
+
     /*
      * Result of the List API Management services operation.
      */
@@ -75,7 +78,7 @@ public final class ApiManagementServiceListResult {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model ApiManagementServiceListResult"));
@@ -83,6 +86,4 @@ public final class ApiManagementServiceListResult {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ApiManagementServiceListResult.class);
 }

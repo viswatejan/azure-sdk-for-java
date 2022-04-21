@@ -7,7 +7,7 @@ namespace: com.azure.analytics.purview.scanning
 generate-client-interfaces: false
 sync-methods: all
 license-header: MICROSOFT_MIT_SMALL
-data-plane: true
+low-level-client: true
 credential-types: tokencredential
 credential-scopes: https://purview.azure.net/.default
 title: PurviewScanningClient

@@ -47,6 +47,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ResourcesClient. */
 public final class ResourcesClientImpl implements InnerSupportsListing<GenericResourceExpandedInner>, ResourcesClient {
+    private final ClientLogger logger = new ClientLogger(ResourcesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ResourcesService service;
 
@@ -1597,7 +1599,7 @@ public final class ResourcesClientImpl implements InnerSupportsListing<GenericRe
         if (value != null) {
             return value;
         } else {
-            throw LOGGER.logExceptionAsError(new NullPointerException());
+            throw logger.logExceptionAsError(new NullPointerException());
         }
     }
 
@@ -3394,7 +3396,7 @@ public final class ResourcesClientImpl implements InnerSupportsListing<GenericRe
         if (value != null) {
             return value;
         } else {
-            throw LOGGER.logExceptionAsError(new NullPointerException());
+            throw logger.logExceptionAsError(new NullPointerException());
         }
     }
 
@@ -4410,6 +4412,4 @@ public final class ResourcesClientImpl implements InnerSupportsListing<GenericRe
                         res.getValue().nextLink(),
                         null));
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ResourcesClientImpl.class);
 }

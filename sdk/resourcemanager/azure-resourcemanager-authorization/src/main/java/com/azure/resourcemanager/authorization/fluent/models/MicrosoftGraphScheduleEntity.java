@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** scheduleEntity. */
 @Fluent
 public class MicrosoftGraphScheduleEntity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphScheduleEntity.class);
+
     /*
      * The endDateTime property.
      */
@@ -29,7 +32,7 @@ public class MicrosoftGraphScheduleEntity {
     private OffsetDateTime startDateTime;
 
     /*
-     * scheduleEntityTheme
+     * The theme property.
      */
     @JsonProperty(value = "theme")
     private MicrosoftGraphScheduleEntityTheme theme;
@@ -80,7 +83,7 @@ public class MicrosoftGraphScheduleEntity {
     }
 
     /**
-     * Get the theme property: scheduleEntityTheme.
+     * Get the theme property: The theme property.
      *
      * @return the theme value.
      */
@@ -89,7 +92,7 @@ public class MicrosoftGraphScheduleEntity {
     }
 
     /**
-     * Set the theme property: scheduleEntityTheme.
+     * Set the theme property: The theme property.
      *
      * @param theme the theme value to set.
      * @return the MicrosoftGraphScheduleEntity object itself.

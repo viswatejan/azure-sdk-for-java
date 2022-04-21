@@ -20,12 +20,12 @@ import com.azure.resourcemanager.securityinsights.models.IncidentAlertList;
 import com.azure.resourcemanager.securityinsights.models.IncidentBookmarkList;
 import com.azure.resourcemanager.securityinsights.models.IncidentEntitiesResponse;
 import com.azure.resourcemanager.securityinsights.models.Incidents;
-import com.azure.resourcemanager.securityinsights.models.ManualTriggerRequestBody;
 import com.azure.resourcemanager.securityinsights.models.TeamInformation;
 import com.azure.resourcemanager.securityinsights.models.TeamProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class IncidentsImpl implements Incidents {
-    private static final ClientLogger LOGGER = new ClientLogger(IncidentsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(IncidentsImpl.class);
 
     private final IncidentsClient innerClient;
 
@@ -36,21 +36,6 @@ public final class IncidentsImpl implements Incidents {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public Object runPlaybook(String resourceGroupName, String workspaceName, String incidentIdentifier) {
-        return this.serviceClient().runPlaybook(resourceGroupName, workspaceName, incidentIdentifier);
-    }
-
-    public Response<Object> runPlaybookWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String incidentIdentifier,
-        ManualTriggerRequestBody requestBody,
-        Context context) {
-        return this
-            .serviceClient()
-            .runPlaybookWithResponse(resourceGroupName, workspaceName, incidentIdentifier, requestBody, context);
     }
 
     public PagedIterable<Incident> list(String resourceGroupName, String workspaceName) {
@@ -213,7 +198,7 @@ public final class IncidentsImpl implements Incidents {
     public Incident getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -221,14 +206,14 @@ public final class IncidentsImpl implements Incidents {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String incidentId = Utils.getValueFromIdByName(id, "incidents");
         if (incidentId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'incidents'.", id)));
@@ -239,7 +224,7 @@ public final class IncidentsImpl implements Incidents {
     public Response<Incident> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -247,14 +232,14 @@ public final class IncidentsImpl implements Incidents {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String incidentId = Utils.getValueFromIdByName(id, "incidents");
         if (incidentId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'incidents'.", id)));
@@ -265,7 +250,7 @@ public final class IncidentsImpl implements Incidents {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -273,14 +258,14 @@ public final class IncidentsImpl implements Incidents {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String incidentId = Utils.getValueFromIdByName(id, "incidents");
         if (incidentId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'incidents'.", id)));
@@ -291,7 +276,7 @@ public final class IncidentsImpl implements Incidents {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -299,14 +284,14 @@ public final class IncidentsImpl implements Incidents {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String incidentId = Utils.getValueFromIdByName(id, "incidents");
         if (incidentId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'incidents'.", id)));

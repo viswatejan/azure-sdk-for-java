@@ -6,12 +6,15 @@ package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Specifies a CORS rule for the Blob service. */
 @Fluent
 public final class CorsRule {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CorsRule.class);
+
     /*
      * Required if CorsRule element is present. A list of origin domains that
      * will be allowed via CORS, or "*" to allow all domains
@@ -164,26 +167,24 @@ public final class CorsRule {
      */
     public void validate() {
         if (allowedOrigins() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property allowedOrigins in model CorsRule"));
         }
         if (allowedMethods() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property allowedMethods in model CorsRule"));
         }
         if (exposedHeaders() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property exposedHeaders in model CorsRule"));
         }
         if (allowedHeaders() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property allowedHeaders in model CorsRule"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CorsRule.class);
 }

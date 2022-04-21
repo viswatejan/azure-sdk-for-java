@@ -32,6 +32,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.apimanagement.fluent.NamedValuesClient;
@@ -49,6 +50,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in NamedValuesClient. */
 public final class NamedValuesClientImpl implements NamedValuesClient {
+    private final ClientLogger logger = new ClientLogger(NamedValuesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final NamedValuesService service;
 
@@ -236,8 +239,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged NamedValue list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged NamedValue list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NamedValueContractInner>> listByServiceSinglePageAsync(
@@ -312,8 +314,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged NamedValue list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged NamedValue list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NamedValueContractInner>> listByServiceSinglePageAsync(
@@ -385,7 +386,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged NamedValue list representation as paginated response with {@link PagedFlux}.
+     * @return paged NamedValue list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NamedValueContractInner> listByServiceAsync(
@@ -410,7 +411,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged NamedValue list representation as paginated response with {@link PagedFlux}.
+     * @return paged NamedValue list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NamedValueContractInner> listByServiceAsync(String resourceGroupName, String serviceName) {
@@ -442,7 +443,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged NamedValue list representation as paginated response with {@link PagedFlux}.
+     * @return paged NamedValue list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NamedValueContractInner> listByServiceAsync(
@@ -468,7 +469,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged NamedValue list representation as paginated response with {@link PagedIterable}.
+     * @return paged NamedValue list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NamedValueContractInner> listByService(String resourceGroupName, String serviceName) {
@@ -497,7 +498,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged NamedValue list representation as paginated response with {@link PagedIterable}.
+     * @return paged NamedValue list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NamedValueContractInner> listByService(
@@ -521,8 +522,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the named value specified by its identifier on successful completion
-     *     of {@link Mono}.
+     * @return the entity state (Etag) version of the named value specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValuesGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -576,8 +576,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the named value specified by its identifier on successful completion
-     *     of {@link Mono}.
+     * @return the entity state (Etag) version of the named value specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValuesGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -627,8 +626,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the named value specified by its identifier on successful completion
-     *     of {@link Mono}.
+     * @return the entity state (Etag) version of the named value specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(String resourceGroupName, String serviceName, String namedValueId) {
@@ -678,7 +676,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the named value specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the named value specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValuesGetResponse> getWithResponseAsync(
@@ -732,7 +730,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the named value specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the named value specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValuesGetResponse> getWithResponseAsync(
@@ -782,7 +780,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the named value specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the named value specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValueContractInner> getAsync(String resourceGroupName, String serviceName, String namedValueId) {
@@ -842,7 +840,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details along with {@link Response} on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -909,7 +907,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details along with {@link Response} on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -973,9 +971,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<NamedValueContractInner>, NamedValueContractInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serviceName,
@@ -991,7 +989,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
                 this.client.getHttpPipeline(),
                 NamedValueContractInner.class,
                 NamedValueContractInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -1006,9 +1004,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<NamedValueContractInner>, NamedValueContractInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serviceName,
@@ -1040,9 +1038,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<NamedValueContractInner>, NamedValueContractInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serviceName,
@@ -1065,9 +1063,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<NamedValueContractInner>, NamedValueContractInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serviceName,
@@ -1090,7 +1088,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValueContractInner> createOrUpdateAsync(
@@ -1114,7 +1112,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValueContractInner> createOrUpdateAsync(
@@ -1137,7 +1135,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValueContractInner> createOrUpdateAsync(
@@ -1231,7 +1229,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details along with {@link Response} on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1302,7 +1300,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details along with {@link Response} on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1370,9 +1368,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<NamedValueContractInner>, NamedValueContractInner> beginUpdateAsync(
         String resourceGroupName,
         String serviceName,
@@ -1388,7 +1386,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
                 this.client.getHttpPipeline(),
                 NamedValueContractInner.class,
                 NamedValueContractInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -1404,9 +1402,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<NamedValueContractInner>, NamedValueContractInner> beginUpdateAsync(
         String resourceGroupName,
         String serviceName,
@@ -1439,9 +1437,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<NamedValueContractInner>, NamedValueContractInner> beginUpdate(
         String resourceGroupName,
         String serviceName,
@@ -1464,9 +1462,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<NamedValueContractInner>, NamedValueContractInner> beginUpdate(
         String resourceGroupName,
         String serviceName,
@@ -1490,7 +1488,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValueContractInner> updateAsync(
@@ -1517,7 +1515,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValueContractInner> updateAsync(
@@ -1593,7 +1591,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1653,7 +1651,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1709,7 +1707,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String namedValueId, String ifMatch) {
@@ -1746,7 +1744,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1763,7 +1761,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the secret of the named value specified by its identifier on successful completion of {@link Mono}.
+     * @return the secret of the named value specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValuesListValueResponse> listValueWithResponseAsync(
@@ -1817,7 +1815,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the secret of the named value specified by its identifier on successful completion of {@link Mono}.
+     * @return the secret of the named value specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValuesListValueResponse> listValueWithResponseAsync(
@@ -1867,7 +1865,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the secret of the named value specified by its identifier on successful completion of {@link Mono}.
+     * @return the secret of the named value specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValueSecretContractInner> listValueAsync(
@@ -1926,7 +1924,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details along with {@link Response} on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> refreshSecretWithResponseAsync(
@@ -1980,7 +1978,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details along with {@link Response} on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> refreshSecretWithResponseAsync(
@@ -2030,9 +2028,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<NamedValueContractInner>, NamedValueContractInner> beginRefreshSecretAsync(
         String resourceGroupName, String serviceName, String namedValueId) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -2044,7 +2042,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
                 this.client.getHttpPipeline(),
                 NamedValueContractInner.class,
                 NamedValueContractInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -2057,9 +2055,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<NamedValueContractInner>, NamedValueContractInner> beginRefreshSecretAsync(
         String resourceGroupName, String serviceName, String namedValueId, Context context) {
         context = this.client.mergeContext(context);
@@ -2084,9 +2082,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<NamedValueContractInner>, NamedValueContractInner> beginRefreshSecret(
         String resourceGroupName, String serviceName, String namedValueId) {
         return beginRefreshSecretAsync(resourceGroupName, serviceName, namedValueId).getSyncPoller();
@@ -2102,9 +2100,9 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of namedValue details.
+     * @return namedValue details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<NamedValueContractInner>, NamedValueContractInner> beginRefreshSecret(
         String resourceGroupName, String serviceName, String namedValueId, Context context) {
         return beginRefreshSecretAsync(resourceGroupName, serviceName, namedValueId, context).getSyncPoller();
@@ -2119,7 +2117,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValueContractInner> refreshSecretAsync(
@@ -2139,7 +2137,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return namedValue details on successful completion of {@link Mono}.
+     * @return namedValue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NamedValueContractInner> refreshSecretAsync(
@@ -2190,8 +2188,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged NamedValue list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged NamedValue list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NamedValueContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -2227,8 +2224,7 @@ public final class NamedValuesClientImpl implements NamedValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged NamedValue list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged NamedValue list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NamedValueContractInner>> listByServiceNextSinglePageAsync(

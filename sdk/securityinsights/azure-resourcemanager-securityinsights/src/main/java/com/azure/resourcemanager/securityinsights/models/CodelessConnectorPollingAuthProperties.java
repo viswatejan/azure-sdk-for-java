@@ -6,11 +6,14 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Describe the authentication properties needed to successfully authenticate with the server. */
 @Fluent
 public final class CodelessConnectorPollingAuthProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CodelessConnectorPollingAuthProperties.class);
+
     /*
      * The authentication type
      */
@@ -369,12 +372,10 @@ public final class CodelessConnectorPollingAuthProperties {
      */
     public void validate() {
         if (authType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property authType in model CodelessConnectorPollingAuthProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CodelessConnectorPollingAuthProperties.class);
 }

@@ -300,11 +300,4 @@ public final class SftpReadSettings extends StoreReadSettings {
         this.disableChunking = disableChunking;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public SftpReadSettings setMaxConcurrentConnections(Object maxConcurrentConnections) {
-        super.setMaxConcurrentConnections(maxConcurrentConnections);
-        return this;
-    }
 }

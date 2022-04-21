@@ -27,6 +27,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.apimanagement.fluent.DeletedServicesClient;
@@ -38,6 +39,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in DeletedServicesClient. */
 public final class DeletedServicesClientImpl implements DeletedServicesClient {
+    private final ClientLogger logger = new ClientLogger(DeletedServicesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final DeletedServicesService service;
 
@@ -119,8 +122,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged deleted API Management Services List Representation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return paged deleted Api Management Services List Representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeletedServiceContractInner>> listSinglePageAsync() {
@@ -166,8 +168,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged deleted API Management Services List Representation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return paged deleted Api Management Services List Representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeletedServiceContractInner>> listSinglePageAsync(Context context) {
@@ -208,7 +209,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged deleted API Management Services List Representation as paginated response with {@link PagedFlux}.
+     * @return paged deleted Api Management Services List Representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DeletedServiceContractInner> listAsync() {
@@ -223,7 +224,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged deleted API Management Services List Representation as paginated response with {@link PagedFlux}.
+     * @return paged deleted Api Management Services List Representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DeletedServiceContractInner> listAsync(Context context) {
@@ -236,8 +237,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged deleted API Management Services List Representation as paginated response with {@link
-     *     PagedIterable}.
+     * @return paged deleted Api Management Services List Representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DeletedServiceContractInner> list() {
@@ -251,8 +251,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged deleted API Management Services List Representation as paginated response with {@link
-     *     PagedIterable}.
+     * @return paged deleted Api Management Services List Representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DeletedServiceContractInner> list(Context context) {
@@ -267,8 +266,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return soft-deleted Api Management Service by name along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return soft-deleted Api Management Service by name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DeletedServiceContractInner>> getByNameWithResponseAsync(
@@ -316,8 +314,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return soft-deleted Api Management Service by name along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return soft-deleted Api Management Service by name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DeletedServiceContractInner>> getByNameWithResponseAsync(
@@ -361,7 +358,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return soft-deleted Api Management Service by name on successful completion of {@link Mono}.
+     * @return soft-deleted Api Management Service by name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DeletedServiceContractInner> getByNameAsync(String serviceName, String location) {
@@ -400,7 +397,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return soft-deleted Api Management Service by name along with {@link Response}.
+     * @return soft-deleted Api Management Service by name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DeletedServiceContractInner> getByNameWithResponse(
@@ -416,7 +413,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> purgeWithResponseAsync(String serviceName, String location) {
@@ -463,7 +460,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> purgeWithResponseAsync(
@@ -507,9 +504,9 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<DeletedServiceContractInner>, DeletedServiceContractInner> beginPurgeAsync(
         String serviceName, String location) {
         Mono<Response<Flux<ByteBuffer>>> mono = purgeWithResponseAsync(serviceName, location);
@@ -520,7 +517,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
                 this.client.getHttpPipeline(),
                 DeletedServiceContractInner.class,
                 DeletedServiceContractInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -532,9 +529,9 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<DeletedServiceContractInner>, DeletedServiceContractInner> beginPurgeAsync(
         String serviceName, String location, Context context) {
         context = this.client.mergeContext(context);
@@ -557,9 +554,9 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<DeletedServiceContractInner>, DeletedServiceContractInner> beginPurge(
         String serviceName, String location) {
         return beginPurgeAsync(serviceName, location).getSyncPoller();
@@ -574,9 +571,9 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<DeletedServiceContractInner>, DeletedServiceContractInner> beginPurge(
         String serviceName, String location, Context context) {
         return beginPurgeAsync(serviceName, location, context).getSyncPoller();
@@ -590,7 +587,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DeletedServiceContractInner> purgeAsync(String serviceName, String location) {
@@ -606,7 +603,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DeletedServiceContractInner> purgeAsync(String serviceName, String location, Context context) {
@@ -651,8 +648,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged deleted API Management Services List Representation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return paged deleted Api Management Services List Representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeletedServiceContractInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -689,8 +685,7 @@ public final class DeletedServicesClientImpl implements DeletedServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged deleted API Management Services List Representation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return paged deleted Api Management Services List Representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DeletedServiceContractInner>> listBySubscriptionNextSinglePageAsync(

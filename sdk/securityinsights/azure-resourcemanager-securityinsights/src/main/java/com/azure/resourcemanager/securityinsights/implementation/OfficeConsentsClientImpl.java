@@ -26,6 +26,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.OfficeConsentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.OfficeConsentInner;
 import com.azure.resourcemanager.securityinsights.models.OfficeConsentList;
@@ -33,6 +34,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in OfficeConsentsClient. */
 public final class OfficeConsentsClientImpl implements OfficeConsentsClient {
+    private final ClientLogger logger = new ClientLogger(OfficeConsentsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final OfficeConsentsService service;
 
@@ -235,7 +238,7 @@ public final class OfficeConsentsClientImpl implements OfficeConsentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all office365 consents as paginated response with {@link PagedFlux}.
+     * @return all office365 consents.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OfficeConsentInner> listAsync(String resourceGroupName, String workspaceName) {
@@ -252,7 +255,7 @@ public final class OfficeConsentsClientImpl implements OfficeConsentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all office365 consents as paginated response with {@link PagedFlux}.
+     * @return all office365 consents.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OfficeConsentInner> listAsync(String resourceGroupName, String workspaceName, Context context) {
@@ -269,7 +272,7 @@ public final class OfficeConsentsClientImpl implements OfficeConsentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all office365 consents as paginated response with {@link PagedIterable}.
+     * @return all office365 consents.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OfficeConsentInner> list(String resourceGroupName, String workspaceName) {
@@ -285,7 +288,7 @@ public final class OfficeConsentsClientImpl implements OfficeConsentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all office365 consents as paginated response with {@link PagedIterable}.
+     * @return all office365 consents.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OfficeConsentInner> list(String resourceGroupName, String workspaceName, Context context) {

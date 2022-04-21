@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.DatasetCompression;
 import com.azure.resourcemanager.datafactory.models.DatasetLocation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Excel dataset properties. */
 @Fluent
 public final class ExcelDatasetTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ExcelDatasetTypeProperties.class);
+
     /*
      * The location of the excel storage.
      */
@@ -215,7 +218,7 @@ public final class ExcelDatasetTypeProperties {
      */
     public void validate() {
         if (location() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property location in model ExcelDatasetTypeProperties"));
@@ -226,6 +229,4 @@ public final class ExcelDatasetTypeProperties {
             compression().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ExcelDatasetTypeProperties.class);
 }

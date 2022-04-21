@@ -369,7 +369,7 @@ public final class BlobClientBuilder implements
             }
         } catch (MalformedURLException ex) {
             throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("The Azure Storage Blob endpoint url is malformed.", ex));
+                new IllegalArgumentException("The Azure Storage Blob endpoint url is malformed."));
         }
         return this;
     }

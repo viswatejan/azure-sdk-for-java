@@ -6,12 +6,16 @@ package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Application gateway web application firewall configuration. */
 @Fluent
 public final class ApplicationGatewayWebApplicationFirewallConfiguration {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(ApplicationGatewayWebApplicationFirewallConfiguration.class);
+
     /*
      * Whether the web application firewall is enabled or not.
      */
@@ -284,21 +288,21 @@ public final class ApplicationGatewayWebApplicationFirewallConfiguration {
      */
     public void validate() {
         if (firewallMode() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property firewallMode in model"
                             + " ApplicationGatewayWebApplicationFirewallConfiguration"));
         }
         if (ruleSetType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property ruleSetType in model"
                             + " ApplicationGatewayWebApplicationFirewallConfiguration"));
         }
         if (ruleSetVersion() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property ruleSetVersion in model"
@@ -311,7 +315,4 @@ public final class ApplicationGatewayWebApplicationFirewallConfiguration {
             exclusions().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER =
-        new ClientLogger(ApplicationGatewayWebApplicationFirewallConfiguration.class);
 }

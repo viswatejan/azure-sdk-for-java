@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
 import com.azure.resourcemanager.datafactory.models.SftpAuthenticationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties specific to this linked service type. */
 @Fluent
 public final class SftpServerLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SftpServerLinkedServiceTypeProperties.class);
+
     /*
      * The SFTP server host name. Type: string (or Expression with resultType
      * string).
@@ -343,7 +346,7 @@ public final class SftpServerLinkedServiceTypeProperties {
      */
     public void validate() {
         if (host() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property host in model SftpServerLinkedServiceTypeProperties"));
@@ -358,6 +361,4 @@ public final class SftpServerLinkedServiceTypeProperties {
             passPhrase().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SftpServerLinkedServiceTypeProperties.class);
 }

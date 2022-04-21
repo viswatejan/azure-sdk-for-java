@@ -6,15 +6,19 @@ package com.azure.resourcemanager.apimanagement.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.models.ParameterContract;
 import com.azure.resourcemanager.apimanagement.models.RequestContract;
 import com.azure.resourcemanager.apimanagement.models.ResponseContract;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** API Operation details. */
+/** Api Operation details. */
 @Fluent
 public final class OperationContractInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationContractInner.class);
+
     /*
      * Properties of the Operation Contract.
      */

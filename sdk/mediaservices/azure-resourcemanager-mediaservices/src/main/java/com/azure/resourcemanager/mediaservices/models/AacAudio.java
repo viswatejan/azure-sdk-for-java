@@ -5,15 +5,21 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** Describes Advanced Audio Codec (AAC) audio encoding settings. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata.type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata\\.type")
 @JsonTypeName("#Microsoft.Media.AacAudio")
+@JsonFlatten
 @Fluent
-public final class AacAudio extends Audio {
+public class AacAudio extends Audio {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AacAudio.class);
+
     /*
      * The encoding profile to be used when encoding audio with AAC.
      */

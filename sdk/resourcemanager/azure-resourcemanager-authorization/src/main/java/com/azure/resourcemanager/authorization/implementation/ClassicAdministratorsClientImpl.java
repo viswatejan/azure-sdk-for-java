@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.authorization.fluent.ClassicAdministratorsClient;
 import com.azure.resourcemanager.authorization.fluent.models.ClassicAdministratorInner;
 import com.azure.resourcemanager.authorization.models.ClassicAdministratorListResult;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ClassicAdministratorsClient. */
 public final class ClassicAdministratorsClientImpl implements ClassicAdministratorsClient {
+    private final ClientLogger logger = new ClientLogger(ClassicAdministratorsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ClassicAdministratorsService service;
 
@@ -84,8 +87,7 @@ public final class ClassicAdministratorsClientImpl implements ClassicAdministrat
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service administrator, account administrator, and co-administrators for the subscription along with
-     *     {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return service administrator, account administrator, and co-administrators for the subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClassicAdministratorInner>> listSinglePageAsync() {
@@ -101,7 +103,7 @@ public final class ClassicAdministratorsClientImpl implements ClassicAdministrat
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2015-07-01";
+        final String apiVersion = "2015-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -127,8 +129,7 @@ public final class ClassicAdministratorsClientImpl implements ClassicAdministrat
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service administrator, account administrator, and co-administrators for the subscription along with
-     *     {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return service administrator, account administrator, and co-administrators for the subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClassicAdministratorInner>> listSinglePageAsync(Context context) {
@@ -144,7 +145,7 @@ public final class ClassicAdministratorsClientImpl implements ClassicAdministrat
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2015-07-01";
+        final String apiVersion = "2015-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -165,8 +166,7 @@ public final class ClassicAdministratorsClientImpl implements ClassicAdministrat
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service administrator, account administrator, and co-administrators for the subscription as paginated
-     *     response with {@link PagedFlux}.
+     * @return service administrator, account administrator, and co-administrators for the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<ClassicAdministratorInner> listAsync() {
@@ -180,8 +180,7 @@ public final class ClassicAdministratorsClientImpl implements ClassicAdministrat
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service administrator, account administrator, and co-administrators for the subscription as paginated
-     *     response with {@link PagedFlux}.
+     * @return service administrator, account administrator, and co-administrators for the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ClassicAdministratorInner> listAsync(Context context) {
@@ -194,8 +193,7 @@ public final class ClassicAdministratorsClientImpl implements ClassicAdministrat
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service administrator, account administrator, and co-administrators for the subscription as paginated
-     *     response with {@link PagedIterable}.
+     * @return service administrator, account administrator, and co-administrators for the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ClassicAdministratorInner> list() {
@@ -209,8 +207,7 @@ public final class ClassicAdministratorsClientImpl implements ClassicAdministrat
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service administrator, account administrator, and co-administrators for the subscription as paginated
-     *     response with {@link PagedIterable}.
+     * @return service administrator, account administrator, and co-administrators for the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ClassicAdministratorInner> list(Context context) {
@@ -224,8 +221,7 @@ public final class ClassicAdministratorsClientImpl implements ClassicAdministrat
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return classicAdministrator list result information along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return classicAdministrator list result information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClassicAdministratorInner>> listNextSinglePageAsync(String nextLink) {
@@ -261,8 +257,7 @@ public final class ClassicAdministratorsClientImpl implements ClassicAdministrat
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return classicAdministrator list result information along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return classicAdministrator list result information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClassicAdministratorInner>> listNextSinglePageAsync(String nextLink, Context context) {

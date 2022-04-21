@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.Office365DatasetTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("Office365Table")
 @Fluent
 public final class Office365Dataset extends Dataset {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(Office365Dataset.class);
+
     /*
      * Office365 dataset properties.
      */
@@ -141,7 +144,7 @@ public final class Office365Dataset extends Dataset {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model Office365Dataset"));
@@ -149,6 +152,4 @@ public final class Office365Dataset extends Dataset {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(Office365Dataset.class);
 }

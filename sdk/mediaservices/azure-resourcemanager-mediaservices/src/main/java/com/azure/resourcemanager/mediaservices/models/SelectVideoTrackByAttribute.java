@@ -5,16 +5,21 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** Select video tracks from the input by specifying an attribute and an attribute filter. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata.type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata\\.type")
 @JsonTypeName("#Microsoft.Media.SelectVideoTrackByAttribute")
+@JsonFlatten
 @Fluent
-public final class SelectVideoTrackByAttribute extends VideoTrackDescriptor {
+public class SelectVideoTrackByAttribute extends VideoTrackDescriptor {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SelectVideoTrackByAttribute.class);
+
     /*
      * The TrackAttribute to filter the tracks by.
      */
@@ -113,18 +118,16 @@ public final class SelectVideoTrackByAttribute extends VideoTrackDescriptor {
     public void validate() {
         super.validate();
         if (attribute() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property attribute in model SelectVideoTrackByAttribute"));
         }
         if (filter() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property filter in model SelectVideoTrackByAttribute"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SelectVideoTrackByAttribute.class);
 }

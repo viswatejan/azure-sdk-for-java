@@ -29,6 +29,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.applicationinsights.fluent.WorkbookTemplatesClient;
 import com.azure.resourcemanager.applicationinsights.fluent.models.WorkbookTemplateInner;
 import com.azure.resourcemanager.applicationinsights.models.WorkbookTemplateUpdateParameters;
@@ -37,6 +38,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in WorkbookTemplatesClient. */
 public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClient {
+    private final ClientLogger logger = new ClientLogger(WorkbookTemplatesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final WorkbookTemplatesService service;
 
@@ -240,8 +243,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Workbook templates defined within a specified resource group as paginated response with {@link
-     *     PagedFlux}.
+     * @return all Workbook templates defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkbookTemplateInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -256,8 +258,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Workbook templates defined within a specified resource group as paginated response with {@link
-     *     PagedFlux}.
+     * @return all Workbook templates defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkbookTemplateInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -271,8 +272,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Workbook templates defined within a specified resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return all Workbook templates defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WorkbookTemplateInner> listByResourceGroup(String resourceGroupName) {
@@ -287,8 +287,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Workbook templates defined within a specified resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return all Workbook templates defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WorkbookTemplateInner> listByResourceGroup(String resourceGroupName, Context context) {

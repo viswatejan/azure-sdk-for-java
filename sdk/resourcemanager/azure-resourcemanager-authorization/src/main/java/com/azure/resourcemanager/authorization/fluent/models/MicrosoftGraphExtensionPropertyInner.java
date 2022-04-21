@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,11 +16,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * extensionProperty Represents an Azure Active Directory object. The directoryObject type is the base type for many
- * other directory entity types.
+ * Represents an Azure Active Directory object. The directoryObject type is the base type for many other directory
+ * entity types.
  */
 @Fluent
 public final class MicrosoftGraphExtensionPropertyInner extends MicrosoftGraphDirectoryObjectInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphExtensionPropertyInner.class);
+
     /*
      * Display name of the application object on which this extension property
      * is defined. Read-only.

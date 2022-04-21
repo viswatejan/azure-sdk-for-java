@@ -5,7 +5,6 @@
 package com.azure.analytics.synapse.artifacts.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.http.HttpHeaders;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The DataFlowDebugSessionsExecuteCommandHeaders model. */
@@ -16,16 +15,6 @@ public final class DataFlowDebugSessionsExecuteCommandHeaders {
      */
     @JsonProperty(value = "location")
     private String location;
-
-    // HttpHeaders containing the raw property values.
-    /**
-     * Creates an instance of DataFlowDebugSessionsExecuteCommandHeaders class.
-     *
-     * @param rawHeaders The raw HttpHeaders that will be used to create the property values.
-     */
-    public DataFlowDebugSessionsExecuteCommandHeaders(HttpHeaders rawHeaders) {
-        this.location = rawHeaders.getValue("location");
-    }
 
     /**
      * Get the location property: The location property.

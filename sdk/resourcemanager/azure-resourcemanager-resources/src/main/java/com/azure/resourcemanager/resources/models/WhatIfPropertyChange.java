@@ -6,12 +6,15 @@ package com.azure.resourcemanager.resources.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The predicted change to the resource property. */
 @Fluent
 public final class WhatIfPropertyChange {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(WhatIfPropertyChange.class);
+
     /*
      * The path of the property.
      */
@@ -149,12 +152,12 @@ public final class WhatIfPropertyChange {
      */
     public void validate() {
         if (path() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property path in model WhatIfPropertyChange"));
         }
         if (propertyChangeType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property propertyChangeType in model WhatIfPropertyChange"));
@@ -163,6 +166,4 @@ public final class WhatIfPropertyChange {
             children().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(WhatIfPropertyChange.class);
 }

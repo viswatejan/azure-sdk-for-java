@@ -337,11 +337,4 @@ public final class AzureDataLakeStoreReadSettings extends StoreReadSettings {
         this.modifiedDatetimeEnd = modifiedDatetimeEnd;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureDataLakeStoreReadSettings setMaxConcurrentConnections(Object maxConcurrentConnections) {
-        super.setMaxConcurrentConnections(maxConcurrentConnections);
-        return this;
-    }
 }

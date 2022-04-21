@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.mobilenetwork.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -14,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public final class PortRange {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PortRange.class);
+
     /*
      * The minimum port number
      */

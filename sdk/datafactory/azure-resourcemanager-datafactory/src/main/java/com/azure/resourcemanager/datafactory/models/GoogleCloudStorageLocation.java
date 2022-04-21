@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -14,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("GoogleCloudStorageLocation")
 @Fluent
 public final class GoogleCloudStorageLocation extends DatasetLocation {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GoogleCloudStorageLocation.class);
+
     /*
      * Specify the bucketName of Google Cloud Storage. Type: string (or
      * Expression with resultType string)

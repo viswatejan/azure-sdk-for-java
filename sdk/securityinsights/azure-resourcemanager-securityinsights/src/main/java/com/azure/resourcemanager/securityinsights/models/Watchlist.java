@@ -70,18 +70,11 @@ public interface Watchlist {
     String provider();
 
     /**
-     * Gets the source property: The filename of the watchlist, called 'source'.
+     * Gets the source property: The source of the watchlist.
      *
      * @return the source value.
      */
-    String source();
-
-    /**
-     * Gets the sourceType property: The sourceType of the watchlist.
-     *
-     * @return the sourceType value.
-     */
-    SourceType sourceType();
+    Source source();
 
     /**
      * Gets the created property: The time the watchlist was created.
@@ -176,14 +169,6 @@ public interface Watchlist {
     String rawContent();
 
     /**
-     * Gets the sasUri property: The Shared Access Signature (SAS) URI under which the large csv watchlist file is
-     * located and from which the watchlist and its items will be created.
-     *
-     * @return the sasUri value.
-     */
-    String sasUri();
-
-    /**
      * Gets the itemsSearchKey property: The search key is used to optimize query performance when using watchlists for
      * joins with other data. For example, enable a column with IP addresses to be the designated SearchKey field, then
      * use this field as the key field when joining to other event data by IP address.
@@ -208,11 +193,11 @@ public interface Watchlist {
     String uploadStatus();
 
     /**
-     * Gets the provisioningState property: The provisioning state of the watchlist resource.
+     * Gets the watchlistItemsCount property: The number of Watchlist Items in the Watchlist.
      *
-     * @return the provisioningState value.
+     * @return the watchlistItemsCount value.
      */
-    ProvisioningState provisioningState();
+    Integer watchlistItemsCount();
 
     /**
      * Gets the inner com.azure.resourcemanager.securityinsights.fluent.models.WatchlistInner object.
@@ -251,7 +236,6 @@ public interface Watchlist {
                 DefinitionStages.WithDisplayName,
                 DefinitionStages.WithProvider,
                 DefinitionStages.WithSource,
-                DefinitionStages.WithSourceType,
                 DefinitionStages.WithCreated,
                 DefinitionStages.WithUpdated,
                 DefinitionStages.WithCreatedBy,
@@ -265,10 +249,10 @@ public interface Watchlist {
                 DefinitionStages.WithTenantId,
                 DefinitionStages.WithNumberOfLinesToSkip,
                 DefinitionStages.WithRawContent,
-                DefinitionStages.WithSasUri,
                 DefinitionStages.WithItemsSearchKey,
                 DefinitionStages.WithContentType,
-                DefinitionStages.WithUploadStatus {
+                DefinitionStages.WithUploadStatus,
+                DefinitionStages.WithWatchlistItemsCount {
             /**
              * Executes the create request.
              *
@@ -327,22 +311,12 @@ public interface Watchlist {
         /** The stage of the Watchlist definition allowing to specify source. */
         interface WithSource {
             /**
-             * Specifies the source property: The filename of the watchlist, called 'source'.
+             * Specifies the source property: The source of the watchlist.
              *
-             * @param source The filename of the watchlist, called 'source'.
+             * @param source The source of the watchlist.
              * @return the next definition stage.
              */
-            WithCreate withSource(String source);
-        }
-        /** The stage of the Watchlist definition allowing to specify sourceType. */
-        interface WithSourceType {
-            /**
-             * Specifies the sourceType property: The sourceType of the watchlist.
-             *
-             * @param sourceType The sourceType of the watchlist.
-             * @return the next definition stage.
-             */
-            WithCreate withSourceType(SourceType sourceType);
+            WithCreate withSource(Source source);
         }
         /** The stage of the Watchlist definition allowing to specify created. */
         interface WithCreated {
@@ -478,18 +452,6 @@ public interface Watchlist {
              */
             WithCreate withRawContent(String rawContent);
         }
-        /** The stage of the Watchlist definition allowing to specify sasUri. */
-        interface WithSasUri {
-            /**
-             * Specifies the sasUri property: The Shared Access Signature (SAS) URI under which the large csv watchlist
-             * file is located and from which the watchlist and its items will be created.
-             *
-             * @param sasUri The Shared Access Signature (SAS) URI under which the large csv watchlist file is located
-             *     and from which the watchlist and its items will be created.
-             * @return the next definition stage.
-             */
-            WithCreate withSasUri(String sasUri);
-        }
         /** The stage of the Watchlist definition allowing to specify itemsSearchKey. */
         interface WithItemsSearchKey {
             /**
@@ -526,6 +488,16 @@ public interface Watchlist {
              */
             WithCreate withUploadStatus(String uploadStatus);
         }
+        /** The stage of the Watchlist definition allowing to specify watchlistItemsCount. */
+        interface WithWatchlistItemsCount {
+            /**
+             * Specifies the watchlistItemsCount property: The number of Watchlist Items in the Watchlist.
+             *
+             * @param watchlistItemsCount The number of Watchlist Items in the Watchlist.
+             * @return the next definition stage.
+             */
+            WithCreate withWatchlistItemsCount(Integer watchlistItemsCount);
+        }
     }
     /**
      * Begins update for the Watchlist resource.
@@ -541,7 +513,6 @@ public interface Watchlist {
             UpdateStages.WithDisplayName,
             UpdateStages.WithProvider,
             UpdateStages.WithSource,
-            UpdateStages.WithSourceType,
             UpdateStages.WithCreated,
             UpdateStages.WithUpdated,
             UpdateStages.WithCreatedBy,
@@ -555,10 +526,10 @@ public interface Watchlist {
             UpdateStages.WithTenantId,
             UpdateStages.WithNumberOfLinesToSkip,
             UpdateStages.WithRawContent,
-            UpdateStages.WithSasUri,
             UpdateStages.WithItemsSearchKey,
             UpdateStages.WithContentType,
-            UpdateStages.WithUploadStatus {
+            UpdateStages.WithUploadStatus,
+            UpdateStages.WithWatchlistItemsCount {
         /**
          * Executes the update request.
          *
@@ -619,22 +590,12 @@ public interface Watchlist {
         /** The stage of the Watchlist update allowing to specify source. */
         interface WithSource {
             /**
-             * Specifies the source property: The filename of the watchlist, called 'source'.
+             * Specifies the source property: The source of the watchlist.
              *
-             * @param source The filename of the watchlist, called 'source'.
+             * @param source The source of the watchlist.
              * @return the next definition stage.
              */
-            Update withSource(String source);
-        }
-        /** The stage of the Watchlist update allowing to specify sourceType. */
-        interface WithSourceType {
-            /**
-             * Specifies the sourceType property: The sourceType of the watchlist.
-             *
-             * @param sourceType The sourceType of the watchlist.
-             * @return the next definition stage.
-             */
-            Update withSourceType(SourceType sourceType);
+            Update withSource(Source source);
         }
         /** The stage of the Watchlist update allowing to specify created. */
         interface WithCreated {
@@ -770,18 +731,6 @@ public interface Watchlist {
              */
             Update withRawContent(String rawContent);
         }
-        /** The stage of the Watchlist update allowing to specify sasUri. */
-        interface WithSasUri {
-            /**
-             * Specifies the sasUri property: The Shared Access Signature (SAS) URI under which the large csv watchlist
-             * file is located and from which the watchlist and its items will be created.
-             *
-             * @param sasUri The Shared Access Signature (SAS) URI under which the large csv watchlist file is located
-             *     and from which the watchlist and its items will be created.
-             * @return the next definition stage.
-             */
-            Update withSasUri(String sasUri);
-        }
         /** The stage of the Watchlist update allowing to specify itemsSearchKey. */
         interface WithItemsSearchKey {
             /**
@@ -817,6 +766,16 @@ public interface Watchlist {
              * @return the next definition stage.
              */
             Update withUploadStatus(String uploadStatus);
+        }
+        /** The stage of the Watchlist update allowing to specify watchlistItemsCount. */
+        interface WithWatchlistItemsCount {
+            /**
+             * Specifies the watchlistItemsCount property: The number of Watchlist Items in the Watchlist.
+             *
+             * @param watchlistItemsCount The number of Watchlist Items in the Watchlist.
+             * @return the next definition stage.
+             */
+            Update withWatchlistItemsCount(Integer watchlistItemsCount);
         }
     }
     /**

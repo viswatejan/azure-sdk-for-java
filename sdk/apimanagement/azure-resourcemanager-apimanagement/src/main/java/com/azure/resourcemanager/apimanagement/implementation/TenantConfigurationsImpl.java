@@ -17,9 +17,10 @@ import com.azure.resourcemanager.apimanagement.models.OperationResultContract;
 import com.azure.resourcemanager.apimanagement.models.SaveConfigurationParameter;
 import com.azure.resourcemanager.apimanagement.models.TenantConfigurationSyncStateContract;
 import com.azure.resourcemanager.apimanagement.models.TenantConfigurations;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class TenantConfigurationsImpl implements TenantConfigurations {
-    private static final ClientLogger LOGGER = new ClientLogger(TenantConfigurationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TenantConfigurationsImpl.class);
 
     private final TenantConfigurationsClient innerClient;
 

@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -14,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("AzureBlobStorageWriteSettings")
 @Fluent
 public final class AzureBlobStorageWriteSettings extends StoreWriteSettings {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureBlobStorageWriteSettings.class);
+
     /*
      * Indicates the block size(MB) when writing data to blob. Type: integer
      * (or Expression with resultType integer).

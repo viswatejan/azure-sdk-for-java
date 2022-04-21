@@ -7,6 +7,7 @@ package com.azure.resourcemanager.kubernetesconfiguration.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -14,6 +15,8 @@ import java.util.Map;
 /** The current status of an async operation. */
 @Fluent
 public final class OperationStatusResultInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationStatusResultInner.class);
+
     /*
      * Fully qualified ID for the async operation.
      */
@@ -40,9 +43,9 @@ public final class OperationStatusResultInner {
     private Map<String, String> properties;
 
     /*
-     * If present, details of the operation error.
+     * The error detail.
      */
-    @JsonProperty(value = "error", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "error")
     private ManagementError error;
 
     /**
@@ -126,12 +129,23 @@ public final class OperationStatusResultInner {
     }
 
     /**
-     * Get the error property: If present, details of the operation error.
+     * Get the error property: The error detail.
      *
      * @return the error value.
      */
     public ManagementError error() {
         return this.error;
+    }
+
+    /**
+     * Set the error property: The error detail.
+     *
+     * @param error the error value to set.
+     * @return the OperationStatusResultInner object itself.
+     */
+    public OperationStatusResultInner withError(ManagementError error) {
+        this.error = error;
+        return this;
     }
 
     /**
@@ -141,12 +155,10 @@ public final class OperationStatusResultInner {
      */
     public void validate() {
         if (status() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property status in model OperationStatusResultInner"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OperationStatusResultInner.class);
 }

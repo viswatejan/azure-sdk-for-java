@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.ValidationActivityTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -17,6 +18,8 @@ import java.util.List;
 @JsonTypeName("Validation")
 @Fluent
 public final class ValidationActivity extends ControlActivity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ValidationActivity.class);
+
     /*
      * Validation activity properties.
      */
@@ -194,7 +197,7 @@ public final class ValidationActivity extends ControlActivity {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model ValidationActivity"));
@@ -202,6 +205,4 @@ public final class ValidationActivity extends ControlActivity {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ValidationActivity.class);
 }

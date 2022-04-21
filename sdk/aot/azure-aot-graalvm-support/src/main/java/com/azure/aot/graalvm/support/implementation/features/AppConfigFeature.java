@@ -22,7 +22,8 @@ public class AppConfigFeature implements GraalVMFeature {
     @Override
     public Set<String[]> getDynamicProxies() {
         return setsOf(
-                interfaces("com.azure.data.appconfiguration.ConfigurationService")
+                interfaces("com.azure.data.appconfiguration.ConfigurationService"),
+                interfaces("com.azure.graalvm.tests.identity.ConfigurationService")
         );
     }
 }

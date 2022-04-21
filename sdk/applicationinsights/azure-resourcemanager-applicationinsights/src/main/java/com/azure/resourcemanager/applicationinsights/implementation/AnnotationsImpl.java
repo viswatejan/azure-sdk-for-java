@@ -13,12 +13,13 @@ import com.azure.resourcemanager.applicationinsights.fluent.AnnotationsClient;
 import com.azure.resourcemanager.applicationinsights.fluent.models.AnnotationInner;
 import com.azure.resourcemanager.applicationinsights.models.Annotation;
 import com.azure.resourcemanager.applicationinsights.models.Annotations;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public final class AnnotationsImpl implements Annotations {
-    private static final ClientLogger LOGGER = new ClientLogger(AnnotationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AnnotationsImpl.class);
 
     private final AnnotationsClient innerClient;
 

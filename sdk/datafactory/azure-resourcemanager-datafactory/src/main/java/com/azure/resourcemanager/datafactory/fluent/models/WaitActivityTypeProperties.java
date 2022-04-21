@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Wait activity properties. */
 @Fluent
 public final class WaitActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(WaitActivityTypeProperties.class);
+
     /*
      * Duration in seconds.
      */
@@ -44,12 +47,10 @@ public final class WaitActivityTypeProperties {
      */
     public void validate() {
         if (waitTimeInSeconds() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property waitTimeInSeconds in model WaitActivityTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(WaitActivityTypeProperties.class);
 }

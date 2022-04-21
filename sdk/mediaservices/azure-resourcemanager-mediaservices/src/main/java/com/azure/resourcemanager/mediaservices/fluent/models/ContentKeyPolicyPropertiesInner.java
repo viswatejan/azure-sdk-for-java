@@ -7,6 +7,7 @@ package com.azure.resourcemanager.mediaservices.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mediaservices.models.ContentKeyPolicyOption;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.UUID;
 /** The properties of the Content Key Policy. */
 @Fluent
 public final class ContentKeyPolicyPropertiesInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContentKeyPolicyPropertiesInner.class);
+
     /*
      * The legacy Policy ID.
      */
@@ -119,7 +122,7 @@ public final class ContentKeyPolicyPropertiesInner {
      */
     public void validate() {
         if (options() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property options in model ContentKeyPolicyPropertiesInner"));
@@ -127,6 +130,4 @@ public final class ContentKeyPolicyPropertiesInner {
             options().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ContentKeyPolicyPropertiesInner.class);
 }

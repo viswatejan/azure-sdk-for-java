@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.SapOpenHubLinkedServiceTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("SapOpenHub")
 @Fluent
 public final class SapOpenHubLinkedService extends LinkedService {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SapOpenHubLinkedService.class);
+
     /*
      * Properties specific to SAP Business Warehouse Open Hub Destination
      * linked service type.
@@ -347,7 +350,7 @@ public final class SapOpenHubLinkedService extends LinkedService {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model SapOpenHubLinkedService"));
@@ -355,6 +358,4 @@ public final class SapOpenHubLinkedService extends LinkedService {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SapOpenHubLinkedService.class);
 }

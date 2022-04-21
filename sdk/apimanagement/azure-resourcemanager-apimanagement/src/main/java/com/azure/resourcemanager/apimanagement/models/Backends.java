@@ -18,7 +18,7 @@ public interface Backends {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Backend list representation as paginated response with {@link PagedIterable}.
+     * @return paged Backend list representation.
      */
     PagedIterable<BackendContract> listByService(String resourceGroupName, String serviceName);
 
@@ -38,7 +38,7 @@ public interface Backends {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Backend list representation as paginated response with {@link PagedIterable}.
+     * @return paged Backend list representation.
      */
     PagedIterable<BackendContract> listByService(
         String resourceGroupName, String serviceName, String filter, Integer top, Integer skip, Context context);
@@ -124,7 +124,7 @@ public interface Backends {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String serviceName, String backendId, String ifMatch, Context context);
@@ -154,7 +154,7 @@ public interface Backends {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> reconnectWithResponse(
         String resourceGroupName,
@@ -206,7 +206,7 @@ public interface Backends {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context);
 

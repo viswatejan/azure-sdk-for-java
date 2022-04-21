@@ -39,7 +39,7 @@ public interface OperationStatusResult {
     Map<String, String> properties();
 
     /**
-     * Gets the error property: If present, details of the operation error.
+     * Gets the error property: The error detail.
      *
      * @return the error value.
      */

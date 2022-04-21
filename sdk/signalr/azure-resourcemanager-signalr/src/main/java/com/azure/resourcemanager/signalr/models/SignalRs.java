@@ -31,7 +31,7 @@ public interface SignalRs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to check name availability along with {@link Response}.
+     * @return result of the request to check name availability.
      */
     Response<NameAvailability> checkNameAvailabilityWithResponse(
         String location, NameAvailabilityParameters parameters, Context context);
@@ -41,8 +41,7 @@ public interface SignalRs {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedIterable}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     PagedIterable<SignalRResource> list();
 
@@ -53,8 +52,7 @@ public interface SignalRs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedIterable}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     PagedIterable<SignalRResource> list(Context context);
 
@@ -66,8 +64,7 @@ public interface SignalRs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedIterable}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     PagedIterable<SignalRResource> listByResourceGroup(String resourceGroupName);
 
@@ -80,8 +77,7 @@ public interface SignalRs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedIterable}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     PagedIterable<SignalRResource> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -108,7 +104,7 @@ public interface SignalRs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the resource and its properties along with {@link Response}.
+     * @return the resource and its properties.
      */
     Response<SignalRResource> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context);
@@ -161,7 +157,7 @@ public interface SignalRs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the access keys of the resource along with {@link Response}.
+     * @return the access keys of the resource.
      */
     Response<SignalRKeys> listKeysWithResponse(String resourceGroupName, String resourceName, Context context);
 
@@ -243,7 +239,7 @@ public interface SignalRs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list skus operation response along with {@link Response}.
+     * @return the list skus operation response.
      */
     Response<SkuList> listSkusWithResponse(String resourceGroupName, String resourceName, Context context);
 
@@ -254,7 +250,7 @@ public interface SignalRs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the resource and its properties along with {@link Response}.
+     * @return the resource and its properties.
      */
     SignalRResource getById(String id);
 
@@ -266,7 +262,7 @@ public interface SignalRs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the resource and its properties along with {@link Response}.
+     * @return the resource and its properties.
      */
     Response<SignalRResource> getByIdWithResponse(String id, Context context);
 

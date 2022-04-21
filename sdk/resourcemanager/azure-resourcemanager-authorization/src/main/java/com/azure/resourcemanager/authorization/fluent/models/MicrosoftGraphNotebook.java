@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,6 +18,8 @@ import java.util.Map;
 /** notebook. */
 @Fluent
 public final class MicrosoftGraphNotebook extends MicrosoftGraphOnenoteEntityHierarchyModel {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphNotebook.class);
+
     /*
      * Indicates whether this is the user's default notebook. Read-only.
      */
@@ -51,7 +54,7 @@ public final class MicrosoftGraphNotebook extends MicrosoftGraphOnenoteEntityHie
     private String sectionsUrl;
 
     /*
-     * onenoteUserRole
+     * The userRole property.
      */
     @JsonProperty(value = "userRole")
     private MicrosoftGraphOnenoteUserRole userRole;
@@ -180,7 +183,7 @@ public final class MicrosoftGraphNotebook extends MicrosoftGraphOnenoteEntityHie
     }
 
     /**
-     * Get the userRole property: onenoteUserRole.
+     * Get the userRole property: The userRole property.
      *
      * @return the userRole value.
      */
@@ -189,7 +192,7 @@ public final class MicrosoftGraphNotebook extends MicrosoftGraphOnenoteEntityHie
     }
 
     /**
-     * Set the userRole property: onenoteUserRole.
+     * Set the userRole property: The userRole property.
      *
      * @param userRole the userRole value to set.
      * @return the MicrosoftGraphNotebook object itself.

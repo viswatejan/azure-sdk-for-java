@@ -6,11 +6,14 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** timeline aggregation information per kind. */
 @Fluent
 public final class TimelineAggregation {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TimelineAggregation.class);
+
     /*
      * the total items found for a kind
      */
@@ -70,11 +73,9 @@ public final class TimelineAggregation {
      */
     public void validate() {
         if (kind() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property kind in model TimelineAggregation"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TimelineAggregation.class);
 }

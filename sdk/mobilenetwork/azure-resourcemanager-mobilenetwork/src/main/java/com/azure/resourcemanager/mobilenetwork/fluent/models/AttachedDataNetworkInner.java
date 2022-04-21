@@ -6,10 +6,12 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.InterfaceProperties;
 import com.azure.resourcemanager.mobilenetwork.models.NaptConfiguration;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -17,11 +19,19 @@ import java.util.Map;
 /** Attached data network resource. */
 @Fluent
 public final class AttachedDataNetworkInner extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AttachedDataNetworkInner.class);
+
     /*
      * Data network properties.
      */
     @JsonProperty(value = "properties", required = true)
     private AttachedDataNetworkPropertiesFormat innerProperties = new AttachedDataNetworkPropertiesFormat();
+
+    /*
+     * Metadata pertaining to creation and last modification of the resource.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData innerSystemData;
 
     /**
      * Get the innerProperties property: Data network properties.
@@ -31,6 +41,15 @@ public final class AttachedDataNetworkInner extends Resource {
     private AttachedDataNetworkPropertiesFormat innerProperties() {
         return this.innerProperties;
     }
+
+//    /**
+//     * Get the innerSystemData property: Metadata pertaining to creation and last modification of the resource.
+//     *
+//     * @return the innerSystemData value.
+//     */
+//    private SystemData innerSystemData() {
+//        return this.innerSystemData;
+//    }
 
     /** {@inheritDoc} */
     @Override
@@ -173,7 +192,7 @@ public final class AttachedDataNetworkInner extends Resource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model AttachedDataNetworkInner"));
@@ -181,6 +200,4 @@ public final class AttachedDataNetworkInner extends Resource {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AttachedDataNetworkInner.class);
 }

@@ -9,6 +9,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.DependencyReference;
 import com.azure.resourcemanager.datafactory.models.RetryPolicy;
 import com.azure.resourcemanager.datafactory.models.TumblingWindowFrequency;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.List;
 /** Tumbling Window Trigger properties. */
 @Fluent
 public final class TumblingWindowTriggerTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TumblingWindowTriggerTypeProperties.class);
+
     /*
      * The frequency of the time windows.
      */
@@ -250,13 +253,13 @@ public final class TumblingWindowTriggerTypeProperties {
      */
     public void validate() {
         if (frequency() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property frequency in model TumblingWindowTriggerTypeProperties"));
         }
         if (startTime() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property startTime in model TumblingWindowTriggerTypeProperties"));
@@ -268,6 +271,4 @@ public final class TumblingWindowTriggerTypeProperties {
             dependsOn().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TumblingWindowTriggerTypeProperties.class);
 }

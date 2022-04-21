@@ -6,11 +6,14 @@ package com.azure.resourcemanager.cognitiveservices.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A rule governing the accessibility from a specific ip address or ip range. */
 @Fluent
 public final class IpRule {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(IpRule.class);
+
     /*
      * An IPv4 address range in CIDR notation, such as '124.56.78.91' (simple
      * IP address) or '124.56.78.0/24' (all addresses that start with
@@ -48,10 +51,8 @@ public final class IpRule {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(new IllegalArgumentException("Missing required property value in model IpRule"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(IpRule.class);
 }

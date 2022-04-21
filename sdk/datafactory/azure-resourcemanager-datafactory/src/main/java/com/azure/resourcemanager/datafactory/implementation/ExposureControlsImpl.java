@@ -16,9 +16,10 @@ import com.azure.resourcemanager.datafactory.models.ExposureControlBatchResponse
 import com.azure.resourcemanager.datafactory.models.ExposureControlRequest;
 import com.azure.resourcemanager.datafactory.models.ExposureControlResponse;
 import com.azure.resourcemanager.datafactory.models.ExposureControls;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ExposureControlsImpl implements ExposureControls {
-    private static final ClientLogger LOGGER = new ClientLogger(ExposureControlsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ExposureControlsImpl.class);
 
     private final ExposureControlsClient innerClient;
 

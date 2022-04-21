@@ -12,9 +12,10 @@ import com.azure.resourcemanager.datafactory.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.datafactory.fluent.models.PrivateLinkResourcesWrapperInner;
 import com.azure.resourcemanager.datafactory.models.PrivateLinkResources;
 import com.azure.resourcemanager.datafactory.models.PrivateLinkResourcesWrapper;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateLinkResourcesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateLinkResourcesImpl.class);
 
     private final PrivateLinkResourcesClient innerClient;
 

@@ -11,9 +11,10 @@ import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndic
 import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationInner;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorsOperations;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceInformation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ThreatIntelligenceIndicatorsOperationsImpl implements ThreatIntelligenceIndicatorsOperations {
-    private static final ClientLogger LOGGER = new ClientLogger(ThreatIntelligenceIndicatorsOperationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ThreatIntelligenceIndicatorsOperationsImpl.class);
 
     private final ThreatIntelligenceIndicatorsOperationsClient innerClient;
 

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.UUID;
 /** permissionScope. */
 @Fluent
 public final class MicrosoftGraphPermissionScope {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphPermissionScope.class);
+
     /*
      * A description of the delegated permissions, intended to be read by an
      * administrator granting the permission on behalf of all users. This text

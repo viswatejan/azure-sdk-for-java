@@ -7,12 +7,15 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryTemplateInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List of all the entity query templates. */
 @Fluent
 public final class EntityQueryTemplateList {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(EntityQueryTemplateList.class);
+
     /*
      * URL to fetch the next set of entity query templates.
      */
@@ -61,13 +64,11 @@ public final class EntityQueryTemplateList {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model EntityQueryTemplateList"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(EntityQueryTemplateList.class);
 }

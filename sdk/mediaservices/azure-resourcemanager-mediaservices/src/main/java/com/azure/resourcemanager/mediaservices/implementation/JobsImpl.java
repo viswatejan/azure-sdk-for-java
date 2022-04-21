@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mediaservices.fluent.JobsClient;
 import com.azure.resourcemanager.mediaservices.fluent.models.JobInner;
 import com.azure.resourcemanager.mediaservices.models.Job;
 import com.azure.resourcemanager.mediaservices.models.Jobs;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class JobsImpl implements Jobs {
-    private static final ClientLogger LOGGER = new ClientLogger(JobsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(JobsImpl.class);
 
     private final JobsClient innerClient;
 
@@ -91,7 +92,7 @@ public final class JobsImpl implements Jobs {
     public Job getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -99,21 +100,21 @@ public final class JobsImpl implements Jobs {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String transformName = Utils.getValueFromIdByName(id, "transforms");
         if (transformName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'transforms'.", id)));
         }
         String jobName = Utils.getValueFromIdByName(id, "jobs");
         if (jobName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'jobs'.", id)));
@@ -124,7 +125,7 @@ public final class JobsImpl implements Jobs {
     public Response<Job> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -132,21 +133,21 @@ public final class JobsImpl implements Jobs {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String transformName = Utils.getValueFromIdByName(id, "transforms");
         if (transformName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'transforms'.", id)));
         }
         String jobName = Utils.getValueFromIdByName(id, "jobs");
         if (jobName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'jobs'.", id)));
@@ -157,7 +158,7 @@ public final class JobsImpl implements Jobs {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -165,32 +166,32 @@ public final class JobsImpl implements Jobs {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String transformName = Utils.getValueFromIdByName(id, "transforms");
         if (transformName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'transforms'.", id)));
         }
         String jobName = Utils.getValueFromIdByName(id, "jobs");
         if (jobName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'jobs'.", id)));
         }
-        this.deleteWithResponse(resourceGroupName, accountName, transformName, jobName, Context.NONE);
+        this.deleteWithResponse(resourceGroupName, accountName, transformName, jobName, Context.NONE).getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -198,21 +199,21 @@ public final class JobsImpl implements Jobs {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String transformName = Utils.getValueFromIdByName(id, "transforms");
         if (transformName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'transforms'.", id)));
         }
         String jobName = Utils.getValueFromIdByName(id, "jobs");
         if (jobName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'jobs'.", id)));

@@ -10,11 +10,10 @@ import com.azure.core.http.rest.PagedFlux;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.authorization.fluent.models.Get2ItemsItem;
 import com.azure.resourcemanager.authorization.fluent.models.Get3ItemsItem;
-import com.azure.resourcemanager.authorization.fluent.models.Get6ItemsItem;
-import com.azure.resourcemanager.authorization.fluent.models.Get7ItemsItem;
 import com.azure.resourcemanager.authorization.fluent.models.Get8ItemsItem;
+import com.azure.resourcemanager.authorization.fluent.models.GroupsGroupOrderby;
+import com.azure.resourcemanager.authorization.fluent.models.GroupsGroupSelect;
 import com.azure.resourcemanager.authorization.fluent.models.MicrosoftGraphGroupInner;
 import java.util.List;
 import reactor.core.publisher.Mono;
@@ -37,7 +36,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entities from groups as paginated response with {@link PagedFlux}.
+     * @return entities from groups.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<MicrosoftGraphGroupInner> listGroupAsync(
@@ -47,8 +46,8 @@ public interface GroupsGroupsClient {
         String search,
         String filter,
         Boolean count,
-        List<Get6ItemsItem> orderby,
-        List<Get7ItemsItem> select,
+        List<GroupsGroupOrderby> orderby,
+        List<GroupsGroupSelect> select,
         List<Get8ItemsItem> expand);
 
     /**
@@ -57,7 +56,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entities from groups as paginated response with {@link PagedFlux}.
+     * @return entities from groups.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<MicrosoftGraphGroupInner> listGroupAsync();
@@ -68,7 +67,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entities from groups as paginated response with {@link PagedIterable}.
+     * @return entities from groups.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MicrosoftGraphGroupInner> listGroup();
@@ -90,7 +89,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entities from groups as paginated response with {@link PagedIterable}.
+     * @return entities from groups.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MicrosoftGraphGroupInner> listGroup(
@@ -100,8 +99,8 @@ public interface GroupsGroupsClient {
         String search,
         String filter,
         Boolean count,
-        List<Get6ItemsItem> orderby,
-        List<Get7ItemsItem> select,
+        List<GroupsGroupOrderby> orderby,
+        List<GroupsGroupSelect> select,
         List<Get8ItemsItem> expand,
         Context context);
 
@@ -113,7 +112,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return group along with {@link Response} on successful completion of {@link Mono}.
+     * @return represents an Azure Active Directory object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MicrosoftGraphGroupInner>> createGroupWithResponseAsync(MicrosoftGraphGroupInner body);
@@ -126,7 +125,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return group on successful completion of {@link Mono}.
+     * @return represents an Azure Active Directory object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MicrosoftGraphGroupInner> createGroupAsync(MicrosoftGraphGroupInner body);
@@ -139,7 +138,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return group.
+     * @return represents an Azure Active Directory object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     MicrosoftGraphGroupInner createGroup(MicrosoftGraphGroupInner body);
@@ -153,7 +152,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return group along with {@link Response}.
+     * @return represents an Azure Active Directory object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MicrosoftGraphGroupInner> createGroupWithResponse(MicrosoftGraphGroupInner body, Context context);
@@ -169,11 +168,11 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entity from groups by key along with {@link Response} on successful completion of {@link Mono}.
+     * @return entity from groups by key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MicrosoftGraphGroupInner>> getGroupWithResponseAsync(
-        String groupId, String consistencyLevel, List<Get2ItemsItem> select, List<Get3ItemsItem> expand);
+        String groupId, String consistencyLevel, List<GroupsGroupSelect> select, List<Get3ItemsItem> expand);
 
     /**
      * Get entity from groups by key.
@@ -186,11 +185,11 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entity from groups by key on successful completion of {@link Mono}.
+     * @return entity from groups by key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MicrosoftGraphGroupInner> getGroupAsync(
-        String groupId, String consistencyLevel, List<Get2ItemsItem> select, List<Get3ItemsItem> expand);
+        String groupId, String consistencyLevel, List<GroupsGroupSelect> select, List<Get3ItemsItem> expand);
 
     /**
      * Get entity from groups by key.
@@ -200,7 +199,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entity from groups by key on successful completion of {@link Mono}.
+     * @return entity from groups by key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MicrosoftGraphGroupInner> getGroupAsync(String groupId);
@@ -230,13 +229,13 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entity from groups by key along with {@link Response}.
+     * @return entity from groups by key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MicrosoftGraphGroupInner> getGroupWithResponse(
         String groupId,
         String consistencyLevel,
-        List<Get2ItemsItem> select,
+        List<GroupsGroupSelect> select,
         List<Get3ItemsItem> expand,
         Context context);
 
@@ -249,7 +248,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> updateGroupWithResponseAsync(String groupId, MicrosoftGraphGroupInner body);
@@ -263,7 +262,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> updateGroupAsync(String groupId, MicrosoftGraphGroupInner body);
@@ -291,7 +290,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> updateGroupWithResponse(String groupId, MicrosoftGraphGroupInner body, Context context);
@@ -305,7 +304,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteGroupWithResponseAsync(String groupId, String ifMatch);
@@ -319,7 +318,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteGroupAsync(String groupId, String ifMatch);
@@ -332,7 +331,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteGroupAsync(String groupId);
@@ -359,7 +358,7 @@ public interface GroupsGroupsClient {
      * @throws com.azure.resourcemanager.authorization.fluent.models.OdataErrorMainException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteGroupWithResponse(String groupId, String ifMatch, Context context);

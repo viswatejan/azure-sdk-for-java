@@ -5,10 +5,14 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /** SharePoint data type connection. */
 @Fluent
 public final class OfficeDataConnectorDataTypesSharePoint extends DataConnectorDataTypeCommon {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OfficeDataConnectorDataTypesSharePoint.class);
+
     /** {@inheritDoc} */
     @Override
     public OfficeDataConnectorDataTypesSharePoint withState(DataTypeState state) {

@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.cognitiveservices.fluent.CommitmentTiersClient;
 import com.azure.resourcemanager.cognitiveservices.fluent.models.CommitmentTierInner;
 import com.azure.resourcemanager.cognitiveservices.models.CommitmentTierListResult;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in CommitmentTiersClient. */
 public final class CommitmentTiersClientImpl implements CommitmentTiersClient {
+    private final ClientLogger logger = new ClientLogger(CommitmentTiersClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final CommitmentTiersService service;
 
@@ -88,8 +91,7 @@ public final class CommitmentTiersClientImpl implements CommitmentTiersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CommitmentTierInner>> listSinglePageAsync(String location) {
@@ -140,8 +142,7 @@ public final class CommitmentTiersClientImpl implements CommitmentTiersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CommitmentTierInner>> listSinglePageAsync(String location, Context context) {
@@ -188,7 +189,7 @@ public final class CommitmentTiersClientImpl implements CommitmentTiersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response as paginated response with {@link PagedFlux}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CommitmentTierInner> listAsync(String location) {
@@ -203,7 +204,7 @@ public final class CommitmentTiersClientImpl implements CommitmentTiersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response as paginated response with {@link PagedFlux}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CommitmentTierInner> listAsync(String location, Context context) {
@@ -218,8 +219,7 @@ public final class CommitmentTiersClientImpl implements CommitmentTiersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<CommitmentTierInner> list(String location) {
@@ -234,8 +234,7 @@ public final class CommitmentTiersClientImpl implements CommitmentTiersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<CommitmentTierInner> list(String location, Context context) {
@@ -249,8 +248,7 @@ public final class CommitmentTiersClientImpl implements CommitmentTiersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CommitmentTierInner>> listNextSinglePageAsync(String nextLink) {
@@ -286,8 +284,7 @@ public final class CommitmentTiersClientImpl implements CommitmentTiersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of cognitive services accounts operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of cognitive services accounts operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CommitmentTierInner>> listNextSinglePageAsync(String nextLink, Context context) {

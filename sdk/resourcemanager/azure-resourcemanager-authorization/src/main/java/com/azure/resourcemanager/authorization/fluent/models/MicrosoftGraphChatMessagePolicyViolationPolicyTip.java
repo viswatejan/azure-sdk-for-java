@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,9 @@ import java.util.Map;
 /** chatMessagePolicyViolationPolicyTip. */
 @Fluent
 public final class MicrosoftGraphChatMessagePolicyViolationPolicyTip {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(MicrosoftGraphChatMessagePolicyViolationPolicyTip.class);
+
     /*
      * The URL a user can visit to read about the data loss prevention policies
      * for the organization. (ie, policies about what users shouldn't say in

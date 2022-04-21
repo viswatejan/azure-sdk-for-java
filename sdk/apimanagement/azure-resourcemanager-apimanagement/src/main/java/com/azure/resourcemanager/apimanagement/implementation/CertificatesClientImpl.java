@@ -30,6 +30,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.CertificatesClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.CertificateContractInner;
 import com.azure.resourcemanager.apimanagement.models.CertificateCollection;
@@ -42,6 +43,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in CertificatesClient. */
 public final class CertificatesClientImpl implements CertificatesClient {
+    private final ClientLogger logger = new ClientLogger(CertificatesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final CertificatesService service;
 
@@ -197,8 +200,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Certificates list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Certificates list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CertificateContractInner>> listByServiceSinglePageAsync(
@@ -275,8 +277,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Certificates list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Certificates list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CertificateContractInner>> listByServiceSinglePageAsync(
@@ -350,7 +351,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Certificates list representation as paginated response with {@link PagedFlux}.
+     * @return paged Certificates list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CertificateContractInner> listByServiceAsync(
@@ -375,7 +376,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Certificates list representation as paginated response with {@link PagedFlux}.
+     * @return paged Certificates list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CertificateContractInner> listByServiceAsync(String resourceGroupName, String serviceName) {
@@ -409,7 +410,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Certificates list representation as paginated response with {@link PagedFlux}.
+     * @return paged Certificates list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CertificateContractInner> listByServiceAsync(
@@ -435,7 +436,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Certificates list representation as paginated response with {@link PagedIterable}.
+     * @return paged Certificates list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<CertificateContractInner> listByService(String resourceGroupName, String serviceName) {
@@ -466,7 +467,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Certificates list representation as paginated response with {@link PagedIterable}.
+     * @return paged Certificates list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<CertificateContractInner> listByService(
@@ -491,8 +492,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the certificate specified by its identifier on successful completion
-     *     of {@link Mono}.
+     * @return the entity state (Etag) version of the certificate specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificatesGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -547,8 +547,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the certificate specified by its identifier on successful completion
-     *     of {@link Mono}.
+     * @return the entity state (Etag) version of the certificate specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificatesGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -599,8 +598,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the certificate specified by its identifier on successful completion
-     *     of {@link Mono}.
+     * @return the entity state (Etag) version of the certificate specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(String resourceGroupName, String serviceName, String certificateId) {
@@ -653,7 +651,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the certificate specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the certificate specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificatesGetResponse> getWithResponseAsync(
@@ -708,7 +706,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the certificate specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the certificate specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificatesGetResponse> getWithResponseAsync(
@@ -759,7 +757,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the certificate specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the certificate specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateContractInner> getAsync(
@@ -823,7 +821,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return certificate details on successful completion of {@link Mono}.
+     * @return certificate details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificatesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -891,7 +889,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return certificate details on successful completion of {@link Mono}.
+     * @return certificate details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificatesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -956,7 +954,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return certificate details on successful completion of {@link Mono}.
+     * @return certificate details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateContractInner> createOrUpdateAsync(
@@ -987,7 +985,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return certificate details on successful completion of {@link Mono}.
+     * @return certificate details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateContractInner> createOrUpdateAsync(
@@ -1070,7 +1068,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1131,7 +1129,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1188,7 +1186,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String certificateId, String ifMatch) {
@@ -1227,7 +1225,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1245,7 +1243,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return certificate details on successful completion of {@link Mono}.
+     * @return certificate details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificatesRefreshSecretResponse> refreshSecretWithResponseAsync(
@@ -1300,7 +1298,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return certificate details on successful completion of {@link Mono}.
+     * @return certificate details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificatesRefreshSecretResponse> refreshSecretWithResponseAsync(
@@ -1351,7 +1349,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return certificate details on successful completion of {@link Mono}.
+     * @return certificate details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateContractInner> refreshSecretAsync(
@@ -1410,8 +1408,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Certificates list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Certificates list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CertificateContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -1447,8 +1444,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Certificates list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Certificates list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CertificateContractInner>> listByServiceNextSinglePageAsync(

@@ -5,22 +5,22 @@
 package com.azure.resourcemanager.mediaservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mediaservices.models.StreamingLocatorContentKey;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
 /** A Streaming Locator resource. */
+@JsonFlatten
 @Fluent
-public final class StreamingLocatorInner extends ProxyResource {
-    /*
-     * Properties of the Streaming Locator.
-     */
-    @JsonProperty(value = "properties")
-    private StreamingLocatorProperties innerProperties;
+public class StreamingLocatorInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(StreamingLocatorInner.class);
 
     /*
      * The system metadata relating to this resource.
@@ -28,14 +28,71 @@ public final class StreamingLocatorInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /**
-     * Get the innerProperties property: Properties of the Streaming Locator.
-     *
-     * @return the innerProperties value.
+    /*
+     * Asset Name
      */
-    private StreamingLocatorProperties innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.assetName")
+    private String assetName;
+
+    /*
+     * The creation time of the Streaming Locator.
+     */
+    @JsonProperty(value = "properties.created", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime created;
+
+    /*
+     * The start time of the Streaming Locator.
+     */
+    @JsonProperty(value = "properties.startTime")
+    private OffsetDateTime startTime;
+
+    /*
+     * The end time of the Streaming Locator.
+     */
+    @JsonProperty(value = "properties.endTime")
+    private OffsetDateTime endTime;
+
+    /*
+     * The StreamingLocatorId of the Streaming Locator.
+     */
+    @JsonProperty(value = "properties.streamingLocatorId")
+    private UUID streamingLocatorId;
+
+    /*
+     * Name of the Streaming Policy used by this Streaming Locator. Either
+     * specify the name of Streaming Policy you created or use one of the
+     * predefined Streaming Policies. The predefined Streaming Policies
+     * available are: 'Predefined_DownloadOnly',
+     * 'Predefined_ClearStreamingOnly', 'Predefined_DownloadAndClearStreaming',
+     * 'Predefined_ClearKey', 'Predefined_MultiDrmCencStreaming' and
+     * 'Predefined_MultiDrmStreaming'
+     */
+    @JsonProperty(value = "properties.streamingPolicyName")
+    private String streamingPolicyName;
+
+    /*
+     * Name of the default ContentKeyPolicy used by this Streaming Locator.
+     */
+    @JsonProperty(value = "properties.defaultContentKeyPolicyName")
+    private String defaultContentKeyPolicyName;
+
+    /*
+     * The ContentKeys used by this Streaming Locator.
+     */
+    @JsonProperty(value = "properties.contentKeys")
+    private List<StreamingLocatorContentKey> contentKeys;
+
+    /*
+     * Alternative Media ID of this Streaming Locator
+     */
+    @JsonProperty(value = "properties.alternativeMediaId")
+    private String alternativeMediaId;
+
+    /*
+     * A list of asset or account filters which apply to this streaming locator
+     */
+    @JsonProperty(value = "properties.filters")
+    private List<String> filters;
 
     /**
      * Get the systemData property: The system metadata relating to this resource.
@@ -52,7 +109,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the assetName value.
      */
     public String assetName() {
-        return this.innerProperties() == null ? null : this.innerProperties().assetName();
+        return this.assetName;
     }
 
     /**
@@ -62,10 +119,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the StreamingLocatorInner object itself.
      */
     public StreamingLocatorInner withAssetName(String assetName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingLocatorProperties();
-        }
-        this.innerProperties().withAssetName(assetName);
+        this.assetName = assetName;
         return this;
     }
 
@@ -75,7 +129,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the created value.
      */
     public OffsetDateTime created() {
-        return this.innerProperties() == null ? null : this.innerProperties().created();
+        return this.created;
     }
 
     /**
@@ -84,7 +138,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().startTime();
+        return this.startTime;
     }
 
     /**
@@ -94,10 +148,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the StreamingLocatorInner object itself.
      */
     public StreamingLocatorInner withStartTime(OffsetDateTime startTime) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingLocatorProperties();
-        }
-        this.innerProperties().withStartTime(startTime);
+        this.startTime = startTime;
         return this;
     }
 
@@ -107,7 +158,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().endTime();
+        return this.endTime;
     }
 
     /**
@@ -117,10 +168,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the StreamingLocatorInner object itself.
      */
     public StreamingLocatorInner withEndTime(OffsetDateTime endTime) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingLocatorProperties();
-        }
-        this.innerProperties().withEndTime(endTime);
+        this.endTime = endTime;
         return this;
     }
 
@@ -130,7 +178,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the streamingLocatorId value.
      */
     public UUID streamingLocatorId() {
-        return this.innerProperties() == null ? null : this.innerProperties().streamingLocatorId();
+        return this.streamingLocatorId;
     }
 
     /**
@@ -140,10 +188,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the StreamingLocatorInner object itself.
      */
     public StreamingLocatorInner withStreamingLocatorId(UUID streamingLocatorId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingLocatorProperties();
-        }
-        this.innerProperties().withStreamingLocatorId(streamingLocatorId);
+        this.streamingLocatorId = streamingLocatorId;
         return this;
     }
 
@@ -157,7 +202,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the streamingPolicyName value.
      */
     public String streamingPolicyName() {
-        return this.innerProperties() == null ? null : this.innerProperties().streamingPolicyName();
+        return this.streamingPolicyName;
     }
 
     /**
@@ -171,10 +216,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the StreamingLocatorInner object itself.
      */
     public StreamingLocatorInner withStreamingPolicyName(String streamingPolicyName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingLocatorProperties();
-        }
-        this.innerProperties().withStreamingPolicyName(streamingPolicyName);
+        this.streamingPolicyName = streamingPolicyName;
         return this;
     }
 
@@ -185,7 +227,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the defaultContentKeyPolicyName value.
      */
     public String defaultContentKeyPolicyName() {
-        return this.innerProperties() == null ? null : this.innerProperties().defaultContentKeyPolicyName();
+        return this.defaultContentKeyPolicyName;
     }
 
     /**
@@ -196,10 +238,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the StreamingLocatorInner object itself.
      */
     public StreamingLocatorInner withDefaultContentKeyPolicyName(String defaultContentKeyPolicyName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingLocatorProperties();
-        }
-        this.innerProperties().withDefaultContentKeyPolicyName(defaultContentKeyPolicyName);
+        this.defaultContentKeyPolicyName = defaultContentKeyPolicyName;
         return this;
     }
 
@@ -209,7 +248,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the contentKeys value.
      */
     public List<StreamingLocatorContentKey> contentKeys() {
-        return this.innerProperties() == null ? null : this.innerProperties().contentKeys();
+        return this.contentKeys;
     }
 
     /**
@@ -219,10 +258,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the StreamingLocatorInner object itself.
      */
     public StreamingLocatorInner withContentKeys(List<StreamingLocatorContentKey> contentKeys) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingLocatorProperties();
-        }
-        this.innerProperties().withContentKeys(contentKeys);
+        this.contentKeys = contentKeys;
         return this;
     }
 
@@ -232,7 +268,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the alternativeMediaId value.
      */
     public String alternativeMediaId() {
-        return this.innerProperties() == null ? null : this.innerProperties().alternativeMediaId();
+        return this.alternativeMediaId;
     }
 
     /**
@@ -242,10 +278,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the StreamingLocatorInner object itself.
      */
     public StreamingLocatorInner withAlternativeMediaId(String alternativeMediaId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingLocatorProperties();
-        }
-        this.innerProperties().withAlternativeMediaId(alternativeMediaId);
+        this.alternativeMediaId = alternativeMediaId;
         return this;
     }
 
@@ -255,7 +288,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the filters value.
      */
     public List<String> filters() {
-        return this.innerProperties() == null ? null : this.innerProperties().filters();
+        return this.filters;
     }
 
     /**
@@ -265,10 +298,7 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @return the StreamingLocatorInner object itself.
      */
     public StreamingLocatorInner withFilters(List<String> filters) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new StreamingLocatorProperties();
-        }
-        this.innerProperties().withFilters(filters);
+        this.filters = filters;
         return this;
     }
 
@@ -278,8 +308,8 @@ public final class StreamingLocatorInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (contentKeys() != null) {
+            contentKeys().forEach(e -> e.validate());
         }
     }
 }

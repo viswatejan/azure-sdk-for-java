@@ -12,7 +12,6 @@ import com.azure.containers.containerregistry.implementation.models.ContainerReg
 import com.azure.containers.containerregistry.implementation.models.ContainerRegistryBlobsCompleteUploadHeaders;
 import com.azure.containers.containerregistry.implementation.models.ManifestWrapper;
 import com.azure.containers.containerregistry.models.DownloadBlobResult;
-import com.azure.containers.containerregistry.models.DownloadManifestOptions;
 import com.azure.containers.containerregistry.models.DownloadManifestResult;
 import com.azure.containers.containerregistry.models.OciManifest;
 import com.azure.containers.containerregistry.models.UploadBlobResult;
@@ -33,11 +32,9 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.logging.ClientLogger;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import java.nio.ByteBuffer;
 import java.util.Objects;
 
-import static com.azure.containers.containerregistry.implementation.UtilsImpl.deleteResponseToSuccess;
 import static com.azure.core.util.FluxUtil.monoError;
 import static com.azure.core.util.FluxUtil.withContext;
 
@@ -249,14 +246,14 @@ public class ContainerRegistryBlobAsyncClient {
      *
      * @see <a href="https://github.com/opencontainers/image-spec/blob/main/manifest.md">Oci Manifest Specification</a>
      *
-     * @param options Options for the operation.
+     * @param tagOrDigest The tag or digest of the manifest.
      * @return The manifest associated with the given tag or digest.
      * @throws ClientAuthenticationException thrown if the client's credentials do not have access to modify the namespace.
      * @throws NullPointerException thrown if the {@code tagOrDigest} is null.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<DownloadManifestResult> downloadManifest(DownloadManifestOptions options) {
-        return this.downloadManifestWithResponse(options).flatMap(FluxUtil::toMono);
+    public Mono<DownloadManifestResult> downloadManifest(String tagOrDigest) {
+        return this.downloadManifestWithResponse(tagOrDigest).flatMap(FluxUtil::toMono);
     }
 
     /**
@@ -265,26 +262,24 @@ public class ContainerRegistryBlobAsyncClient {
      *
      * @see <a href="https://github.com/opencontainers/image-spec/blob/main/manifest.md">Oci Manifest Specification</a>
      *
-     * @param options The options for the operation.
+     * @param tagOrDigest The tag or digest of the manifest.
      * @return The response for the manifest associated with the given tag or digest.
      * @throws ClientAuthenticationException thrown if the client's credentials do not have access to modify the namespace.
      * @throws NullPointerException thrown if the {@code tagOrDigest} is null.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<DownloadManifestResult>> downloadManifestWithResponse(DownloadManifestOptions options) {
-        return withContext(context -> this.downloadManifestWithResponse(options, context));
+    public Mono<Response<DownloadManifestResult>> downloadManifestWithResponse(String tagOrDigest) {
+        return withContext(context -> this.downloadManifestWithResponse(tagOrDigest, context));
     }
 
-    Mono<Response<DownloadManifestResult>> downloadManifestWithResponse(DownloadManifestOptions options, Context context) {
-        if (options == null) {
-            return monoError(logger, new NullPointerException("'options' can't be null."));
+    Mono<Response<DownloadManifestResult>> downloadManifestWithResponse(String tagOrDigest, Context context) {
+        if (tagOrDigest == null) {
+            return monoError(logger, new NullPointerException("'tagOrDigest' can't be null."));
         }
-
-        String tagOrDigest = options.getTag() != null ? options.getTag() : options.getDigest();
 
         return this.registriesImpl.getManifestWithResponseAsync(repositoryName, tagOrDigest, UtilsImpl.OCI_MANIFEST_MEDIA_TYPE, context)
             .flatMap(response -> {
-                String digest = UtilsImpl.getDigestFromHeader(response.getHeaders());
+                String digest = response.getHeaders().getValue(UtilsImpl.DOCKER_DIGEST_HEADER_NAME);
                 ManifestWrapper wrapper = response.getValue();
 
                 // The service wants us to validate the digest here since a lot of customers forget to do it before consuming
@@ -341,29 +336,17 @@ public class ContainerRegistryBlobAsyncClient {
         }
 
         return this.blobsImpl.getBlobWithResponseAsync(repositoryName, digest, context).flatMap(streamResponse -> {
-            String resDigest = UtilsImpl.getDigestFromHeader(streamResponse.getHeaders());
+            String resDigest = streamResponse.getHeaders().getValue(UtilsImpl.DOCKER_DIGEST_HEADER_NAME);
 
             return BinaryData.fromFlux(streamResponse.getValue())
                 .flatMap(binaryData -> {
-                    // The service wants us to validate the digest here since a lot of customers forget to do it before consuming
-                    // the contents returned by the service.
-                    if (Objects.equals(resDigest, digest)) {
-                        Response<DownloadBlobResult> response = new SimpleResponse<>(
-                            streamResponse.getRequest(),
-                            streamResponse.getStatusCode(),
-                            streamResponse.getHeaders(),
-                            new DownloadBlobResult(resDigest, binaryData));
+                    Response<DownloadBlobResult> response = new SimpleResponse<>(
+                        streamResponse.getRequest(),
+                        streamResponse.getStatusCode(),
+                        streamResponse.getHeaders(),
+                        new DownloadBlobResult(resDigest, binaryData));
 
-                        return Mono.just(response);
-                    } else {
-                        return monoError(logger, new ServiceResponseException("The digest in the response does not match the expected digest."));
-                    }
-                }).doFinally(ignored -> {
-                    try {
-                        streamResponse.close();
-                    } catch (Exception e) {
-                        logger.logThrowableAsError(e);
-                    }
+                    return Mono.just(response);
                 });
         }).onErrorMap(UtilsImpl::mapException);
     }
@@ -400,12 +383,7 @@ public class ContainerRegistryBlobAsyncClient {
         }
 
         return this.blobsImpl.deleteBlobWithResponseAsync(repositoryName, digest, context)
-            .flatMap(streamResponse -> {
-                Mono<Response<Void>> res = deleteResponseToSuccess(streamResponse);
-                // Since we are not passing the streamResponse back to the user, we need to close this.
-                streamResponse.close();
-                return res;
-            })
+            .flatMap(UtilsImpl::deleteResponseToSuccess)
             .onErrorMap(UtilsImpl::mapException);
     }
 

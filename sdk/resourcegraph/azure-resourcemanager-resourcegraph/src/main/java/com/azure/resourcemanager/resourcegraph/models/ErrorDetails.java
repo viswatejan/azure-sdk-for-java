@@ -16,6 +16,8 @@ import java.util.Map;
 /** Error details. */
 @Fluent
 public final class ErrorDetails {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ErrorDetails.class);
+
     /*
      * Error code identifying the specific error.
      */
@@ -109,16 +111,14 @@ public final class ErrorDetails {
      */
     public void validate() {
         if (code() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property code in model ErrorDetails"));
         }
         if (message() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property message in model ErrorDetails"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ErrorDetails.class);
 }

@@ -14,9 +14,10 @@ import com.azure.resourcemanager.securityinsights.fluent.models.SentinelOnboardi
 import com.azure.resourcemanager.securityinsights.models.SentinelOnboardingState;
 import com.azure.resourcemanager.securityinsights.models.SentinelOnboardingStates;
 import com.azure.resourcemanager.securityinsights.models.SentinelOnboardingStatesList;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class SentinelOnboardingStatesImpl implements SentinelOnboardingStates {
-    private static final ClientLogger LOGGER = new ClientLogger(SentinelOnboardingStatesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SentinelOnboardingStatesImpl.class);
 
     private final SentinelOnboardingStatesClient innerClient;
 
@@ -95,7 +96,7 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
     public SentinelOnboardingState getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -103,14 +104,14 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String sentinelOnboardingStateName = Utils.getValueFromIdByName(id, "onboardingStates");
         if (sentinelOnboardingStateName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -125,7 +126,7 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
     public Response<SentinelOnboardingState> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -133,14 +134,14 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String sentinelOnboardingStateName = Utils.getValueFromIdByName(id, "onboardingStates");
         if (sentinelOnboardingStateName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -153,7 +154,7 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -161,14 +162,14 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String sentinelOnboardingStateName = Utils.getValueFromIdByName(id, "onboardingStates");
         if (sentinelOnboardingStateName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -181,7 +182,7 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -189,14 +190,14 @@ public final class SentinelOnboardingStatesImpl implements SentinelOnboardingSta
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String sentinelOnboardingStateName = Utils.getValueFromIdByName(id, "onboardingStates");
         if (sentinelOnboardingStateName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

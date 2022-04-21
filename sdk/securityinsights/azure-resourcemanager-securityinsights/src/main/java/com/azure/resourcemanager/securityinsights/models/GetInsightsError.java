@@ -6,11 +6,14 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** GetInsights Query Errors. */
 @Fluent
 public final class GetInsightsError {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GetInsightsError.class);
+
     /*
      * the query kind
      */
@@ -101,11 +104,9 @@ public final class GetInsightsError {
      */
     public void validate() {
         if (errorMessage() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property errorMessage in model GetInsightsError"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(GetInsightsError.class);
 }

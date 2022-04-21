@@ -210,23 +210,21 @@ public final class WorkbookImpl implements Workbook, Workbook.Definition, Workbo
     }
 
     public Workbook refresh() {
-        Boolean localCanFetchContent = null;
         this.innerObject =
             serviceManager
                 .serviceClient()
                 .getWorkbooks()
-                .getByResourceGroupWithResponse(resourceGroupName, resourceName, localCanFetchContent, Context.NONE)
+                .getByResourceGroupWithResponse(resourceGroupName, resourceName, Context.NONE)
                 .getValue();
         return this;
     }
 
     public Workbook refresh(Context context) {
-        Boolean localCanFetchContent = null;
         this.innerObject =
             serviceManager
                 .serviceClient()
                 .getWorkbooks()
-                .getByResourceGroupWithResponse(resourceGroupName, resourceName, localCanFetchContent, context)
+                .getByResourceGroupWithResponse(resourceGroupName, resourceName, context)
                 .getValue();
         return this;
     }

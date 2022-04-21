@@ -6,26 +6,30 @@ package com.azure.resourcemanager.apimanagement.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Deleted API Management Service information. */
+/** Deleted Api Management Service information. */
 @Fluent
 public final class DeletedServiceContractInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DeletedServiceContractInner.class);
+
     /*
-     * Deleted API Management Service details.
+     * Deleted Api Management Service details.
      */
     @JsonProperty(value = "properties")
     private DeletedServiceContractProperties innerProperties;
 
     /*
-     * API Management Service Master Location.
+     * Api Management Service Master Location.
      */
     @JsonProperty(value = "location", access = JsonProperty.Access.WRITE_ONLY)
     private String location;
 
     /**
-     * Get the innerProperties property: Deleted API Management Service details.
+     * Get the innerProperties property: Deleted Api Management Service details.
      *
      * @return the innerProperties value.
      */
@@ -34,7 +38,7 @@ public final class DeletedServiceContractInner extends ProxyResource {
     }
 
     /**
-     * Get the location property: API Management Service Master Location.
+     * Get the location property: Api Management Service Master Location.
      *
      * @return the location value.
      */

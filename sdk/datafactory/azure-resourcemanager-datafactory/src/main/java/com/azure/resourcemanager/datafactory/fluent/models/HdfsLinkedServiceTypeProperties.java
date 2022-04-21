@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** HDFS linked service properties. */
 @Fluent
 public final class HdfsLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(HdfsLinkedServiceTypeProperties.class);
+
     /*
      * The URL of the HDFS service endpoint, e.g.
      * http://myhostname:50070/webhdfs/v1 . Type: string (or Expression with
@@ -164,7 +167,7 @@ public final class HdfsLinkedServiceTypeProperties {
      */
     public void validate() {
         if (url() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property url in model HdfsLinkedServiceTypeProperties"));
@@ -173,6 +176,4 @@ public final class HdfsLinkedServiceTypeProperties {
             password().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(HdfsLinkedServiceTypeProperties.class);
 }

@@ -21,6 +21,7 @@ import com.azure.resourcemanager.containerinstance.models.InitContainerDefinitio
 import com.azure.resourcemanager.containerinstance.models.IpAddress;
 import com.azure.resourcemanager.containerinstance.models.OperatingSystemTypes;
 import com.azure.resourcemanager.containerinstance.models.Volume;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,8 @@ import java.util.Map;
 /** A container group. */
 @Fluent
 public final class ContainerGroupInner extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContainerGroupInner.class);
+
     /*
      * The identity of the container group, if configured.
      */
@@ -418,7 +421,7 @@ public final class ContainerGroupInner extends Resource {
             identity().validate();
         }
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model ContainerGroupInner"));
@@ -426,6 +429,4 @@ public final class ContainerGroupInner extends Resource {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ContainerGroupInner.class);
 }

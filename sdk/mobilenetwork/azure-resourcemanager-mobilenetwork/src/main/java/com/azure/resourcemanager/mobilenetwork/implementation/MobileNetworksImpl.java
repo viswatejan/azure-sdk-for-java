@@ -15,9 +15,10 @@ import com.azure.resourcemanager.mobilenetwork.fluent.models.SimIdListResultInne
 import com.azure.resourcemanager.mobilenetwork.models.MobileNetwork;
 import com.azure.resourcemanager.mobilenetwork.models.MobileNetworks;
 import com.azure.resourcemanager.mobilenetwork.models.SimIdListResult;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class MobileNetworksImpl implements MobileNetworks {
-    private static final ClientLogger LOGGER = new ClientLogger(MobileNetworksImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MobileNetworksImpl.class);
 
     private final MobileNetworksClient innerClient;
 
@@ -102,7 +103,7 @@ public final class MobileNetworksImpl implements MobileNetworks {
     public MobileNetwork getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -110,7 +111,7 @@ public final class MobileNetworksImpl implements MobileNetworks {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -122,7 +123,7 @@ public final class MobileNetworksImpl implements MobileNetworks {
     public Response<MobileNetwork> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -130,7 +131,7 @@ public final class MobileNetworksImpl implements MobileNetworks {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -142,7 +143,7 @@ public final class MobileNetworksImpl implements MobileNetworks {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -150,7 +151,7 @@ public final class MobileNetworksImpl implements MobileNetworks {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -162,7 +163,7 @@ public final class MobileNetworksImpl implements MobileNetworks {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -170,7 +171,7 @@ public final class MobileNetworksImpl implements MobileNetworks {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

@@ -30,6 +30,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.apimanagement.fluent.PortalRevisionsClient;
@@ -43,6 +44,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in PortalRevisionsClient. */
 public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
+    private final ClientLogger logger = new ClientLogger(PortalRevisionsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final PortalRevisionsService service;
 
@@ -177,7 +180,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of portal revisions along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged list of portal revisions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PortalRevisionContractInner>> listByServiceSinglePageAsync(
@@ -244,7 +247,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of portal revisions along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged list of portal revisions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PortalRevisionContractInner>> listByServiceSinglePageAsync(
@@ -307,7 +310,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of portal revisions as paginated response with {@link PagedFlux}.
+     * @return paged list of portal revisions.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PortalRevisionContractInner> listByServiceAsync(
@@ -325,7 +328,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of portal revisions as paginated response with {@link PagedFlux}.
+     * @return paged list of portal revisions.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PortalRevisionContractInner> listByServiceAsync(String resourceGroupName, String serviceName) {
@@ -352,7 +355,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of portal revisions as paginated response with {@link PagedFlux}.
+     * @return paged list of portal revisions.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PortalRevisionContractInner> listByServiceAsync(
@@ -370,7 +373,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of portal revisions as paginated response with {@link PagedIterable}.
+     * @return paged list of portal revisions.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PortalRevisionContractInner> listByService(String resourceGroupName, String serviceName) {
@@ -395,7 +398,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of portal revisions as paginated response with {@link PagedIterable}.
+     * @return paged list of portal revisions.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PortalRevisionContractInner> listByService(
@@ -413,7 +416,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the developer portal revision specified by its identifier on successful completion of {@link Mono}.
+     * @return the developer portal revision specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalRevisionsGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -469,7 +472,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the developer portal revision specified by its identifier on successful completion of {@link Mono}.
+     * @return the developer portal revision specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalRevisionsGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -521,7 +524,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the developer portal revision specified by its identifier on successful completion of {@link Mono}.
+     * @return the developer portal revision specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(String resourceGroupName, String serviceName, String portalRevisionId) {
@@ -574,7 +577,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the developer portal's revision specified by its identifier on successful completion of {@link Mono}.
+     * @return the developer portal's revision specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalRevisionsGetResponse> getWithResponseAsync(
@@ -630,7 +633,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the developer portal's revision specified by its identifier on successful completion of {@link Mono}.
+     * @return the developer portal's revision specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalRevisionsGetResponse> getWithResponseAsync(
@@ -682,7 +685,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the developer portal's revision specified by its identifier on successful completion of {@link Mono}.
+     * @return the developer portal's revision specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalRevisionContractInner> getAsync(
@@ -742,11 +745,11 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @param serviceName The name of the API Management service.
      * @param portalRevisionId Portal revision identifier. Must be unique in the current API Management service
      *     instance.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details along with {@link Response} on successful completion of {@link Mono}.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -805,12 +808,12 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @param serviceName The name of the API Management service.
      * @param portalRevisionId Portal revision identifier. Must be unique in the current API Management service
      *     instance.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details along with {@link Response} on successful completion of {@link Mono}.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -870,13 +873,13 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @param serviceName The name of the API Management service.
      * @param portalRevisionId Portal revision identifier. Must be unique in the current API Management service
      *     instance.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of portal Revision's contract details.
+     * @return portal revisions contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<PortalRevisionContractInner>, PortalRevisionContractInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String serviceName, String portalRevisionId, PortalRevisionContractInner parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -888,7 +891,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
                 this.client.getHttpPipeline(),
                 PortalRevisionContractInner.class,
                 PortalRevisionContractInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -899,14 +902,14 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @param serviceName The name of the API Management service.
      * @param portalRevisionId Portal revision identifier. Must be unique in the current API Management service
      *     instance.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of portal Revision's contract details.
+     * @return portal revisions contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<PortalRevisionContractInner>, PortalRevisionContractInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serviceName,
@@ -934,13 +937,13 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @param serviceName The name of the API Management service.
      * @param portalRevisionId Portal revision identifier. Must be unique in the current API Management service
      *     instance.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of portal Revision's contract details.
+     * @return portal revisions contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<PortalRevisionContractInner>, PortalRevisionContractInner> beginCreateOrUpdate(
         String resourceGroupName, String serviceName, String portalRevisionId, PortalRevisionContractInner parameters) {
         return beginCreateOrUpdateAsync(resourceGroupName, serviceName, portalRevisionId, parameters).getSyncPoller();
@@ -954,14 +957,14 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @param serviceName The name of the API Management service.
      * @param portalRevisionId Portal revision identifier. Must be unique in the current API Management service
      *     instance.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of portal Revision's contract details.
+     * @return portal revisions contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<PortalRevisionContractInner>, PortalRevisionContractInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serviceName,
@@ -980,11 +983,11 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @param serviceName The name of the API Management service.
      * @param portalRevisionId Portal revision identifier. Must be unique in the current API Management service
      *     instance.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details on successful completion of {@link Mono}.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalRevisionContractInner> createOrUpdateAsync(
@@ -1002,12 +1005,12 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @param serviceName The name of the API Management service.
      * @param portalRevisionId Portal revision identifier. Must be unique in the current API Management service
      *     instance.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details on successful completion of {@link Mono}.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalRevisionContractInner> createOrUpdateAsync(
@@ -1029,11 +1032,11 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @param serviceName The name of the API Management service.
      * @param portalRevisionId Portal revision identifier. Must be unique in the current API Management service
      *     instance.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PortalRevisionContractInner createOrUpdate(
@@ -1049,12 +1052,12 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @param serviceName The name of the API Management service.
      * @param portalRevisionId Portal revision identifier. Must be unique in the current API Management service
      *     instance.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PortalRevisionContractInner createOrUpdate(
@@ -1075,11 +1078,11 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      *     instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details along with {@link Response} on successful completion of {@link Mono}.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1147,12 +1150,12 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      *     instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details along with {@link Response} on successful completion of {@link Mono}.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1218,13 +1221,13 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      *     instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of portal Revision's contract details.
+     * @return portal revisions contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<PortalRevisionContractInner>, PortalRevisionContractInner> beginUpdateAsync(
         String resourceGroupName,
         String serviceName,
@@ -1240,7 +1243,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
                 this.client.getHttpPipeline(),
                 PortalRevisionContractInner.class,
                 PortalRevisionContractInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -1252,14 +1255,14 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      *     instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of portal Revision's contract details.
+     * @return portal revisions contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<PortalRevisionContractInner>, PortalRevisionContractInner> beginUpdateAsync(
         String resourceGroupName,
         String serviceName,
@@ -1289,13 +1292,13 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      *     instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of portal Revision's contract details.
+     * @return portal revisions contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<PortalRevisionContractInner>, PortalRevisionContractInner> beginUpdate(
         String resourceGroupName,
         String serviceName,
@@ -1314,14 +1317,14 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      *     instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of portal Revision's contract details.
+     * @return portal revisions contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<PortalRevisionContractInner>, PortalRevisionContractInner> beginUpdate(
         String resourceGroupName,
         String serviceName,
@@ -1342,11 +1345,11 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      *     instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details on successful completion of {@link Mono}.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalRevisionContractInner> updateAsync(
@@ -1369,12 +1372,12 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      *     instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details on successful completion of {@link Mono}.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PortalRevisionContractInner> updateAsync(
@@ -1398,11 +1401,11 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      *     instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PortalRevisionContractInner update(
@@ -1423,12 +1426,12 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      *     instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
-     * @param parameters Portal Revision's contract details.
+     * @param parameters Portal revisions contract details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return portal Revision's contract details.
+     * @return portal revisions contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PortalRevisionContractInner update(
@@ -1448,7 +1451,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of portal revisions along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged list of portal revisions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PortalRevisionContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -1484,7 +1487,7 @@ public final class PortalRevisionsClientImpl implements PortalRevisionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of portal revisions along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged list of portal revisions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PortalRevisionContractInner>> listByServiceNextSinglePageAsync(

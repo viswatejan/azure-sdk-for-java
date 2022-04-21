@@ -6,11 +6,14 @@ package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The customer name to be printed on a letter of authorization. */
 @Fluent
 public final class GenerateExpressRoutePortsLoaRequest {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GenerateExpressRoutePortsLoaRequest.class);
+
     /*
      * The customer name.
      */
@@ -44,12 +47,10 @@ public final class GenerateExpressRoutePortsLoaRequest {
      */
     public void validate() {
         if (customerName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property customerName in model GenerateExpressRoutePortsLoaRequest"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(GenerateExpressRoutePortsLoaRequest.class);
 }

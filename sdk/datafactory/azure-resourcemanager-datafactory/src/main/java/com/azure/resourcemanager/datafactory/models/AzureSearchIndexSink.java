@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -14,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("AzureSearchIndexSink")
 @Fluent
 public final class AzureSearchIndexSink extends CopySink {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureSearchIndexSink.class);
+
     /*
      * Specify the write behavior when upserting documents into Azure Search
      * Index.

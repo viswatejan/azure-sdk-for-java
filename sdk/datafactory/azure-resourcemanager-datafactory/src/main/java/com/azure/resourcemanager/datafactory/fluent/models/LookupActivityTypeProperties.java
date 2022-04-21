@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.CopySource;
 import com.azure.resourcemanager.datafactory.models.DatasetReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Lookup activity properties. */
 @Fluent
 public final class LookupActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LookupActivityTypeProperties.class);
+
     /*
      * Dataset-specific source properties, same as copy activity source.
      */
@@ -101,7 +104,7 @@ public final class LookupActivityTypeProperties {
      */
     public void validate() {
         if (source() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property source in model LookupActivityTypeProperties"));
@@ -109,7 +112,7 @@ public final class LookupActivityTypeProperties {
             source().validate();
         }
         if (dataset() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property dataset in model LookupActivityTypeProperties"));
@@ -117,6 +120,4 @@ public final class LookupActivityTypeProperties {
             dataset().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LookupActivityTypeProperties.class);
 }

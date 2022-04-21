@@ -14,9 +14,10 @@ import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInn
 import com.azure.resourcemanager.securityinsights.models.DataConnector;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorConnectBody;
 import com.azure.resourcemanager.securityinsights.models.DataConnectors;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class DataConnectorsImpl implements DataConnectors {
-    private static final ClientLogger LOGGER = new ClientLogger(DataConnectorsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DataConnectorsImpl.class);
 
     private final DataConnectorsClient innerClient;
 

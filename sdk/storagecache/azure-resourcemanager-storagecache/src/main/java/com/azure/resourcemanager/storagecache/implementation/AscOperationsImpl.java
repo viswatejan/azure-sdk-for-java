@@ -12,9 +12,10 @@ import com.azure.resourcemanager.storagecache.fluent.AscOperationsClient;
 import com.azure.resourcemanager.storagecache.fluent.models.AscOperationInner;
 import com.azure.resourcemanager.storagecache.models.AscOperation;
 import com.azure.resourcemanager.storagecache.models.AscOperations;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class AscOperationsImpl implements AscOperations {
-    private static final ClientLogger LOGGER = new ClientLogger(AscOperationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AscOperationsImpl.class);
 
     private final AscOperationsClient innerClient;
 

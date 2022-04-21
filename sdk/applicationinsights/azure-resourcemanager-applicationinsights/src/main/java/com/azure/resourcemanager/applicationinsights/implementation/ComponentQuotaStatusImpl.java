@@ -12,9 +12,10 @@ import com.azure.resourcemanager.applicationinsights.fluent.ComponentQuotaStatus
 import com.azure.resourcemanager.applicationinsights.fluent.models.ApplicationInsightsComponentQuotaStatusInner;
 import com.azure.resourcemanager.applicationinsights.models.ApplicationInsightsComponentQuotaStatus;
 import com.azure.resourcemanager.applicationinsights.models.ComponentQuotaStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ComponentQuotaStatusImpl implements ComponentQuotaStatus {
-    private static final ClientLogger LOGGER = new ClientLogger(ComponentQuotaStatusImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ComponentQuotaStatusImpl.class);
 
     private final ComponentQuotaStatusClient innerClient;
 

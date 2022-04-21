@@ -13,9 +13,10 @@ import com.azure.resourcemanager.eventgrid.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.eventgrid.fluent.models.PrivateLinkResourceInner;
 import com.azure.resourcemanager.eventgrid.models.PrivateLinkResource;
 import com.azure.resourcemanager.eventgrid.models.PrivateLinkResources;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateLinkResourcesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateLinkResourcesImpl.class);
 
     private final PrivateLinkResourcesClient innerClient;
 

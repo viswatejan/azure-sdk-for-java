@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.storage.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.storage.models.ImmutabilityPolicyState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The properties of an ImmutabilityPolicy of a blob container. */
 @Fluent
 public final class ImmutabilityPolicyProperty {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ImmutabilityPolicyProperty.class);
+
     /*
      * The immutability period for the blobs in the container since the policy
      * creation, in days.

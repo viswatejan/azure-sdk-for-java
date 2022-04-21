@@ -7,12 +7,15 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.ManagedVirtualNetworkResourceInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A list of managed Virtual Network resources. */
 @Fluent
 public final class ManagedVirtualNetworkListResponse {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedVirtualNetworkListResponse.class);
+
     /*
      * List of managed Virtual Networks.
      */
@@ -72,7 +75,7 @@ public final class ManagedVirtualNetworkListResponse {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model ManagedVirtualNetworkListResponse"));
@@ -80,6 +83,4 @@ public final class ManagedVirtualNetworkListResponse {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ManagedVirtualNetworkListResponse.class);
 }

@@ -29,6 +29,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.GatewayCertificateAuthoritiesClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.GatewayCertificateAuthorityContractInner;
 import com.azure.resourcemanager.apimanagement.models.GatewayCertificateAuthoritiesCreateOrUpdateResponse;
@@ -39,6 +40,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in GatewayCertificateAuthoritiesClient. */
 public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCertificateAuthoritiesClient {
+    private final ClientLogger logger = new ClientLogger(GatewayCertificateAuthoritiesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final GatewayCertificateAuthoritiesService service;
 
@@ -183,8 +186,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway certificate authority list representation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return paged Gateway certificate authority list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GatewayCertificateAuthorityContractInner>> listByServiceSinglePageAsync(
@@ -256,8 +258,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway certificate authority list representation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return paged Gateway certificate authority list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GatewayCertificateAuthorityContractInner>> listByServiceSinglePageAsync(
@@ -331,7 +332,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway certificate authority list representation as paginated response with {@link PagedFlux}.
+     * @return paged Gateway certificate authority list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<GatewayCertificateAuthorityContractInner> listByServiceAsync(
@@ -351,7 +352,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway certificate authority list representation as paginated response with {@link PagedFlux}.
+     * @return paged Gateway certificate authority list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<GatewayCertificateAuthorityContractInner> listByServiceAsync(
@@ -380,7 +381,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway certificate authority list representation as paginated response with {@link PagedFlux}.
+     * @return paged Gateway certificate authority list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<GatewayCertificateAuthorityContractInner> listByServiceAsync(
@@ -406,7 +407,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway certificate authority list representation as paginated response with {@link PagedIterable}.
+     * @return paged Gateway certificate authority list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<GatewayCertificateAuthorityContractInner> listByService(
@@ -433,7 +434,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway certificate authority list representation as paginated response with {@link PagedIterable}.
+     * @return paged Gateway certificate authority list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<GatewayCertificateAuthorityContractInner> listByService(
@@ -460,7 +461,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GatewayCertificateAuthoritiesGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -521,7 +522,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GatewayCertificateAuthoritiesGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -578,7 +579,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(
@@ -638,7 +639,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return assigned Gateway Certificate Authority details on successful completion of {@link Mono}.
+     * @return assigned Gateway Certificate Authority details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GatewayCertificateAuthoritiesGetResponse> getWithResponseAsync(
@@ -699,7 +700,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return assigned Gateway Certificate Authority details on successful completion of {@link Mono}.
+     * @return assigned Gateway Certificate Authority details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GatewayCertificateAuthoritiesGetResponse> getWithResponseAsync(
@@ -756,7 +757,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return assigned Gateway Certificate Authority details on successful completion of {@link Mono}.
+     * @return assigned Gateway Certificate Authority details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GatewayCertificateAuthorityContractInner> getAsync(
@@ -827,7 +828,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return gateway certificate authority details on successful completion of {@link Mono}.
+     * @return gateway certificate authority details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GatewayCertificateAuthoritiesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -902,7 +903,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return gateway certificate authority details on successful completion of {@link Mono}.
+     * @return gateway certificate authority details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GatewayCertificateAuthoritiesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -974,7 +975,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return gateway certificate authority details on successful completion of {@link Mono}.
+     * @return gateway certificate authority details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GatewayCertificateAuthorityContractInner> createOrUpdateAsync(
@@ -1009,7 +1010,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return gateway certificate authority details on successful completion of {@link Mono}.
+     * @return gateway certificate authority details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GatewayCertificateAuthorityContractInner> createOrUpdateAsync(
@@ -1103,7 +1104,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1170,7 +1171,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1238,7 +1239,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1283,7 +1284,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1304,8 +1305,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway certificate authority list representation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return paged Gateway certificate authority list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GatewayCertificateAuthorityContractInner>> listByServiceNextSinglePageAsync(
@@ -1342,8 +1342,7 @@ public final class GatewayCertificateAuthoritiesClientImpl implements GatewayCer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway certificate authority list representation along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return paged Gateway certificate authority list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GatewayCertificateAuthorityContractInner>> listByServiceNextSinglePageAsync(

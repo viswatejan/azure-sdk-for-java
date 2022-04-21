@@ -17,6 +17,7 @@ import com.azure.resourcemanager.network.models.VirtualNetworkGatewayConnectionM
 import com.azure.resourcemanager.network.models.VirtualNetworkGatewayConnectionProtocol;
 import com.azure.resourcemanager.network.models.VirtualNetworkGatewayConnectionStatus;
 import com.azure.resourcemanager.network.models.VirtualNetworkGatewayConnectionType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,9 @@ import java.util.Map;
 /** A common class for general resource information. */
 @Fluent
 public final class VirtualNetworkGatewayConnectionListEntityInner extends Resource {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(VirtualNetworkGatewayConnectionListEntityInner.class);
+
     /*
      * Properties of the virtual network gateway connection.
      */
@@ -510,7 +514,7 @@ public final class VirtualNetworkGatewayConnectionListEntityInner extends Resour
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model"
@@ -519,6 +523,4 @@ public final class VirtualNetworkGatewayConnectionListEntityInner extends Resour
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(VirtualNetworkGatewayConnectionListEntityInner.class);
 }

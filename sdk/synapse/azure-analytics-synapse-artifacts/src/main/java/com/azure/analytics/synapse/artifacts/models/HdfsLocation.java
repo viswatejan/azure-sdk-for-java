@@ -12,18 +12,4 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("HdfsLocation")
 @Fluent
-public final class HdfsLocation extends DatasetLocation {
-    /** {@inheritDoc} */
-    @Override
-    public HdfsLocation setFolderPath(Object folderPath) {
-        super.setFolderPath(folderPath);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public HdfsLocation setFileName(Object fileName) {
-        super.setFileName(fileName);
-        return this;
-    }
-}
+public final class HdfsLocation extends DatasetLocation {}

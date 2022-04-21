@@ -6,11 +6,14 @@ package com.azure.resourcemanager.appplatform.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Name availability parameters payload. */
 @Fluent
 public final class NameAvailabilityParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(NameAvailabilityParameters.class);
+
     /*
      * Type of the resource to check name availability
      */
@@ -70,16 +73,14 @@ public final class NameAvailabilityParameters {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property type in model NameAvailabilityParameters"));
         }
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model NameAvailabilityParameters"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(NameAvailabilityParameters.class);
 }

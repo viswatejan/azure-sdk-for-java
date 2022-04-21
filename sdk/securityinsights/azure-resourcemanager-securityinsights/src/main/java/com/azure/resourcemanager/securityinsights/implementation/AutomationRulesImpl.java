@@ -13,9 +13,10 @@ import com.azure.resourcemanager.securityinsights.fluent.AutomationRulesClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.AutomationRuleInner;
 import com.azure.resourcemanager.securityinsights.models.AutomationRule;
 import com.azure.resourcemanager.securityinsights.models.AutomationRules;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class AutomationRulesImpl implements AutomationRules {
-    private static final ClientLogger LOGGER = new ClientLogger(AutomationRulesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AutomationRulesImpl.class);
 
     private final AutomationRulesClient innerClient;
 
@@ -26,6 +27,16 @@ public final class AutomationRulesImpl implements AutomationRules {
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public PagedIterable<AutomationRule> list(String resourceGroupName, String workspaceName) {
+        PagedIterable<AutomationRuleInner> inner = this.serviceClient().list(resourceGroupName, workspaceName);
+        return Utils.mapPage(inner, inner1 -> new AutomationRuleImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<AutomationRule> list(String resourceGroupName, String workspaceName, Context context) {
+        PagedIterable<AutomationRuleInner> inner = this.serviceClient().list(resourceGroupName, workspaceName, context);
+        return Utils.mapPage(inner, inner1 -> new AutomationRuleImpl(inner1, this.manager()));
     }
 
     public AutomationRule get(String resourceGroupName, String workspaceName, String automationRuleId) {
@@ -52,29 +63,19 @@ public final class AutomationRulesImpl implements AutomationRules {
         }
     }
 
-    public Object delete(String resourceGroupName, String workspaceName, String automationRuleId) {
-        return this.serviceClient().delete(resourceGroupName, workspaceName, automationRuleId);
+    public void delete(String resourceGroupName, String workspaceName, String automationRuleId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, automationRuleId);
     }
 
-    public Response<Object> deleteWithResponse(
+    public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String automationRuleId, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, automationRuleId, context);
-    }
-
-    public PagedIterable<AutomationRule> list(String resourceGroupName, String workspaceName) {
-        PagedIterable<AutomationRuleInner> inner = this.serviceClient().list(resourceGroupName, workspaceName);
-        return Utils.mapPage(inner, inner1 -> new AutomationRuleImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<AutomationRule> list(String resourceGroupName, String workspaceName, Context context) {
-        PagedIterable<AutomationRuleInner> inner = this.serviceClient().list(resourceGroupName, workspaceName, context);
-        return Utils.mapPage(inner, inner1 -> new AutomationRuleImpl(inner1, this.manager()));
     }
 
     public AutomationRule getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -82,14 +83,14 @@ public final class AutomationRulesImpl implements AutomationRules {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String automationRuleId = Utils.getValueFromIdByName(id, "automationRules");
         if (automationRuleId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -101,7 +102,7 @@ public final class AutomationRulesImpl implements AutomationRules {
     public Response<AutomationRule> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -109,14 +110,14 @@ public final class AutomationRulesImpl implements AutomationRules {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String automationRuleId = Utils.getValueFromIdByName(id, "automationRules");
         if (automationRuleId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -125,10 +126,10 @@ public final class AutomationRulesImpl implements AutomationRules {
         return this.getWithResponse(resourceGroupName, workspaceName, automationRuleId, context);
     }
 
-    public Object deleteById(String id) {
+    public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -136,26 +137,26 @@ public final class AutomationRulesImpl implements AutomationRules {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String automationRuleId = Utils.getValueFromIdByName(id, "automationRules");
         if (automationRuleId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'automationRules'.", id)));
         }
-        return this.deleteWithResponse(resourceGroupName, workspaceName, automationRuleId, Context.NONE).getValue();
+        this.deleteWithResponse(resourceGroupName, workspaceName, automationRuleId, Context.NONE);
     }
 
-    public Response<Object> deleteByIdWithResponse(String id, Context context) {
+    public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -163,14 +164,14 @@ public final class AutomationRulesImpl implements AutomationRules {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String automationRuleId = Utils.getValueFromIdByName(id, "automationRules");
         if (automationRuleId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

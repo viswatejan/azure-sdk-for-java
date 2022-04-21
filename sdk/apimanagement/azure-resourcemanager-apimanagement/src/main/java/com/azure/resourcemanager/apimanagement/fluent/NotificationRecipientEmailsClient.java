@@ -39,7 +39,7 @@ public interface NotificationRecipientEmailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of the Notification Recipient Emails subscribed to a notification along with {@link Response}.
+     * @return the list of the Notification Recipient Emails subscribed to a notification.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RecipientEmailCollectionInner> listByNotificationWithResponse(
@@ -72,7 +72,7 @@ public interface NotificationRecipientEmailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return whether resource exists along with {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Boolean> checkEntityExistsWithResponse(
@@ -105,7 +105,7 @@ public interface NotificationRecipientEmailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return recipient Email details along with {@link Response}.
+     * @return recipient Email details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RecipientEmailContractInner> createOrUpdateWithResponse(
@@ -136,7 +136,7 @@ public interface NotificationRecipientEmailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(

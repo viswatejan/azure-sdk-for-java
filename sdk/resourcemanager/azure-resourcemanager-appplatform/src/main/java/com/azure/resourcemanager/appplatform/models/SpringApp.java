@@ -12,6 +12,8 @@ import com.azure.resourcemanager.resources.fluentcore.model.HasInnerModel;
 import com.azure.resourcemanager.resources.fluentcore.model.Updatable;
 import reactor.core.publisher.Mono;
 
+import java.time.OffsetDateTime;
+
 /** An immutable client-side representation of an Azure Spring App. */
 @Fluent
 public interface SpringApp
@@ -38,6 +40,9 @@ public interface SpringApp
 
     /** @return the identity property of the app */
     ManagedIdentityProperties identity();
+
+    /** @return the creation time of the app */
+    OffsetDateTime createdTime();
 
     /** @return the active deployment name */
     String activeDeploymentName();
@@ -146,20 +151,20 @@ public interface SpringApp
             WithCreate withPersistentDisk(int sizeInGB, String mountPath);
         }
 
-        /** The stage of a spring app definition allowing to specify the service binding. */
+        /** The stage of a spring app update allowing to specify the service binding. */
         interface WithServiceBinding {
             /**
              * Specifies a service binding for the spring app.
              * @param name the service binding name
              * @param bindingProperties the property for the service binding
-             * @return the next stage of spring app definition
+             * @return the next stage of spring app update
              */
             WithCreate withServiceBinding(String name, BindingResourceProperties bindingProperties);
 
             /**
              * Removes a service binding for the spring app.
              * @param name the service binding name
-             * @return the next stage of spring app definition
+             * @return the next stage of spring app update
              */
             WithCreate withoutServiceBinding(String name);
         }

@@ -6,12 +6,15 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List of the Sentinel onboarding states. */
 @Fluent
 public final class SentinelOnboardingStatesListInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SentinelOnboardingStatesListInner.class);
+
     /*
      * Array of Sentinel onboarding states
      */
@@ -45,7 +48,7 @@ public final class SentinelOnboardingStatesListInner {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model SentinelOnboardingStatesListInner"));
@@ -53,6 +56,4 @@ public final class SentinelOnboardingStatesListInner {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SentinelOnboardingStatesListInner.class);
 }

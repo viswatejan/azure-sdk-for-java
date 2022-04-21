@@ -6,52 +6,42 @@ package com.azure.resourcemanager.apimanagement.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters supplied to the Backup/Restore of an API Management service operation. */
 @Fluent
 public final class ApiManagementServiceBackupRestoreParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiManagementServiceBackupRestoreParameters.class);
+
     /*
-     * The name of the Azure storage account (used to place/retrieve the
-     * backup).
+     * Azure Cloud Storage account (used to place/retrieve the backup) name.
      */
     @JsonProperty(value = "storageAccount", required = true)
     private String storageAccount;
 
     /*
-     * The name of the blob container (used to place/retrieve the backup).
+     * Azure Cloud Storage account (used to place/retrieve the backup) access
+     * key.
+     */
+    @JsonProperty(value = "accessKey", required = true)
+    private String accessKey;
+
+    /*
+     * Azure Cloud Storage blob container name used to place/retrieve the
+     * backup.
      */
     @JsonProperty(value = "containerName", required = true)
     private String containerName;
 
     /*
-     * The name of the backup file to create/retrieve.
+     * The name of the backup file to create.
      */
     @JsonProperty(value = "backupName", required = true)
     private String backupName;
 
-    /*
-     * The type of access to be used for the storage account.
-     */
-    @JsonProperty(value = "accessType")
-    private AccessType accessType;
-
-    /*
-     * Storage account access key. Required only if `accessType` is set to
-     * `AccessKey`.
-     */
-    @JsonProperty(value = "accessKey")
-    private String accessKey;
-
-    /*
-     * The Client ID of user assigned managed identity. Required only if
-     * `accessType` is set to `UserAssignedManagedIdentity`.
-     */
-    @JsonProperty(value = "clientId")
-    private String clientId;
-
     /**
-     * Get the storageAccount property: The name of the Azure storage account (used to place/retrieve the backup).
+     * Get the storageAccount property: Azure Cloud Storage account (used to place/retrieve the backup) name.
      *
      * @return the storageAccount value.
      */
@@ -60,7 +50,7 @@ public final class ApiManagementServiceBackupRestoreParameters {
     }
 
     /**
-     * Set the storageAccount property: The name of the Azure storage account (used to place/retrieve the backup).
+     * Set the storageAccount property: Azure Cloud Storage account (used to place/retrieve the backup) name.
      *
      * @param storageAccount the storageAccount value to set.
      * @return the ApiManagementServiceBackupRestoreParameters object itself.
@@ -71,67 +61,7 @@ public final class ApiManagementServiceBackupRestoreParameters {
     }
 
     /**
-     * Get the containerName property: The name of the blob container (used to place/retrieve the backup).
-     *
-     * @return the containerName value.
-     */
-    public String containerName() {
-        return this.containerName;
-    }
-
-    /**
-     * Set the containerName property: The name of the blob container (used to place/retrieve the backup).
-     *
-     * @param containerName the containerName value to set.
-     * @return the ApiManagementServiceBackupRestoreParameters object itself.
-     */
-    public ApiManagementServiceBackupRestoreParameters withContainerName(String containerName) {
-        this.containerName = containerName;
-        return this;
-    }
-
-    /**
-     * Get the backupName property: The name of the backup file to create/retrieve.
-     *
-     * @return the backupName value.
-     */
-    public String backupName() {
-        return this.backupName;
-    }
-
-    /**
-     * Set the backupName property: The name of the backup file to create/retrieve.
-     *
-     * @param backupName the backupName value to set.
-     * @return the ApiManagementServiceBackupRestoreParameters object itself.
-     */
-    public ApiManagementServiceBackupRestoreParameters withBackupName(String backupName) {
-        this.backupName = backupName;
-        return this;
-    }
-
-    /**
-     * Get the accessType property: The type of access to be used for the storage account.
-     *
-     * @return the accessType value.
-     */
-    public AccessType accessType() {
-        return this.accessType;
-    }
-
-    /**
-     * Set the accessType property: The type of access to be used for the storage account.
-     *
-     * @param accessType the accessType value to set.
-     * @return the ApiManagementServiceBackupRestoreParameters object itself.
-     */
-    public ApiManagementServiceBackupRestoreParameters withAccessType(AccessType accessType) {
-        this.accessType = accessType;
-        return this;
-    }
-
-    /**
-     * Get the accessKey property: Storage account access key. Required only if `accessType` is set to `AccessKey`.
+     * Get the accessKey property: Azure Cloud Storage account (used to place/retrieve the backup) access key.
      *
      * @return the accessKey value.
      */
@@ -140,7 +70,7 @@ public final class ApiManagementServiceBackupRestoreParameters {
     }
 
     /**
-     * Set the accessKey property: Storage account access key. Required only if `accessType` is set to `AccessKey`.
+     * Set the accessKey property: Azure Cloud Storage account (used to place/retrieve the backup) access key.
      *
      * @param accessKey the accessKey value to set.
      * @return the ApiManagementServiceBackupRestoreParameters object itself.
@@ -151,24 +81,42 @@ public final class ApiManagementServiceBackupRestoreParameters {
     }
 
     /**
-     * Get the clientId property: The Client ID of user assigned managed identity. Required only if `accessType` is set
-     * to `UserAssignedManagedIdentity`.
+     * Get the containerName property: Azure Cloud Storage blob container name used to place/retrieve the backup.
      *
-     * @return the clientId value.
+     * @return the containerName value.
      */
-    public String clientId() {
-        return this.clientId;
+    public String containerName() {
+        return this.containerName;
     }
 
     /**
-     * Set the clientId property: The Client ID of user assigned managed identity. Required only if `accessType` is set
-     * to `UserAssignedManagedIdentity`.
+     * Set the containerName property: Azure Cloud Storage blob container name used to place/retrieve the backup.
      *
-     * @param clientId the clientId value to set.
+     * @param containerName the containerName value to set.
      * @return the ApiManagementServiceBackupRestoreParameters object itself.
      */
-    public ApiManagementServiceBackupRestoreParameters withClientId(String clientId) {
-        this.clientId = clientId;
+    public ApiManagementServiceBackupRestoreParameters withContainerName(String containerName) {
+        this.containerName = containerName;
+        return this;
+    }
+
+    /**
+     * Get the backupName property: The name of the backup file to create.
+     *
+     * @return the backupName value.
+     */
+    public String backupName() {
+        return this.backupName;
+    }
+
+    /**
+     * Set the backupName property: The name of the backup file to create.
+     *
+     * @param backupName the backupName value to set.
+     * @return the ApiManagementServiceBackupRestoreParameters object itself.
+     */
+    public ApiManagementServiceBackupRestoreParameters withBackupName(String backupName) {
+        this.backupName = backupName;
         return this;
     }
 
@@ -179,26 +127,30 @@ public final class ApiManagementServiceBackupRestoreParameters {
      */
     public void validate() {
         if (storageAccount() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property storageAccount in model"
                             + " ApiManagementServiceBackupRestoreParameters"));
         }
+        if (accessKey() == null) {
+            throw logger
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property accessKey in model ApiManagementServiceBackupRestoreParameters"));
+        }
         if (containerName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property containerName in model"
                             + " ApiManagementServiceBackupRestoreParameters"));
         }
         if (backupName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property backupName in model ApiManagementServiceBackupRestoreParameters"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ApiManagementServiceBackupRestoreParameters.class);
 }

@@ -9,12 +9,15 @@ import com.azure.core.management.SubResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.models.ProbeProtocol;
 import com.azure.resourcemanager.network.models.ProvisioningState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Load balancer probe resource. */
 @Fluent
 public final class ProbePropertiesFormat {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ProbePropertiesFormat.class);
+
     /*
      * The load balancer rules that use this probe.
      */
@@ -209,11 +212,9 @@ public final class ProbePropertiesFormat {
      */
     public void validate() {
         if (protocol() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property protocol in model ProbePropertiesFormat"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ProbePropertiesFormat.class);
 }

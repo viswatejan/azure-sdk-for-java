@@ -305,9 +305,6 @@ public final class ObjectMapperShim {
                         MethodHandles.Lookup lookup = ReflectionUtilsApi.INSTANCE.getLookupToUse(headersClass);
                         return lookup.unreflectConstructor(headersClass.getDeclaredConstructor(HttpHeaders.class));
                     } catch (Throwable throwable) {
-                        if (throwable instanceof Error) {
-                            throw (Error) throwable;
-                        }
                         return null;
                     }
                 });
@@ -316,10 +313,6 @@ public final class ObjectMapperShim {
                 return (T) constructor.invokeWithArguments(headers);
             }
         } catch (Throwable throwable) {
-            if (throwable instanceof Error) {
-                throw (Error) throwable;
-            }
-
             // invokeWithArguments will fail with a non-RuntimeException if the reflective call was invalid.
             if (throwable instanceof RuntimeException) {
                 throw (RuntimeException) throwable;

@@ -5,13 +5,17 @@
 package com.azure.resourcemanager.apimanagement.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.models.ApiExportResultValue;
 import com.azure.resourcemanager.apimanagement.models.ExportResultFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** API Export result. */
 @Fluent
 public final class ApiExportResultInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiExportResultInner.class);
+
     /*
      * ResourceId of the API which was exported.
      */
@@ -19,14 +23,14 @@ public final class ApiExportResultInner {
     private String id;
 
     /*
-     * Format in which the API Details are exported to the Storage Blob with
+     * Format in which the Api Details are exported to the Storage Blob with
      * Sas Key valid for 5 minutes.
      */
     @JsonProperty(value = "format")
     private ExportResultFormat exportResultFormat;
 
     /*
-     * The object defining the schema of the exported API Detail
+     * The object defining the schema of the exported Api Detail
      */
     @JsonProperty(value = "value")
     private ApiExportResultValue value;
@@ -52,7 +56,7 @@ public final class ApiExportResultInner {
     }
 
     /**
-     * Get the exportResultFormat property: Format in which the API Details are exported to the Storage Blob with Sas
+     * Get the exportResultFormat property: Format in which the Api Details are exported to the Storage Blob with Sas
      * Key valid for 5 minutes.
      *
      * @return the exportResultFormat value.
@@ -62,7 +66,7 @@ public final class ApiExportResultInner {
     }
 
     /**
-     * Set the exportResultFormat property: Format in which the API Details are exported to the Storage Blob with Sas
+     * Set the exportResultFormat property: Format in which the Api Details are exported to the Storage Blob with Sas
      * Key valid for 5 minutes.
      *
      * @param exportResultFormat the exportResultFormat value to set.
@@ -74,7 +78,7 @@ public final class ApiExportResultInner {
     }
 
     /**
-     * Get the value property: The object defining the schema of the exported API Detail.
+     * Get the value property: The object defining the schema of the exported Api Detail.
      *
      * @return the value value.
      */
@@ -83,7 +87,7 @@ public final class ApiExportResultInner {
     }
 
     /**
-     * Set the value property: The object defining the schema of the exported API Detail.
+     * Set the value property: The object defining the schema of the exported Api Detail.
      *
      * @param value the value value to set.
      * @return the ApiExportResultInner object itself.

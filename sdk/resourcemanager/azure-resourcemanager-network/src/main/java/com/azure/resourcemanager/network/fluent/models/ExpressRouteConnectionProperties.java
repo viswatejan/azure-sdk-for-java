@@ -9,11 +9,14 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.models.ExpressRouteCircuitPeeringId;
 import com.azure.resourcemanager.network.models.ProvisioningState;
 import com.azure.resourcemanager.network.models.RoutingConfiguration;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of the ExpressRouteConnection subresource. */
 @Fluent
 public final class ExpressRouteConnectionProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ExpressRouteConnectionProperties.class);
+
     /*
      * The provisioning state of the express route connection resource.
      */
@@ -196,7 +199,7 @@ public final class ExpressRouteConnectionProperties {
      */
     public void validate() {
         if (expressRouteCircuitPeering() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property expressRouteCircuitPeering in model"
@@ -208,6 +211,4 @@ public final class ExpressRouteConnectionProperties {
             routingConfiguration().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ExpressRouteConnectionProperties.class);
 }

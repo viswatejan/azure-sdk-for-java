@@ -42,18 +42,4 @@ public final class AzureBlobFSLocation extends DatasetLocation {
         this.fileSystem = fileSystem;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureBlobFSLocation setFolderPath(Object folderPath) {
-        super.setFolderPath(folderPath);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureBlobFSLocation setFileName(Object fileName) {
-        super.setFileName(fileName);
-        return this;
-    }
 }

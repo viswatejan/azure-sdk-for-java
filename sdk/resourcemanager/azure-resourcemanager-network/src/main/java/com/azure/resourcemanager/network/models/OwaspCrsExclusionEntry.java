@@ -6,12 +6,15 @@ package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Allow to exclude some variable satisfy the condition for the WAF check. */
 @Fluent
 public final class OwaspCrsExclusionEntry {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OwaspCrsExclusionEntry.class);
+
     /*
      * The variable to be excluded.
      */
@@ -130,19 +133,19 @@ public final class OwaspCrsExclusionEntry {
      */
     public void validate() {
         if (matchVariable() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property matchVariable in model OwaspCrsExclusionEntry"));
         }
         if (selectorMatchOperator() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property selectorMatchOperator in model OwaspCrsExclusionEntry"));
         }
         if (selector() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property selector in model OwaspCrsExclusionEntry"));
         }
@@ -150,6 +153,4 @@ public final class OwaspCrsExclusionEntry {
             exclusionManagedRuleSets().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OwaspCrsExclusionEntry.class);
 }

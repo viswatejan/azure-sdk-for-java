@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mediaservices.fluent.StreamingPoliciesClient;
 import com.azure.resourcemanager.mediaservices.fluent.models.StreamingPolicyInner;
 import com.azure.resourcemanager.mediaservices.models.StreamingPolicies;
 import com.azure.resourcemanager.mediaservices.models.StreamingPolicy;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class StreamingPoliciesImpl implements StreamingPolicies {
-    private static final ClientLogger LOGGER = new ClientLogger(StreamingPoliciesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(StreamingPoliciesImpl.class);
 
     private final StreamingPoliciesClient innerClient;
 
@@ -76,7 +77,7 @@ public final class StreamingPoliciesImpl implements StreamingPolicies {
     public StreamingPolicy getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -84,14 +85,14 @@ public final class StreamingPoliciesImpl implements StreamingPolicies {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String streamingPolicyName = Utils.getValueFromIdByName(id, "streamingPolicies");
         if (streamingPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -104,7 +105,7 @@ public final class StreamingPoliciesImpl implements StreamingPolicies {
     public Response<StreamingPolicy> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -112,14 +113,14 @@ public final class StreamingPoliciesImpl implements StreamingPolicies {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String streamingPolicyName = Utils.getValueFromIdByName(id, "streamingPolicies");
         if (streamingPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -132,7 +133,7 @@ public final class StreamingPoliciesImpl implements StreamingPolicies {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -140,27 +141,27 @@ public final class StreamingPoliciesImpl implements StreamingPolicies {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String streamingPolicyName = Utils.getValueFromIdByName(id, "streamingPolicies");
         if (streamingPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'streamingPolicies'.", id)));
         }
-        this.deleteWithResponse(resourceGroupName, accountName, streamingPolicyName, Context.NONE);
+        this.deleteWithResponse(resourceGroupName, accountName, streamingPolicyName, Context.NONE).getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -168,14 +169,14 @@ public final class StreamingPoliciesImpl implements StreamingPolicies {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String streamingPolicyName = Utils.getValueFromIdByName(id, "streamingPolicies");
         if (streamingPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

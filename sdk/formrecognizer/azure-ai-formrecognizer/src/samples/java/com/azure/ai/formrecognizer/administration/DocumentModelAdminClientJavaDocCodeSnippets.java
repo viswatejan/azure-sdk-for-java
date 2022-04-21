@@ -29,11 +29,13 @@ import java.util.Map;
 public class DocumentModelAdminClientJavaDocCodeSnippets {
     private final DocumentModelAdministrationClient documentModelAdministrationClient =
         new DocumentModelAdministrationClientBuilder().buildClient();
+    private final DocumentModelAdministrationClient targetDocumentModelAdministrationClient =
+        new DocumentModelAdministrationClientBuilder().buildClient();
 
     /**
      * Code snippet for {@link DocumentModelAdministrationClient} initialization
      */
-    public void documentModelAdministrationClientInInitialization() {
+    public void formTrainingClientInInitialization() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.initialization
         DocumentModelAdministrationClient documentModelAdministrationClient =
             new DocumentModelAdministrationClientBuilder().buildClient();
@@ -41,15 +43,14 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationClient#beginBuildModel(String, DocumentBuildMode)}
+     * Code snippet for {@link DocumentModelAdministrationClient#beginBuildModel(String, DocumentBuildMode, String)}
      */
     public void beginBuildModel() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginBuildModel#String-DocumentBuildMode
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginBuildModel#String-String
         String trainingFilesUrl = "{SAS-URL-of-your-container-in-blob-storage}";
-        DocumentModel documentModel
-            = documentModelAdministrationClient.beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE)
-            .getFinalResult();
-
+        DocumentModel documentModel =
+            documentModelAdministrationClient.beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE, "my-model"
+            ).getFinalResult();
         System.out.printf("Model ID: %s%n", documentModel.getModelId());
         System.out.printf("Model Created on: %s%n", documentModel.getCreatedOn());
         documentModel.getDocTypes().forEach((key, docTypeInfo) -> {
@@ -59,25 +60,23 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
                 System.out.printf("Field confidence: %.2f", docTypeInfo.getFieldConfidence().get(field));
             });
         });
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginBuildModel#String-DocumentBuildMode
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginBuildModel#String-String
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationClient#beginBuildModel(String, DocumentBuildMode, BuildModelOptions, Context)}
+     * Code snippet for {@link DocumentModelAdministrationClient#beginBuildModel(String, DocumentBuildMode, String, BuildModelOptions, Context)}
      * with options
      */
     public void beginBuildModelWithOptions() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginBuildModel#string-DocumentBuildMode-BuildModelOptions-Context
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginBuildModel#string-String-BuildModelOptions-Context
         String trainingFilesUrl = "{SAS-URL-of-your-container-in-blob-storage}";
-        String modelId = "custom-model-id";
         String prefix = "Invoice";
         Map<String, String> attrs = new HashMap<String, String>();
         attrs.put("createdBy", "sample");
 
         DocumentModel documentModel = documentModelAdministrationClient.beginBuildModel(trainingFilesUrl,
-                DocumentBuildMode.TEMPLATE,
+                DocumentBuildMode.TEMPLATE, "my-model",
                 new BuildModelOptions()
-                    .setModelId(modelId)
                     .setDescription("model desc")
                     .setPrefix(prefix)
                     .setTags(attrs), Context.NONE)
@@ -94,7 +93,7 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
                 System.out.printf("Field confidence: %.2f", docTypeInfo.getFieldConfidence().get(field));
             });
         });
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginBuildModel#string-DocumentBuildMode-BuildModelOptions-Context
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginBuildModel#string-String-BuildModelOptions-Context
     }
 
     /**
@@ -131,7 +130,7 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
      */
     public void deleteModel() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.deleteModel#string
-        String modelId = "{custom-model-id}";
+        String modelId = "{model_id}";
         documentModelAdministrationClient.deleteModel(modelId);
         System.out.printf("Model ID: %s is deleted.%n", modelId);
         // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.deleteModel#string
@@ -142,7 +141,7 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
      */
     public void deleteModelWithResponse() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.deleteModelWithResponse#string-Context
-        String modelId = "{custom-model-id}";
+        String modelId = "{model_id}";
         Response<Void> response = documentModelAdministrationClient.deleteModelWithResponse(modelId, Context.NONE);
         System.out.printf("Response Status Code: %d.", response.getStatusCode());
         System.out.printf("Model ID: %s is deleted.%n", modelId);
@@ -150,11 +149,12 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationClient#getCopyAuthorization()}
+     * Code snippet for {@link DocumentModelAdministrationClient#getCopyAuthorization(String)}
      */
     public void getCopyAuthorization() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getCopyAuthorization
-        CopyAuthorization copyAuthorization = documentModelAdministrationClient.getCopyAuthorization();
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getCopyAuthorization#string
+        String modelId = "my-copied-model";
+        CopyAuthorization copyAuthorization = documentModelAdministrationClient.getCopyAuthorization(modelId);
         System.out.printf("Copy Authorization for model id: %s, access token: %s, expiration time: %s, "
                 + "target resource ID; %s, target resource region: %s%n",
             copyAuthorization.getTargetModelId(),
@@ -163,22 +163,21 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
             copyAuthorization.getTargetResourceId(),
             copyAuthorization.getTargetResourceRegion()
         );
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getCopyAuthorization
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getCopyAuthorization#string
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationClient#getCopyAuthorizationWithResponse(CopyAuthorizationOptions, Context)}
+     * Code snippet for {@link DocumentModelAdministrationClient#getCopyAuthorizationWithResponse(String, CopyAuthorizationOptions, Context)}
      */
     public void getCopyAuthorizationWithResponse() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getCopyAuthorizationWithResponse#CopyAuthorizationOptions-Context
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getCopyAuthorizationWithResponse#string-CopyAuthorizationOptions-Context
         String modelId = "my-copied-model";
         Map<String, String> attrs = new HashMap<String, String>();
         attrs.put("createdBy", "sample");
 
         Response<CopyAuthorization> copyAuthorizationResponse =
-            documentModelAdministrationClient.getCopyAuthorizationWithResponse(
+            documentModelAdministrationClient.getCopyAuthorizationWithResponse(modelId,
                 new CopyAuthorizationOptions()
-                    .setModelId(modelId)
                     .setDescription("model-desc")
                     .setTags(attrs),
                 Context.NONE);
@@ -194,18 +193,19 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
             copyAuthorization.getTargetResourceId(),
             copyAuthorization.getTargetResourceRegion()
         );
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getCopyAuthorizationWithResponse#CopyAuthorizationOptions-Context
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getCopyAuthorizationWithResponse#string-CopyAuthorizationOptions-Context
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationClient#beginCreateComposedModel(List)}
+     * Code snippet for {@link DocumentModelAdministrationClient#beginCreateComposedModel(List, String)}
      */
     public void beginCreateComposedModel() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginCreateComposedModel#list
-        String modelId1 = "{custom-model-id_1}";
-        String modelId2 = "{custom-model-id_2}";
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginCreateComposedModel#list-String
+        String modelId1 = "{model_Id_1}";
+        String modelId2 = "{model_Id_2}";
+        String modelId = "my-composed-model";
         final DocumentModel documentModel
-            = documentModelAdministrationClient.beginCreateComposedModel(Arrays.asList(modelId1, modelId2))
+            = documentModelAdministrationClient.beginCreateComposedModel(Arrays.asList(modelId1, modelId2), modelId)
             .getFinalResult();
 
         System.out.printf("Model ID: %s%n", documentModel.getModelId());
@@ -218,26 +218,25 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
                 System.out.printf("Field confidence: %.2f", docTypeInfo.getFieldConfidence().get(field));
             });
         });
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginCreateComposedModel#list
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginCreateComposedModel#list-String
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationClient#beginCreateComposedModel(List, CreateComposedModelOptions, Context)}
+     * Code snippet for {@link DocumentModelAdministrationClient#beginCreateComposedModel(List, String, CreateComposedModelOptions, Context)}
      * with options
      */
     public void beginCreateComposedModelWithOptions() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginCreateComposedModel#list-CreateComposedModelOptions-Context
-        String modelId1 = "{custom-model-id_1}";
-        String modelId2 = "{custom-model-id_2}";
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginCreateComposedModel#list-String-CreateComposedModelOptions-Context
+        String modelId1 = "{model_Id_1}";
+        String modelId2 = "{model_Id_2}";
         String modelId = "my-composed-model";
         Map<String, String> attrs = new HashMap<String, String>();
         attrs.put("createdBy", "sample");
 
         final DocumentModel documentModel =
-            documentModelAdministrationClient.beginCreateComposedModel(Arrays.asList(modelId1, modelId2),
+            documentModelAdministrationClient.beginCreateComposedModel(Arrays.asList(modelId1, modelId2), modelId,
                     new CreateComposedModelOptions()
-                        .setModelId(modelId)
-                        .setDescription("my composed model desc")
+                        .setDescription("my composed model name")
                         .setTags(attrs),
                     Context.NONE)
                 .setPollInterval(Duration.ofSeconds(5))
@@ -254,7 +253,7 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
                 System.out.printf("Field confidence: %.2f", docTypeInfo.getFieldConfidence().get(field));
             });
         });
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginCreateComposedModel#list-CreateComposedModelOptions-Context
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginCreateComposedModel#list-String-CreateComposedModelOptions-Context
     }
 
     /**
@@ -263,8 +262,9 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
     public void beginCopy() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginCopyModelTo#string-copyAuthorization
         String copyModelId = "copy-model";
+        String targetModelId = "my-copied-model-id";
         // Get authorization to copy the model to target resource
-        CopyAuthorization copyAuthorization = documentModelAdministrationClient.getCopyAuthorization();
+        CopyAuthorization copyAuthorization = documentModelAdministrationClient.getCopyAuthorization(copyModelId);
         // Start copy operation from the source client
         DocumentModel documentModel =
             documentModelAdministrationClient.beginCopyModelTo(copyModelId, copyAuthorization).getFinalResult();
@@ -280,8 +280,9 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
     public void beginCopyOverload() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.beginCopyModelTo#string-copyAuthorization-Context
         String copyModelId = "copy-model";
+        String targetModelId = "my-copied-model-id";
         // Get authorization to copy the model to target resource
-        CopyAuthorization copyAuthorization = documentModelAdministrationClient.getCopyAuthorization();
+        CopyAuthorization copyAuthorization = documentModelAdministrationClient.getCopyAuthorization(targetModelId);
         // Start copy operation from the source client
         DocumentModel documentModel =
             documentModelAdministrationClient.beginCopyModelTo(copyModelId, copyAuthorization, Context.NONE).getFinalResult();
@@ -326,7 +327,7 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
      */
     public void getModel() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getModel#string
-        String modelId = "{custom-model-id}";
+        String modelId = "{model_id}";
         DocumentModel documentModel = documentModelAdministrationClient.getModel(modelId);
         System.out.printf("Model ID: %s%n", documentModel.getModelId());
         System.out.printf("Model Description: %s%n", documentModel.getDescription());
@@ -346,7 +347,7 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
      */
     public void getModelWithResponse() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getModelWithResponse#string-Context
-        String modelId = "{custom-model-id}";
+        String modelId = "{model_id}";
         Response<DocumentModel> response = documentModelAdministrationClient.getModelWithResponse(modelId, Context.NONE);
         System.out.printf("Response Status Code: %d.", response.getStatusCode());
         DocumentModel documentModel = response.getValue();
@@ -368,7 +369,7 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
      */
     public void getOperation() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getOperation#string
-        String operationId = "{operation-id}";
+        String operationId = "{operation_Id}";
         ModelOperation modelOperation = documentModelAdministrationClient.getOperation(operationId);
         System.out.printf("Operation ID: %s%n", modelOperation.getOperationId());
         System.out.printf("Operation Kind: %s%n", modelOperation.getKind());
@@ -385,7 +386,7 @@ public class DocumentModelAdminClientJavaDocCodeSnippets {
      */
     public void getOperationWithResponse() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient.getOperationWithResponse#string-Context
-        String operationId = "{operation-id}";
+        String operationId = "{operation_Id}";
         Response<ModelOperation> response =
             documentModelAdministrationClient.getOperationWithResponse(operationId, Context.NONE);
         System.out.printf("Response Status Code: %d.", response.getStatusCode());

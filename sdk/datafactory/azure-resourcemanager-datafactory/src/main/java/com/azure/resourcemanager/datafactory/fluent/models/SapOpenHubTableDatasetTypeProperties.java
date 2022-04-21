@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Sap Business Warehouse Open Hub Destination Table properties. */
 @Fluent
 public final class SapOpenHubTableDatasetTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SapOpenHubTableDatasetTypeProperties.class);
+
     /*
      * The name of the Open Hub Destination with destination type as Database
      * Table. Type: string (or Expression with resultType string).
@@ -109,13 +112,11 @@ public final class SapOpenHubTableDatasetTypeProperties {
      */
     public void validate() {
         if (openHubDestinationName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property openHubDestinationName in model"
                             + " SapOpenHubTableDatasetTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SapOpenHubTableDatasetTypeProperties.class);
 }

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,6 +16,8 @@ import java.util.Map;
 /** teamFunSettings. */
 @Fluent
 public final class MicrosoftGraphTeamFunSettings {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphTeamFunSettings.class);
+
     /*
      * If set to true, enables users to include custom memes.
      */
@@ -34,7 +37,7 @@ public final class MicrosoftGraphTeamFunSettings {
     private Boolean allowStickersAndMemes;
 
     /*
-     * giphyRatingType
+     * The giphyContentRating property.
      */
     @JsonProperty(value = "giphyContentRating")
     private MicrosoftGraphGiphyRatingType giphyContentRating;
@@ -105,7 +108,7 @@ public final class MicrosoftGraphTeamFunSettings {
     }
 
     /**
-     * Get the giphyContentRating property: giphyRatingType.
+     * Get the giphyContentRating property: The giphyContentRating property.
      *
      * @return the giphyContentRating value.
      */
@@ -114,7 +117,7 @@ public final class MicrosoftGraphTeamFunSettings {
     }
 
     /**
-     * Set the giphyContentRating property: giphyRatingType.
+     * Set the giphyContentRating property: The giphyContentRating property.
      *
      * @param giphyContentRating the giphyContentRating value to set.
      * @return the MicrosoftGraphTeamFunSettings object itself.

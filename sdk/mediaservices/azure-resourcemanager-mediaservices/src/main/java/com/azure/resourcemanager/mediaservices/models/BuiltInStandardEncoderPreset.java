@@ -5,20 +5,25 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** Describes a built-in preset for encoding the input video with the Standard Encoder. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata.type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata\\.type")
 @JsonTypeName("#Microsoft.Media.BuiltInStandardEncoderPreset")
+@JsonFlatten
 @Fluent
-public final class BuiltInStandardEncoderPreset extends Preset {
+public class BuiltInStandardEncoderPreset extends Preset {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BuiltInStandardEncoderPreset.class);
+
     /*
-     * Optional configuration settings for encoder. Configurations is only
-     * supported for ContentAwareEncoding and H265ContentAwareEncoding
-     * BuiltInStandardEncoderPreset.
+     * PresetConfigurations are only supported for the ContentAwareEncoding and
+     * H265ContentAwareEncoding built-in presets. These settings will not
+     * affect other built-in or custom defined presets.
      */
     @JsonProperty(value = "configurations")
     private PresetConfigurations configurations;
@@ -30,8 +35,9 @@ public final class BuiltInStandardEncoderPreset extends Preset {
     private EncoderNamedPreset presetName;
 
     /**
-     * Get the configurations property: Optional configuration settings for encoder. Configurations is only supported
-     * for ContentAwareEncoding and H265ContentAwareEncoding BuiltInStandardEncoderPreset.
+     * Get the configurations property: PresetConfigurations are only supported for the ContentAwareEncoding and
+     * H265ContentAwareEncoding built-in presets. These settings will not affect other built-in or custom defined
+     * presets.
      *
      * @return the configurations value.
      */
@@ -40,8 +46,9 @@ public final class BuiltInStandardEncoderPreset extends Preset {
     }
 
     /**
-     * Set the configurations property: Optional configuration settings for encoder. Configurations is only supported
-     * for ContentAwareEncoding and H265ContentAwareEncoding BuiltInStandardEncoderPreset.
+     * Set the configurations property: PresetConfigurations are only supported for the ContentAwareEncoding and
+     * H265ContentAwareEncoding built-in presets. These settings will not affect other built-in or custom defined
+     * presets.
      *
      * @param configurations the configurations value to set.
      * @return the BuiltInStandardEncoderPreset object itself.
@@ -83,12 +90,10 @@ public final class BuiltInStandardEncoderPreset extends Preset {
             configurations().validate();
         }
         if (presetName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property presetName in model BuiltInStandardEncoderPreset"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BuiltInStandardEncoderPreset.class);
 }

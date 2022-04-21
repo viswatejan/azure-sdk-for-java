@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.resourcehealth.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
@@ -14,6 +16,9 @@ import java.time.OffsetDateTime;
  */
 @Fluent
 public final class AvailabilityStatusPropertiesRecentlyResolved {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(AvailabilityStatusPropertiesRecentlyResolved.class);
+
     /*
      * Timestamp for when the availabilityState changed to Unavailable
      */

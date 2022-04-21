@@ -1,20 +1,14 @@
 # Release History
 
-## 2.15.0-beta.1 (Unreleased)
+## 2.14.0-beta.1 (Unreleased)
+
+### Features Added
+
+### Breaking Changes
+
+### Bugs Fixed
 
 ### Other Changes
-
-#### Dependency Updates
-
-- Updated `api-version` to `2021-10-01`.
-
-## 2.14.0 (2022-04-11)
-
-### Other Changes
-
-#### Dependency Updates
-
-- Updated core dependency from resources.
 
 ## 2.13.0 (2022-03-11)
 

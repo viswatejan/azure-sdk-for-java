@@ -6,11 +6,14 @@ package com.azure.resourcemanager.mobilenetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Reference to a SIM Policy resource. */
 @Fluent
 public final class SimPolicyResourceId {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SimPolicyResourceId.class);
+
     /*
      * SIM Policy resource ID.
      */
@@ -44,11 +47,9 @@ public final class SimPolicyResourceId {
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property id in model SimPolicyResourceId"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SimPolicyResourceId.class);
 }

@@ -243,7 +243,7 @@ public class OpenTelemetryHttpPolicy implements AfterRetryPolicyProvider, HttpPi
                 actual.onSubscribe(Operators.scalarSubscription(actual, value));
                 try {
                     closeable.close();
-                } catch (Exception ignored) {
+                } catch (Throwable ignored) {
                 }
             } else {
                 actual.onSubscribe(Operators.scalarSubscription(actual, value));

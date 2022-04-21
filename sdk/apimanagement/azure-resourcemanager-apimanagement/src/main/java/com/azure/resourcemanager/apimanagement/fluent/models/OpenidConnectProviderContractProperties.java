@@ -6,11 +6,14 @@ package com.azure.resourcemanager.apimanagement.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** OpenID Connect Providers Contract. */
 @Fluent
 public final class OpenidConnectProviderContractProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OpenidConnectProviderContractProperties.class);
+
     /*
      * User-friendly OpenID Connect Provider name.
      */
@@ -148,24 +151,22 @@ public final class OpenidConnectProviderContractProperties {
      */
     public void validate() {
         if (displayName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property displayName in model OpenidConnectProviderContractProperties"));
         }
         if (metadataEndpoint() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property metadataEndpoint in model OpenidConnectProviderContractProperties"));
         }
         if (clientId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property clientId in model OpenidConnectProviderContractProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OpenidConnectProviderContractProperties.class);
 }

@@ -5,15 +5,18 @@
 package com.azure.resourcemanager.eventgrid.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.eventgrid.models.DataResidencyBoundary;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.eventgrid.models.InboundIpRule;
 import com.azure.resourcemanager.eventgrid.models.PublicNetworkAccess;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Information of domain update parameter properties. */
 @Fluent
 public final class DomainUpdateParameterProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DomainUpdateParameterProperties.class);
+
     /*
      * This determines if traffic is allowed over public network. By default it
      * is enabled.
@@ -86,12 +89,6 @@ public final class DomainUpdateParameterProperties {
      */
     @JsonProperty(value = "autoDeleteTopicWithLastSubscription")
     private Boolean autoDeleteTopicWithLastSubscription;
-
-    /*
-     * The data residency boundary for the domain.
-     */
-    @JsonProperty(value = "dataResidencyBoundary")
-    private DataResidencyBoundary dataResidencyBoundary;
 
     /**
      * Get the publicNetworkAccess property: This determines if traffic is allowed over public network. By default it is
@@ -236,26 +233,6 @@ public final class DomainUpdateParameterProperties {
     public DomainUpdateParameterProperties withAutoDeleteTopicWithLastSubscription(
         Boolean autoDeleteTopicWithLastSubscription) {
         this.autoDeleteTopicWithLastSubscription = autoDeleteTopicWithLastSubscription;
-        return this;
-    }
-
-    /**
-     * Get the dataResidencyBoundary property: The data residency boundary for the domain.
-     *
-     * @return the dataResidencyBoundary value.
-     */
-    public DataResidencyBoundary dataResidencyBoundary() {
-        return this.dataResidencyBoundary;
-    }
-
-    /**
-     * Set the dataResidencyBoundary property: The data residency boundary for the domain.
-     *
-     * @param dataResidencyBoundary the dataResidencyBoundary value to set.
-     * @return the DomainUpdateParameterProperties object itself.
-     */
-    public DomainUpdateParameterProperties withDataResidencyBoundary(DataResidencyBoundary dataResidencyBoundary) {
-        this.dataResidencyBoundary = dataResidencyBoundary;
         return this;
     }
 

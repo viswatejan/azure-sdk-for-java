@@ -6,11 +6,14 @@ package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Blob range. */
 @Fluent
 public final class BlobRestoreRange {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BlobRestoreRange.class);
+
     /*
      * Blob start range. This is inclusive. Empty means account start.
      */
@@ -70,16 +73,14 @@ public final class BlobRestoreRange {
      */
     public void validate() {
         if (startRange() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property startRange in model BlobRestoreRange"));
         }
         if (endRange() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property endRange in model BlobRestoreRange"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BlobRestoreRange.class);
 }

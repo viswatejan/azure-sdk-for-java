@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SubResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.Trigger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Trigger resource type. */
 @Fluent
 public final class TriggerResourceInner extends SubResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TriggerResourceInner.class);
+
     /*
      * Properties of the trigger.
      */
@@ -98,13 +101,11 @@ public final class TriggerResourceInner extends SubResource {
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property properties in model TriggerResourceInner"));
         } else {
             properties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TriggerResourceInner.class);
 }

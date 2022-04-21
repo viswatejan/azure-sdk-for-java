@@ -81,6 +81,7 @@ public abstract class ServiceTest<TOptions extends PerfStressOptions> extends Pe
                 syncPoller = documentModelAdministrationAsyncClient
                 .beginBuildModel(trainingDocumentsUrl,
                     DocumentBuildMode.TEMPLATE,
+                    null,
                     new BuildModelOptions().setDescription("perf-model"))
                 .getSyncPoller();
             modelId = syncPoller.getFinalResult().getModelId();

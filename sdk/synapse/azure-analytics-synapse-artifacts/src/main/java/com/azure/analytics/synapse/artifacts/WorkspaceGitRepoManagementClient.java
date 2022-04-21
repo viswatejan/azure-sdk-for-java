@@ -21,7 +21,7 @@ public final class WorkspaceGitRepoManagementClient {
     @Generated private final WorkspaceGitRepoManagementsImpl serviceClient;
 
     /**
-     * Initializes an instance of WorkspaceGitRepoManagementClient class.
+     * Initializes an instance of WorkspaceGitRepoManagements client.
      *
      * @param serviceClient the service client implementation.
      */

@@ -21,6 +21,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.NetworkStatusClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.NetworkStatusContractByLocationInner;
 import com.azure.resourcemanager.apimanagement.fluent.models.NetworkStatusContractInner;
@@ -29,6 +30,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in NetworkStatusClient. */
 public final class NetworkStatusClientImpl implements NetworkStatusClient {
+    private final ClientLogger logger = new ClientLogger(NetworkStatusClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final NetworkStatusService service;
 
@@ -95,7 +98,7 @@ public final class NetworkStatusClientImpl implements NetworkStatusClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Connectivity Status to the external resources on which the Api Management service depends from inside
-     *     the Cloud Service along with {@link Response} on successful completion of {@link Mono}.
+     *     the Cloud Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<List<NetworkStatusContractByLocationInner>>> listByServiceWithResponseAsync(
@@ -146,7 +149,7 @@ public final class NetworkStatusClientImpl implements NetworkStatusClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Connectivity Status to the external resources on which the Api Management service depends from inside
-     *     the Cloud Service along with {@link Response} on successful completion of {@link Mono}.
+     *     the Cloud Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<List<NetworkStatusContractByLocationInner>>> listByServiceWithResponseAsync(
@@ -193,7 +196,7 @@ public final class NetworkStatusClientImpl implements NetworkStatusClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Connectivity Status to the external resources on which the Api Management service depends from inside
-     *     the Cloud Service on successful completion of {@link Mono}.
+     *     the Cloud Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<List<NetworkStatusContractByLocationInner>> listByServiceAsync(
@@ -237,7 +240,7 @@ public final class NetworkStatusClientImpl implements NetworkStatusClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Connectivity Status to the external resources on which the Api Management service depends from inside
-     *     the Cloud Service along with {@link Response}.
+     *     the Cloud Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<List<NetworkStatusContractByLocationInner>> listByServiceWithResponse(
@@ -257,7 +260,7 @@ public final class NetworkStatusClientImpl implements NetworkStatusClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Connectivity Status to the external resources on which the Api Management service depends from inside
-     *     the Cloud Service along with {@link Response} on successful completion of {@link Mono}.
+     *     the Cloud Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NetworkStatusContractInner>> listByLocationWithResponseAsync(
@@ -314,7 +317,7 @@ public final class NetworkStatusClientImpl implements NetworkStatusClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Connectivity Status to the external resources on which the Api Management service depends from inside
-     *     the Cloud Service along with {@link Response} on successful completion of {@link Mono}.
+     *     the Cloud Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NetworkStatusContractInner>> listByLocationWithResponseAsync(
@@ -367,7 +370,7 @@ public final class NetworkStatusClientImpl implements NetworkStatusClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Connectivity Status to the external resources on which the Api Management service depends from inside
-     *     the Cloud Service on successful completion of {@link Mono}.
+     *     the Cloud Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NetworkStatusContractInner> listByLocationAsync(
@@ -416,7 +419,7 @@ public final class NetworkStatusClientImpl implements NetworkStatusClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Connectivity Status to the external resources on which the Api Management service depends from inside
-     *     the Cloud Service along with {@link Response}.
+     *     the Cloud Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NetworkStatusContractInner> listByLocationWithResponse(

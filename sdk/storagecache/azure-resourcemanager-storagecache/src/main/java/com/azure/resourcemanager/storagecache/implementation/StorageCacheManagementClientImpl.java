@@ -22,7 +22,6 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.storagecache.fluent.AscOperationsClient;
-import com.azure.resourcemanager.storagecache.fluent.AscUsagesClient;
 import com.azure.resourcemanager.storagecache.fluent.CachesClient;
 import com.azure.resourcemanager.storagecache.fluent.OperationsClient;
 import com.azure.resourcemanager.storagecache.fluent.SkusClient;
@@ -43,6 +42,8 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the StorageCacheManagementClientImpl type. */
 @ServiceClient(builder = StorageCacheManagementClientBuilder.class)
 public final class StorageCacheManagementClientImpl implements StorageCacheManagementClient {
+    private final ClientLogger logger = new ClientLogger(StorageCacheManagementClientImpl.class);
+
     /**
      * Subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of
      * the URI for every service call.
@@ -167,18 +168,6 @@ public final class StorageCacheManagementClientImpl implements StorageCacheManag
         return this.ascOperations;
     }
 
-    /** The AscUsagesClient object to access its operations. */
-    private final AscUsagesClient ascUsages;
-
-    /**
-     * Gets the AscUsagesClient object to access its operations.
-     *
-     * @return the AscUsagesClient object.
-     */
-    public AscUsagesClient getAscUsages() {
-        return this.ascUsages;
-    }
-
     /** The CachesClient object to access its operations. */
     private final CachesClient caches;
 
@@ -238,12 +227,11 @@ public final class StorageCacheManagementClientImpl implements StorageCacheManag
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-01-01";
+        this.apiVersion = "2021-09-01";
         this.operations = new OperationsClientImpl(this);
         this.skus = new SkusClientImpl(this);
         this.usageModels = new UsageModelsClientImpl(this);
         this.ascOperations = new AscOperationsClientImpl(this);
-        this.ascUsages = new AscUsagesClientImpl(this);
         this.caches = new CachesClientImpl(this);
         this.storageTargets = new StorageTargetsClientImpl(this);
         this.storageTargetOperations = new StorageTargetOperationsClientImpl(this);
@@ -332,7 +320,7 @@ public final class StorageCacheManagementClientImpl implements StorageCacheManag
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        LOGGER.logThrowableAsWarning(ioe);
+                        logger.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -391,6 +379,4 @@ public final class StorageCacheManagementClientImpl implements StorageCacheManag
             return Mono.just(new String(responseBody, charset));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(StorageCacheManagementClientImpl.class);
 }

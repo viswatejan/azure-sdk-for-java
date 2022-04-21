@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.apimanagement.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.models.BackendUpdateParameterProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Backend update parameters. */
 @Fluent
 public final class BackendUpdateParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackendUpdateParameters.class);
+
     /*
      * Backend entity update contract properties.
      */
@@ -120,7 +124,7 @@ public final class BackendUpdateParameters {
 
     /**
      * Get the resourceId property: Management Uri of the Resource in External System. This url can be the Arm Resource
-     * Id of Logic Apps, Function Apps or API Apps.
+     * Id of Logic Apps, Function Apps or Api Apps.
      *
      * @return the resourceId value.
      */
@@ -130,7 +134,7 @@ public final class BackendUpdateParameters {
 
     /**
      * Set the resourceId property: Management Uri of the Resource in External System. This url can be the Arm Resource
-     * Id of Logic Apps, Function Apps or API Apps.
+     * Id of Logic Apps, Function Apps or Api Apps.
      *
      * @param resourceId the resourceId value to set.
      * @return the BackendUpdateParameters object itself.

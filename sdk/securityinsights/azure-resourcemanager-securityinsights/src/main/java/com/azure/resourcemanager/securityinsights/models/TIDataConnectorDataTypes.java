@@ -6,11 +6,14 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The available data types for TI (Threat Intelligence) data connector. */
 @Fluent
 public final class TIDataConnectorDataTypes {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TIDataConnectorDataTypes.class);
+
     /*
      * Data type for indicators connection.
      */
@@ -44,7 +47,7 @@ public final class TIDataConnectorDataTypes {
      */
     public void validate() {
         if (indicators() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property indicators in model TIDataConnectorDataTypes"));
@@ -52,6 +55,4 @@ public final class TIDataConnectorDataTypes {
             indicators().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TIDataConnectorDataTypes.class);
 }

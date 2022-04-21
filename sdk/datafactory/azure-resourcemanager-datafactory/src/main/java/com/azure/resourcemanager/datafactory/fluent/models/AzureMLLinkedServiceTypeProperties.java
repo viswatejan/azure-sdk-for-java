@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Azure ML Studio Web Service linked service properties. */
 @Fluent
 public final class AzureMLLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureMLLinkedServiceTypeProperties.class);
+
     /*
      * The Batch Execution REST URL for an Azure ML Studio Web Service
      * endpoint. Type: string (or Expression with resultType string).
@@ -250,13 +253,13 @@ public final class AzureMLLinkedServiceTypeProperties {
      */
     public void validate() {
         if (mlEndpoint() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property mlEndpoint in model AzureMLLinkedServiceTypeProperties"));
         }
         if (apiKey() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property apiKey in model AzureMLLinkedServiceTypeProperties"));
@@ -267,6 +270,4 @@ public final class AzureMLLinkedServiceTypeProperties {
             servicePrincipalKey().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AzureMLLinkedServiceTypeProperties.class);
 }

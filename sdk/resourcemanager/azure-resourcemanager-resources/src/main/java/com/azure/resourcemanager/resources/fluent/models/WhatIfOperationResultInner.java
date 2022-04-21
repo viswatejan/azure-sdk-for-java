@@ -6,7 +6,9 @@ package com.azure.resourcemanager.resources.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.exception.ManagementError;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resources.models.WhatIfChange;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -16,6 +18,8 @@ import java.util.List;
  */
 @Fluent
 public final class WhatIfOperationResultInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(WhatIfOperationResultInner.class);
+
     /*
      * Status of the What-If operation.
      */

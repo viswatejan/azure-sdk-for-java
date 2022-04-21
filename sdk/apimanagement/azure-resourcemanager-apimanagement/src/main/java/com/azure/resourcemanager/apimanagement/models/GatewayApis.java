@@ -20,7 +20,7 @@ public interface GatewayApis {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedIterable}.
+     * @return paged Api list representation.
      */
     PagedIterable<ApiContract> listByService(String resourceGroupName, String serviceName, String gatewayId);
 
@@ -40,7 +40,7 @@ public interface GatewayApis {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged API list representation as paginated response with {@link PagedIterable}.
+     * @return paged Api list representation.
      */
     PagedIterable<ApiContract> listByService(
         String resourceGroupName,
@@ -93,7 +93,7 @@ public interface GatewayApis {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details.
+     * @return api details.
      */
     ApiContract createOrUpdate(String resourceGroupName, String serviceName, String gatewayId, String apiId);
 
@@ -110,7 +110,7 @@ public interface GatewayApis {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI details along with {@link Response}.
+     * @return api details.
      */
     Response<ApiContract> createOrUpdateWithResponse(
         String resourceGroupName,
@@ -146,7 +146,7 @@ public interface GatewayApis {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String serviceName, String gatewayId, String apiId, Context context);

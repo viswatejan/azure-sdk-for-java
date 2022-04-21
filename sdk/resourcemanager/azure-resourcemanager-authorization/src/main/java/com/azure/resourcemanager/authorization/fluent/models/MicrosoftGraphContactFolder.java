@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** contactFolder. */
 @Fluent
 public final class MicrosoftGraphContactFolder extends MicrosoftGraphEntity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphContactFolder.class);
+
     /*
      * The folder's display name.
      */
@@ -39,7 +42,7 @@ public final class MicrosoftGraphContactFolder extends MicrosoftGraphEntity {
      * The contacts in the folder. Navigation property. Read-only. Nullable.
      */
     @JsonProperty(value = "contacts")
-    private List<MicrosoftGraphContact> contacts;
+    private List<MicrosoftGraphContactInner> contacts;
 
     /*
      * The collection of multi-value extended properties defined for the
@@ -127,7 +130,7 @@ public final class MicrosoftGraphContactFolder extends MicrosoftGraphEntity {
      *
      * @return the contacts value.
      */
-    public List<MicrosoftGraphContact> contacts() {
+    public List<MicrosoftGraphContactInner> contacts() {
         return this.contacts;
     }
 
@@ -137,7 +140,7 @@ public final class MicrosoftGraphContactFolder extends MicrosoftGraphEntity {
      * @param contacts the contacts value to set.
      * @return the MicrosoftGraphContactFolder object itself.
      */
-    public MicrosoftGraphContactFolder withContacts(List<MicrosoftGraphContact> contacts) {
+    public MicrosoftGraphContactFolder withContacts(List<MicrosoftGraphContactInner> contacts) {
         this.contacts = contacts;
         return this;
     }

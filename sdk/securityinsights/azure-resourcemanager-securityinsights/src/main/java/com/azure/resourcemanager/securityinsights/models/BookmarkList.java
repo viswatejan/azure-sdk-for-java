@@ -7,14 +7,17 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.models.BookmarkInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List all the bookmarks. */
 @Fluent
 public final class BookmarkList {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BookmarkList.class);
+
     /*
-     * URL to fetch the next set of bookmarks.
+     * URL to fetch the next set of cases.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
@@ -26,7 +29,7 @@ public final class BookmarkList {
     private List<BookmarkInner> value;
 
     /**
-     * Get the nextLink property: URL to fetch the next set of bookmarks.
+     * Get the nextLink property: URL to fetch the next set of cases.
      *
      * @return the nextLink value.
      */
@@ -61,13 +64,11 @@ public final class BookmarkList {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model BookmarkList"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BookmarkList.class);
 }

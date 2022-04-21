@@ -6,16 +6,20 @@ package com.azure.resourcemanager.apimanagement.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.models.BackendCredentialsContract;
 import com.azure.resourcemanager.apimanagement.models.BackendProperties;
 import com.azure.resourcemanager.apimanagement.models.BackendProtocol;
 import com.azure.resourcemanager.apimanagement.models.BackendProxyContract;
 import com.azure.resourcemanager.apimanagement.models.BackendTlsProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Backend details. */
 @Fluent
 public final class BackendContractInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackendContractInner.class);
+
     /*
      * Backend entity contract properties.
      */
@@ -125,7 +129,7 @@ public final class BackendContractInner extends ProxyResource {
 
     /**
      * Get the resourceId property: Management Uri of the Resource in External System. This url can be the Arm Resource
-     * Id of Logic Apps, Function Apps or API Apps.
+     * Id of Logic Apps, Function Apps or Api Apps.
      *
      * @return the resourceId value.
      */
@@ -135,7 +139,7 @@ public final class BackendContractInner extends ProxyResource {
 
     /**
      * Set the resourceId property: Management Uri of the Resource in External System. This url can be the Arm Resource
-     * Id of Logic Apps, Function Apps or API Apps.
+     * Id of Logic Apps, Function Apps or Api Apps.
      *
      * @param resourceId the resourceId value to set.
      * @return the BackendContractInner object itself.

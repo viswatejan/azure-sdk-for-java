@@ -7,11 +7,15 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Azure Data Lake Analytics linked service properties. */
 @Fluent
 public final class AzureDataLakeAnalyticsLinkedServiceTypeProperties {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(AzureDataLakeAnalyticsLinkedServiceTypeProperties.class);
+
     /*
      * The Azure Data Lake Analytics account name. Type: string (or Expression
      * with resultType string).
@@ -253,7 +257,7 @@ public final class AzureDataLakeAnalyticsLinkedServiceTypeProperties {
      */
     public void validate() {
         if (accountName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property accountName in model"
@@ -263,13 +267,10 @@ public final class AzureDataLakeAnalyticsLinkedServiceTypeProperties {
             servicePrincipalKey().validate();
         }
         if (tenant() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property tenant in model AzureDataLakeAnalyticsLinkedServiceTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER =
-        new ClientLogger(AzureDataLakeAnalyticsLinkedServiceTypeProperties.class);
 }

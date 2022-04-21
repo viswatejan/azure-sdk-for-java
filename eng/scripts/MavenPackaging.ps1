@@ -204,26 +204,18 @@ function Test-ReleasedPackage([string]$RepositoryUrl, [MavenPackageDetail]$Packa
 
     if ($response.StatusCode -ge 200 -and $response.StatusCode -lt 300) {
       $remoteCount++
+      $remoteHash = $response.Content
 
-      if ($artifact.File.Extension -ieq '.jar') {
-        # Because authenticode signing isn't determinsitic, we can't compare the hash of 2 separately signed jars
-        Write-Information "  Remote hash of jar file esists."
+      Write-Information "  Getting local hash"
+      $localPath = $artifact.File.FullName
+      $localHash = Get-FileHash -Path $localPath -Algorithm $algorithm | Select-Object -ExpandProperty 'Hash'
+      
+      if ($remoteHash -eq $localHash) {
         $matchCount++
+        Write-Information "  Remote $remoteHash == Local $localHash"
       }
       else {
-        $remoteHash = $response.Content
-
-        Write-Information "  Getting local hash"
-        $localPath = $artifact.File.FullName
-        $localHash = Get-FileHash -Path $localPath -Algorithm $algorithm | Select-Object -ExpandProperty 'Hash'
-        
-        if ($remoteHash -eq $localHash) {
-          $matchCount++
-          Write-Information "  Remote $remoteHash == Local $localHash"
-        }
-        else {
-          Write-Information "  Remote $remoteHash != Local $localHash"
-        }
+        Write-Information "  Remote $remoteHash != Local $localHash"
       }
     }
     else {

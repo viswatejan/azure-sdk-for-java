@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -14,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("OdbcSink")
 @Fluent
 public final class OdbcSink extends CopySink {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OdbcSink.class);
+
     /*
      * A query to execute before starting the copy. Type: string (or Expression
      * with resultType string).

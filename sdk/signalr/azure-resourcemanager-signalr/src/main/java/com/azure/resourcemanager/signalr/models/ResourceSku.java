@@ -6,11 +6,14 @@ package com.azure.resourcemanager.signalr.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The billing information of the resource. */
 @Fluent
 public final class ResourceSku {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceSku.class);
+
     /*
      * The name of the SKU. Required.
      *
@@ -146,11 +149,9 @@ public final class ResourceSku {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model ResourceSku"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ResourceSku.class);
 }

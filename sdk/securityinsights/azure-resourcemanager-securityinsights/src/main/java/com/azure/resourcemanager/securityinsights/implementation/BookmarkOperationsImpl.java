@@ -13,9 +13,10 @@ import com.azure.resourcemanager.securityinsights.fluent.models.BookmarkExpandRe
 import com.azure.resourcemanager.securityinsights.models.BookmarkExpandParameters;
 import com.azure.resourcemanager.securityinsights.models.BookmarkExpandResponse;
 import com.azure.resourcemanager.securityinsights.models.BookmarkOperations;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class BookmarkOperationsImpl implements BookmarkOperations {
-    private static final ClientLogger LOGGER = new ClientLogger(BookmarkOperationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BookmarkOperationsImpl.class);
 
     private final BookmarkOperationsClient innerClient;
 

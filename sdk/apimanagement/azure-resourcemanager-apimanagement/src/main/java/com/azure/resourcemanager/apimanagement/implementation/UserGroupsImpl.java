@@ -11,9 +11,10 @@ import com.azure.resourcemanager.apimanagement.fluent.UserGroupsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.GroupContractInner;
 import com.azure.resourcemanager.apimanagement.models.GroupContract;
 import com.azure.resourcemanager.apimanagement.models.UserGroups;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class UserGroupsImpl implements UserGroups {
-    private static final ClientLogger LOGGER = new ClientLogger(UserGroupsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(UserGroupsImpl.class);
 
     private final UserGroupsClient innerClient;
 

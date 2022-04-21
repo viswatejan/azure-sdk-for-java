@@ -6,12 +6,15 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Rerun Trigger properties. */
 @Fluent
 public final class RerunTumblingWindowTriggerTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RerunTumblingWindowTriggerTypeProperties.class);
+
     /*
      * The parent trigger reference.
      */
@@ -132,26 +135,24 @@ public final class RerunTumblingWindowTriggerTypeProperties {
      */
     public void validate() {
         if (parentTrigger() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property parentTrigger in model RerunTumblingWindowTriggerTypeProperties"));
         }
         if (requestedStartTime() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property requestedStartTime in model"
                             + " RerunTumblingWindowTriggerTypeProperties"));
         }
         if (requestedEndTime() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property requestedEndTime in model"
                             + " RerunTumblingWindowTriggerTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RerunTumblingWindowTriggerTypeProperties.class);
 }

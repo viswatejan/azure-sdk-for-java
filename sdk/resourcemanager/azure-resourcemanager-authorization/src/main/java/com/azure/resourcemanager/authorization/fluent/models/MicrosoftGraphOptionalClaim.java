@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** optionalClaim. */
 @Fluent
 public final class MicrosoftGraphOptionalClaim {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphOptionalClaim.class);
+
     /*
      * Additional properties of the claim. If a property exists in this
      * collection, it modifies the behavior of the optional claim specified in

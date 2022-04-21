@@ -24,6 +24,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.applicationinsights.fluent.AnalyticsItemsClient;
 import com.azure.resourcemanager.applicationinsights.fluent.models.ApplicationInsightsComponentAnalyticsItemInner;
 import com.azure.resourcemanager.applicationinsights.models.ItemScope;
@@ -34,6 +35,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in AnalyticsItemsClient. */
 public final class AnalyticsItemsClientImpl implements AnalyticsItemsClient {
+    private final ClientLogger logger = new ClientLogger(AnalyticsItemsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final AnalyticsItemsService service;
 

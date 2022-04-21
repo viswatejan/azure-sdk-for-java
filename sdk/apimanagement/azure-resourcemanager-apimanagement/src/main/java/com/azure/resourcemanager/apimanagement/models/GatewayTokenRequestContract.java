@@ -6,12 +6,15 @@ package com.azure.resourcemanager.apimanagement.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Gateway token request contract properties. */
 @Fluent
 public final class GatewayTokenRequestContract {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GatewayTokenRequestContract.class);
+
     /*
      * The Key to be used to generate gateway token.
      */
@@ -76,18 +79,16 @@ public final class GatewayTokenRequestContract {
      */
     public void validate() {
         if (keyType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property keyType in model GatewayTokenRequestContract"));
         }
         if (expiry() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property expiry in model GatewayTokenRequestContract"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(GatewayTokenRequestContract.class);
 }

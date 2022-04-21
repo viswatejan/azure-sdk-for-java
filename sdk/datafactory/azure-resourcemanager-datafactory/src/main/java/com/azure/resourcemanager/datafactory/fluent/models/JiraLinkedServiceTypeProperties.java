@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Jira Service linked service properties. */
 @Fluent
 public final class JiraLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(JiraLinkedServiceTypeProperties.class);
+
     /*
      * The IP address or host name of the Jira service. (e.g. jira.example.com)
      */
@@ -246,13 +249,13 @@ public final class JiraLinkedServiceTypeProperties {
      */
     public void validate() {
         if (host() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property host in model JiraLinkedServiceTypeProperties"));
         }
         if (username() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property username in model JiraLinkedServiceTypeProperties"));
@@ -261,6 +264,4 @@ public final class JiraLinkedServiceTypeProperties {
             password().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(JiraLinkedServiceTypeProperties.class);
 }

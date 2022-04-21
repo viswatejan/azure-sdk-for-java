@@ -30,17 +30,21 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appplatform.fluent.BindingsClient;
 import com.azure.resourcemanager.appplatform.fluent.models.BindingResourceInner;
 import com.azure.resourcemanager.appplatform.models.BindingResourceCollection;
+import com.azure.resourcemanager.appplatform.models.BindingResourceProperties;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in BindingsClient. */
 public final class BindingsClientImpl implements BindingsClient {
+    private final ClientLogger logger = new ClientLogger(BindingsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final BindingsService service;
 
@@ -172,7 +176,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Binding and its properties along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Binding and its properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BindingResourceInner>> getWithResponseAsync(
@@ -217,7 +221,7 @@ public final class BindingsClientImpl implements BindingsClient {
                             bindingName,
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -232,7 +236,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Binding and its properties along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Binding and its properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BindingResourceInner>> getWithResponseAsync(
@@ -288,7 +292,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Binding and its properties on successful completion of {@link Mono}.
+     * @return a Binding and its properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BindingResourceInner> getAsync(
@@ -334,7 +338,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Binding and its properties along with {@link Response}.
+     * @return a Binding and its properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BindingResourceInner> getWithResponse(
@@ -350,11 +354,11 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the create or update operation.
+     * @param properties Properties of the Binding resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return binding resource payload along with {@link Response} on successful completion of {@link Mono}.
+     * @return binding resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -362,7 +366,7 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource) {
+        BindingResourceProperties properties) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -388,13 +392,12 @@ public final class BindingsClientImpl implements BindingsClient {
         if (bindingName == null) {
             return Mono.error(new IllegalArgumentException("Parameter bindingName is required and cannot be null."));
         }
-        if (bindingResource == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter bindingResource is required and cannot be null."));
-        } else {
-            bindingResource.validate();
+        if (properties != null) {
+            properties.validate();
         }
         final String accept = "application/json";
+        BindingResourceInner bindingResource = new BindingResourceInner();
+        bindingResource.withProperties(properties);
         return FluxUtil
             .withContext(
                 context ->
@@ -410,7 +413,7 @@ public final class BindingsClientImpl implements BindingsClient {
                             bindingResource,
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -421,12 +424,12 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the create or update operation.
+     * @param properties Properties of the Binding resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return binding resource payload along with {@link Response} on successful completion of {@link Mono}.
+     * @return binding resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -434,7 +437,7 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource,
+        BindingResourceProperties properties,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -461,13 +464,12 @@ public final class BindingsClientImpl implements BindingsClient {
         if (bindingName == null) {
             return Mono.error(new IllegalArgumentException("Parameter bindingName is required and cannot be null."));
         }
-        if (bindingResource == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter bindingResource is required and cannot be null."));
-        } else {
-            bindingResource.validate();
+        if (properties != null) {
+            properties.validate();
         }
         final String accept = "application/json";
+        BindingResourceInner bindingResource = new BindingResourceInner();
+        bindingResource.withProperties(properties);
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
@@ -491,21 +493,21 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the create or update operation.
+     * @param properties Properties of the Binding resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of binding resource payload.
+     * @return binding resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public PollerFlux<PollResult<BindingResourceInner>, BindingResourceInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource) {
+        BindingResourceProperties properties) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource);
+            createOrUpdateWithResponseAsync(resourceGroupName, serviceName, appName, bindingName, properties);
         return this
             .client
             .<BindingResourceInner, BindingResourceInner>getLroResult(
@@ -524,25 +526,24 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the create or update operation.
+     * @param properties Properties of the Binding resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of binding resource payload.
+     * @return binding resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<BindingResourceInner>, BindingResourceInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource,
+        BindingResourceProperties properties,
         Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(
-                resourceGroupName, serviceName, appName, bindingName, bindingResource, context);
+            createOrUpdateWithResponseAsync(resourceGroupName, serviceName, appName, bindingName, properties, context);
         return this
             .client
             .<BindingResourceInner, BindingResourceInner>getLroResult(
@@ -557,20 +558,20 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the create or update operation.
+     * @param properties Properties of the Binding resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of binding resource payload.
+     * @return binding resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<BindingResourceInner>, BindingResourceInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource) {
-        return beginCreateOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource)
+        BindingResourceProperties properties) {
+        return beginCreateOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties)
             .getSyncPoller();
     }
 
@@ -582,22 +583,22 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the create or update operation.
+     * @param properties Properties of the Binding resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of binding resource payload.
+     * @return binding resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<BindingResourceInner>, BindingResourceInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource,
+        BindingResourceProperties properties,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource, context)
+        return beginCreateOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties, context)
             .getSyncPoller();
     }
 
@@ -609,11 +610,11 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the create or update operation.
+     * @param properties Properties of the Binding resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return binding resource payload on successful completion of {@link Mono}.
+     * @return binding resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BindingResourceInner> createOrUpdateAsync(
@@ -621,8 +622,8 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource) {
-        return beginCreateOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource)
+        BindingResourceProperties properties) {
+        return beginCreateOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -635,12 +636,34 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the create or update operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return binding resource payload.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<BindingResourceInner> createOrUpdateAsync(
+        String resourceGroupName, String serviceName, String appName, String bindingName) {
+        final BindingResourceProperties properties = null;
+        return beginCreateOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Create a new Binding or update an exiting Binding.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
+     *     from the Azure Resource Manager API or the portal.
+     * @param serviceName The name of the Service resource.
+     * @param appName The name of the App resource.
+     * @param bindingName The name of the Binding resource.
+     * @param properties Properties of the Binding resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return binding resource payload on successful completion of {@link Mono}.
+     * @return binding resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BindingResourceInner> createOrUpdateAsync(
@@ -648,9 +671,9 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource,
+        BindingResourceProperties properties,
         Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource, context)
+        return beginCreateOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -663,7 +686,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the create or update operation.
+     * @param properties Properties of the Binding resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -675,8 +698,8 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource) {
-        return createOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource).block();
+        BindingResourceProperties properties) {
+        return createOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties).block();
     }
 
     /**
@@ -687,7 +710,27 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the create or update operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return binding resource payload.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BindingResourceInner createOrUpdate(
+        String resourceGroupName, String serviceName, String appName, String bindingName) {
+        final BindingResourceProperties properties = null;
+        return createOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties).block();
+    }
+
+    /**
+     * Create a new Binding or update an exiting Binding.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
+     *     from the Azure Resource Manager API or the portal.
+     * @param serviceName The name of the Service resource.
+     * @param appName The name of the App resource.
+     * @param bindingName The name of the Binding resource.
+     * @param properties Properties of the Binding resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -700,10 +743,9 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource,
+        BindingResourceProperties properties,
         Context context) {
-        return createOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource, context)
-            .block();
+        return createOrUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties, context).block();
     }
 
     /**
@@ -717,7 +759,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -762,7 +804,7 @@ public final class BindingsClientImpl implements BindingsClient {
                             bindingName,
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -777,7 +819,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -833,9 +875,9 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String serviceName, String appName, String bindingName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -858,9 +900,9 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String serviceName, String appName, String bindingName, Context context) {
         context = this.client.mergeContext(context);
@@ -882,9 +924,9 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String serviceName, String appName, String bindingName) {
         return beginDeleteAsync(resourceGroupName, serviceName, appName, bindingName).getSyncPoller();
@@ -902,9 +944,9 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String serviceName, String appName, String bindingName, Context context) {
         return beginDeleteAsync(resourceGroupName, serviceName, appName, bindingName, context).getSyncPoller();
@@ -921,7 +963,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String appName, String bindingName) {
@@ -942,7 +984,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -996,11 +1038,11 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the update operation.
+     * @param properties Properties of the Binding resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return binding resource payload along with {@link Response} on successful completion of {@link Mono}.
+     * @return binding resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1008,7 +1050,7 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource) {
+        BindingResourceProperties properties) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1034,13 +1076,12 @@ public final class BindingsClientImpl implements BindingsClient {
         if (bindingName == null) {
             return Mono.error(new IllegalArgumentException("Parameter bindingName is required and cannot be null."));
         }
-        if (bindingResource == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter bindingResource is required and cannot be null."));
-        } else {
-            bindingResource.validate();
+        if (properties != null) {
+            properties.validate();
         }
         final String accept = "application/json";
+        BindingResourceInner bindingResource = new BindingResourceInner();
+        bindingResource.withProperties(properties);
         return FluxUtil
             .withContext(
                 context ->
@@ -1056,7 +1097,7 @@ public final class BindingsClientImpl implements BindingsClient {
                             bindingResource,
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -1067,12 +1108,12 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the update operation.
+     * @param properties Properties of the Binding resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return binding resource payload along with {@link Response} on successful completion of {@link Mono}.
+     * @return binding resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1080,7 +1121,7 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource,
+        BindingResourceProperties properties,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1107,13 +1148,12 @@ public final class BindingsClientImpl implements BindingsClient {
         if (bindingName == null) {
             return Mono.error(new IllegalArgumentException("Parameter bindingName is required and cannot be null."));
         }
-        if (bindingResource == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter bindingResource is required and cannot be null."));
-        } else {
-            bindingResource.validate();
+        if (properties != null) {
+            properties.validate();
         }
         final String accept = "application/json";
+        BindingResourceInner bindingResource = new BindingResourceInner();
+        bindingResource.withProperties(properties);
         context = this.client.mergeContext(context);
         return service
             .update(
@@ -1137,21 +1177,21 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the update operation.
+     * @param properties Properties of the Binding resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of binding resource payload.
+     * @return binding resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public PollerFlux<PollResult<BindingResourceInner>, BindingResourceInner> beginUpdateAsync(
         String resourceGroupName,
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource) {
+        BindingResourceProperties properties) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource);
+            updateWithResponseAsync(resourceGroupName, serviceName, appName, bindingName, properties);
         return this
             .client
             .<BindingResourceInner, BindingResourceInner>getLroResult(
@@ -1170,24 +1210,24 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the update operation.
+     * @param properties Properties of the Binding resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of binding resource payload.
+     * @return binding resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<BindingResourceInner>, BindingResourceInner> beginUpdateAsync(
         String resourceGroupName,
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource,
+        BindingResourceProperties properties,
         Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource, context);
+            updateWithResponseAsync(resourceGroupName, serviceName, appName, bindingName, properties, context);
         return this
             .client
             .<BindingResourceInner, BindingResourceInner>getLroResult(
@@ -1202,20 +1242,20 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the update operation.
+     * @param properties Properties of the Binding resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of binding resource payload.
+     * @return binding resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<BindingResourceInner>, BindingResourceInner> beginUpdate(
         String resourceGroupName,
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource) {
-        return beginUpdateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource).getSyncPoller();
+        BindingResourceProperties properties) {
+        return beginUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties).getSyncPoller();
     }
 
     /**
@@ -1226,22 +1266,22 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the update operation.
+     * @param properties Properties of the Binding resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of binding resource payload.
+     * @return binding resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<BindingResourceInner>, BindingResourceInner> beginUpdate(
         String resourceGroupName,
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource,
+        BindingResourceProperties properties,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource, context)
+        return beginUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties, context)
             .getSyncPoller();
     }
 
@@ -1253,11 +1293,11 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the update operation.
+     * @param properties Properties of the Binding resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return binding resource payload on successful completion of {@link Mono}.
+     * @return binding resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BindingResourceInner> updateAsync(
@@ -1265,8 +1305,8 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource) {
-        return beginUpdateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource)
+        BindingResourceProperties properties) {
+        return beginUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1279,12 +1319,34 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the update operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return binding resource payload.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<BindingResourceInner> updateAsync(
+        String resourceGroupName, String serviceName, String appName, String bindingName) {
+        final BindingResourceProperties properties = null;
+        return beginUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Operation to update an exiting Binding.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
+     *     from the Azure Resource Manager API or the portal.
+     * @param serviceName The name of the Service resource.
+     * @param appName The name of the App resource.
+     * @param bindingName The name of the Binding resource.
+     * @param properties Properties of the Binding resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return binding resource payload on successful completion of {@link Mono}.
+     * @return binding resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BindingResourceInner> updateAsync(
@@ -1292,9 +1354,9 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource,
+        BindingResourceProperties properties,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource, context)
+        return beginUpdateAsync(resourceGroupName, serviceName, appName, bindingName, properties, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1307,7 +1369,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the update operation.
+     * @param properties Properties of the Binding resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1319,8 +1381,8 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource) {
-        return updateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource).block();
+        BindingResourceProperties properties) {
+        return updateAsync(resourceGroupName, serviceName, appName, bindingName, properties).block();
     }
 
     /**
@@ -1331,7 +1393,27 @@ public final class BindingsClientImpl implements BindingsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param bindingName The name of the Binding resource.
-     * @param bindingResource Parameters for the update operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return binding resource payload.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BindingResourceInner update(
+        String resourceGroupName, String serviceName, String appName, String bindingName) {
+        final BindingResourceProperties properties = null;
+        return updateAsync(resourceGroupName, serviceName, appName, bindingName, properties).block();
+    }
+
+    /**
+     * Operation to update an exiting Binding.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
+     *     from the Azure Resource Manager API or the portal.
+     * @param serviceName The name of the Service resource.
+     * @param appName The name of the App resource.
+     * @param bindingName The name of the Binding resource.
+     * @param properties Properties of the Binding resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1344,9 +1426,9 @@ public final class BindingsClientImpl implements BindingsClient {
         String serviceName,
         String appName,
         String bindingName,
-        BindingResourceInner bindingResource,
+        BindingResourceProperties properties,
         Context context) {
-        return updateAsync(resourceGroupName, serviceName, appName, bindingName, bindingResource, context).block();
+        return updateAsync(resourceGroupName, serviceName, appName, bindingName, properties, context).block();
     }
 
     /**
@@ -1359,8 +1441,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Binding resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of Binding resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BindingResourceInner>> listSinglePageAsync(
@@ -1410,7 +1491,7 @@ public final class BindingsClientImpl implements BindingsClient {
                         res.getValue().value(),
                         res.getValue().nextLink(),
                         null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -1424,8 +1505,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Binding resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of Binding resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BindingResourceInner>> listSinglePageAsync(
@@ -1485,8 +1565,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Binding resources and a possible link for next set as paginated response
-     *     with {@link PagedFlux}.
+     * @return object that includes an array of Binding resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BindingResourceInner> listAsync(String resourceGroupName, String serviceName, String appName) {
@@ -1506,8 +1585,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Binding resources and a possible link for next set as paginated response
-     *     with {@link PagedFlux}.
+     * @return object that includes an array of Binding resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BindingResourceInner> listAsync(
@@ -1527,8 +1605,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Binding resources and a possible link for next set as paginated response
-     *     with {@link PagedIterable}.
+     * @return object that includes an array of Binding resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BindingResourceInner> list(String resourceGroupName, String serviceName, String appName) {
@@ -1546,8 +1623,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Binding resources and a possible link for next set as paginated response
-     *     with {@link PagedIterable}.
+     * @return object that includes an array of Binding resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BindingResourceInner> list(
@@ -1562,8 +1638,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Binding resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of Binding resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BindingResourceInner>> listNextSinglePageAsync(String nextLink) {
@@ -1588,7 +1663,7 @@ public final class BindingsClientImpl implements BindingsClient {
                         res.getValue().value(),
                         res.getValue().nextLink(),
                         null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -1599,8 +1674,7 @@ public final class BindingsClientImpl implements BindingsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Binding resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of Binding resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BindingResourceInner>> listNextSinglePageAsync(String nextLink, Context context) {

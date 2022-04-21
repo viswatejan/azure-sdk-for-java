@@ -12,6 +12,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -107,8 +108,7 @@ public final class AppConfigurationPropertySource extends EnumerablePropertySour
             SecretClientBuilderSetup keyVaultClientProvider, KeyVaultSecretProvider keyVaultSecretProvider) {
         // The context alone does not uniquely define a PropertySource, append storeName
         // and label to uniquely define a PropertySource
-        super(
-            selectedKeys.getKeyFilter() + configStore.getEndpoint() + "/" + selectedKeys.getLabelFilterText(profiles));
+        super(selectedKeys.getKeyFilter() + configStore.getEndpoint() + "/" + selectedKeys.getLabelFilterText(profiles));
         this.configStore = configStore;
         this.selectedKeys = selectedKeys;
         this.profiles = profiles;
@@ -157,6 +157,7 @@ public final class AppConfigurationPropertySource extends EnumerablePropertySour
      */
     FeatureSet initProperties(FeatureSet featureSet) throws IOException {
         String storeName = configStore.getEndpoint();
+        Date date = new Date();
         SettingSelector settingSelector = new SettingSelector();
 
         PagedIterable<ConfigurationSetting> features = null;
@@ -199,7 +200,7 @@ public final class AppConfigurationPropertySource extends EnumerablePropertySour
                 }
             }
         }
-        return addToFeatureSet(featureSet, features);
+        return addToFeatureSet(featureSet, features, date);
     }
 
     /**
@@ -251,8 +252,7 @@ public final class AppConfigurationPropertySource extends EnumerablePropertySour
             FEATURE_MAPPER.convertValue(featureSet.getFeatureManagement(), LinkedHashMap.class));
     }
 
-    private FeatureSet addToFeatureSet(FeatureSet featureSet, PagedIterable<ConfigurationSetting> features)
-        throws IOException {
+    private FeatureSet addToFeatureSet(FeatureSet featureSet, PagedIterable<ConfigurationSetting> features, Date date) {
         if (features == null) {
             return featureSet;
         }

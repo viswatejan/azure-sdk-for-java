@@ -29,6 +29,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mediaservices.fluent.AccountFiltersClient;
 import com.azure.resourcemanager.mediaservices.fluent.models.AccountFilterInner;
 import com.azure.resourcemanager.mediaservices.models.AccountFilterCollection;
@@ -36,6 +37,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in AccountFiltersClient. */
 public final class AccountFiltersClientImpl implements AccountFiltersClient {
+    private final ClientLogger logger = new ClientLogger(AccountFiltersClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final AccountFiltersService service;
 
@@ -160,8 +163,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AccountFilter items along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a collection of AccountFilter items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AccountFilterInner>> listSinglePageAsync(String resourceGroupName, String accountName) {
@@ -184,7 +186,6 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -195,7 +196,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             accountName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .<PagedResponse<AccountFilterInner>>map(
@@ -219,8 +220,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AccountFilter items along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a collection of AccountFilter items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AccountFilterInner>> listSinglePageAsync(
@@ -244,7 +244,6 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -253,7 +252,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 accountName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context)
             .map(
@@ -275,7 +274,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AccountFilter items as paginated response with {@link PagedFlux}.
+     * @return a collection of AccountFilter items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AccountFilterInner> listAsync(String resourceGroupName, String accountName) {
@@ -292,7 +291,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AccountFilter items as paginated response with {@link PagedFlux}.
+     * @return a collection of AccountFilter items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AccountFilterInner> listAsync(String resourceGroupName, String accountName, Context context) {
@@ -309,7 +308,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AccountFilter items as paginated response with {@link PagedIterable}.
+     * @return a collection of AccountFilter items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AccountFilterInner> list(String resourceGroupName, String accountName) {
@@ -325,7 +324,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AccountFilter items as paginated response with {@link PagedIterable}.
+     * @return a collection of AccountFilter items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AccountFilterInner> list(String resourceGroupName, String accountName, Context context) {
@@ -341,8 +340,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Account Filter in the Media Services account along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the details of an Account Filter in the Media Services account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AccountFilterInner>> getWithResponseAsync(
@@ -369,7 +367,6 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
         if (filterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter filterName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -381,7 +378,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
                             resourceGroupName,
                             accountName,
                             filterName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -397,8 +394,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Account Filter in the Media Services account along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the details of an Account Filter in the Media Services account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AccountFilterInner>> getWithResponseAsync(
@@ -425,7 +421,6 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
         if (filterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter filterName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -435,7 +430,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
                 resourceGroupName,
                 accountName,
                 filterName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -449,7 +444,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Account Filter in the Media Services account on successful completion of {@link Mono}.
+     * @return the details of an Account Filter in the Media Services account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AccountFilterInner> getAsync(String resourceGroupName, String accountName, String filterName) {
@@ -490,7 +485,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Account Filter in the Media Services account along with {@link Response}.
+     * @return the details of an Account Filter in the Media Services account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AccountFilterInner> getWithResponse(
@@ -508,7 +503,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Account Filter along with {@link Response} on successful completion of {@link Mono}.
+     * @return an Account Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AccountFilterInner>> createOrUpdateWithResponseAsync(
@@ -540,7 +535,6 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -552,7 +546,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
                             resourceGroupName,
                             accountName,
                             filterName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             parameters,
                             accept,
                             context))
@@ -570,7 +564,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Account Filter along with {@link Response} on successful completion of {@link Mono}.
+     * @return an Account Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AccountFilterInner>> createOrUpdateWithResponseAsync(
@@ -606,7 +600,6 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -616,7 +609,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
                 resourceGroupName,
                 accountName,
                 filterName,
-                apiVersion,
+                this.client.getApiVersion(),
                 parameters,
                 accept,
                 context);
@@ -632,7 +625,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Account Filter on successful completion of {@link Mono}.
+     * @return an Account Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AccountFilterInner> createOrUpdateAsync(
@@ -677,7 +670,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Account Filter along with {@link Response}.
+     * @return an Account Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AccountFilterInner> createOrUpdateWithResponse(
@@ -698,7 +691,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -725,7 +718,6 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
         if (filterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter filterName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -737,7 +729,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
                             resourceGroupName,
                             accountName,
                             filterName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -753,7 +745,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -780,7 +772,6 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
         if (filterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter filterName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -790,7 +781,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
                 resourceGroupName,
                 accountName,
                 filterName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -804,7 +795,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String accountName, String filterName) {
@@ -837,7 +828,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -855,7 +846,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Account Filter along with {@link Response} on successful completion of {@link Mono}.
+     * @return an Account Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AccountFilterInner>> updateWithResponseAsync(
@@ -887,7 +878,6 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -899,7 +889,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
                             resourceGroupName,
                             accountName,
                             filterName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             parameters,
                             accept,
                             context))
@@ -917,7 +907,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Account Filter along with {@link Response} on successful completion of {@link Mono}.
+     * @return an Account Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AccountFilterInner>> updateWithResponseAsync(
@@ -953,7 +943,6 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -963,7 +952,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
                 resourceGroupName,
                 accountName,
                 filterName,
-                apiVersion,
+                this.client.getApiVersion(),
                 parameters,
                 accept,
                 context);
@@ -979,7 +968,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Account Filter on successful completion of {@link Mono}.
+     * @return an Account Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AccountFilterInner> updateAsync(
@@ -1024,7 +1013,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Account Filter along with {@link Response}.
+     * @return an Account Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AccountFilterInner> updateWithResponse(
@@ -1043,8 +1032,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AccountFilter items along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a collection of AccountFilter items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AccountFilterInner>> listNextSinglePageAsync(String nextLink) {
@@ -1080,8 +1068,7 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AccountFilter items along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a collection of AccountFilter items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AccountFilterInner>> listNextSinglePageAsync(String nextLink, Context context) {

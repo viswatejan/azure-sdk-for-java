@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.models.AlertRuleTemplateInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.FusionAlertRuleTemplateProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +20,8 @@ import java.util.List;
 @JsonTypeName("Fusion")
 @Fluent
 public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FusionAlertRuleTemplate.class);
+
     /*
      * Fusion alert rule template properties
      */
@@ -31,140 +35,6 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
      */
     private FusionAlertRuleTemplateProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
-     *
-     * @return the alertRulesCreatedByTemplateCount value.
-     */
-    public Integer alertRulesCreatedByTemplateCount() {
-        return this.innerProperties() == null ? null : this.innerProperties().alertRulesCreatedByTemplateCount();
-    }
-
-    /**
-     * Set the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
-     *
-     * @param alertRulesCreatedByTemplateCount the alertRulesCreatedByTemplateCount value to set.
-     * @return the FusionAlertRuleTemplate object itself.
-     */
-    public FusionAlertRuleTemplate withAlertRulesCreatedByTemplateCount(Integer alertRulesCreatedByTemplateCount) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withAlertRulesCreatedByTemplateCount(alertRulesCreatedByTemplateCount);
-        return this;
-    }
-
-    /**
-     * Get the createdDateUtc property: The time that this alert rule template has been added.
-     *
-     * @return the createdDateUtc value.
-     */
-    public OffsetDateTime createdDateUtc() {
-        return this.innerProperties() == null ? null : this.innerProperties().createdDateUtc();
-    }
-
-    /**
-     * Get the lastUpdatedDateUtc property: The time that this alert rule template was last updated.
-     *
-     * @return the lastUpdatedDateUtc value.
-     */
-    public OffsetDateTime lastUpdatedDateUtc() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastUpdatedDateUtc();
-    }
-
-    /**
-     * Get the description property: The description of the alert rule template.
-     *
-     * @return the description value.
-     */
-    public String description() {
-        return this.innerProperties() == null ? null : this.innerProperties().description();
-    }
-
-    /**
-     * Set the description property: The description of the alert rule template.
-     *
-     * @param description the description value to set.
-     * @return the FusionAlertRuleTemplate object itself.
-     */
-    public FusionAlertRuleTemplate withDescription(String description) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withDescription(description);
-        return this;
-    }
-
-    /**
-     * Get the displayName property: The display name for alert rule template.
-     *
-     * @return the displayName value.
-     */
-    public String displayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().displayName();
-    }
-
-    /**
-     * Set the displayName property: The display name for alert rule template.
-     *
-     * @param displayName the displayName value to set.
-     * @return the FusionAlertRuleTemplate object itself.
-     */
-    public FusionAlertRuleTemplate withDisplayName(String displayName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withDisplayName(displayName);
-        return this;
-    }
-
-    /**
-     * Get the requiredDataConnectors property: The required data connectors for this template.
-     *
-     * @return the requiredDataConnectors value.
-     */
-    public List<AlertRuleTemplateDataSource> requiredDataConnectors() {
-        return this.innerProperties() == null ? null : this.innerProperties().requiredDataConnectors();
-    }
-
-    /**
-     * Set the requiredDataConnectors property: The required data connectors for this template.
-     *
-     * @param requiredDataConnectors the requiredDataConnectors value to set.
-     * @return the FusionAlertRuleTemplate object itself.
-     */
-    public FusionAlertRuleTemplate withRequiredDataConnectors(
-        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withRequiredDataConnectors(requiredDataConnectors);
-        return this;
-    }
-
-    /**
-     * Get the status property: The alert rule template status.
-     *
-     * @return the status value.
-     */
-    public TemplateStatus status() {
-        return this.innerProperties() == null ? null : this.innerProperties().status();
-    }
-
-    /**
-     * Set the status property: The alert rule template status.
-     *
-     * @param status the status value to set.
-     * @return the FusionAlertRuleTemplate object itself.
-     */
-    public FusionAlertRuleTemplate withStatus(TemplateStatus status) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withStatus(status);
-        return this;
     }
 
     /**
@@ -214,48 +84,136 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule.
+     * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
      *
-     * @return the techniques value.
+     * @return the alertRulesCreatedByTemplateCount value.
      */
-    public List<String> techniques() {
-        return this.innerProperties() == null ? null : this.innerProperties().techniques();
+    public Integer alertRulesCreatedByTemplateCount() {
+        return this.innerProperties() == null ? null : this.innerProperties().alertRulesCreatedByTemplateCount();
     }
 
     /**
-     * Set the techniques property: The techniques of the alert rule.
+     * Set the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
      *
-     * @param techniques the techniques value to set.
+     * @param alertRulesCreatedByTemplateCount the alertRulesCreatedByTemplateCount value to set.
      * @return the FusionAlertRuleTemplate object itself.
      */
-    public FusionAlertRuleTemplate withTechniques(List<String> techniques) {
+    public FusionAlertRuleTemplate withAlertRulesCreatedByTemplateCount(Integer alertRulesCreatedByTemplateCount) {
         if (this.innerProperties() == null) {
             this.innerProperties = new FusionAlertRuleTemplateProperties();
         }
-        this.innerProperties().withTechniques(techniques);
+        this.innerProperties().withAlertRulesCreatedByTemplateCount(alertRulesCreatedByTemplateCount);
         return this;
     }
 
     /**
-     * Get the sourceSettings property: All supported source signal configurations consumed in fusion detection.
+     * Get the lastUpdatedDateUtc property: The last time that this alert rule template has been updated.
      *
-     * @return the sourceSettings value.
+     * @return the lastUpdatedDateUtc value.
      */
-    public List<FusionTemplateSourceSetting> sourceSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().sourceSettings();
+    public OffsetDateTime lastUpdatedDateUtc() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastUpdatedDateUtc();
     }
 
     /**
-     * Set the sourceSettings property: All supported source signal configurations consumed in fusion detection.
+     * Get the createdDateUtc property: The time that this alert rule template has been added.
      *
-     * @param sourceSettings the sourceSettings value to set.
+     * @return the createdDateUtc value.
+     */
+    public OffsetDateTime createdDateUtc() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdDateUtc();
+    }
+
+    /**
+     * Get the description property: The description of the alert rule template.
+     *
+     * @return the description value.
+     */
+    public String description() {
+        return this.innerProperties() == null ? null : this.innerProperties().description();
+    }
+
+    /**
+     * Set the description property: The description of the alert rule template.
+     *
+     * @param description the description value to set.
      * @return the FusionAlertRuleTemplate object itself.
      */
-    public FusionAlertRuleTemplate withSourceSettings(List<FusionTemplateSourceSetting> sourceSettings) {
+    public FusionAlertRuleTemplate withDescription(String description) {
         if (this.innerProperties() == null) {
             this.innerProperties = new FusionAlertRuleTemplateProperties();
         }
-        this.innerProperties().withSourceSettings(sourceSettings);
+        this.innerProperties().withDescription(description);
+        return this;
+    }
+
+    /**
+     * Get the displayName property: The display name for alert rule template.
+     *
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().displayName();
+    }
+
+    /**
+     * Set the displayName property: The display name for alert rule template.
+     *
+     * @param displayName the displayName value to set.
+     * @return the FusionAlertRuleTemplate object itself.
+     */
+    public FusionAlertRuleTemplate withDisplayName(String displayName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FusionAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withDisplayName(displayName);
+        return this;
+    }
+
+    /**
+     * Get the requiredDataConnectors property: The required data sources for this template.
+     *
+     * @return the requiredDataConnectors value.
+     */
+    public List<AlertRuleTemplateDataSource> requiredDataConnectors() {
+        return this.innerProperties() == null ? null : this.innerProperties().requiredDataConnectors();
+    }
+
+    /**
+     * Set the requiredDataConnectors property: The required data sources for this template.
+     *
+     * @param requiredDataConnectors the requiredDataConnectors value to set.
+     * @return the FusionAlertRuleTemplate object itself.
+     */
+    public FusionAlertRuleTemplate withRequiredDataConnectors(
+        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FusionAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withRequiredDataConnectors(requiredDataConnectors);
+        return this;
+    }
+
+    /**
+     * Get the status property: The alert rule template status.
+     *
+     * @return the status value.
+     */
+    public TemplateStatus status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Set the status property: The alert rule template status.
+     *
+     * @param status the status value to set.
+     * @return the FusionAlertRuleTemplate object itself.
+     */
+    public FusionAlertRuleTemplate withStatus(TemplateStatus status) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FusionAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withStatus(status);
         return this;
     }
 

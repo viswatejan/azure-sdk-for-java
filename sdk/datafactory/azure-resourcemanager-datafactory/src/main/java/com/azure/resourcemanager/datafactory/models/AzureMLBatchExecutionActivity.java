@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.AzureMLBatchExecutionActivityTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("AzureMLBatchExecution")
 @Fluent
 public final class AzureMLBatchExecutionActivity extends ExecutionActivity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureMLBatchExecutionActivity.class);
+
     /*
      * Azure ML Batch Execution activity properties.
      */
@@ -166,7 +169,7 @@ public final class AzureMLBatchExecutionActivity extends ExecutionActivity {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model AzureMLBatchExecutionActivity"));
@@ -174,6 +177,4 @@ public final class AzureMLBatchExecutionActivity extends ExecutionActivity {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AzureMLBatchExecutionActivity.class);
 }

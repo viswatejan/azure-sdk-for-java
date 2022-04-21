@@ -28,6 +28,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.BookmarksClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.BookmarkInner;
 import com.azure.resourcemanager.securityinsights.models.BookmarkList;
@@ -35,6 +36,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in BookmarksClient. */
 public final class BookmarksClientImpl implements BookmarksClient {
+    private final ClientLogger logger = new ClientLogger(BookmarksClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final BookmarksService service;
 
@@ -253,7 +256,7 @@ public final class BookmarksClientImpl implements BookmarksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all bookmarks as paginated response with {@link PagedFlux}.
+     * @return all bookmarks.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BookmarkInner> listAsync(String resourceGroupName, String workspaceName) {
@@ -270,7 +273,7 @@ public final class BookmarksClientImpl implements BookmarksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all bookmarks as paginated response with {@link PagedFlux}.
+     * @return all bookmarks.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BookmarkInner> listAsync(String resourceGroupName, String workspaceName, Context context) {
@@ -287,7 +290,7 @@ public final class BookmarksClientImpl implements BookmarksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all bookmarks as paginated response with {@link PagedIterable}.
+     * @return all bookmarks.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BookmarkInner> list(String resourceGroupName, String workspaceName) {
@@ -303,7 +306,7 @@ public final class BookmarksClientImpl implements BookmarksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all bookmarks as paginated response with {@link PagedIterable}.
+     * @return all bookmarks.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BookmarkInner> list(String resourceGroupName, String workspaceName, Context context) {

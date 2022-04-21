@@ -11,9 +11,10 @@ import com.azure.resourcemanager.apimanagement.fluent.UserIdentitiesClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.UserIdentityContractInner;
 import com.azure.resourcemanager.apimanagement.models.UserIdentities;
 import com.azure.resourcemanager.apimanagement.models.UserIdentityContract;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class UserIdentitiesImpl implements UserIdentities {
-    private static final ClientLogger LOGGER = new ClientLogger(UserIdentitiesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(UserIdentitiesImpl.class);
 
     private final UserIdentitiesClient innerClient;
 

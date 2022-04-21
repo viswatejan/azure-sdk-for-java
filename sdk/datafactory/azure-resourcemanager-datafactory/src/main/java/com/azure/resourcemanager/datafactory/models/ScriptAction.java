@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Custom script action to run on HDI ondemand cluster once it's up. */
 @Fluent
 public final class ScriptAction {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptAction.class);
+
     /*
      * The user provided name of the script action.
      */
@@ -122,21 +125,19 @@ public final class ScriptAction {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model ScriptAction"));
         }
         if (uri() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property uri in model ScriptAction"));
         }
         if (roles() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property roles in model ScriptAction"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ScriptAction.class);
 }

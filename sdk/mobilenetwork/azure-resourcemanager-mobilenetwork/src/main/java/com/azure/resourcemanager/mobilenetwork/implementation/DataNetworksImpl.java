@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mobilenetwork.fluent.DataNetworksClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.DataNetworkInner;
 import com.azure.resourcemanager.mobilenetwork.models.DataNetwork;
 import com.azure.resourcemanager.mobilenetwork.models.DataNetworks;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class DataNetworksImpl implements DataNetworks {
-    private static final ClientLogger LOGGER = new ClientLogger(DataNetworksImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DataNetworksImpl.class);
 
     private final DataNetworksClient innerClient;
 
@@ -75,7 +76,7 @@ public final class DataNetworksImpl implements DataNetworks {
     public DataNetwork getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -83,7 +84,7 @@ public final class DataNetworksImpl implements DataNetworks {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -91,7 +92,7 @@ public final class DataNetworksImpl implements DataNetworks {
         }
         String dataNetworkName = Utils.getValueFromIdByName(id, "dataNetworks");
         if (dataNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dataNetworks'.", id)));
@@ -102,7 +103,7 @@ public final class DataNetworksImpl implements DataNetworks {
     public Response<DataNetwork> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -110,7 +111,7 @@ public final class DataNetworksImpl implements DataNetworks {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -118,7 +119,7 @@ public final class DataNetworksImpl implements DataNetworks {
         }
         String dataNetworkName = Utils.getValueFromIdByName(id, "dataNetworks");
         if (dataNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dataNetworks'.", id)));
@@ -129,7 +130,7 @@ public final class DataNetworksImpl implements DataNetworks {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -137,7 +138,7 @@ public final class DataNetworksImpl implements DataNetworks {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -145,7 +146,7 @@ public final class DataNetworksImpl implements DataNetworks {
         }
         String dataNetworkName = Utils.getValueFromIdByName(id, "dataNetworks");
         if (dataNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dataNetworks'.", id)));
@@ -156,7 +157,7 @@ public final class DataNetworksImpl implements DataNetworks {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -164,7 +165,7 @@ public final class DataNetworksImpl implements DataNetworks {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -172,7 +173,7 @@ public final class DataNetworksImpl implements DataNetworks {
         }
         String dataNetworkName = Utils.getValueFromIdByName(id, "dataNetworks");
         if (dataNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dataNetworks'.", id)));

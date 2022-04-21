@@ -49,6 +49,7 @@ public final class IdentityClientOptions {
     private boolean multiTenantAuthDisabled;
     private Configuration configuration;
     private IdentityLogOptionsImpl identityLogOptionsImpl;
+    private boolean validateAuthority;
     private boolean accountIdentifierLogging;
 
     /**
@@ -60,6 +61,7 @@ public final class IdentityClientOptions {
         identityLogOptionsImpl = new IdentityLogOptionsImpl();
         maxRetry = MAX_RETRY_DEFAULT_LIMIT;
         retryTimeout = i -> Duration.ofSeconds((long) Math.pow(2, i.getSeconds() - 1));
+        validateAuthority = true;
     }
 
     /**
@@ -83,6 +85,17 @@ public final class IdentityClientOptions {
      * Disables authority validation when required for Azure Active Directory token endpoint.
      * @return IdentityClientOptions
      */
+    public IdentityClientOptions disableAuthorityValidationSafetyCheck() {
+        validateAuthority = false;
+        return this;
+    }
+
+    /**
+     * @return The authority validation policy for Azure Active Directory token endpoint.
+     */
+    public boolean getAuthorityValidationSafetyCheck() {
+        return validateAuthority;
+    }
 
     /**
      * @return the AKS Pod Authority endpoint to acquire tokens.

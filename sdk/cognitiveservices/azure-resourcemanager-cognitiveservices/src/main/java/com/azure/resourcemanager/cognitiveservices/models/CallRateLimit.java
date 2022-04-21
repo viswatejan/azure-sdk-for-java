@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.cognitiveservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The call rate limit Cognitive Services account. */
 @Fluent
 public final class CallRateLimit {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CallRateLimit.class);
+
     /*
      * The count value of Call Rate Limit.
      */

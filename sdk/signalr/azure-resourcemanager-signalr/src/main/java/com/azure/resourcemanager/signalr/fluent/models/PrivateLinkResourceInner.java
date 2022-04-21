@@ -6,21 +6,25 @@ package com.azure.resourcemanager.signalr.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.signalr.models.ShareablePrivateLinkResourceType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Private link resource. */
 @Fluent
 public final class PrivateLinkResourceInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateLinkResourceInner.class);
+
     /*
-     * Private link resource properties
+     * Properties of a private link resource
      */
     @JsonProperty(value = "properties")
     private PrivateLinkResourceProperties innerProperties;
 
     /**
-     * Get the innerProperties property: Private link resource properties.
+     * Get the innerProperties property: Properties of a private link resource.
      *
      * @return the innerProperties value.
      */

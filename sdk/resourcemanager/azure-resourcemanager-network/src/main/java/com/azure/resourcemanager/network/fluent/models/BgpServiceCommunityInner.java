@@ -6,7 +6,9 @@ package com.azure.resourcemanager.network.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.models.BgpCommunity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,8 @@ import java.util.Map;
 /** Service Community Properties. */
 @Fluent
 public final class BgpServiceCommunityInner extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BgpServiceCommunityInner.class);
+
     /*
      * Properties of the BGP service community.
      */

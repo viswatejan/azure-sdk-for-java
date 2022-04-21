@@ -6,11 +6,14 @@ package com.azure.resourcemanager.healthcareapis.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Input values. */
 @Fluent
 public final class CheckNameAvailabilityParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CheckNameAvailabilityParameters.class);
+
     /*
      * The name of the service instance to check.
      */
@@ -70,18 +73,16 @@ public final class CheckNameAvailabilityParameters {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property name in model CheckNameAvailabilityParameters"));
         }
         if (type() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property type in model CheckNameAvailabilityParameters"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CheckNameAvailabilityParameters.class);
 }

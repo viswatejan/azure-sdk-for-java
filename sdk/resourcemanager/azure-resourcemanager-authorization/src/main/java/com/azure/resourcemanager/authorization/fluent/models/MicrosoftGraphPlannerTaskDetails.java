@@ -5,10 +5,10 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,11 +16,12 @@ import java.util.Map;
 /** plannerTaskDetails. */
 @Fluent
 public final class MicrosoftGraphPlannerTaskDetails extends MicrosoftGraphEntity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphPlannerTaskDetails.class);
+
     /*
      * plannerChecklistItems
      */
     @JsonProperty(value = "checklist")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> checklist;
 
     /*
@@ -30,7 +31,7 @@ public final class MicrosoftGraphPlannerTaskDetails extends MicrosoftGraphEntity
     private String description;
 
     /*
-     * plannerPreviewType
+     * The previewType property.
      */
     @JsonProperty(value = "previewType")
     private MicrosoftGraphPlannerPreviewType previewType;
@@ -39,7 +40,6 @@ public final class MicrosoftGraphPlannerTaskDetails extends MicrosoftGraphEntity
      * plannerExternalReferences
      */
     @JsonProperty(value = "references")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> references;
 
     /*
@@ -88,7 +88,7 @@ public final class MicrosoftGraphPlannerTaskDetails extends MicrosoftGraphEntity
     }
 
     /**
-     * Get the previewType property: plannerPreviewType.
+     * Get the previewType property: The previewType property.
      *
      * @return the previewType value.
      */
@@ -97,7 +97,7 @@ public final class MicrosoftGraphPlannerTaskDetails extends MicrosoftGraphEntity
     }
 
     /**
-     * Set the previewType property: plannerPreviewType.
+     * Set the previewType property: The previewType property.
      *
      * @param previewType the previewType value to set.
      * @return the MicrosoftGraphPlannerTaskDetails object itself.

@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mobilenetwork.fluent.SlicesClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.SliceInner;
 import com.azure.resourcemanager.mobilenetwork.models.Slice;
 import com.azure.resourcemanager.mobilenetwork.models.Slices;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class SlicesImpl implements Slices {
-    private static final ClientLogger LOGGER = new ClientLogger(SlicesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SlicesImpl.class);
 
     private final SlicesClient innerClient;
 
@@ -75,7 +76,7 @@ public final class SlicesImpl implements Slices {
     public Slice getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -83,7 +84,7 @@ public final class SlicesImpl implements Slices {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -91,7 +92,7 @@ public final class SlicesImpl implements Slices {
         }
         String sliceName = Utils.getValueFromIdByName(id, "slices");
         if (sliceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'slices'.", id)));
@@ -102,7 +103,7 @@ public final class SlicesImpl implements Slices {
     public Response<Slice> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -110,7 +111,7 @@ public final class SlicesImpl implements Slices {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -118,7 +119,7 @@ public final class SlicesImpl implements Slices {
         }
         String sliceName = Utils.getValueFromIdByName(id, "slices");
         if (sliceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'slices'.", id)));
@@ -129,7 +130,7 @@ public final class SlicesImpl implements Slices {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -137,7 +138,7 @@ public final class SlicesImpl implements Slices {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -145,7 +146,7 @@ public final class SlicesImpl implements Slices {
         }
         String sliceName = Utils.getValueFromIdByName(id, "slices");
         if (sliceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'slices'.", id)));
@@ -156,7 +157,7 @@ public final class SlicesImpl implements Slices {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -164,7 +165,7 @@ public final class SlicesImpl implements Slices {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -172,7 +173,7 @@ public final class SlicesImpl implements Slices {
         }
         String sliceName = Utils.getValueFromIdByName(id, "slices");
         if (sliceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'slices'.", id)));

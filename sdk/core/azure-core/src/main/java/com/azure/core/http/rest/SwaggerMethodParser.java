@@ -59,11 +59,6 @@ class SwaggerMethodParser implements HttpResponseDecodeData {
     private static final List<Class<? extends Annotation>> REQUIRED_HTTP_METHODS =
         Arrays.asList(Delete.class, Get.class, Head.class, Options.class, Patch.class, Post.class, Put.class);
 
-    // TODO (alzimmer): There are many optimizations available to SwaggerMethodParser with regards to runtime.
-    // The replacement locations and parameter ordering should remain consistent for the lifetime of an application,
-    // so these values can be determined once and used for optimizations.
-    // For example substitutions should be able to track which location in the raw value they replace without needing
-    // to search the raw value on each call.
     private final SerializerAdapter serializer;
     private final String rawHost;
     private final String fullyQualifiedMethodName;
@@ -82,9 +77,6 @@ class SwaggerMethodParser implements HttpResponseDecodeData {
     private final Type returnType;
     private final Type returnValueWireType;
     private final UnexpectedResponseExceptionType[] unexpectedResponseExceptionTypes;
-    private final int contextPosition;
-    private final int requestOptionsPosition;
-
     private Map<Integer, UnexpectedExceptionInformation> exceptionMapping;
     private UnexpectedExceptionInformation defaultException;
 
@@ -231,23 +223,6 @@ class SwaggerMethodParser implements HttpResponseDecodeData {
         this.bodyContentMethodParameterIndex = bodyContentMethodParameterIndex;
         this.bodyContentType = bodyContentType;
         this.bodyJavaType = bodyJavaType;
-
-        Class<?>[] parameterTypes = swaggerMethod.getParameterTypes();
-        int contextPosition = -1;
-        int requestOptionsPosition = -1;
-        for (int i = 0; i < parameterTypes.length; i++) {
-            Class<?> parameterType = parameterTypes[i];
-            // Check for the Context and RequestOptions position.
-            // To retain previous behavior, only track the first instance found.
-            if (parameterType == Context.class && contextPosition == -1) {
-                contextPosition = i;
-            } else if (parameterType == RequestOptions.class && requestOptionsPosition == -1) {
-                requestOptionsPosition = i;
-            }
-        }
-
-        this.contextPosition = contextPosition;
-        this.requestOptionsPosition = requestOptionsPosition;
     }
 
     /**
@@ -380,12 +355,8 @@ class SwaggerMethodParser implements HttpResponseDecodeData {
      * @return the context, or {@link Context#NONE} if no context was provided
      */
     public Context setContext(Object[] swaggerMethodArguments) {
-        // Context was never found as a parameter in the Method, therefore always return Context.NONE.
-        if (contextPosition < 0) {
-            return Context.NONE;
-        }
+        Context context = CoreUtils.findFirstOfType(swaggerMethodArguments, Context.class);
 
-        Context context = (Context) swaggerMethodArguments[contextPosition];
         return (context != null) ? context : Context.NONE;
     }
 
@@ -396,7 +367,7 @@ class SwaggerMethodParser implements HttpResponseDecodeData {
      * @return the request options
      */
     public RequestOptions setRequestOptions(Object[] swaggerMethodArguments) {
-        return requestOptionsPosition < 0 ? null : (RequestOptions) swaggerMethodArguments[requestOptionsPosition];
+        return CoreUtils.findFirstOfType(swaggerMethodArguments, RequestOptions.class);
     }
 
     /**
@@ -492,7 +463,7 @@ class SwaggerMethodParser implements HttpResponseDecodeData {
 
     /**
      *
-     * Get the type that the return value will be sent across the network as. If returnValueWireType is not null, then
+     * Get the type that the return value will be send across the network as. If returnValueWireType is not null, then
      * the raw HTTP response body will need to parsed to this type and then converted to the actual returnType.
      *
      * @return the type that the raw HTTP response body will be sent as

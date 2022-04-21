@@ -6,11 +6,14 @@ package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** SasPolicy assigned to the storage account. */
 @Fluent
 public final class SasPolicy {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SasPolicy.class);
+
     /*
      * The SAS expiration period, DD.HH:MM:SS.
      */
@@ -70,16 +73,14 @@ public final class SasPolicy {
      */
     public void validate() {
         if (sasExpirationPeriod() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property sasExpirationPeriod in model SasPolicy"));
         }
         if (expirationAction() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property expirationAction in model SasPolicy"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SasPolicy.class);
 }

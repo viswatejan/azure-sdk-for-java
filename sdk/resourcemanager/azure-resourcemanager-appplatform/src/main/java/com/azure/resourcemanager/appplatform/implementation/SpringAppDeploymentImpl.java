@@ -6,32 +6,27 @@ package com.azure.resourcemanager.appplatform.implementation;
 import com.azure.resourcemanager.appplatform.AppPlatformManager;
 import com.azure.resourcemanager.appplatform.fluent.models.DeploymentResourceInner;
 import com.azure.resourcemanager.appplatform.fluent.models.LogFileUrlResponseInner;
-import com.azure.resourcemanager.appplatform.models.BuildResultUserSourceInfo;
 import com.azure.resourcemanager.appplatform.models.DeploymentInstance;
 import com.azure.resourcemanager.appplatform.models.DeploymentResourceProperties;
 import com.azure.resourcemanager.appplatform.models.DeploymentResourceStatus;
 import com.azure.resourcemanager.appplatform.models.DeploymentSettings;
-import com.azure.resourcemanager.appplatform.models.JarUploadedUserSourceInfo;
-import com.azure.resourcemanager.appplatform.models.NetCoreZipUploadedUserSourceInfo;
-import com.azure.resourcemanager.appplatform.models.ResourceRequests;
 import com.azure.resourcemanager.appplatform.models.ResourceUploadDefinition;
 import com.azure.resourcemanager.appplatform.models.RuntimeVersion;
 import com.azure.resourcemanager.appplatform.models.Sku;
-import com.azure.resourcemanager.appplatform.models.SourceUploadedUserSourceInfo;
 import com.azure.resourcemanager.appplatform.models.SpringApp;
 import com.azure.resourcemanager.appplatform.models.SpringAppDeployment;
-import com.azure.resourcemanager.appplatform.models.UploadedUserSourceInfo;
 import com.azure.resourcemanager.appplatform.models.UserSourceInfo;
 import com.azure.resourcemanager.appplatform.models.UserSourceType;
 import com.azure.resourcemanager.resources.fluentcore.arm.models.implementation.ExternalChildResourceImpl;
+import com.azure.resourcemanager.resources.fluentcore.model.Indexable;
 import com.azure.storage.file.share.ShareFileAsyncClient;
 import com.azure.storage.file.share.ShareFileClientBuilder;
 import reactor.core.publisher.Mono;
 
 import java.io.File;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Function;
 
 public class SpringAppDeploymentImpl
     extends ExternalChildResourceImpl<SpringAppDeployment, DeploymentResourceInner, SpringAppImpl, SpringApp>
@@ -48,7 +43,7 @@ public class SpringAppDeploymentImpl
         if (innerModel().properties() == null) {
             return null;
         }
-        return innerModel().name();
+        return innerModel().properties().appName();
     }
 
     @Override
@@ -73,6 +68,14 @@ public class SpringAppDeploymentImpl
             return false;
         }
         return innerModel().properties().active();
+    }
+
+    @Override
+    public OffsetDateTime createdTime() {
+        if (innerModel().properties() == null) {
+            return null;
+        }
+        return innerModel().properties().createdTime();
     }
 
     @Override
@@ -142,25 +145,11 @@ public class SpringAppDeploymentImpl
     }
 
     private void ensureSource() {
-        ensureSource(null);
-    }
-
-    private void ensureSource(UserSourceType type) {
         if (innerModel().properties() == null) {
             innerModel().withProperties(new DeploymentResourceProperties());
         }
         if (innerModel().properties().source() == null) {
-            if (type == UserSourceType.JAR) {
-                innerModel().properties().withSource(new JarUploadedUserSourceInfo());
-            } else if (type == UserSourceType.SOURCE) {
-                innerModel().properties().withSource(new SourceUploadedUserSourceInfo());
-            } else if (type == UserSourceType.NET_CORE_ZIP) {
-                innerModel().properties().withSource(new NetCoreZipUploadedUserSourceInfo());
-            } else if (type == UserSourceType.BUILD_RESULT) {
-                innerModel().properties().withSource(new BuildResultUserSourceInfo());
-            } else {
-                innerModel().properties().withSource(new UserSourceInfo());
-            }
+            innerModel().properties().withSource(new UserSourceInfo());
         }
     }
 
@@ -197,39 +186,26 @@ public class SpringAppDeploymentImpl
     }
 
     private Mono<Void> uploadToStorage(File source, ResourceUploadDefinition option) {
-        UserSourceInfo userSourceInfo = innerModel().properties().source();
-        if (userSourceInfo instanceof UploadedUserSourceInfo) {
-            UploadedUserSourceInfo uploadedUserSourceInfo = (UploadedUserSourceInfo) userSourceInfo;
-            try {
-                uploadedUserSourceInfo.withRelativePath(option.relativePath());
-                ShareFileAsyncClient shareFileAsyncClient = createShareFileAsyncClient(option);
-                return shareFileAsyncClient.create(source.length())
-                    .flatMap(fileInfo -> shareFileAsyncClient.uploadFromFile(source.getAbsolutePath()))
-                    .then(Mono.empty());
-            } catch (Exception e) {
-                return Mono.error(e);
-            }
-        } else {
-            return Mono.empty();
+        innerModel().properties().source().withRelativePath(option.relativePath());
+        try {
+            ShareFileAsyncClient shareFileAsyncClient = createShareFileAsyncClient(option);
+            return shareFileAsyncClient.create(source.length())
+                .flatMap(fileInfo -> shareFileAsyncClient.uploadFromFile(source.getAbsolutePath()))
+                .then(Mono.empty());
+        } catch (Exception e) {
+            return Mono.error(e);
         }
     }
 
     @Override
     public SpringAppDeploymentImpl withJarFile(File jar) {
-        if (service().isEnterpriseTier()) {
-            throw new UnsupportedOperationException("Enterprise tier artifact deployment not supported yet.");
-        } else {
-            ensureSource(UserSourceType.JAR);
-            this.addDependency(
-                context -> parent().getResourceUploadUrlAsync()
-                    .flatMap(option -> {
-                        UploadedUserSourceInfo uploadedUserSourceInfo = (UploadedUserSourceInfo) innerModel().properties().source();
-                        uploadedUserSourceInfo.withRelativePath(option.relativePath());
-                        return uploadToStorage(jar, option)
-                            .then(context.voidMono());
-                    })
-            );
-        }
+        ensureSource();
+        innerModel().properties().source().withType(UserSourceType.JAR);
+        this.addDependency(
+            context -> parent().getResourceUploadUrlAsync()
+                .flatMap(option -> uploadToStorage(jar, option)
+                    .then(context.voidMono()))
+        );
         return this;
     }
 
@@ -253,31 +229,16 @@ public class SpringAppDeploymentImpl
 
     @Override
     public SpringAppDeploymentImpl withExistingSource(UserSourceType type, String relativePath) {
-        if (isEnterpriseTier()) {
-            ensureSource(UserSourceType.BUILD_RESULT);
-            UserSourceInfo sourceInfo = innerModel().properties().source();
-            if (sourceInfo instanceof BuildResultUserSourceInfo) {
-                BuildResultUserSourceInfo userSourceInfo = (BuildResultUserSourceInfo) sourceInfo;
-                userSourceInfo.withBuildResultId(relativePath);
-            }
-        } else {
-            ensureSource(type);
-            UserSourceInfo userSourceInfo = innerModel().properties().source();
-            if (userSourceInfo instanceof UploadedUserSourceInfo) {
-                UploadedUserSourceInfo uploadedUserSourceInfo = (UploadedUserSourceInfo) userSourceInfo;
-                uploadedUserSourceInfo.withRelativePath(relativePath);
-            }
-        }
+        ensureSource();
+        innerModel().properties().source().withType(type);
+        innerModel().properties().source().withRelativePath(relativePath);
         return this;
-    }
-
-    private boolean isEnterpriseTier() {
-        return service().isEnterpriseTier();
     }
 
     @Override
     public SpringAppDeploymentImpl withSourceCodeTarGzFile(File sourceCodeTarGz) {
-        ensureSource(UserSourceType.SOURCE);
+        ensureSource();
+        innerModel().properties().source().withType(UserSourceType.SOURCE);
         this.addDependency(
             context -> parent().getResourceUploadUrlAsync()
                 .flatMap(option -> uploadToStorage(sourceCodeTarGz, option)
@@ -288,23 +249,15 @@ public class SpringAppDeploymentImpl
 
     @Override
     public SpringAppDeploymentImpl withTargetModule(String moduleName) {
-        ensureSource(UserSourceType.SOURCE);
-        UserSourceInfo userSourceInfo = innerModel().properties().source();
-        if (userSourceInfo instanceof SourceUploadedUserSourceInfo) {
-            SourceUploadedUserSourceInfo sourceUploadedUserSourceInfo = (SourceUploadedUserSourceInfo) userSourceInfo;
-            sourceUploadedUserSourceInfo.withArtifactSelector(moduleName);
-        }
+        ensureSource();
+        innerModel().properties().source().withArtifactSelector(moduleName);
         return this;
     }
 
     @Override
     public SpringAppDeploymentImpl withSingleModule() {
-        ensureSource(UserSourceType.SOURCE);
-        UserSourceInfo userSourceInfo = innerModel().properties().source();
-        if (userSourceInfo instanceof SourceUploadedUserSourceInfo) {
-            SourceUploadedUserSourceInfo sourceUploadedUserSourceInfo = (SourceUploadedUserSourceInfo) userSourceInfo;
-            sourceUploadedUserSourceInfo.withArtifactSelector(null);
-        }
+        ensureSource();
+        innerModel().properties().source().withArtifactSelector(null);
         return this;
     }
 
@@ -323,47 +276,28 @@ public class SpringAppDeploymentImpl
     @Override
     public SpringAppDeploymentImpl withCpu(int cpuCount) {
         ensureDeploySettings();
-        if (innerModel().properties().deploymentSettings().resourceRequests() == null) {
-            innerModel().properties().deploymentSettings().withResourceRequests(new ResourceRequests());
-        }
-        innerModel().properties().deploymentSettings().resourceRequests().withCpu(String.valueOf(cpuCount));
+        innerModel().properties().deploymentSettings().withCpu(cpuCount);
         return this;
     }
 
     @Override
     public SpringAppDeploymentImpl withMemory(int sizeInGB) {
         ensureDeploySettings();
-        if (innerModel().properties().deploymentSettings().resourceRequests() == null) {
-            innerModel().properties().deploymentSettings().withResourceRequests(new ResourceRequests());
-        }
-        innerModel().properties().deploymentSettings().resourceRequests().withMemory(String.format("%dGi", sizeInGB));
+        innerModel().properties().deploymentSettings().withMemoryInGB(sizeInGB);
         return this;
     }
 
     @Override
     public SpringAppDeploymentImpl withRuntime(RuntimeVersion version) {
-        UserSourceInfo userSourceInfo = innerModel().properties().source();
-        if (userSourceInfo instanceof JarUploadedUserSourceInfo) {
-            JarUploadedUserSourceInfo uploadedUserSourceInfo = (JarUploadedUserSourceInfo) userSourceInfo;
-            uploadedUserSourceInfo.withRuntimeVersion(version.toString());
-        } else if (userSourceInfo instanceof NetCoreZipUploadedUserSourceInfo) {
-            NetCoreZipUploadedUserSourceInfo uploadedUserSourceInfo = (NetCoreZipUploadedUserSourceInfo) userSourceInfo;
-            uploadedUserSourceInfo.withRuntimeVersion(version.toString());
-        } else if (userSourceInfo instanceof SourceUploadedUserSourceInfo) {
-            SourceUploadedUserSourceInfo uploadedUserSourceInfo = (SourceUploadedUserSourceInfo) userSourceInfo;
-            uploadedUserSourceInfo.withRuntimeVersion(version.toString());
-        }
+        ensureDeploySettings();
+        innerModel().properties().deploymentSettings().withRuntimeVersion(version);
         return this;
     }
 
     @Override
     public SpringAppDeploymentImpl withJvmOptions(String jvmOptions) {
-        ensureSource(UserSourceType.JAR);
-        UserSourceInfo userSourceInfo = innerModel().properties().source();
-        if (userSourceInfo instanceof JarUploadedUserSourceInfo) {
-            JarUploadedUserSourceInfo uploadedUserSourceInfo = (JarUploadedUserSourceInfo) userSourceInfo;
-            uploadedUserSourceInfo.withJvmOptions(jvmOptions);
-        }
+        ensureDeploySettings();
+        innerModel().properties().deploymentSettings().withJvmOptions(jvmOptions);
         return this;
     }
 
@@ -399,7 +333,7 @@ public class SpringAppDeploymentImpl
     public SpringAppDeploymentImpl withActivation() {
         this.addPostRunDependent(
             context -> parent().update().withActiveDeployment(name()).applyAsync()
-                .map(Function.identity())
+                .map(app -> (Indexable) app)
         );
         return this;
     }
@@ -460,9 +394,5 @@ public class SpringAppDeploymentImpl
     @Override
     public SpringAppImpl attach() {
         return parent().addActiveDeployment(this);
-    }
-
-    private SpringServiceImpl service() {
-        return parent().parent();
     }
 }

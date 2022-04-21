@@ -109,15 +109,6 @@ public final class CacheImpl implements Cache, Cache.Definition, Cache.Update {
         return this.innerModel().directoryServicesSettings();
     }
 
-    public List<String> zones() {
-        List<String> inner = this.innerModel().zones();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -310,11 +301,6 @@ public final class CacheImpl implements Cache, Cache.Definition, Cache.Update {
 
     public CacheImpl withDirectoryServicesSettings(CacheDirectorySettings directoryServicesSettings) {
         this.innerModel().withDirectoryServicesSettings(directoryServicesSettings);
-        return this;
-    }
-
-    public CacheImpl withZones(List<String> zones) {
-        this.innerModel().withZones(zones);
         return this;
     }
 }

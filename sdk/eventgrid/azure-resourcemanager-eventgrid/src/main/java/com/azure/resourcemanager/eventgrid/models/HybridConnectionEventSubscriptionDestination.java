@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.eventgrid.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.eventgrid.fluent.models.HybridConnectionEventSubscriptionDestinationProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,6 +18,9 @@ import java.util.List;
 @JsonTypeName("HybridConnection")
 @Fluent
 public final class HybridConnectionEventSubscriptionDestination extends EventSubscriptionDestination {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(HybridConnectionEventSubscriptionDestination.class);
+
     /*
      * Hybrid connection Properties of the event subscription destination.
      */

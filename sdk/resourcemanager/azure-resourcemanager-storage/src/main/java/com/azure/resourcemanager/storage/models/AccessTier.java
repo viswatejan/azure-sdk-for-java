@@ -13,10 +13,7 @@ public enum AccessTier {
     HOT("Hot"),
 
     /** Enum value Cool. */
-    COOL("Cool"),
-
-    /** Enum value Premium. */
-    PREMIUM("Premium");
+    COOL("Cool");
 
     /** The actual serialized value for a AccessTier instance. */
     private final String value;

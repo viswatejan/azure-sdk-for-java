@@ -20,8 +20,7 @@ public interface GatewayHostnameConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway hostname configuration list representation as paginated response with {@link
-     *     PagedIterable}.
+     * @return paged Gateway hostname configuration list representation.
      */
     PagedIterable<GatewayHostnameConfigurationContract> listByService(
         String resourceGroupName, String serviceName, String gatewayId);
@@ -43,8 +42,7 @@ public interface GatewayHostnameConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Gateway hostname configuration list representation as paginated response with {@link
-     *     PagedIterable}.
+     * @return paged Gateway hostname configuration list representation.
      */
     PagedIterable<GatewayHostnameConfigurationContract> listByService(
         String resourceGroupName,
@@ -149,7 +147,7 @@ public interface GatewayHostnameConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String serviceName, String gatewayId, String hcId, String ifMatch, Context context);
@@ -197,7 +195,7 @@ public interface GatewayHostnameConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context);
 

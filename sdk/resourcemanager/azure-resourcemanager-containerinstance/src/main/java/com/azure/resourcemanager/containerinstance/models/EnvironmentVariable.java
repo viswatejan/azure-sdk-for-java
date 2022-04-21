@@ -6,11 +6,14 @@ package com.azure.resourcemanager.containerinstance.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The environment variable to set within the container instance. */
 @Fluent
 public final class EnvironmentVariable {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(EnvironmentVariable.class);
+
     /*
      * The name of the environment variable.
      */
@@ -96,11 +99,9 @@ public final class EnvironmentVariable {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model EnvironmentVariable"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(EnvironmentVariable.class);
 }

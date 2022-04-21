@@ -7,12 +7,15 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List all the data connectors. */
 @Fluent
 public final class DataConnectorList {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DataConnectorList.class);
+
     /*
      * URL to fetch the next set of data connectors.
      */
@@ -61,13 +64,11 @@ public final class DataConnectorList {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model DataConnectorList"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DataConnectorList.class);
 }

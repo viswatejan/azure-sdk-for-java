@@ -6,11 +6,14 @@ package com.azure.resourcemanager.containerinstance.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The GPU resource. */
 @Fluent
 public final class GpuResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GpuResource.class);
+
     /*
      * The count of the GPU resource.
      */
@@ -70,11 +73,9 @@ public final class GpuResource {
      */
     public void validate() {
         if (sku() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property sku in model GpuResource"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(GpuResource.class);
 }

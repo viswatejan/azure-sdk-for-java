@@ -12,9 +12,10 @@ import com.azure.resourcemanager.securityinsights.fluent.models.RepoInner;
 import com.azure.resourcemanager.securityinsights.models.Repo;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.SourceControls;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class SourceControlsImpl implements SourceControls {
-    private static final ClientLogger LOGGER = new ClientLogger(SourceControlsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SourceControlsImpl.class);
 
     private final SourceControlsClient innerClient;
 

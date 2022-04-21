@@ -149,7 +149,7 @@ public final class RequestOptions {
      *
      * @return The additional context that is passed during the service call.
      */
-    public Context getContext() {
+    Context getContext() {
         return context;
     }
 

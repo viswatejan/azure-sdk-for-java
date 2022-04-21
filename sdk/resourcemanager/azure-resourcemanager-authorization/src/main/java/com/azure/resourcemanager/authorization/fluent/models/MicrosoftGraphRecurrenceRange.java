@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** recurrenceRange. */
 @Fluent
 public final class MicrosoftGraphRecurrenceRange {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphRecurrenceRange.class);
+
     /*
      * The date to stop applying the recurrence pattern. Depending on the
      * recurrence pattern of the event, the last occurrence of the meeting may
@@ -48,7 +51,7 @@ public final class MicrosoftGraphRecurrenceRange {
     private LocalDate startDate;
 
     /*
-     * recurrenceRangeType
+     * The type property.
      */
     @JsonProperty(value = "type")
     private MicrosoftGraphRecurrenceRangeType type;
@@ -149,7 +152,7 @@ public final class MicrosoftGraphRecurrenceRange {
     }
 
     /**
-     * Get the type property: recurrenceRangeType.
+     * Get the type property: The type property.
      *
      * @return the type value.
      */
@@ -158,7 +161,7 @@ public final class MicrosoftGraphRecurrenceRange {
     }
 
     /**
-     * Set the type property: recurrenceRangeType.
+     * Set the type property: The type property.
      *
      * @param type the type value to set.
      * @return the MicrosoftGraphRecurrenceRange object itself.

@@ -14,6 +14,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appplatform.fluent.models.CustomDomainResourceInner;
+import com.azure.resourcemanager.appplatform.models.CustomDomainProperties;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -31,8 +32,7 @@ public interface CustomDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the custom domain of one lifecycle application along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the custom domain of one lifecycle application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CustomDomainResourceInner>> getWithResponseAsync(
@@ -49,7 +49,7 @@ public interface CustomDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the custom domain of one lifecycle application on successful completion of {@link Mono}.
+     * @return the custom domain of one lifecycle application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CustomDomainResourceInner> getAsync(
@@ -83,7 +83,7 @@ public interface CustomDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the custom domain of one lifecycle application along with {@link Response}.
+     * @return the custom domain of one lifecycle application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CustomDomainResourceInner> getWithResponse(
@@ -97,11 +97,11 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @param properties Properties of the custom domain resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain resource payload along with {@link Response} on successful completion of {@link Mono}.
+     * @return custom domain resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -109,7 +109,7 @@ public interface CustomDomainsClient {
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource);
+        CustomDomainProperties properties);
 
     /**
      * Create or update custom domain of one lifecycle application.
@@ -119,19 +119,19 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @param properties Properties of the custom domain resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of custom domain resource payload.
+     * @return custom domain resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     PollerFlux<PollResult<CustomDomainResourceInner>, CustomDomainResourceInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource);
+        CustomDomainProperties properties);
 
     /**
      * Create or update custom domain of one lifecycle application.
@@ -141,19 +141,19 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @param properties Properties of the custom domain resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of custom domain resource payload.
+     * @return custom domain resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<CustomDomainResourceInner>, CustomDomainResourceInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource);
+        CustomDomainProperties properties);
 
     /**
      * Create or update custom domain of one lifecycle application.
@@ -163,20 +163,20 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @param properties Properties of the custom domain resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of custom domain resource payload.
+     * @return custom domain resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<CustomDomainResourceInner>, CustomDomainResourceInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource,
+        CustomDomainProperties properties,
         Context context);
 
     /**
@@ -187,11 +187,11 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @param properties Properties of the custom domain resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain resource payload on successful completion of {@link Mono}.
+     * @return custom domain resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CustomDomainResourceInner> createOrUpdateAsync(
@@ -199,7 +199,7 @@ public interface CustomDomainsClient {
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource);
+        CustomDomainProperties properties);
 
     /**
      * Create or update custom domain of one lifecycle application.
@@ -209,7 +209,24 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom domain resource payload.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<CustomDomainResourceInner> createOrUpdateAsync(
+        String resourceGroupName, String serviceName, String appName, String domainName);
+
+    /**
+     * Create or update custom domain of one lifecycle application.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
+     *     from the Azure Resource Manager API or the portal.
+     * @param serviceName The name of the Service resource.
+     * @param appName The name of the App resource.
+     * @param domainName The name of the custom domain resource.
+     * @param properties Properties of the custom domain resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -221,7 +238,7 @@ public interface CustomDomainsClient {
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource);
+        CustomDomainProperties properties);
 
     /**
      * Create or update custom domain of one lifecycle application.
@@ -231,7 +248,24 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom domain resource payload.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    CustomDomainResourceInner createOrUpdate(
+        String resourceGroupName, String serviceName, String appName, String domainName);
+
+    /**
+     * Create or update custom domain of one lifecycle application.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
+     *     from the Azure Resource Manager API or the portal.
+     * @param serviceName The name of the Service resource.
+     * @param appName The name of the App resource.
+     * @param domainName The name of the custom domain resource.
+     * @param properties Properties of the custom domain resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -244,7 +278,7 @@ public interface CustomDomainsClient {
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource,
+        CustomDomainProperties properties,
         Context context);
 
     /**
@@ -258,7 +292,7 @@ public interface CustomDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -275,9 +309,9 @@ public interface CustomDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String serviceName, String appName, String domainName);
 
@@ -292,9 +326,9 @@ public interface CustomDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String serviceName, String appName, String domainName);
 
@@ -310,9 +344,9 @@ public interface CustomDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String serviceName, String appName, String domainName, Context context);
 
@@ -327,7 +361,7 @@ public interface CustomDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String appName, String domainName);
@@ -371,11 +405,11 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @param properties Properties of the custom domain resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain resource payload along with {@link Response} on successful completion of {@link Mono}.
+     * @return custom domain resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -383,7 +417,7 @@ public interface CustomDomainsClient {
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource);
+        CustomDomainProperties properties);
 
     /**
      * Update custom domain of one lifecycle application.
@@ -393,19 +427,19 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @param properties Properties of the custom domain resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of custom domain resource payload.
+     * @return custom domain resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     PollerFlux<PollResult<CustomDomainResourceInner>, CustomDomainResourceInner> beginUpdateAsync(
         String resourceGroupName,
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource);
+        CustomDomainProperties properties);
 
     /**
      * Update custom domain of one lifecycle application.
@@ -415,19 +449,19 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @param properties Properties of the custom domain resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of custom domain resource payload.
+     * @return custom domain resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<CustomDomainResourceInner>, CustomDomainResourceInner> beginUpdate(
         String resourceGroupName,
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource);
+        CustomDomainProperties properties);
 
     /**
      * Update custom domain of one lifecycle application.
@@ -437,20 +471,20 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @param properties Properties of the custom domain resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of custom domain resource payload.
+     * @return custom domain resource payload.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<CustomDomainResourceInner>, CustomDomainResourceInner> beginUpdate(
         String resourceGroupName,
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource,
+        CustomDomainProperties properties,
         Context context);
 
     /**
@@ -461,11 +495,11 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @param properties Properties of the custom domain resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain resource payload on successful completion of {@link Mono}.
+     * @return custom domain resource payload.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CustomDomainResourceInner> updateAsync(
@@ -473,7 +507,7 @@ public interface CustomDomainsClient {
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource);
+        CustomDomainProperties properties);
 
     /**
      * Update custom domain of one lifecycle application.
@@ -483,7 +517,24 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom domain resource payload.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Mono<CustomDomainResourceInner> updateAsync(
+        String resourceGroupName, String serviceName, String appName, String domainName);
+
+    /**
+     * Update custom domain of one lifecycle application.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
+     *     from the Azure Resource Manager API or the portal.
+     * @param serviceName The name of the Service resource.
+     * @param appName The name of the App resource.
+     * @param domainName The name of the custom domain resource.
+     * @param properties Properties of the custom domain resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -495,7 +546,7 @@ public interface CustomDomainsClient {
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource);
+        CustomDomainProperties properties);
 
     /**
      * Update custom domain of one lifecycle application.
@@ -505,7 +556,23 @@ public interface CustomDomainsClient {
      * @param serviceName The name of the Service resource.
      * @param appName The name of the App resource.
      * @param domainName The name of the custom domain resource.
-     * @param domainResource Parameters for the create or update operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return custom domain resource payload.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    CustomDomainResourceInner update(String resourceGroupName, String serviceName, String appName, String domainName);
+
+    /**
+     * Update custom domain of one lifecycle application.
+     *
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain this value
+     *     from the Azure Resource Manager API or the portal.
+     * @param serviceName The name of the Service resource.
+     * @param appName The name of the App resource.
+     * @param domainName The name of the custom domain resource.
+     * @param properties Properties of the custom domain resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -518,7 +585,7 @@ public interface CustomDomainsClient {
         String serviceName,
         String appName,
         String domainName,
-        CustomDomainResourceInner domainResource,
+        CustomDomainProperties properties,
         Context context);
 
     /**
@@ -531,8 +598,7 @@ public interface CustomDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection compose of a custom domain resources list and a possible link for next page as paginated
-     *     response with {@link PagedFlux}.
+     * @return collection compose of a custom domain resources list and a possible link for next page.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<CustomDomainResourceInner> listAsync(String resourceGroupName, String serviceName, String appName);
@@ -547,8 +613,7 @@ public interface CustomDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection compose of a custom domain resources list and a possible link for next page as paginated
-     *     response with {@link PagedIterable}.
+     * @return collection compose of a custom domain resources list and a possible link for next page.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CustomDomainResourceInner> list(String resourceGroupName, String serviceName, String appName);
@@ -564,8 +629,7 @@ public interface CustomDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection compose of a custom domain resources list and a possible link for next page as paginated
-     *     response with {@link PagedIterable}.
+     * @return collection compose of a custom domain resources list and a possible link for next page.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CustomDomainResourceInner> list(

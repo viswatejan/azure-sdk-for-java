@@ -6,12 +6,15 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Describes the response from the external server. */
 @Fluent
 public final class CodelessConnectorPollingResponseProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CodelessConnectorPollingResponseProperties.class);
+
     /*
      * Describes the path we should extract the data in the response
      */
@@ -123,13 +126,11 @@ public final class CodelessConnectorPollingResponseProperties {
      */
     public void validate() {
         if (eventsJsonPaths() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property eventsJsonPaths in model"
                             + " CodelessConnectorPollingResponseProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CodelessConnectorPollingResponseProperties.class);
 }

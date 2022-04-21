@@ -5,10 +5,11 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.models.ProvisioningState;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
-import com.azure.resourcemanager.securityinsights.models.SourceType;
+import com.azure.resourcemanager.securityinsights.models.Source;
 import com.azure.resourcemanager.securityinsights.models.UserInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -17,6 +18,8 @@ import java.util.List;
 /** Represents a Watchlist in Azure Security Insights. */
 @Fluent
 public final class WatchlistInner extends ResourceWithEtag {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(WatchlistInner.class);
+
     /*
      * Watchlist properties
      */
@@ -109,48 +112,25 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the source property: The filename of the watchlist, called 'source'.
+     * Get the source property: The source of the watchlist.
      *
      * @return the source value.
      */
-    public String source() {
+    public Source source() {
         return this.innerProperties() == null ? null : this.innerProperties().source();
     }
 
     /**
-     * Set the source property: The filename of the watchlist, called 'source'.
+     * Set the source property: The source of the watchlist.
      *
      * @param source the source value to set.
      * @return the WatchlistInner object itself.
      */
-    public WatchlistInner withSource(String source) {
+    public WatchlistInner withSource(Source source) {
         if (this.innerProperties() == null) {
             this.innerProperties = new WatchlistProperties();
         }
         this.innerProperties().withSource(source);
-        return this;
-    }
-
-    /**
-     * Get the sourceType property: The sourceType of the watchlist.
-     *
-     * @return the sourceType value.
-     */
-    public SourceType sourceType() {
-        return this.innerProperties() == null ? null : this.innerProperties().sourceType();
-    }
-
-    /**
-     * Set the sourceType property: The sourceType of the watchlist.
-     *
-     * @param sourceType the sourceType value to set.
-     * @return the WatchlistInner object itself.
-     */
-    public WatchlistInner withSourceType(SourceType sourceType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WatchlistProperties();
-        }
-        this.innerProperties().withSourceType(sourceType);
         return this;
     }
 
@@ -456,31 +436,6 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the sasUri property: The Shared Access Signature (SAS) URI under which the large csv watchlist file is
-     * located and from which the watchlist and its items will be created.
-     *
-     * @return the sasUri value.
-     */
-    public String sasUri() {
-        return this.innerProperties() == null ? null : this.innerProperties().sasUri();
-    }
-
-    /**
-     * Set the sasUri property: The Shared Access Signature (SAS) URI under which the large csv watchlist file is
-     * located and from which the watchlist and its items will be created.
-     *
-     * @param sasUri the sasUri value to set.
-     * @return the WatchlistInner object itself.
-     */
-    public WatchlistInner withSasUri(String sasUri) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WatchlistProperties();
-        }
-        this.innerProperties().withSasUri(sasUri);
-        return this;
-    }
-
-    /**
      * Get the itemsSearchKey property: The search key is used to optimize query performance when using watchlists for
      * joins with other data. For example, enable a column with IP addresses to be the designated SearchKey field, then
      * use this field as the key field when joining to other event data by IP address.
@@ -556,12 +511,26 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the provisioningState property: The provisioning state of the watchlist resource.
+     * Get the watchlistItemsCount property: The number of Watchlist Items in the Watchlist.
      *
-     * @return the provisioningState value.
+     * @return the watchlistItemsCount value.
      */
-    public ProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    public Integer watchlistItemsCount() {
+        return this.innerProperties() == null ? null : this.innerProperties().watchlistItemsCount();
+    }
+
+    /**
+     * Set the watchlistItemsCount property: The number of Watchlist Items in the Watchlist.
+     *
+     * @param watchlistItemsCount the watchlistItemsCount value to set.
+     * @return the WatchlistInner object itself.
+     */
+    public WatchlistInner withWatchlistItemsCount(Integer watchlistItemsCount) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WatchlistProperties();
+        }
+        this.innerProperties().withWatchlistItemsCount(watchlistItemsCount);
+        return this;
     }
 
     /**

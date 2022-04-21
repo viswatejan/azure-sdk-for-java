@@ -16,12 +16,12 @@ import com.azure.resourcemanager.redisenterprise.models.AccessKeys;
 import com.azure.resourcemanager.redisenterprise.models.Database;
 import com.azure.resourcemanager.redisenterprise.models.Databases;
 import com.azure.resourcemanager.redisenterprise.models.ExportClusterParameters;
-import com.azure.resourcemanager.redisenterprise.models.ForceUnlinkParameters;
 import com.azure.resourcemanager.redisenterprise.models.ImportClusterParameters;
 import com.azure.resourcemanager.redisenterprise.models.RegenerateKeyParameters;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class DatabasesImpl implements Databases {
-    private static final ClientLogger LOGGER = new ClientLogger(DatabasesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DatabasesImpl.class);
 
     private final DatabasesClient innerClient;
 
@@ -154,24 +154,10 @@ public final class DatabasesImpl implements Databases {
         this.serviceClient().export(resourceGroupName, clusterName, databaseName, parameters, context);
     }
 
-    public void forceUnlink(
-        String resourceGroupName, String clusterName, String databaseName, ForceUnlinkParameters parameters) {
-        this.serviceClient().forceUnlink(resourceGroupName, clusterName, databaseName, parameters);
-    }
-
-    public void forceUnlink(
-        String resourceGroupName,
-        String clusterName,
-        String databaseName,
-        ForceUnlinkParameters parameters,
-        Context context) {
-        this.serviceClient().forceUnlink(resourceGroupName, clusterName, databaseName, parameters, context);
-    }
-
     public Database getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -179,7 +165,7 @@ public final class DatabasesImpl implements Databases {
         }
         String clusterName = Utils.getValueFromIdByName(id, "redisEnterprise");
         if (clusterName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -187,7 +173,7 @@ public final class DatabasesImpl implements Databases {
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
@@ -198,7 +184,7 @@ public final class DatabasesImpl implements Databases {
     public Response<Database> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -206,7 +192,7 @@ public final class DatabasesImpl implements Databases {
         }
         String clusterName = Utils.getValueFromIdByName(id, "redisEnterprise");
         if (clusterName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -214,7 +200,7 @@ public final class DatabasesImpl implements Databases {
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
@@ -225,7 +211,7 @@ public final class DatabasesImpl implements Databases {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -233,7 +219,7 @@ public final class DatabasesImpl implements Databases {
         }
         String clusterName = Utils.getValueFromIdByName(id, "redisEnterprise");
         if (clusterName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -241,7 +227,7 @@ public final class DatabasesImpl implements Databases {
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
@@ -252,7 +238,7 @@ public final class DatabasesImpl implements Databases {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -260,7 +246,7 @@ public final class DatabasesImpl implements Databases {
         }
         String clusterName = Utils.getValueFromIdByName(id, "redisEnterprise");
         if (clusterName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -268,7 +254,7 @@ public final class DatabasesImpl implements Databases {
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));

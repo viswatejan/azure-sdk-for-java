@@ -12,9 +12,10 @@ import com.azure.resourcemanager.datafactory.fluent.PrivateEndpointConnectionOpe
 import com.azure.resourcemanager.datafactory.fluent.models.PrivateEndpointConnectionResourceInner;
 import com.azure.resourcemanager.datafactory.models.PrivateEndpointConnectionOperations;
 import com.azure.resourcemanager.datafactory.models.PrivateEndpointConnectionResource;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PrivateEndpointConnectionOperationsImpl implements PrivateEndpointConnectionOperations {
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointConnectionOperationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateEndpointConnectionOperationsImpl.class);
 
     private final PrivateEndpointConnectionOperationsClient innerClient;
 
@@ -73,7 +74,7 @@ public final class PrivateEndpointConnectionOperationsImpl implements PrivateEnd
     public PrivateEndpointConnectionResource getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -81,14 +82,14 @@ public final class PrivateEndpointConnectionOperationsImpl implements PrivateEnd
         }
         String factoryName = Utils.getValueFromIdByName(id, "factories");
         if (factoryName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'factories'.", id)));
         }
         String privateEndpointConnectionName = Utils.getValueFromIdByName(id, "privateEndpointConnections");
         if (privateEndpointConnectionName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -107,7 +108,7 @@ public final class PrivateEndpointConnectionOperationsImpl implements PrivateEnd
         String id, String ifNoneMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -115,14 +116,14 @@ public final class PrivateEndpointConnectionOperationsImpl implements PrivateEnd
         }
         String factoryName = Utils.getValueFromIdByName(id, "factories");
         if (factoryName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'factories'.", id)));
         }
         String privateEndpointConnectionName = Utils.getValueFromIdByName(id, "privateEndpointConnections");
         if (privateEndpointConnectionName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -137,7 +138,7 @@ public final class PrivateEndpointConnectionOperationsImpl implements PrivateEnd
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -145,14 +146,14 @@ public final class PrivateEndpointConnectionOperationsImpl implements PrivateEnd
         }
         String factoryName = Utils.getValueFromIdByName(id, "factories");
         if (factoryName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'factories'.", id)));
         }
         String privateEndpointConnectionName = Utils.getValueFromIdByName(id, "privateEndpointConnections");
         if (privateEndpointConnectionName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -166,7 +167,7 @@ public final class PrivateEndpointConnectionOperationsImpl implements PrivateEnd
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -174,14 +175,14 @@ public final class PrivateEndpointConnectionOperationsImpl implements PrivateEnd
         }
         String factoryName = Utils.getValueFromIdByName(id, "factories");
         if (factoryName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'factories'.", id)));
         }
         String privateEndpointConnectionName = Utils.getValueFromIdByName(id, "privateEndpointConnections");
         if (privateEndpointConnectionName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

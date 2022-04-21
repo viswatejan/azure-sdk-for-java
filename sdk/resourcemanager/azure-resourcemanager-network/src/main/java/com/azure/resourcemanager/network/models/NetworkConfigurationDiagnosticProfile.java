@@ -6,11 +6,14 @@ package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters to compare with network configuration. */
 @Fluent
 public final class NetworkConfigurationDiagnosticProfile {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(NetworkConfigurationDiagnosticProfile.class);
+
     /*
      * The direction of the traffic.
      */
@@ -152,36 +155,34 @@ public final class NetworkConfigurationDiagnosticProfile {
      */
     public void validate() {
         if (direction() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property direction in model NetworkConfigurationDiagnosticProfile"));
         }
         if (protocol() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property protocol in model NetworkConfigurationDiagnosticProfile"));
         }
         if (source() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property source in model NetworkConfigurationDiagnosticProfile"));
         }
         if (destination() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property destination in model NetworkConfigurationDiagnosticProfile"));
         }
         if (destinationPort() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property destinationPort in model NetworkConfigurationDiagnosticProfile"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(NetworkConfigurationDiagnosticProfile.class);
 }

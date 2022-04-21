@@ -19,9 +19,10 @@ import com.azure.resourcemanager.apimanagement.models.IdentityProviders;
 import com.azure.resourcemanager.apimanagement.models.IdentityProvidersGetEntityTagResponse;
 import com.azure.resourcemanager.apimanagement.models.IdentityProvidersGetResponse;
 import com.azure.resourcemanager.apimanagement.models.IdentityProvidersListSecretsResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class IdentityProvidersImpl implements IdentityProviders {
-    private static final ClientLogger LOGGER = new ClientLogger(IdentityProvidersImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(IdentityProvidersImpl.class);
 
     private final IdentityProvidersClient innerClient;
 
@@ -129,7 +130,7 @@ public final class IdentityProvidersImpl implements IdentityProviders {
     public IdentityProviderContract getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -137,7 +138,7 @@ public final class IdentityProvidersImpl implements IdentityProviders {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
@@ -145,7 +146,7 @@ public final class IdentityProvidersImpl implements IdentityProviders {
         IdentityProviderType identityProviderName =
             IdentityProviderType.fromString(Utils.getValueFromIdByName(id, "identityProviders"));
         if (identityProviderName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -158,7 +159,7 @@ public final class IdentityProvidersImpl implements IdentityProviders {
     public Response<IdentityProviderContract> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -166,7 +167,7 @@ public final class IdentityProvidersImpl implements IdentityProviders {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
@@ -174,7 +175,7 @@ public final class IdentityProvidersImpl implements IdentityProviders {
         IdentityProviderType identityProviderName =
             IdentityProviderType.fromString(Utils.getValueFromIdByName(id, "identityProviders"));
         if (identityProviderName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -187,7 +188,7 @@ public final class IdentityProvidersImpl implements IdentityProviders {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -195,7 +196,7 @@ public final class IdentityProvidersImpl implements IdentityProviders {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
@@ -203,7 +204,7 @@ public final class IdentityProvidersImpl implements IdentityProviders {
         IdentityProviderType identityProviderName =
             IdentityProviderType.fromString(Utils.getValueFromIdByName(id, "identityProviders"));
         if (identityProviderName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -211,13 +212,15 @@ public final class IdentityProvidersImpl implements IdentityProviders {
                                 "The resource ID '%s' is not valid. Missing path segment 'identityProviders'.", id)));
         }
         String localIfMatch = null;
-        this.deleteWithResponse(resourceGroupName, serviceName, identityProviderName, localIfMatch, Context.NONE);
+        this
+            .deleteWithResponse(resourceGroupName, serviceName, identityProviderName, localIfMatch, Context.NONE)
+            .getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -225,7 +228,7 @@ public final class IdentityProvidersImpl implements IdentityProviders {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
@@ -233,7 +236,7 @@ public final class IdentityProvidersImpl implements IdentityProviders {
         IdentityProviderType identityProviderName =
             IdentityProviderType.fromString(Utils.getValueFromIdByName(id, "identityProviders"));
         if (identityProviderName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

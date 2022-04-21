@@ -20,11 +20,14 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.authorization.fluent.GlobalAdministratorsClient;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in GlobalAdministratorsClient. */
 public final class GlobalAdministratorsClientImpl implements GlobalAdministratorsClient {
+    private final ClientLogger logger = new ClientLogger(GlobalAdministratorsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final GlobalAdministratorsService service;
 
@@ -66,7 +69,7 @@ public final class GlobalAdministratorsClientImpl implements GlobalAdministrator
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> elevateAccessWithResponseAsync() {
@@ -90,7 +93,7 @@ public final class GlobalAdministratorsClientImpl implements GlobalAdministrator
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> elevateAccessWithResponseAsync(Context context) {
@@ -111,7 +114,7 @@ public final class GlobalAdministratorsClientImpl implements GlobalAdministrator
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> elevateAccessAsync() {
@@ -136,7 +139,7 @@ public final class GlobalAdministratorsClientImpl implements GlobalAdministrator
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> elevateAccessWithResponse(Context context) {

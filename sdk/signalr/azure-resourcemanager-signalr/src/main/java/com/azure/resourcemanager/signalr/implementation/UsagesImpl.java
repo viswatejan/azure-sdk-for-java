@@ -11,9 +11,10 @@ import com.azure.resourcemanager.signalr.fluent.UsagesClient;
 import com.azure.resourcemanager.signalr.fluent.models.SignalRUsageInner;
 import com.azure.resourcemanager.signalr.models.SignalRUsage;
 import com.azure.resourcemanager.signalr.models.Usages;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class UsagesImpl implements Usages {
-    private static final ClientLogger LOGGER = new ClientLogger(UsagesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(UsagesImpl.class);
 
     private final UsagesClient innerClient;
 

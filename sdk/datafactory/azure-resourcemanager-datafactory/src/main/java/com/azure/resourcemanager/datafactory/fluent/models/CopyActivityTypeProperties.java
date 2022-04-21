@@ -13,12 +13,15 @@ import com.azure.resourcemanager.datafactory.models.LogStorageSettings;
 import com.azure.resourcemanager.datafactory.models.RedirectIncompatibleRowSettings;
 import com.azure.resourcemanager.datafactory.models.SkipErrorFile;
 import com.azure.resourcemanager.datafactory.models.StagingSettings;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Copy activity properties. */
 @Fluent
 public final class CopyActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CopyActivityTypeProperties.class);
+
     /*
      * Copy activity source.
      */
@@ -440,7 +443,7 @@ public final class CopyActivityTypeProperties {
      */
     public void validate() {
         if (source() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property source in model CopyActivityTypeProperties"));
@@ -448,7 +451,7 @@ public final class CopyActivityTypeProperties {
             source().validate();
         }
         if (sink() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property sink in model CopyActivityTypeProperties"));
         } else {
@@ -470,6 +473,4 @@ public final class CopyActivityTypeProperties {
             skipErrorFile().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CopyActivityTypeProperties.class);
 }

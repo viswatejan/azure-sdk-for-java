@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.fluent.NetworkInterfaceIpConfigurationsClient;
 import com.azure.resourcemanager.network.fluent.models.NetworkInterfaceIpConfigurationInner;
 import com.azure.resourcemanager.network.models.NetworkInterfaceIpConfigurationListResult;
@@ -34,6 +35,8 @@ import reactor.core.publisher.Mono;
  * An instance of this class provides access to all the operations defined in NetworkInterfaceIpConfigurationsClient.
  */
 public final class NetworkInterfaceIpConfigurationsClientImpl implements NetworkInterfaceIpConfigurationsClient {
+    private final ClientLogger logger = new ClientLogger(NetworkInterfaceIpConfigurationsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final NetworkInterfaceIpConfigurationsService service;
 

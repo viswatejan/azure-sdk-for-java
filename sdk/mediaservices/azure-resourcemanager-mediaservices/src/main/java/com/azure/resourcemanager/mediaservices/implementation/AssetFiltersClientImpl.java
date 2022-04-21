@@ -29,6 +29,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mediaservices.fluent.AssetFiltersClient;
 import com.azure.resourcemanager.mediaservices.fluent.models.AssetFilterInner;
 import com.azure.resourcemanager.mediaservices.models.AssetFilterCollection;
@@ -36,6 +37,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in AssetFiltersClient. */
 public final class AssetFiltersClientImpl implements AssetFiltersClient {
+    private final ClientLogger logger = new ClientLogger(AssetFiltersClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final AssetFiltersService service;
 
@@ -166,8 +169,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AssetFilter items along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a collection of AssetFilter items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AssetFilterInner>> listSinglePageAsync(
@@ -194,7 +196,6 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
         if (assetName == null) {
             return Mono.error(new IllegalArgumentException("Parameter assetName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -206,7 +207,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
                             resourceGroupName,
                             accountName,
                             assetName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .<PagedResponse<AssetFilterInner>>map(
@@ -231,8 +232,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AssetFilter items along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a collection of AssetFilter items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AssetFilterInner>> listSinglePageAsync(
@@ -259,7 +259,6 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
         if (assetName == null) {
             return Mono.error(new IllegalArgumentException("Parameter assetName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -269,7 +268,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
                 resourceGroupName,
                 accountName,
                 assetName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context)
             .map(
@@ -292,7 +291,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AssetFilter items as paginated response with {@link PagedFlux}.
+     * @return a collection of AssetFilter items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AssetFilterInner> listAsync(String resourceGroupName, String accountName, String assetName) {
@@ -311,7 +310,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AssetFilter items as paginated response with {@link PagedFlux}.
+     * @return a collection of AssetFilter items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AssetFilterInner> listAsync(
@@ -330,7 +329,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AssetFilter items as paginated response with {@link PagedIterable}.
+     * @return a collection of AssetFilter items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AssetFilterInner> list(String resourceGroupName, String accountName, String assetName) {
@@ -347,7 +346,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AssetFilter items as paginated response with {@link PagedIterable}.
+     * @return a collection of AssetFilter items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AssetFilterInner> list(
@@ -365,8 +364,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Asset Filter associated with the specified Asset along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the details of an Asset Filter associated with the specified Asset.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AssetFilterInner>> getWithResponseAsync(
@@ -396,7 +394,6 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
         if (filterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter filterName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -409,7 +406,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
                             accountName,
                             assetName,
                             filterName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -426,8 +423,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Asset Filter associated with the specified Asset along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the details of an Asset Filter associated with the specified Asset.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AssetFilterInner>> getWithResponseAsync(
@@ -457,7 +453,6 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
         if (filterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter filterName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -468,7 +463,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
                 accountName,
                 assetName,
                 filterName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -483,8 +478,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Asset Filter associated with the specified Asset on successful completion of {@link
-     *     Mono}.
+     * @return the details of an Asset Filter associated with the specified Asset.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AssetFilterInner> getAsync(
@@ -528,7 +522,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Asset Filter associated with the specified Asset along with {@link Response}.
+     * @return the details of an Asset Filter associated with the specified Asset.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AssetFilterInner> getWithResponse(
@@ -547,7 +541,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Asset Filter along with {@link Response} on successful completion of {@link Mono}.
+     * @return an Asset Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AssetFilterInner>> createOrUpdateWithResponseAsync(
@@ -586,7 +580,6 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -599,7 +592,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
                             accountName,
                             assetName,
                             filterName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             parameters,
                             accept,
                             context))
@@ -618,7 +611,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Asset Filter along with {@link Response} on successful completion of {@link Mono}.
+     * @return an Asset Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AssetFilterInner>> createOrUpdateWithResponseAsync(
@@ -658,7 +651,6 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -669,7 +661,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
                 accountName,
                 assetName,
                 filterName,
-                apiVersion,
+                this.client.getApiVersion(),
                 parameters,
                 accept,
                 context);
@@ -686,7 +678,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Asset Filter on successful completion of {@link Mono}.
+     * @return an Asset Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AssetFilterInner> createOrUpdateAsync(
@@ -741,7 +733,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Asset Filter along with {@link Response}.
+     * @return an Asset Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AssetFilterInner> createOrUpdateWithResponse(
@@ -766,7 +758,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -796,7 +788,6 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
         if (filterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter filterName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -809,7 +800,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
                             accountName,
                             assetName,
                             filterName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -826,7 +817,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -856,7 +847,6 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
         if (filterName == null) {
             return Mono.error(new IllegalArgumentException("Parameter filterName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -867,7 +857,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
                 accountName,
                 assetName,
                 filterName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -882,7 +872,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String accountName, String assetName, String filterName) {
@@ -917,7 +907,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -936,7 +926,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Asset Filter along with {@link Response} on successful completion of {@link Mono}.
+     * @return an Asset Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AssetFilterInner>> updateWithResponseAsync(
@@ -975,7 +965,6 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -988,7 +977,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
                             accountName,
                             assetName,
                             filterName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             parameters,
                             accept,
                             context))
@@ -1007,7 +996,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Asset Filter along with {@link Response} on successful completion of {@link Mono}.
+     * @return an Asset Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AssetFilterInner>> updateWithResponseAsync(
@@ -1047,7 +1036,6 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1058,7 +1046,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
                 accountName,
                 assetName,
                 filterName,
-                apiVersion,
+                this.client.getApiVersion(),
                 parameters,
                 accept,
                 context);
@@ -1075,7 +1063,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Asset Filter on successful completion of {@link Mono}.
+     * @return an Asset Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AssetFilterInner> updateAsync(
@@ -1130,7 +1118,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Asset Filter along with {@link Response}.
+     * @return an Asset Filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AssetFilterInner> updateWithResponse(
@@ -1151,8 +1139,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AssetFilter items along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a collection of AssetFilter items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AssetFilterInner>> listNextSinglePageAsync(String nextLink) {
@@ -1188,8 +1175,7 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of AssetFilter items along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a collection of AssetFilter items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AssetFilterInner>> listNextSinglePageAsync(String nextLink, Context context) {

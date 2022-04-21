@@ -21,7 +21,7 @@ public final class IntegrationRuntimesClient {
     @Generated private final IntegrationRuntimesImpl serviceClient;
 
     /**
-     * Initializes an instance of IntegrationRuntimesClient class.
+     * Initializes an instance of IntegrationRuntimes client.
      *
      * @param serviceClient the service client implementation.
      */

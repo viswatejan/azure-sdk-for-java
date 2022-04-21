@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** parentalControlSettings. */
 @Fluent
 public final class MicrosoftGraphParentalControlSettings {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphParentalControlSettings.class);
+
     /*
      * Specifies the two-letter ISO country codes. Access to the application
      * will be blocked for minors from the countries specified in this list.

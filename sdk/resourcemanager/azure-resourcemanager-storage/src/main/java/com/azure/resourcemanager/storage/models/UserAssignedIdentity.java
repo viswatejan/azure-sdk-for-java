@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** UserAssignedIdentity for the resource. */
 @Immutable
 public class UserAssignedIdentity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(UserAssignedIdentity.class);
+
     /*
      * The principal ID of the identity.
      */

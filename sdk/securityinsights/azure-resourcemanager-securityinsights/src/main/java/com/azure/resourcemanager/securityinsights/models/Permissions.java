@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Permissions required for the connector. */
 @Fluent
 public final class Permissions {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(Permissions.class);
+
     /*
      * Resource provider permissions required for the connector
      */

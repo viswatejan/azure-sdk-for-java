@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.AzureDataLakeStoreLinkedServiceTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("AzureDataLakeStore")
 @Fluent
 public final class AzureDataLakeStoreLinkedService extends LinkedService {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureDataLakeStoreLinkedService.class);
+
     /*
      * Azure Data Lake Store linked service properties.
      */
@@ -319,7 +322,7 @@ public final class AzureDataLakeStoreLinkedService extends LinkedService {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model AzureDataLakeStoreLinkedService"));
@@ -327,6 +330,4 @@ public final class AzureDataLakeStoreLinkedService extends LinkedService {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AzureDataLakeStoreLinkedService.class);
 }

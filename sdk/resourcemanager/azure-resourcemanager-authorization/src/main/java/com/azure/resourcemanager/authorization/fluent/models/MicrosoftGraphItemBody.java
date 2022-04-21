@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,6 +16,8 @@ import java.util.Map;
 /** itemBody. */
 @Fluent
 public final class MicrosoftGraphItemBody {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphItemBody.class);
+
     /*
      * The content of the item.
      */
@@ -22,7 +25,7 @@ public final class MicrosoftGraphItemBody {
     private String content;
 
     /*
-     * bodyType
+     * The contentType property.
      */
     @JsonProperty(value = "contentType")
     private MicrosoftGraphBodyType contentType;
@@ -53,7 +56,7 @@ public final class MicrosoftGraphItemBody {
     }
 
     /**
-     * Get the contentType property: bodyType.
+     * Get the contentType property: The contentType property.
      *
      * @return the contentType value.
      */
@@ -62,7 +65,7 @@ public final class MicrosoftGraphItemBody {
     }
 
     /**
-     * Set the contentType property: bodyType.
+     * Set the contentType property: The contentType property.
      *
      * @param contentType the contentType value to set.
      * @return the MicrosoftGraphItemBody object itself.

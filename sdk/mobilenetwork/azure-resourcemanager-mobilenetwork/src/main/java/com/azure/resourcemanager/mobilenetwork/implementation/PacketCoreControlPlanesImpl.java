@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mobilenetwork.fluent.PacketCoreControlPlanesCli
 import com.azure.resourcemanager.mobilenetwork.fluent.models.PacketCoreControlPlaneInner;
 import com.azure.resourcemanager.mobilenetwork.models.PacketCoreControlPlane;
 import com.azure.resourcemanager.mobilenetwork.models.PacketCoreControlPlanes;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlanes {
-    private static final ClientLogger LOGGER = new ClientLogger(PacketCoreControlPlanesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PacketCoreControlPlanesImpl.class);
 
     private final PacketCoreControlPlanesClient innerClient;
 
@@ -85,7 +86,7 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
     public PacketCoreControlPlane getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -93,7 +94,7 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
         }
         String packetCoreControlPlaneName = Utils.getValueFromIdByName(id, "packetCoreControlPlanes");
         if (packetCoreControlPlaneName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -109,7 +110,7 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
     public Response<PacketCoreControlPlane> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -117,7 +118,7 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
         }
         String packetCoreControlPlaneName = Utils.getValueFromIdByName(id, "packetCoreControlPlanes");
         if (packetCoreControlPlaneName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -131,7 +132,7 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -139,7 +140,7 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
         }
         String packetCoreControlPlaneName = Utils.getValueFromIdByName(id, "packetCoreControlPlanes");
         if (packetCoreControlPlaneName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -153,7 +154,7 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -161,7 +162,7 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
         }
         String packetCoreControlPlaneName = Utils.getValueFromIdByName(id, "packetCoreControlPlanes");
         if (packetCoreControlPlaneName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

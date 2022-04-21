@@ -25,16 +25,13 @@ public final class AutomationRulePropertyConditionSupportedProperty
     /** Static value IncidentStatus for AutomationRulePropertyConditionSupportedProperty. */
     public static final AutomationRulePropertyConditionSupportedProperty INCIDENT_STATUS = fromString("IncidentStatus");
 
-    /** Static value IncidentRelatedAnalyticRuleIds for AutomationRulePropertyConditionSupportedProperty. */
-    public static final AutomationRulePropertyConditionSupportedProperty INCIDENT_RELATED_ANALYTIC_RULE_IDS =
-        fromString("IncidentRelatedAnalyticRuleIds");
-
     /** Static value IncidentTactics for AutomationRulePropertyConditionSupportedProperty. */
     public static final AutomationRulePropertyConditionSupportedProperty INCIDENT_TACTICS =
         fromString("IncidentTactics");
 
-    /** Static value IncidentLabel for AutomationRulePropertyConditionSupportedProperty. */
-    public static final AutomationRulePropertyConditionSupportedProperty INCIDENT_LABEL = fromString("IncidentLabel");
+    /** Static value IncidentRelatedAnalyticRuleIds for AutomationRulePropertyConditionSupportedProperty. */
+    public static final AutomationRulePropertyConditionSupportedProperty INCIDENT_RELATED_ANALYTIC_RULE_IDS =
+        fromString("IncidentRelatedAnalyticRuleIds");
 
     /** Static value IncidentProviderName for AutomationRulePropertyConditionSupportedProperty. */
     public static final AutomationRulePropertyConditionSupportedProperty INCIDENT_PROVIDER_NAME =
@@ -68,10 +65,6 @@ public final class AutomationRulePropertyConditionSupportedProperty
     /** Static value AccountUPNSuffix for AutomationRulePropertyConditionSupportedProperty. */
     public static final AutomationRulePropertyConditionSupportedProperty ACCOUNT_UPNSUFFIX =
         fromString("AccountUPNSuffix");
-
-    /** Static value AlertProductNames for AutomationRulePropertyConditionSupportedProperty. */
-    public static final AutomationRulePropertyConditionSupportedProperty ALERT_PRODUCT_NAMES =
-        fromString("AlertProductNames");
 
     /** Static value AzureResourceResourceId for AutomationRulePropertyConditionSupportedProperty. */
     public static final AutomationRulePropertyConditionSupportedProperty AZURE_RESOURCE_RESOURCE_ID =

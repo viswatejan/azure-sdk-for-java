@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A data flow transformation. */
 @Fluent
 public class Transformation {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(Transformation.class);
+
     /*
      * Transformation name.
      */
@@ -148,7 +151,7 @@ public class Transformation {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model Transformation"));
         }
@@ -162,6 +165,4 @@ public class Transformation {
             flowlet().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(Transformation.class);
 }

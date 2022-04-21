@@ -11,9 +11,10 @@ import com.azure.resourcemanager.apimanagement.fluent.RegionsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.RegionContractInner;
 import com.azure.resourcemanager.apimanagement.models.RegionContract;
 import com.azure.resourcemanager.apimanagement.models.Regions;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class RegionsImpl implements Regions {
-    private static final ClientLogger LOGGER = new ClientLogger(RegionsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RegionsImpl.class);
 
     private final RegionsClient innerClient;
 

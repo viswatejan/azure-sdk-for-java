@@ -6,11 +6,14 @@ package com.azure.resourcemanager.appplatform.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Custom domain validate payload. */
 @Fluent
 public final class CustomDomainValidatePayload {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CustomDomainValidatePayload.class);
+
     /*
      * Name to be validated
      */
@@ -44,12 +47,10 @@ public final class CustomDomainValidatePayload {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property name in model CustomDomainValidatePayload"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CustomDomainValidatePayload.class);
 }

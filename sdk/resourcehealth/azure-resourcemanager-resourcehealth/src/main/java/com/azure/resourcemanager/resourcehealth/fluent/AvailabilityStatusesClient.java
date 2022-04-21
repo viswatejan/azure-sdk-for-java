@@ -18,7 +18,7 @@ public interface AvailabilityStatusesClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List availabilityStatus operation response as paginated response with {@link PagedIterable}.
+     * @return the List availabilityStatus operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AvailabilityStatusInner> listBySubscriptionId();
@@ -33,7 +33,7 @@ public interface AvailabilityStatusesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List availabilityStatus operation response as paginated response with {@link PagedIterable}.
+     * @return the List availabilityStatus operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AvailabilityStatusInner> listBySubscriptionId(String filter, String expand, Context context);
@@ -45,7 +45,7 @@ public interface AvailabilityStatusesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List availabilityStatus operation response as paginated response with {@link PagedIterable}.
+     * @return the List availabilityStatus operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AvailabilityStatusInner> listByResourceGroup(String resourceGroupName);
@@ -61,7 +61,7 @@ public interface AvailabilityStatusesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List availabilityStatus operation response as paginated response with {@link PagedIterable}.
+     * @return the List availabilityStatus operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AvailabilityStatusInner> listByResourceGroup(
@@ -98,7 +98,7 @@ public interface AvailabilityStatusesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return current availability status for a single resource along with {@link Response}.
+     * @return current availability status for a single resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AvailabilityStatusInner> getByResourceWithResponse(
@@ -115,7 +115,7 @@ public interface AvailabilityStatusesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List availabilityStatus operation response as paginated response with {@link PagedIterable}.
+     * @return the List availabilityStatus operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AvailabilityStatusInner> list(String resourceUri);
@@ -135,7 +135,7 @@ public interface AvailabilityStatusesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List availabilityStatus operation response as paginated response with {@link PagedIterable}.
+     * @return the List availabilityStatus operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AvailabilityStatusInner> list(String resourceUri, String filter, String expand, Context context);

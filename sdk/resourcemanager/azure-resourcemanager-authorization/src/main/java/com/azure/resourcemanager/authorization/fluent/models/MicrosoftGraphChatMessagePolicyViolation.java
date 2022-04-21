@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,8 +16,10 @@ import java.util.Map;
 /** chatMessagePolicyViolation. */
 @Fluent
 public final class MicrosoftGraphChatMessagePolicyViolation {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphChatMessagePolicyViolation.class);
+
     /*
-     * chatMessagePolicyViolationDlpActionTypes
+     * The dlpAction property.
      */
     @JsonProperty(value = "dlpAction")
     private MicrosoftGraphChatMessagePolicyViolationDlpActionTypes dlpAction;
@@ -35,13 +38,13 @@ public final class MicrosoftGraphChatMessagePolicyViolation {
     private MicrosoftGraphChatMessagePolicyViolationPolicyTip policyTip;
 
     /*
-     * chatMessagePolicyViolationUserActionTypes
+     * The userAction property.
      */
     @JsonProperty(value = "userAction")
     private MicrosoftGraphChatMessagePolicyViolationUserActionTypes userAction;
 
     /*
-     * chatMessagePolicyViolationVerdictDetailsTypes
+     * The verdictDetails property.
      */
     @JsonProperty(value = "verdictDetails")
     private MicrosoftGraphChatMessagePolicyViolationVerdictDetailsTypes verdictDetails;
@@ -52,7 +55,7 @@ public final class MicrosoftGraphChatMessagePolicyViolation {
     @JsonIgnore private Map<String, Object> additionalProperties;
 
     /**
-     * Get the dlpAction property: chatMessagePolicyViolationDlpActionTypes.
+     * Get the dlpAction property: The dlpAction property.
      *
      * @return the dlpAction value.
      */
@@ -61,7 +64,7 @@ public final class MicrosoftGraphChatMessagePolicyViolation {
     }
 
     /**
-     * Set the dlpAction property: chatMessagePolicyViolationDlpActionTypes.
+     * Set the dlpAction property: The dlpAction property.
      *
      * @param dlpAction the dlpAction value to set.
      * @return the MicrosoftGraphChatMessagePolicyViolation object itself.
@@ -116,7 +119,7 @@ public final class MicrosoftGraphChatMessagePolicyViolation {
     }
 
     /**
-     * Get the userAction property: chatMessagePolicyViolationUserActionTypes.
+     * Get the userAction property: The userAction property.
      *
      * @return the userAction value.
      */
@@ -125,7 +128,7 @@ public final class MicrosoftGraphChatMessagePolicyViolation {
     }
 
     /**
-     * Set the userAction property: chatMessagePolicyViolationUserActionTypes.
+     * Set the userAction property: The userAction property.
      *
      * @param userAction the userAction value to set.
      * @return the MicrosoftGraphChatMessagePolicyViolation object itself.
@@ -137,7 +140,7 @@ public final class MicrosoftGraphChatMessagePolicyViolation {
     }
 
     /**
-     * Get the verdictDetails property: chatMessagePolicyViolationVerdictDetailsTypes.
+     * Get the verdictDetails property: The verdictDetails property.
      *
      * @return the verdictDetails value.
      */
@@ -146,7 +149,7 @@ public final class MicrosoftGraphChatMessagePolicyViolation {
     }
 
     /**
-     * Set the verdictDetails property: chatMessagePolicyViolationVerdictDetailsTypes.
+     * Set the verdictDetails property: The verdictDetails property.
      *
      * @param verdictDetails the verdictDetails value to set.
      * @return the MicrosoftGraphChatMessagePolicyViolation object itself.

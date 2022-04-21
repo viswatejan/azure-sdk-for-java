@@ -12,7 +12,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationInner;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceAppendTags;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceFilteringCriteria;
-import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorModel;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorModelForRequestBody;
 
 /** An instance of this class provides access to all the operations defined in ThreatIntelligenceIndicatorsClient. */
 public interface ThreatIntelligenceIndicatorsClient {
@@ -29,7 +29,9 @@ public interface ThreatIntelligenceIndicatorsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ThreatIntelligenceInformationInner createIndicator(
-        String resourceGroupName, String workspaceName, ThreatIntelligenceIndicatorModel threatIntelligenceProperties);
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties);
 
     /**
      * Create a new threat intelligence indicator.
@@ -47,7 +49,7 @@ public interface ThreatIntelligenceIndicatorsClient {
     Response<ThreatIntelligenceInformationInner> createIndicatorWithResponse(
         String resourceGroupName,
         String workspaceName,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties,
         Context context);
 
     /**
@@ -97,7 +99,7 @@ public interface ThreatIntelligenceIndicatorsClient {
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties);
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties);
 
     /**
      * Update a threat Intelligence indicator.
@@ -117,7 +119,7 @@ public interface ThreatIntelligenceIndicatorsClient {
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties,
         Context context);
 
     /**
@@ -157,7 +159,7 @@ public interface ThreatIntelligenceIndicatorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the threat intelligence information objects as paginated response with {@link PagedIterable}.
+     * @return list of all the threat intelligence information objects.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ThreatIntelligenceInformationInner> queryIndicators(
@@ -175,7 +177,7 @@ public interface ThreatIntelligenceIndicatorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the threat intelligence information objects as paginated response with {@link PagedIterable}.
+     * @return list of all the threat intelligence information objects.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ThreatIntelligenceInformationInner> queryIndicators(
@@ -240,7 +242,7 @@ public interface ThreatIntelligenceIndicatorsClient {
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags);
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceReplaceTags);
 
     /**
      * Replace tags added to a threat intelligence indicator.
@@ -260,6 +262,6 @@ public interface ThreatIntelligenceIndicatorsClient {
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceReplaceTags,
         Context context);
 }

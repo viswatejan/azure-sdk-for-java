@@ -11,9 +11,10 @@ import com.azure.resourcemanager.cognitiveservices.fluent.CommitmentTiersClient;
 import com.azure.resourcemanager.cognitiveservices.fluent.models.CommitmentTierInner;
 import com.azure.resourcemanager.cognitiveservices.models.CommitmentTier;
 import com.azure.resourcemanager.cognitiveservices.models.CommitmentTiers;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class CommitmentTiersImpl implements CommitmentTiers {
-    private static final ClientLogger LOGGER = new ClientLogger(CommitmentTiersImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CommitmentTiersImpl.class);
 
     private final CommitmentTiersClient innerClient;
 

@@ -13,9 +13,10 @@ import com.azure.resourcemanager.datafactory.fluent.ManagedVirtualNetworksClient
 import com.azure.resourcemanager.datafactory.fluent.models.ManagedVirtualNetworkResourceInner;
 import com.azure.resourcemanager.datafactory.models.ManagedVirtualNetworkResource;
 import com.azure.resourcemanager.datafactory.models.ManagedVirtualNetworks;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ManagedVirtualNetworksImpl implements ManagedVirtualNetworks {
-    private static final ClientLogger LOGGER = new ClientLogger(ManagedVirtualNetworksImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedVirtualNetworksImpl.class);
 
     private final ManagedVirtualNetworksClient innerClient;
 
@@ -76,7 +77,7 @@ public final class ManagedVirtualNetworksImpl implements ManagedVirtualNetworks 
     public ManagedVirtualNetworkResource getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -84,14 +85,14 @@ public final class ManagedVirtualNetworksImpl implements ManagedVirtualNetworks 
         }
         String factoryName = Utils.getValueFromIdByName(id, "factories");
         if (factoryName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'factories'.", id)));
         }
         String managedVirtualNetworkName = Utils.getValueFromIdByName(id, "managedVirtualNetworks");
         if (managedVirtualNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -108,7 +109,7 @@ public final class ManagedVirtualNetworksImpl implements ManagedVirtualNetworks 
     public Response<ManagedVirtualNetworkResource> getByIdWithResponse(String id, String ifNoneMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -116,14 +117,14 @@ public final class ManagedVirtualNetworksImpl implements ManagedVirtualNetworks 
         }
         String factoryName = Utils.getValueFromIdByName(id, "factories");
         if (factoryName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'factories'.", id)));
         }
         String managedVirtualNetworkName = Utils.getValueFromIdByName(id, "managedVirtualNetworks");
         if (managedVirtualNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

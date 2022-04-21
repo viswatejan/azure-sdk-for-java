@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Class to specify properties of content key. */
 @Fluent
 public final class StreamingPolicyContentKey {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(StreamingPolicyContentKey.class);
+
     /*
      * Label can be used to specify Content Key when creating a Streaming
      * Locator

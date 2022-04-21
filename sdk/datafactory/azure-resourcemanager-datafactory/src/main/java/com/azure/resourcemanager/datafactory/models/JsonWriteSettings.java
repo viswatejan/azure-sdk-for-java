@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -14,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("JsonWriteSettings")
 @Fluent
 public final class JsonWriteSettings extends FormatWriteSettings {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(JsonWriteSettings.class);
+
     /*
      * File pattern of JSON. This setting controls the way a collection of JSON
      * objects will be treated. The default value is 'setOfObjects'. It is

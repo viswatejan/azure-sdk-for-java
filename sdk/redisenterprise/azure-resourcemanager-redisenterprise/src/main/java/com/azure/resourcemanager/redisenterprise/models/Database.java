@@ -92,13 +92,6 @@ public interface Database {
     List<Module> modules();
 
     /**
-     * Gets the geoReplication property: Optional set of properties to configure geo replication for this database.
-     *
-     * @return the geoReplication value.
-     */
-    DatabasePropertiesGeoReplication geoReplication();
-
-    /**
      * Gets the inner com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseInner object.
      *
      * @return the inner object.
@@ -135,8 +128,7 @@ public interface Database {
                 DefinitionStages.WithClusteringPolicy,
                 DefinitionStages.WithEvictionPolicy,
                 DefinitionStages.WithPersistence,
-                DefinitionStages.WithModules,
-                DefinitionStages.WithGeoReplication {
+                DefinitionStages.WithModules {
             /**
              * Executes the create request.
              *
@@ -218,17 +210,6 @@ public interface Database {
              */
             WithCreate withModules(List<Module> modules);
         }
-        /** The stage of the Database definition allowing to specify geoReplication. */
-        interface WithGeoReplication {
-            /**
-             * Specifies the geoReplication property: Optional set of properties to configure geo replication for this
-             * database..
-             *
-             * @param geoReplication Optional set of properties to configure geo replication for this database.
-             * @return the next definition stage.
-             */
-            WithCreate withGeoReplication(DatabasePropertiesGeoReplication geoReplication);
-        }
     }
     /**
      * Begins update for the Database resource.
@@ -239,7 +220,11 @@ public interface Database {
 
     /** The template for Database update. */
     interface Update
-        extends UpdateStages.WithClientProtocol, UpdateStages.WithEvictionPolicy, UpdateStages.WithPersistence {
+        extends UpdateStages.WithClientProtocol,
+            UpdateStages.WithClusteringPolicy,
+            UpdateStages.WithEvictionPolicy,
+            UpdateStages.WithPersistence,
+            UpdateStages.WithModules {
         /**
          * Executes the update request.
          *
@@ -269,6 +254,17 @@ public interface Database {
              */
             Update withClientProtocol(Protocol clientProtocol);
         }
+        /** The stage of the Database update allowing to specify clusteringPolicy. */
+        interface WithClusteringPolicy {
+            /**
+             * Specifies the clusteringPolicy property: Clustering policy - default is OSSCluster. Specified at create
+             * time..
+             *
+             * @param clusteringPolicy Clustering policy - default is OSSCluster. Specified at create time.
+             * @return the next definition stage.
+             */
+            Update withClusteringPolicy(ClusteringPolicy clusteringPolicy);
+        }
         /** The stage of the Database update allowing to specify evictionPolicy. */
         interface WithEvictionPolicy {
             /**
@@ -288,6 +284,18 @@ public interface Database {
              * @return the next definition stage.
              */
             Update withPersistence(Persistence persistence);
+        }
+        /** The stage of the Database update allowing to specify modules. */
+        interface WithModules {
+            /**
+             * Specifies the modules property: Optional set of redis modules to enable in this database - modules can
+             * only be added at creation time..
+             *
+             * @param modules Optional set of redis modules to enable in this database - modules can only be added at
+             *     creation time.
+             * @return the next definition stage.
+             */
+            Update withModules(List<Module> modules);
         }
     }
     /**
@@ -310,7 +318,7 @@ public interface Database {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys.
+     * @return the secret access keys used for authenticating connections to redis.
      */
     AccessKeys listKeys();
 
@@ -321,7 +329,7 @@ public interface Database {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys along with {@link Response}.
+     * @return the secret access keys used for authenticating connections to redis.
      */
     Response<AccessKeys> listKeysWithResponse(Context context);
 
@@ -332,7 +340,7 @@ public interface Database {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys.
+     * @return the secret access keys used for authenticating connections to redis.
      */
     AccessKeys regenerateKey(RegenerateKeyParameters parameters);
 
@@ -344,12 +352,12 @@ public interface Database {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys.
+     * @return the secret access keys used for authenticating connections to redis.
      */
     AccessKeys regenerateKey(RegenerateKeyParameters parameters, Context context);
 
     /**
-     * Imports database files to target database.
+     * Imports a database file to target database.
      *
      * @param parameters Storage information for importing into the cluster.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -359,7 +367,7 @@ public interface Database {
     void importMethod(ImportClusterParameters parameters);
 
     /**
-     * Imports database files to target database.
+     * Imports a database file to target database.
      *
      * @param parameters Storage information for importing into the cluster.
      * @param context The context to associate with this operation.
@@ -389,25 +397,4 @@ public interface Database {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void export(ExportClusterParameters parameters, Context context);
-
-    /**
-     * Forcibly removes the link to the specified database resource.
-     *
-     * @param parameters Information identifying the database to be unlinked.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void forceUnlink(ForceUnlinkParameters parameters);
-
-    /**
-     * Forcibly removes the link to the specified database resource.
-     *
-     * @param parameters Information identifying the database to be unlinked.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void forceUnlink(ForceUnlinkParameters parameters, Context context);
 }

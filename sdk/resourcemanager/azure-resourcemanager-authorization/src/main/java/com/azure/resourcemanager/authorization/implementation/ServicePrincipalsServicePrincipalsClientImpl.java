@@ -28,6 +28,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.serializer.CollectionFormat;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.resourcemanager.authorization.fluent.ServicePrincipalsServicePrincipalsClient;
@@ -44,6 +45,8 @@ import reactor.core.publisher.Mono;
  * An instance of this class provides access to all the operations defined in ServicePrincipalsServicePrincipalsClient.
  */
 public final class ServicePrincipalsServicePrincipalsClientImpl implements ServicePrincipalsServicePrincipalsClient {
+    private final ClientLogger logger = new ClientLogger(ServicePrincipalsServicePrincipalsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ServicePrincipalsServicePrincipalsService service;
 
@@ -158,8 +161,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entities from servicePrincipals along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return entities from servicePrincipals.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MicrosoftGraphServicePrincipalInner>> listServicePrincipalSinglePageAsync(
@@ -211,7 +213,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
                         res.getValue().value(),
                         res.getValue().odataNextLink(),
                         null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -230,8 +232,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entities from servicePrincipals along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return entities from servicePrincipals.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MicrosoftGraphServicePrincipalInner>> listServicePrincipalSinglePageAsync(
@@ -299,7 +300,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entities from servicePrincipals as paginated response with {@link PagedFlux}.
+     * @return entities from servicePrincipals.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<MicrosoftGraphServicePrincipalInner> listServicePrincipalAsync(
@@ -324,7 +325,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      *
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entities from servicePrincipals as paginated response with {@link PagedFlux}.
+     * @return entities from servicePrincipals.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<MicrosoftGraphServicePrincipalInner> listServicePrincipalAsync() {
@@ -360,7 +361,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entities from servicePrincipals as paginated response with {@link PagedFlux}.
+     * @return entities from servicePrincipals.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MicrosoftGraphServicePrincipalInner> listServicePrincipalAsync(
@@ -386,7 +387,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      *
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entities from servicePrincipals as paginated response with {@link PagedIterable}.
+     * @return entities from servicePrincipals.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MicrosoftGraphServicePrincipalInner> listServicePrincipal() {
@@ -419,7 +420,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entities from servicePrincipals as paginated response with {@link PagedIterable}.
+     * @return entities from servicePrincipals.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MicrosoftGraphServicePrincipalInner> listServicePrincipal(
@@ -445,7 +446,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return servicePrincipal along with {@link Response} on successful completion of {@link Mono}.
+     * @return represents an Azure Active Directory object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<MicrosoftGraphServicePrincipalInner>> createServicePrincipalWithResponseAsync(
@@ -464,7 +465,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createServicePrincipal(this.client.getEndpoint(), body, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -475,7 +476,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return servicePrincipal along with {@link Response} on successful completion of {@link Mono}.
+     * @return represents an Azure Active Directory object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MicrosoftGraphServicePrincipalInner>> createServicePrincipalWithResponseAsync(
@@ -503,7 +504,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return servicePrincipal on successful completion of {@link Mono}.
+     * @return represents an Azure Active Directory object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<MicrosoftGraphServicePrincipalInner> createServicePrincipalAsync(
@@ -526,7 +527,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return servicePrincipal.
+     * @return represents an Azure Active Directory object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MicrosoftGraphServicePrincipalInner createServicePrincipal(MicrosoftGraphServicePrincipalInner body) {
@@ -541,7 +542,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return servicePrincipal along with {@link Response}.
+     * @return represents an Azure Active Directory object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MicrosoftGraphServicePrincipalInner> createServicePrincipalWithResponse(
@@ -559,8 +560,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entity from servicePrincipals by key along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return entity from servicePrincipals by key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<MicrosoftGraphServicePrincipalInner>> getServicePrincipalWithResponseAsync(
@@ -595,7 +595,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
                             expandConverted,
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -609,8 +609,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entity from servicePrincipals by key along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return entity from servicePrincipals by key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MicrosoftGraphServicePrincipalInner>> getServicePrincipalWithResponseAsync(
@@ -656,7 +655,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entity from servicePrincipals by key on successful completion of {@link Mono}.
+     * @return entity from servicePrincipals by key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<MicrosoftGraphServicePrincipalInner> getServicePrincipalAsync(
@@ -682,7 +681,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entity from servicePrincipals by key on successful completion of {@link Mono}.
+     * @return entity from servicePrincipals by key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<MicrosoftGraphServicePrincipalInner> getServicePrincipalAsync(String servicePrincipalId) {
@@ -728,7 +727,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return entity from servicePrincipals by key along with {@link Response}.
+     * @return entity from servicePrincipals by key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MicrosoftGraphServicePrincipalInner> getServicePrincipalWithResponse(
@@ -749,7 +748,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> updateServicePrincipalWithResponseAsync(
@@ -775,7 +774,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
                 context ->
                     service
                         .updateServicePrincipal(this.client.getEndpoint(), servicePrincipalId, body, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -787,7 +786,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateServicePrincipalWithResponseAsync(
@@ -820,7 +819,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> updateServicePrincipalAsync(String servicePrincipalId, MicrosoftGraphServicePrincipalInner body) {
@@ -851,7 +850,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> updateServicePrincipalWithResponse(
@@ -867,7 +866,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteServicePrincipalWithResponseAsync(String servicePrincipalId, String ifMatch) {
@@ -888,7 +887,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
                     service
                         .deleteServicePrincipal(
                             this.client.getEndpoint(), servicePrincipalId, ifMatch, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -900,7 +899,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteServicePrincipalWithResponseAsync(
@@ -928,7 +927,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteServicePrincipalAsync(String servicePrincipalId, String ifMatch) {
@@ -943,7 +942,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteServicePrincipalAsync(String servicePrincipalId) {
@@ -975,7 +974,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteServicePrincipalWithResponse(
@@ -990,7 +989,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of servicePrincipal along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return collection of servicePrincipal.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MicrosoftGraphServicePrincipalInner>> listMoreSinglePageAsync(String nextLink) {
@@ -1008,7 +1007,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
                         res.getValue().value(),
                         res.getValue().odataNextLink(),
                         null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -1019,7 +1018,7 @@ public final class ServicePrincipalsServicePrincipalsClientImpl implements Servi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws OdataErrorMainException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of servicePrincipal along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return collection of servicePrincipal.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MicrosoftGraphServicePrincipalInner>> listMoreSinglePageAsync(

@@ -35,7 +35,6 @@ steps:
         --agentpool Hosted
         --branch refs/heads/$(DefaultBranch)
         --patvar PATVAR
-        --set-managed-variables
         --debug
         ${{parameters.CIConventionOptions}}
       displayName: Create CI Pipelines for Public Repository
@@ -54,7 +53,6 @@ steps:
         --agentpool Hosted
         --branch refs/heads/$(DefaultBranch)
         --patvar PATVAR
-        --set-managed-variables
         --debug
         ${{parameters.UPConventionOptions}}
       displayName: Create UP Pipelines for Public Repository
@@ -73,7 +71,6 @@ steps:
         --agentpool Hosted
         --branch refs/heads/$(DefaultBranch)
         --patvar PATVAR
-        --set-managed-variables
         --debug
         ${{parameters.TestsConventionOptions}}
       displayName: Create Live Test Pipelines for Public Repository
@@ -93,7 +90,6 @@ steps:
         --agentpool Hosted
         --branch refs/heads/$(DefaultBranch)
         --patvar PATVAR
-        --set-managed-variables
         --debug
         ${{parameters.TestsConventionOptions}}
       displayName: Create Weekly (Multi-Cloud) Live Test Pipelines for Public Repository
@@ -113,7 +109,6 @@ steps:
         --agentpool Hosted
         --branch refs/heads/$(DefaultBranch)
         --patvar PATVAR
-        --set-managed-variables
         --debug
         ${{parameters.UPConventionOptions}}
       displayName: Create Weekly (Multi-Cloud) Unified Test Pipelines for Public Repository
@@ -137,7 +132,6 @@ steps:
         --agentpool Hosted
         --branch refs/heads/$(DefaultBranch)
         --patvar PATVAR
-        --set-managed-variables
         --debug
         --no-schedule
         ${{parameters.CIConventionOptions}}
@@ -157,7 +151,6 @@ steps:
         --agentpool Hosted
         --branch refs/heads/$(DefaultBranch)
         --patvar PATVAR
-        --set-managed-variables
         --debug
         --no-schedule
         ${{parameters.UPConventionOptions}}
@@ -177,7 +170,6 @@ steps:
         --agentpool Hosted
         --branch refs/heads/$(DefaultBranch)
         --patvar PATVAR
-        --set-managed-variables
         --debug
         --no-schedule
         ${{parameters.TestsConventionOptions}}

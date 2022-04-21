@@ -5,13 +5,12 @@
 package com.azure.resourcemanager.azurestackhci.implementation;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.ClusterInner;
 import com.azure.resourcemanager.azurestackhci.models.Cluster;
-import com.azure.resourcemanager.azurestackhci.models.ClusterDesiredProperties;
-import com.azure.resourcemanager.azurestackhci.models.ClusterPatch;
 import com.azure.resourcemanager.azurestackhci.models.ClusterReportedProperties;
+import com.azure.resourcemanager.azurestackhci.models.ClusterUpdate;
+import com.azure.resourcemanager.azurestackhci.models.CreatedByType;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
 import com.azure.resourcemanager.azurestackhci.models.Status;
 import java.time.OffsetDateTime;
@@ -48,10 +47,6 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         }
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -64,20 +59,12 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return this.innerModel().cloudId();
     }
 
-    public String cloudManagementEndpoint() {
-        return this.innerModel().cloudManagementEndpoint();
-    }
-
     public String aadClientId() {
         return this.innerModel().aadClientId();
     }
 
     public String aadTenantId() {
         return this.innerModel().aadTenantId();
-    }
-
-    public ClusterDesiredProperties desiredProperties() {
-        return this.innerModel().desiredProperties();
     }
 
     public ClusterReportedProperties reportedProperties() {
@@ -104,6 +91,30 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return this.innerModel().lastBillingTimestamp();
     }
 
+    public String createdBy() {
+        return this.innerModel().createdBy();
+    }
+
+    public CreatedByType createdByType() {
+        return this.innerModel().createdByType();
+    }
+
+    public OffsetDateTime createdAt() {
+        return this.innerModel().createdAt();
+    }
+
+    public String lastModifiedBy() {
+        return this.innerModel().lastModifiedBy();
+    }
+
+    public CreatedByType lastModifiedByType() {
+        return this.innerModel().lastModifiedByType();
+    }
+
+    public OffsetDateTime lastModifiedAt() {
+        return this.innerModel().lastModifiedAt();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -124,7 +135,7 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
 
     private String clusterName;
 
-    private ClusterPatch updateCluster;
+    private ClusterUpdate updateCluster;
 
     public ClusterImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -158,7 +169,7 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
     }
 
     public ClusterImpl update() {
-        this.updateCluster = new ClusterPatch();
+        this.updateCluster = new ClusterUpdate();
         return this;
     }
 
@@ -229,44 +240,49 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         }
     }
 
-    public ClusterImpl withCloudManagementEndpoint(String cloudManagementEndpoint) {
-        if (isInCreateMode()) {
-            this.innerModel().withCloudManagementEndpoint(cloudManagementEndpoint);
-            return this;
-        } else {
-            this.updateCluster.withCloudManagementEndpoint(cloudManagementEndpoint);
-            return this;
-        }
-    }
-
     public ClusterImpl withAadClientId(String aadClientId) {
-        if (isInCreateMode()) {
-            this.innerModel().withAadClientId(aadClientId);
-            return this;
-        } else {
-            this.updateCluster.withAadClientId(aadClientId);
-            return this;
-        }
+        this.innerModel().withAadClientId(aadClientId);
+        return this;
     }
 
     public ClusterImpl withAadTenantId(String aadTenantId) {
-        if (isInCreateMode()) {
-            this.innerModel().withAadTenantId(aadTenantId);
-            return this;
-        } else {
-            this.updateCluster.withAadTenantId(aadTenantId);
-            return this;
-        }
+        this.innerModel().withAadTenantId(aadTenantId);
+        return this;
     }
 
-    public ClusterImpl withDesiredProperties(ClusterDesiredProperties desiredProperties) {
-        if (isInCreateMode()) {
-            this.innerModel().withDesiredProperties(desiredProperties);
-            return this;
-        } else {
-            this.updateCluster.withDesiredProperties(desiredProperties);
-            return this;
-        }
+    public ClusterImpl withReportedProperties(ClusterReportedProperties reportedProperties) {
+        this.innerModel().withReportedProperties(reportedProperties);
+        return this;
+    }
+
+    public ClusterImpl withCreatedBy(String createdBy) {
+        this.innerModel().withCreatedBy(createdBy);
+        return this;
+    }
+
+    public ClusterImpl withCreatedByType(CreatedByType createdByType) {
+        this.innerModel().withCreatedByType(createdByType);
+        return this;
+    }
+
+    public ClusterImpl withCreatedAt(OffsetDateTime createdAt) {
+        this.innerModel().withCreatedAt(createdAt);
+        return this;
+    }
+
+    public ClusterImpl withLastModifiedBy(String lastModifiedBy) {
+        this.innerModel().withLastModifiedBy(lastModifiedBy);
+        return this;
+    }
+
+    public ClusterImpl withLastModifiedByType(CreatedByType lastModifiedByType) {
+        this.innerModel().withLastModifiedByType(lastModifiedByType);
+        return this;
+    }
+
+    public ClusterImpl withLastModifiedAt(OffsetDateTime lastModifiedAt) {
+        this.innerModel().withLastModifiedAt(lastModifiedAt);
+        return this;
     }
 
     private boolean isInCreateMode() {

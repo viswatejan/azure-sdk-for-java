@@ -35,7 +35,7 @@ public final class AppConfigurationBusRefreshEventListener implements Applicatio
     @Override
     public void onApplicationEvent(AppConfigurationBusRefreshEvent event) {
         try {
-            appConfigurationRefresh.expireRefreshInterval(event.getEndpoint(), event.getSyncToken());
+            appConfigurationRefresh.expireRefreshInterval(event.getEndpoint());
         } catch (Exception e) {
             LOGGER.error("Refresh failed with unexpected exception.", e);
         }

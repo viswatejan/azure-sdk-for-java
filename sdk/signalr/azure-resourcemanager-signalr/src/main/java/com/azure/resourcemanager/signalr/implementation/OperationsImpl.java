@@ -11,9 +11,10 @@ import com.azure.resourcemanager.signalr.fluent.OperationsClient;
 import com.azure.resourcemanager.signalr.fluent.models.OperationInner;
 import com.azure.resourcemanager.signalr.models.Operation;
 import com.azure.resourcemanager.signalr.models.Operations;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class OperationsImpl implements Operations {
-    private static final ClientLogger LOGGER = new ClientLogger(OperationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationsImpl.class);
 
     private final OperationsClient innerClient;
 

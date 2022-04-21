@@ -13,9 +13,10 @@ import com.azure.resourcemanager.applicationinsights.fluent.WebTestsClient;
 import com.azure.resourcemanager.applicationinsights.fluent.models.WebTestInner;
 import com.azure.resourcemanager.applicationinsights.models.WebTest;
 import com.azure.resourcemanager.applicationinsights.models.WebTests;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class WebTestsImpl implements WebTests {
-    private static final ClientLogger LOGGER = new ClientLogger(WebTestsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(WebTestsImpl.class);
 
     private final WebTestsClient innerClient;
 
@@ -94,7 +95,7 @@ public final class WebTestsImpl implements WebTests {
     public WebTest getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -102,7 +103,7 @@ public final class WebTestsImpl implements WebTests {
         }
         String webTestName = Utils.getValueFromIdByName(id, "webtests");
         if (webTestName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'webtests'.", id)));
@@ -113,7 +114,7 @@ public final class WebTestsImpl implements WebTests {
     public Response<WebTest> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -121,7 +122,7 @@ public final class WebTestsImpl implements WebTests {
         }
         String webTestName = Utils.getValueFromIdByName(id, "webtests");
         if (webTestName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'webtests'.", id)));
@@ -132,7 +133,7 @@ public final class WebTestsImpl implements WebTests {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -140,7 +141,7 @@ public final class WebTestsImpl implements WebTests {
         }
         String webTestName = Utils.getValueFromIdByName(id, "webtests");
         if (webTestName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'webtests'.", id)));
@@ -151,7 +152,7 @@ public final class WebTestsImpl implements WebTests {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -159,7 +160,7 @@ public final class WebTestsImpl implements WebTests {
         }
         String webTestName = Utils.getValueFromIdByName(id, "webtests");
         if (webTestName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'webtests'.", id)));

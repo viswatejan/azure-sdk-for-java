@@ -74,13 +74,6 @@ public interface StorageCacheManagementClient {
     AscOperationsClient getAscOperations();
 
     /**
-     * Gets the AscUsagesClient object to access its operations.
-     *
-     * @return the AscUsagesClient object.
-     */
-    AscUsagesClient getAscUsages();
-
-    /**
      * Gets the CachesClient object to access its operations.
      *
      * @return the CachesClient object.

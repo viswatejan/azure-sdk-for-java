@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.CredentialReference;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Dynamics linked service properties. */
 @Fluent
 public final class DynamicsLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DynamicsLinkedServiceTypeProperties.class);
+
     /*
      * The deployment type of the Dynamics instance. 'Online' for Dynamics
      * Online and 'OnPremisesWithIfd' for Dynamics on-premises with Ifd. Type:
@@ -418,13 +421,13 @@ public final class DynamicsLinkedServiceTypeProperties {
      */
     public void validate() {
         if (deploymentType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property deploymentType in model DynamicsLinkedServiceTypeProperties"));
         }
         if (authenticationType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property authenticationType in model DynamicsLinkedServiceTypeProperties"));
@@ -439,6 +442,4 @@ public final class DynamicsLinkedServiceTypeProperties {
             credential().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DynamicsLinkedServiceTypeProperties.class);
 }

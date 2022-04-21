@@ -11,9 +11,10 @@ import com.azure.resourcemanager.apimanagement.fluent.ApiManagementOperationsCli
 import com.azure.resourcemanager.apimanagement.fluent.models.OperationInner;
 import com.azure.resourcemanager.apimanagement.models.ApiManagementOperations;
 import com.azure.resourcemanager.apimanagement.models.Operation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ApiManagementOperationsImpl implements ApiManagementOperations {
-    private static final ClientLogger LOGGER = new ClientLogger(ApiManagementOperationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiManagementOperationsImpl.class);
 
     private final ApiManagementOperationsClient innerClient;
 

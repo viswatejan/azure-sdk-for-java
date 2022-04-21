@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.ProductPoliciesClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.PolicyCollectionInner;
 import com.azure.resourcemanager.apimanagement.fluent.models.PolicyContractInner;
@@ -37,6 +38,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ProductPoliciesClient. */
 public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
+    private final ClientLogger logger = new ClientLogger(ProductPoliciesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ProductPoliciesService service;
 
@@ -159,8 +162,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the policy configuration at the Product level along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the policy configuration at the Product level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PolicyCollectionInner>> listByProductWithResponseAsync(
@@ -214,8 +216,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the policy configuration at the Product level along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the policy configuration at the Product level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PolicyCollectionInner>> listByProductWithResponseAsync(
@@ -265,7 +266,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the policy configuration at the Product level on successful completion of {@link Mono}.
+     * @return the policy configuration at the Product level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PolicyCollectionInner> listByProductAsync(
@@ -307,7 +308,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the policy configuration at the Product level along with {@link Response}.
+     * @return the policy configuration at the Product level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PolicyCollectionInner> listByProductWithResponse(
@@ -325,7 +326,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ETag of the policy configuration at the Product level on successful completion of {@link Mono}.
+     * @return the ETag of the policy configuration at the Product level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ProductPoliciesGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -384,7 +385,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ETag of the policy configuration at the Product level on successful completion of {@link Mono}.
+     * @return the ETag of the policy configuration at the Product level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ProductPoliciesGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -439,7 +440,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ETag of the policy configuration at the Product level on successful completion of {@link Mono}.
+     * @return the ETag of the policy configuration at the Product level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(
@@ -494,7 +495,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the policy configuration at the Product level on successful completion of {@link Mono}.
+     * @return the policy configuration at the Product level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ProductPoliciesGetResponse> getWithResponseAsync(
@@ -559,7 +560,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the policy configuration at the Product level on successful completion of {@link Mono}.
+     * @return the policy configuration at the Product level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ProductPoliciesGetResponse> getWithResponseAsync(
@@ -621,7 +622,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the policy configuration at the Product level on successful completion of {@link Mono}.
+     * @return the policy configuration at the Product level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PolicyContractInner> getAsync(
@@ -651,7 +652,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the policy configuration at the Product level on successful completion of {@link Mono}.
+     * @return the policy configuration at the Product level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PolicyContractInner> getAsync(
@@ -724,7 +725,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return policy Contract details on successful completion of {@link Mono}.
+     * @return policy Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ProductPoliciesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -797,7 +798,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return policy Contract details on successful completion of {@link Mono}.
+     * @return policy Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ProductPoliciesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -867,7 +868,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return policy Contract details on successful completion of {@link Mono}.
+     * @return policy Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PolicyContractInner> createOrUpdateAsync(
@@ -899,7 +900,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return policy Contract details on successful completion of {@link Mono}.
+     * @return policy Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PolicyContractInner> createOrUpdateAsync(
@@ -985,7 +986,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1050,7 +1051,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1116,7 +1117,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1157,7 +1158,7 @@ public final class ProductPoliciesClientImpl implements ProductPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(

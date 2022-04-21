@@ -12,9 +12,10 @@ import com.azure.resourcemanager.apimanagement.fluent.PortalSettingsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.PortalSettingsCollectionInner;
 import com.azure.resourcemanager.apimanagement.models.PortalSettings;
 import com.azure.resourcemanager.apimanagement.models.PortalSettingsCollection;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PortalSettingsImpl implements PortalSettings {
-    private static final ClientLogger LOGGER = new ClientLogger(PortalSettingsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PortalSettingsImpl.class);
 
     private final PortalSettingsClient innerClient;
 

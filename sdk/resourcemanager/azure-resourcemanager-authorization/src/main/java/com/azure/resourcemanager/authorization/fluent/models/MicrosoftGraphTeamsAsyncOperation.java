@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** teamsAsyncOperation. */
 @Fluent
 public final class MicrosoftGraphTeamsAsyncOperation extends MicrosoftGraphEntity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphTeamsAsyncOperation.class);
+
     /*
      * Number of times the operation was attempted before being marked
      * successful or failed.
@@ -42,13 +45,13 @@ public final class MicrosoftGraphTeamsAsyncOperation extends MicrosoftGraphEntit
     private OffsetDateTime lastActionDateTime;
 
     /*
-     * teamsAsyncOperationType
+     * The operationType property.
      */
     @JsonProperty(value = "operationType")
     private MicrosoftGraphTeamsAsyncOperationType operationType;
 
     /*
-     * teamsAsyncOperationStatus
+     * The status property.
      */
     @JsonProperty(value = "status")
     private MicrosoftGraphTeamsAsyncOperationStatus status;
@@ -156,7 +159,7 @@ public final class MicrosoftGraphTeamsAsyncOperation extends MicrosoftGraphEntit
     }
 
     /**
-     * Get the operationType property: teamsAsyncOperationType.
+     * Get the operationType property: The operationType property.
      *
      * @return the operationType value.
      */
@@ -165,7 +168,7 @@ public final class MicrosoftGraphTeamsAsyncOperation extends MicrosoftGraphEntit
     }
 
     /**
-     * Set the operationType property: teamsAsyncOperationType.
+     * Set the operationType property: The operationType property.
      *
      * @param operationType the operationType value to set.
      * @return the MicrosoftGraphTeamsAsyncOperation object itself.
@@ -176,7 +179,7 @@ public final class MicrosoftGraphTeamsAsyncOperation extends MicrosoftGraphEntit
     }
 
     /**
-     * Get the status property: teamsAsyncOperationStatus.
+     * Get the status property: The status property.
      *
      * @return the status value.
      */
@@ -185,7 +188,7 @@ public final class MicrosoftGraphTeamsAsyncOperation extends MicrosoftGraphEntit
     }
 
     /**
-     * Set the status property: teamsAsyncOperationStatus.
+     * Set the status property: The status property.
      *
      * @param status the status value to set.
      * @return the MicrosoftGraphTeamsAsyncOperation object itself.

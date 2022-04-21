@@ -266,11 +266,4 @@ public final class FtpReadSettings extends StoreReadSettings {
         this.disableChunking = disableChunking;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public FtpReadSettings setMaxConcurrentConnections(Object maxConcurrentConnections) {
-        super.setMaxConcurrentConnections(maxConcurrentConnections);
-        return this;
-    }
 }

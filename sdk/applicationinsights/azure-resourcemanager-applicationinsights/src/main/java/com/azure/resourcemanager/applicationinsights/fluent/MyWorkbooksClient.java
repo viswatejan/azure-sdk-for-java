@@ -24,8 +24,7 @@ public interface MyWorkbooksClient {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified resource group and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified resource group and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MyWorkbookInner> listByResourceGroup(String resourceGroupName, CategoryType category);
@@ -44,8 +43,7 @@ public interface MyWorkbooksClient {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified resource group and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified resource group and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MyWorkbookInner> listByResourceGroup(
@@ -64,8 +62,7 @@ public interface MyWorkbooksClient {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified subscription and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified subscription and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MyWorkbookInner> list(CategoryType category);
@@ -82,8 +79,7 @@ public interface MyWorkbooksClient {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified subscription and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified subscription and category.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MyWorkbookInner> list(

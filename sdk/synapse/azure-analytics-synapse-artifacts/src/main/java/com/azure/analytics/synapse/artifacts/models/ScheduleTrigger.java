@@ -9,7 +9,6 @@ import com.azure.core.annotation.JsonFlatten;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import java.util.List;
 
 /** Trigger that creates pipeline runs periodically, on schedule. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -40,27 +39,6 @@ public class ScheduleTrigger extends MultiplePipelineTrigger {
      */
     public ScheduleTrigger setRecurrence(ScheduleTriggerRecurrence recurrence) {
         this.recurrence = recurrence;
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ScheduleTrigger setPipelines(List<TriggerPipelineReference> pipelines) {
-        super.setPipelines(pipelines);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ScheduleTrigger setDescription(String description) {
-        super.setDescription(description);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ScheduleTrigger setAnnotations(List<Object> annotations) {
-        super.setAnnotations(annotations);
         return this;
     }
 }

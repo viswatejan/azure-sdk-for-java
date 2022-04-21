@@ -10,8 +10,6 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.WatchlistInner;
-import com.azure.resourcemanager.securityinsights.models.WatchlistsCreateOrUpdateResponse;
-import com.azure.resourcemanager.securityinsights.models.WatchlistsDeleteResponse;
 
 /** An instance of this class provides access to all the operations defined in WatchlistsClient. */
 public interface WatchlistsClient {
@@ -23,7 +21,7 @@ public interface WatchlistsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all watchlists, without watchlist items as paginated response with {@link PagedIterable}.
+     * @return all watchlists, without watchlist items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WatchlistInner> list(String resourceGroupName, String workspaceName);
@@ -33,18 +31,14 @@ public interface WatchlistsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param skipToken Skiptoken is only used if a previous operation returned a partial result. If a previous response
-     *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
-     *     specifies a starting point to use for subsequent calls. Optional.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all watchlists, without watchlist items as paginated response with {@link PagedIterable}.
+     * @return all watchlists, without watchlist items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WatchlistInner> list(
-        String resourceGroupName, String workspaceName, String skipToken, Context context);
+    PagedIterable<WatchlistInner> list(String resourceGroupName, String workspaceName, Context context);
 
     /**
      * Gets a watchlist, without its watchlist items.
@@ -99,18 +93,15 @@ public interface WatchlistsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WatchlistsDeleteResponse deleteWithResponse(
+    Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String watchlistAlias, Context context);
 
     /**
-     * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
-     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
-     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
-     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
-     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
+     * Creates or updates a watchlist and its watchlist items (bulk creation, e.g. through text/csv content type). To
+     * create a Watchlist and its items, we should call this endpoint with rawContent and contentType properties.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -126,11 +117,8 @@ public interface WatchlistsClient {
         String resourceGroupName, String workspaceName, String watchlistAlias, WatchlistInner watchlist);
 
     /**
-     * Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To
-     * create a Watchlist and its Items, we should call this endpoint with either rawContent or a valid SAR URI and
-     * contentType properties. The rawContent is mainly used for small watchlist (content size below 3.8 MB). The SAS
-     * URI enables the creation of large watchlist, where the content size can go up to 500 MB. The status of processing
-     * such large file can be polled through the URL returned in Azure-AsyncOperation header.
+     * Creates or updates a watchlist and its watchlist items (bulk creation, e.g. through text/csv content type). To
+     * create a Watchlist and its items, we should call this endpoint with rawContent and contentType properties.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -140,10 +128,10 @@ public interface WatchlistsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist in Azure Security Insights.
+     * @return represents a Watchlist in Azure Security Insights along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WatchlistsCreateOrUpdateResponse createOrUpdateWithResponse(
+    Response<WatchlistInner> createOrUpdateWithResponse(
         String resourceGroupName,
         String workspaceName,
         String watchlistAlias,

@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.resourcehealth.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resourcehealth.models.AvailabilityStatusProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** availabilityStatus of a resource. */
 @Fluent
 public final class AvailabilityStatusInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AvailabilityStatusInner.class);
+
     /*
      * Azure Resource Manager Identity for the availabilityStatuses resource.
      */

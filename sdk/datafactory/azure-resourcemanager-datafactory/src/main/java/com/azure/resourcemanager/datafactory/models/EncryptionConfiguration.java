@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Definition of CMK for the factory. */
 @Fluent
 public final class EncryptionConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(EncryptionConfiguration.class);
+
     /*
      * The name of the key in Azure Key Vault to use as Customer Managed Key.
      */
@@ -126,12 +129,12 @@ public final class EncryptionConfiguration {
      */
     public void validate() {
         if (keyName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property keyName in model EncryptionConfiguration"));
         }
         if (vaultBaseUrl() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property vaultBaseUrl in model EncryptionConfiguration"));
@@ -140,6 +143,4 @@ public final class EncryptionConfiguration {
             identity().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(EncryptionConfiguration.class);
 }

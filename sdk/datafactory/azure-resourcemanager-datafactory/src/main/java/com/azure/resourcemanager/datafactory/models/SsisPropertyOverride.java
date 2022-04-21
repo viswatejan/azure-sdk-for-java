@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** SSIS property override. */
 @Fluent
 public final class SsisPropertyOverride {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SsisPropertyOverride.class);
+
     /*
      * SSIS package property override value. Type: string (or Expression with
      * resultType string).
@@ -76,11 +79,9 @@ public final class SsisPropertyOverride {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model SsisPropertyOverride"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SsisPropertyOverride.class);
 }

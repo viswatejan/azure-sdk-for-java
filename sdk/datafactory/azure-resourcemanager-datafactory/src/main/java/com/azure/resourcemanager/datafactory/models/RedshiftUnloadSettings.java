@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -15,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public final class RedshiftUnloadSettings {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RedshiftUnloadSettings.class);
+
     /*
      * The name of the Amazon S3 linked service which will be used for the
      * unload operation when copying from the Amazon Redshift source.
@@ -84,7 +87,7 @@ public final class RedshiftUnloadSettings {
      */
     public void validate() {
         if (s3LinkedServiceName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property s3LinkedServiceName in model RedshiftUnloadSettings"));
@@ -92,12 +95,10 @@ public final class RedshiftUnloadSettings {
             s3LinkedServiceName().validate();
         }
         if (bucketName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property bucketName in model RedshiftUnloadSettings"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RedshiftUnloadSettings.class);
 }

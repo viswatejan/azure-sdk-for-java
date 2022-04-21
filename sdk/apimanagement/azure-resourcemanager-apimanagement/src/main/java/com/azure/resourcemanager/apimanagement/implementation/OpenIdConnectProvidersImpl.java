@@ -18,9 +18,10 @@ import com.azure.resourcemanager.apimanagement.models.OpenIdConnectProvidersGetE
 import com.azure.resourcemanager.apimanagement.models.OpenIdConnectProvidersGetResponse;
 import com.azure.resourcemanager.apimanagement.models.OpenIdConnectProvidersListSecretsResponse;
 import com.azure.resourcemanager.apimanagement.models.OpenidConnectProviderContract;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class OpenIdConnectProvidersImpl implements OpenIdConnectProviders {
-    private static final ClientLogger LOGGER = new ClientLogger(OpenIdConnectProvidersImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OpenIdConnectProvidersImpl.class);
 
     private final OpenIdConnectProvidersClient innerClient;
 
@@ -115,7 +116,7 @@ public final class OpenIdConnectProvidersImpl implements OpenIdConnectProviders 
     public OpenidConnectProviderContract getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -123,14 +124,14 @@ public final class OpenIdConnectProvidersImpl implements OpenIdConnectProviders 
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String opid = Utils.getValueFromIdByName(id, "openidConnectProviders");
         if (opid == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -144,7 +145,7 @@ public final class OpenIdConnectProvidersImpl implements OpenIdConnectProviders 
     public Response<OpenidConnectProviderContract> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -152,14 +153,14 @@ public final class OpenIdConnectProvidersImpl implements OpenIdConnectProviders 
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String opid = Utils.getValueFromIdByName(id, "openidConnectProviders");
         if (opid == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -173,7 +174,7 @@ public final class OpenIdConnectProvidersImpl implements OpenIdConnectProviders 
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -181,14 +182,14 @@ public final class OpenIdConnectProvidersImpl implements OpenIdConnectProviders 
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String opid = Utils.getValueFromIdByName(id, "openidConnectProviders");
         if (opid == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -197,13 +198,13 @@ public final class OpenIdConnectProvidersImpl implements OpenIdConnectProviders 
                                 id)));
         }
         String localIfMatch = null;
-        this.deleteWithResponse(resourceGroupName, serviceName, opid, localIfMatch, Context.NONE);
+        this.deleteWithResponse(resourceGroupName, serviceName, opid, localIfMatch, Context.NONE).getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -211,14 +212,14 @@ public final class OpenIdConnectProvidersImpl implements OpenIdConnectProviders 
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String opid = Utils.getValueFromIdByName(id, "openidConnectProviders");
         if (opid == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

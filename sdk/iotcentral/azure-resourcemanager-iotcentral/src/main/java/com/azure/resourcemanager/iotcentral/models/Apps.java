@@ -31,34 +31,9 @@ public interface Apps {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of an IoT Central application along with {@link Response}.
+     * @return the metadata of an IoT Central application.
      */
     Response<App> getByResourceGroupWithResponse(String resourceGroupName, String resourceName, Context context);
-
-    /**
-     * Update the metadata of an IoT Central application.
-     *
-     * @param resourceGroupName The name of the resource group that contains the IoT Central application.
-     * @param resourceName The ARM resource name of the IoT Central application.
-     * @param appPatch The IoT Central application metadata and security metadata.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void update(String resourceGroupName, String resourceName, AppPatch appPatch);
-
-    /**
-     * Update the metadata of an IoT Central application.
-     *
-     * @param resourceGroupName The name of the resource group that contains the IoT Central application.
-     * @param resourceName The ARM resource name of the IoT Central application.
-     * @param appPatch The IoT Central application metadata and security metadata.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void update(String resourceGroupName, String resourceName, AppPatch appPatch, Context context);
 
     /**
      * Delete an IoT Central application.
@@ -88,7 +63,7 @@ public interface Apps {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all IoT Central Applications in a subscription as paginated response with {@link PagedIterable}.
+     * @return all IoT Central Applications in a subscription.
      */
     PagedIterable<App> list();
 
@@ -99,7 +74,7 @@ public interface Apps {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all IoT Central Applications in a subscription as paginated response with {@link PagedIterable}.
+     * @return all IoT Central Applications in a subscription.
      */
     PagedIterable<App> list(Context context);
 
@@ -110,7 +85,7 @@ public interface Apps {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the IoT Central Applications in a resource group as paginated response with {@link PagedIterable}.
+     * @return all the IoT Central Applications in a resource group.
      */
     PagedIterable<App> listByResourceGroup(String resourceGroupName);
 
@@ -122,7 +97,7 @@ public interface Apps {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the IoT Central Applications in a resource group as paginated response with {@link PagedIterable}.
+     * @return all the IoT Central Applications in a resource group.
      */
     PagedIterable<App> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -147,8 +122,7 @@ public interface Apps {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties indicating whether a given IoT Central application name or subdomain is available along
-     *     with {@link Response}.
+     * @return the properties indicating whether a given IoT Central application name or subdomain is available.
      */
     Response<AppAvailabilityInfo> checkNameAvailabilityWithResponse(OperationInputs operationInputs, Context context);
 
@@ -173,8 +147,7 @@ public interface Apps {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties indicating whether a given IoT Central application name or subdomain is available along
-     *     with {@link Response}.
+     * @return the properties indicating whether a given IoT Central application name or subdomain is available.
      */
     Response<AppAvailabilityInfo> checkSubdomainAvailabilityWithResponse(
         OperationInputs operationInputs, Context context);
@@ -184,7 +157,7 @@ public interface Apps {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all available application templates as paginated response with {@link PagedIterable}.
+     * @return all available application templates.
      */
     PagedIterable<AppTemplate> listTemplates();
 
@@ -195,7 +168,7 @@ public interface Apps {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all available application templates as paginated response with {@link PagedIterable}.
+     * @return all available application templates.
      */
     PagedIterable<AppTemplate> listTemplates(Context context);
 
@@ -206,7 +179,7 @@ public interface Apps {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of an IoT Central application along with {@link Response}.
+     * @return the metadata of an IoT Central application.
      */
     App getById(String id);
 
@@ -218,7 +191,7 @@ public interface Apps {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of an IoT Central application along with {@link Response}.
+     * @return the metadata of an IoT Central application.
      */
     Response<App> getByIdWithResponse(String id, Context context);
 

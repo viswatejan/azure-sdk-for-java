@@ -11,6 +11,10 @@ public class CorePerfStressOptions extends PerfStressOptions {
     @Parameter(names = { "-e", "--endpoint" }, description = "The base endpoint for rest proxy tests")
     private String endpoint = "http://unused";
 
+    @Parameter(names = { "--http-client" }, description = "The http client to use. Can be netty, okhttp. "
+        + "Must be specified if non-mock backend type is used otherwise is ignored")
+    private HttpClientType httpClient = null;
+
     @Parameter(names = { "--backend-type"}, description = "The backend type used for tests. "
         + "Options are mock, blobs or wiremock. "
         + "Defaults to mock.")
@@ -32,6 +36,15 @@ public class CorePerfStressOptions extends PerfStressOptions {
      */
     public String getEndpoint() {
         return endpoint;
+    }
+
+    /**
+     * The http client to use. Can be netty, okhttp.
+     * Must be specified if non-mock backend type is used otherwise is ignored
+     * @return The http client to use.
+     */
+    public HttpClientType getHttpClient() {
+        return httpClient;
     }
 
     /**
@@ -58,6 +71,10 @@ public class CorePerfStressOptions extends PerfStressOptions {
      */
     public BinaryDataSource getBinaryDataSource() {
         return binaryDataSource;
+    }
+
+    public enum HttpClientType {
+        NETTY, OKHTTP
     }
 
     public enum BackendType {

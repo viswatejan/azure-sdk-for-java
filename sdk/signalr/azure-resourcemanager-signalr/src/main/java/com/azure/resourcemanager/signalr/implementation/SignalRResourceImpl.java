@@ -11,7 +11,6 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.signalr.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.signalr.fluent.models.SharedPrivateLinkResourceInner;
 import com.azure.resourcemanager.signalr.fluent.models.SignalRResourceInner;
-import com.azure.resourcemanager.signalr.models.LiveTraceConfiguration;
 import com.azure.resourcemanager.signalr.models.ManagedIdentity;
 import com.azure.resourcemanager.signalr.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
@@ -145,10 +144,6 @@ public final class SignalRResourceImpl implements SignalRResource, SignalRResour
         } else {
             return Collections.emptyList();
         }
-    }
-
-    public LiveTraceConfiguration liveTraceConfiguration() {
-        return this.innerModel().liveTraceConfiguration();
     }
 
     public ResourceLogConfiguration resourceLogConfiguration() {
@@ -339,11 +334,6 @@ public final class SignalRResourceImpl implements SignalRResource, SignalRResour
 
     public SignalRResourceImpl withFeatures(List<SignalRFeature> features) {
         this.innerModel().withFeatures(features);
-        return this;
-    }
-
-    public SignalRResourceImpl withLiveTraceConfiguration(LiveTraceConfiguration liveTraceConfiguration) {
-        this.innerModel().withLiveTraceConfiguration(liveTraceConfiguration);
         return this;
     }
 

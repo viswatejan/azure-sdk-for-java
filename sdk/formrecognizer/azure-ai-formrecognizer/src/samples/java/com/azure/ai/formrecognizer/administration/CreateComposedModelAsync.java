@@ -55,6 +55,7 @@ public class CreateComposedModelAsync {
         String labeledModelId2 = model2Poller.getSyncPoller().getFinalResult().getModelId();
 
         client.beginCreateComposedModel(Arrays.asList(labeledModelId1, labeledModelId2),
+                "my-composed-model",
                 new CreateComposedModelOptions().setDescription("my composed model desc"))
             .setPollInterval(Duration.ofSeconds(5))
             .flatMap(AsyncPollResponse::getFinalResult)

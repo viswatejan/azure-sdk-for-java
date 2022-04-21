@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.mediaservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A list of private link resources. */
 @Fluent
 public final class PrivateLinkResourceListResultInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateLinkResourceListResultInner.class);
+
     /*
      * Array of private link resources
      */

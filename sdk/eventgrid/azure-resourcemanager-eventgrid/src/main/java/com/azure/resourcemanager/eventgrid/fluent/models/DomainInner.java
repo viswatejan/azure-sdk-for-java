@@ -7,14 +7,14 @@ package com.azure.resourcemanager.eventgrid.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.eventgrid.models.DataResidencyBoundary;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.eventgrid.models.DomainProvisioningState;
 import com.azure.resourcemanager.eventgrid.models.IdentityInfo;
 import com.azure.resourcemanager.eventgrid.models.InboundIpRule;
 import com.azure.resourcemanager.eventgrid.models.InputSchema;
 import com.azure.resourcemanager.eventgrid.models.InputSchemaMapping;
 import com.azure.resourcemanager.eventgrid.models.PublicNetworkAccess;
-import com.azure.resourcemanager.eventgrid.models.ResourceSku;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +22,8 @@ import java.util.Map;
 /** EventGrid Domain. */
 @Fluent
 public final class DomainInner extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DomainInner.class);
+
     /*
      * Properties of the Event Grid Domain resource.
      */
@@ -29,22 +31,16 @@ public final class DomainInner extends Resource {
     private DomainProperties innerProperties;
 
     /*
-     * The Sku pricing tier for the Event Grid Domain resource.
+     * The system metadata relating to Domain resource.
      */
-    @JsonProperty(value = "sku")
-    private ResourceSku sku;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /*
      * Identity information for the Event Grid Domain resource.
      */
     @JsonProperty(value = "identity")
     private IdentityInfo identity;
-
-    /*
-     * The system metadata relating to the Event Grid Domain resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
 
     /**
      * Get the innerProperties property: Properties of the Event Grid Domain resource.
@@ -56,23 +52,12 @@ public final class DomainInner extends Resource {
     }
 
     /**
-     * Get the sku property: The Sku pricing tier for the Event Grid Domain resource.
+     * Get the systemData property: The system metadata relating to Domain resource.
      *
-     * @return the sku value.
+     * @return the systemData value.
      */
-    public ResourceSku sku() {
-        return this.sku;
-    }
-
-    /**
-     * Set the sku property: The Sku pricing tier for the Event Grid Domain resource.
-     *
-     * @param sku the sku value to set.
-     * @return the DomainInner object itself.
-     */
-    public DomainInner withSku(ResourceSku sku) {
-        this.sku = sku;
-        return this;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -93,15 +78,6 @@ public final class DomainInner extends Resource {
     public DomainInner withIdentity(IdentityInfo identity) {
         this.identity = identity;
         return this;
-    }
-
-    /**
-     * Get the systemData property: The system metadata relating to the Event Grid Domain resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -137,7 +113,7 @@ public final class DomainInner extends Resource {
     }
 
     /**
-     * Get the endpoint property: Endpoint for the Event Grid Domain Resource which is used for publishing the events.
+     * Get the endpoint property: Endpoint for the domain.
      *
      * @return the endpoint value.
      */
@@ -147,7 +123,7 @@ public final class DomainInner extends Resource {
 
     /**
      * Get the inputSchema property: This determines the format that Event Grid should expect for incoming events
-     * published to the Event Grid Domain Resource.
+     * published to the domain.
      *
      * @return the inputSchema value.
      */
@@ -157,7 +133,7 @@ public final class DomainInner extends Resource {
 
     /**
      * Set the inputSchema property: This determines the format that Event Grid should expect for incoming events
-     * published to the Event Grid Domain Resource.
+     * published to the domain.
      *
      * @param inputSchema the inputSchema value to set.
      * @return the DomainInner object itself.
@@ -196,7 +172,7 @@ public final class DomainInner extends Resource {
     }
 
     /**
-     * Get the metricResourceId property: Metric resource id for the Event Grid Domain Resource.
+     * Get the metricResourceId property: Metric resource id for the domain.
      *
      * @return the metricResourceId value.
      */
@@ -362,29 +338,6 @@ public final class DomainInner extends Resource {
     }
 
     /**
-     * Get the dataResidencyBoundary property: Data Residency Boundary of the resource.
-     *
-     * @return the dataResidencyBoundary value.
-     */
-    public DataResidencyBoundary dataResidencyBoundary() {
-        return this.innerProperties() == null ? null : this.innerProperties().dataResidencyBoundary();
-    }
-
-    /**
-     * Set the dataResidencyBoundary property: Data Residency Boundary of the resource.
-     *
-     * @param dataResidencyBoundary the dataResidencyBoundary value to set.
-     * @return the DomainInner object itself.
-     */
-    public DomainInner withDataResidencyBoundary(DataResidencyBoundary dataResidencyBoundary) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DomainProperties();
-        }
-        this.innerProperties().withDataResidencyBoundary(dataResidencyBoundary);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -392,9 +345,6 @@ public final class DomainInner extends Resource {
     public void validate() {
         if (innerProperties() != null) {
             innerProperties().validate();
-        }
-        if (sku() != null) {
-            sku().validate();
         }
         if (identity() != null) {
             identity().validate();

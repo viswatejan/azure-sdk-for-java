@@ -6,12 +6,15 @@ package com.azure.resourcemanager.applicationinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Describes the body of a purge request for an App Insights component. */
 @Fluent
 public final class ComponentPurgeBody {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ComponentPurgeBody.class);
+
     /*
      * Table from which to purge data.
      */
@@ -72,18 +75,16 @@ public final class ComponentPurgeBody {
      */
     public void validate() {
         if (table() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property table in model ComponentPurgeBody"));
         }
         if (filters() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property filters in model ComponentPurgeBody"));
         } else {
             filters().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ComponentPurgeBody.class);
 }

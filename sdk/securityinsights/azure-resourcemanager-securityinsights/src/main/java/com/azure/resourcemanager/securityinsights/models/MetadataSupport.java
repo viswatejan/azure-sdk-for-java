@@ -6,11 +6,14 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Support information for the content item. */
 @Fluent
 public final class MetadataSupport {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MetadataSupport.class);
+
     /*
      * Type of support for content item
      */
@@ -122,11 +125,9 @@ public final class MetadataSupport {
      */
     public void validate() {
         if (tier() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property tier in model MetadataSupport"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MetadataSupport.class);
 }

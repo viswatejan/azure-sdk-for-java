@@ -5,19 +5,24 @@
 package com.azure.resourcemanager.signalr.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters describes the request to regenerate access keys. */
 @Fluent
 public final class RegenerateKeyParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RegenerateKeyParameters.class);
+
     /*
-     * The type of access key.
+     * The keyType to regenerate. Must be either 'primary' or
+     * 'secondary'(case-insensitive).
      */
     @JsonProperty(value = "keyType")
     private KeyType keyType;
 
     /**
-     * Get the keyType property: The type of access key.
+     * Get the keyType property: The keyType to regenerate. Must be either 'primary' or 'secondary'(case-insensitive).
      *
      * @return the keyType value.
      */
@@ -26,7 +31,7 @@ public final class RegenerateKeyParameters {
     }
 
     /**
-     * Set the keyType property: The type of access key.
+     * Set the keyType property: The keyType to regenerate. Must be either 'primary' or 'secondary'(case-insensitive).
      *
      * @param keyType the keyType value to set.
      * @return the RegenerateKeyParameters object itself.

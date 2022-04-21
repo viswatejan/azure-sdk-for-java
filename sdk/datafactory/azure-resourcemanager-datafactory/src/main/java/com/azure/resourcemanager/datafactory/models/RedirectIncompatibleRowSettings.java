@@ -16,6 +16,8 @@ import java.util.Map;
 /** Redirect incompatible row settings. */
 @Fluent
 public final class RedirectIncompatibleRowSettings {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RedirectIncompatibleRowSettings.class);
+
     /*
      * Name of the Azure Storage, Storage SAS, or Azure Data Lake Store linked
      * service used for redirecting incompatible row. Must be specified if
@@ -119,12 +121,10 @@ public final class RedirectIncompatibleRowSettings {
      */
     public void validate() {
         if (linkedServiceName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property linkedServiceName in model RedirectIncompatibleRowSettings"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RedirectIncompatibleRowSettings.class);
 }

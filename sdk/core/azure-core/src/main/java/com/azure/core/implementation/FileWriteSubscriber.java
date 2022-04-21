@@ -60,10 +60,10 @@ public final class FileWriteSubscriber implements Subscriber<ByteBuffer> {
             } else {
                 write(bytes);
             }
-        } catch (Exception ex) {
+        } catch (Throwable throwable) {
             // If writing has an error, and it isn't caught, there is a possibility for it to deadlock the reactive
             // stream. Catch the exception and propagate it manually so that doesn't happen.
-            onError(ex);
+            onError(throwable);
         }
     }
 

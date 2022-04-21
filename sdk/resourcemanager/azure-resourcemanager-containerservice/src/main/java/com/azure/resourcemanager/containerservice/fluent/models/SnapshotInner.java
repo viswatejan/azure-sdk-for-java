@@ -18,17 +18,25 @@ import java.util.Map;
 @Fluent
 public final class SnapshotInner extends Resource {
     /*
+     * The system metadata relating to this snapshot.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /*
      * Properties of a snapshot.
      */
     @JsonProperty(value = "properties")
     private SnapshotProperties innerProperties;
 
-    /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+    /**
+     * Get the systemData property: The system metadata relating to this snapshot.
+     *
+     * @return the systemData value.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    public SystemData systemData() {
+        return this.systemData;
+    }
 
     /**
      * Get the innerProperties property: Properties of a snapshot.
@@ -37,15 +45,6 @@ public final class SnapshotInner extends Resource {
      */
     private SnapshotProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /** {@inheritDoc} */

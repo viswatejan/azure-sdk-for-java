@@ -36,10 +36,6 @@ public final class OperationResultsDescriptionImpl implements OperationResultsDe
         return this.innerModel().startTime();
     }
 
-    public String endTime() {
-        return this.innerModel().endTime();
-    }
-
     public Object properties() {
         return this.innerModel().properties();
     }

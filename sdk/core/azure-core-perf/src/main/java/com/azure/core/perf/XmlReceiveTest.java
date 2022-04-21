@@ -26,8 +26,14 @@ public class XmlReceiveTest extends RestProxyTestBase<CorePerfStressOptions> {
     }
 
     @Override
-    public Mono<Void> setupAsync() {
-        return service.setUserDatabaseXml(endpoint, id, TestDataFactory.generateUserDatabase(options.getSize()));
+    public Mono<Void> globalSetupAsync() {
+        XmlSendTest sendTest = new XmlSendTest(options);
+        return super.globalSetupAsync()
+            .then(Mono.defer(sendTest::globalSetupAsync))
+            .then(Mono.defer(sendTest::setupAsync))
+            .then(Mono.defer(sendTest::runAsync))
+            .then(Mono.defer(sendTest::cleanupAsync))
+            .then(Mono.defer(sendTest::globalCleanupAsync));
     }
 
     @Override
@@ -37,7 +43,7 @@ public class XmlReceiveTest extends RestProxyTestBase<CorePerfStressOptions> {
 
     @Override
     public Mono<Void> runAsync() {
-        return service.getUserDatabaseXmlAsync(endpoint, id)
+        return service.getUserDatabaseXmlAsync(endpoint)
             .map(userdatabase -> {
                 userdatabase.getValue();
                 return 1;

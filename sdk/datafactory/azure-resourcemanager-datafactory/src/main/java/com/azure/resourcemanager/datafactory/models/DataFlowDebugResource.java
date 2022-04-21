@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Data flow debug resource. */
 @Fluent
 public final class DataFlowDebugResource extends SubResourceDebugResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DataFlowDebugResource.class);
+
     /*
      * Data flow properties.
      */
@@ -53,7 +56,7 @@ public final class DataFlowDebugResource extends SubResourceDebugResource {
     public void validate() {
         super.validate();
         if (properties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property properties in model DataFlowDebugResource"));
@@ -61,6 +64,4 @@ public final class DataFlowDebugResource extends SubResourceDebugResource {
             properties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DataFlowDebugResource.class);
 }

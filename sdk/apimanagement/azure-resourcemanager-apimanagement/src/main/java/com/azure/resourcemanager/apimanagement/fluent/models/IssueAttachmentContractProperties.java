@@ -6,11 +6,14 @@ package com.azure.resourcemanager.apimanagement.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Issue Attachment contract Properties. */
 @Fluent
 public final class IssueAttachmentContractProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(IssueAttachmentContractProperties.class);
+
     /*
      * Filename by which the binary data will be saved.
      */
@@ -99,24 +102,22 @@ public final class IssueAttachmentContractProperties {
      */
     public void validate() {
         if (title() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property title in model IssueAttachmentContractProperties"));
         }
         if (contentFormat() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property contentFormat in model IssueAttachmentContractProperties"));
         }
         if (content() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property content in model IssueAttachmentContractProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(IssueAttachmentContractProperties.class);
 }

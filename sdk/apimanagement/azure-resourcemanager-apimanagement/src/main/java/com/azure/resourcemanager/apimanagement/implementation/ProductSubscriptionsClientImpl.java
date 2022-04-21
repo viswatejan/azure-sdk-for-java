@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.ProductSubscriptionsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.SubscriptionContractInner;
 import com.azure.resourcemanager.apimanagement.models.SubscriptionCollection;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ProductSubscriptionsClient. */
 public final class ProductSubscriptionsClientImpl implements ProductSubscriptionsClient {
+    private final ClientLogger logger = new ClientLogger(ProductSubscriptionsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ProductSubscriptionsService service;
 
@@ -108,8 +111,7 @@ public final class ProductSubscriptionsClientImpl implements ProductSubscription
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Subscriptions list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Subscriptions list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SubscriptionContractInner>> listSinglePageAsync(
@@ -187,8 +189,7 @@ public final class ProductSubscriptionsClientImpl implements ProductSubscription
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Subscriptions list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Subscriptions list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SubscriptionContractInner>> listSinglePageAsync(
@@ -268,7 +269,7 @@ public final class ProductSubscriptionsClientImpl implements ProductSubscription
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Subscriptions list representation as paginated response with {@link PagedFlux}.
+     * @return paged Subscriptions list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SubscriptionContractInner> listAsync(
@@ -287,7 +288,7 @@ public final class ProductSubscriptionsClientImpl implements ProductSubscription
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Subscriptions list representation as paginated response with {@link PagedFlux}.
+     * @return paged Subscriptions list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SubscriptionContractInner> listAsync(
@@ -322,7 +323,7 @@ public final class ProductSubscriptionsClientImpl implements ProductSubscription
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Subscriptions list representation as paginated response with {@link PagedFlux}.
+     * @return paged Subscriptions list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SubscriptionContractInner> listAsync(
@@ -347,7 +348,7 @@ public final class ProductSubscriptionsClientImpl implements ProductSubscription
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Subscriptions list representation as paginated response with {@link PagedIterable}.
+     * @return paged Subscriptions list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SubscriptionContractInner> list(
@@ -380,7 +381,7 @@ public final class ProductSubscriptionsClientImpl implements ProductSubscription
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Subscriptions list representation as paginated response with {@link PagedIterable}.
+     * @return paged Subscriptions list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SubscriptionContractInner> list(
@@ -401,8 +402,7 @@ public final class ProductSubscriptionsClientImpl implements ProductSubscription
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Subscriptions list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Subscriptions list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SubscriptionContractInner>> listNextSinglePageAsync(String nextLink) {
@@ -438,8 +438,7 @@ public final class ProductSubscriptionsClientImpl implements ProductSubscription
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Subscriptions list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Subscriptions list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SubscriptionContractInner>> listNextSinglePageAsync(String nextLink, Context context) {

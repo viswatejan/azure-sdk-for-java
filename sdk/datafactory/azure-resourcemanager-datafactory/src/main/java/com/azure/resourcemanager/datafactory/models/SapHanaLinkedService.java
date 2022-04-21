@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.SapHanaLinkedServiceProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("SapHana")
 @Fluent
 public final class SapHanaLinkedService extends LinkedService {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SapHanaLinkedService.class);
+
     /*
      * Properties specific to this linked service type.
      */
@@ -214,7 +217,7 @@ public final class SapHanaLinkedService extends LinkedService {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model SapHanaLinkedService"));
@@ -222,6 +225,4 @@ public final class SapHanaLinkedService extends LinkedService {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SapHanaLinkedService.class);
 }

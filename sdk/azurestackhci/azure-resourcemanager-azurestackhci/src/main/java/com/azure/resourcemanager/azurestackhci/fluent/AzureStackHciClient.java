@@ -45,11 +45,11 @@ public interface AzureStackHciClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the ArcSettingsClient object to access its operations.
+     * Gets the OperationsClient object to access its operations.
      *
-     * @return the ArcSettingsClient object.
+     * @return the OperationsClient object.
      */
-    ArcSettingsClient getArcSettings();
+    OperationsClient getOperations();
 
     /**
      * Gets the ClustersClient object to access its operations.
@@ -57,18 +57,4 @@ public interface AzureStackHciClient {
      * @return the ClustersClient object.
      */
     ClustersClient getClusters();
-
-    /**
-     * Gets the ExtensionsClient object to access its operations.
-     *
-     * @return the ExtensionsClient object.
-     */
-    ExtensionsClient getExtensions();
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     *
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
 }

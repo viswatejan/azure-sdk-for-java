@@ -9,8 +9,6 @@ import com.azure.core.annotation.JsonFlatten;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import java.util.List;
-import java.util.Map;
 
 /** Common Data Service for Apps linked service. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -385,34 +383,6 @@ public class CommonDataServiceForAppsLinkedService extends LinkedService {
      */
     public CommonDataServiceForAppsLinkedService setEncryptedCredential(Object encryptedCredential) {
         this.encryptedCredential = encryptedCredential;
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public CommonDataServiceForAppsLinkedService setConnectVia(IntegrationRuntimeReference connectVia) {
-        super.setConnectVia(connectVia);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public CommonDataServiceForAppsLinkedService setDescription(String description) {
-        super.setDescription(description);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public CommonDataServiceForAppsLinkedService setParameters(Map<String, ParameterSpecification> parameters) {
-        super.setParameters(parameters);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public CommonDataServiceForAppsLinkedService setAnnotations(List<Object> annotations) {
-        super.setAnnotations(annotations);
         return this;
     }
 }

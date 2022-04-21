@@ -29,6 +29,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mediaservices.fluent.StreamingLocatorsClient;
 import com.azure.resourcemanager.mediaservices.fluent.models.ListContentKeysResponseInner;
 import com.azure.resourcemanager.mediaservices.fluent.models.ListPathsResponseInner;
@@ -38,6 +39,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in StreamingLocatorsClient. */
 public final class StreamingLocatorsClientImpl implements StreamingLocatorsClient {
+    private final ClientLogger logger = new ClientLogger(StreamingLocatorsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final StreamingLocatorsService service;
 
@@ -184,8 +187,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of StreamingLocator items along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a collection of StreamingLocator items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StreamingLocatorInner>> listSinglePageAsync(
@@ -209,7 +211,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -220,7 +221,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             accountName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             filter,
                             top,
                             orderby,
@@ -251,8 +252,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of StreamingLocator items along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a collection of StreamingLocator items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StreamingLocatorInner>> listSinglePageAsync(
@@ -276,7 +276,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
         if (accountName == null) {
             return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -285,7 +284,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 accountName,
-                apiVersion,
+                this.client.getApiVersion(),
                 filter,
                 top,
                 orderby,
@@ -314,7 +313,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of StreamingLocator items as paginated response with {@link PagedFlux}.
+     * @return a collection of StreamingLocator items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<StreamingLocatorInner> listAsync(
@@ -332,7 +331,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of StreamingLocator items as paginated response with {@link PagedFlux}.
+     * @return a collection of StreamingLocator items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<StreamingLocatorInner> listAsync(String resourceGroupName, String accountName) {
@@ -357,7 +356,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of StreamingLocator items as paginated response with {@link PagedFlux}.
+     * @return a collection of StreamingLocator items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<StreamingLocatorInner> listAsync(
@@ -375,7 +374,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of StreamingLocator items as paginated response with {@link PagedIterable}.
+     * @return a collection of StreamingLocator items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<StreamingLocatorInner> list(String resourceGroupName, String accountName) {
@@ -398,7 +397,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of StreamingLocator items as paginated response with {@link PagedIterable}.
+     * @return a collection of StreamingLocator items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<StreamingLocatorInner> list(
@@ -415,8 +414,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of a Streaming Locator in the Media Services account along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the details of a Streaming Locator in the Media Services account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<StreamingLocatorInner>> getWithResponseAsync(
@@ -444,7 +442,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -456,7 +453,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                             resourceGroupName,
                             accountName,
                             streamingLocatorName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -472,8 +469,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of a Streaming Locator in the Media Services account along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the details of a Streaming Locator in the Media Services account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<StreamingLocatorInner>> getWithResponseAsync(
@@ -501,7 +497,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -511,7 +506,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                 resourceGroupName,
                 accountName,
                 streamingLocatorName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -525,8 +520,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of a Streaming Locator in the Media Services account on successful completion of {@link
-     *     Mono}.
+     * @return the details of a Streaming Locator in the Media Services account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StreamingLocatorInner> getAsync(
@@ -568,7 +562,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of a Streaming Locator in the Media Services account along with {@link Response}.
+     * @return the details of a Streaming Locator in the Media Services account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<StreamingLocatorInner> getWithResponse(
@@ -586,7 +580,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Streaming Locator resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Streaming Locator resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<StreamingLocatorInner>> createWithResponseAsync(
@@ -619,7 +613,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -631,7 +624,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                             resourceGroupName,
                             accountName,
                             streamingLocatorName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             parameters,
                             accept,
                             context))
@@ -649,7 +642,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Streaming Locator resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Streaming Locator resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<StreamingLocatorInner>> createWithResponseAsync(
@@ -686,7 +679,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -696,7 +688,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                 resourceGroupName,
                 accountName,
                 streamingLocatorName,
-                apiVersion,
+                this.client.getApiVersion(),
                 parameters,
                 accept,
                 context);
@@ -712,7 +704,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Streaming Locator resource on successful completion of {@link Mono}.
+     * @return a Streaming Locator resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<StreamingLocatorInner> createAsync(
@@ -757,7 +749,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Streaming Locator resource along with {@link Response}.
+     * @return a Streaming Locator resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<StreamingLocatorInner> createWithResponse(
@@ -779,7 +771,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -807,7 +799,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -819,7 +810,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                             resourceGroupName,
                             accountName,
                             streamingLocatorName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -835,7 +826,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -863,7 +854,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -873,7 +863,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                 resourceGroupName,
                 accountName,
                 streamingLocatorName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -887,7 +877,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String accountName, String streamingLocatorName) {
@@ -920,7 +910,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -937,8 +927,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class of response for listContentKeys action along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return class of response for listContentKeys action.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ListContentKeysResponseInner>> listContentKeysWithResponseAsync(
@@ -966,7 +955,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -978,7 +966,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                             resourceGroupName,
                             accountName,
                             streamingLocatorName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -994,8 +982,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class of response for listContentKeys action along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return class of response for listContentKeys action.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ListContentKeysResponseInner>> listContentKeysWithResponseAsync(
@@ -1023,7 +1010,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1033,7 +1019,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                 resourceGroupName,
                 accountName,
                 streamingLocatorName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -1047,7 +1033,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class of response for listContentKeys action on successful completion of {@link Mono}.
+     * @return class of response for listContentKeys action.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ListContentKeysResponseInner> listContentKeysAsync(
@@ -1090,7 +1076,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class of response for listContentKeys action along with {@link Response}.
+     * @return class of response for listContentKeys action.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ListContentKeysResponseInner> listContentKeysWithResponse(
@@ -1107,8 +1093,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class of response for listPaths action along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class of response for listPaths action.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ListPathsResponseInner>> listPathsWithResponseAsync(
@@ -1136,7 +1121,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1148,7 +1132,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                             resourceGroupName,
                             accountName,
                             streamingLocatorName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1164,8 +1148,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class of response for listPaths action along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class of response for listPaths action.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ListPathsResponseInner>> listPathsWithResponseAsync(
@@ -1193,7 +1176,6 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
             return Mono
                 .error(new IllegalArgumentException("Parameter streamingLocatorName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1203,7 +1185,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
                 resourceGroupName,
                 accountName,
                 streamingLocatorName,
-                apiVersion,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -1217,7 +1199,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class of response for listPaths action on successful completion of {@link Mono}.
+     * @return class of response for listPaths action.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ListPathsResponseInner> listPathsAsync(
@@ -1259,7 +1241,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class of response for listPaths action along with {@link Response}.
+     * @return class of response for listPaths action.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ListPathsResponseInner> listPathsWithResponse(
@@ -1274,8 +1256,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of StreamingLocator items along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a collection of StreamingLocator items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StreamingLocatorInner>> listNextSinglePageAsync(String nextLink) {
@@ -1311,8 +1292,7 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of StreamingLocator items along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a collection of StreamingLocator items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<StreamingLocatorInner>> listNextSinglePageAsync(String nextLink, Context context) {

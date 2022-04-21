@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.FilterActivityTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -17,6 +18,8 @@ import java.util.List;
 @JsonTypeName("Filter")
 @Fluent
 public final class FilterActivity extends ControlActivity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FilterActivity.class);
+
     /*
      * Filter activity properties.
      */
@@ -115,7 +118,7 @@ public final class FilterActivity extends ControlActivity {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model FilterActivity"));
@@ -123,6 +126,4 @@ public final class FilterActivity extends ControlActivity {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(FilterActivity.class);
 }

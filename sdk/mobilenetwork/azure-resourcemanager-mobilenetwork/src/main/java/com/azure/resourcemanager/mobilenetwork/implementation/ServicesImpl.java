@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mobilenetwork.fluent.ServicesClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.ServiceInner;
 import com.azure.resourcemanager.mobilenetwork.models.Service;
 import com.azure.resourcemanager.mobilenetwork.models.Services;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ServicesImpl implements Services {
-    private static final ClientLogger LOGGER = new ClientLogger(ServicesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ServicesImpl.class);
 
     private final ServicesClient innerClient;
 
@@ -75,7 +76,7 @@ public final class ServicesImpl implements Services {
     public Service getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -83,7 +84,7 @@ public final class ServicesImpl implements Services {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -91,7 +92,7 @@ public final class ServicesImpl implements Services {
         }
         String serviceName = Utils.getValueFromIdByName(id, "services");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'services'.", id)));
@@ -102,7 +103,7 @@ public final class ServicesImpl implements Services {
     public Response<Service> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -110,7 +111,7 @@ public final class ServicesImpl implements Services {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -118,7 +119,7 @@ public final class ServicesImpl implements Services {
         }
         String serviceName = Utils.getValueFromIdByName(id, "services");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'services'.", id)));
@@ -129,7 +130,7 @@ public final class ServicesImpl implements Services {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -137,7 +138,7 @@ public final class ServicesImpl implements Services {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -145,7 +146,7 @@ public final class ServicesImpl implements Services {
         }
         String serviceName = Utils.getValueFromIdByName(id, "services");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'services'.", id)));
@@ -156,7 +157,7 @@ public final class ServicesImpl implements Services {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -164,7 +165,7 @@ public final class ServicesImpl implements Services {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -172,7 +173,7 @@ public final class ServicesImpl implements Services {
         }
         String serviceName = Utils.getValueFromIdByName(id, "services");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'services'.", id)));

@@ -11,9 +11,10 @@ import com.azure.resourcemanager.apimanagement.fluent.ProductSubscriptionsClient
 import com.azure.resourcemanager.apimanagement.fluent.models.SubscriptionContractInner;
 import com.azure.resourcemanager.apimanagement.models.ProductSubscriptions;
 import com.azure.resourcemanager.apimanagement.models.SubscriptionContract;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ProductSubscriptionsImpl implements ProductSubscriptions {
-    private static final ClientLogger LOGGER = new ClientLogger(ProductSubscriptionsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ProductSubscriptionsImpl.class);
 
     private final ProductSubscriptionsClient innerClient;
 

@@ -115,8 +115,8 @@ public class AccessTokenCacheImpl {
                 } else {
                     return Mono.empty();
                 }
-            } catch (Exception ex) {
-                return Mono.error(ex);
+            } catch (Throwable t) {
+                return Mono.error(t);
             }
         };
     }

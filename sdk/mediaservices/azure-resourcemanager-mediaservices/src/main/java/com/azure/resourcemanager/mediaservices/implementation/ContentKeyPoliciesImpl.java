@@ -15,9 +15,10 @@ import com.azure.resourcemanager.mediaservices.fluent.models.ContentKeyPolicyPro
 import com.azure.resourcemanager.mediaservices.models.ContentKeyPolicies;
 import com.azure.resourcemanager.mediaservices.models.ContentKeyPolicy;
 import com.azure.resourcemanager.mediaservices.models.ContentKeyPolicyProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ContentKeyPoliciesImpl implements ContentKeyPolicies {
-    private static final ClientLogger LOGGER = new ClientLogger(ContentKeyPoliciesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContentKeyPoliciesImpl.class);
 
     private final ContentKeyPoliciesClient innerClient;
 
@@ -107,7 +108,7 @@ public final class ContentKeyPoliciesImpl implements ContentKeyPolicies {
     public ContentKeyPolicy getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -115,14 +116,14 @@ public final class ContentKeyPoliciesImpl implements ContentKeyPolicies {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String contentKeyPolicyName = Utils.getValueFromIdByName(id, "contentKeyPolicies");
         if (contentKeyPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -135,7 +136,7 @@ public final class ContentKeyPoliciesImpl implements ContentKeyPolicies {
     public Response<ContentKeyPolicy> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -143,14 +144,14 @@ public final class ContentKeyPoliciesImpl implements ContentKeyPolicies {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String contentKeyPolicyName = Utils.getValueFromIdByName(id, "contentKeyPolicies");
         if (contentKeyPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -163,7 +164,7 @@ public final class ContentKeyPoliciesImpl implements ContentKeyPolicies {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -171,27 +172,27 @@ public final class ContentKeyPoliciesImpl implements ContentKeyPolicies {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String contentKeyPolicyName = Utils.getValueFromIdByName(id, "contentKeyPolicies");
         if (contentKeyPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'contentKeyPolicies'.", id)));
         }
-        this.deleteWithResponse(resourceGroupName, accountName, contentKeyPolicyName, Context.NONE);
+        this.deleteWithResponse(resourceGroupName, accountName, contentKeyPolicyName, Context.NONE).getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -199,14 +200,14 @@ public final class ContentKeyPoliciesImpl implements ContentKeyPolicies {
         }
         String accountName = Utils.getValueFromIdByName(id, "mediaServices");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'mediaServices'.", id)));
         }
         String contentKeyPolicyName = Utils.getValueFromIdByName(id, "contentKeyPolicies");
         if (contentKeyPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

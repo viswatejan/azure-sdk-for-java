@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.HttpAuthenticationType;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties specific to this linked service type. */
 @Fluent
 public final class HttpLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(HttpLinkedServiceTypeProperties.class);
+
     /*
      * The base URL of the HTTP endpoint, e.g. http://www.microsoft.com. Type:
      * string (or Expression with resultType string).
@@ -289,7 +292,7 @@ public final class HttpLinkedServiceTypeProperties {
      */
     public void validate() {
         if (url() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property url in model HttpLinkedServiceTypeProperties"));
@@ -298,6 +301,4 @@ public final class HttpLinkedServiceTypeProperties {
             password().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(HttpLinkedServiceTypeProperties.class);
 }

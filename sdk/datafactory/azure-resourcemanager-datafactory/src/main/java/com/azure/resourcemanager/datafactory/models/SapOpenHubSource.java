@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -14,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("SapOpenHubSource")
 @Fluent
 public final class SapOpenHubSource extends TabularSource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SapOpenHubSource.class);
+
     /*
      * Whether to exclude the records of the last request. The default value is
      * true. Type: boolean (or Expression with resultType boolean).

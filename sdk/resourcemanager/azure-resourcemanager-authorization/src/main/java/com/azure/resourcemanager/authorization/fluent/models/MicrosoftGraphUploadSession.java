@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,6 +18,8 @@ import java.util.Map;
 /** uploadSession. */
 @Fluent
 public final class MicrosoftGraphUploadSession {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphUploadSession.class);
+
     /*
      * The date and time in UTC that the upload session will expire. The
      * complete file must be uploaded before this expiration time is reached.

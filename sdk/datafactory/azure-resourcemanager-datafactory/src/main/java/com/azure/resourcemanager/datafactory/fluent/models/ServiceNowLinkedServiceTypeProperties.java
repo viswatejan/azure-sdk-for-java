@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
 import com.azure.resourcemanager.datafactory.models.ServiceNowAuthenticationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** ServiceNow server linked service properties. */
 @Fluent
 public final class ServiceNowLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ServiceNowLinkedServiceTypeProperties.class);
+
     /*
      * The endpoint of the ServiceNow server. (i.e. <instance>.service-now.com)
      */
@@ -299,13 +302,13 @@ public final class ServiceNowLinkedServiceTypeProperties {
      */
     public void validate() {
         if (endpoint() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property endpoint in model ServiceNowLinkedServiceTypeProperties"));
         }
         if (authenticationType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property authenticationType in model ServiceNowLinkedServiceTypeProperties"));
@@ -317,6 +320,4 @@ public final class ServiceNowLinkedServiceTypeProperties {
             clientSecret().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ServiceNowLinkedServiceTypeProperties.class);
 }

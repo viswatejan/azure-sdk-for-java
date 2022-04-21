@@ -7,12 +7,15 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.models.ActionResponseInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List all the actions. */
 @Fluent
 public final class ActionsList {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ActionsList.class);
+
     /*
      * URL to fetch the next set of actions.
      */
@@ -61,13 +64,11 @@ public final class ActionsList {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model ActionsList"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ActionsList.class);
 }

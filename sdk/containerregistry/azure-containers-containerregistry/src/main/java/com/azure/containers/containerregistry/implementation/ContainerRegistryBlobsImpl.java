@@ -86,7 +86,7 @@ public final class ContainerRegistryBlobsImpl {
                 Context context);
 
         @Delete("/v2/{name}/blobs/{digest}")
-        @ExpectedResponses({202, 404})
+        @ExpectedResponses({202})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<StreamResponse> deleteBlob(
                 @HostParam("url") String url,

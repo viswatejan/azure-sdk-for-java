@@ -73,13 +73,6 @@ public interface SecurityInsights {
     AutomationRulesClient getAutomationRules();
 
     /**
-     * Gets the IncidentsClient object to access its operations.
-     *
-     * @return the IncidentsClient object.
-     */
-    IncidentsClient getIncidents();
-
-    /**
      * Gets the BookmarksClient object to access its operations.
      *
      * @return the BookmarksClient object.
@@ -115,6 +108,13 @@ public interface SecurityInsights {
     DomainWhoisClient getDomainWhois();
 
     /**
+     * Gets the EntityQueriesClient object to access its operations.
+     *
+     * @return the EntityQueriesClient object.
+     */
+    EntityQueriesClient getEntityQueries();
+
+    /**
      * Gets the EntitiesClient object to access its operations.
      *
      * @return the EntitiesClient object.
@@ -143,18 +143,11 @@ public interface SecurityInsights {
     EntityRelationsClient getEntityRelations();
 
     /**
-     * Gets the EntityQueriesClient object to access its operations.
+     * Gets the IncidentsClient object to access its operations.
      *
-     * @return the EntityQueriesClient object.
+     * @return the IncidentsClient object.
      */
-    EntityQueriesClient getEntityQueries();
-
-    /**
-     * Gets the EntityQueryTemplatesClient object to access its operations.
-     *
-     * @return the EntityQueryTemplatesClient object.
-     */
-    EntityQueryTemplatesClient getEntityQueryTemplates();
+    IncidentsClient getIncidents();
 
     /**
      * Gets the IncidentCommentsClient object to access its operations.
@@ -176,13 +169,6 @@ public interface SecurityInsights {
      * @return the MetadatasClient object.
      */
     MetadatasClient getMetadatas();
-
-    /**
-     * Gets the OfficeConsentsClient object to access its operations.
-     *
-     * @return the OfficeConsentsClient object.
-     */
-    OfficeConsentsClient getOfficeConsents();
 
     /**
      * Gets the SentinelOnboardingStatesClient object to access its operations.
@@ -213,27 +199,6 @@ public interface SecurityInsights {
     SourceControlsOperationsClient getSourceControlsOperations();
 
     /**
-     * Gets the ThreatIntelligenceIndicatorsClient object to access its operations.
-     *
-     * @return the ThreatIntelligenceIndicatorsClient object.
-     */
-    ThreatIntelligenceIndicatorsClient getThreatIntelligenceIndicators();
-
-    /**
-     * Gets the ThreatIntelligenceIndicatorsOperationsClient object to access its operations.
-     *
-     * @return the ThreatIntelligenceIndicatorsOperationsClient object.
-     */
-    ThreatIntelligenceIndicatorsOperationsClient getThreatIntelligenceIndicatorsOperations();
-
-    /**
-     * Gets the ThreatIntelligenceIndicatorMetricsClient object to access its operations.
-     *
-     * @return the ThreatIntelligenceIndicatorMetricsClient object.
-     */
-    ThreatIntelligenceIndicatorMetricsClient getThreatIntelligenceIndicatorMetrics();
-
-    /**
      * Gets the WatchlistsClient object to access its operations.
      *
      * @return the WatchlistsClient object.
@@ -262,9 +227,44 @@ public interface SecurityInsights {
     DataConnectorsCheckRequirementsOperationsClient getDataConnectorsCheckRequirementsOperations();
 
     /**
+     * Gets the ThreatIntelligenceIndicatorsClient object to access its operations.
+     *
+     * @return the ThreatIntelligenceIndicatorsClient object.
+     */
+    ThreatIntelligenceIndicatorsClient getThreatIntelligenceIndicators();
+
+    /**
+     * Gets the ThreatIntelligenceIndicatorsOperationsClient object to access its operations.
+     *
+     * @return the ThreatIntelligenceIndicatorsOperationsClient object.
+     */
+    ThreatIntelligenceIndicatorsOperationsClient getThreatIntelligenceIndicatorsOperations();
+
+    /**
+     * Gets the ThreatIntelligenceIndicatorMetricsClient object to access its operations.
+     *
+     * @return the ThreatIntelligenceIndicatorMetricsClient object.
+     */
+    ThreatIntelligenceIndicatorMetricsClient getThreatIntelligenceIndicatorMetrics();
+
+    /**
      * Gets the OperationsClient object to access its operations.
      *
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the OfficeConsentsClient object to access its operations.
+     *
+     * @return the OfficeConsentsClient object.
+     */
+    OfficeConsentsClient getOfficeConsents();
+
+    /**
+     * Gets the EntityQueryTemplatesClient object to access its operations.
+     *
+     * @return the EntityQueryTemplatesClient object.
+     */
+    EntityQueryTemplatesClient getEntityQueryTemplates();
 }

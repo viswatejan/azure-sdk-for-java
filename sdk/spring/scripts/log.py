@@ -21,14 +21,7 @@ class Log:
         os.system('color')
 
     def set_log_level(self, level):
-        log_dict = {
-            'debug': Log.DEBUG,
-            'info': Log.INFO,
-            'warn': Log.WARN,
-            'error': Log.ERROR,
-            'none': Log.NONE
-        }
-        self.level = log_dict[level]
+        self.level = level
 
     def set_color(self, color):
         self.color = color
@@ -72,5 +65,5 @@ log = Log()
 
 
 if __name__ == '__main__':
-    log.set_log_level('debug')
+    log.set_log_level(Log.DEBUG)
     log.log_level_test()

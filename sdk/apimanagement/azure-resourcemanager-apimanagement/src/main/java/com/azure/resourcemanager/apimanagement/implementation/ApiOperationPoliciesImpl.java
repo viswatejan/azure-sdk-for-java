@@ -18,9 +18,10 @@ import com.azure.resourcemanager.apimanagement.models.PolicyCollection;
 import com.azure.resourcemanager.apimanagement.models.PolicyContract;
 import com.azure.resourcemanager.apimanagement.models.PolicyExportFormat;
 import com.azure.resourcemanager.apimanagement.models.PolicyIdName;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ApiOperationPoliciesImpl implements ApiOperationPolicies {
-    private static final ClientLogger LOGGER = new ClientLogger(ApiOperationPoliciesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiOperationPoliciesImpl.class);
 
     private final ApiOperationPoliciesClient innerClient;
 
@@ -138,7 +139,7 @@ public final class ApiOperationPoliciesImpl implements ApiOperationPolicies {
     public PolicyContract getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -146,28 +147,28 @@ public final class ApiOperationPoliciesImpl implements ApiOperationPolicies {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));
         }
         String operationId = Utils.getValueFromIdByName(id, "operations");
         if (operationId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'operations'.", id)));
         }
         PolicyIdName policyId = PolicyIdName.fromString(Utils.getValueFromIdByName(id, "policies"));
         if (policyId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'policies'.", id)));
@@ -181,7 +182,7 @@ public final class ApiOperationPoliciesImpl implements ApiOperationPolicies {
     public Response<PolicyContract> getByIdWithResponse(String id, PolicyExportFormat format, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -189,28 +190,28 @@ public final class ApiOperationPoliciesImpl implements ApiOperationPolicies {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));
         }
         String operationId = Utils.getValueFromIdByName(id, "operations");
         if (operationId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'operations'.", id)));
         }
         PolicyIdName policyId = PolicyIdName.fromString(Utils.getValueFromIdByName(id, "policies"));
         if (policyId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'policies'.", id)));
@@ -221,7 +222,7 @@ public final class ApiOperationPoliciesImpl implements ApiOperationPolicies {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -229,28 +230,28 @@ public final class ApiOperationPoliciesImpl implements ApiOperationPolicies {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));
         }
         String operationId = Utils.getValueFromIdByName(id, "operations");
         if (operationId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'operations'.", id)));
         }
         PolicyIdName policyId = PolicyIdName.fromString(Utils.getValueFromIdByName(id, "policies"));
         if (policyId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'policies'.", id)));
@@ -258,13 +259,14 @@ public final class ApiOperationPoliciesImpl implements ApiOperationPolicies {
         String localIfMatch = null;
         this
             .deleteWithResponse(
-                resourceGroupName, serviceName, apiId, operationId, policyId, localIfMatch, Context.NONE);
+                resourceGroupName, serviceName, apiId, operationId, policyId, localIfMatch, Context.NONE)
+            .getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -272,28 +274,28 @@ public final class ApiOperationPoliciesImpl implements ApiOperationPolicies {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));
         }
         String operationId = Utils.getValueFromIdByName(id, "operations");
         if (operationId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'operations'.", id)));
         }
         PolicyIdName policyId = PolicyIdName.fromString(Utils.getValueFromIdByName(id, "policies"));
         if (policyId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'policies'.", id)));

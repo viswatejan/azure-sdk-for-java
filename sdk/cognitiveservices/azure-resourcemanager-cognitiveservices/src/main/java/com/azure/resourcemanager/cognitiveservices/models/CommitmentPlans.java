@@ -18,8 +18,7 @@ public interface CommitmentPlans {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the commitmentPlans associated with the Cognitive Services account as paginated response with {@link
-     *     PagedIterable}.
+     * @return the commitmentPlans associated with the Cognitive Services account.
      */
     PagedIterable<CommitmentPlan> list(String resourceGroupName, String accountName);
 
@@ -32,8 +31,7 @@ public interface CommitmentPlans {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the commitmentPlans associated with the Cognitive Services account as paginated response with {@link
-     *     PagedIterable}.
+     * @return the commitmentPlans associated with the Cognitive Services account.
      */
     PagedIterable<CommitmentPlan> list(String resourceGroupName, String accountName, Context context);
 
@@ -60,7 +58,7 @@ public interface CommitmentPlans {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified commitmentPlans associated with the Cognitive Services account along with {@link Response}.
+     * @return the specified commitmentPlans associated with the Cognitive Services account.
      */
     Response<CommitmentPlan> getWithResponse(
         String resourceGroupName, String accountName, String commitmentPlanName, Context context);
@@ -97,7 +95,7 @@ public interface CommitmentPlans {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified commitmentPlans associated with the Cognitive Services account along with {@link Response}.
+     * @return the specified commitmentPlans associated with the Cognitive Services account.
      */
     CommitmentPlan getById(String id);
 
@@ -109,7 +107,7 @@ public interface CommitmentPlans {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified commitmentPlans associated with the Cognitive Services account along with {@link Response}.
+     * @return the specified commitmentPlans associated with the Cognitive Services account.
      */
     Response<CommitmentPlan> getByIdWithResponse(String id, Context context);
 

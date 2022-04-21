@@ -6,11 +6,14 @@ package com.azure.resourcemanager.cognitiveservices.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Regenerate key parameters. */
 @Fluent
 public final class RegenerateKeyParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RegenerateKeyParameters.class);
+
     /*
      * key name to generate (Key1|Key2)
      */
@@ -44,11 +47,9 @@ public final class RegenerateKeyParameters {
      */
     public void validate() {
         if (keyName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property keyName in model RegenerateKeyParameters"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RegenerateKeyParameters.class);
 }

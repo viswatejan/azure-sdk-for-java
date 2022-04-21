@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.AzureSearchLinkedServiceTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("AzureSearch")
 @Fluent
 public final class AzureSearchLinkedService extends LinkedService {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureSearchLinkedService.class);
+
     /*
      * Windows Azure Search Service linked service properties.
      */
@@ -141,7 +144,7 @@ public final class AzureSearchLinkedService extends LinkedService {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model AzureSearchLinkedService"));
@@ -149,6 +152,4 @@ public final class AzureSearchLinkedService extends LinkedService {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AzureSearchLinkedService.class);
 }

@@ -6,12 +6,15 @@ package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Allow to exclude some variable satisfy the condition for the WAF check. */
 @Fluent
 public final class ManagedRulesDefinition {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedRulesDefinition.class);
+
     /*
      * The Exclusions that are applied on the policy.
      */
@@ -74,7 +77,7 @@ public final class ManagedRulesDefinition {
             exclusions().forEach(e -> e.validate());
         }
         if (managedRuleSets() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property managedRuleSets in model ManagedRulesDefinition"));
@@ -82,6 +85,4 @@ public final class ManagedRulesDefinition {
             managedRuleSets().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ManagedRulesDefinition.class);
 }

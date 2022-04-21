@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,8 +16,11 @@ import java.util.Map;
 /** inferenceClassificationOverride. */
 @Fluent
 public final class MicrosoftGraphInferenceClassificationOverride extends MicrosoftGraphEntity {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(MicrosoftGraphInferenceClassificationOverride.class);
+
     /*
-     * inferenceClassificationType
+     * The classifyAs property.
      */
     @JsonProperty(value = "classifyAs")
     private MicrosoftGraphInferenceClassificationType classifyAs;
@@ -33,7 +37,7 @@ public final class MicrosoftGraphInferenceClassificationOverride extends Microso
     @JsonIgnore private Map<String, Object> additionalProperties;
 
     /**
-     * Get the classifyAs property: inferenceClassificationType.
+     * Get the classifyAs property: The classifyAs property.
      *
      * @return the classifyAs value.
      */
@@ -42,7 +46,7 @@ public final class MicrosoftGraphInferenceClassificationOverride extends Microso
     }
 
     /**
-     * Set the classifyAs property: inferenceClassificationType.
+     * Set the classifyAs property: The classifyAs property.
      *
      * @param classifyAs the classifyAs value to set.
      * @return the MicrosoftGraphInferenceClassificationOverride object itself.

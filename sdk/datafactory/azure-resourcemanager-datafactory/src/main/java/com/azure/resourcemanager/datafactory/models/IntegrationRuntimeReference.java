@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -13,6 +14,8 @@ import java.util.Map;
 /** Integration runtime reference type. */
 @Fluent
 public final class IntegrationRuntimeReference {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(IntegrationRuntimeReference.class);
+
     /*
      * Type of integration runtime.
      */
@@ -104,12 +107,10 @@ public final class IntegrationRuntimeReference {
      */
     public void validate() {
         if (referenceName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property referenceName in model IntegrationRuntimeReference"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(IntegrationRuntimeReference.class);
 }

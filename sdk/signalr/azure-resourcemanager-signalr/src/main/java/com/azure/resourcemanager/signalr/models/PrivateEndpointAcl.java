@@ -6,12 +6,15 @@ package com.azure.resourcemanager.signalr.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** ACL for a private endpoint. */
 @Fluent
 public final class PrivateEndpointAcl extends NetworkAcl {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateEndpointAcl.class);
+
     /*
      * Name of the private endpoint connection
      */
@@ -61,11 +64,9 @@ public final class PrivateEndpointAcl extends NetworkAcl {
     public void validate() {
         super.validate();
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model PrivateEndpointAcl"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateEndpointAcl.class);
 }

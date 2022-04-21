@@ -23,8 +23,7 @@ public interface WorkItemConfigurationsClient {
      * @throws com.azure.resourcemanager.applicationinsights.models.WorkItemConfigurationErrorException thrown if the
      *     request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list work item configurations that exist for the application as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list work item configurations that exist for the application.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkItemConfigurationInner> list(String resourceGroupName, String resourceName);
@@ -39,8 +38,7 @@ public interface WorkItemConfigurationsClient {
      * @throws com.azure.resourcemanager.applicationinsights.models.WorkItemConfigurationErrorException thrown if the
      *     request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list work item configurations that exist for the application as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list work item configurations that exist for the application.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkItemConfigurationInner> list(String resourceGroupName, String resourceName, Context context);

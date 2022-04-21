@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mobilenetwork.fluent.SimsClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.SimInner;
 import com.azure.resourcemanager.mobilenetwork.models.Sim;
 import com.azure.resourcemanager.mobilenetwork.models.Sims;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class SimsImpl implements Sims {
-    private static final ClientLogger LOGGER = new ClientLogger(SimsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SimsImpl.class);
 
     private final SimsClient innerClient;
 
@@ -81,7 +82,7 @@ public final class SimsImpl implements Sims {
     public Sim getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -89,7 +90,7 @@ public final class SimsImpl implements Sims {
         }
         String simName = Utils.getValueFromIdByName(id, "sims");
         if (simName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'sims'.", id)));
@@ -100,7 +101,7 @@ public final class SimsImpl implements Sims {
     public Response<Sim> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -108,7 +109,7 @@ public final class SimsImpl implements Sims {
         }
         String simName = Utils.getValueFromIdByName(id, "sims");
         if (simName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'sims'.", id)));
@@ -119,7 +120,7 @@ public final class SimsImpl implements Sims {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -127,7 +128,7 @@ public final class SimsImpl implements Sims {
         }
         String simName = Utils.getValueFromIdByName(id, "sims");
         if (simName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'sims'.", id)));
@@ -138,7 +139,7 @@ public final class SimsImpl implements Sims {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -146,7 +147,7 @@ public final class SimsImpl implements Sims {
         }
         String simName = Utils.getValueFromIdByName(id, "sims");
         if (simName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'sims'.", id)));

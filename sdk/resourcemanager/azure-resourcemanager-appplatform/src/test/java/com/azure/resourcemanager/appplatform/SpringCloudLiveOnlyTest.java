@@ -26,6 +26,10 @@ import org.apache.commons.compress.utils.IOUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -40,8 +44,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
+import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,7 +59,7 @@ public class SpringCloudLiveOnlyTest extends AppPlatformTest {
     private static final String GATEWAY_JAR_URL = "https://github.com/weidongxu-microsoft/azure-sdk-for-java-management-tests/raw/master/spring-cloud/gateway.jar";
     private static final String PIGGYMETRICS_TAR_GZ_URL = "https://github.com/weidongxu-microsoft/azure-sdk-for-java-management-tests/raw/master/spring-cloud/piggymetrics.tar.gz";
 
-    private static final String SPRING_CLOUD_SERVICE_OBJECT_ID = "938df8e2-2b9d-40b1-940c-c75c33494239";
+    private static final String SPRING_CLOUD_SERVICE_PRINCIPAL = "03b39d0f-4213-4864-a245-b1476ec03169";
 
     @Test
     @DoNotRecord
@@ -60,8 +67,6 @@ public class SpringCloudLiveOnlyTest extends AppPlatformTest {
         if (skipInPlayback()) {
             return;
         }
-
-        allowAllSSL();
 
         String serviceName = generateRandomResourceName("springsvc", 15);
         String appName = "gateway";
@@ -104,14 +109,13 @@ public class SpringCloudLiveOnlyTest extends AppPlatformTest {
 
         SpringAppDeployment deployment = app.getActiveDeployment();
 
-        Assertions.assertEquals("2", deployment.settings().resourceRequests().cpu());
-        Assertions.assertEquals("4Gi", deployment.settings().resourceRequests().memory());
-//        Assertions.assertEquals(RuntimeVersion.JAVA_11, deployment.settings().runtimeVersion());
+        Assertions.assertEquals(2, deployment.settings().cpu());
+        Assertions.assertEquals(4, deployment.settings().memoryInGB());
+        Assertions.assertEquals(RuntimeVersion.JAVA_11, deployment.settings().runtimeVersion());
         Assertions.assertEquals(2, deployment.instances().size());
 
         File gzFile = new File("piggymetrics.tar.gz");
         if (!gzFile.exists()) {
-            allowAllSSL();
             HttpURLConnection connection = (HttpURLConnection) new URL(PIGGYMETRICS_TAR_GZ_URL).openConnection();
             connection.connect();
             try (InputStream inputStream = connection.getInputStream();
@@ -129,7 +133,7 @@ public class SpringCloudLiveOnlyTest extends AppPlatformTest {
         app.refresh();
 
         Assertions.assertEquals(deploymentName1, app.activeDeploymentName());
-        Assertions.assertEquals("1", deployment.settings().resourceRequests().cpu());
+        Assertions.assertEquals(1, deployment.settings().cpu());
         Assertions.assertNotNull(deployment.getLogFileUrl());
 
         Assertions.assertTrue(requestSuccess(app.url()));
@@ -204,7 +208,7 @@ public class SpringCloudLiveOnlyTest extends AppPlatformTest {
                 .allowCertificateAllPermissions()
                 .attach()
             .defineAccessPolicy()
-                .forObjectId(SPRING_CLOUD_SERVICE_OBJECT_ID)
+                .forServicePrincipal(SPRING_CLOUD_SERVICE_PRINCIPAL)
                 .allowCertificatePermissions(CertificatePermissions.GET, CertificatePermissions.LIST)
                 .allowSecretPermissions(SecretPermissions.GET, SecretPermissions.LIST)
                 .attach()
@@ -380,6 +384,25 @@ public class SpringCloudLiveOnlyTest extends AppPlatformTest {
             throw new RuntimeException("Exception occurred while invoking command", e);
         }
         return result;
+    }
+
+    private static void allowAllSSL() throws NoSuchAlgorithmException, KeyManagementException {
+        TrustManager[] trustAllCerts = new TrustManager[]{
+            new X509TrustManager() {
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+                public void checkClientTrusted(
+                    java.security.cert.X509Certificate[] certs, String authType) {
+                }
+                public void checkServerTrusted(
+                    java.security.cert.X509Certificate[] certs, String authType) {
+                }
+            }
+        };
+        SSLContext sslContext = SSLContext.getInstance("SSL");
+        sslContext.init(null, trustAllCerts, new SecureRandom());
+        HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
     }
 
     private static final char[] HEX_CODE = "0123456789ABCDEF".toCharArray();

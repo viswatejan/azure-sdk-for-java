@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.CosmosDbSqlApiCollectionDatasetTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("CosmosDbSqlApiCollection")
 @Fluent
 public final class CosmosDbSqlApiCollectionDataset extends Dataset {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CosmosDbSqlApiCollectionDataset.class);
+
     /*
      * CosmosDB (SQL API) Collection dataset properties.
      */
@@ -117,7 +120,7 @@ public final class CosmosDbSqlApiCollectionDataset extends Dataset {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model CosmosDbSqlApiCollectionDataset"));
@@ -125,6 +128,4 @@ public final class CosmosDbSqlApiCollectionDataset extends Dataset {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CosmosDbSqlApiCollectionDataset.class);
 }

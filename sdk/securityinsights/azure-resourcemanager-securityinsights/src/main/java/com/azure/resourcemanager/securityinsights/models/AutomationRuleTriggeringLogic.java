@@ -6,6 +6,7 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -13,8 +14,10 @@ import java.util.List;
 /** Describes automation rule triggering logic. */
 @Fluent
 public final class AutomationRuleTriggeringLogic {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AutomationRuleTriggeringLogic.class);
+
     /*
-     * Determines whether the automation rule is enabled or disabled
+     * Determines whether the automation rule is enabled or disabled.
      */
     @JsonProperty(value = "isEnabled", required = true)
     private boolean isEnabled;
@@ -27,13 +30,13 @@ public final class AutomationRuleTriggeringLogic {
     private OffsetDateTime expirationTimeUtc;
 
     /*
-     * The triggersOn property.
+     * The type of object the automation rule triggers on
      */
     @JsonProperty(value = "triggersOn", required = true)
     private TriggersOn triggersOn;
 
     /*
-     * The triggersWhen property.
+     * The type of event the automation rule triggers on
      */
     @JsonProperty(value = "triggersWhen", required = true)
     private TriggersWhen triggersWhen;
@@ -88,7 +91,7 @@ public final class AutomationRuleTriggeringLogic {
     }
 
     /**
-     * Get the triggersOn property: The triggersOn property.
+     * Get the triggersOn property: The type of object the automation rule triggers on.
      *
      * @return the triggersOn value.
      */
@@ -97,7 +100,7 @@ public final class AutomationRuleTriggeringLogic {
     }
 
     /**
-     * Set the triggersOn property: The triggersOn property.
+     * Set the triggersOn property: The type of object the automation rule triggers on.
      *
      * @param triggersOn the triggersOn value to set.
      * @return the AutomationRuleTriggeringLogic object itself.
@@ -108,7 +111,7 @@ public final class AutomationRuleTriggeringLogic {
     }
 
     /**
-     * Get the triggersWhen property: The triggersWhen property.
+     * Get the triggersWhen property: The type of event the automation rule triggers on.
      *
      * @return the triggersWhen value.
      */
@@ -117,7 +120,7 @@ public final class AutomationRuleTriggeringLogic {
     }
 
     /**
-     * Set the triggersWhen property: The triggersWhen property.
+     * Set the triggersWhen property: The type of event the automation rule triggers on.
      *
      * @param triggersWhen the triggersWhen value to set.
      * @return the AutomationRuleTriggeringLogic object itself.
@@ -156,13 +159,13 @@ public final class AutomationRuleTriggeringLogic {
      */
     public void validate() {
         if (triggersOn() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property triggersOn in model AutomationRuleTriggeringLogic"));
         }
         if (triggersWhen() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property triggersWhen in model AutomationRuleTriggeringLogic"));
@@ -171,6 +174,4 @@ public final class AutomationRuleTriggeringLogic {
             conditions().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AutomationRuleTriggeringLogic.class);
 }

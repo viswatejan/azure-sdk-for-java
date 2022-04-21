@@ -10,12 +10,15 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.PlmnId;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** Mobile network resource. */
 @Fluent
 public final class MobileNetworkInner extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MobileNetworkInner.class);
+
     /*
      * Mobile network properties.
      */
@@ -23,11 +26,10 @@ public final class MobileNetworkInner extends Resource {
     private MobileNetworkPropertiesFormat innerProperties = new MobileNetworkPropertiesFormat();
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Metadata pertaining to creation and last modification of the resource.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    private SystemData innerSystemData;
 
     /**
      * Get the innerProperties property: Mobile network properties.
@@ -38,14 +40,14 @@ public final class MobileNetworkInner extends Resource {
         return this.innerProperties;
     }
 
-    /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
+//    /**
+//     * Get the innerSystemData property: Metadata pertaining to creation and last modification of the resource.
+//     *
+//     * @return the innerSystemData value.
+//     */
+//    private SystemData innerSystemData() {
+//        return this.innerSystemData;
+//    }
 
     /** {@inheritDoc} */
     @Override
@@ -115,7 +117,7 @@ public final class MobileNetworkInner extends Resource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model MobileNetworkInner"));
@@ -123,6 +125,4 @@ public final class MobileNetworkInner extends Resource {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MobileNetworkInner.class);
 }

@@ -21,6 +21,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.fluent.FirewallPolicyIdpsSignaturesClient;
 import com.azure.resourcemanager.network.fluent.models.QueryResultsInner;
 import com.azure.resourcemanager.network.models.IdpsQueryObject;
@@ -28,6 +29,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in FirewallPolicyIdpsSignaturesClient. */
 public final class FirewallPolicyIdpsSignaturesClientImpl implements FirewallPolicyIdpsSignaturesClient {
+    private final ClientLogger logger = new ClientLogger(FirewallPolicyIdpsSignaturesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final FirewallPolicyIdpsSignaturesService service;
 

@@ -298,8 +298,7 @@ public final class ContainerRegistriesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ManifestWrapper>> getManifestWithResponseAsync(
             String name, String reference, String accept, Context context) {
-        // TODO: Bug in autorest that we do not allow picking up acceptParam from the parameters.
-        final String acceptParam = accept;
+        final String acceptParam = "application/json";
         return service.getManifest(this.client.getUrl(), name, reference, accept, acceptParam, context);
     }
 

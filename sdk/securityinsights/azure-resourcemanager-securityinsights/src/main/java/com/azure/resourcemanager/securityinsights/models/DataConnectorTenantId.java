@@ -6,11 +6,14 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties data connector on tenant level. */
 @Fluent
 public class DataConnectorTenantId {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DataConnectorTenantId.class);
+
     /*
      * The tenant id to connect to, and get the data from.
      */
@@ -44,11 +47,9 @@ public class DataConnectorTenantId {
      */
     public void validate() {
         if (tenantId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property tenantId in model DataConnectorTenantId"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DataConnectorTenantId.class);
 }

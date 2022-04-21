@@ -32,7 +32,7 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
     /**
      * Code snippet for {@link DocumentModelAdministrationAsyncClient} initialization
      */
-    public void documentModelAdministrationAsyncClientInitialization() {
+    public void formTrainingAsyncClientInInitialization() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.initialization
         DocumentModelAdministrationAsyncClient documentModelAdministrationAsyncClient =
             new DocumentModelAdministrationClientBuilder().buildAsyncClient();
@@ -42,7 +42,7 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
     /**
      * Code snippet for creating a {@link DocumentModelAdministrationAsyncClient} with pipeline
      */
-    public void createDocumentModelAdministrationAsyncClientWithPipeline() {
+    public void createDocumentTrainingAsyncClientWithPipeline() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.pipeline.instantiation
         HttpPipeline pipeline = new HttpPipelineBuilder()
             .policies(/* add policies */)
@@ -58,12 +58,13 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginBuildModel(String, DocumentBuildMode)}
+     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginBuildModel(String, DocumentBuildMode, String)}
      */
     public void beginBuildModel() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginBuildModel#String-DocumentBuildMode
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginBuildModel#String-String
         String trainingFilesUrl = "{SAS-URL-of-your-container-in-blob-storage}";
-        documentModelAdministrationAsyncClient.beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE
+        documentModelAdministrationAsyncClient.beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE,
+                "model-name"
             )
             // if polling operation completed, retrieve the final result.
             .flatMap(AsyncPollResponse::getFinalResult)
@@ -78,24 +79,22 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
                     });
                 });
             });
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginBuildModel#String-DocumentBuildMode
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginBuildModel#String-String
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginBuildModel(String, DocumentBuildMode, BuildModelOptions)}
+     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginBuildModel(String, DocumentBuildMode, String, BuildModelOptions)}
      * with options
      */
     public void beginBuildModelWithOptions() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginBuildModel#String-DocumentBuildMode-BuildModelOptions
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginBuildModel#String-String-BuildModelOptions
         String trainingFilesUrl = "{SAS-URL-of-your-container-in-blob-storage}";
-        String modelId = "model-id";
         Map<String, String> attrs = new HashMap<String, String>();
         attrs.put("createdBy", "sample");
 
         documentModelAdministrationAsyncClient.beginBuildModel(trainingFilesUrl,
-                DocumentBuildMode.TEMPLATE,
+                DocumentBuildMode.TEMPLATE, "model-name",
                 new BuildModelOptions()
-                    .setModelId(modelId)
                     .setDescription("model desc")
                     .setPrefix("Invoice")
                     .setTags(attrs))
@@ -114,7 +113,7 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
                     });
                 });
             });
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginBuildModel#String-DocumentBuildMode-BuildModelOptions
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginBuildModel#String-String-BuildModelOptions
     }
 
     /**
@@ -143,12 +142,12 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationAsyncClient#getCopyAuthorization()}
+     * Code snippet for {@link DocumentModelAdministrationAsyncClient#getCopyAuthorization(String)}
      */
     public void getCopyAuthorization() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.getCopyAuthorization
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.getCopyAuthorization#string
         String modelId = "my-copied-model";
-        documentModelAdministrationAsyncClient.getCopyAuthorization()
+        documentModelAdministrationAsyncClient.getCopyAuthorization(modelId)
             .subscribe(copyAuthorization ->
                 System.out.printf("Copy Authorization for model id: %s, access token: %s, expiration time: %s, "
                         + "target resource ID; %s, target resource region: %s%n",
@@ -158,21 +157,20 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
                     copyAuthorization.getTargetResourceId(),
                     copyAuthorization.getTargetResourceRegion()
                 ));
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.getCopyAuthorization
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.getCopyAuthorization#string
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationAsyncClient#getCopyAuthorizationWithResponse(CopyAuthorizationOptions)}
+     * Code snippet for {@link DocumentModelAdministrationAsyncClient#getCopyAuthorizationWithResponse(String, CopyAuthorizationOptions)}
      */
     public void getCopyAuthorizationWithResponse() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.getCopyAuthorizationWithResponse#CopyAuthorizationOptions
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.getCopyAuthorizationWithResponse#string-CopyAuthorizationOptions
         String modelId = "my-copied-model";
         Map<String, String> attrs = new HashMap<String, String>();
         attrs.put("createdBy", "sample");
 
-        documentModelAdministrationAsyncClient.getCopyAuthorizationWithResponse(
+        documentModelAdministrationAsyncClient.getCopyAuthorizationWithResponse(modelId,
                 new CopyAuthorizationOptions()
-                    .setModelId(modelId)
                     .setDescription("model desc")
                     .setTags(attrs))
             .subscribe(copyAuthorization ->
@@ -185,7 +183,7 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
                     copyAuthorization.getValue().getTargetResourceId(),
                     copyAuthorization.getValue().getTargetResourceRegion()
                 ));
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.getCopyAuthorizationWithResponse#CopyAuthorizationOptions
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.getCopyAuthorizationWithResponse#string-CopyAuthorizationOptions
     }
 
     /**
@@ -221,14 +219,14 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginCreateComposedModel(List)}
+     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginCreateComposedModel(List, String)}
      */
     public void beginCreateComposedModel() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCreateComposedModel#list
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCreateComposedModel#list-String
         String modelId1 = "{model_Id_1}";
         String modelId2 = "{model_Id_2}";
-        documentModelAdministrationAsyncClient.beginCreateComposedModel(Arrays.asList(modelId1, modelId2)
-            )
+        documentModelAdministrationAsyncClient.beginCreateComposedModel(Arrays.asList(modelId1, modelId2),
+                "my-composed-model")
             // if polling operation completed, retrieve the final result.
             .flatMap(AsyncPollResponse::getFinalResult)
             .subscribe(documentModel -> {
@@ -242,26 +240,23 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
                     });
                 });
             });
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCreateComposedModel#list
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCreateComposedModel#list-String
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginCreateComposedModel(List, CreateComposedModelOptions)}
+     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginCreateComposedModel(List, String, CreateComposedModelOptions)}
      * with options
      */
     public void beginCreateComposedModelWithOptions() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCreateComposedModel#list-createComposedModelOptions
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCreateComposedModel#list-String-createComposedModelOptions
         String modelId1 = "{model_Id_1}";
         String modelId2 = "{model_Id_2}";
-        String modelId = "my-composed-model";
         Map<String, String> attrs = new HashMap<String, String>();
         attrs.put("createdBy", "sample");
 
         documentModelAdministrationAsyncClient.beginCreateComposedModel(Arrays.asList(modelId1, modelId2),
-                new CreateComposedModelOptions()
-                    .setModelId(modelId)
-                    .setDescription("model-desc")
-                    .setTags(attrs))
+                "my-composed-model",
+                new CreateComposedModelOptions().setDescription("model-desc").setTags(attrs))
             // if polling operation completed, retrieve the final result.
             .flatMap(AsyncPollResponse::getFinalResult)
             .subscribe(documentModel -> {
@@ -277,7 +272,7 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
                     });
                 });
             });
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCreateComposedModel#list-createComposedModelOptions
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCreateComposedModel#list-String-createComposedModelOptions
     }
 
     /**
@@ -286,8 +281,9 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
     public void beginCopy() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCopyModelTo#string-copyAuthorization
         String copyModelId = "copy-model";
+        String targetModelId = "my-copied-model-id";
         // Get authorization to copy the model to target resource
-        documentModelAdministrationAsyncClient.getCopyAuthorization()
+        documentModelAdministrationAsyncClient.getCopyAuthorization(targetModelId)
             // Start copy operation from the source client
             // The ID of the model that needs to be copied to the target resource
             .subscribe(copyAuthorization -> documentModelAdministrationAsyncClient.beginCopyModelTo(copyModelId,

@@ -10,11 +10,14 @@ import com.azure.resourcemanager.datafactory.models.DataFlowReference;
 import com.azure.resourcemanager.datafactory.models.DataFlowStagingInfo;
 import com.azure.resourcemanager.datafactory.models.ExecuteDataFlowActivityTypePropertiesCompute;
 import com.azure.resourcemanager.datafactory.models.IntegrationRuntimeReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Execute data flow activity properties. */
 @Fluent
 public class ExecuteDataFlowActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ExecuteDataFlowActivityTypeProperties.class);
+
     /*
      * Data flow reference.
      */
@@ -217,7 +220,7 @@ public class ExecuteDataFlowActivityTypeProperties {
      */
     public void validate() {
         if (dataFlow() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property dataFlow in model ExecuteDataFlowActivityTypeProperties"));
@@ -234,6 +237,4 @@ public class ExecuteDataFlowActivityTypeProperties {
             compute().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ExecuteDataFlowActivityTypeProperties.class);
 }

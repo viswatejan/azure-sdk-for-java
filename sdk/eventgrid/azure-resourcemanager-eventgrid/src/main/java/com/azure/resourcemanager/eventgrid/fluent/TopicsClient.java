@@ -16,6 +16,7 @@ import com.azure.resourcemanager.eventgrid.fluent.models.TopicInner;
 import com.azure.resourcemanager.eventgrid.fluent.models.TopicSharedAccessKeysInner;
 import com.azure.resourcemanager.eventgrid.models.TopicRegenerateKeyRequest;
 import com.azure.resourcemanager.eventgrid.models.TopicUpdateParameters;
+import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in TopicsClient. */
 public interface TopicsClient {
@@ -55,7 +56,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of eventGrid Topic.
+     * @return eventGrid Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<TopicInner>, TopicInner> beginCreateOrUpdate(
@@ -71,7 +72,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of eventGrid Topic.
+     * @return eventGrid Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<TopicInner>, TopicInner> beginCreateOrUpdate(
@@ -114,7 +115,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String topicName);
@@ -128,7 +129,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String topicName, Context context);
@@ -167,7 +168,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<TopicInner>, TopicInner> beginUpdate(
@@ -183,7 +184,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<TopicInner>, TopicInner> beginUpdate(
@@ -224,7 +225,7 @@ public interface TopicsClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Topics operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TopicInner> list();
@@ -244,7 +245,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Topics operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TopicInner> list(String filter, Integer top, Context context);
@@ -256,7 +257,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Topics operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TopicInner> listByResourceGroup(String resourceGroupName);
@@ -277,7 +278,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Topics operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TopicInner> listByResourceGroup(
@@ -320,7 +321,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of shared access keys of the Topic.
+     * @return shared access keys of the Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<TopicSharedAccessKeysInner>, TopicSharedAccessKeysInner> beginRegenerateKey(
@@ -336,7 +337,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of shared access keys of the Topic.
+     * @return shared access keys of the Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<TopicSharedAccessKeysInner>, TopicSharedAccessKeysInner> beginRegenerateKey(
@@ -383,7 +384,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Event Types operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Event Types operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<EventTypeInner> listEventTypes(
@@ -400,7 +401,7 @@ public interface TopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Event Types operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Event Types operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<EventTypeInner> listEventTypes(

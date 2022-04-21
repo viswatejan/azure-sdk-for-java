@@ -21,20 +21,12 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.healthcareapis.fluent.DicomServicesClient;
-import com.azure.resourcemanager.healthcareapis.fluent.FhirDestinationsClient;
-import com.azure.resourcemanager.healthcareapis.fluent.FhirServicesClient;
 import com.azure.resourcemanager.healthcareapis.fluent.HealthcareApisManagementClient;
-import com.azure.resourcemanager.healthcareapis.fluent.IotConnectorFhirDestinationsClient;
-import com.azure.resourcemanager.healthcareapis.fluent.IotConnectorsClient;
 import com.azure.resourcemanager.healthcareapis.fluent.OperationResultsClient;
 import com.azure.resourcemanager.healthcareapis.fluent.OperationsClient;
 import com.azure.resourcemanager.healthcareapis.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.healthcareapis.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.healthcareapis.fluent.ServicesClient;
-import com.azure.resourcemanager.healthcareapis.fluent.WorkspacePrivateEndpointConnectionsClient;
-import com.azure.resourcemanager.healthcareapis.fluent.WorkspacePrivateLinkResourcesClient;
-import com.azure.resourcemanager.healthcareapis.fluent.WorkspacesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -48,6 +40,8 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the HealthcareApisManagementClientImpl type. */
 @ServiceClient(builder = HealthcareApisManagementClientBuilder.class)
 public final class HealthcareApisManagementClientImpl implements HealthcareApisManagementClient {
+    private final ClientLogger logger = new ClientLogger(HealthcareApisManagementClientImpl.class);
+
     /** The subscription identifier. */
     private final String subscriptionId;
 
@@ -132,126 +126,6 @@ public final class HealthcareApisManagementClientImpl implements HealthcareApisM
         return this.services;
     }
 
-    /** The PrivateEndpointConnectionsClient object to access its operations. */
-    private final PrivateEndpointConnectionsClient privateEndpointConnections;
-
-    /**
-     * Gets the PrivateEndpointConnectionsClient object to access its operations.
-     *
-     * @return the PrivateEndpointConnectionsClient object.
-     */
-    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
-        return this.privateEndpointConnections;
-    }
-
-    /** The PrivateLinkResourcesClient object to access its operations. */
-    private final PrivateLinkResourcesClient privateLinkResources;
-
-    /**
-     * Gets the PrivateLinkResourcesClient object to access its operations.
-     *
-     * @return the PrivateLinkResourcesClient object.
-     */
-    public PrivateLinkResourcesClient getPrivateLinkResources() {
-        return this.privateLinkResources;
-    }
-
-    /** The WorkspacesClient object to access its operations. */
-    private final WorkspacesClient workspaces;
-
-    /**
-     * Gets the WorkspacesClient object to access its operations.
-     *
-     * @return the WorkspacesClient object.
-     */
-    public WorkspacesClient getWorkspaces() {
-        return this.workspaces;
-    }
-
-    /** The DicomServicesClient object to access its operations. */
-    private final DicomServicesClient dicomServices;
-
-    /**
-     * Gets the DicomServicesClient object to access its operations.
-     *
-     * @return the DicomServicesClient object.
-     */
-    public DicomServicesClient getDicomServices() {
-        return this.dicomServices;
-    }
-
-    /** The IotConnectorsClient object to access its operations. */
-    private final IotConnectorsClient iotConnectors;
-
-    /**
-     * Gets the IotConnectorsClient object to access its operations.
-     *
-     * @return the IotConnectorsClient object.
-     */
-    public IotConnectorsClient getIotConnectors() {
-        return this.iotConnectors;
-    }
-
-    /** The FhirDestinationsClient object to access its operations. */
-    private final FhirDestinationsClient fhirDestinations;
-
-    /**
-     * Gets the FhirDestinationsClient object to access its operations.
-     *
-     * @return the FhirDestinationsClient object.
-     */
-    public FhirDestinationsClient getFhirDestinations() {
-        return this.fhirDestinations;
-    }
-
-    /** The IotConnectorFhirDestinationsClient object to access its operations. */
-    private final IotConnectorFhirDestinationsClient iotConnectorFhirDestinations;
-
-    /**
-     * Gets the IotConnectorFhirDestinationsClient object to access its operations.
-     *
-     * @return the IotConnectorFhirDestinationsClient object.
-     */
-    public IotConnectorFhirDestinationsClient getIotConnectorFhirDestinations() {
-        return this.iotConnectorFhirDestinations;
-    }
-
-    /** The FhirServicesClient object to access its operations. */
-    private final FhirServicesClient fhirServices;
-
-    /**
-     * Gets the FhirServicesClient object to access its operations.
-     *
-     * @return the FhirServicesClient object.
-     */
-    public FhirServicesClient getFhirServices() {
-        return this.fhirServices;
-    }
-
-    /** The WorkspacePrivateEndpointConnectionsClient object to access its operations. */
-    private final WorkspacePrivateEndpointConnectionsClient workspacePrivateEndpointConnections;
-
-    /**
-     * Gets the WorkspacePrivateEndpointConnectionsClient object to access its operations.
-     *
-     * @return the WorkspacePrivateEndpointConnectionsClient object.
-     */
-    public WorkspacePrivateEndpointConnectionsClient getWorkspacePrivateEndpointConnections() {
-        return this.workspacePrivateEndpointConnections;
-    }
-
-    /** The WorkspacePrivateLinkResourcesClient object to access its operations. */
-    private final WorkspacePrivateLinkResourcesClient workspacePrivateLinkResources;
-
-    /**
-     * Gets the WorkspacePrivateLinkResourcesClient object to access its operations.
-     *
-     * @return the WorkspacePrivateLinkResourcesClient object.
-     */
-    public WorkspacePrivateLinkResourcesClient getWorkspacePrivateLinkResources() {
-        return this.workspacePrivateLinkResources;
-    }
-
     /** The OperationsClient object to access its operations. */
     private final OperationsClient operations;
 
@@ -276,6 +150,30 @@ public final class HealthcareApisManagementClientImpl implements HealthcareApisM
         return this.operationResults;
     }
 
+    /** The PrivateEndpointConnectionsClient object to access its operations. */
+    private final PrivateEndpointConnectionsClient privateEndpointConnections;
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /** The PrivateLinkResourcesClient object to access its operations. */
+    private final PrivateLinkResourcesClient privateLinkResources;
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     *
+     * @return the PrivateLinkResourcesClient object.
+     */
+    public PrivateLinkResourcesClient getPrivateLinkResources() {
+        return this.privateLinkResources;
+    }
+
     /**
      * Initializes an instance of HealthcareApisManagementClient client.
      *
@@ -298,20 +196,12 @@ public final class HealthcareApisManagementClientImpl implements HealthcareApisM
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-11-01";
+        this.apiVersion = "2021-01-11";
         this.services = new ServicesClientImpl(this);
-        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
-        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
-        this.workspaces = new WorkspacesClientImpl(this);
-        this.dicomServices = new DicomServicesClientImpl(this);
-        this.iotConnectors = new IotConnectorsClientImpl(this);
-        this.fhirDestinations = new FhirDestinationsClientImpl(this);
-        this.iotConnectorFhirDestinations = new IotConnectorFhirDestinationsClientImpl(this);
-        this.fhirServices = new FhirServicesClientImpl(this);
-        this.workspacePrivateEndpointConnections = new WorkspacePrivateEndpointConnectionsClientImpl(this);
-        this.workspacePrivateLinkResources = new WorkspacePrivateLinkResourcesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.operationResults = new OperationResultsClientImpl(this);
+        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
     }
 
     /**
@@ -397,7 +287,7 @@ public final class HealthcareApisManagementClientImpl implements HealthcareApisM
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        LOGGER.logThrowableAsWarning(ioe);
+                        logger.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -456,6 +346,4 @@ public final class HealthcareApisManagementClientImpl implements HealthcareApisM
             return Mono.just(new String(responseBody, charset));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(HealthcareApisManagementClientImpl.class);
 }

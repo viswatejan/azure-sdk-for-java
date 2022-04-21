@@ -27,6 +27,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.ContentTypesClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.ContentTypeContractInner;
 import com.azure.resourcemanager.apimanagement.models.ContentTypeCollection;
@@ -36,6 +37,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ContentTypesClient. */
 public final class ContentTypesClientImpl implements ContentTypesClient {
+    private final ClientLogger logger = new ClientLogger(ContentTypesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ContentTypesService service;
 
@@ -145,7 +148,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of content types along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged list of content types.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContentTypeContractInner>> listByServiceSinglePageAsync(
@@ -204,7 +207,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of content types along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged list of content types.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContentTypeContractInner>> listByServiceSinglePageAsync(
@@ -259,7 +262,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of content types as paginated response with {@link PagedFlux}.
+     * @return paged list of content types.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ContentTypeContractInner> listByServiceAsync(String resourceGroupName, String serviceName) {
@@ -278,7 +281,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of content types as paginated response with {@link PagedFlux}.
+     * @return paged list of content types.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ContentTypeContractInner> listByServiceAsync(
@@ -297,7 +300,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of content types as paginated response with {@link PagedIterable}.
+     * @return paged list of content types.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ContentTypeContractInner> listByService(String resourceGroupName, String serviceName) {
@@ -314,7 +317,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of content types as paginated response with {@link PagedIterable}.
+     * @return paged list of content types.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ContentTypeContractInner> listByService(
@@ -332,7 +335,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the developer portal's content type on successful completion of {@link Mono}.
+     * @return the details of the developer portal's content type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ContentTypesGetResponse> getWithResponseAsync(
@@ -387,7 +390,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the developer portal's content type on successful completion of {@link Mono}.
+     * @return the details of the developer portal's content type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ContentTypesGetResponse> getWithResponseAsync(
@@ -438,7 +441,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the developer portal's content type on successful completion of {@link Mono}.
+     * @return the details of the developer portal's content type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ContentTypeContractInner> getAsync(
@@ -502,7 +505,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return content type contract details on successful completion of {@link Mono}.
+     * @return content type contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ContentTypesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -560,7 +563,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return content type contract details on successful completion of {@link Mono}.
+     * @return content type contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ContentTypesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -614,7 +617,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return content type contract details on successful completion of {@link Mono}.
+     * @return content type contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ContentTypeContractInner> createOrUpdateAsync(
@@ -641,7 +644,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return content type contract details on successful completion of {@link Mono}.
+     * @return content type contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ContentTypeContractInner> createOrUpdateAsync(
@@ -711,7 +714,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -773,7 +776,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -831,7 +834,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String contentTypeId, String ifMatch) {
@@ -872,7 +875,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -887,7 +890,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of content types along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged list of content types.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContentTypeContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -923,7 +926,7 @@ public final class ContentTypesClientImpl implements ContentTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of content types along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged list of content types.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ContentTypeContractInner>> listByServiceNextSinglePageAsync(

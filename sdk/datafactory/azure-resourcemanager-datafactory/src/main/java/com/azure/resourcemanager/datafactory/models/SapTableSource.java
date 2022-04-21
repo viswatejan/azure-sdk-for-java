@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -14,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("SapTableSource")
 @Fluent
 public final class SapTableSource extends TabularSource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SapTableSource.class);
+
     /*
      * The number of rows to be retrieved. Type: integer(or Expression with
      * resultType integer).

@@ -29,6 +29,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.MetadatasClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.MetadataModelInner;
 import com.azure.resourcemanager.securityinsights.models.MetadataList;
@@ -37,6 +38,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in MetadatasClient. */
 public final class MetadatasClientImpl implements MetadatasClient {
+    private final ClientLogger logger = new ClientLogger(MetadatasClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final MetadatasService service;
 
@@ -306,7 +309,7 @@ public final class MetadatasClientImpl implements MetadatasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the metadata as paginated response with {@link PagedFlux}.
+     * @return list of all the metadata.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MetadataModelInner> listAsync(
@@ -324,7 +327,7 @@ public final class MetadatasClientImpl implements MetadatasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the metadata as paginated response with {@link PagedFlux}.
+     * @return list of all the metadata.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MetadataModelInner> listAsync(String resourceGroupName, String workspaceName) {
@@ -351,7 +354,7 @@ public final class MetadatasClientImpl implements MetadatasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the metadata as paginated response with {@link PagedFlux}.
+     * @return list of all the metadata.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MetadataModelInner> listAsync(
@@ -375,7 +378,7 @@ public final class MetadatasClientImpl implements MetadatasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the metadata as paginated response with {@link PagedIterable}.
+     * @return list of all the metadata.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MetadataModelInner> list(String resourceGroupName, String workspaceName) {
@@ -400,7 +403,7 @@ public final class MetadatasClientImpl implements MetadatasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the metadata as paginated response with {@link PagedIterable}.
+     * @return list of all the metadata.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MetadataModelInner> list(

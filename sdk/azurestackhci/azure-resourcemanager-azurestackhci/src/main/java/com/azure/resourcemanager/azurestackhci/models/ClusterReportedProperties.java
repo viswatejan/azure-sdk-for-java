@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.azurestackhci.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
 /** Properties reported by cluster agent. */
-@Fluent
+@Immutable
 public final class ClusterReportedProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ClusterReportedProperties.class);
+
     /*
      * Name of the on-prem cluster connected to this resource.
      */
@@ -41,18 +45,6 @@ public final class ClusterReportedProperties {
      */
     @JsonProperty(value = "lastUpdated", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastUpdated;
-
-    /*
-     * IMDS attestation status of the cluster.
-     */
-    @JsonProperty(value = "imdsAttestation", access = JsonProperty.Access.WRITE_ONLY)
-    private ImdsAttestation imdsAttestation;
-
-    /*
-     * Level of diagnostic data emitted by the cluster.
-     */
-    @JsonProperty(value = "diagnosticLevel")
-    private DiagnosticLevel diagnosticLevel;
 
     /**
      * Get the clusterName property: Name of the on-prem cluster connected to this resource.
@@ -97,35 +89,6 @@ public final class ClusterReportedProperties {
      */
     public OffsetDateTime lastUpdated() {
         return this.lastUpdated;
-    }
-
-    /**
-     * Get the imdsAttestation property: IMDS attestation status of the cluster.
-     *
-     * @return the imdsAttestation value.
-     */
-    public ImdsAttestation imdsAttestation() {
-        return this.imdsAttestation;
-    }
-
-    /**
-     * Get the diagnosticLevel property: Level of diagnostic data emitted by the cluster.
-     *
-     * @return the diagnosticLevel value.
-     */
-    public DiagnosticLevel diagnosticLevel() {
-        return this.diagnosticLevel;
-    }
-
-    /**
-     * Set the diagnosticLevel property: Level of diagnostic data emitted by the cluster.
-     *
-     * @param diagnosticLevel the diagnosticLevel value to set.
-     * @return the ClusterReportedProperties object itself.
-     */
-    public ClusterReportedProperties withDiagnosticLevel(DiagnosticLevel diagnosticLevel) {
-        this.diagnosticLevel = diagnosticLevel;
-        return this;
     }
 
     /**

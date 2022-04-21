@@ -20,8 +20,7 @@ public interface MyWorkbooks {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified resource group and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified resource group and category.
      */
     PagedIterable<MyWorkbook> listByResourceGroup(String resourceGroupName, CategoryType category);
 
@@ -39,8 +38,7 @@ public interface MyWorkbooks {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified resource group and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified resource group and category.
      */
     PagedIterable<MyWorkbook> listByResourceGroup(
         String resourceGroupName,
@@ -58,8 +56,7 @@ public interface MyWorkbooks {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified subscription and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified subscription and category.
      */
     PagedIterable<MyWorkbook> list(CategoryType category);
 
@@ -75,8 +72,7 @@ public interface MyWorkbooks {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private workbooks defined within a specified subscription and category as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private workbooks defined within a specified subscription and category.
      */
     PagedIterable<MyWorkbook> list(CategoryType category, List<String> tags, Boolean canFetchContent, Context context);
 

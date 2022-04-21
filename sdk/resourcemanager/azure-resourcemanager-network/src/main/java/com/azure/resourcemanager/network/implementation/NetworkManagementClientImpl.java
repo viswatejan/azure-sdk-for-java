@@ -31,6 +31,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.SerializerAdapter;
@@ -167,6 +168,8 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the NetworkManagementClientImpl type. */
 @ServiceClient(builder = NetworkManagementClientBuilder.class)
 public final class NetworkManagementClientImpl extends AzureServiceClient implements NetworkManagementClient {
+    private final ClientLogger logger = new ClientLogger(NetworkManagementClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final NetworkManagementClientService service;
 

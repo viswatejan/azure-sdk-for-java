@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,6 +16,8 @@ import java.util.Map;
 /** location. */
 @Fluent
 public final class MicrosoftGraphLocation {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphLocation.class);
+
     /*
      * physicalAddress
      */
@@ -40,7 +43,7 @@ public final class MicrosoftGraphLocation {
     private String locationEmailAddress;
 
     /*
-     * locationType
+     * The locationType property.
      */
     @JsonProperty(value = "locationType")
     private MicrosoftGraphLocationType locationType;
@@ -58,7 +61,7 @@ public final class MicrosoftGraphLocation {
     private String uniqueId;
 
     /*
-     * locationUniqueIdType
+     * The uniqueIdType property.
      */
     @JsonProperty(value = "uniqueIdType")
     private MicrosoftGraphLocationUniqueIdType uniqueIdType;
@@ -149,7 +152,7 @@ public final class MicrosoftGraphLocation {
     }
 
     /**
-     * Get the locationType property: locationType.
+     * Get the locationType property: The locationType property.
      *
      * @return the locationType value.
      */
@@ -158,7 +161,7 @@ public final class MicrosoftGraphLocation {
     }
 
     /**
-     * Set the locationType property: locationType.
+     * Set the locationType property: The locationType property.
      *
      * @param locationType the locationType value to set.
      * @return the MicrosoftGraphLocation object itself.
@@ -209,7 +212,7 @@ public final class MicrosoftGraphLocation {
     }
 
     /**
-     * Get the uniqueIdType property: locationUniqueIdType.
+     * Get the uniqueIdType property: The uniqueIdType property.
      *
      * @return the uniqueIdType value.
      */
@@ -218,7 +221,7 @@ public final class MicrosoftGraphLocation {
     }
 
     /**
-     * Set the uniqueIdType property: locationUniqueIdType.
+     * Set the uniqueIdType property: The uniqueIdType property.
      *
      * @param uniqueIdType the uniqueIdType value to set.
      * @return the MicrosoftGraphLocation object itself.

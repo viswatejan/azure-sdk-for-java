@@ -22,6 +22,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mediaservices.fluent.LocationsClient;
 import com.azure.resourcemanager.mediaservices.fluent.models.EntityNameAvailabilityCheckOutputInner;
 import com.azure.resourcemanager.mediaservices.models.CheckNameAvailabilityInput;
@@ -29,6 +30,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in LocationsClient. */
 public final class LocationsClientImpl implements LocationsClient {
+    private final ClientLogger logger = new ClientLogger(LocationsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final LocationsService service;
 
@@ -76,8 +79,7 @@ public final class LocationsClientImpl implements LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the check name availability request along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from the check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EntityNameAvailabilityCheckOutputInner>> checkNameAvailabilityWithResponseAsync(
@@ -102,7 +104,6 @@ public final class LocationsClientImpl implements LocationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -112,7 +113,7 @@ public final class LocationsClientImpl implements LocationsClient {
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             locationName,
-                            apiVersion,
+                            this.client.getApiVersion(),
                             parameters,
                             accept,
                             context))
@@ -128,8 +129,7 @@ public final class LocationsClientImpl implements LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the check name availability request along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response from the check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EntityNameAvailabilityCheckOutputInner>> checkNameAvailabilityWithResponseAsync(
@@ -154,7 +154,6 @@ public final class LocationsClientImpl implements LocationsClient {
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -162,7 +161,7 @@ public final class LocationsClientImpl implements LocationsClient {
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 locationName,
-                apiVersion,
+                this.client.getApiVersion(),
                 parameters,
                 accept,
                 context);
@@ -176,7 +175,7 @@ public final class LocationsClientImpl implements LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the check name availability request on successful completion of {@link Mono}.
+     * @return the response from the check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EntityNameAvailabilityCheckOutputInner> checkNameAvailabilityAsync(
@@ -217,7 +216,7 @@ public final class LocationsClientImpl implements LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the check name availability request along with {@link Response}.
+     * @return the response from the check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EntityNameAvailabilityCheckOutputInner> checkNameAvailabilityWithResponse(

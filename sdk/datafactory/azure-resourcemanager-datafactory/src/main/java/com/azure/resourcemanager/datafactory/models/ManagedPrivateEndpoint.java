@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** Properties of a managed private endpoint. */
 @Fluent
 public final class ManagedPrivateEndpoint {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedPrivateEndpoint.class);
+
     /*
      * The managed private endpoint connection state
      */

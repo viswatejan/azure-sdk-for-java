@@ -6,27 +6,29 @@ package com.azure.resourcemanager.apimanagement.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.resourcemanager.apimanagement.models.ApiContactInformation;
-import com.azure.resourcemanager.apimanagement.models.ApiLicenseInformation;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.models.ApiType;
 import com.azure.resourcemanager.apimanagement.models.ApiVersionSetContractDetails;
 import com.azure.resourcemanager.apimanagement.models.AuthenticationSettingsContract;
 import com.azure.resourcemanager.apimanagement.models.Protocol;
 import com.azure.resourcemanager.apimanagement.models.SubscriptionKeyParameterNamesContract;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** API details. */
+/** Api details. */
 @Fluent
 public final class ApiContractInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiContractInner.class);
+
     /*
-     * API entity contract properties.
+     * Api entity contract properties.
      */
     @JsonProperty(value = "properties")
     private ApiContractProperties innerProperties;
 
     /**
-     * Get the innerProperties property: API entity contract properties.
+     * Get the innerProperties property: Api entity contract properties.
      *
      * @return the innerProperties value.
      */
@@ -272,7 +274,7 @@ public final class ApiContractInner extends ProxyResource {
     }
 
     /**
-     * Get the apiRevision property: Describes the revision of the API. If no value is provided, default revision 1 is
+     * Get the apiRevision property: Describes the Revision of the Api. If no value is provided, default revision 1 is
      * created.
      *
      * @return the apiRevision value.
@@ -282,7 +284,7 @@ public final class ApiContractInner extends ProxyResource {
     }
 
     /**
-     * Set the apiRevision property: Describes the revision of the API. If no value is provided, default revision 1 is
+     * Set the apiRevision property: Describes the Revision of the Api. If no value is provided, default revision 1 is
      * created.
      *
      * @param apiRevision the apiRevision value to set.
@@ -297,7 +299,7 @@ public final class ApiContractInner extends ProxyResource {
     }
 
     /**
-     * Get the apiVersion property: Indicates the version identifier of the API if the API is versioned.
+     * Get the apiVersion property: Indicates the Version identifier of the API if the API is versioned.
      *
      * @return the apiVersion value.
      */
@@ -306,7 +308,7 @@ public final class ApiContractInner extends ProxyResource {
     }
 
     /**
-     * Set the apiVersion property: Indicates the version identifier of the API if the API is versioned.
+     * Set the apiVersion property: Indicates the Version identifier of the API if the API is versioned.
      *
      * @param apiVersion the apiVersion value to set.
      * @return the ApiContractInner object itself.
@@ -352,7 +354,7 @@ public final class ApiContractInner extends ProxyResource {
     }
 
     /**
-     * Get the apiRevisionDescription property: Description of the API Revision.
+     * Get the apiRevisionDescription property: Description of the Api Revision.
      *
      * @return the apiRevisionDescription value.
      */
@@ -361,7 +363,7 @@ public final class ApiContractInner extends ProxyResource {
     }
 
     /**
-     * Set the apiRevisionDescription property: Description of the API Revision.
+     * Set the apiRevisionDescription property: Description of the Api Revision.
      *
      * @param apiRevisionDescription the apiRevisionDescription value to set.
      * @return the ApiContractInner object itself.
@@ -375,7 +377,7 @@ public final class ApiContractInner extends ProxyResource {
     }
 
     /**
-     * Get the apiVersionDescription property: Description of the API Version.
+     * Get the apiVersionDescription property: Description of the Api Version.
      *
      * @return the apiVersionDescription value.
      */
@@ -384,7 +386,7 @@ public final class ApiContractInner extends ProxyResource {
     }
 
     /**
-     * Set the apiVersionDescription property: Description of the API Version.
+     * Set the apiVersionDescription property: Description of the Api Version.
      *
      * @param apiVersionDescription the apiVersionDescription value to set.
      * @return the ApiContractInner object itself.
@@ -442,75 +444,6 @@ public final class ApiContractInner extends ProxyResource {
             this.innerProperties = new ApiContractProperties();
         }
         this.innerProperties().withSubscriptionRequired(subscriptionRequired);
-        return this;
-    }
-
-    /**
-     * Get the termsOfServiceUrl property: A URL to the Terms of Service for the API. MUST be in the format of a URL.
-     *
-     * @return the termsOfServiceUrl value.
-     */
-    public String termsOfServiceUrl() {
-        return this.innerProperties() == null ? null : this.innerProperties().termsOfServiceUrl();
-    }
-
-    /**
-     * Set the termsOfServiceUrl property: A URL to the Terms of Service for the API. MUST be in the format of a URL.
-     *
-     * @param termsOfServiceUrl the termsOfServiceUrl value to set.
-     * @return the ApiContractInner object itself.
-     */
-    public ApiContractInner withTermsOfServiceUrl(String termsOfServiceUrl) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ApiContractProperties();
-        }
-        this.innerProperties().withTermsOfServiceUrl(termsOfServiceUrl);
-        return this;
-    }
-
-    /**
-     * Get the contact property: Contact information for the API.
-     *
-     * @return the contact value.
-     */
-    public ApiContactInformation contact() {
-        return this.innerProperties() == null ? null : this.innerProperties().contact();
-    }
-
-    /**
-     * Set the contact property: Contact information for the API.
-     *
-     * @param contact the contact value to set.
-     * @return the ApiContractInner object itself.
-     */
-    public ApiContractInner withContact(ApiContactInformation contact) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ApiContractProperties();
-        }
-        this.innerProperties().withContact(contact);
-        return this;
-    }
-
-    /**
-     * Get the license property: License information for the API.
-     *
-     * @return the license value.
-     */
-    public ApiLicenseInformation license() {
-        return this.innerProperties() == null ? null : this.innerProperties().license();
-    }
-
-    /**
-     * Set the license property: License information for the API.
-     *
-     * @param license the license value to set.
-     * @return the ApiContractInner object itself.
-     */
-    public ApiContractInner withLicense(ApiLicenseInformation license) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ApiContractProperties();
-        }
-        this.innerProperties().withLicense(license);
         return this;
     }
 

@@ -13,9 +13,11 @@ import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorReq
 import com.azure.resourcemanager.securityinsights.models.DataConnectorRequirementsState;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorsCheckRequirements;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorsCheckRequirementsOperations;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class DataConnectorsCheckRequirementsOperationsImpl implements DataConnectorsCheckRequirementsOperations {
-    private static final ClientLogger LOGGER = new ClientLogger(DataConnectorsCheckRequirementsOperationsImpl.class);
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(DataConnectorsCheckRequirementsOperationsImpl.class);
 
     private final DataConnectorsCheckRequirementsOperationsClient innerClient;
 

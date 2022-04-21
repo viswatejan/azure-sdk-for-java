@@ -28,6 +28,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.applicationinsights.fluent.AnnotationsClient;
 import com.azure.resourcemanager.applicationinsights.fluent.models.AnnotationInner;
 import com.azure.resourcemanager.applicationinsights.models.AnnotationErrorException;
@@ -37,6 +38,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in AnnotationsClient. */
 public final class AnnotationsClientImpl implements AnnotationsClient {
+    private final ClientLogger logger = new ClientLogger(AnnotationsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final AnnotationsService service;
 
@@ -262,8 +265,7 @@ public final class AnnotationsClientImpl implements AnnotationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws AnnotationErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of annotations for a component for given time range as paginated response with {@link
-     *     PagedFlux}.
+     * @return the list of annotations for a component for given time range.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AnnotationInner> listAsync(
@@ -282,8 +284,7 @@ public final class AnnotationsClientImpl implements AnnotationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws AnnotationErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of annotations for a component for given time range as paginated response with {@link
-     *     PagedFlux}.
+     * @return the list of annotations for a component for given time range.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AnnotationInner> listAsync(
@@ -301,8 +302,7 @@ public final class AnnotationsClientImpl implements AnnotationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws AnnotationErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of annotations for a component for given time range as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of annotations for a component for given time range.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AnnotationInner> list(
@@ -321,8 +321,7 @@ public final class AnnotationsClientImpl implements AnnotationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws AnnotationErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of annotations for a component for given time range as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of annotations for a component for given time range.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AnnotationInner> list(

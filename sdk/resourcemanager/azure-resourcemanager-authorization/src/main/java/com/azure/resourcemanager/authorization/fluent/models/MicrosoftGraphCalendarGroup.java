@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,6 +18,8 @@ import java.util.UUID;
 /** calendarGroup. */
 @Fluent
 public final class MicrosoftGraphCalendarGroup extends MicrosoftGraphEntity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphCalendarGroup.class);
+
     /*
      * Identifies the version of the calendar group. Every time the calendar
      * group is changed, ChangeKey changes as well. This allows Exchange to

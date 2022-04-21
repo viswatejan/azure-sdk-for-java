@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.models.IdentityProviderBaseParameters;
 import com.azure.resourcemanager.apimanagement.models.IdentityProviderType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -17,6 +18,8 @@ import java.util.List;
  */
 @Fluent
 public final class IdentityProviderCreateContractProperties extends IdentityProviderBaseParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(IdentityProviderCreateContractProperties.class);
+
     /*
      * Client Id of the Application in the external Identity Provider. It is
      * App ID for Facebook login, Client ID for Google login, App ID for
@@ -148,18 +151,16 @@ public final class IdentityProviderCreateContractProperties extends IdentityProv
     public void validate() {
         super.validate();
         if (clientId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property clientId in model IdentityProviderCreateContractProperties"));
         }
         if (clientSecret() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property clientSecret in model IdentityProviderCreateContractProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(IdentityProviderCreateContractProperties.class);
 }

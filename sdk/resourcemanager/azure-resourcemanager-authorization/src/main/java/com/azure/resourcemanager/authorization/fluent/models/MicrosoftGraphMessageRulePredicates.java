@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** messageRulePredicates. */
 @Fluent
 public final class MicrosoftGraphMessageRulePredicates {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphMessageRulePredicates.class);
+
     /*
      * Represents the strings that should appear in the body of an incoming
      * message in order for the condition or exception to apply.
@@ -59,7 +62,7 @@ public final class MicrosoftGraphMessageRulePredicates {
     private List<String> headerContains;
 
     /*
-     * importance
+     * The importance property.
      */
     @JsonProperty(value = "importance")
     private MicrosoftGraphImportance importance;
@@ -142,7 +145,7 @@ public final class MicrosoftGraphMessageRulePredicates {
     private Boolean isVoicemail;
 
     /*
-     * messageActionFlag
+     * The messageActionFlag property.
      */
     @JsonProperty(value = "messageActionFlag")
     private MicrosoftGraphMessageActionFlag messageActionFlag;
@@ -170,7 +173,7 @@ public final class MicrosoftGraphMessageRulePredicates {
     private List<String> senderContains;
 
     /*
-     * sensitivity
+     * The sensitivity property.
      */
     @JsonProperty(value = "sensitivity")
     private MicrosoftGraphSensitivity sensitivity;
@@ -364,7 +367,7 @@ public final class MicrosoftGraphMessageRulePredicates {
     }
 
     /**
-     * Get the importance property: importance.
+     * Get the importance property: The importance property.
      *
      * @return the importance value.
      */
@@ -373,7 +376,7 @@ public final class MicrosoftGraphMessageRulePredicates {
     }
 
     /**
-     * Set the importance property: importance.
+     * Set the importance property: The importance property.
      *
      * @param importance the importance value to set.
      * @return the MicrosoftGraphMessageRulePredicates object itself.
@@ -626,7 +629,7 @@ public final class MicrosoftGraphMessageRulePredicates {
     }
 
     /**
-     * Get the messageActionFlag property: messageActionFlag.
+     * Get the messageActionFlag property: The messageActionFlag property.
      *
      * @return the messageActionFlag value.
      */
@@ -635,7 +638,7 @@ public final class MicrosoftGraphMessageRulePredicates {
     }
 
     /**
-     * Set the messageActionFlag property: messageActionFlag.
+     * Set the messageActionFlag property: The messageActionFlag property.
      *
      * @param messageActionFlag the messageActionFlag value to set.
      * @return the MicrosoftGraphMessageRulePredicates object itself.
@@ -713,7 +716,7 @@ public final class MicrosoftGraphMessageRulePredicates {
     }
 
     /**
-     * Get the sensitivity property: sensitivity.
+     * Get the sensitivity property: The sensitivity property.
      *
      * @return the sensitivity value.
      */
@@ -722,7 +725,7 @@ public final class MicrosoftGraphMessageRulePredicates {
     }
 
     /**
-     * Set the sensitivity property: sensitivity.
+     * Set the sensitivity property: The sensitivity property.
      *
      * @param sensitivity the sensitivity value to set.
      * @return the MicrosoftGraphMessageRulePredicates object itself.

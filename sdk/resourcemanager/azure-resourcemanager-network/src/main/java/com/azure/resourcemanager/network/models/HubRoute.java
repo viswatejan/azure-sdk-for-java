@@ -6,12 +6,15 @@ package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** RouteTable route. */
 @Fluent
 public final class HubRoute {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(HubRoute.class);
+
     /*
      * The name of the Route that is unique within a RouteTable. This name can
      * be used to access this route.
@@ -152,30 +155,28 @@ public final class HubRoute {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(new IllegalArgumentException("Missing required property name in model HubRoute"));
         }
         if (destinationType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property destinationType in model HubRoute"));
         }
         if (destinations() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property destinations in model HubRoute"));
         }
         if (nextHopType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property nextHopType in model HubRoute"));
         }
         if (nextHop() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property nextHop in model HubRoute"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(HubRoute.class);
 }

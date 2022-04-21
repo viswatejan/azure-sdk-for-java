@@ -6,6 +6,7 @@ package com.azure.resourcemanager.resourcegraph.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,6 +17,8 @@ import java.util.List;
 @JsonTypeName("FacetError")
 @Fluent
 public final class FacetError extends Facet {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FacetError.class);
+
     /*
      * An array containing detected facet errors with details.
      */
@@ -58,13 +61,11 @@ public final class FacetError extends Facet {
     public void validate() {
         super.validate();
         if (errors() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property errors in model FacetError"));
         } else {
             errors().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(FacetError.class);
 }

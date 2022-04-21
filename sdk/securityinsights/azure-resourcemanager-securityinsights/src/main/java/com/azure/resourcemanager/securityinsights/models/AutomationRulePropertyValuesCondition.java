@@ -5,89 +5,43 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The AutomationRulePropertyValuesCondition model. */
+/** Describes an automation rule condition that evaluates a property's value. */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "conditionType")
+@JsonTypeName("Property")
 @Fluent
-public final class AutomationRulePropertyValuesCondition {
-    /*
-     * The property to evaluate in an automation rule property condition
-     */
-    @JsonProperty(value = "propertyName")
-    private AutomationRulePropertyConditionSupportedProperty propertyName;
+public final class AutomationRulePropertyValuesCondition extends AutomationRuleCondition {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AutomationRulePropertyValuesCondition.class);
 
     /*
-     * The operator property.
+     * The configuration of the automation rule condition
      */
-    @JsonProperty(value = "operator")
-    private AutomationRulePropertyConditionSupportedOperator operator;
-
-    /*
-     * The propertyValues property.
-     */
-    @JsonProperty(value = "propertyValues")
-    private List<String> propertyValues;
+    @JsonProperty(value = "conditionProperties", required = true)
+    private AutomationRulePropertyValuesConditionProperties conditionProperties;
 
     /**
-     * Get the propertyName property: The property to evaluate in an automation rule property condition.
+     * Get the conditionProperties property: The configuration of the automation rule condition.
      *
-     * @return the propertyName value.
+     * @return the conditionProperties value.
      */
-    public AutomationRulePropertyConditionSupportedProperty propertyName() {
-        return this.propertyName;
+    public AutomationRulePropertyValuesConditionProperties conditionProperties() {
+        return this.conditionProperties;
     }
 
     /**
-     * Set the propertyName property: The property to evaluate in an automation rule property condition.
+     * Set the conditionProperties property: The configuration of the automation rule condition.
      *
-     * @param propertyName the propertyName value to set.
+     * @param conditionProperties the conditionProperties value to set.
      * @return the AutomationRulePropertyValuesCondition object itself.
      */
-    public AutomationRulePropertyValuesCondition withPropertyName(
-        AutomationRulePropertyConditionSupportedProperty propertyName) {
-        this.propertyName = propertyName;
-        return this;
-    }
-
-    /**
-     * Get the operator property: The operator property.
-     *
-     * @return the operator value.
-     */
-    public AutomationRulePropertyConditionSupportedOperator operator() {
-        return this.operator;
-    }
-
-    /**
-     * Set the operator property: The operator property.
-     *
-     * @param operator the operator value to set.
-     * @return the AutomationRulePropertyValuesCondition object itself.
-     */
-    public AutomationRulePropertyValuesCondition withOperator(
-        AutomationRulePropertyConditionSupportedOperator operator) {
-        this.operator = operator;
-        return this;
-    }
-
-    /**
-     * Get the propertyValues property: The propertyValues property.
-     *
-     * @return the propertyValues value.
-     */
-    public List<String> propertyValues() {
-        return this.propertyValues;
-    }
-
-    /**
-     * Set the propertyValues property: The propertyValues property.
-     *
-     * @param propertyValues the propertyValues value to set.
-     * @return the AutomationRulePropertyValuesCondition object itself.
-     */
-    public AutomationRulePropertyValuesCondition withPropertyValues(List<String> propertyValues) {
-        this.propertyValues = propertyValues;
+    public AutomationRulePropertyValuesCondition withConditionProperties(
+        AutomationRulePropertyValuesConditionProperties conditionProperties) {
+        this.conditionProperties = conditionProperties;
         return this;
     }
 
@@ -96,6 +50,17 @@ public final class AutomationRulePropertyValuesCondition {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
+        if (conditionProperties() == null) {
+            throw logger
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property conditionProperties in model"
+                            + " AutomationRulePropertyValuesCondition"));
+        } else {
+            conditionProperties().validate();
+        }
     }
 }

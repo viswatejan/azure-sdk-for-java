@@ -15,9 +15,10 @@ import com.azure.resourcemanager.apimanagement.models.ContentTypeContract;
 import com.azure.resourcemanager.apimanagement.models.ContentTypes;
 import com.azure.resourcemanager.apimanagement.models.ContentTypesCreateOrUpdateResponse;
 import com.azure.resourcemanager.apimanagement.models.ContentTypesGetResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ContentTypesImpl implements ContentTypes {
-    private static final ClientLogger LOGGER = new ClientLogger(ContentTypesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContentTypesImpl.class);
 
     private final ContentTypesClient innerClient;
 

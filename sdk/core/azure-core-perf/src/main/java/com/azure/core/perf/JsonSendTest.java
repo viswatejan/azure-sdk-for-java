@@ -19,11 +19,11 @@ public class JsonSendTest extends RestProxyTestBase<CorePerfStressOptions> {
 
     @Override
     public void run() {
-        runAsync().block();
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public Mono<Void> runAsync() {
-        return service.setUserDatabaseJson(endpoint, id, userDatabase).then();
+        return service.setUserDatabaseJson(endpoint, userDatabase).then();
     }
 }

@@ -11,9 +11,10 @@ import com.azure.resourcemanager.apimanagement.fluent.ApiManagementServiceSkusCl
 import com.azure.resourcemanager.apimanagement.fluent.models.ResourceSkuResultInner;
 import com.azure.resourcemanager.apimanagement.models.ApiManagementServiceSkus;
 import com.azure.resourcemanager.apimanagement.models.ResourceSkuResult;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ApiManagementServiceSkusImpl implements ApiManagementServiceSkus {
-    private static final ClientLogger LOGGER = new ClientLogger(ApiManagementServiceSkusImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiManagementServiceSkusImpl.class);
 
     private final ApiManagementServiceSkusClient innerClient;
 

@@ -5,20 +5,24 @@
 package com.azure.resourcemanager.signalr.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Network ACLs for the resource. */
 @Fluent
 public final class SignalRNetworkACLs {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SignalRNetworkACLs.class);
+
     /*
-     * Azure Networking ACL Action.
+     * Default action when no other rule matches
      */
     @JsonProperty(value = "defaultAction")
     private AclAction defaultAction;
 
     /*
-     * Network ACL
+     * ACL for requests from public network
      */
     @JsonProperty(value = "publicNetwork")
     private NetworkAcl publicNetwork;
@@ -30,7 +34,7 @@ public final class SignalRNetworkACLs {
     private List<PrivateEndpointAcl> privateEndpoints;
 
     /**
-     * Get the defaultAction property: Azure Networking ACL Action.
+     * Get the defaultAction property: Default action when no other rule matches.
      *
      * @return the defaultAction value.
      */
@@ -39,7 +43,7 @@ public final class SignalRNetworkACLs {
     }
 
     /**
-     * Set the defaultAction property: Azure Networking ACL Action.
+     * Set the defaultAction property: Default action when no other rule matches.
      *
      * @param defaultAction the defaultAction value to set.
      * @return the SignalRNetworkACLs object itself.
@@ -50,7 +54,7 @@ public final class SignalRNetworkACLs {
     }
 
     /**
-     * Get the publicNetwork property: Network ACL.
+     * Get the publicNetwork property: ACL for requests from public network.
      *
      * @return the publicNetwork value.
      */
@@ -59,7 +63,7 @@ public final class SignalRNetworkACLs {
     }
 
     /**
-     * Set the publicNetwork property: Network ACL.
+     * Set the publicNetwork property: ACL for requests from public network.
      *
      * @param publicNetwork the publicNetwork value to set.
      * @return the SignalRNetworkACLs object itself.

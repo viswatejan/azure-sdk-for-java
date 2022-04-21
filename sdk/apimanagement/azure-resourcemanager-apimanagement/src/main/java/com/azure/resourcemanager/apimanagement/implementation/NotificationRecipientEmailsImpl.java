@@ -15,9 +15,10 @@ import com.azure.resourcemanager.apimanagement.models.NotificationName;
 import com.azure.resourcemanager.apimanagement.models.NotificationRecipientEmails;
 import com.azure.resourcemanager.apimanagement.models.RecipientEmailCollection;
 import com.azure.resourcemanager.apimanagement.models.RecipientEmailContract;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class NotificationRecipientEmailsImpl implements NotificationRecipientEmails {
-    private static final ClientLogger LOGGER = new ClientLogger(NotificationRecipientEmailsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(NotificationRecipientEmailsImpl.class);
 
     private final NotificationRecipientEmailsClient innerClient;
 

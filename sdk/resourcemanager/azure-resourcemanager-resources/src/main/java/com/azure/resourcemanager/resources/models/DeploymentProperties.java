@@ -6,11 +6,14 @@ package com.azure.resourcemanager.resources.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Deployment properties. */
 @Fluent
 public class DeploymentProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DeploymentProperties.class);
+
     /*
      * The template content. You use this element when you want to pass the
      * template syntax directly in the request rather than link to an existing
@@ -277,7 +280,7 @@ public class DeploymentProperties {
             parametersLink().validate();
         }
         if (mode() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property mode in model DeploymentProperties"));
         }
@@ -291,6 +294,4 @@ public class DeploymentProperties {
             expressionEvaluationOptions().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DeploymentProperties.class);
 }

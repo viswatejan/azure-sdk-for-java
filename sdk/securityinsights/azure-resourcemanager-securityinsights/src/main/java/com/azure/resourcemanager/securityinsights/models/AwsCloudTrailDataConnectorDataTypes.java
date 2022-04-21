@@ -6,11 +6,14 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The available data types for Amazon Web Services CloudTrail data connector. */
 @Fluent
 public final class AwsCloudTrailDataConnectorDataTypes {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AwsCloudTrailDataConnectorDataTypes.class);
+
     /*
      * Logs data type.
      */
@@ -44,7 +47,7 @@ public final class AwsCloudTrailDataConnectorDataTypes {
      */
     public void validate() {
         if (logs() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property logs in model AwsCloudTrailDataConnectorDataTypes"));
@@ -52,6 +55,4 @@ public final class AwsCloudTrailDataConnectorDataTypes {
             logs().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AwsCloudTrailDataConnectorDataTypes.class);
 }

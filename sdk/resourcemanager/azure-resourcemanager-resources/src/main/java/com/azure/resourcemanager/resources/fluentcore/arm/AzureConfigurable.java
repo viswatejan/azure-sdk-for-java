@@ -8,7 +8,6 @@ import com.azure.core.http.HttpClient;
 import com.azure.core.http.policy.HttpLogDetailLevel;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpPipelinePolicy;
-import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.util.Configuration;
 
@@ -65,7 +64,7 @@ public interface AzureConfigurable<T extends AzureConfigurable<T>> {
     T withAuxiliaryCredentials(List<TokenCredential> tokens);
 
     /**
-     * Sets the retry policy used in HTTP pipeline.
+     * Sets the retry policy used in http pipeline.
      *
      * @param retryPolicy the retry policy
      * @return the configurable object itself for chaining
@@ -89,9 +88,9 @@ public interface AzureConfigurable<T extends AzureConfigurable<T>> {
     T withScopes(List<String> scopes);
 
     /**
-     * Sets the HTTP client.
+     * Sets the http client.
      *
-     * @param httpClient the HTTP client
+     * @param httpClient the http client
      * @return the configurable object itself for chaining
      */
     T withHttpClient(HttpClient httpClient);
@@ -103,14 +102,4 @@ public interface AzureConfigurable<T extends AzureConfigurable<T>> {
      * @return the configurable object itself for chaining
      */
     T withConfiguration(Configuration configuration);
-
-    /**
-     * Sets the retry options for the HTTP pipeline retry policy.
-     * <p>
-     * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
-     *
-     * @param retryOptions the retry options for the HTTP pipeline retry policy.
-     * @return the configurable object itself.
-     */
-    T withRetryOptions(RetryOptions retryOptions);
 }

@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Sentinel onboarding state. */
 @Fluent
 public final class SentinelOnboardingStateInner extends ResourceWithEtag {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SentinelOnboardingStateInner.class);
+
     /*
      * The Sentinel onboarding state object
      */

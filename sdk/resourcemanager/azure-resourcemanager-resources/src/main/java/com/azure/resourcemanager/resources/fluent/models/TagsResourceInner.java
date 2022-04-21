@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resources.models.Tags;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Wrapper resource for tags API requests and responses. */
 @Fluent
 public final class TagsResourceInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TagsResourceInner.class);
+
     /*
      * The set of tags.
      */
@@ -46,13 +49,11 @@ public final class TagsResourceInner extends ProxyResource {
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property properties in model TagsResourceInner"));
         } else {
             properties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TagsResourceInner.class);
 }

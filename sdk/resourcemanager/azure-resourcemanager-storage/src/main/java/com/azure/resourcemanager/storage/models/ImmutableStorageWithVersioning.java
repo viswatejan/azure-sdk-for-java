@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Object level immutability properties of the container. */
 @Fluent
 public final class ImmutableStorageWithVersioning {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ImmutableStorageWithVersioning.class);
+
     /*
      * This is an immutable property, when set to true it enables object level
      * immutability at the container level.

@@ -29,6 +29,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.signalr.fluent.SignalRSharedPrivateLinkResourcesClient;
@@ -42,6 +43,8 @@ import reactor.core.publisher.Mono;
  * An instance of this class provides access to all the operations defined in SignalRSharedPrivateLinkResourcesClient.
  */
 public final class SignalRSharedPrivateLinkResourcesClientImpl implements SignalRSharedPrivateLinkResourcesClient {
+    private final ClientLogger logger = new ClientLogger(SignalRSharedPrivateLinkResourcesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final SignalRSharedPrivateLinkResourcesService service;
 
@@ -154,8 +157,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of shared private link resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of shared private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SharedPrivateLinkResourceInner>> listSinglePageAsync(
@@ -214,8 +216,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of shared private link resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of shared private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SharedPrivateLinkResourceInner>> listSinglePageAsync(
@@ -270,7 +271,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of shared private link resources as paginated response with {@link PagedFlux}.
+     * @return a list of shared private link resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SharedPrivateLinkResourceInner> listAsync(String resourceGroupName, String resourceName) {
@@ -288,7 +289,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of shared private link resources as paginated response with {@link PagedFlux}.
+     * @return a list of shared private link resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SharedPrivateLinkResourceInner> listAsync(
@@ -307,7 +308,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of shared private link resources as paginated response with {@link PagedIterable}.
+     * @return a list of shared private link resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SharedPrivateLinkResourceInner> list(String resourceGroupName, String resourceName) {
@@ -324,7 +325,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of shared private link resources as paginated response with {@link PagedIterable}.
+     * @return a list of shared private link resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SharedPrivateLinkResourceInner> list(
@@ -342,8 +343,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified shared private link resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified shared private link resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SharedPrivateLinkResourceInner>> getWithResponseAsync(
@@ -401,8 +401,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified shared private link resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified shared private link resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SharedPrivateLinkResourceInner>> getWithResponseAsync(
@@ -456,7 +455,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified shared private link resource on successful completion of {@link Mono}.
+     * @return the specified shared private link resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SharedPrivateLinkResourceInner> getAsync(
@@ -501,7 +500,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified shared private link resource along with {@link Response}.
+     * @return the specified shared private link resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SharedPrivateLinkResourceInner> getWithResponse(
@@ -520,8 +519,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a Shared Private Link Resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return describes a Shared Private Link Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -589,8 +587,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a Shared Private Link Resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return describes a Shared Private Link Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -655,7 +652,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of describes a Shared Private Link Resource.
+     * @return describes a Shared Private Link Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SharedPrivateLinkResourceInner>, SharedPrivateLinkResourceInner>
@@ -673,7 +670,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
                 this.client.getHttpPipeline(),
                 SharedPrivateLinkResourceInner.class,
                 SharedPrivateLinkResourceInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -688,7 +685,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of describes a Shared Private Link Resource.
+     * @return describes a Shared Private Link Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SharedPrivateLinkResourceInner>, SharedPrivateLinkResourceInner>
@@ -723,7 +720,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes a Shared Private Link Resource.
+     * @return describes a Shared Private Link Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SharedPrivateLinkResourceInner>, SharedPrivateLinkResourceInner> beginCreateOrUpdate(
@@ -747,7 +744,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of describes a Shared Private Link Resource.
+     * @return describes a Shared Private Link Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SharedPrivateLinkResourceInner>, SharedPrivateLinkResourceInner> beginCreateOrUpdate(
@@ -772,7 +769,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a Shared Private Link Resource on successful completion of {@link Mono}.
+     * @return describes a Shared Private Link Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SharedPrivateLinkResourceInner> createOrUpdateAsync(
@@ -797,7 +794,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a Shared Private Link Resource on successful completion of {@link Mono}.
+     * @return describes a Shared Private Link Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SharedPrivateLinkResourceInner> createOrUpdateAsync(
@@ -869,7 +866,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -927,7 +924,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -981,7 +978,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -990,8 +987,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
             deleteWithResponseAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -1005,7 +1001,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -1028,7 +1024,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -1047,7 +1043,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -1066,7 +1062,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1087,7 +1083,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1138,8 +1134,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of shared private link resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of shared private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SharedPrivateLinkResourceInner>> listNextSinglePageAsync(String nextLink) {
@@ -1175,8 +1170,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of shared private link resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of shared private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SharedPrivateLinkResourceInner>> listNextSinglePageAsync(

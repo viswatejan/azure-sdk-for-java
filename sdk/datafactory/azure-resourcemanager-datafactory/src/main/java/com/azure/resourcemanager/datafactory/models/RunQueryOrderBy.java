@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** An object to provide order by options for listing runs. */
 @Fluent
 public final class RunQueryOrderBy {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RunQueryOrderBy.class);
+
     /*
      * Parameter name to be used for order by. The allowed parameters to order
      * by for pipeline runs are PipelineName, RunStart, RunEnd and Status; for
@@ -78,16 +81,14 @@ public final class RunQueryOrderBy {
      */
     public void validate() {
         if (orderBy() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property orderBy in model RunQueryOrderBy"));
         }
         if (order() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property order in model RunQueryOrderBy"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RunQueryOrderBy.class);
 }

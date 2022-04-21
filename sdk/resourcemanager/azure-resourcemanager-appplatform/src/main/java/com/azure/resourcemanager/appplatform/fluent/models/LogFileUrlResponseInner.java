@@ -6,11 +6,14 @@ package com.azure.resourcemanager.appplatform.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Log file URL payload. */
 @Fluent
 public final class LogFileUrlResponseInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LogFileUrlResponseInner.class);
+
     /*
      * URL of the log file
      */
@@ -44,11 +47,9 @@ public final class LogFileUrlResponseInner {
      */
     public void validate() {
         if (url() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property url in model LogFileUrlResponseInner"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LogFileUrlResponseInner.class);
 }

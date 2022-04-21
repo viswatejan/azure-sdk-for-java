@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -13,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Immutable
 public final class StorageAccountMicrosoftEndpoints {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(StorageAccountMicrosoftEndpoints.class);
+
     /*
      * Gets the blob endpoint.
      */

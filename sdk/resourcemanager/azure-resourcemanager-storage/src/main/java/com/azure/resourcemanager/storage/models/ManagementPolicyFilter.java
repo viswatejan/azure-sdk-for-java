@@ -6,6 +6,7 @@ package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -15,6 +16,8 @@ import java.util.List;
  */
 @Fluent
 public final class ManagementPolicyFilter {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagementPolicyFilter.class);
+
     /*
      * An array of strings for prefixes to be match.
      */
@@ -105,7 +108,7 @@ public final class ManagementPolicyFilter {
      */
     public void validate() {
         if (blobTypes() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property blobTypes in model ManagementPolicyFilter"));
@@ -114,6 +117,4 @@ public final class ManagementPolicyFilter {
             blobIndexMatch().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ManagementPolicyFilter.class);
 }

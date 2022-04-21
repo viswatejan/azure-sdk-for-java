@@ -6,11 +6,14 @@ package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** An operation. */
 @Fluent
 public final class Operation {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(Operation.class);
+
     /*
      * The operation name.
      */
@@ -174,7 +177,7 @@ public final class Operation {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(new IllegalArgumentException("Missing required property name in model Operation"));
         }
         if (display() != null) {
@@ -184,6 +187,4 @@ public final class Operation {
             properties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(Operation.class);
 }

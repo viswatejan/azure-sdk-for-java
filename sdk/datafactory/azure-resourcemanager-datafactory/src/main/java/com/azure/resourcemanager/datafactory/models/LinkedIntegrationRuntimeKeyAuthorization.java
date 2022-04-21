@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -15,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("Key")
 @Fluent
 public final class LinkedIntegrationRuntimeKeyAuthorization extends LinkedIntegrationRuntimeType {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LinkedIntegrationRuntimeKeyAuthorization.class);
+
     /*
      * The key used for authorization.
      */
@@ -50,7 +53,7 @@ public final class LinkedIntegrationRuntimeKeyAuthorization extends LinkedIntegr
     public void validate() {
         super.validate();
         if (key() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property key in model LinkedIntegrationRuntimeKeyAuthorization"));
@@ -58,6 +61,4 @@ public final class LinkedIntegrationRuntimeKeyAuthorization extends LinkedIntegr
             key().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LinkedIntegrationRuntimeKeyAuthorization.class);
 }

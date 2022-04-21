@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -16,6 +18,8 @@ import java.util.Map;
 @JsonTypeName("SqlMISink")
 @Fluent
 public final class SqlMISink extends CopySink {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SqlMISink.class);
+
     /*
      * SQL writer stored procedure name. Type: string (or Expression with
      * resultType string).

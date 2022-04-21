@@ -12,18 +12,4 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("AzureFileStorageLocation")
 @Fluent
-public final class AzureFileStorageLocation extends DatasetLocation {
-    /** {@inheritDoc} */
-    @Override
-    public AzureFileStorageLocation setFolderPath(Object folderPath) {
-        super.setFolderPath(folderPath);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureFileStorageLocation setFileName(Object fileName) {
-        super.setFileName(fileName);
-        return this;
-    }
-}
+public final class AzureFileStorageLocation extends DatasetLocation {}

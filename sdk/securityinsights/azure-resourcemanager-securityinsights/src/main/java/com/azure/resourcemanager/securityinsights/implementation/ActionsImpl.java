@@ -13,9 +13,10 @@ import com.azure.resourcemanager.securityinsights.fluent.ActionsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.ActionResponseInner;
 import com.azure.resourcemanager.securityinsights.models.ActionResponse;
 import com.azure.resourcemanager.securityinsights.models.Actions;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ActionsImpl implements Actions {
-    private static final ClientLogger LOGGER = new ClientLogger(ActionsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ActionsImpl.class);
 
     private final ActionsClient innerClient;
 
@@ -77,7 +78,7 @@ public final class ActionsImpl implements Actions {
     public ActionResponse getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -85,21 +86,21 @@ public final class ActionsImpl implements Actions {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String ruleId = Utils.getValueFromIdByName(id, "alertRules");
         if (ruleId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'alertRules'.", id)));
         }
         String actionId = Utils.getValueFromIdByName(id, "actions");
         if (actionId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'actions'.", id)));
@@ -110,7 +111,7 @@ public final class ActionsImpl implements Actions {
     public Response<ActionResponse> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -118,21 +119,21 @@ public final class ActionsImpl implements Actions {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String ruleId = Utils.getValueFromIdByName(id, "alertRules");
         if (ruleId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'alertRules'.", id)));
         }
         String actionId = Utils.getValueFromIdByName(id, "actions");
         if (actionId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'actions'.", id)));
@@ -143,7 +144,7 @@ public final class ActionsImpl implements Actions {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -151,21 +152,21 @@ public final class ActionsImpl implements Actions {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String ruleId = Utils.getValueFromIdByName(id, "alertRules");
         if (ruleId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'alertRules'.", id)));
         }
         String actionId = Utils.getValueFromIdByName(id, "actions");
         if (actionId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'actions'.", id)));
@@ -176,7 +177,7 @@ public final class ActionsImpl implements Actions {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -184,21 +185,21 @@ public final class ActionsImpl implements Actions {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String ruleId = Utils.getValueFromIdByName(id, "alertRules");
         if (ruleId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'alertRules'.", id)));
         }
         String actionId = Utils.getValueFromIdByName(id, "actions");
         if (actionId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'actions'.", id)));

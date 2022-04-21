@@ -6,11 +6,14 @@ package com.azure.resourcemanager.apimanagement.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Authorization header information. */
 @Fluent
 public final class BackendAuthorizationHeaderCredentials {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackendAuthorizationHeaderCredentials.class);
+
     /*
      * Authentication Scheme name.
      */
@@ -70,18 +73,16 @@ public final class BackendAuthorizationHeaderCredentials {
      */
     public void validate() {
         if (scheme() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property scheme in model BackendAuthorizationHeaderCredentials"));
         }
         if (parameter() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property parameter in model BackendAuthorizationHeaderCredentials"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BackendAuthorizationHeaderCredentials.class);
 }

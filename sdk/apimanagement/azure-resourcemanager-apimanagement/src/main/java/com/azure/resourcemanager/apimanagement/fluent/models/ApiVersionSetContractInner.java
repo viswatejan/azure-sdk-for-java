@@ -6,20 +6,24 @@ package com.azure.resourcemanager.apimanagement.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.models.VersioningScheme;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** API Version Set Contract details. */
+/** Api Version Set Contract details. */
 @Fluent
 public final class ApiVersionSetContractInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiVersionSetContractInner.class);
+
     /*
-     * API VersionSet contract properties.
+     * Api VersionSet contract properties.
      */
     @JsonProperty(value = "properties")
     private ApiVersionSetContractProperties innerProperties;
 
     /**
-     * Get the innerProperties property: API VersionSet contract properties.
+     * Get the innerProperties property: Api VersionSet contract properties.
      *
      * @return the innerProperties value.
      */

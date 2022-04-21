@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.UUID;
 /** The ApplicationsRemovePasswordRequestBody model. */
 @Fluent
 public final class ApplicationsRemovePasswordRequestBody {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApplicationsRemovePasswordRequestBody.class);
+
     /*
      * The keyId property.
      */
@@ -23,7 +26,7 @@ public final class ApplicationsRemovePasswordRequestBody {
     private UUID keyId;
 
     /*
-     * Dictionary of <AnyObject>
+     * Dictionary of <any>
      */
     @JsonIgnore private Map<String, Object> additionalProperties;
 
@@ -48,7 +51,7 @@ public final class ApplicationsRemovePasswordRequestBody {
     }
 
     /**
-     * Get the additionalProperties property: Dictionary of &lt;AnyObject&gt;.
+     * Get the additionalProperties property: Dictionary of &lt;any&gt;.
      *
      * @return the additionalProperties value.
      */
@@ -58,7 +61,7 @@ public final class ApplicationsRemovePasswordRequestBody {
     }
 
     /**
-     * Set the additionalProperties property: Dictionary of &lt;AnyObject&gt;.
+     * Set the additionalProperties property: Dictionary of &lt;any&gt;.
      *
      * @param additionalProperties the additionalProperties value to set.
      * @return the ApplicationsRemovePasswordRequestBody object itself.

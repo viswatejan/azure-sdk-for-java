@@ -31,6 +31,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.signalr.fluent.SignalRsClient;
@@ -47,6 +48,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in SignalRsClient. */
 public final class SignalRsClientImpl implements SignalRsClient {
+    private final ClientLogger logger = new ClientLogger(SignalRsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final SignalRsService service;
 
@@ -262,8 +265,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to check name availability along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return result of the request to check name availability.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NameAvailabilityInner>> checkNameAvailabilityWithResponseAsync(
@@ -313,8 +315,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to check name availability along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return result of the request to check name availability.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NameAvailabilityInner>> checkNameAvailabilityWithResponseAsync(
@@ -360,7 +361,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to check name availability on successful completion of {@link Mono}.
+     * @return result of the request to check name availability.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NameAvailabilityInner> checkNameAvailabilityAsync(
@@ -400,7 +401,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to check name availability along with {@link Response}.
+     * @return result of the request to check name availability.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NameAvailabilityInner> checkNameAvailabilityWithResponse(
@@ -413,8 +414,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SignalRResourceInner>> listSinglePageAsync() {
@@ -460,8 +460,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SignalRResourceInner>> listSinglePageAsync(Context context) {
@@ -502,8 +501,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedFlux}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SignalRResourceInner> listAsync() {
@@ -518,8 +516,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedFlux}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SignalRResourceInner> listAsync(Context context) {
@@ -532,8 +529,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedIterable}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SignalRResourceInner> list() {
@@ -547,8 +543,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedIterable}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SignalRResourceInner> list(Context context) {
@@ -563,8 +558,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SignalRResourceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -617,8 +611,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SignalRResourceInner>> listByResourceGroupSinglePageAsync(
@@ -668,8 +661,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedFlux}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SignalRResourceInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -687,8 +679,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedFlux}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SignalRResourceInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -705,8 +696,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedIterable}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SignalRResourceInner> listByResourceGroup(String resourceGroupName) {
@@ -722,8 +712,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set as paginated response with
-     *     {@link PagedIterable}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SignalRResourceInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -739,7 +728,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the resource and its properties along with {@link Response} on successful completion of {@link Mono}.
+     * @return the resource and its properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SignalRResourceInner>> getByResourceGroupWithResponseAsync(
@@ -789,7 +778,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the resource and its properties along with {@link Response} on successful completion of {@link Mono}.
+     * @return the resource and its properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SignalRResourceInner>> getByResourceGroupWithResponseAsync(
@@ -835,7 +824,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the resource and its properties on successful completion of {@link Mono}.
+     * @return the resource and its properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignalRResourceInner> getByResourceGroupAsync(String resourceGroupName, String resourceName) {
@@ -876,7 +865,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the resource and its properties along with {@link Response}.
+     * @return the resource and its properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SignalRResourceInner> getByResourceGroupWithResponse(
@@ -894,7 +883,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represent a resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -951,7 +940,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represent a resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -1004,7 +993,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a class represent a resource.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SignalRResourceInner>, SignalRResourceInner> beginCreateOrUpdateAsync(
@@ -1018,7 +1007,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
                 this.client.getHttpPipeline(),
                 SignalRResourceInner.class,
                 SignalRResourceInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -1032,7 +1021,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a class represent a resource.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SignalRResourceInner>, SignalRResourceInner> beginCreateOrUpdateAsync(
@@ -1056,7 +1045,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a class represent a resource.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRResourceInner>, SignalRResourceInner> beginCreateOrUpdate(
@@ -1075,7 +1064,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a class represent a resource.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRResourceInner>, SignalRResourceInner> beginCreateOrUpdate(
@@ -1093,7 +1082,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represent a resource on successful completion of {@link Mono}.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignalRResourceInner> createOrUpdateAsync(
@@ -1114,7 +1103,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represent a resource on successful completion of {@link Mono}.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignalRResourceInner> createOrUpdateAsync(
@@ -1170,7 +1159,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String resourceName) {
@@ -1219,7 +1208,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1265,15 +1254,14 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String resourceName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, resourceName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -1286,7 +1274,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -1307,7 +1295,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String resourceName) {
@@ -1324,7 +1312,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -1341,7 +1329,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String resourceName) {
@@ -1358,7 +1346,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String resourceName, Context context) {
@@ -1408,7 +1396,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represent a resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1465,7 +1453,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represent a resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1518,7 +1506,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a class represent a resource.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SignalRResourceInner>, SignalRResourceInner> beginUpdateAsync(
@@ -1531,7 +1519,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
                 this.client.getHttpPipeline(),
                 SignalRResourceInner.class,
                 SignalRResourceInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -1545,7 +1533,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a class represent a resource.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SignalRResourceInner>, SignalRResourceInner> beginUpdateAsync(
@@ -1569,7 +1557,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a class represent a resource.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRResourceInner>, SignalRResourceInner> beginUpdate(
@@ -1588,7 +1576,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a class represent a resource.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRResourceInner>, SignalRResourceInner> beginUpdate(
@@ -1606,7 +1594,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represent a resource on successful completion of {@link Mono}.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignalRResourceInner> updateAsync(
@@ -1627,7 +1615,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represent a resource on successful completion of {@link Mono}.
+     * @return a class represent a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignalRResourceInner> updateAsync(
@@ -1682,7 +1670,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the access keys of the resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SignalRKeysInner>> listKeysWithResponseAsync(String resourceGroupName, String resourceName) {
@@ -1731,7 +1719,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the access keys of the resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SignalRKeysInner>> listKeysWithResponseAsync(
@@ -1777,7 +1765,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the access keys of the resource on successful completion of {@link Mono}.
+     * @return the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignalRKeysInner> listKeysAsync(String resourceGroupName, String resourceName) {
@@ -1818,7 +1806,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the access keys of the resource along with {@link Response}.
+     * @return the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SignalRKeysInner> listKeysWithResponse(
@@ -1836,8 +1824,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represents the access keys of the resource along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return a class represents the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> regenerateKeyWithResponseAsync(
@@ -1894,8 +1881,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represents the access keys of the resource along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return a class represents the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> regenerateKeyWithResponseAsync(
@@ -1948,7 +1934,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a class represents the access keys of the resource.
+     * @return a class represents the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SignalRKeysInner>, SignalRKeysInner> beginRegenerateKeyAsync(
@@ -1958,11 +1944,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
         return this
             .client
             .<SignalRKeysInner, SignalRKeysInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                SignalRKeysInner.class,
-                SignalRKeysInner.class,
-                this.client.getContext());
+                mono, this.client.getHttpPipeline(), SignalRKeysInner.class, SignalRKeysInner.class, Context.NONE);
     }
 
     /**
@@ -1976,7 +1958,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a class represents the access keys of the resource.
+     * @return a class represents the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SignalRKeysInner>, SignalRKeysInner> beginRegenerateKeyAsync(
@@ -2000,7 +1982,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a class represents the access keys of the resource.
+     * @return a class represents the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRKeysInner>, SignalRKeysInner> beginRegenerateKey(
@@ -2019,7 +2001,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a class represents the access keys of the resource.
+     * @return a class represents the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SignalRKeysInner>, SignalRKeysInner> beginRegenerateKey(
@@ -2037,7 +2019,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represents the access keys of the resource on successful completion of {@link Mono}.
+     * @return a class represents the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignalRKeysInner> regenerateKeyAsync(
@@ -2058,7 +2040,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class represents the access keys of the resource on successful completion of {@link Mono}.
+     * @return a class represents the access keys of the resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignalRKeysInner> regenerateKeyAsync(
@@ -2114,7 +2096,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> restartWithResponseAsync(String resourceGroupName, String resourceName) {
@@ -2163,7 +2145,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> restartWithResponseAsync(
@@ -2209,15 +2191,14 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginRestartAsync(String resourceGroupName, String resourceName) {
         Mono<Response<Flux<ByteBuffer>>> mono = restartWithResponseAsync(resourceGroupName, resourceName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -2230,7 +2211,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginRestartAsync(
@@ -2251,7 +2232,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestart(String resourceGroupName, String resourceName) {
@@ -2268,7 +2249,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRestart(
@@ -2285,7 +2266,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> restartAsync(String resourceGroupName, String resourceName) {
@@ -2302,7 +2283,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> restartAsync(String resourceGroupName, String resourceName, Context context) {
@@ -2351,7 +2332,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list skus operation response along with {@link Response} on successful completion of {@link Mono}.
+     * @return the list skus operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SkuListInner>> listSkusWithResponseAsync(String resourceGroupName, String resourceName) {
@@ -2400,7 +2381,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list skus operation response along with {@link Response} on successful completion of {@link Mono}.
+     * @return the list skus operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SkuListInner>> listSkusWithResponseAsync(
@@ -2446,7 +2427,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list skus operation response on successful completion of {@link Mono}.
+     * @return the list skus operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SkuListInner> listSkusAsync(String resourceGroupName, String resourceName) {
@@ -2487,7 +2468,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list skus operation response along with {@link Response}.
+     * @return the list skus operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SkuListInner> listSkusWithResponse(String resourceGroupName, String resourceName, Context context) {
@@ -2501,8 +2482,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SignalRResourceInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -2539,8 +2519,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SignalRResourceInner>> listBySubscriptionNextSinglePageAsync(
@@ -2576,8 +2555,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SignalRResourceInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -2614,8 +2592,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of resources and a possible link for next set along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return object that includes an array of resources and a possible link for next set.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SignalRResourceInner>> listByResourceGroupNextSinglePageAsync(

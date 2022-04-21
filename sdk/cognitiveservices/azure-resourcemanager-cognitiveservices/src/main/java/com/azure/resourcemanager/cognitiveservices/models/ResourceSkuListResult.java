@@ -7,12 +7,15 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.cognitiveservices.fluent.models.ResourceSkuInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The Get Skus operation response. */
 @Fluent
 public final class ResourceSkuListResult {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceSkuListResult.class);
+
     /*
      * The list of skus available for the subscription.
      */
@@ -72,13 +75,11 @@ public final class ResourceSkuListResult {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model ResourceSkuListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ResourceSkuListResult.class);
 }

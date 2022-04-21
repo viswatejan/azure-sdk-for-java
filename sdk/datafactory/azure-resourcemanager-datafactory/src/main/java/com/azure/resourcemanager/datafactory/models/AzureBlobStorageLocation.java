@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -14,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("AzureBlobStorageLocation")
 @Fluent
 public final class AzureBlobStorageLocation extends DatasetLocation {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureBlobStorageLocation.class);
+
     /*
      * Specify the container of azure blob. Type: string (or Expression with
      * resultType string).

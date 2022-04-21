@@ -9,12 +9,15 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.models.ExpressRouteGatewayPropertiesAutoScaleConfiguration;
 import com.azure.resourcemanager.network.models.ProvisioningState;
 import com.azure.resourcemanager.network.models.VirtualHubId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** ExpressRoute gateway resource properties. */
 @Fluent
 public final class ExpressRouteGatewayProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ExpressRouteGatewayProperties.class);
+
     /*
      * Configuration for auto scaling.
      */
@@ -111,7 +114,7 @@ public final class ExpressRouteGatewayProperties {
             expressRouteConnections().forEach(e -> e.validate());
         }
         if (virtualHub() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property virtualHub in model ExpressRouteGatewayProperties"));
@@ -119,6 +122,4 @@ public final class ExpressRouteGatewayProperties {
             virtualHub().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ExpressRouteGatewayProperties.class);
 }

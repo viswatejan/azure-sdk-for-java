@@ -45,12 +45,10 @@ import com.azure.resourcemanager.network.models.RouteFilters;
 import com.azure.resourcemanager.network.models.RouteTables;
 import com.azure.resourcemanager.network.models.VirtualNetworkGateways;
 import com.azure.resourcemanager.resources.fluentcore.arm.AzureConfigurable;
+import com.azure.resourcemanager.resources.fluentcore.arm.implementation.AzureConfigurableImpl;
 import com.azure.resourcemanager.resources.fluentcore.arm.Manager;
 import com.azure.core.management.profile.AzureProfile;
-import com.azure.resourcemanager.resources.fluentcore.arm.implementation.AzureConfigurableImpl;
 import com.azure.resourcemanager.resources.fluentcore.utils.HttpPipelineProvider;
-
-import java.util.Objects;
 
 /** Entry point to Azure network management. */
 public final class NetworkManager extends Manager<NetworkManagementClient> {
@@ -93,21 +91,17 @@ public final class NetworkManager extends Manager<NetworkManagementClient> {
      * @return the NetworkManager
      */
     public static NetworkManager authenticate(TokenCredential credential, AzureProfile profile) {
-        Objects.requireNonNull(credential, "'credential' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
         return authenticate(HttpPipelineProvider.buildHttpPipeline(credential, profile), profile);
     }
 
     /**
      * Creates an instance of NetworkManager that exposes network resource management API entry points.
      *
-     * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
+     * @param httpPipeline the HttpPipeline to be used for API calls.
      * @param profile the profile to use
      * @return the NetworkManager
      */
-    public static NetworkManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
-        Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
+    private static NetworkManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         return new NetworkManager(httpPipeline, profile);
     }
 

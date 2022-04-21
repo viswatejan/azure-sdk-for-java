@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.LinkedServiceReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -14,6 +15,8 @@ import java.util.Map;
 /** DataLakeAnalyticsU-SQL activity properties. */
 @Fluent
 public final class DataLakeAnalyticsUsqlActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DataLakeAnalyticsUsqlActivityTypeProperties.class);
+
     /*
      * Case-sensitive path to folder that contains the U-SQL script. Type:
      * string (or Expression with resultType string).
@@ -225,13 +228,13 @@ public final class DataLakeAnalyticsUsqlActivityTypeProperties {
      */
     public void validate() {
         if (scriptPath() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property scriptPath in model DataLakeAnalyticsUsqlActivityTypeProperties"));
         }
         if (scriptLinkedService() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property scriptLinkedService in model"
@@ -240,6 +243,4 @@ public final class DataLakeAnalyticsUsqlActivityTypeProperties {
             scriptLinkedService().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DataLakeAnalyticsUsqlActivityTypeProperties.class);
 }

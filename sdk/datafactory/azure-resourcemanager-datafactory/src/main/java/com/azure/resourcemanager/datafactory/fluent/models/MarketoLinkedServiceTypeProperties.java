@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Marketo server linked service properties. */
 @Fluent
 public final class MarketoLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MarketoLinkedServiceTypeProperties.class);
+
     /*
      * The endpoint of the Marketo server. (i.e. 123-ABC-321.mktorest.com)
      */
@@ -215,13 +218,13 @@ public final class MarketoLinkedServiceTypeProperties {
      */
     public void validate() {
         if (endpoint() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property endpoint in model MarketoLinkedServiceTypeProperties"));
         }
         if (clientId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property clientId in model MarketoLinkedServiceTypeProperties"));
@@ -230,6 +233,4 @@ public final class MarketoLinkedServiceTypeProperties {
             clientSecret().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MarketoLinkedServiceTypeProperties.class);
 }

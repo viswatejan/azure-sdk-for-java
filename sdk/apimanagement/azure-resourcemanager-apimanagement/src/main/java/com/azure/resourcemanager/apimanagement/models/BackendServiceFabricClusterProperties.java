@@ -6,12 +6,15 @@ package com.azure.resourcemanager.apimanagement.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Properties of the Service Fabric Type Backend. */
 @Fluent
 public final class BackendServiceFabricClusterProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackendServiceFabricClusterProperties.class);
+
     /*
      * The client certificate id for the management endpoint.
      */
@@ -183,7 +186,7 @@ public final class BackendServiceFabricClusterProperties {
      */
     public void validate() {
         if (managementEndpoints() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property managementEndpoints in model"
@@ -193,6 +196,4 @@ public final class BackendServiceFabricClusterProperties {
             serverX509Names().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BackendServiceFabricClusterProperties.class);
 }

@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -15,6 +17,8 @@ import java.util.List;
 @JsonTypeName("FirewallPolicyFilterRuleCollection")
 @Fluent
 public final class FirewallPolicyFilterRuleCollection extends FirewallPolicyRuleCollection {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FirewallPolicyFilterRuleCollection.class);
+
     /*
      * The action type of a Filter rule collection.
      */

@@ -37,6 +37,8 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the MarketplaceOrderingAgreementsImpl type. */
 @ServiceClient(builder = MarketplaceOrderingAgreementsBuilder.class)
 public final class MarketplaceOrderingAgreementsImpl implements MarketplaceOrderingAgreements {
+    private final ClientLogger logger = new ClientLogger(MarketplaceOrderingAgreementsImpl.class);
+
     /** The subscription ID that identifies an Azure subscription. */
     private final String subscriptionId;
 
@@ -243,7 +245,7 @@ public final class MarketplaceOrderingAgreementsImpl implements MarketplaceOrder
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        LOGGER.logThrowableAsWarning(ioe);
+                        logger.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -302,6 +304,4 @@ public final class MarketplaceOrderingAgreementsImpl implements MarketplaceOrder
             return Mono.just(new String(responseBody, charset));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MarketplaceOrderingAgreementsImpl.class);
 }

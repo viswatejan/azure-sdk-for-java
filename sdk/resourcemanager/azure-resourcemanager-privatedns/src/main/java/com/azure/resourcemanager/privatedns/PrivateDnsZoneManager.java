@@ -9,12 +9,10 @@ import com.azure.resourcemanager.privatedns.implementation.PrivateDnsManagementC
 import com.azure.resourcemanager.privatedns.implementation.PrivateDnsZonesImpl;
 import com.azure.resourcemanager.privatedns.models.PrivateDnsZones;
 import com.azure.resourcemanager.resources.fluentcore.arm.AzureConfigurable;
+import com.azure.resourcemanager.resources.fluentcore.arm.implementation.AzureConfigurableImpl;
 import com.azure.resourcemanager.resources.fluentcore.arm.Manager;
 import com.azure.core.management.profile.AzureProfile;
-import com.azure.resourcemanager.resources.fluentcore.arm.implementation.AzureConfigurableImpl;
 import com.azure.resourcemanager.resources.fluentcore.utils.HttpPipelineProvider;
-
-import java.util.Objects;
 
 /** Entry point to Azure private DNS zone management. */
 public final class PrivateDnsZoneManager extends Manager<PrivateDnsManagementClient> {
@@ -38,21 +36,17 @@ public final class PrivateDnsZoneManager extends Manager<PrivateDnsManagementCli
      * @return the PrivateDnsZoneManager
      */
     public static PrivateDnsZoneManager authenticate(TokenCredential credential, AzureProfile profile) {
-        Objects.requireNonNull(credential, "'credential' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
         return authenticate(HttpPipelineProvider.buildHttpPipeline(credential, profile), profile);
     }
 
     /**
      * Creates an instance of PrivateDnsZoneManager that exposes private DNS zone management API entry points.
      *
-     * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
+     * @param httpPipeline the HttpPipeline to be used for API calls.
      * @param profile the profile to use
      * @return the PrivateDnsZoneManager
      */
-    public static PrivateDnsZoneManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
-        Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
+    private static PrivateDnsZoneManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         return new PrivateDnsZoneManager(httpPipeline, profile);
     }
 

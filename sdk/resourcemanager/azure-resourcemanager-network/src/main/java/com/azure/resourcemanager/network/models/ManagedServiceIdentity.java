@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -12,6 +14,8 @@ import java.util.Map;
 /** Identity for the resource. */
 @Fluent
 public class ManagedServiceIdentity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedServiceIdentity.class);
+
     /*
      * The principal id of the system assigned identity. This property will
      * only be provided for a system assigned identity.

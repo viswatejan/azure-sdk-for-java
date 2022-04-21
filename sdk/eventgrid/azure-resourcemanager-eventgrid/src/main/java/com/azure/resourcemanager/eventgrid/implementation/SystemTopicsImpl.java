@@ -13,9 +13,10 @@ import com.azure.resourcemanager.eventgrid.fluent.SystemTopicsClient;
 import com.azure.resourcemanager.eventgrid.fluent.models.SystemTopicInner;
 import com.azure.resourcemanager.eventgrid.models.SystemTopic;
 import com.azure.resourcemanager.eventgrid.models.SystemTopics;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class SystemTopicsImpl implements SystemTopics {
-    private static final ClientLogger LOGGER = new ClientLogger(SystemTopicsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SystemTopicsImpl.class);
 
     private final SystemTopicsClient innerClient;
 
@@ -84,7 +85,7 @@ public final class SystemTopicsImpl implements SystemTopics {
     public SystemTopic getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -92,7 +93,7 @@ public final class SystemTopicsImpl implements SystemTopics {
         }
         String systemTopicName = Utils.getValueFromIdByName(id, "systemTopics");
         if (systemTopicName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'systemTopics'.", id)));
@@ -103,7 +104,7 @@ public final class SystemTopicsImpl implements SystemTopics {
     public Response<SystemTopic> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -111,7 +112,7 @@ public final class SystemTopicsImpl implements SystemTopics {
         }
         String systemTopicName = Utils.getValueFromIdByName(id, "systemTopics");
         if (systemTopicName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'systemTopics'.", id)));
@@ -122,7 +123,7 @@ public final class SystemTopicsImpl implements SystemTopics {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -130,7 +131,7 @@ public final class SystemTopicsImpl implements SystemTopics {
         }
         String systemTopicName = Utils.getValueFromIdByName(id, "systemTopics");
         if (systemTopicName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'systemTopics'.", id)));
@@ -141,7 +142,7 @@ public final class SystemTopicsImpl implements SystemTopics {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -149,7 +150,7 @@ public final class SystemTopicsImpl implements SystemTopics {
         }
         String systemTopicName = Utils.getValueFromIdByName(id, "systemTopics");
         if (systemTopicName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'systemTopics'.", id)));

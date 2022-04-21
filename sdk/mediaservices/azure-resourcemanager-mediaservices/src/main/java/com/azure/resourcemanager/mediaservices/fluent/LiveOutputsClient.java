@@ -24,7 +24,7 @@ public interface LiveOutputsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return liveOutputListResult as paginated response with {@link PagedIterable}.
+     * @return the LiveOutput list result.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<LiveOutputInner> list(String resourceGroupName, String accountName, String liveEventName);
@@ -39,7 +39,7 @@ public interface LiveOutputsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return liveOutputListResult as paginated response with {@link PagedIterable}.
+     * @return the LiveOutput list result.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<LiveOutputInner> list(
@@ -71,7 +71,7 @@ public interface LiveOutputsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a live output along with {@link Response}.
+     * @return a live output.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<LiveOutputInner> getWithResponse(
@@ -88,9 +88,9 @@ public interface LiveOutputsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the Live Output.
+     * @return the Live Output.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<LiveOutputInner>, LiveOutputInner> beginCreate(
         String resourceGroupName,
         String accountName,
@@ -110,9 +110,9 @@ public interface LiveOutputsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the Live Output.
+     * @return the Live Output.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<LiveOutputInner>, LiveOutputInner> beginCreate(
         String resourceGroupName,
         String accountName,
@@ -175,9 +175,9 @@ public interface LiveOutputsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String accountName, String liveEventName, String liveOutputName);
 
@@ -192,9 +192,9 @@ public interface LiveOutputsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String accountName, String liveEventName, String liveOutputName, Context context);
 

@@ -8,12 +8,9 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.SourceControlInner;
 import com.azure.resourcemanager.securityinsights.models.ContentType;
-import com.azure.resourcemanager.securityinsights.models.DeploymentInfo;
 import com.azure.resourcemanager.securityinsights.models.RepoType;
 import com.azure.resourcemanager.securityinsights.models.Repository;
-import com.azure.resourcemanager.securityinsights.models.RepositoryResourceInfo;
 import com.azure.resourcemanager.securityinsights.models.SourceControl;
-import com.azure.resourcemanager.securityinsights.models.Version;
 import java.util.Collections;
 import java.util.List;
 
@@ -53,10 +50,6 @@ public final class SourceControlImpl implements SourceControl, SourceControl.Def
         return this.innerModel().idPropertiesId();
     }
 
-    public Version version() {
-        return this.innerModel().version();
-    }
-
     public String displayName() {
         return this.innerModel().displayName();
     }
@@ -80,14 +73,6 @@ public final class SourceControlImpl implements SourceControl, SourceControl.Def
 
     public Repository repository() {
         return this.innerModel().repository();
-    }
-
-    public RepositoryResourceInfo repositoryResourceInfo() {
-        return this.innerModel().repositoryResourceInfo();
-    }
-
-    public DeploymentInfo lastDeploymentInfo() {
-        return this.innerModel().lastDeploymentInfo();
     }
 
     public SourceControlInner innerModel() {
@@ -166,11 +151,6 @@ public final class SourceControlImpl implements SourceControl, SourceControl.Def
         return this;
     }
 
-    public SourceControlImpl withVersion(Version version) {
-        this.innerModel().withVersion(version);
-        return this;
-    }
-
     public SourceControlImpl withDisplayName(String displayName) {
         this.innerModel().withDisplayName(displayName);
         return this;
@@ -193,16 +173,6 @@ public final class SourceControlImpl implements SourceControl, SourceControl.Def
 
     public SourceControlImpl withRepository(Repository repository) {
         this.innerModel().withRepository(repository);
-        return this;
-    }
-
-    public SourceControlImpl withRepositoryResourceInfo(RepositoryResourceInfo repositoryResourceInfo) {
-        this.innerModel().withRepositoryResourceInfo(repositoryResourceInfo);
-        return this;
-    }
-
-    public SourceControlImpl withLastDeploymentInfo(DeploymentInfo lastDeploymentInfo) {
-        this.innerModel().withLastDeploymentInfo(lastDeploymentInfo);
         return this;
     }
 }

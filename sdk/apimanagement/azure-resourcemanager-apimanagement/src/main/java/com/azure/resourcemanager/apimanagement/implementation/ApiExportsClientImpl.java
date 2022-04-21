@@ -21,6 +21,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.ApiExportsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.ApiExportResultInner;
 import com.azure.resourcemanager.apimanagement.models.ExportApi;
@@ -29,6 +30,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ApiExportsClient. */
 public final class ApiExportsClientImpl implements ApiExportsClient {
+    private final ClientLogger logger = new ClientLogger(ApiExportsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ApiExportsService service;
 
@@ -86,7 +89,7 @@ public final class ApiExportsClientImpl implements ApiExportsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the API specified by its identifier in the format specified to the Storage Blob with SAS
-     *     Key valid for 5 minutes along with {@link Response} on successful completion of {@link Mono}.
+     *     Key valid for 5 minutes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApiExportResultInner>> getWithResponseAsync(
@@ -153,7 +156,7 @@ public final class ApiExportsClientImpl implements ApiExportsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the API specified by its identifier in the format specified to the Storage Blob with SAS
-     *     Key valid for 5 minutes along with {@link Response} on successful completion of {@link Mono}.
+     *     Key valid for 5 minutes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApiExportResultInner>> getWithResponseAsync(
@@ -221,7 +224,7 @@ public final class ApiExportsClientImpl implements ApiExportsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the API specified by its identifier in the format specified to the Storage Blob with SAS
-     *     Key valid for 5 minutes on successful completion of {@link Mono}.
+     *     Key valid for 5 minutes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiExportResultInner> getAsync(
@@ -274,7 +277,7 @@ public final class ApiExportsClientImpl implements ApiExportsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the API specified by its identifier in the format specified to the Storage Blob with SAS
-     *     Key valid for 5 minutes along with {@link Response}.
+     *     Key valid for 5 minutes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ApiExportResultInner> getWithResponse(

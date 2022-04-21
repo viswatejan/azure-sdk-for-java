@@ -4,13 +4,11 @@
 
 package com.azure.security.keyvault.administration.implementation;
 
-import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ServiceClientBuilder;
 import com.azure.core.http.HttpClient;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpPipelineBuilder;
-import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddHeadersPolicy;
 import com.azure.core.http.policy.CookiePolicy;
 import com.azure.core.http.policy.HttpLogOptions;
@@ -28,19 +26,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /** A builder for creating a new instance of the KeyVaultAccessControlClient type. */
 @ServiceClientBuilder(serviceClients = {KeyVaultAccessControlClientImpl.class})
 public final class KeyVaultAccessControlClientImplBuilder {
-    @Generated private static final String SDK_NAME = "name";
+    private static final String SDK_NAME = "name";
 
-    @Generated private static final String SDK_VERSION = "version";
+    private static final String SDK_VERSION = "version";
 
-    @Generated private final Map<String, String> properties = new HashMap<>();
+    private final Map<String, String> properties = new HashMap<>();
 
     /** Create an instance of the KeyVaultAccessControlClientImplBuilder. */
-    @Generated
     public KeyVaultAccessControlClientImplBuilder() {
         this.pipelinePolicies = new ArrayList<>();
     }
@@ -48,7 +44,7 @@ public final class KeyVaultAccessControlClientImplBuilder {
     /*
      * Api Version
      */
-    @Generated private String apiVersion;
+    private String apiVersion;
 
     /**
      * Sets Api Version.
@@ -56,7 +52,6 @@ public final class KeyVaultAccessControlClientImplBuilder {
      * @param apiVersion the apiVersion value.
      * @return the KeyVaultAccessControlClientImplBuilder.
      */
-    @Generated
     public KeyVaultAccessControlClientImplBuilder apiVersion(String apiVersion) {
         this.apiVersion = apiVersion;
         return this;
@@ -65,7 +60,7 @@ public final class KeyVaultAccessControlClientImplBuilder {
     /*
      * The HTTP pipeline to send requests through
      */
-    @Generated private HttpPipeline pipeline;
+    private HttpPipeline pipeline;
 
     /**
      * Sets The HTTP pipeline to send requests through.
@@ -73,7 +68,6 @@ public final class KeyVaultAccessControlClientImplBuilder {
      * @param pipeline the pipeline value.
      * @return the KeyVaultAccessControlClientImplBuilder.
      */
-    @Generated
     public KeyVaultAccessControlClientImplBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
@@ -82,7 +76,7 @@ public final class KeyVaultAccessControlClientImplBuilder {
     /*
      * The serializer to serialize an object into a string
      */
-    @Generated private SerializerAdapter serializerAdapter;
+    private SerializerAdapter serializerAdapter;
 
     /**
      * Sets The serializer to serialize an object into a string.
@@ -90,7 +84,6 @@ public final class KeyVaultAccessControlClientImplBuilder {
      * @param serializerAdapter the serializerAdapter value.
      * @return the KeyVaultAccessControlClientImplBuilder.
      */
-    @Generated
     public KeyVaultAccessControlClientImplBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
@@ -99,7 +92,7 @@ public final class KeyVaultAccessControlClientImplBuilder {
     /*
      * The HTTP client used to send the request.
      */
-    @Generated private HttpClient httpClient;
+    private HttpClient httpClient;
 
     /**
      * Sets The HTTP client used to send the request.
@@ -107,7 +100,6 @@ public final class KeyVaultAccessControlClientImplBuilder {
      * @param httpClient the httpClient value.
      * @return the KeyVaultAccessControlClientImplBuilder.
      */
-    @Generated
     public KeyVaultAccessControlClientImplBuilder httpClient(HttpClient httpClient) {
         this.httpClient = httpClient;
         return this;
@@ -117,7 +109,7 @@ public final class KeyVaultAccessControlClientImplBuilder {
      * The configuration store that is used during construction of the service
      * client.
      */
-    @Generated private Configuration configuration;
+    private Configuration configuration;
 
     /**
      * Sets The configuration store that is used during construction of the service client.
@@ -125,7 +117,6 @@ public final class KeyVaultAccessControlClientImplBuilder {
      * @param configuration the configuration value.
      * @return the KeyVaultAccessControlClientImplBuilder.
      */
-    @Generated
     public KeyVaultAccessControlClientImplBuilder configuration(Configuration configuration) {
         this.configuration = configuration;
         return this;
@@ -134,7 +125,7 @@ public final class KeyVaultAccessControlClientImplBuilder {
     /*
      * The logging configuration for HTTP requests and responses.
      */
-    @Generated private HttpLogOptions httpLogOptions;
+    private HttpLogOptions httpLogOptions;
 
     /**
      * Sets The logging configuration for HTTP requests and responses.
@@ -142,7 +133,6 @@ public final class KeyVaultAccessControlClientImplBuilder {
      * @param httpLogOptions the httpLogOptions value.
      * @return the KeyVaultAccessControlClientImplBuilder.
      */
-    @Generated
     public KeyVaultAccessControlClientImplBuilder httpLogOptions(HttpLogOptions httpLogOptions) {
         this.httpLogOptions = httpLogOptions;
         return this;
@@ -152,7 +142,7 @@ public final class KeyVaultAccessControlClientImplBuilder {
      * The retry policy that will attempt to retry failed requests, if
      * applicable.
      */
-    @Generated private RetryPolicy retryPolicy;
+    private RetryPolicy retryPolicy;
 
     /**
      * Sets The retry policy that will attempt to retry failed requests, if applicable.
@@ -160,7 +150,6 @@ public final class KeyVaultAccessControlClientImplBuilder {
      * @param retryPolicy the retryPolicy value.
      * @return the KeyVaultAccessControlClientImplBuilder.
      */
-    @Generated
     public KeyVaultAccessControlClientImplBuilder retryPolicy(RetryPolicy retryPolicy) {
         this.retryPolicy = retryPolicy;
         return this;
@@ -169,13 +158,13 @@ public final class KeyVaultAccessControlClientImplBuilder {
     /*
      * The list of Http pipeline policies to add.
      */
-    @Generated private final List<HttpPipelinePolicy> pipelinePolicies;
+    private final List<HttpPipelinePolicy> pipelinePolicies;
 
     /*
      * The client options such as application ID and custom headers to set on a
      * request.
      */
-    @Generated private ClientOptions clientOptions;
+    private ClientOptions clientOptions;
 
     /**
      * Sets The client options such as application ID and custom headers to set on a request.
@@ -183,7 +172,6 @@ public final class KeyVaultAccessControlClientImplBuilder {
      * @param clientOptions the clientOptions value.
      * @return the KeyVaultAccessControlClientImplBuilder.
      */
-    @Generated
     public KeyVaultAccessControlClientImplBuilder clientOptions(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
         return this;
@@ -195,7 +183,6 @@ public final class KeyVaultAccessControlClientImplBuilder {
      * @param customPolicy The custom Http pipeline policy to add.
      * @return the KeyVaultAccessControlClientImplBuilder.
      */
-    @Generated
     public KeyVaultAccessControlClientImplBuilder addPolicy(HttpPipelinePolicy customPolicy) {
         pipelinePolicies.add(customPolicy);
         return this;
@@ -206,10 +193,9 @@ public final class KeyVaultAccessControlClientImplBuilder {
      *
      * @return an instance of KeyVaultAccessControlClientImpl.
      */
-    @Generated
     public KeyVaultAccessControlClientImpl buildClient() {
         if (apiVersion == null) {
-            this.apiVersion = "7.3";
+            this.apiVersion = "7.3-preview";
         }
         if (pipeline == null) {
             this.pipeline = createHttpPipeline();
@@ -222,7 +208,6 @@ public final class KeyVaultAccessControlClientImplBuilder {
         return client;
     }
 
-    @Generated
     private HttpPipeline createHttpPipeline() {
         Configuration buildConfiguration =
                 (configuration == null) ? Configuration.getGlobalConfiguration() : configuration;
@@ -242,24 +227,16 @@ public final class KeyVaultAccessControlClientImplBuilder {
         if (headers.getSize() > 0) {
             policies.add(new AddHeadersPolicy(headers));
         }
-        policies.addAll(
-                this.pipelinePolicies.stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
         HttpPolicyProviders.addBeforeRetryPolicies(policies);
         policies.add(retryPolicy == null ? new RetryPolicy() : retryPolicy);
         policies.add(new CookiePolicy());
-        policies.addAll(
-                this.pipelinePolicies.stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+        policies.addAll(this.pipelinePolicies);
         HttpPolicyProviders.addAfterRetryPolicies(policies);
         policies.add(new HttpLoggingPolicy(httpLogOptions));
         HttpPipeline httpPipeline =
                 new HttpPipelineBuilder()
                         .policies(policies.toArray(new HttpPipelinePolicy[0]))
                         .httpClient(httpClient)
-                        .clientOptions(clientOptions)
                         .build();
         return httpPipeline;
     }

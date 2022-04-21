@@ -6,6 +6,7 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,8 @@ import java.util.Map;
 /** Databricks SparkPython activity properties. */
 @Fluent
 public final class DatabricksSparkPythonActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DatabricksSparkPythonActivityTypeProperties.class);
+
     /*
      * The URI of the Python file to be executed. DBFS paths are supported.
      * Type: string (or Expression with resultType string).
@@ -102,12 +105,10 @@ public final class DatabricksSparkPythonActivityTypeProperties {
      */
     public void validate() {
         if (pythonFile() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property pythonFile in model DatabricksSparkPythonActivityTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DatabricksSparkPythonActivityTypeProperties.class);
 }

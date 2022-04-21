@@ -38,26 +38,35 @@ public class HttpResponseHeaderDecoderTests {
 
     @Test
     public void nullHeaderTypeReturnsMonoEmpty() {
-        assertNull(HttpResponseHeaderDecoder.decode(null, null, null));
+        HttpResponseDecodeData decodeData = mock(HttpResponseDecodeData.class);
+        when(decodeData.getHeadersType()).thenReturn(null);
+
+        assertNull(HttpResponseHeaderDecoder.decode(null, null, decodeData));
     }
 
     @Test
     public void ioExceptionIsMappedToHttpResponseException() throws IOException {
+        HttpResponseDecodeData decodeData = mock(HttpResponseDecodeData.class);
+        when(decodeData.getHeadersType()).thenReturn(MockHeaders.class);
+
         SerializerAdapter serializer = mock(SerializerAdapter.class);
         when(serializer.deserialize(any(), any())).thenThrow(IOException.class);
 
         HttpResponse response = new MockHttpResponse(null, 200);
 
         assertThrows(HttpResponseException.class,
-            () -> HttpResponseHeaderDecoder.decode(response, serializer, MockHeaders.class));
+            () -> HttpResponseHeaderDecoder.decode(response, serializer, decodeData));
     }
 
     @Test
     public void headersAreDeserializedToType() {
+        HttpResponseDecodeData decodeData = mock(HttpResponseDecodeData.class);
+        when(decodeData.getHeadersType()).thenReturn(MockHeaders.class);
+
         HttpResponse response = new MockHttpResponse(null, 200, new HttpHeaders().set("mock-a", "a"));
 
         Object actual = assertDoesNotThrow(() -> HttpResponseHeaderDecoder.decode(response, new JacksonAdapter(),
-            MockHeaders.class));
+            decodeData));
         assertTrue(actual instanceof MockHeaders);
         MockHeaders mockHeaders = (MockHeaders) actual;
         assertEquals(Collections.singletonMap("a", "a"), mockHeaders.getHeaderCollection());

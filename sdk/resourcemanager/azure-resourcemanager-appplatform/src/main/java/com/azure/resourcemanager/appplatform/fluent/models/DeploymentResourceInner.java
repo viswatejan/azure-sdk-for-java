@@ -6,14 +6,17 @@ package com.azure.resourcemanager.appplatform.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appplatform.models.DeploymentResourceProperties;
 import com.azure.resourcemanager.appplatform.models.Sku;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Deployment resource payload. */
 @Fluent
 public final class DeploymentResourceInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DeploymentResourceInner.class);
+
     /*
      * Properties of the Deployment resource
      */
@@ -25,12 +28,6 @@ public final class DeploymentResourceInner extends ProxyResource {
      */
     @JsonProperty(value = "sku")
     private Sku sku;
-
-    /*
-     * Metadata pertaining to creation and last modification of the resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
 
     /**
      * Get the properties property: Properties of the Deployment resource.
@@ -70,15 +67,6 @@ public final class DeploymentResourceInner extends ProxyResource {
     public DeploymentResourceInner withSku(Sku sku) {
         this.sku = sku;
         return this;
-    }
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**

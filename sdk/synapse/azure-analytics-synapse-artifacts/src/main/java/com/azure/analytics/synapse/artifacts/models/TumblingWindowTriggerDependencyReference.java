@@ -69,11 +69,4 @@ public final class TumblingWindowTriggerDependencyReference extends TriggerDepen
         this.size = size;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public TumblingWindowTriggerDependencyReference setReferenceTrigger(TriggerReference referenceTrigger) {
-        super.setReferenceTrigger(referenceTrigger);
-        return this;
-    }
 }

@@ -21,7 +21,7 @@ public final class SqlPoolsClient {
     @Generated private final SqlPoolsImpl serviceClient;
 
     /**
-     * Initializes an instance of SqlPoolsClient class.
+     * Initializes an instance of SqlPools client.
      *
      * @param serviceClient the service client implementation.
      */

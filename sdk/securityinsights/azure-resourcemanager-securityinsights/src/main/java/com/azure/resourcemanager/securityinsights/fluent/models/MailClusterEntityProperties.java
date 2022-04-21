@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.List;
 /** Mail cluster entity property bag. */
 @Immutable
 public final class MailClusterEntityProperties extends EntityCommonProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MailClusterEntityProperties.class);
+
     /*
      * The mail message IDs that are part of the mail cluster
      */

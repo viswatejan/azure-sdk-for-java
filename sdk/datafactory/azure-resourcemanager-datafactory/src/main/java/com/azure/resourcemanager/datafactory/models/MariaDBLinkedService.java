@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.MariaDBLinkedServiceTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("MariaDB")
 @Fluent
 public final class MariaDBLinkedService extends LinkedService {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MariaDBLinkedService.class);
+
     /*
      * MariaDB server linked service properties.
      */
@@ -143,7 +146,7 @@ public final class MariaDBLinkedService extends LinkedService {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model MariaDBLinkedService"));
@@ -151,6 +154,4 @@ public final class MariaDBLinkedService extends LinkedService {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MariaDBLinkedService.class);
 }

@@ -6,12 +6,15 @@ package com.azure.resourcemanager.storage.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The LegalHold property of a blob container. */
 @Fluent
 public final class LegalHoldInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LegalHoldInner.class);
+
     /*
      * The hasLegalHold public property is set to true by SRP if there are at
      * least one existing tag. The hasLegalHold public property is set to false
@@ -99,11 +102,9 @@ public final class LegalHoldInner {
      */
     public void validate() {
         if (tags() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property tags in model LegalHoldInner"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LegalHoldInner.class);
 }

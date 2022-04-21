@@ -6,11 +6,14 @@ package com.azure.resourcemanager.storagecache.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Active Directory admin credentials used to join the HPC Cache to a domain. */
 @Fluent
 public final class CacheActiveDirectorySettingsCredentials {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CacheActiveDirectorySettingsCredentials.class);
+
     /*
      * Username of the Active Directory domain administrator. This value is
      * stored encrypted and not returned on response.
@@ -76,18 +79,16 @@ public final class CacheActiveDirectorySettingsCredentials {
      */
     public void validate() {
         if (username() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property username in model CacheActiveDirectorySettingsCredentials"));
         }
         if (password() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property password in model CacheActiveDirectorySettingsCredentials"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CacheActiveDirectorySettingsCredentials.class);
 }

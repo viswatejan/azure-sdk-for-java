@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** activityHistoryItem. */
 @Fluent
 public final class MicrosoftGraphActivityHistoryItem extends MicrosoftGraphEntity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphActivityHistoryItem.class);
+
     /*
      * Optional. The duration of active user engagement. if not supplied, this
      * is calculated from the startedDateTime and lastActiveDateTime.
@@ -60,7 +63,7 @@ public final class MicrosoftGraphActivityHistoryItem extends MicrosoftGraphEntit
     private OffsetDateTime startedDateTime;
 
     /*
-     * status
+     * The status property.
      */
     @JsonProperty(value = "status")
     private MicrosoftGraphStatus status;
@@ -215,7 +218,7 @@ public final class MicrosoftGraphActivityHistoryItem extends MicrosoftGraphEntit
     }
 
     /**
-     * Get the status property: status.
+     * Get the status property: The status property.
      *
      * @return the status value.
      */
@@ -224,7 +227,7 @@ public final class MicrosoftGraphActivityHistoryItem extends MicrosoftGraphEntit
     }
 
     /**
-     * Set the status property: status.
+     * Set the status property: The status property.
      *
      * @param status the status value to set.
      * @return the MicrosoftGraphActivityHistoryItem object itself.

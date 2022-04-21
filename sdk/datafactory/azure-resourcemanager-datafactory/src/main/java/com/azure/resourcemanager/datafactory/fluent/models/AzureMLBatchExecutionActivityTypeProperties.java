@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.AzureMLWebServiceFile;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -13,6 +15,8 @@ import java.util.Map;
 /** Azure ML Batch Execution activity properties. */
 @Fluent
 public final class AzureMLBatchExecutionActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureMLBatchExecutionActivityTypeProperties.class);
+
     /*
      * Key,Value pairs to be passed to the Azure ML Batch Execution Service
      * endpoint. Keys must match the names of web service parameters defined in

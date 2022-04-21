@@ -12,6 +12,7 @@ import com.azure.resourcemanager.mobilenetwork.models.Ambr;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.azure.resourcemanager.mobilenetwork.models.SliceConfiguration;
 import com.azure.resourcemanager.mobilenetwork.models.SliceResourceId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,8 @@ import java.util.Map;
 /** Sim policy resource. */
 @Fluent
 public final class SimPolicyInner extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SimPolicyInner.class);
+
     /*
      * Sim policy Properties.
      */
@@ -26,11 +29,10 @@ public final class SimPolicyInner extends Resource {
     private SimPolicyPropertiesFormat innerProperties = new SimPolicyPropertiesFormat();
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Metadata pertaining to creation and last modification of the resource.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    private SystemData innerSystemData;
 
     /**
      * Get the innerProperties property: Sim policy Properties.
@@ -41,14 +43,14 @@ public final class SimPolicyInner extends Resource {
         return this.innerProperties;
     }
 
-    /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
+//    /**
+//     * Get the innerSystemData property: Metadata pertaining to creation and last modification of the resource.
+//     *
+//     * @return the innerSystemData value.
+//     */
+//    private SystemData innerSystemData() {
+//        return this.innerSystemData;
+//    }
 
     /** {@inheritDoc} */
     @Override
@@ -203,13 +205,11 @@ public final class SimPolicyInner extends Resource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property innerProperties in model SimPolicyInner"));
         } else {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SimPolicyInner.class);
 }

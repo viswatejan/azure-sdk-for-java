@@ -28,7 +28,6 @@ public final class TestUtils {
         @Override
         public Mono<HttpResponse> process(HttpPipelineCallContext context, HttpPipelineNextPolicy next) {
             context.getHttpRequest().setHeader("Custom-Header", "Some Value");
-
             return next.process();
         }
 
@@ -42,7 +41,6 @@ public final class TestUtils {
         @Override
         public Mono<HttpResponse> process(HttpPipelineCallContext context, HttpPipelineNextPolicy next) {
             context.getHttpRequest().setHeader("Custom-Header", "Some Value");
-
             return next.process();
         }
     }

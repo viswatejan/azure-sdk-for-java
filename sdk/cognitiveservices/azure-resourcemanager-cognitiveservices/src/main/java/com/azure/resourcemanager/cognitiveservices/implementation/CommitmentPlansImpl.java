@@ -13,9 +13,10 @@ import com.azure.resourcemanager.cognitiveservices.fluent.CommitmentPlansClient;
 import com.azure.resourcemanager.cognitiveservices.fluent.models.CommitmentPlanInner;
 import com.azure.resourcemanager.cognitiveservices.models.CommitmentPlan;
 import com.azure.resourcemanager.cognitiveservices.models.CommitmentPlans;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class CommitmentPlansImpl implements CommitmentPlans {
-    private static final ClientLogger LOGGER = new ClientLogger(CommitmentPlansImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CommitmentPlansImpl.class);
 
     private final CommitmentPlansClient innerClient;
 
@@ -73,7 +74,7 @@ public final class CommitmentPlansImpl implements CommitmentPlans {
     public CommitmentPlan getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -81,14 +82,14 @@ public final class CommitmentPlansImpl implements CommitmentPlans {
         }
         String accountName = Utils.getValueFromIdByName(id, "accounts");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'accounts'.", id)));
         }
         String commitmentPlanName = Utils.getValueFromIdByName(id, "commitmentPlans");
         if (commitmentPlanName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -100,7 +101,7 @@ public final class CommitmentPlansImpl implements CommitmentPlans {
     public Response<CommitmentPlan> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -108,14 +109,14 @@ public final class CommitmentPlansImpl implements CommitmentPlans {
         }
         String accountName = Utils.getValueFromIdByName(id, "accounts");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'accounts'.", id)));
         }
         String commitmentPlanName = Utils.getValueFromIdByName(id, "commitmentPlans");
         if (commitmentPlanName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -127,7 +128,7 @@ public final class CommitmentPlansImpl implements CommitmentPlans {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -135,14 +136,14 @@ public final class CommitmentPlansImpl implements CommitmentPlans {
         }
         String accountName = Utils.getValueFromIdByName(id, "accounts");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'accounts'.", id)));
         }
         String commitmentPlanName = Utils.getValueFromIdByName(id, "commitmentPlans");
         if (commitmentPlanName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -154,7 +155,7 @@ public final class CommitmentPlansImpl implements CommitmentPlans {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -162,14 +163,14 @@ public final class CommitmentPlansImpl implements CommitmentPlans {
         }
         String accountName = Utils.getValueFromIdByName(id, "accounts");
         if (accountName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'accounts'.", id)));
         }
         String commitmentPlanName = Utils.getValueFromIdByName(id, "commitmentPlans");
         if (commitmentPlanName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

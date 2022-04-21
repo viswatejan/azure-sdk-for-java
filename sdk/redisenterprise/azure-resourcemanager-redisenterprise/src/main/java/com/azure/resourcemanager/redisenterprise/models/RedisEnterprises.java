@@ -54,7 +54,7 @@ public interface RedisEnterprises {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a RedisEnterprise cluster along with {@link Response}.
+     * @return information about a RedisEnterprise cluster.
      */
     Response<Cluster> getByResourceGroupWithResponse(String resourceGroupName, String clusterName, Context context);
 
@@ -65,7 +65,7 @@ public interface RedisEnterprises {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list-all operation as paginated response with {@link PagedIterable}.
+     * @return the response of a list-all operation.
      */
     PagedIterable<Cluster> listByResourceGroup(String resourceGroupName);
 
@@ -77,7 +77,7 @@ public interface RedisEnterprises {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list-all operation as paginated response with {@link PagedIterable}.
+     * @return the response of a list-all operation.
      */
     PagedIterable<Cluster> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -86,8 +86,7 @@ public interface RedisEnterprises {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RedisEnterprise clusters in the specified subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return all RedisEnterprise clusters in the specified subscription.
      */
     PagedIterable<Cluster> list();
 
@@ -98,8 +97,7 @@ public interface RedisEnterprises {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RedisEnterprise clusters in the specified subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return all RedisEnterprise clusters in the specified subscription.
      */
     PagedIterable<Cluster> list(Context context);
 
@@ -110,7 +108,7 @@ public interface RedisEnterprises {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a RedisEnterprise cluster along with {@link Response}.
+     * @return information about a RedisEnterprise cluster.
      */
     Cluster getById(String id);
 
@@ -122,7 +120,7 @@ public interface RedisEnterprises {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a RedisEnterprise cluster along with {@link Response}.
+     * @return information about a RedisEnterprise cluster.
      */
     Response<Cluster> getByIdWithResponse(String id, Context context);
 

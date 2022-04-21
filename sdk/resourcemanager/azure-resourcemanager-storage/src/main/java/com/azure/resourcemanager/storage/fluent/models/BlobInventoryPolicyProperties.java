@@ -7,12 +7,15 @@ package com.azure.resourcemanager.storage.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.storage.models.BlobInventoryPolicySchema;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The storage account blob inventory policy properties. */
 @Fluent
 public final class BlobInventoryPolicyProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BlobInventoryPolicyProperties.class);
+
     /*
      * Returns the last modified date and time of the blob inventory policy.
      */
@@ -62,7 +65,7 @@ public final class BlobInventoryPolicyProperties {
      */
     public void validate() {
         if (policy() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property policy in model BlobInventoryPolicyProperties"));
@@ -70,6 +73,4 @@ public final class BlobInventoryPolicyProperties {
             policy().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BlobInventoryPolicyProperties.class);
 }

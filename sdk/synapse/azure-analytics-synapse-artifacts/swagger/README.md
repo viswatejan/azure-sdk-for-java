@@ -18,11 +18,9 @@ cd <swagger-folder>
 autorest --java --use=C:/work/autorest.java
 ```
 
-Requires manual clean-up of multiple `CloudError`.
-
 ### Code generation settings
 ```yaml
-branch: main
+branch: f2fb403f64e0fcb1a799c60daf980f0cde495f8f
 repo: https://github.com/Azure/azure-rest-api-specs/blob/$(branch)
 ```
 
@@ -40,10 +38,8 @@ add-context-parameter: true
 models-subpackage: models
 context-client-method-parameter: true
 required-parameter-client-methods: true
-security: AADToken
-security-scopes: https://dev.azuresynapse.net/.default
-custom-strongly-typed-header-deserialization: true
-model-override-setter-from-superclass: true
+credential-types: tokencredential
+credential-scopes: https://dev.azuresynapse.net/.default
 require: https://raw.githubusercontent.com/Azure/azure-rest-api-specs/$(branch)/specification/synapse/data-plane/readme.md
-tag: package-artifacts-composite-v4
+tag: package-artifacts-composite-v3
 ```

@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.applicationinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** An Application Insights component API Key creation request definition. */
 @Fluent
 public final class ApiKeyRequest {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiKeyRequest.class);
+
     /*
      * The name of the API Key.
      */

@@ -6,11 +6,14 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Common field for data type in data connectors. */
 @Fluent
 public class DataConnectorDataTypeCommon {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DataConnectorDataTypeCommon.class);
+
     /*
      * Describe whether this data type connection is enabled or not.
      */
@@ -44,12 +47,10 @@ public class DataConnectorDataTypeCommon {
      */
     public void validate() {
         if (state() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property state in model DataConnectorDataTypeCommon"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DataConnectorDataTypeCommon.class);
 }

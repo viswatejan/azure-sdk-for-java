@@ -10,11 +10,9 @@ import com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseInner;
 import com.azure.resourcemanager.redisenterprise.models.AccessKeys;
 import com.azure.resourcemanager.redisenterprise.models.ClusteringPolicy;
 import com.azure.resourcemanager.redisenterprise.models.Database;
-import com.azure.resourcemanager.redisenterprise.models.DatabasePropertiesGeoReplication;
 import com.azure.resourcemanager.redisenterprise.models.DatabaseUpdate;
 import com.azure.resourcemanager.redisenterprise.models.EvictionPolicy;
 import com.azure.resourcemanager.redisenterprise.models.ExportClusterParameters;
-import com.azure.resourcemanager.redisenterprise.models.ForceUnlinkParameters;
 import com.azure.resourcemanager.redisenterprise.models.ImportClusterParameters;
 import com.azure.resourcemanager.redisenterprise.models.Module;
 import com.azure.resourcemanager.redisenterprise.models.Persistence;
@@ -77,10 +75,6 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
         } else {
             return Collections.emptyList();
         }
-    }
-
-    public DatabasePropertiesGeoReplication geoReplication() {
-        return this.innerModel().geoReplication();
     }
 
     public DatabaseInner innerModel() {
@@ -215,14 +209,6 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
         serviceManager.databases().export(resourceGroupName, clusterName, databaseName, parameters, context);
     }
 
-    public void forceUnlink(ForceUnlinkParameters parameters) {
-        serviceManager.databases().forceUnlink(resourceGroupName, clusterName, databaseName, parameters);
-    }
-
-    public void forceUnlink(ForceUnlinkParameters parameters, Context context) {
-        serviceManager.databases().forceUnlink(resourceGroupName, clusterName, databaseName, parameters, context);
-    }
-
     public DatabaseImpl withClientProtocol(Protocol clientProtocol) {
         if (isInCreateMode()) {
             this.innerModel().withClientProtocol(clientProtocol);
@@ -239,8 +225,13 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
     }
 
     public DatabaseImpl withClusteringPolicy(ClusteringPolicy clusteringPolicy) {
-        this.innerModel().withClusteringPolicy(clusteringPolicy);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withClusteringPolicy(clusteringPolicy);
+            return this;
+        } else {
+            this.updateParameters.withClusteringPolicy(clusteringPolicy);
+            return this;
+        }
     }
 
     public DatabaseImpl withEvictionPolicy(EvictionPolicy evictionPolicy) {
@@ -264,13 +255,13 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
     }
 
     public DatabaseImpl withModules(List<Module> modules) {
-        this.innerModel().withModules(modules);
-        return this;
-    }
-
-    public DatabaseImpl withGeoReplication(DatabasePropertiesGeoReplication geoReplication) {
-        this.innerModel().withGeoReplication(geoReplication);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withModules(modules);
+            return this;
+        } else {
+            this.updateParameters.withModules(modules);
+            return this;
+        }
     }
 
     private boolean isInCreateMode() {

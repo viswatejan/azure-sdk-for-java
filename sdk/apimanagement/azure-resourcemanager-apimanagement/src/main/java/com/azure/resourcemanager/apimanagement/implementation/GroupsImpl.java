@@ -15,9 +15,10 @@ import com.azure.resourcemanager.apimanagement.models.GroupContract;
 import com.azure.resourcemanager.apimanagement.models.Groups;
 import com.azure.resourcemanager.apimanagement.models.GroupsGetEntityTagResponse;
 import com.azure.resourcemanager.apimanagement.models.GroupsGetResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class GroupsImpl implements Groups {
-    private static final ClientLogger LOGGER = new ClientLogger(GroupsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GroupsImpl.class);
 
     private final GroupsClient innerClient;
 
@@ -86,7 +87,7 @@ public final class GroupsImpl implements Groups {
     public GroupContract getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -94,14 +95,14 @@ public final class GroupsImpl implements Groups {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String groupId = Utils.getValueFromIdByName(id, "groups");
         if (groupId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'groups'.", id)));
@@ -112,7 +113,7 @@ public final class GroupsImpl implements Groups {
     public Response<GroupContract> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -120,14 +121,14 @@ public final class GroupsImpl implements Groups {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String groupId = Utils.getValueFromIdByName(id, "groups");
         if (groupId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'groups'.", id)));
@@ -138,7 +139,7 @@ public final class GroupsImpl implements Groups {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -146,26 +147,26 @@ public final class GroupsImpl implements Groups {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String groupId = Utils.getValueFromIdByName(id, "groups");
         if (groupId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'groups'.", id)));
         }
         String localIfMatch = null;
-        this.deleteWithResponse(resourceGroupName, serviceName, groupId, localIfMatch, Context.NONE);
+        this.deleteWithResponse(resourceGroupName, serviceName, groupId, localIfMatch, Context.NONE).getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -173,14 +174,14 @@ public final class GroupsImpl implements Groups {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String groupId = Utils.getValueFromIdByName(id, "groups");
         if (groupId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'groups'.", id)));

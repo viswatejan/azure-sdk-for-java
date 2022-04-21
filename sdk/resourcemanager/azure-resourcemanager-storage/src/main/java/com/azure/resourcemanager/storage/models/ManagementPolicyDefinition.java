@@ -6,11 +6,14 @@ package com.azure.resourcemanager.storage.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** An object that defines the Lifecycle rule. Each definition is made up with a filters set and an actions set. */
 @Fluent
 public final class ManagementPolicyDefinition {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagementPolicyDefinition.class);
+
     /*
      * An object that defines the action set.
      */
@@ -70,7 +73,7 @@ public final class ManagementPolicyDefinition {
      */
     public void validate() {
         if (actions() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property actions in model ManagementPolicyDefinition"));
@@ -81,6 +84,4 @@ public final class ManagementPolicyDefinition {
             filters().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ManagementPolicyDefinition.class);
 }

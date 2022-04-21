@@ -7,12 +7,15 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resourcehealth.fluent.models.AvailabilityStatusInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The List availabilityStatus operation response. */
 @Fluent
 public final class AvailabilityStatusListResult {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AvailabilityStatusListResult.class);
+
     /*
      * The list of availabilityStatuses.
      */
@@ -75,7 +78,7 @@ public final class AvailabilityStatusListResult {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model AvailabilityStatusListResult"));
@@ -83,6 +86,4 @@ public final class AvailabilityStatusListResult {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AvailabilityStatusListResult.class);
 }

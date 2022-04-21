@@ -303,11 +303,4 @@ public final class FileServerReadSettings extends StoreReadSettings {
         this.fileFilter = fileFilter;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public FileServerReadSettings setMaxConcurrentConnections(Object maxConcurrentConnections) {
-        super.setMaxConcurrentConnections(maxConcurrentConnections);
-        return this;
-    }
 }

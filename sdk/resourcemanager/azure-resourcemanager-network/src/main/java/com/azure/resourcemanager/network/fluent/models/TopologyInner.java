@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.network.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.network.models.TopologyResource;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.List;
 /** Topology of the specified resource group. */
 @Fluent
 public final class TopologyInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TopologyInner.class);
+
     /*
      * GUID representing the operation id.
      */

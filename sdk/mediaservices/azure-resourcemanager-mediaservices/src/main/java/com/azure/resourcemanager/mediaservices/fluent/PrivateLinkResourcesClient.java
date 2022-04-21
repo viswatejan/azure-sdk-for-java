@@ -35,7 +35,7 @@ public interface PrivateLinkResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of group IDs along with {@link Response}.
+     * @return list of group IDs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateLinkResourceListResultInner> listWithResponse(
@@ -65,7 +65,7 @@ public interface PrivateLinkResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return group ID along with {@link Response}.
+     * @return group ID.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateLinkResourceInner> getWithResponse(

@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.signalr.fluent.SignalRPrivateLinkResourcesClient;
 import com.azure.resourcemanager.signalr.fluent.models.PrivateLinkResourceInner;
 import com.azure.resourcemanager.signalr.models.PrivateLinkResourceList;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in SignalRPrivateLinkResourcesClient. */
 public final class SignalRPrivateLinkResourcesClientImpl implements SignalRPrivateLinkResourcesClient {
+    private final ClientLogger logger = new ClientLogger(SignalRPrivateLinkResourcesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final SignalRPrivateLinkResourcesService service;
 
@@ -93,8 +96,7 @@ public final class SignalRPrivateLinkResourcesClientImpl implements SignalRPriva
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a resource along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return the private link resources that need to be created for a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PrivateLinkResourceInner>> listSinglePageAsync(
@@ -153,8 +155,7 @@ public final class SignalRPrivateLinkResourcesClientImpl implements SignalRPriva
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a resource along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return the private link resources that need to be created for a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PrivateLinkResourceInner>> listSinglePageAsync(
@@ -209,8 +210,7 @@ public final class SignalRPrivateLinkResourcesClientImpl implements SignalRPriva
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a resource as paginated response with {@link
-     *     PagedFlux}.
+     * @return the private link resources that need to be created for a resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PrivateLinkResourceInner> listAsync(String resourceGroupName, String resourceName) {
@@ -228,8 +228,7 @@ public final class SignalRPrivateLinkResourcesClientImpl implements SignalRPriva
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a resource as paginated response with {@link
-     *     PagedFlux}.
+     * @return the private link resources that need to be created for a resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PrivateLinkResourceInner> listAsync(
@@ -248,8 +247,7 @@ public final class SignalRPrivateLinkResourcesClientImpl implements SignalRPriva
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a resource as paginated response with {@link
-     *     PagedIterable}.
+     * @return the private link resources that need to be created for a resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PrivateLinkResourceInner> list(String resourceGroupName, String resourceName) {
@@ -266,8 +264,7 @@ public final class SignalRPrivateLinkResourcesClientImpl implements SignalRPriva
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a resource as paginated response with {@link
-     *     PagedIterable}.
+     * @return the private link resources that need to be created for a resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PrivateLinkResourceInner> list(
@@ -282,8 +279,7 @@ public final class SignalRPrivateLinkResourcesClientImpl implements SignalRPriva
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains a list of PrivateLinkResource and a possible link to query more results along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return contains a list of PrivateLinkResource and a possible link to query more results.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PrivateLinkResourceInner>> listNextSinglePageAsync(String nextLink) {
@@ -319,8 +315,7 @@ public final class SignalRPrivateLinkResourcesClientImpl implements SignalRPriva
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains a list of PrivateLinkResource and a possible link to query more results along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return contains a list of PrivateLinkResource and a possible link to query more results.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PrivateLinkResourceInner>> listNextSinglePageAsync(String nextLink, Context context) {

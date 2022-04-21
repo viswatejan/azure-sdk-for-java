@@ -6,9 +6,9 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.securityinsights.models.ProvisioningState;
-import com.azure.resourcemanager.securityinsights.models.SourceType;
+import com.azure.resourcemanager.securityinsights.models.Source;
 import com.azure.resourcemanager.securityinsights.models.UserInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.time.OffsetDateTime;
@@ -17,6 +17,8 @@ import java.util.List;
 /** Describes watchlist properties. */
 @Fluent
 public final class WatchlistProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(WatchlistProperties.class);
+
     /*
      * The id (a Guid) of the watchlist
      */
@@ -36,16 +38,10 @@ public final class WatchlistProperties {
     private String provider;
 
     /*
-     * The filename of the watchlist, called 'source'
+     * The source of the watchlist
      */
-    @JsonProperty(value = "source")
-    private String source;
-
-    /*
-     * The sourceType of the watchlist
-     */
-    @JsonProperty(value = "sourceType")
-    private SourceType sourceType;
+    @JsonProperty(value = "source", required = true)
+    private Source source;
 
     /*
      * The time the watchlist was created
@@ -128,14 +124,6 @@ public final class WatchlistProperties {
     private String rawContent;
 
     /*
-     * The Shared Access Signature (SAS) URI under which the large csv
-     * watchlist file is located and from which the watchlist and its items
-     * will be created
-     */
-    @JsonProperty(value = "sasUri")
-    private String sasUri;
-
-    /*
      * The search key is used to optimize query performance when using
      * watchlists for joins with other data. For example, enable a column with
      * IP addresses to be the designated SearchKey field, then use this field
@@ -159,10 +147,10 @@ public final class WatchlistProperties {
     private String uploadStatus;
 
     /*
-     * The provisioning state of the watchlist resource.
+     * The number of Watchlist Items in the Watchlist
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private ProvisioningState provisioningState;
+    @JsonProperty(value = "watchlistItemsCount")
+    private Integer watchlistItemsCount;
 
     /**
      * Get the watchlistId property: The id (a Guid) of the watchlist.
@@ -225,42 +213,22 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Get the source property: The filename of the watchlist, called 'source'.
+     * Get the source property: The source of the watchlist.
      *
      * @return the source value.
      */
-    public String source() {
+    public Source source() {
         return this.source;
     }
 
     /**
-     * Set the source property: The filename of the watchlist, called 'source'.
+     * Set the source property: The source of the watchlist.
      *
      * @param source the source value to set.
      * @return the WatchlistProperties object itself.
      */
-    public WatchlistProperties withSource(String source) {
+    public WatchlistProperties withSource(Source source) {
         this.source = source;
-        return this;
-    }
-
-    /**
-     * Get the sourceType property: The sourceType of the watchlist.
-     *
-     * @return the sourceType value.
-     */
-    public SourceType sourceType() {
-        return this.sourceType;
-    }
-
-    /**
-     * Set the sourceType property: The sourceType of the watchlist.
-     *
-     * @param sourceType the sourceType value to set.
-     * @return the WatchlistProperties object itself.
-     */
-    public WatchlistProperties withSourceType(SourceType sourceType) {
-        this.sourceType = sourceType;
         return this;
     }
 
@@ -527,28 +495,6 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Get the sasUri property: The Shared Access Signature (SAS) URI under which the large csv watchlist file is
-     * located and from which the watchlist and its items will be created.
-     *
-     * @return the sasUri value.
-     */
-    public String sasUri() {
-        return this.sasUri;
-    }
-
-    /**
-     * Set the sasUri property: The Shared Access Signature (SAS) URI under which the large csv watchlist file is
-     * located and from which the watchlist and its items will be created.
-     *
-     * @param sasUri the sasUri value to set.
-     * @return the WatchlistProperties object itself.
-     */
-    public WatchlistProperties withSasUri(String sasUri) {
-        this.sasUri = sasUri;
-        return this;
-    }
-
-    /**
      * Get the itemsSearchKey property: The search key is used to optimize query performance when using watchlists for
      * joins with other data. For example, enable a column with IP addresses to be the designated SearchKey field, then
      * use this field as the key field when joining to other event data by IP address.
@@ -615,12 +561,23 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Get the provisioningState property: The provisioning state of the watchlist resource.
+     * Get the watchlistItemsCount property: The number of Watchlist Items in the Watchlist.
      *
-     * @return the provisioningState value.
+     * @return the watchlistItemsCount value.
      */
-    public ProvisioningState provisioningState() {
-        return this.provisioningState;
+    public Integer watchlistItemsCount() {
+        return this.watchlistItemsCount;
+    }
+
+    /**
+     * Set the watchlistItemsCount property: The number of Watchlist Items in the Watchlist.
+     *
+     * @param watchlistItemsCount the watchlistItemsCount value to set.
+     * @return the WatchlistProperties object itself.
+     */
+    public WatchlistProperties withWatchlistItemsCount(Integer watchlistItemsCount) {
+        this.watchlistItemsCount = watchlistItemsCount;
+        return this;
     }
 
     /**
@@ -630,14 +587,19 @@ public final class WatchlistProperties {
      */
     public void validate() {
         if (displayName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property displayName in model WatchlistProperties"));
         }
         if (provider() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property provider in model WatchlistProperties"));
+        }
+        if (source() == null) {
+            throw logger
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property source in model WatchlistProperties"));
         }
         if (createdBy() != null) {
             createdBy().validate();
@@ -646,12 +608,10 @@ public final class WatchlistProperties {
             updatedBy().validate();
         }
         if (itemsSearchKey() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property itemsSearchKey in model WatchlistProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(WatchlistProperties.class);
 }

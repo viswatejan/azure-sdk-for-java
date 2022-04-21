@@ -15,9 +15,10 @@ import com.azure.resourcemanager.apimanagement.models.ApiReleaseContract;
 import com.azure.resourcemanager.apimanagement.models.ApiReleases;
 import com.azure.resourcemanager.apimanagement.models.ApiReleasesGetEntityTagResponse;
 import com.azure.resourcemanager.apimanagement.models.ApiReleasesGetResponse;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ApiReleasesImpl implements ApiReleases {
-    private static final ClientLogger LOGGER = new ClientLogger(ApiReleasesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApiReleasesImpl.class);
 
     private final ApiReleasesClient innerClient;
 
@@ -95,7 +96,7 @@ public final class ApiReleasesImpl implements ApiReleases {
     public ApiReleaseContract getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -103,21 +104,21 @@ public final class ApiReleasesImpl implements ApiReleases {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));
         }
         String releaseId = Utils.getValueFromIdByName(id, "releases");
         if (releaseId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'releases'.", id)));
@@ -128,7 +129,7 @@ public final class ApiReleasesImpl implements ApiReleases {
     public Response<ApiReleaseContract> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -136,21 +137,21 @@ public final class ApiReleasesImpl implements ApiReleases {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));
         }
         String releaseId = Utils.getValueFromIdByName(id, "releases");
         if (releaseId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'releases'.", id)));
@@ -161,7 +162,7 @@ public final class ApiReleasesImpl implements ApiReleases {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -169,33 +170,35 @@ public final class ApiReleasesImpl implements ApiReleases {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));
         }
         String releaseId = Utils.getValueFromIdByName(id, "releases");
         if (releaseId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'releases'.", id)));
         }
         String localIfMatch = null;
-        this.deleteWithResponse(resourceGroupName, serviceName, apiId, releaseId, localIfMatch, Context.NONE);
+        this
+            .deleteWithResponse(resourceGroupName, serviceName, apiId, releaseId, localIfMatch, Context.NONE)
+            .getValue();
     }
 
     public Response<Void> deleteByIdWithResponse(String id, String ifMatch, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -203,21 +206,21 @@ public final class ApiReleasesImpl implements ApiReleases {
         }
         String serviceName = Utils.getValueFromIdByName(id, "service");
         if (serviceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'service'.", id)));
         }
         String apiId = Utils.getValueFromIdByName(id, "apis");
         if (apiId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'apis'.", id)));
         }
         String releaseId = Utils.getValueFromIdByName(id, "releases");
         if (releaseId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'releases'.", id)));

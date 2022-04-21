@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.resources.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -12,6 +14,8 @@ import java.util.Map;
 /** Resource group information. */
 @Fluent
 public final class ResourceGroupPatchable {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceGroupPatchable.class);
+
     /*
      * The name of the resource group.
      */

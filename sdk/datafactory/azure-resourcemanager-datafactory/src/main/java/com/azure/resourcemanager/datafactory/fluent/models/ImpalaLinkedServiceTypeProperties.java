@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.ImpalaAuthenticationType;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Impala server linked service properties. */
 @Fluent
 public final class ImpalaLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ImpalaLinkedServiceTypeProperties.class);
+
     /*
      * The IP address or host name of the Impala server. (i.e. 192.168.222.160)
      */
@@ -337,13 +340,13 @@ public final class ImpalaLinkedServiceTypeProperties {
      */
     public void validate() {
         if (host() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property host in model ImpalaLinkedServiceTypeProperties"));
         }
         if (authenticationType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property authenticationType in model ImpalaLinkedServiceTypeProperties"));
@@ -352,6 +355,4 @@ public final class ImpalaLinkedServiceTypeProperties {
             password().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ImpalaLinkedServiceTypeProperties.class);
 }

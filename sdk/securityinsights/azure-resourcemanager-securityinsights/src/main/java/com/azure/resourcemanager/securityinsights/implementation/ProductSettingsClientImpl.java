@@ -24,6 +24,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.ProductSettingsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.SettingListInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.SettingsInner;
@@ -31,6 +32,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ProductSettingsClient. */
 public final class ProductSettingsClientImpl implements ProductSettingsClient {
+    private final ClientLogger logger = new ClientLogger(ProductSettingsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ProductSettingsService service;
 

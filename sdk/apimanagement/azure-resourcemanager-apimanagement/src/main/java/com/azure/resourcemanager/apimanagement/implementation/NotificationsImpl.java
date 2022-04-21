@@ -14,9 +14,10 @@ import com.azure.resourcemanager.apimanagement.fluent.models.NotificationContrac
 import com.azure.resourcemanager.apimanagement.models.NotificationContract;
 import com.azure.resourcemanager.apimanagement.models.NotificationName;
 import com.azure.resourcemanager.apimanagement.models.Notifications;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class NotificationsImpl implements Notifications {
-    private static final ClientLogger LOGGER = new ClientLogger(NotificationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(NotificationsImpl.class);
 
     private final NotificationsClient innerClient;
 

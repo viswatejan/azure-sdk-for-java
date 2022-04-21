@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -16,15 +18,18 @@ import java.time.Duration;
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
-    property = "@odata.type",
+    property = "@odata\\.type",
     defaultImpl = Image.class)
 @JsonTypeName("#Microsoft.Media.Image")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "#Microsoft.Media.JpgImage", value = JpgImage.class),
     @JsonSubTypes.Type(name = "#Microsoft.Media.PngImage", value = PngImage.class)
 })
+@JsonFlatten
 @Fluent
 public class Image extends Video {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(Image.class);
+
     /*
      * The position in the input video from where to start generating
      * thumbnails. The value can be in ISO 8601 format (For example, PT05S to
@@ -204,10 +209,8 @@ public class Image extends Video {
     public void validate() {
         super.validate();
         if (start() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(new IllegalArgumentException("Missing required property start in model Image"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(Image.class);
 }

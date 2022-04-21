@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.CustomActivityReferenceObject;
 import com.azure.resourcemanager.datafactory.models.LinkedServiceReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -15,6 +16,8 @@ import java.util.Map;
 /** Custom activity properties. */
 @Fluent
 public final class CustomActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CustomActivityTypeProperties.class);
+
     /*
      * Command for custom activity Type: string (or Expression with resultType
      * string).
@@ -219,7 +222,7 @@ public final class CustomActivityTypeProperties {
      */
     public void validate() {
         if (command() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property command in model CustomActivityTypeProperties"));
@@ -231,6 +234,4 @@ public final class CustomActivityTypeProperties {
             referenceObjects().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CustomActivityTypeProperties.class);
 }

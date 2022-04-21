@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.EnvironmentVariableSetupTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,6 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("EnvironmentVariableSetup")
 @Fluent
 public final class EnvironmentVariableSetup extends CustomSetupBase {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(EnvironmentVariableSetup.class);
+
     /*
      * Add environment variable type properties.
      */
@@ -86,7 +89,7 @@ public final class EnvironmentVariableSetup extends CustomSetupBase {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model EnvironmentVariableSetup"));
@@ -94,6 +97,4 @@ public final class EnvironmentVariableSetup extends CustomSetupBase {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(EnvironmentVariableSetup.class);
 }

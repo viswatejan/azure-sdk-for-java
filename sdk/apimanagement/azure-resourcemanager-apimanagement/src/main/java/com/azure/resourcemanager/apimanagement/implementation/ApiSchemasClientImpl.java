@@ -30,6 +30,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.apimanagement.fluent.ApiSchemasClient;
@@ -43,6 +44,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ApiSchemasClient. */
 public final class ApiSchemasClientImpl implements ApiSchemasClient {
+    private final ClientLogger logger = new ClientLogger(ApiSchemasClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ApiSchemasService service;
 
@@ -184,8 +187,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the schema configuration at the API level along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return the schema configuration at the API level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SchemaContractInner>> listByApiSinglePageAsync(
@@ -257,8 +259,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the schema configuration at the API level along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return the schema configuration at the API level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SchemaContractInner>> listByApiSinglePageAsync(
@@ -332,7 +333,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the schema configuration at the API level as paginated response with {@link PagedFlux}.
+     * @return the schema configuration at the API level.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SchemaContractInner> listByApiAsync(
@@ -352,7 +353,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the schema configuration at the API level as paginated response with {@link PagedFlux}.
+     * @return the schema configuration at the API level.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SchemaContractInner> listByApiAsync(String resourceGroupName, String serviceName, String apiId) {
@@ -380,7 +381,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the schema configuration at the API level as paginated response with {@link PagedFlux}.
+     * @return the schema configuration at the API level.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SchemaContractInner> listByApiAsync(
@@ -406,7 +407,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the schema configuration at the API level as paginated response with {@link PagedIterable}.
+     * @return the schema configuration at the API level.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SchemaContractInner> listByApi(String resourceGroupName, String serviceName, String apiId) {
@@ -432,7 +433,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the schema configuration at the API level as paginated response with {@link PagedIterable}.
+     * @return the schema configuration at the API level.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SchemaContractInner> listByApi(
@@ -453,12 +454,11 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the schema specified by its identifier on successful completion of
-     *     {@link Mono}.
+     * @return the entity state (Etag) version of the schema specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiSchemasGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -513,13 +513,12 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the schema specified by its identifier on successful completion of
-     *     {@link Mono}.
+     * @return the entity state (Etag) version of the schema specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiSchemasGetEntityTagResponse> getEntityTagWithResponseAsync(
@@ -571,12 +570,11 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state (Etag) version of the schema specified by its identifier on successful completion of
-     *     {@link Mono}.
+     * @return the entity state (Etag) version of the schema specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityTagAsync(String resourceGroupName, String serviceName, String apiId, String schemaId) {
@@ -591,7 +589,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -608,7 +606,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -628,11 +626,11 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the schema configuration at the API level on successful completion of {@link Mono}.
+     * @return the schema configuration at the API level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiSchemasGetResponse> getWithResponseAsync(
@@ -687,12 +685,12 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the schema configuration at the API level on successful completion of {@link Mono}.
+     * @return the schema configuration at the API level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiSchemasGetResponse> getWithResponseAsync(
@@ -744,11 +742,11 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the schema configuration at the API level on successful completion of {@link Mono}.
+     * @return the schema configuration at the API level.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SchemaContractInner> getAsync(
@@ -771,7 +769,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -789,7 +787,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -809,13 +807,13 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @param ifMatch ETag of the Entity. Not required when creating an entity, but required when updating an entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Schema Contract details along with {@link Response} on successful completion of {@link Mono}.
+     * @return schema Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -882,14 +880,14 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @param ifMatch ETag of the Entity. Not required when creating an entity, but required when updating an entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Schema Contract details along with {@link Response} on successful completion of {@link Mono}.
+     * @return schema Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -954,15 +952,15 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @param ifMatch ETag of the Entity. Not required when creating an entity, but required when updating an entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of aPI Schema Contract details.
+     * @return schema Contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<SchemaContractInner>, SchemaContractInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serviceName,
@@ -979,7 +977,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
                 this.client.getHttpPipeline(),
                 SchemaContractInner.class,
                 SchemaContractInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -989,16 +987,16 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @param ifMatch ETag of the Entity. Not required when creating an entity, but required when updating an entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of aPI Schema Contract details.
+     * @return schema Contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<SchemaContractInner>, SchemaContractInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serviceName,
@@ -1024,15 +1022,15 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @param ifMatch ETag of the Entity. Not required when creating an entity, but required when updating an entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of aPI Schema Contract details.
+     * @return schema Contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<SchemaContractInner>, SchemaContractInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serviceName,
@@ -1051,16 +1049,16 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @param ifMatch ETag of the Entity. Not required when creating an entity, but required when updating an entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of aPI Schema Contract details.
+     * @return schema Contract details.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<SchemaContractInner>, SchemaContractInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serviceName,
@@ -1080,13 +1078,13 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @param ifMatch ETag of the Entity. Not required when creating an entity, but required when updating an entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Schema Contract details on successful completion of {@link Mono}.
+     * @return schema Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SchemaContractInner> createOrUpdateAsync(
@@ -1108,12 +1106,12 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Schema Contract details on successful completion of {@link Mono}.
+     * @return schema Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SchemaContractInner> createOrUpdateAsync(
@@ -1131,14 +1129,14 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @param ifMatch ETag of the Entity. Not required when creating an entity, but required when updating an entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Schema Contract details on successful completion of {@link Mono}.
+     * @return schema Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SchemaContractInner> createOrUpdateAsync(
@@ -1161,13 +1159,13 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @param ifMatch ETag of the Entity. Not required when creating an entity, but required when updating an entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Schema Contract details.
+     * @return schema Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SchemaContractInner createOrUpdate(
@@ -1187,12 +1185,12 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Schema Contract details.
+     * @return schema Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SchemaContractInner createOrUpdate(
@@ -1208,14 +1206,14 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param parameters The schema contents to apply.
      * @param ifMatch ETag of the Entity. Not required when creating an entity, but required when updating an entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Schema Contract details.
+     * @return schema Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SchemaContractInner createOrUpdate(
@@ -1237,14 +1235,14 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
      * @param force If true removes all references to the schema before deleting it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1304,7 +1302,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
      * @param force If true removes all references to the schema before deleting it.
@@ -1312,7 +1310,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1375,14 +1373,14 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
      * @param force If true removes all references to the schema before deleting it.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1398,13 +1396,13 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1421,7 +1419,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1441,7 +1439,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @param serviceName The name of the API Management service.
      * @param apiId API revision identifier. Must be unique in the current API Management service instance. Non-current
      *     revision has ;rev=n as a suffix where n is the revision number.
-     * @param schemaId Schema id identifier. Must be unique in the current API Management service instance.
+     * @param schemaId Schema identifier within an API. Must be unique in the current API Management service instance.
      * @param ifMatch ETag of the Entity. ETag should match the current entity state from the header response of the GET
      *     request or it should be * for unconditional update.
      * @param force If true removes all references to the schema before deleting it.
@@ -1449,7 +1447,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1471,8 +1469,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the list schema operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return the response of the list schema operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SchemaContractInner>> listByApiNextSinglePageAsync(String nextLink) {
@@ -1508,8 +1505,7 @@ public final class ApiSchemasClientImpl implements ApiSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the list schema operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return the response of the list schema operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SchemaContractInner>> listByApiNextSinglePageAsync(String nextLink, Context context) {

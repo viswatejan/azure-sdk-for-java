@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.EntitiesRelationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.RelationInner;
 import com.azure.resourcemanager.securityinsights.models.RelationList;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in EntitiesRelationsClient. */
 public final class EntitiesRelationsClientImpl implements EntitiesRelationsClient {
+    private final ClientLogger logger = new ClientLogger(EntitiesRelationsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final EntitiesRelationsService service;
 
@@ -257,7 +260,7 @@ public final class EntitiesRelationsClientImpl implements EntitiesRelationsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all relations of an entity as paginated response with {@link PagedFlux}.
+     * @return all relations of an entity.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RelationInner> listAsync(
@@ -282,7 +285,7 @@ public final class EntitiesRelationsClientImpl implements EntitiesRelationsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all relations of an entity as paginated response with {@link PagedFlux}.
+     * @return all relations of an entity.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RelationInner> listAsync(String resourceGroupName, String workspaceName, String entityId) {
@@ -311,7 +314,7 @@ public final class EntitiesRelationsClientImpl implements EntitiesRelationsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all relations of an entity as paginated response with {@link PagedFlux}.
+     * @return all relations of an entity.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RelationInner> listAsync(
@@ -339,7 +342,7 @@ public final class EntitiesRelationsClientImpl implements EntitiesRelationsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all relations of an entity as paginated response with {@link PagedIterable}.
+     * @return all relations of an entity.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RelationInner> list(String resourceGroupName, String workspaceName, String entityId) {
@@ -367,7 +370,7 @@ public final class EntitiesRelationsClientImpl implements EntitiesRelationsClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all relations of an entity as paginated response with {@link PagedIterable}.
+     * @return all relations of an entity.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RelationInner> list(

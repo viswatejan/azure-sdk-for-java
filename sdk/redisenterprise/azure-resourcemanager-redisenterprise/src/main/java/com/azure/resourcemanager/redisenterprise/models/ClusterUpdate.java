@@ -5,16 +5,20 @@
 package com.azure.resourcemanager.redisenterprise.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.redisenterprise.fluent.models.ClusterProperties;
+import com.azure.core.annotation.JsonFlatten;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redisenterprise.fluent.models.PrivateEndpointConnectionInner;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
 /** A partial update to the RedisEnterprise cluster. */
+@JsonFlatten
 @Fluent
-public final class ClusterUpdate {
+public class ClusterUpdate {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ClusterUpdate.class);
+
     /*
      * The SKU to create, which affects price, performance, and features.
      */
@@ -22,17 +26,47 @@ public final class ClusterUpdate {
     private Sku sku;
 
     /*
-     * RedisEnterprise cluster properties Other properties of the cluster.
-     */
-    @JsonProperty(value = "properties")
-    private ClusterProperties innerProperties;
-
-    /*
      * Resource tags.
      */
     @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
+
+    /*
+     * The minimum TLS version for the cluster to support, e.g. '1.2'
+     */
+    @JsonProperty(value = "properties.minimumTlsVersion")
+    private TlsVersion minimumTlsVersion;
+
+    /*
+     * DNS name of the cluster endpoint
+     */
+    @JsonProperty(value = "properties.hostName", access = JsonProperty.Access.WRITE_ONLY)
+    private String hostname;
+
+    /*
+     * Current provisioning status of the cluster
+     */
+    @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private ProvisioningState provisioningState;
+
+    /*
+     * Current resource status of the cluster
+     */
+    @JsonProperty(value = "properties.resourceState", access = JsonProperty.Access.WRITE_ONLY)
+    private ResourceState resourceState;
+
+    /*
+     * Version of redis the cluster supports, e.g. '6'
+     */
+    @JsonProperty(value = "properties.redisVersion", access = JsonProperty.Access.WRITE_ONLY)
+    private String redisVersion;
+
+    /*
+     * List of private endpoint connections associated with the specified
+     * RedisEnterprise cluster
+     */
+    @JsonProperty(value = "properties.privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
+    private List<PrivateEndpointConnectionInner> privateEndpointConnections;
 
     /**
      * Get the sku property: The SKU to create, which affects price, performance, and features.
@@ -52,15 +86,6 @@ public final class ClusterUpdate {
     public ClusterUpdate withSku(Sku sku) {
         this.sku = sku;
         return this;
-    }
-
-    /**
-     * Get the innerProperties property: RedisEnterprise cluster properties Other properties of the cluster.
-     *
-     * @return the innerProperties value.
-     */
-    private ClusterProperties innerProperties() {
-        return this.innerProperties;
     }
 
     /**
@@ -89,7 +114,7 @@ public final class ClusterUpdate {
      * @return the minimumTlsVersion value.
      */
     public TlsVersion minimumTlsVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().minimumTlsVersion();
+        return this.minimumTlsVersion;
     }
 
     /**
@@ -99,10 +124,7 @@ public final class ClusterUpdate {
      * @return the ClusterUpdate object itself.
      */
     public ClusterUpdate withMinimumTlsVersion(TlsVersion minimumTlsVersion) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
-        }
-        this.innerProperties().withMinimumTlsVersion(minimumTlsVersion);
+        this.minimumTlsVersion = minimumTlsVersion;
         return this;
     }
 
@@ -112,7 +134,7 @@ public final class ClusterUpdate {
      * @return the hostname value.
      */
     public String hostname() {
-        return this.innerProperties() == null ? null : this.innerProperties().hostname();
+        return this.hostname;
     }
 
     /**
@@ -121,7 +143,7 @@ public final class ClusterUpdate {
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+        return this.provisioningState;
     }
 
     /**
@@ -130,7 +152,7 @@ public final class ClusterUpdate {
      * @return the resourceState value.
      */
     public ResourceState resourceState() {
-        return this.innerProperties() == null ? null : this.innerProperties().resourceState();
+        return this.resourceState;
     }
 
     /**
@@ -139,7 +161,7 @@ public final class ClusterUpdate {
      * @return the redisVersion value.
      */
     public String redisVersion() {
-        return this.innerProperties() == null ? null : this.innerProperties().redisVersion();
+        return this.redisVersion;
     }
 
     /**
@@ -149,7 +171,7 @@ public final class ClusterUpdate {
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
+        return this.privateEndpointConnections;
     }
 
     /**
@@ -161,8 +183,8 @@ public final class ClusterUpdate {
         if (sku() != null) {
             sku().validate();
         }
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (privateEndpointConnections() != null) {
+            privateEndpointConnections().forEach(e -> e.validate());
         }
     }
 }

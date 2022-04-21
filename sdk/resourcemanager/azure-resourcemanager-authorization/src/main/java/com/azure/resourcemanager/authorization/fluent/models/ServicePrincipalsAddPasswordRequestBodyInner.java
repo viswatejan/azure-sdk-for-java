@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,6 +16,9 @@ import java.util.Map;
 /** The ServicePrincipalsAddPasswordRequestBody model. */
 @Fluent
 public final class ServicePrincipalsAddPasswordRequestBodyInner {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(ServicePrincipalsAddPasswordRequestBodyInner.class);
+
     /*
      * passwordCredential
      */
@@ -22,7 +26,7 @@ public final class ServicePrincipalsAddPasswordRequestBodyInner {
     private MicrosoftGraphPasswordCredentialInner passwordCredential;
 
     /*
-     * Dictionary of <AnyObject>
+     * Dictionary of <any>
      */
     @JsonIgnore private Map<String, Object> additionalProperties;
 
@@ -48,7 +52,7 @@ public final class ServicePrincipalsAddPasswordRequestBodyInner {
     }
 
     /**
-     * Get the additionalProperties property: Dictionary of &lt;AnyObject&gt;.
+     * Get the additionalProperties property: Dictionary of &lt;any&gt;.
      *
      * @return the additionalProperties value.
      */
@@ -58,7 +62,7 @@ public final class ServicePrincipalsAddPasswordRequestBodyInner {
     }
 
     /**
-     * Set the additionalProperties property: Dictionary of &lt;AnyObject&gt;.
+     * Set the additionalProperties property: Dictionary of &lt;any&gt;.
      *
      * @param additionalProperties the additionalProperties value to set.
      * @return the ServicePrincipalsAddPasswordRequestBodyInner object itself.

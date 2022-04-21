@@ -13,9 +13,10 @@ import com.azure.resourcemanager.securityinsights.fluent.WatchlistItemsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.WatchlistItemInner;
 import com.azure.resourcemanager.securityinsights.models.WatchlistItem;
 import com.azure.resourcemanager.securityinsights.models.WatchlistItems;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class WatchlistItemsImpl implements WatchlistItems {
-    private static final ClientLogger LOGGER = new ClientLogger(WatchlistItemsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(WatchlistItemsImpl.class);
 
     private final WatchlistItemsClient innerClient;
 
@@ -35,9 +36,9 @@ public final class WatchlistItemsImpl implements WatchlistItems {
     }
 
     public PagedIterable<WatchlistItem> list(
-        String resourceGroupName, String workspaceName, String watchlistAlias, String skipToken, Context context) {
+        String resourceGroupName, String workspaceName, String watchlistAlias, Context context) {
         PagedIterable<WatchlistItemInner> inner =
-            this.serviceClient().list(resourceGroupName, workspaceName, watchlistAlias, skipToken, context);
+            this.serviceClient().list(resourceGroupName, workspaceName, watchlistAlias, context);
         return Utils.mapPage(inner, inner1 -> new WatchlistItemImpl(inner1, this.manager()));
     }
 
@@ -91,7 +92,7 @@ public final class WatchlistItemsImpl implements WatchlistItems {
     public WatchlistItem getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -99,21 +100,21 @@ public final class WatchlistItemsImpl implements WatchlistItems {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String watchlistAlias = Utils.getValueFromIdByName(id, "watchlists");
         if (watchlistAlias == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'watchlists'.", id)));
         }
         String watchlistItemId = Utils.getValueFromIdByName(id, "watchlistItems");
         if (watchlistItemId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -127,7 +128,7 @@ public final class WatchlistItemsImpl implements WatchlistItems {
     public Response<WatchlistItem> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -135,21 +136,21 @@ public final class WatchlistItemsImpl implements WatchlistItems {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String watchlistAlias = Utils.getValueFromIdByName(id, "watchlists");
         if (watchlistAlias == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'watchlists'.", id)));
         }
         String watchlistItemId = Utils.getValueFromIdByName(id, "watchlistItems");
         if (watchlistItemId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -161,7 +162,7 @@ public final class WatchlistItemsImpl implements WatchlistItems {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -169,21 +170,21 @@ public final class WatchlistItemsImpl implements WatchlistItems {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String watchlistAlias = Utils.getValueFromIdByName(id, "watchlists");
         if (watchlistAlias == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'watchlists'.", id)));
         }
         String watchlistItemId = Utils.getValueFromIdByName(id, "watchlistItems");
         if (watchlistItemId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -195,7 +196,7 @@ public final class WatchlistItemsImpl implements WatchlistItems {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -203,21 +204,21 @@ public final class WatchlistItemsImpl implements WatchlistItems {
         }
         String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
         if (workspaceName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
         String watchlistAlias = Utils.getValueFromIdByName(id, "watchlists");
         if (watchlistAlias == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'watchlists'.", id)));
         }
         String watchlistItemId = Utils.getValueFromIdByName(id, "watchlistItems");
         if (watchlistItemId == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

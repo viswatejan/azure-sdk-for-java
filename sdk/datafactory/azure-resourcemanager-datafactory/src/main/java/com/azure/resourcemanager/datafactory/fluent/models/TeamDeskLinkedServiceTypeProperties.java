@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
 import com.azure.resourcemanager.datafactory.models.TeamDeskAuthenticationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** TeamDesk linked service type properties. */
 @Fluent
 public final class TeamDeskLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TeamDeskLinkedServiceTypeProperties.class);
+
     /*
      * The authentication type to use.
      */
@@ -184,13 +187,13 @@ public final class TeamDeskLinkedServiceTypeProperties {
      */
     public void validate() {
         if (authenticationType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property authenticationType in model TeamDeskLinkedServiceTypeProperties"));
         }
         if (url() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property url in model TeamDeskLinkedServiceTypeProperties"));
@@ -202,6 +205,4 @@ public final class TeamDeskLinkedServiceTypeProperties {
             apiToken().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TeamDeskLinkedServiceTypeProperties.class);
 }

@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.IssuesClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.IssueContractInner;
 import com.azure.resourcemanager.apimanagement.models.IssueCollection;
@@ -33,6 +34,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in IssuesClient. */
 public final class IssuesClientImpl implements IssuesClient {
+    private final ClientLogger logger = new ClientLogger(IssuesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final IssuesService service;
 
@@ -118,8 +121,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Issue list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Issue list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IssueContractInner>> listByServiceSinglePageAsync(
@@ -189,8 +191,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Issue list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Issue list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IssueContractInner>> listByServiceSinglePageAsync(
@@ -256,7 +257,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Issue list representation as paginated response with {@link PagedFlux}.
+     * @return paged Issue list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<IssueContractInner> listByServiceAsync(
@@ -274,7 +275,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Issue list representation as paginated response with {@link PagedFlux}.
+     * @return paged Issue list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<IssueContractInner> listByServiceAsync(String resourceGroupName, String serviceName) {
@@ -304,7 +305,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Issue list representation as paginated response with {@link PagedFlux}.
+     * @return paged Issue list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<IssueContractInner> listByServiceAsync(
@@ -322,7 +323,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Issue list representation as paginated response with {@link PagedIterable}.
+     * @return paged Issue list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<IssueContractInner> listByService(String resourceGroupName, String serviceName) {
@@ -350,7 +351,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Issue list representation as paginated response with {@link PagedIterable}.
+     * @return paged Issue list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<IssueContractInner> listByService(
@@ -367,7 +368,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Management issue details on successful completion of {@link Mono}.
+     * @return aPI Management issue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IssuesGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName, String issueId) {
@@ -420,7 +421,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Management issue details on successful completion of {@link Mono}.
+     * @return aPI Management issue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IssuesGetResponse> getWithResponseAsync(
@@ -470,7 +471,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI Management issue details on successful completion of {@link Mono}.
+     * @return aPI Management issue details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IssueContractInner> getAsync(String resourceGroupName, String serviceName, String issueId) {
@@ -526,8 +527,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Issue list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Issue list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IssueContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -563,8 +563,7 @@ public final class IssuesClientImpl implements IssuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Issue list representation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return paged Issue list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IssueContractInner>> listByServiceNextSinglePageAsync(String nextLink, Context context) {

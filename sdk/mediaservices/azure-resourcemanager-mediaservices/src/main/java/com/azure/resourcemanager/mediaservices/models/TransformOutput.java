@@ -6,6 +6,7 @@ package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -13,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public final class TransformOutput {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TransformOutput.class);
+
     /*
      * A Transform can define more than one outputs. This property defines what
      * the service should do when one output fails - either continue to produce
@@ -116,13 +119,11 @@ public final class TransformOutput {
      */
     public void validate() {
         if (preset() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property preset in model TransformOutput"));
         } else {
             preset().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TransformOutput.class);
 }

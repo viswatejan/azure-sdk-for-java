@@ -56,7 +56,6 @@ public class OkHttpAsyncHttpClientBuilder {
     private Dispatcher dispatcher;
     private ProxyOptions proxyOptions;
     private Configuration configuration;
-    private boolean followRedirects;
 
     /**
      * Creates OkHttpAsyncHttpClientBuilder.
@@ -214,20 +213,6 @@ public class OkHttpAsyncHttpClientBuilder {
     }
 
     /**
-     * <p>Sets the followRedirect flag on the underlying OkHttp-backed {@link com.azure.core.http.HttpClient}.</p>
-     *
-     * <p>If this is set to 'true' redirects will be followed automatically, and
-     * if your HTTP pipeline is configured with a redirect policy it will not be called.</p>
-     *
-     * @param followRedirects The followRedirects value to use.
-     * @return The updated OkHttpAsyncHttpClientBuilder object.
-     */
-    public OkHttpAsyncHttpClientBuilder followRedirects(boolean followRedirects) {
-        this.followRedirects = followRedirects;
-        return this;
-    }
-
-    /**
      * Creates a new OkHttp-backed {@link com.azure.core.http.HttpClient} instance on every call, using the
      * configuration set in the builder at the time of the build method call.
      *
@@ -263,7 +248,7 @@ public class OkHttpAsyncHttpClientBuilder {
             ? Configuration.getGlobalConfiguration()
             : configuration;
 
-        ProxyOptions buildProxyOptions = (proxyOptions == null)
+        ProxyOptions buildProxyOptions = (proxyOptions == null && buildConfiguration != Configuration.NONE)
             ? ProxyOptions.fromConfiguration(buildConfiguration, true)
             : proxyOptions;
 
@@ -281,9 +266,6 @@ public class OkHttpAsyncHttpClientBuilder {
                     .addInterceptor(proxyAuthenticator.getProxyAuthenticationInfoInterceptor());
             }
         }
-
-        // Set the followRedirects property.
-        httpClientBuilder.followRedirects(this.followRedirects);
 
         return new OkHttpAsyncHttpClient(httpClientBuilder.build());
     }

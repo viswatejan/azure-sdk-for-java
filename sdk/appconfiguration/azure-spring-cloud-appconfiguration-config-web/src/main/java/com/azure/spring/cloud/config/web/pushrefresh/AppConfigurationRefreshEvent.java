@@ -17,21 +17,13 @@ public final class AppConfigurationRefreshEvent extends ApplicationEvent {
     private final String endpoint;
 
     /**
-     * Sync Token
-     */
-    private final String syncToken;
-
-    /**
      * Event object for when a push event is triggered from a web hook.
      * 
-     * @param endpoint App Configuration Store endpoint that is requesting a
-     *                 refresh.
-     * @param syncToken App Configuration sync token
+     * @param endpoint App Configuration Store endpoint that is requesting a refresh.
      */
-    public AppConfigurationRefreshEvent(String endpoint, String syncToken) {
+    public AppConfigurationRefreshEvent(String endpoint) {
         super(endpoint);
         this.endpoint = endpoint;
-        this.syncToken = syncToken;
     }
 
     /**
@@ -42,14 +34,4 @@ public final class AppConfigurationRefreshEvent extends ApplicationEvent {
     public String getEndpoint() {
         return endpoint;
     }
-    
-    /**
-     * Sync Token for getting latest configurations.
-     * 
-     * @return the syncToken
-     */
-    public String getSyncToken() {
-        return syncToken;
-    }
-
 }

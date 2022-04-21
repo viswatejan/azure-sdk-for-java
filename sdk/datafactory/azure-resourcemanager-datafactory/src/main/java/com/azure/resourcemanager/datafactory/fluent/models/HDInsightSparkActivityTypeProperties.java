@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.HDInsightActivityDebugInfoOption;
 import com.azure.resourcemanager.datafactory.models.LinkedServiceReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -16,6 +17,8 @@ import java.util.Map;
 /** HDInsight spark activity properties. */
 @Fluent
 public final class HDInsightSparkActivityTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(HDInsightSparkActivityTypeProperties.class);
+
     /*
      * The root path in 'sparkJobLinkedService' for all the job’s files. Type:
      * string (or Expression with resultType string).
@@ -245,13 +248,13 @@ public final class HDInsightSparkActivityTypeProperties {
      */
     public void validate() {
         if (rootPath() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property rootPath in model HDInsightSparkActivityTypeProperties"));
         }
         if (entryFilePath() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property entryFilePath in model HDInsightSparkActivityTypeProperties"));
@@ -260,6 +263,4 @@ public final class HDInsightSparkActivityTypeProperties {
             sparkJobLinkedService().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(HDInsightSparkActivityTypeProperties.class);
 }

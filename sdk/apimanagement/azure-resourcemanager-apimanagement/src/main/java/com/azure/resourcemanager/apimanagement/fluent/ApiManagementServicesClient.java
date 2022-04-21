@@ -32,9 +32,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a single API Management service resource in List or Get response.
+     * @return a single API Management service resource in List or Get response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner> beginRestore(
         String resourceGroupName, String serviceName, ApiManagementServiceBackupRestoreParameters parameters);
 
@@ -49,9 +49,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a single API Management service resource in List or Get response.
+     * @return a single API Management service resource in List or Get response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner> beginRestore(
         String resourceGroupName,
         String serviceName,
@@ -104,9 +104,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a single API Management service resource in List or Get response.
+     * @return a single API Management service resource in List or Get response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner> beginBackup(
         String resourceGroupName, String serviceName, ApiManagementServiceBackupRestoreParameters parameters);
 
@@ -121,9 +121,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a single API Management service resource in List or Get response.
+     * @return a single API Management service resource in List or Get response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner> beginBackup(
         String resourceGroupName,
         String serviceName,
@@ -176,9 +176,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a single API Management service resource in List or Get response.
+     * @return a single API Management service resource in List or Get response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String serviceName, ApiManagementServiceResourceInner parameters);
 
@@ -193,9 +193,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a single API Management service resource in List or Get response.
+     * @return a single API Management service resource in List or Get response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner> beginCreateOrUpdate(
         String resourceGroupName, String serviceName, ApiManagementServiceResourceInner parameters, Context context);
 
@@ -241,9 +241,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a single API Management service resource in List or Get response.
+     * @return a single API Management service resource in List or Get response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner> beginUpdate(
         String resourceGroupName, String serviceName, ApiManagementServiceUpdateParameters parameters);
 
@@ -257,9 +257,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a single API Management service resource in List or Get response.
+     * @return a single API Management service resource in List or Get response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner> beginUpdate(
         String resourceGroupName, String serviceName, ApiManagementServiceUpdateParameters parameters, Context context);
 
@@ -316,7 +316,7 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an API Management service resource description along with {@link Response}.
+     * @return an API Management service resource description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApiManagementServiceResourceInner> getByResourceGroupWithResponse(
@@ -330,9 +330,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner> beginDelete(
         String resourceGroupName, String serviceName);
 
@@ -345,9 +345,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner> beginDelete(
         String resourceGroupName, String serviceName, Context context);
 
@@ -385,8 +385,7 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List API Management services operation as paginated response with {@link
-     *     PagedIterable}.
+     * @return the response of the List API Management services operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiManagementServiceResourceInner> listByResourceGroup(String resourceGroupName);
@@ -399,8 +398,7 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List API Management services operation as paginated response with {@link
-     *     PagedIterable}.
+     * @return the response of the List API Management services operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiManagementServiceResourceInner> listByResourceGroup(String resourceGroupName, Context context);
@@ -410,8 +408,7 @@ public interface ApiManagementServicesClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List API Management services operation as paginated response with {@link
-     *     PagedIterable}.
+     * @return the response of the List API Management services operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiManagementServiceResourceInner> list();
@@ -423,8 +420,7 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of the List API Management services operation as paginated response with {@link
-     *     PagedIterable}.
+     * @return the response of the List API Management services operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiManagementServiceResourceInner> list(Context context);
@@ -451,8 +447,7 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Single-Sign-On token for the API Management Service which is valid for 5 Minutes along with {@link
-     *     Response}.
+     * @return the Single-Sign-On token for the API Management Service which is valid for 5 Minutes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApiManagementServiceGetSsoTokenResultInner> getSsoTokenWithResponse(
@@ -479,7 +474,7 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of the CheckNameAvailability operation along with {@link Response}.
+     * @return response of the CheckNameAvailability operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApiManagementServiceNameAvailabilityResultInner> checkNameAvailabilityWithResponse(
@@ -502,7 +497,7 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the custom domain ownership identifier for an API Management service along with {@link Response}.
+     * @return the custom domain ownership identifier for an API Management service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApiManagementServiceGetDomainOwnershipIdentifierResultInner> getDomainOwnershipIdentifierWithResponse(
@@ -519,9 +514,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a single API Management service resource in List or Get response.
+     * @return a single API Management service resource in List or Get response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner>
         beginApplyNetworkConfigurationUpdates(
             String resourceGroupName,
@@ -540,9 +535,9 @@ public interface ApiManagementServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a single API Management service resource in List or Get response.
+     * @return a single API Management service resource in List or Get response.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ApiManagementServiceResourceInner>, ApiManagementServiceResourceInner>
         beginApplyNetworkConfigurationUpdates(
             String resourceGroupName,

@@ -26,6 +26,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.NotificationsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.NotificationContractInner;
 import com.azure.resourcemanager.apimanagement.models.NotificationCollection;
@@ -34,6 +35,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in NotificationsClient. */
 public final class NotificationsClientImpl implements NotificationsClient {
+    private final ClientLogger logger = new ClientLogger(NotificationsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final NotificationsService service;
 
@@ -129,8 +132,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Notification list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Notification list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NotificationContractInner>> listByServiceSinglePageAsync(
@@ -192,8 +194,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Notification list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Notification list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NotificationContractInner>> listByServiceSinglePageAsync(
@@ -251,7 +252,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Notification list representation as paginated response with {@link PagedFlux}.
+     * @return paged Notification list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NotificationContractInner> listByServiceAsync(
@@ -269,7 +270,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Notification list representation as paginated response with {@link PagedFlux}.
+     * @return paged Notification list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NotificationContractInner> listByServiceAsync(String resourceGroupName, String serviceName) {
@@ -291,7 +292,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Notification list representation as paginated response with {@link PagedFlux}.
+     * @return paged Notification list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NotificationContractInner> listByServiceAsync(
@@ -309,7 +310,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Notification list representation as paginated response with {@link PagedIterable}.
+     * @return paged Notification list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NotificationContractInner> listByService(String resourceGroupName, String serviceName) {
@@ -329,7 +330,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Notification list representation as paginated response with {@link PagedIterable}.
+     * @return paged Notification list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NotificationContractInner> listByService(
@@ -346,8 +347,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the Notification specified by its identifier along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the details of the Notification specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationContractInner>> getWithResponseAsync(
@@ -402,8 +402,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the Notification specified by its identifier along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the details of the Notification specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationContractInner>> getWithResponseAsync(
@@ -454,7 +453,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the Notification specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the Notification specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NotificationContractInner> getAsync(
@@ -497,7 +496,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the Notification specified by its identifier along with {@link Response}.
+     * @return the details of the Notification specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NotificationContractInner> getWithResponse(
@@ -515,7 +514,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return notification details along with {@link Response} on successful completion of {@link Mono}.
+     * @return notification details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationContractInner>> createOrUpdateWithResponseAsync(
@@ -572,7 +571,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return notification details along with {@link Response} on successful completion of {@link Mono}.
+     * @return notification details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NotificationContractInner>> createOrUpdateWithResponseAsync(
@@ -629,7 +628,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return notification details on successful completion of {@link Mono}.
+     * @return notification details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NotificationContractInner> createOrUpdateAsync(
@@ -654,7 +653,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return notification details on successful completion of {@link Mono}.
+     * @return notification details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NotificationContractInner> createOrUpdateAsync(
@@ -700,7 +699,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return notification details along with {@link Response}.
+     * @return notification details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NotificationContractInner> createOrUpdateWithResponse(
@@ -720,8 +719,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Notification list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Notification list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NotificationContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -757,8 +755,7 @@ public final class NotificationsClientImpl implements NotificationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Notification list representation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return paged Notification list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NotificationContractInner>> listByServiceNextSinglePageAsync(

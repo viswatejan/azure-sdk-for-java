@@ -5,15 +5,22 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.JsonFlatten;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** Specifies that the content key ID is in the PlayReady header. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata.type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@odata\\.type")
 @JsonTypeName("#Microsoft.Media.ContentKeyPolicyPlayReadyContentEncryptionKeyFromHeader")
+@JsonFlatten
 @Immutable
-public final class ContentKeyPolicyPlayReadyContentEncryptionKeyFromHeader
+public class ContentKeyPolicyPlayReadyContentEncryptionKeyFromHeader
     extends ContentKeyPolicyPlayReadyContentKeyLocation {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(ContentKeyPolicyPlayReadyContentEncryptionKeyFromHeader.class);
+
     /**
      * Validates the instance.
      *

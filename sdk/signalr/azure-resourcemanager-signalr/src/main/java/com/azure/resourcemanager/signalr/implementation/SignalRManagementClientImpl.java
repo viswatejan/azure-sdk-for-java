@@ -22,8 +22,6 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.signalr.fluent.OperationsClient;
-import com.azure.resourcemanager.signalr.fluent.SignalRCustomCertificatesClient;
-import com.azure.resourcemanager.signalr.fluent.SignalRCustomDomainsClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRManagementClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRPrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRPrivateLinkResourcesClient;
@@ -43,6 +41,8 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the SignalRManagementClientImpl type. */
 @ServiceClient(builder = SignalRManagementClientBuilder.class)
 public final class SignalRManagementClientImpl implements SignalRManagementClient {
+    private final ClientLogger logger = new ClientLogger(SignalRManagementClientImpl.class);
+
     /**
      * Gets subscription Id which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of
      * the URI for every service call.
@@ -155,30 +155,6 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
         return this.usages;
     }
 
-    /** The SignalRCustomCertificatesClient object to access its operations. */
-    private final SignalRCustomCertificatesClient signalRCustomCertificates;
-
-    /**
-     * Gets the SignalRCustomCertificatesClient object to access its operations.
-     *
-     * @return the SignalRCustomCertificatesClient object.
-     */
-    public SignalRCustomCertificatesClient getSignalRCustomCertificates() {
-        return this.signalRCustomCertificates;
-    }
-
-    /** The SignalRCustomDomainsClient object to access its operations. */
-    private final SignalRCustomDomainsClient signalRCustomDomains;
-
-    /**
-     * Gets the SignalRCustomDomainsClient object to access its operations.
-     *
-     * @return the SignalRCustomDomainsClient object.
-     */
-    public SignalRCustomDomainsClient getSignalRCustomDomains() {
-        return this.signalRCustomDomains;
-    }
-
     /** The SignalRPrivateEndpointConnectionsClient object to access its operations. */
     private final SignalRPrivateEndpointConnectionsClient signalRPrivateEndpointConnections;
 
@@ -238,12 +214,10 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-02-01";
+        this.apiVersion = "2021-10-01";
         this.operations = new OperationsClientImpl(this);
         this.signalRs = new SignalRsClientImpl(this);
         this.usages = new UsagesClientImpl(this);
-        this.signalRCustomCertificates = new SignalRCustomCertificatesClientImpl(this);
-        this.signalRCustomDomains = new SignalRCustomDomainsClientImpl(this);
         this.signalRPrivateEndpointConnections = new SignalRPrivateEndpointConnectionsClientImpl(this);
         this.signalRPrivateLinkResources = new SignalRPrivateLinkResourcesClientImpl(this);
         this.signalRSharedPrivateLinkResources = new SignalRSharedPrivateLinkResourcesClientImpl(this);
@@ -332,7 +306,7 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        LOGGER.logThrowableAsWarning(ioe);
+                        logger.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -391,6 +365,4 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
             return Mono.just(new String(responseBody, charset));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SignalRManagementClientImpl.class);
 }

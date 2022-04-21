@@ -15,7 +15,7 @@ public interface TopicTypes {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Topic Types operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Topic Types operation.
      */
     PagedIterable<TopicTypeInfo> list();
 
@@ -26,7 +26,7 @@ public interface TopicTypes {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Topic Types operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Topic Types operation.
      */
     PagedIterable<TopicTypeInfo> list(Context context);
 
@@ -60,7 +60,7 @@ public interface TopicTypes {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Event Types operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Event Types operation.
      */
     PagedIterable<EventType> listEventTypes(String topicTypeName);
 
@@ -72,7 +72,7 @@ public interface TopicTypes {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Event Types operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Event Types operation.
      */
     PagedIterable<EventType> listEventTypes(String topicTypeName, Context context);
 }

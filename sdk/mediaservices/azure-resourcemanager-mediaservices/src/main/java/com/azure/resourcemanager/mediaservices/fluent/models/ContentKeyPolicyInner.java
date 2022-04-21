@@ -5,22 +5,22 @@
 package com.azure.resourcemanager.mediaservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mediaservices.models.ContentKeyPolicyOption;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
 /** A Content Key Policy resource. */
+@JsonFlatten
 @Fluent
-public final class ContentKeyPolicyInner extends ProxyResource {
-    /*
-     * The properties of the Content Key Policy.
-     */
-    @JsonProperty(value = "properties")
-    private ContentKeyPolicyPropertiesInner innerProperties;
+public class ContentKeyPolicyInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContentKeyPolicyInner.class);
 
     /*
      * The system metadata relating to this resource.
@@ -28,14 +28,35 @@ public final class ContentKeyPolicyInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /**
-     * Get the innerProperties property: The properties of the Content Key Policy.
-     *
-     * @return the innerProperties value.
+    /*
+     * The legacy Policy ID.
      */
-    private ContentKeyPolicyPropertiesInner innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.policyId", access = JsonProperty.Access.WRITE_ONLY)
+    private UUID policyId;
+
+    /*
+     * The creation date of the Policy
+     */
+    @JsonProperty(value = "properties.created", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime created;
+
+    /*
+     * The last modified date of the Policy
+     */
+    @JsonProperty(value = "properties.lastModified", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime lastModified;
+
+    /*
+     * A description for the Policy.
+     */
+    @JsonProperty(value = "properties.description")
+    private String description;
+
+    /*
+     * The Key Policy options.
+     */
+    @JsonProperty(value = "properties.options")
+    private List<ContentKeyPolicyOption> options;
 
     /**
      * Get the systemData property: The system metadata relating to this resource.
@@ -52,7 +73,7 @@ public final class ContentKeyPolicyInner extends ProxyResource {
      * @return the policyId value.
      */
     public UUID policyId() {
-        return this.innerProperties() == null ? null : this.innerProperties().policyId();
+        return this.policyId;
     }
 
     /**
@@ -61,7 +82,7 @@ public final class ContentKeyPolicyInner extends ProxyResource {
      * @return the created value.
      */
     public OffsetDateTime created() {
-        return this.innerProperties() == null ? null : this.innerProperties().created();
+        return this.created;
     }
 
     /**
@@ -70,7 +91,7 @@ public final class ContentKeyPolicyInner extends ProxyResource {
      * @return the lastModified value.
      */
     public OffsetDateTime lastModified() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastModified();
+        return this.lastModified;
     }
 
     /**
@@ -79,7 +100,7 @@ public final class ContentKeyPolicyInner extends ProxyResource {
      * @return the description value.
      */
     public String description() {
-        return this.innerProperties() == null ? null : this.innerProperties().description();
+        return this.description;
     }
 
     /**
@@ -89,10 +110,7 @@ public final class ContentKeyPolicyInner extends ProxyResource {
      * @return the ContentKeyPolicyInner object itself.
      */
     public ContentKeyPolicyInner withDescription(String description) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ContentKeyPolicyPropertiesInner();
-        }
-        this.innerProperties().withDescription(description);
+        this.description = description;
         return this;
     }
 
@@ -102,7 +120,7 @@ public final class ContentKeyPolicyInner extends ProxyResource {
      * @return the options value.
      */
     public List<ContentKeyPolicyOption> options() {
-        return this.innerProperties() == null ? null : this.innerProperties().options();
+        return this.options;
     }
 
     /**
@@ -112,10 +130,7 @@ public final class ContentKeyPolicyInner extends ProxyResource {
      * @return the ContentKeyPolicyInner object itself.
      */
     public ContentKeyPolicyInner withOptions(List<ContentKeyPolicyOption> options) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ContentKeyPolicyPropertiesInner();
-        }
-        this.innerProperties().withOptions(options);
+        this.options = options;
         return this;
     }
 
@@ -125,8 +140,8 @@ public final class ContentKeyPolicyInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (options() != null) {
+            options().forEach(e -> e.validate());
         }
     }
 }

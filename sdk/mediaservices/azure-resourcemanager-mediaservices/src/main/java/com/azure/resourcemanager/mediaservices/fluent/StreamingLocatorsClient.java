@@ -23,7 +23,7 @@ public interface StreamingLocatorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of StreamingLocator items as paginated response with {@link PagedIterable}.
+     * @return a collection of StreamingLocator items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<StreamingLocatorInner> list(String resourceGroupName, String accountName);
@@ -41,7 +41,7 @@ public interface StreamingLocatorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of StreamingLocator items as paginated response with {@link PagedIterable}.
+     * @return a collection of StreamingLocator items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<StreamingLocatorInner> list(
@@ -71,7 +71,7 @@ public interface StreamingLocatorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of a Streaming Locator in the Media Services account along with {@link Response}.
+     * @return the details of a Streaming Locator in the Media Services account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StreamingLocatorInner> getWithResponse(
@@ -104,7 +104,7 @@ public interface StreamingLocatorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Streaming Locator resource along with {@link Response}.
+     * @return a Streaming Locator resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StreamingLocatorInner> createWithResponse(
@@ -137,7 +137,7 @@ public interface StreamingLocatorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
@@ -168,7 +168,7 @@ public interface StreamingLocatorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class of response for listContentKeys action along with {@link Response}.
+     * @return class of response for listContentKeys action.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ListContentKeysResponseInner> listContentKeysWithResponse(
@@ -198,7 +198,7 @@ public interface StreamingLocatorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class of response for listPaths action along with {@link Response}.
+     * @return class of response for listPaths action.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ListPathsResponseInner> listPathsWithResponse(

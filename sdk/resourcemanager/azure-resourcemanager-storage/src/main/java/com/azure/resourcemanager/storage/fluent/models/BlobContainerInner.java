@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.storage.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.storage.models.AzureEntityResource;
 import com.azure.resourcemanager.storage.models.ImmutabilityPolicyProperties;
 import com.azure.resourcemanager.storage.models.ImmutableStorageWithVersioning;
@@ -13,6 +14,7 @@ import com.azure.resourcemanager.storage.models.LeaseState;
 import com.azure.resourcemanager.storage.models.LeaseStatus;
 import com.azure.resourcemanager.storage.models.LegalHoldProperties;
 import com.azure.resourcemanager.storage.models.PublicAccess;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -20,6 +22,8 @@ import java.util.Map;
 /** Properties of the blob container, including Id, resource name, resource type, Etag. */
 @Fluent
 public final class BlobContainerInner extends AzureEntityResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BlobContainerInner.class);
+
     /*
      * Properties of the blob container.
      */

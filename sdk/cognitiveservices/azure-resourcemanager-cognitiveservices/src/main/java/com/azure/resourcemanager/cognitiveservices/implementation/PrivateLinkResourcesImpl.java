@@ -12,9 +12,10 @@ import com.azure.resourcemanager.cognitiveservices.fluent.PrivateLinkResourcesCl
 import com.azure.resourcemanager.cognitiveservices.fluent.models.PrivateLinkResourceListResultInner;
 import com.azure.resourcemanager.cognitiveservices.models.PrivateLinkResourceListResult;
 import com.azure.resourcemanager.cognitiveservices.models.PrivateLinkResources;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateLinkResourcesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateLinkResourcesImpl.class);
 
     private final PrivateLinkResourcesClient innerClient;
 

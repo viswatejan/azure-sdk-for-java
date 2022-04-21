@@ -5,14 +5,17 @@
 package com.azure.resourcemanager.appplatform.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.appplatform.models.ActionType;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appplatform.models.OperationDisplay;
 import com.azure.resourcemanager.appplatform.models.OperationProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Operation detail payload. */
 @Fluent
 public final class OperationDetailInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationDetailInner.class);
+
     /*
      * Name of the operation
      */
@@ -30,13 +33,6 @@ public final class OperationDetailInner {
      */
     @JsonProperty(value = "display")
     private OperationDisplay display;
-
-    /*
-     * Enum. Indicates the action type. "Internal" refers to actions that are
-     * for internal only APIs.
-     */
-    @JsonProperty(value = "actionType", access = JsonProperty.Access.WRITE_ONLY)
-    private ActionType actionType;
 
     /*
      * Origin of the operation
@@ -108,16 +104,6 @@ public final class OperationDetailInner {
     public OperationDetailInner withDisplay(OperationDisplay display) {
         this.display = display;
         return this;
-    }
-
-    /**
-     * Get the actionType property: Enum. Indicates the action type. "Internal" refers to actions that are for internal
-     * only APIs.
-     *
-     * @return the actionType value.
-     */
-    public ActionType actionType() {
-        return this.actionType;
     }
 
     /**

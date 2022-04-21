@@ -24,6 +24,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.marketplaceordering.fluent.MarketplaceAgreementsClient;
 import com.azure.resourcemanager.marketplaceordering.fluent.models.AgreementTermsInner;
 import com.azure.resourcemanager.marketplaceordering.models.OfferType;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in MarketplaceAgreementsClient. */
 public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreementsClient {
+    private final ClientLogger logger = new ClientLogger(MarketplaceAgreementsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final MarketplaceAgreementsService service;
 
@@ -162,7 +165,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace terms along with {@link Response} on successful completion of {@link Mono}.
+     * @return marketplace terms.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementTermsInner>> getWithResponseAsync(
@@ -220,7 +223,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace terms along with {@link Response} on successful completion of {@link Mono}.
+     * @return marketplace terms.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementTermsInner>> getWithResponseAsync(
@@ -274,7 +277,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace terms on successful completion of {@link Mono}.
+     * @return marketplace terms.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AgreementTermsInner> getAsync(OfferType offerType, String publisherId, String offerId, String planId) {
@@ -317,7 +320,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace terms along with {@link Response}.
+     * @return marketplace terms.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AgreementTermsInner> getWithResponse(
@@ -336,8 +339,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementTermsInner>> createWithResponseAsync(
@@ -402,8 +404,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementTermsInner>> createWithResponseAsync(
@@ -469,7 +470,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple on successful completion of {@link Mono}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AgreementTermsInner> createAsync(
@@ -516,7 +517,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple along with {@link Response}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AgreementTermsInner> createWithResponse(
@@ -538,8 +539,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementTermsInner>> signWithResponseAsync(
@@ -592,8 +592,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementTermsInner>> signWithResponseAsync(
@@ -642,7 +641,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple on successful completion of {@link Mono}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AgreementTermsInner> signAsync(String publisherId, String offerId, String planId) {
@@ -683,7 +682,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple along with {@link Response}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AgreementTermsInner> signWithResponse(
@@ -700,8 +699,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementTermsInner>> cancelWithResponseAsync(
@@ -754,8 +752,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementTermsInner>> cancelWithResponseAsync(
@@ -804,7 +801,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple on successful completion of {@link Mono}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AgreementTermsInner> cancelAsync(String publisherId, String offerId, String planId) {
@@ -845,7 +842,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return terms properties for provided Publisher/Offer/Plan tuple along with {@link Response}.
+     * @return terms properties for provided Publisher/Offer/Plan tuple.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AgreementTermsInner> cancelWithResponse(
@@ -862,7 +859,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace agreement along with {@link Response} on successful completion of {@link Mono}.
+     * @return marketplace agreement.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementTermsInner>> getAgreementWithResponseAsync(
@@ -915,7 +912,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace agreement along with {@link Response} on successful completion of {@link Mono}.
+     * @return marketplace agreement.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AgreementTermsInner>> getAgreementWithResponseAsync(
@@ -964,7 +961,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace agreement on successful completion of {@link Mono}.
+     * @return marketplace agreement.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AgreementTermsInner> getAgreementAsync(String publisherId, String offerId, String planId) {
@@ -1005,7 +1002,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return marketplace agreement along with {@link Response}.
+     * @return marketplace agreement.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AgreementTermsInner> getAgreementWithResponse(
@@ -1018,7 +1015,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of AgreementTerms along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of AgreementTerms.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<List<AgreementTermsInner>>> listWithResponseAsync() {
@@ -1055,7 +1052,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of AgreementTerms along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of AgreementTerms.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<List<AgreementTermsInner>>> listWithResponseAsync(Context context) {
@@ -1087,7 +1084,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of AgreementTerms on successful completion of {@link Mono}.
+     * @return array of AgreementTerms.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<List<AgreementTermsInner>> listAsync() {
@@ -1121,7 +1118,7 @@ public final class MarketplaceAgreementsClientImpl implements MarketplaceAgreeme
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of AgreementTerms along with {@link Response}.
+     * @return array of AgreementTerms.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<List<AgreementTermsInner>> listWithResponse(Context context) {

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.DynamicsCrmLinkedServiceTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("DynamicsCrm")
 @Fluent
 public final class DynamicsCrmLinkedService extends LinkedService {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DynamicsCrmLinkedService.class);
+
     /*
      * Dynamics CRM linked service properties.
      */
@@ -380,7 +383,7 @@ public final class DynamicsCrmLinkedService extends LinkedService {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model DynamicsCrmLinkedService"));
@@ -388,6 +391,4 @@ public final class DynamicsCrmLinkedService extends LinkedService {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DynamicsCrmLinkedService.class);
 }

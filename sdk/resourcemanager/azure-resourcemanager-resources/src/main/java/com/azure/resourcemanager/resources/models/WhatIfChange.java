@@ -6,12 +6,15 @@ package com.azure.resourcemanager.resources.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Information about a single resource change predicted by What-If operation. */
 @Fluent
 public final class WhatIfChange {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(WhatIfChange.class);
+
     /*
      * Resource ID
      */
@@ -176,12 +179,12 @@ public final class WhatIfChange {
      */
     public void validate() {
         if (resourceId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property resourceId in model WhatIfChange"));
         }
         if (changeType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property changeType in model WhatIfChange"));
         }
@@ -189,6 +192,4 @@ public final class WhatIfChange {
             delta().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(WhatIfChange.class);
 }

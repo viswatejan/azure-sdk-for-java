@@ -4,31 +4,40 @@
 
 package com.azure.resourcemanager.appplatform.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
 /** Certificate resource payload. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-    defaultImpl = CertificateProperties.class)
-@JsonTypeName("CertificateProperties")
-@JsonSubTypes({
-    @JsonSubTypes.Type(name = "KeyVaultCertificate", value = KeyVaultCertificateProperties.class),
-    @JsonSubTypes.Type(name = "ContentCertificate", value = ContentCertificateProperties.class)
-})
-@Immutable
-public class CertificateProperties {
+@Fluent
+public final class CertificateProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CertificateProperties.class);
+
     /*
      * The thumbprint of certificate.
      */
     @JsonProperty(value = "thumbprint", access = JsonProperty.Access.WRITE_ONLY)
     private String thumbprint;
+
+    /*
+     * The vault uri of user key vault.
+     */
+    @JsonProperty(value = "vaultUri", required = true)
+    private String vaultUri;
+
+    /*
+     * The certificate name of key vault.
+     */
+    @JsonProperty(value = "keyVaultCertName", required = true)
+    private String keyVaultCertName;
+
+    /*
+     * The certificate version of key vault.
+     */
+    @JsonProperty(value = "certVersion")
+    private String certVersion;
 
     /*
      * The issuer of certificate.
@@ -73,6 +82,66 @@ public class CertificateProperties {
      */
     public String thumbprint() {
         return this.thumbprint;
+    }
+
+    /**
+     * Get the vaultUri property: The vault uri of user key vault.
+     *
+     * @return the vaultUri value.
+     */
+    public String vaultUri() {
+        return this.vaultUri;
+    }
+
+    /**
+     * Set the vaultUri property: The vault uri of user key vault.
+     *
+     * @param vaultUri the vaultUri value to set.
+     * @return the CertificateProperties object itself.
+     */
+    public CertificateProperties withVaultUri(String vaultUri) {
+        this.vaultUri = vaultUri;
+        return this;
+    }
+
+    /**
+     * Get the keyVaultCertName property: The certificate name of key vault.
+     *
+     * @return the keyVaultCertName value.
+     */
+    public String keyVaultCertName() {
+        return this.keyVaultCertName;
+    }
+
+    /**
+     * Set the keyVaultCertName property: The certificate name of key vault.
+     *
+     * @param keyVaultCertName the keyVaultCertName value to set.
+     * @return the CertificateProperties object itself.
+     */
+    public CertificateProperties withKeyVaultCertName(String keyVaultCertName) {
+        this.keyVaultCertName = keyVaultCertName;
+        return this;
+    }
+
+    /**
+     * Get the certVersion property: The certificate version of key vault.
+     *
+     * @return the certVersion value.
+     */
+    public String certVersion() {
+        return this.certVersion;
+    }
+
+    /**
+     * Set the certVersion property: The certificate version of key vault.
+     *
+     * @param certVersion the certVersion value to set.
+     * @return the CertificateProperties object itself.
+     */
+    public CertificateProperties withCertVersion(String certVersion) {
+        this.certVersion = certVersion;
+        return this;
     }
 
     /**
@@ -135,5 +204,16 @@ public class CertificateProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (vaultUri() == null) {
+            throw logger
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property vaultUri in model CertificateProperties"));
+        }
+        if (keyVaultCertName() == null) {
+            throw logger
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property keyVaultCertName in model CertificateProperties"));
+        }
     }
 }

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.PhoenixLinkedServiceTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -18,6 +19,8 @@ import java.util.Map;
 @JsonTypeName("Phoenix")
 @Fluent
 public final class PhoenixLinkedService extends LinkedService {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PhoenixLinkedService.class);
+
     /*
      * Phoenix server linked service properties.
      */
@@ -364,7 +367,7 @@ public final class PhoenixLinkedService extends LinkedService {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model PhoenixLinkedService"));
@@ -372,6 +375,4 @@ public final class PhoenixLinkedService extends LinkedService {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PhoenixLinkedService.class);
 }

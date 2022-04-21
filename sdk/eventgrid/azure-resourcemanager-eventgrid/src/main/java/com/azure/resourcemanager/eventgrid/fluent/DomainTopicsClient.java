@@ -12,6 +12,7 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.eventgrid.fluent.models.DomainTopicInner;
+import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in DomainTopicsClient. */
 public interface DomainTopicsClient {
@@ -54,7 +55,7 @@ public interface DomainTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of domain Topic.
+     * @return domain Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<DomainTopicInner>, DomainTopicInner> beginCreateOrUpdate(
@@ -70,7 +71,7 @@ public interface DomainTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of domain Topic.
+     * @return domain Topic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<DomainTopicInner>, DomainTopicInner> beginCreateOrUpdate(
@@ -115,7 +116,7 @@ public interface DomainTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String domainName, String domainTopicName);
@@ -130,7 +131,7 @@ public interface DomainTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -171,7 +172,7 @@ public interface DomainTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Domain Topics operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Domain Topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DomainTopicInner> listByDomain(String resourceGroupName, String domainName);
@@ -193,7 +194,7 @@ public interface DomainTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Domain Topics operation as paginated response with {@link PagedIterable}.
+     * @return result of the List Domain Topics operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DomainTopicInner> listByDomain(

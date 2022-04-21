@@ -6,11 +6,14 @@ package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters that define the source and destination endpoint. */
 @Fluent
 public final class NextHopParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(NextHopParameters.class);
+
     /*
      * The resource identifier of the target resource against which the action
      * is to be performed.
@@ -128,24 +131,22 @@ public final class NextHopParameters {
      */
     public void validate() {
         if (targetResourceId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property targetResourceId in model NextHopParameters"));
         }
         if (sourceIpAddress() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property sourceIpAddress in model NextHopParameters"));
         }
         if (destinationIpAddress() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property destinationIpAddress in model NextHopParameters"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(NextHopParameters.class);
 }

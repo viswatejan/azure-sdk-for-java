@@ -43,6 +43,7 @@ public final class ManageLocks {
      */
     public static boolean runSample(AzureResourceManager azureResourceManager) {
 
+        final String password = Utils.randomResourceName(azureResourceManager, "P@s", 14);
         final String rgName = Utils.randomResourceName(azureResourceManager, "rg", 15);
         final String vmName = Utils.randomResourceName(azureResourceManager, "vm", 15);
         final String storageName = Utils.randomResourceName(azureResourceManager, "st", 15);
@@ -93,7 +94,7 @@ public final class ManageLocks {
                 .withoutPrimaryPublicIPAddress()
                 .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
                 .withRootUsername("tester")
-                .withSsh(Utils.sshPublicKey())
+                .withRootPassword(password)
                 .withNewDataDisk(diskDefinition, 1, CachingTypes.NONE)
                 .withSize(VirtualMachineSizeTypes.fromString("Standard_D2a_v4"));
 

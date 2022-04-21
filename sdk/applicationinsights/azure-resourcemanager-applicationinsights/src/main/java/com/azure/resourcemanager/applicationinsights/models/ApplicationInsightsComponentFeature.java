@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.applicationinsights.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** An Application Insights component daily data volume cap status. */
 @Immutable
 public final class ApplicationInsightsComponentFeature {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ApplicationInsightsComponentFeature.class);
+
     /*
      * The pricing feature name.
      */

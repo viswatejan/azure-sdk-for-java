@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
 /** Information on the client (user or application) that made some action. */
 @Fluent
 public final class ClientInfo {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ClientInfo.class);
+
     /*
      * The email of the client.
      */

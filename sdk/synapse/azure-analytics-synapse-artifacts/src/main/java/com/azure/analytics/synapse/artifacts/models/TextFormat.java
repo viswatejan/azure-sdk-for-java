@@ -276,18 +276,4 @@ public final class TextFormat extends DatasetStorageFormat {
         this.firstRowAsHeader = firstRowAsHeader;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public TextFormat setSerializer(Object serializer) {
-        super.setSerializer(serializer);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public TextFormat setDeserializer(Object deserializer) {
-        super.setDeserializer(deserializer);
-        return this;
-    }
 }

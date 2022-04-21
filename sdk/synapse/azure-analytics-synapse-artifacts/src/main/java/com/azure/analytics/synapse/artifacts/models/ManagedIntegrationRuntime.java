@@ -109,11 +109,4 @@ public class ManagedIntegrationRuntime extends IntegrationRuntime {
         this.ssisProperties = ssisProperties;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public ManagedIntegrationRuntime setDescription(String description) {
-        super.setDescription(description);
-        return this;
-    }
 }

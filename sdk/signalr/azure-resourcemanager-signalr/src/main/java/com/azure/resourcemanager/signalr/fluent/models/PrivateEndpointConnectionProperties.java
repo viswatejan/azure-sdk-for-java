@@ -5,23 +5,27 @@
 package com.azure.resourcemanager.signalr.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.signalr.models.PrivateEndpoint;
 import com.azure.resourcemanager.signalr.models.PrivateLinkServiceConnectionState;
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Private endpoint connection properties. */
 @Fluent
 public final class PrivateEndpointConnectionProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateEndpointConnectionProperties.class);
+
     /*
-     * Provisioning state of the resource.
+     * Provisioning state of the private endpoint connection
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
-     * Private endpoint
+     * Private endpoint associated with the private endpoint connection
      */
     @JsonProperty(value = "privateEndpoint")
     private PrivateEndpoint privateEndpoint;
@@ -33,13 +37,13 @@ public final class PrivateEndpointConnectionProperties {
     private List<String> groupIds;
 
     /*
-     * Connection state of the private endpoint connection
+     * Connection state
      */
     @JsonProperty(value = "privateLinkServiceConnectionState")
     private PrivateLinkServiceConnectionState privateLinkServiceConnectionState;
 
     /**
-     * Get the provisioningState property: Provisioning state of the resource.
+     * Get the provisioningState property: Provisioning state of the private endpoint connection.
      *
      * @return the provisioningState value.
      */
@@ -48,7 +52,7 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Get the privateEndpoint property: Private endpoint.
+     * Get the privateEndpoint property: Private endpoint associated with the private endpoint connection.
      *
      * @return the privateEndpoint value.
      */
@@ -57,7 +61,7 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Set the privateEndpoint property: Private endpoint.
+     * Set the privateEndpoint property: Private endpoint associated with the private endpoint connection.
      *
      * @param privateEndpoint the privateEndpoint value to set.
      * @return the PrivateEndpointConnectionProperties object itself.
@@ -77,7 +81,7 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Get the privateLinkServiceConnectionState property: Connection state of the private endpoint connection.
+     * Get the privateLinkServiceConnectionState property: Connection state.
      *
      * @return the privateLinkServiceConnectionState value.
      */
@@ -86,7 +90,7 @@ public final class PrivateEndpointConnectionProperties {
     }
 
     /**
-     * Set the privateLinkServiceConnectionState property: Connection state of the private endpoint connection.
+     * Set the privateLinkServiceConnectionState property: Connection state.
      *
      * @param privateLinkServiceConnectionState the privateLinkServiceConnectionState value to set.
      * @return the PrivateEndpointConnectionProperties object itself.

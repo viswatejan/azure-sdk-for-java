@@ -6,11 +6,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** MongoDB linked service properties. */
 @Fluent
 public final class MongoDbV2LinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MongoDbV2LinkedServiceTypeProperties.class);
+
     /*
      * The MongoDB connection string. Type: string, SecureString or
      * AzureKeyVaultSecretReference. Type: string, SecureString or
@@ -77,18 +80,16 @@ public final class MongoDbV2LinkedServiceTypeProperties {
      */
     public void validate() {
         if (connectionString() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property connectionString in model MongoDbV2LinkedServiceTypeProperties"));
         }
         if (database() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property database in model MongoDbV2LinkedServiceTypeProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MongoDbV2LinkedServiceTypeProperties.class);
 }

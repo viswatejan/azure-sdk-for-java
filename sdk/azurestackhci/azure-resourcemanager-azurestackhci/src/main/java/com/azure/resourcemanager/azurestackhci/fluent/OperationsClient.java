@@ -8,7 +8,7 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.azurestackhci.fluent.models.OperationListResultInner;
+import com.azure.resourcemanager.azurestackhci.fluent.models.AvailableOperationsInner;
 
 /** An instance of this class provides access to all the operations defined in OperationsClient. */
 public interface OperationsClient {
@@ -17,10 +17,10 @@ public interface OperationsClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of REST API operations supported by an Azure Resource Provider.
+     * @return available operations of the service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    OperationListResultInner list();
+    AvailableOperationsInner list();
 
     /**
      * List all available Microsoft.AzureStackHCI provider operations.
@@ -29,8 +29,8 @@ public interface OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link Response}.
+     * @return available operations of the service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<OperationListResultInner> listWithResponse(Context context);
+    Response<AvailableOperationsInner> listWithResponse(Context context);
 }

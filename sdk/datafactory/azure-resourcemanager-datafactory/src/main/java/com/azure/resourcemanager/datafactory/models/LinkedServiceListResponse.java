@@ -7,12 +7,15 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.LinkedServiceResourceInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A list of linked service resources. */
 @Fluent
 public final class LinkedServiceListResponse {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LinkedServiceListResponse.class);
+
     /*
      * List of linked services.
      */
@@ -72,13 +75,11 @@ public final class LinkedServiceListResponse {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model LinkedServiceListResponse"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LinkedServiceListResponse.class);
 }

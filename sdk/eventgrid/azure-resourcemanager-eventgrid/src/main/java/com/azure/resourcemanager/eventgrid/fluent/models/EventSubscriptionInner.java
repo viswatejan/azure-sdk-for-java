@@ -7,6 +7,7 @@ package com.azure.resourcemanager.eventgrid.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.eventgrid.models.DeadLetterDestination;
 import com.azure.resourcemanager.eventgrid.models.DeadLetterWithResourceIdentity;
 import com.azure.resourcemanager.eventgrid.models.DeliveryWithResourceIdentity;
@@ -15,6 +16,7 @@ import com.azure.resourcemanager.eventgrid.models.EventSubscriptionDestination;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionFilter;
 import com.azure.resourcemanager.eventgrid.models.EventSubscriptionProvisioningState;
 import com.azure.resourcemanager.eventgrid.models.RetryPolicy;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -22,6 +24,8 @@ import java.util.List;
 /** Event Subscription. */
 @Fluent
 public final class EventSubscriptionInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(EventSubscriptionInner.class);
+
     /*
      * Properties of the event subscription.
      */
@@ -72,8 +76,7 @@ public final class EventSubscriptionInner extends ProxyResource {
 
     /**
      * Get the destination property: Information about the destination where events have to be delivered for the event
-     * subscription. Uses Azure Event Grid's identity to acquire the authentication tokens being used during delivery /
-     * dead-lettering.
+     * subscription.
      *
      * @return the destination value.
      */
@@ -83,8 +86,7 @@ public final class EventSubscriptionInner extends ProxyResource {
 
     /**
      * Set the destination property: Information about the destination where events have to be delivered for the event
-     * subscription. Uses Azure Event Grid's identity to acquire the authentication tokens being used during delivery /
-     * dead-lettering.
+     * subscription.
      *
      * @param destination the destination value to set.
      * @return the EventSubscriptionInner object itself.
@@ -243,9 +245,7 @@ public final class EventSubscriptionInner extends ProxyResource {
     }
 
     /**
-     * Get the deadLetterDestination property: The dead letter destination of the event subscription. Any event that
-     * cannot be delivered to its' destination is sent to the dead letter destination. Uses Azure Event Grid's identity
-     * to acquire the authentication tokens being used during delivery / dead-lettering.
+     * Get the deadLetterDestination property: The DeadLetter destination of the event subscription.
      *
      * @return the deadLetterDestination value.
      */
@@ -254,9 +254,7 @@ public final class EventSubscriptionInner extends ProxyResource {
     }
 
     /**
-     * Set the deadLetterDestination property: The dead letter destination of the event subscription. Any event that
-     * cannot be delivered to its' destination is sent to the dead letter destination. Uses Azure Event Grid's identity
-     * to acquire the authentication tokens being used during delivery / dead-lettering.
+     * Set the deadLetterDestination property: The DeadLetter destination of the event subscription.
      *
      * @param deadLetterDestination the deadLetterDestination value to set.
      * @return the EventSubscriptionInner object itself.

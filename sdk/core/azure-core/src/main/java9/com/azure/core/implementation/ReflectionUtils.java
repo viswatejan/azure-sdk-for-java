@@ -30,9 +30,9 @@ final class ReflectionUtils implements ReflectionUtilsApi {
      * @param targetClass The {@link Class} that will need to be reflectively accessed.
      * @return The {@link MethodHandles.Lookup} that will allow {@code com.azure.core} to access the {@code targetClass}
      * reflectively.
-     * @throws Exception If the underlying reflective calls throw an exception.
+     * @throws Throwable If the underlying reflective calls throw an exception.
      */
-    public MethodHandles.Lookup getLookupToUse(Class<?> targetClass) throws Exception {
+    public MethodHandles.Lookup getLookupToUse(Class<?> targetClass) throws Throwable {
         Module responseModule = targetClass.getModule();
 
         // The unnamed module is opened unconditionally, have Core read it and use a private proxy lookup to enable all

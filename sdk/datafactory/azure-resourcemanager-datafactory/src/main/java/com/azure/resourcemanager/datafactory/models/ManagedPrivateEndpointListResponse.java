@@ -7,12 +7,15 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.ManagedPrivateEndpointResourceInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A list of managed private endpoint resources. */
 @Fluent
 public final class ManagedPrivateEndpointListResponse {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedPrivateEndpointListResponse.class);
+
     /*
      * List of managed private endpoints.
      */
@@ -72,7 +75,7 @@ public final class ManagedPrivateEndpointListResponse {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model ManagedPrivateEndpointListResponse"));
@@ -80,6 +83,4 @@ public final class ManagedPrivateEndpointListResponse {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ManagedPrivateEndpointListResponse.class);
 }

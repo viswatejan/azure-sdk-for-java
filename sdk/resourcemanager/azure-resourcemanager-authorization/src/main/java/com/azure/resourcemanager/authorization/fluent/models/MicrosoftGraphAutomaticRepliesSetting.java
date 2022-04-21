@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.authorization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,8 +16,10 @@ import java.util.Map;
 /** automaticRepliesSetting. */
 @Fluent
 public final class MicrosoftGraphAutomaticRepliesSetting {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MicrosoftGraphAutomaticRepliesSetting.class);
+
     /*
-     * externalAudienceScope
+     * The externalAudience property.
      */
     @JsonProperty(value = "externalAudience")
     private MicrosoftGraphExternalAudienceScope externalAudience;
@@ -48,7 +51,7 @@ public final class MicrosoftGraphAutomaticRepliesSetting {
     private MicrosoftGraphDateTimeZone scheduledStartDateTime;
 
     /*
-     * automaticRepliesStatus
+     * The status property.
      */
     @JsonProperty(value = "status")
     private MicrosoftGraphAutomaticRepliesStatus status;
@@ -59,7 +62,7 @@ public final class MicrosoftGraphAutomaticRepliesSetting {
     @JsonIgnore private Map<String, Object> additionalProperties;
 
     /**
-     * Get the externalAudience property: externalAudienceScope.
+     * Get the externalAudience property: The externalAudience property.
      *
      * @return the externalAudience value.
      */
@@ -68,7 +71,7 @@ public final class MicrosoftGraphAutomaticRepliesSetting {
     }
 
     /**
-     * Set the externalAudience property: externalAudienceScope.
+     * Set the externalAudience property: The externalAudience property.
      *
      * @param externalAudience the externalAudience value to set.
      * @return the MicrosoftGraphAutomaticRepliesSetting object itself.
@@ -166,7 +169,7 @@ public final class MicrosoftGraphAutomaticRepliesSetting {
     }
 
     /**
-     * Get the status property: automaticRepliesStatus.
+     * Get the status property: The status property.
      *
      * @return the status value.
      */
@@ -175,7 +178,7 @@ public final class MicrosoftGraphAutomaticRepliesSetting {
     }
 
     /**
-     * Set the status property: automaticRepliesStatus.
+     * Set the status property: The status property.
      *
      * @param status the status value to set.
      * @return the MicrosoftGraphAutomaticRepliesSetting object itself.

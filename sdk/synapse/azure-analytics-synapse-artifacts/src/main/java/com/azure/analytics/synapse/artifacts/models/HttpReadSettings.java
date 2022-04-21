@@ -182,11 +182,4 @@ public final class HttpReadSettings extends StoreReadSettings {
         this.partitionRootPath = partitionRootPath;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public HttpReadSettings setMaxConcurrentConnections(Object maxConcurrentConnections) {
-        super.setMaxConcurrentConnections(maxConcurrentConnections);
-        return this;
-    }
 }

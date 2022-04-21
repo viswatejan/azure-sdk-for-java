@@ -15,8 +15,6 @@ import com.azure.resourcemanager.search.implementation.SearchManagementClientBui
 import com.azure.resourcemanager.search.implementation.SearchServicesImpl;
 import com.azure.resourcemanager.search.models.SearchServices;
 
-import java.util.Objects;
-
 /**
  * Entry point to Azure Cognitive Search service management.
  */
@@ -41,21 +39,17 @@ public final class SearchServiceManager extends Manager<SearchManagementClient> 
      * @return the SearchServiceManager
      */
     public static SearchServiceManager authenticate(TokenCredential credential, AzureProfile profile) {
-        Objects.requireNonNull(credential, "'credential' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
         return authenticate(HttpPipelineProvider.buildHttpPipeline(credential, profile), profile);
     }
 
     /**
      * Creates an instance of SearchServiceManager that exposes Cognitive Search resource management API entry points.
      *
-     * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
+     * @param httpPipeline the HttpPipeline to be used for API calls.
      * @param profile the profile to use
      * @return the SearchServiceManager
      */
-    public static SearchServiceManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
-        Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
-        Objects.requireNonNull(profile, "'profile' cannot be null.");
+    private static SearchServiceManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         return new SearchServiceManager(httpPipeline, profile);
     }
 

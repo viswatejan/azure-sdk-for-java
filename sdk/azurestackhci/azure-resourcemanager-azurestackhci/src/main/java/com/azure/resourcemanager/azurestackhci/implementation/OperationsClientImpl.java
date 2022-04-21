@@ -20,12 +20,15 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.azurestackhci.fluent.OperationsClient;
-import com.azure.resourcemanager.azurestackhci.fluent.models.OperationListResultInner;
+import com.azure.resourcemanager.azurestackhci.fluent.models.AvailableOperationsInner;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in OperationsClient. */
 public final class OperationsClientImpl implements OperationsClient {
+    private final ClientLogger logger = new ClientLogger(OperationsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final OperationsService service;
 
@@ -54,7 +57,7 @@ public final class OperationsClientImpl implements OperationsClient {
         @Get("/providers/Microsoft.AzureStackHCI/operations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<OperationListResultInner>> list(
+        Mono<Response<AvailableOperationsInner>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
@@ -66,11 +69,10 @@ public final class OperationsClientImpl implements OperationsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return available operations of the service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationListResultInner>> listWithResponseAsync() {
+    private Mono<Response<AvailableOperationsInner>> listWithResponseAsync() {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -91,11 +93,10 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return available operations of the service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationListResultInner>> listWithResponseAsync(Context context) {
+    private Mono<Response<AvailableOperationsInner>> listWithResponseAsync(Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -112,14 +113,13 @@ public final class OperationsClientImpl implements OperationsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of REST API operations supported by an Azure Resource Provider on successful completion of {@link
-     *     Mono}.
+     * @return available operations of the service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationListResultInner> listAsync() {
+    private Mono<AvailableOperationsInner> listAsync() {
         return listWithResponseAsync()
             .flatMap(
-                (Response<OperationListResultInner> res) -> {
+                (Response<AvailableOperationsInner> res) -> {
                     if (res.getValue() != null) {
                         return Mono.just(res.getValue());
                     } else {
@@ -133,10 +133,10 @@ public final class OperationsClientImpl implements OperationsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of REST API operations supported by an Azure Resource Provider.
+     * @return available operations of the service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationListResultInner list() {
+    public AvailableOperationsInner list() {
         return listAsync().block();
     }
 
@@ -147,10 +147,10 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of REST API operations supported by an Azure Resource Provider along with {@link Response}.
+     * @return available operations of the service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<OperationListResultInner> listWithResponse(Context context) {
+    public Response<AvailableOperationsInner> listWithResponse(Context context) {
         return listWithResponseAsync(context).block();
     }
 }

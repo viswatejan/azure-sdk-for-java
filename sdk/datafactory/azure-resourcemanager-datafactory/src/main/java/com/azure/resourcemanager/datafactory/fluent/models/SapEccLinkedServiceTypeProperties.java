@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** SAP ECC linked service properties. */
 @Fluent
 public final class SapEccLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SapEccLinkedServiceTypeProperties.class);
+
     /*
      * The URL of SAP ECC OData API. For example,
      * '[https://hostname:port/sap/opu/odata/sap/servicename/]'. Type: string
@@ -137,7 +140,7 @@ public final class SapEccLinkedServiceTypeProperties {
      */
     public void validate() {
         if (url() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property url in model SapEccLinkedServiceTypeProperties"));
@@ -146,6 +149,4 @@ public final class SapEccLinkedServiceTypeProperties {
             password().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SapEccLinkedServiceTypeProperties.class);
 }

@@ -35,7 +35,7 @@ public interface ApiPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the policy configuration at the API level along with {@link Response}.
+     * @return the policy configuration at the API level.
      */
     Response<PolicyCollection> listByApiWithResponse(
         String resourceGroupName, String serviceName, String apiId, Context context);
@@ -185,7 +185,7 @@ public interface ApiPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName,

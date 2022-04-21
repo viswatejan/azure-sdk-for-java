@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mobilenetwork.fluent.SimPoliciesClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.SimPolicyInner;
 import com.azure.resourcemanager.mobilenetwork.models.SimPolicies;
 import com.azure.resourcemanager.mobilenetwork.models.SimPolicy;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class SimPoliciesImpl implements SimPolicies {
-    private static final ClientLogger LOGGER = new ClientLogger(SimPoliciesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SimPoliciesImpl.class);
 
     private final SimPoliciesClient innerClient;
 
@@ -75,7 +76,7 @@ public final class SimPoliciesImpl implements SimPolicies {
     public SimPolicy getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -83,7 +84,7 @@ public final class SimPoliciesImpl implements SimPolicies {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -91,7 +92,7 @@ public final class SimPoliciesImpl implements SimPolicies {
         }
         String simPolicyName = Utils.getValueFromIdByName(id, "simPolicies");
         if (simPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'simPolicies'.", id)));
@@ -102,7 +103,7 @@ public final class SimPoliciesImpl implements SimPolicies {
     public Response<SimPolicy> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -110,7 +111,7 @@ public final class SimPoliciesImpl implements SimPolicies {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -118,7 +119,7 @@ public final class SimPoliciesImpl implements SimPolicies {
         }
         String simPolicyName = Utils.getValueFromIdByName(id, "simPolicies");
         if (simPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'simPolicies'.", id)));
@@ -129,7 +130,7 @@ public final class SimPoliciesImpl implements SimPolicies {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -137,7 +138,7 @@ public final class SimPoliciesImpl implements SimPolicies {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -145,7 +146,7 @@ public final class SimPoliciesImpl implements SimPolicies {
         }
         String simPolicyName = Utils.getValueFromIdByName(id, "simPolicies");
         if (simPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'simPolicies'.", id)));
@@ -156,7 +157,7 @@ public final class SimPoliciesImpl implements SimPolicies {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -164,7 +165,7 @@ public final class SimPoliciesImpl implements SimPolicies {
         }
         String mobileNetworkName = Utils.getValueFromIdByName(id, "mobileNetworks");
         if (mobileNetworkName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -172,7 +173,7 @@ public final class SimPoliciesImpl implements SimPolicies {
         }
         String simPolicyName = Utils.getValueFromIdByName(id, "simPolicies");
         if (simPolicyName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'simPolicies'.", id)));

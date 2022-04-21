@@ -11,7 +11,6 @@ import com.azure.resourcemanager.authorization.models.ActiveDirectoryUser;
 import com.azure.resourcemanager.authorization.models.BuiltInRole;
 import com.azure.resourcemanager.authorization.models.RoleAssignment;
 import com.azure.resourcemanager.authorization.models.RoleAssignmentCreateParameters;
-import com.azure.resourcemanager.authorization.models.RoleAssignmentProperties;
 import com.azure.resourcemanager.authorization.models.ServicePrincipal;
 import com.azure.resourcemanager.authorization.fluent.models.RoleAssignmentInner;
 import com.azure.resourcemanager.resources.models.ResourceGroup;
@@ -84,9 +83,8 @@ class RoleAssignmentImpl extends CreatableImpl<RoleAssignment, RoleAssignmentInn
                 roleDefinitionIdObservable,
                 (objectId, roleDefinitionId) ->
                     new RoleAssignmentCreateParameters()
-                        .withProperties(new RoleAssignmentProperties()
-                            .withPrincipalId(objectId)
-                            .withRoleDefinitionId(roleDefinitionId)))
+                        .withPrincipalId(objectId)
+                        .withRoleDefinitionId(roleDefinitionId))
             .flatMap(
                 roleAssignmentPropertiesInner ->
                     manager()
@@ -130,22 +128,22 @@ class RoleAssignmentImpl extends CreatableImpl<RoleAssignment, RoleAssignmentInn
 
     @Override
     public String scope() {
-        return this.scope == null ? this.innerModel().properties().scope() : this.scope;
+        return this.scope == null ? this.innerModel().scope() : this.scope;
     }
 
     @Override
     public String roleDefinitionId() {
-        return innerModel().properties().roleDefinitionId();
+        return innerModel().roleDefinitionId();
     }
 
     @Override
     public String principalId() {
-        return innerModel().properties().principalId();
+        return innerModel().principalId();
     }
 
     @Override
     public String condition() {
-        return innerModel().properties().condition();
+        return innerModel().condition();
     }
 
     @Override

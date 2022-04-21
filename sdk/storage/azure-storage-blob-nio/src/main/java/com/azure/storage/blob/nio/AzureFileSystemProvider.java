@@ -130,15 +130,7 @@ import java.util.function.Supplier;
  * @see FileSystemProvider
  */
 public final class AzureFileSystemProvider extends FileSystemProvider {
-    /*
-     * A static inner class is used to hold the ClientLogger for AzureFileSystemProvider to defer creating the
-     * ClientLogger until logging is needed. Some implementations of SLF4J may make calls to load FileSystemProviders
-     * which results in a load FileSystemProviders to occur during a call to load FileSystemProviders. This results in
-     * the JVM to throw an exception that a circular call to load FileSystemProviders has occurred.
-     */
-    private static final class ClientLoggerHolder {
-        private static final ClientLogger LOGGER = new ClientLogger(AzureFileSystemProvider.class);
-    }
+    private static final ClientLogger LOGGER = new ClientLogger(AzureFileSystemProvider.class);
 
     /**
      * A helper for setting the HTTP properties when creating a directory.
@@ -226,8 +218,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         String endpoint = extractAccountEndpoint(uri);
 
         if (this.openFileSystems.containsKey(endpoint)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new FileSystemAlreadyExistsException("Name: " + endpoint));
+            throw LoggingUtility.logError(LOGGER, new FileSystemAlreadyExistsException("Name: " + endpoint));
         }
 
         AzureFileSystem afs = new AzureFileSystem(this, endpoint, config);
@@ -254,8 +245,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
     public FileSystem getFileSystem(URI uri) {
         String endpoint = extractAccountEndpoint(uri);
         if (!this.openFileSystems.containsKey(endpoint)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new FileSystemNotFoundException("Name: " + endpoint));
+            throw LoggingUtility.logError(LOGGER, new FileSystemNotFoundException("Name: " + endpoint));
         }
         return this.openFileSystems.get(endpoint);
     }
@@ -337,7 +327,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
     public InputStream newInputStream(Path path, OpenOption... options) throws IOException {
         // Validate options. Only read is supported.
         if (options.length > 1 || (options.length > 0 && !options[0].equals(StandardOpenOption.READ))) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+            throw LoggingUtility.logError(LOGGER,
                 new UnsupportedOperationException("Only the read option is supported."));
         }
 
@@ -346,9 +336,8 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
 
         // Ensure the path points to a file.
         if (!resource.checkDirStatus().equals(DirectoryStatus.NOT_A_DIRECTORY)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new IOException("Path either does not exist or points to a directory."
-                    + "Path must point to a file. Path: " + path.toString()));
+            throw LoggingUtility.logError(LOGGER, new IOException("Path either does not exist or points to a directory."
+                + "Path must point to a file. Path: " + path.toString()));
         }
 
         // Note that methods on BlobInputStream are already synchronized.
@@ -407,8 +396,8 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         // Check for unsupported options.
         for (OpenOption option : optionsSet) {
             if (!OUTPUT_STREAM_SUPPORTED_OPTIONS.contains(option)) {
-                throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                    new UnsupportedOperationException("Unsupported option: " + option.toString()));
+                throw LoggingUtility.logError(LOGGER, new UnsupportedOperationException("Unsupported option: "
+                    + option.toString()));
             }
         }
 
@@ -419,7 +408,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         if (!optionsSet.contains(StandardOpenOption.WRITE)
             || !(optionsSet.contains(StandardOpenOption.TRUNCATE_EXISTING)
             || optionsSet.contains(StandardOpenOption.CREATE_NEW))) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+            throw LoggingUtility.logError(LOGGER,
                 new IllegalArgumentException("Write and either CreateNew or TruncateExisting must be specified to open "
                     + "an OutputStream"));
         }
@@ -430,23 +419,22 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
 
         // Cannot write to a directory.
         if (DirectoryStatus.isDirectory(status)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new IOException("Cannot open an OutputStream to a directory. Path: " + path.toString()));
+            throw LoggingUtility.logError(LOGGER, new IOException("Cannot open an OutputStream to a directory. Path: "
+                + path.toString()));
         }
 
         // Writing to an empty location requires a create option.
         if (status.equals(DirectoryStatus.DOES_NOT_EXIST)
             && !(optionsSet.contains(StandardOpenOption.CREATE)
             || optionsSet.contains(StandardOpenOption.CREATE_NEW))) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new IOException("Writing to an empty location requires a create option. Path: " + path.toString()));
+            throw LoggingUtility.logError(LOGGER, new IOException("Writing to an empty location requires a create "
+                + "option. Path: " + path.toString()));
         }
 
         // Cannot write to an existing file if create new was specified.
         if (status.equals(DirectoryStatus.NOT_A_DIRECTORY) && optionsSet.contains(StandardOpenOption.CREATE_NEW)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new IOException("A file already exists at this location and "
-                    + "CREATE_NEW was specified. Path: " + path.toString()));
+            throw LoggingUtility.logError(LOGGER, new IOException("A file already exists at this location and "
+                + "CREATE_NEW was specified. Path: " + path.toString()));
         }
 
         // Create options based on file system config
@@ -496,8 +484,8 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
     public DirectoryStream<Path> newDirectoryStream(Path path, DirectoryStream.Filter<? super Path> filter)
         throws IOException {
         if (!(path instanceof AzurePath)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new IllegalArgumentException("This provider cannot operate on subtypes of Path other than AzurePath"));
+            throw LoggingUtility.logError(LOGGER, new IllegalArgumentException("This provider cannot operate on "
+                + "subtypes of Path other than AzurePath"));
         }
         AzurePath.ensureFileSystemOpen(path);
 
@@ -509,7 +497,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         stream rather than a list call for checking the status and a list call for listing.
          */
         if (!((AzurePath) path).isRoot() && !(new AzureResource(path).checkDirectoryExists())) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new NotDirectoryException(path.toString()));
+            throw LoggingUtility.logError(LOGGER, new NotDirectoryException(path.toString()));
         }
 
         return new AzureDirectoryStream((AzurePath) path, filter);
@@ -594,16 +582,16 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
             } catch (BlobStorageException e) {
                 if (e.getStatusCode() == HttpURLConnection.HTTP_CONFLICT
                     && e.getErrorCode().equals(BlobErrorCode.BLOB_ALREADY_EXISTS)) {
-                    throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+                    throw LoggingUtility.logError(LOGGER,
                         new FileAlreadyExistsException(azureResource.getPath().toString()));
                 } else {
-                    throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+                    throw LoggingUtility.logError(LOGGER,
                         new IOException("An error occurred when creating the directory", e));
                 }
             }
         } else {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new IOException("Parent directory does not exist for path: " + azureResource.getPath()));
+            throw LoggingUtility.logError(LOGGER, new IOException("Parent directory does not exist for path: "
+                + azureResource.getPath()));
         }
     }
 
@@ -631,10 +619,10 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         // Check directory status--possibly throw DirectoryNotEmpty or NoSuchFile.
         DirectoryStatus dirStatus = azureResource.checkDirStatus();
         if (dirStatus.equals(DirectoryStatus.DOES_NOT_EXIST)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new NoSuchFileException(path.toString()));
+            throw LoggingUtility.logError(LOGGER, new NoSuchFileException(path.toString()));
         }
         if (dirStatus.equals(DirectoryStatus.NOT_EMPTY)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new DirectoryNotEmptyException(path.toString()));
+            throw LoggingUtility.logError(LOGGER, new DirectoryNotEmptyException(path.toString()));
         }
 
         // After all validation has completed, delete the resource.
@@ -642,9 +630,9 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
             azureResource.getBlobClient().delete();
         } catch (BlobStorageException e) {
             if (e.getErrorCode().equals(BlobErrorCode.BLOB_NOT_FOUND)) {
-                throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new NoSuchFileException(path.toString()));
+                throw LoggingUtility.logError(LOGGER, new NoSuchFileException(path.toString()));
             }
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new IOException(e));
+            throw LoggingUtility.logError(LOGGER, new IOException(e));
         }
     }
 
@@ -695,7 +683,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         boolean replaceExisting = false;
         List<CopyOption> optionsList = new ArrayList<>(Arrays.asList(copyOptions));
         if (!optionsList.contains(StandardCopyOption.COPY_ATTRIBUTES)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new UnsupportedOperationException(
+            throw LoggingUtility.logError(LOGGER, new UnsupportedOperationException(
                 "StandardCopyOption.COPY_ATTRIBUTES must be specified as the service will always copy "
                     + "file attributes."));
         }
@@ -705,9 +693,8 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
             optionsList.remove(StandardCopyOption.REPLACE_EXISTING);
         }
         if (!optionsList.isEmpty()) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new UnsupportedOperationException("Unsupported copy option found. Only "
-                    + "StandardCopyOption.COPY_ATTRIBUTES and StandardCopyOption.REPLACE_EXISTING are supported."));
+            throw LoggingUtility.logError(LOGGER, new UnsupportedOperationException("Unsupported copy option found. "
+                + "Only StandardCopyOption.COPY_ATTRIBUTES and StandardCopyOption.REPLACE_EXISTING are supported."));
         }
 
         // Validate paths. Build resources.
@@ -720,7 +707,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         // Check destination is not a directory with children.
         DirectoryStatus destinationStatus = destinationRes.checkDirStatus();
         if (destinationStatus.equals(DirectoryStatus.NOT_EMPTY)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new DirectoryNotEmptyException(destination.toString()));
+            throw LoggingUtility.logError(LOGGER, new DirectoryNotEmptyException(destination.toString()));
         }
 
         /*
@@ -731,7 +718,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         BlobRequestConditions requestConditions = null;
         if (!replaceExisting) {
             if (!destinationStatus.equals(DirectoryStatus.DOES_NOT_EXIST)) {
-                throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+                throw LoggingUtility.logError(LOGGER,
                     new FileAlreadyExistsException(destinationRes.getPath().toString()));
             }
             requestConditions = new BlobRequestConditions().setIfNoneMatch("*");
@@ -745,9 +732,9 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         can skip a service call.
          */
         if (destinationStatus.equals(DirectoryStatus.DOES_NOT_EXIST) && !destinationRes.checkParentDirectoryExists()) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new IOException("Parent directory of destination location does not exist. The destination path is "
-                    + "therefore invalid. Destination: " + destinationRes.getPath()));
+            throw LoggingUtility.logError(LOGGER, new IOException("Parent directory of destination location does not "
+                + "exist. The destination path is therefore invalid. Destination: "
+                + destinationRes.getPath()));
         }
 
         /*
@@ -775,10 +762,10 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
                  */
                 destinationRes.putDirectoryBlob(requestConditions);
             } else {
-                throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new IOException(e));
+                throw LoggingUtility.logError(LOGGER, new IOException(e));
             }
         } catch (RuntimeException e) { // To better log possible timeout from poller.
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new IOException(e));
+            throw LoggingUtility.logError(LOGGER, new IOException(e));
         }
     }
 
@@ -797,7 +784,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
      */
     @Override
     public void move(Path path, Path path1, CopyOption... copyOptions) throws IOException {
-        throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new UnsupportedOperationException());
+        throw LoggingUtility.logError(LOGGER, new UnsupportedOperationException());
     }
 
     /**
@@ -809,7 +796,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
      */
     @Override
     public boolean isSameFile(Path path, Path path1) throws IOException {
-        throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new UnsupportedOperationException());
+        throw LoggingUtility.logError(LOGGER, new UnsupportedOperationException());
     }
 
     /**
@@ -836,7 +823,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
      */
     @Override
     public FileStore getFileStore(Path path) throws IOException {
-        throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new UnsupportedOperationException());
+        throw LoggingUtility.logError(LOGGER, new UnsupportedOperationException());
     }
 
     /**
@@ -857,8 +844,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
     @Override
     public void checkAccess(Path path, AccessMode... accessModes) throws IOException {
         if (accessModes != null && accessModes.length != 0) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new AccessDeniedException("The access cannot be determined."));
+            throw LoggingUtility.logError(LOGGER, new AccessDeniedException("The access cannot be determined."));
         }
         AzurePath.ensureFileSystemOpen(path);
 
@@ -878,9 +864,9 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
             Throwable cause = e.getCause();
             if (cause instanceof BlobStorageException
                 && BlobErrorCode.BLOB_NOT_FOUND.equals(((BlobStorageException) cause).getErrorCode())) {
-                throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new NoSuchFileException(path.toString()));
+                throw LoggingUtility.logError(LOGGER, new NoSuchFileException(path.toString()));
             } else {
-                throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, e);
+                throw LoggingUtility.logError(LOGGER, e);
             }
         }
     }
@@ -944,7 +930,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         } else if (type == AzureBlobFileAttributes.class) {
             view = AzureBlobFileAttributeView.class;
         } else {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new UnsupportedOperationException());
+            throw LoggingUtility.logError(LOGGER, new UnsupportedOperationException());
         }
 
         /*
@@ -977,8 +963,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
     public Map<String, Object> readAttributes(Path path, String attributes, LinkOption... linkOptions)
         throws IOException {
         if (attributes == null) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new IllegalArgumentException("Attribute string cannot be null."));
+            throw LoggingUtility.logError(LOGGER, new IllegalArgumentException("Attribute string cannot be null."));
         }
 
         AzurePath.ensureFileSystemOpen(path);
@@ -997,7 +982,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         String[] parts = attributes.split(":");
 
         if (parts.length > 2) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+            throw LoggingUtility.logError(LOGGER,
                 new IllegalArgumentException("Invalid format for attribute string: " + attributes));
         }
 
@@ -1017,7 +1002,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
             viewType = AzureBasicFileAttributeView.NAME;
         }
         if (!viewType.equals(AzureBasicFileAttributeView.NAME) && !viewType.equals(AzureBlobFileAttributeView.NAME)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+            throw LoggingUtility.logError(LOGGER,
                 new UnsupportedOperationException("Invalid attribute view: " + viewType));
         }
 
@@ -1029,7 +1014,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
             // TODO: Put these strings in constants
             if (viewType.equals(AzureBasicFileAttributeView.NAME)) {
                 if (!AzureBasicFileAttributes.ATTRIBUTE_STRINGS.contains(attributeName) && !"*".equals(attributeName)) {
-                    throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+                    throw LoggingUtility.logError(LOGGER,
                         new IllegalArgumentException("Invalid attribute. View: " + viewType
                             + ". Attribute: " + attributeName));
                 }
@@ -1057,7 +1042,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
 
             } else if (!attributeSuppliers.containsKey(attributeName)) {
                 // Validate that the attribute is legal and add the value returned by the supplier to the results.
-                throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+                throw LoggingUtility.logError(LOGGER,
                     new IllegalArgumentException("Invalid attribute. View: " + viewType
                         + ". Attribute: " + attributeName));
             } else {
@@ -1068,7 +1053,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
 
         // Throw if nothing specified per jdk docs.
         if (results.isEmpty()) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+            throw LoggingUtility.logError(LOGGER,
                 new IllegalArgumentException("No attributes were specified. Attributes: " + attributes));
         }
 
@@ -1102,7 +1087,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
         String attributeName;
         String[] parts = attributes.split(":");
         if (parts.length > 2) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+            throw LoggingUtility.logError(LOGGER,
                 new IllegalArgumentException("Invalid format for attribute string: " + attributes));
         }
         if (parts.length == 1) {
@@ -1123,7 +1108,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
 
         // We don't actually support any setters on the basic view.
         if (viewType.equals(AzureBasicFileAttributeView.NAME)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+            throw LoggingUtility.logError(LOGGER,
                 new IllegalArgumentException("Invalid attribute. View: " + viewType
                     + ". Attribute: " + attributeName));
         } else if (viewType.equals(AzureBlobFileAttributeView.NAME)) {
@@ -1131,7 +1116,7 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
                 this.getFileAttributeView(path, AzureBlobFileAttributeView.class, linkOptions));
             if (!attributeConsumers.containsKey(attributeName)) {
                 // Validate that the attribute is legal and add the value returned by the supplier to the results.
-                throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+                throw LoggingUtility.logError(LOGGER,
                     new IllegalArgumentException("Invalid attribute. View: " + viewType
                         + ". Attribute: " + attributeName));
             }
@@ -1139,11 +1124,11 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
                 attributeConsumers.get(attributeName).accept(value);
             } catch (UncheckedIOException e) {
                 if (e.getMessage().equals(AzureBlobFileAttributeView.ATTR_CONSUMER_ERROR)) {
-                    throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, e.getCause());
+                    throw LoggingUtility.logError(LOGGER, e.getCause());
                 }
             }
         } else {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+            throw LoggingUtility.logError(LOGGER,
                 new UnsupportedOperationException("Invalid attribute view: " + viewType));
         }
     }
@@ -1154,26 +1139,25 @@ public final class AzureFileSystemProvider extends FileSystemProvider {
 
     private String extractAccountEndpoint(URI uri) {
         if (!uri.getScheme().equals(this.getScheme())) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER, new IllegalArgumentException(
+            throw LoggingUtility.logError(LOGGER, new IllegalArgumentException(
                 "URI scheme does not match this provider"));
         }
         if (CoreUtils.isNullOrEmpty(uri.getQuery())) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new IllegalArgumentException("URI does not contain a query component. FileSystems require a URI of "
-                    + "the format \"azb://?endpoint=<account_endpoint>\"."));
+            throw LoggingUtility.logError(LOGGER, new IllegalArgumentException("URI does not contain a query "
+                + "component. FileSystems require a URI of the format \"azb://?endpoint=<account_endpoint>\"."));
         }
 
         String endpoint = Flux.fromArray(uri.getQuery().split("&"))
                 .filter(s -> s.startsWith(ENDPOINT_QUERY_KEY + "="))
-                .switchIfEmpty(Mono.defer(() -> Mono.error(LoggingUtility.logError(ClientLoggerHolder.LOGGER,
+                .switchIfEmpty(Mono.defer(() -> Mono.error(LoggingUtility.logError(LOGGER,
                     new IllegalArgumentException("URI does not contain an \"" + ENDPOINT_QUERY_KEY + "=\" parameter. "
                         + "FileSystems require a URI of the format \"azb://?endpoint=<endpoint>\"")))))
                 .map(s -> s.substring(ENDPOINT_QUERY_KEY.length() + 1)) // Trim the query key and =
                 .blockLast();
 
         if (CoreUtils.isNullOrEmpty(endpoint)) {
-            throw LoggingUtility.logError(ClientLoggerHolder.LOGGER,
-                new IllegalArgumentException("No account endpoint provided in URI query."));
+            throw LoggingUtility.logError(LOGGER, new IllegalArgumentException("No account endpoint provided in URI"
+                + " query."));
         }
 
         return endpoint;

@@ -7,11 +7,14 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.DatasetLocation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Avro dataset properties. */
 @Fluent
 public final class AvroDatasetTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AvroDatasetTypeProperties.class);
+
     /*
      * The location of the avro storage.
      */
@@ -100,7 +103,7 @@ public final class AvroDatasetTypeProperties {
      */
     public void validate() {
         if (location() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property location in model AvroDatasetTypeProperties"));
@@ -108,6 +111,4 @@ public final class AvroDatasetTypeProperties {
             location().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AvroDatasetTypeProperties.class);
 }

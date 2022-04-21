@@ -5,13 +5,17 @@
 package com.azure.resourcemanager.signalr.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.signalr.models.OperationDisplay;
 import com.azure.resourcemanager.signalr.models.OperationProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** REST API operation supported by resource provider. */
 @Fluent
 public final class OperationInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationInner.class);
+
     /*
      * Name of the operation with format: {provider}/{resource}/{operation}
      */
@@ -25,7 +29,7 @@ public final class OperationInner {
     private Boolean isDataAction;
 
     /*
-     * The object that describes a operation.
+     * The object that describes the operation.
      */
     @JsonProperty(value = "display")
     private OperationDisplay display;
@@ -38,7 +42,7 @@ public final class OperationInner {
     private String origin;
 
     /*
-     * Extra Operation properties.
+     * Extra properties for the operation.
      */
     @JsonProperty(value = "properties")
     private OperationProperties properties;
@@ -84,7 +88,7 @@ public final class OperationInner {
     }
 
     /**
-     * Get the display property: The object that describes a operation.
+     * Get the display property: The object that describes the operation.
      *
      * @return the display value.
      */
@@ -93,7 +97,7 @@ public final class OperationInner {
     }
 
     /**
-     * Set the display property: The object that describes a operation.
+     * Set the display property: The object that describes the operation.
      *
      * @param display the display value to set.
      * @return the OperationInner object itself.
@@ -126,7 +130,7 @@ public final class OperationInner {
     }
 
     /**
-     * Get the properties property: Extra Operation properties.
+     * Get the properties property: Extra properties for the operation.
      *
      * @return the properties value.
      */
@@ -135,7 +139,7 @@ public final class OperationInner {
     }
 
     /**
-     * Set the properties property: Extra Operation properties.
+     * Set the properties property: Extra properties for the operation.
      *
      * @param properties the properties value to set.
      * @return the OperationInner object itself.

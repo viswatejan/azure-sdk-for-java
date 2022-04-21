@@ -30,7 +30,7 @@ generate-client-as-impl: true
 generate-client-interfaces: false
 add-context-parameter: true
 artifact-id: azure-iot-deviceupdate
-data-plane: true
+low-level-client: true
 sync-methods: all
 generate-samples: true
 license-header: MICROSOFT_MIT_SMALL

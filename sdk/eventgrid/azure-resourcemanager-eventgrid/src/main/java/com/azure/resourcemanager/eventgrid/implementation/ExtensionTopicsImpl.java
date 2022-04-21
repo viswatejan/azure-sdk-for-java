@@ -12,9 +12,10 @@ import com.azure.resourcemanager.eventgrid.fluent.ExtensionTopicsClient;
 import com.azure.resourcemanager.eventgrid.fluent.models.ExtensionTopicInner;
 import com.azure.resourcemanager.eventgrid.models.ExtensionTopic;
 import com.azure.resourcemanager.eventgrid.models.ExtensionTopics;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ExtensionTopicsImpl implements ExtensionTopics {
-    private static final ClientLogger LOGGER = new ClientLogger(ExtensionTopicsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ExtensionTopicsImpl.class);
 
     private final ExtensionTopicsClient innerClient;
 

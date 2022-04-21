@@ -5,13 +5,14 @@
 package com.azure.resourcemanager.securityinsights.generated;
 
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorModel;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorModelForRequestBody;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceResourceKindEnum;
 import java.util.Arrays;
 
 /** Samples for ThreatIntelligenceIndicator CreateIndicator. */
 public final class ThreatIntelligenceIndicatorCreateIndicatorSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-01-01-preview/examples/threatintelligence/CreateThreatIntelligence.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2021-09-01-preview/examples/threatintelligence/CreateThreatIntelligence.json
      */
     /**
      * Sample code: Create a new Threat Intelligence.
@@ -25,7 +26,8 @@ public final class ThreatIntelligenceIndicatorCreateIndicatorSamples {
             .createIndicatorWithResponse(
                 "myRg",
                 "myWorkspace",
-                new ThreatIntelligenceIndicatorModel()
+                new ThreatIntelligenceIndicatorModelForRequestBody()
+                    .withKind(ThreatIntelligenceResourceKindEnum.INDICATOR)
                     .withThreatIntelligenceTags(Arrays.asList("new schema"))
                     .withSource("Azure Sentinel")
                     .withDisplayName("new schema")

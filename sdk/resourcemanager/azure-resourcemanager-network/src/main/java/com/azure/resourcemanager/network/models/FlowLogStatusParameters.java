@@ -6,11 +6,14 @@ package com.azure.resourcemanager.network.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters that define a resource to query flow log and traffic analytics (optional) status. */
 @Fluent
 public final class FlowLogStatusParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FlowLogStatusParameters.class);
+
     /*
      * The target resource where getting the flow log and traffic analytics
      * (optional) status.
@@ -47,12 +50,10 @@ public final class FlowLogStatusParameters {
      */
     public void validate() {
         if (targetResourceId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property targetResourceId in model FlowLogStatusParameters"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(FlowLogStatusParameters.class);
 }

@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.azure.resourcemanager.mobilenetwork.models.Snssai;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Network slice properties. */
 @Fluent
 public final class SlicePropertiesFormat {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SlicePropertiesFormat.class);
+
     /*
      * The provisioning state of the network slice resource.
      */
@@ -90,13 +93,11 @@ public final class SlicePropertiesFormat {
      */
     public void validate() {
         if (snssai() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property snssai in model SlicePropertiesFormat"));
         } else {
             snssai().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SlicePropertiesFormat.class);
 }

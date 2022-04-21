@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 import com.azure.spring.cloud.config.properties.AppConfigurationProperties;
-import com.azure.spring.cloud.config.properties.AppConfigurationProviderProperties;
 import com.azure.spring.cloud.config.stores.ClientStore;
 
 /**
@@ -26,9 +25,8 @@ public class AppConfigurationAutoConfiguration {
     static class AppConfigurationWatchAutoConfiguration {
 
         @Bean
-        public AppConfigurationRefresh getConfigWatch(AppConfigurationProperties properties,
-                AppConfigurationProviderProperties appProperties, ClientStore clientStore) {
-            return new AppConfigurationRefresh(properties, appProperties, clientStore);
+        public AppConfigurationRefresh getConfigWatch(AppConfigurationProperties properties, ClientStore clientStore) {
+            return new AppConfigurationRefresh(properties, clientStore);
         }
     }
 }

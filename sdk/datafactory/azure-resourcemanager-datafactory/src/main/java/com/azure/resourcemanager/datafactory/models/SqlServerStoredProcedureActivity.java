@@ -7,16 +7,20 @@ package com.azure.resourcemanager.datafactory.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.models.SqlServerStoredProcedureActivityTypeProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
 /** SQL stored procedure activity type. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("SqlServerStoredProcedure")
 @Fluent
 public final class SqlServerStoredProcedureActivity extends ExecutionActivity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SqlServerStoredProcedureActivity.class);
+
     /*
      * SQL stored procedure activity properties.
      */
@@ -104,7 +108,7 @@ public final class SqlServerStoredProcedureActivity extends ExecutionActivity {
      *
      * @return the storedProcedureParameters value.
      */
-    public Object storedProcedureParameters() {
+    public Map<String, StoredProcedureParameter> storedProcedureParameters() {
         return this.innerTypeProperties() == null ? null : this.innerTypeProperties().storedProcedureParameters();
     }
 
@@ -115,7 +119,8 @@ public final class SqlServerStoredProcedureActivity extends ExecutionActivity {
      * @param storedProcedureParameters the storedProcedureParameters value to set.
      * @return the SqlServerStoredProcedureActivity object itself.
      */
-    public SqlServerStoredProcedureActivity withStoredProcedureParameters(Object storedProcedureParameters) {
+    public SqlServerStoredProcedureActivity withStoredProcedureParameters(
+        Map<String, StoredProcedureParameter> storedProcedureParameters) {
         if (this.innerTypeProperties() == null) {
             this.innerTypeProperties = new SqlServerStoredProcedureActivityTypeProperties();
         }
@@ -132,7 +137,7 @@ public final class SqlServerStoredProcedureActivity extends ExecutionActivity {
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerTypeProperties in model SqlServerStoredProcedureActivity"));
@@ -140,6 +145,4 @@ public final class SqlServerStoredProcedureActivity extends ExecutionActivity {
             innerTypeProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SqlServerStoredProcedureActivity.class);
 }

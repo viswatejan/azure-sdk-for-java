@@ -35,11 +35,4 @@ public final class DataFlowDebugResource extends SubResourceDebugResource {
         this.properties = properties;
         return this;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public DataFlowDebugResource setName(String name) {
-        super.setName(name);
-        return this;
-    }
 }

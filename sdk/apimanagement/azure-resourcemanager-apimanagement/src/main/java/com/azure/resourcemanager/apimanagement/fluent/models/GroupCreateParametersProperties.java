@@ -7,11 +7,14 @@ package com.azure.resourcemanager.apimanagement.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.models.GroupType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters supplied to the Create Group operation. */
 @Fluent
 public final class GroupCreateParametersProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GroupCreateParametersProperties.class);
+
     /*
      * Group name.
      */
@@ -130,12 +133,10 @@ public final class GroupCreateParametersProperties {
      */
     public void validate() {
         if (displayName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property displayName in model GroupCreateParametersProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(GroupCreateParametersProperties.class);
 }

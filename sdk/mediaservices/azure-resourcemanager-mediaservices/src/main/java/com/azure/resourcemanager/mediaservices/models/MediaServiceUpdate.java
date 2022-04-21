@@ -5,34 +5,68 @@
 package com.azure.resourcemanager.mediaservices.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.mediaservices.fluent.models.MediaServiceProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.azure.core.annotation.JsonFlatten;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 /** A Media Services account update. */
+@JsonFlatten
 @Fluent
-public final class MediaServiceUpdate {
+public class MediaServiceUpdate {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MediaServiceUpdate.class);
+
     /*
      * Resource tags.
      */
     @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
-
-    /*
-     * The resource properties.
-     */
-    @JsonProperty(value = "properties")
-    private MediaServiceProperties innerProperties;
 
     /*
      * The Managed Identity for the Media Services account.
      */
     @JsonProperty(value = "identity")
     private MediaServiceIdentity identity;
+
+    /*
+     * The Media Services account ID.
+     */
+    @JsonProperty(value = "properties.mediaServiceId", access = JsonProperty.Access.WRITE_ONLY)
+    private UUID mediaServiceId;
+
+    /*
+     * The storage accounts for this resource.
+     */
+    @JsonProperty(value = "properties.storageAccounts")
+    private List<StorageAccount> storageAccounts;
+
+    /*
+     * The storageAuthentication property.
+     */
+    @JsonProperty(value = "properties.storageAuthentication")
+    private StorageAuthentication storageAuthentication;
+
+    /*
+     * The account encryption properties.
+     */
+    @JsonProperty(value = "properties.encryption")
+    private AccountEncryption encryption;
+
+    /*
+     * The Key Delivery properties for Media Services account.
+     */
+    @JsonProperty(value = "properties.keyDelivery")
+    private KeyDelivery keyDelivery;
+
+    /*
+     * Whether or not public network access is allowed for resources under the
+     * Media Services account.
+     */
+    @JsonProperty(value = "properties.publicNetworkAccess")
+    private PublicNetworkAccess publicNetworkAccess;
 
     /**
      * Get the tags property: Resource tags.
@@ -52,15 +86,6 @@ public final class MediaServiceUpdate {
     public MediaServiceUpdate withTags(Map<String, String> tags) {
         this.tags = tags;
         return this;
-    }
-
-    /**
-     * Get the innerProperties property: The resource properties.
-     *
-     * @return the innerProperties value.
-     */
-    private MediaServiceProperties innerProperties() {
-        return this.innerProperties;
     }
 
     /**
@@ -89,7 +114,7 @@ public final class MediaServiceUpdate {
      * @return the mediaServiceId value.
      */
     public UUID mediaServiceId() {
-        return this.innerProperties() == null ? null : this.innerProperties().mediaServiceId();
+        return this.mediaServiceId;
     }
 
     /**
@@ -98,7 +123,7 @@ public final class MediaServiceUpdate {
      * @return the storageAccounts value.
      */
     public List<StorageAccount> storageAccounts() {
-        return this.innerProperties() == null ? null : this.innerProperties().storageAccounts();
+        return this.storageAccounts;
     }
 
     /**
@@ -108,10 +133,7 @@ public final class MediaServiceUpdate {
      * @return the MediaServiceUpdate object itself.
      */
     public MediaServiceUpdate withStorageAccounts(List<StorageAccount> storageAccounts) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MediaServiceProperties();
-        }
-        this.innerProperties().withStorageAccounts(storageAccounts);
+        this.storageAccounts = storageAccounts;
         return this;
     }
 
@@ -121,7 +143,7 @@ public final class MediaServiceUpdate {
      * @return the storageAuthentication value.
      */
     public StorageAuthentication storageAuthentication() {
-        return this.innerProperties() == null ? null : this.innerProperties().storageAuthentication();
+        return this.storageAuthentication;
     }
 
     /**
@@ -131,10 +153,7 @@ public final class MediaServiceUpdate {
      * @return the MediaServiceUpdate object itself.
      */
     public MediaServiceUpdate withStorageAuthentication(StorageAuthentication storageAuthentication) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MediaServiceProperties();
-        }
-        this.innerProperties().withStorageAuthentication(storageAuthentication);
+        this.storageAuthentication = storageAuthentication;
         return this;
     }
 
@@ -144,7 +163,7 @@ public final class MediaServiceUpdate {
      * @return the encryption value.
      */
     public AccountEncryption encryption() {
-        return this.innerProperties() == null ? null : this.innerProperties().encryption();
+        return this.encryption;
     }
 
     /**
@@ -154,10 +173,7 @@ public final class MediaServiceUpdate {
      * @return the MediaServiceUpdate object itself.
      */
     public MediaServiceUpdate withEncryption(AccountEncryption encryption) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MediaServiceProperties();
-        }
-        this.innerProperties().withEncryption(encryption);
+        this.encryption = encryption;
         return this;
     }
 
@@ -167,7 +183,7 @@ public final class MediaServiceUpdate {
      * @return the keyDelivery value.
      */
     public KeyDelivery keyDelivery() {
-        return this.innerProperties() == null ? null : this.innerProperties().keyDelivery();
+        return this.keyDelivery;
     }
 
     /**
@@ -177,10 +193,7 @@ public final class MediaServiceUpdate {
      * @return the MediaServiceUpdate object itself.
      */
     public MediaServiceUpdate withKeyDelivery(KeyDelivery keyDelivery) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MediaServiceProperties();
-        }
-        this.innerProperties().withKeyDelivery(keyDelivery);
+        this.keyDelivery = keyDelivery;
         return this;
     }
 
@@ -191,7 +204,7 @@ public final class MediaServiceUpdate {
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
-        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
+        return this.publicNetworkAccess;
     }
 
     /**
@@ -202,10 +215,7 @@ public final class MediaServiceUpdate {
      * @return the MediaServiceUpdate object itself.
      */
     public MediaServiceUpdate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MediaServiceProperties();
-        }
-        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
+        this.publicNetworkAccess = publicNetworkAccess;
         return this;
     }
 
@@ -215,11 +225,17 @@ public final class MediaServiceUpdate {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
-        }
         if (identity() != null) {
             identity().validate();
+        }
+        if (storageAccounts() != null) {
+            storageAccounts().forEach(e -> e.validate());
+        }
+        if (encryption() != null) {
+            encryption().validate();
+        }
+        if (keyDelivery() != null) {
+            keyDelivery().validate();
         }
     }
 }

@@ -29,16 +29,19 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationInner;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceAppendTags;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceFilteringCriteria;
-import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorModel;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorModelForRequestBody;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceInformationList;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ThreatIntelligenceIndicatorsClient. */
 public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntelligenceIndicatorsClient {
+    private final ClientLogger logger = new ClientLogger(ThreatIntelligenceIndicatorsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ThreatIntelligenceIndicatorsService service;
 
@@ -78,7 +81,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("workspaceName") String workspaceName,
-            @BodyParam("application/json") ThreatIntelligenceIndicatorModel threatIntelligenceProperties,
+            @BodyParam("application/json") ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -113,7 +116,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("workspaceName") String workspaceName,
             @PathParam("name") String name,
-            @BodyParam("application/json") ThreatIntelligenceIndicatorModel threatIntelligenceProperties,
+            @BodyParam("application/json") ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -183,7 +186,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("workspaceName") String workspaceName,
             @PathParam("name") String name,
-            @BodyParam("application/json") ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags,
+            @BodyParam("application/json") ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceReplaceTags,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -212,7 +215,9 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ThreatIntelligenceInformationInner>> createIndicatorWithResponseAsync(
-        String resourceGroupName, String workspaceName, ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -274,7 +279,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
     private Mono<Response<ThreatIntelligenceInformationInner>> createIndicatorWithResponseAsync(
         String resourceGroupName,
         String workspaceName,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -330,7 +335,9 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ThreatIntelligenceInformationInner> createIndicatorAsync(
-        String resourceGroupName, String workspaceName, ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties) {
         return createIndicatorWithResponseAsync(resourceGroupName, workspaceName, threatIntelligenceProperties)
             .flatMap(
                 (Response<ThreatIntelligenceInformationInner> res) -> {
@@ -355,7 +362,9 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ThreatIntelligenceInformationInner createIndicator(
-        String resourceGroupName, String workspaceName, ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties) {
         return createIndicatorAsync(resourceGroupName, workspaceName, threatIntelligenceProperties).block();
     }
 
@@ -375,7 +384,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
     public Response<ThreatIntelligenceInformationInner> createIndicatorWithResponse(
         String resourceGroupName,
         String workspaceName,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties,
         Context context) {
         return createIndicatorWithResponseAsync(resourceGroupName, workspaceName, threatIntelligenceProperties, context)
             .block();
@@ -564,7 +573,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -632,7 +641,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -696,7 +705,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties) {
         return createWithResponseAsync(resourceGroupName, workspaceName, name, threatIntelligenceProperties)
             .flatMap(
                 (Response<ThreatIntelligenceInformationInner> res) -> {
@@ -725,7 +734,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties) {
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties) {
         return createAsync(resourceGroupName, workspaceName, name, threatIntelligenceProperties).block();
     }
 
@@ -747,7 +756,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceProperties,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceProperties,
         Context context) {
         return createWithResponseAsync(resourceGroupName, workspaceName, name, threatIntelligenceProperties, context)
             .block();
@@ -1054,7 +1063,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the threat intelligence information objects as paginated response with {@link PagedFlux}.
+     * @return list of all the threat intelligence information objects.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ThreatIntelligenceInformationInner> queryIndicatorsAsync(
@@ -1076,7 +1085,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the threat intelligence information objects as paginated response with {@link PagedFlux}.
+     * @return list of all the threat intelligence information objects.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ThreatIntelligenceInformationInner> queryIndicatorsAsync(
@@ -1100,7 +1109,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the threat intelligence information objects as paginated response with {@link PagedIterable}.
+     * @return list of all the threat intelligence information objects.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ThreatIntelligenceInformationInner> queryIndicators(
@@ -1121,7 +1130,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the threat intelligence information objects as paginated response with {@link PagedIterable}.
+     * @return list of all the threat intelligence information objects.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ThreatIntelligenceInformationInner> queryIndicators(
@@ -1349,7 +1358,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags) {
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceReplaceTags) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1417,7 +1426,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceReplaceTags,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1481,7 +1490,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags) {
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceReplaceTags) {
         return replaceTagsWithResponseAsync(resourceGroupName, workspaceName, name, threatIntelligenceReplaceTags)
             .flatMap(
                 (Response<ThreatIntelligenceInformationInner> res) -> {
@@ -1510,7 +1519,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags) {
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceReplaceTags) {
         return replaceTagsAsync(resourceGroupName, workspaceName, name, threatIntelligenceReplaceTags).block();
     }
 
@@ -1532,7 +1541,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
         String resourceGroupName,
         String workspaceName,
         String name,
-        ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags,
+        ThreatIntelligenceIndicatorModelForRequestBody threatIntelligenceReplaceTags,
         Context context) {
         return replaceTagsWithResponseAsync(
                 resourceGroupName, workspaceName, name, threatIntelligenceReplaceTags, context)

@@ -9,11 +9,14 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.CredentialReference;
 import com.azure.resourcemanager.datafactory.models.LinkedServiceReference;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Azure Batch linked service properties. */
 @Fluent
 public final class AzureBatchLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureBatchLinkedServiceTypeProperties.class);
+
     /*
      * The Azure Batch account name. Type: string (or Expression with
      * resultType string).
@@ -210,7 +213,7 @@ public final class AzureBatchLinkedServiceTypeProperties {
      */
     public void validate() {
         if (accountName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property accountName in model AzureBatchLinkedServiceTypeProperties"));
@@ -219,19 +222,19 @@ public final class AzureBatchLinkedServiceTypeProperties {
             accessKey().validate();
         }
         if (batchUri() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property batchUri in model AzureBatchLinkedServiceTypeProperties"));
         }
         if (poolName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property poolName in model AzureBatchLinkedServiceTypeProperties"));
         }
         if (linkedServiceName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property linkedServiceName in model AzureBatchLinkedServiceTypeProperties"));
@@ -242,6 +245,4 @@ public final class AzureBatchLinkedServiceTypeProperties {
             credential().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AzureBatchLinkedServiceTypeProperties.class);
 }

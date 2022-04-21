@@ -30,6 +30,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apimanagement.fluent.TagsClient;
 import com.azure.resourcemanager.apimanagement.fluent.models.TagContractInner;
 import com.azure.resourcemanager.apimanagement.models.TagCollection;
@@ -49,6 +50,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in TagsClient. */
 public final class TagsClientImpl implements TagsClient {
+    private final ClientLogger logger = new ClientLogger(TagsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final TagsService service;
 
@@ -501,7 +504,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByOperationSinglePageAsync(
@@ -586,7 +589,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByOperationSinglePageAsync(
@@ -668,7 +671,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByOperationAsync(
@@ -696,7 +699,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByOperationAsync(
@@ -728,7 +731,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByOperationAsync(
@@ -759,7 +762,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedIterable}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TagContractInner> listByOperation(
@@ -790,7 +793,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedIterable}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TagContractInner> listByOperation(
@@ -819,7 +822,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetEntityStateByOperationResponse> getEntityStateByOperationWithResponseAsync(
@@ -885,7 +888,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetEntityStateByOperationResponse> getEntityStateByOperationWithResponseAsync(
@@ -947,7 +950,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityStateByOperationAsync(
@@ -1013,7 +1016,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag associated with the Operation on successful completion of {@link Mono}.
+     * @return tag associated with the Operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetByOperationResponse> getByOperationWithResponseAsync(
@@ -1079,7 +1082,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag associated with the Operation on successful completion of {@link Mono}.
+     * @return tag associated with the Operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetByOperationResponse> getByOperationWithResponseAsync(
@@ -1141,7 +1144,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag associated with the Operation on successful completion of {@link Mono}.
+     * @return tag associated with the Operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagContractInner> getByOperationAsync(
@@ -1214,7 +1217,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details along with {@link Response} on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TagContractInner>> assignToOperationWithResponseAsync(
@@ -1280,7 +1283,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details along with {@link Response} on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TagContractInner>> assignToOperationWithResponseAsync(
@@ -1342,7 +1345,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagContractInner> assignToOperationAsync(
@@ -1393,7 +1396,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details along with {@link Response}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TagContractInner> assignToOperationWithResponse(
@@ -1415,7 +1418,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> detachFromOperationWithResponseAsync(
@@ -1481,7 +1484,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> detachFromOperationWithResponseAsync(
@@ -1543,7 +1546,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> detachFromOperationAsync(
@@ -1586,7 +1589,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> detachFromOperationWithResponse(
@@ -1611,7 +1614,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByApiSinglePageAsync(
@@ -1684,7 +1687,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByApiSinglePageAsync(
@@ -1759,7 +1762,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByApiAsync(
@@ -1779,7 +1782,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByApiAsync(String resourceGroupName, String serviceName, String apiId) {
@@ -1808,7 +1811,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByApiAsync(
@@ -1834,7 +1837,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedIterable}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TagContractInner> listByApi(String resourceGroupName, String serviceName, String apiId) {
@@ -1861,7 +1864,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedIterable}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TagContractInner> listByApi(
@@ -1886,7 +1889,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetEntityStateByApiResponse> getEntityStateByApiWithResponseAsync(
@@ -1946,7 +1949,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetEntityStateByApiResponse> getEntityStateByApiWithResponseAsync(
@@ -2002,7 +2005,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityStateByApiAsync(
@@ -2059,7 +2062,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag associated with the API on successful completion of {@link Mono}.
+     * @return tag associated with the API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetByApiResponse> getByApiWithResponseAsync(
@@ -2119,7 +2122,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag associated with the API on successful completion of {@link Mono}.
+     * @return tag associated with the API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetByApiResponse> getByApiWithResponseAsync(
@@ -2175,7 +2178,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag associated with the API on successful completion of {@link Mono}.
+     * @return tag associated with the API.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagContractInner> getByApiAsync(
@@ -2240,7 +2243,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsAssignToApiResponse> assignToApiWithResponseAsync(
@@ -2300,7 +2303,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsAssignToApiResponse> assignToApiWithResponseAsync(
@@ -2356,7 +2359,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagContractInner> assignToApiAsync(
@@ -2421,7 +2424,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> detachFromApiWithResponseAsync(
@@ -2481,7 +2484,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> detachFromApiWithResponseAsync(
@@ -2537,7 +2540,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> detachFromApiAsync(String resourceGroupName, String serviceName, String apiId, String tagId) {
@@ -2574,7 +2577,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> detachFromApiWithResponse(
@@ -2597,7 +2600,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByProductSinglePageAsync(
@@ -2669,7 +2672,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByProductSinglePageAsync(
@@ -2743,7 +2746,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByProductAsync(
@@ -2762,7 +2765,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByProductAsync(
@@ -2791,7 +2794,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByProductAsync(
@@ -2816,7 +2819,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedIterable}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TagContractInner> listByProduct(
@@ -2843,7 +2846,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedIterable}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TagContractInner> listByProduct(
@@ -2868,7 +2871,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetEntityStateByProductResponse> getEntityStateByProductWithResponseAsync(
@@ -2927,7 +2930,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetEntityStateByProductResponse> getEntityStateByProductWithResponseAsync(
@@ -2982,7 +2985,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityStateByProductAsync(
@@ -3037,7 +3040,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag associated with the Product on successful completion of {@link Mono}.
+     * @return tag associated with the Product.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetByProductResponse> getByProductWithResponseAsync(
@@ -3096,7 +3099,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag associated with the Product on successful completion of {@link Mono}.
+     * @return tag associated with the Product.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetByProductResponse> getByProductWithResponseAsync(
@@ -3151,7 +3154,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag associated with the Product on successful completion of {@link Mono}.
+     * @return tag associated with the Product.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagContractInner> getByProductAsync(
@@ -3213,7 +3216,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details along with {@link Response} on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TagContractInner>> assignToProductWithResponseAsync(
@@ -3272,7 +3275,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details along with {@link Response} on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TagContractInner>> assignToProductWithResponseAsync(
@@ -3327,7 +3330,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagContractInner> assignToProductAsync(
@@ -3372,7 +3375,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details along with {@link Response}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TagContractInner> assignToProductWithResponse(
@@ -3390,7 +3393,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> detachFromProductWithResponseAsync(
@@ -3449,7 +3452,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> detachFromProductWithResponseAsync(
@@ -3504,7 +3507,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> detachFromProductAsync(
@@ -3540,7 +3543,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> detachFromProductWithResponse(
@@ -3563,7 +3566,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByServiceSinglePageAsync(
@@ -3632,7 +3635,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByServiceSinglePageAsync(
@@ -3703,7 +3706,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByServiceAsync(
@@ -3721,7 +3724,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByServiceAsync(String resourceGroupName, String serviceName) {
@@ -3750,7 +3753,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedFlux}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TagContractInner> listByServiceAsync(
@@ -3774,7 +3777,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedIterable}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TagContractInner> listByService(String resourceGroupName, String serviceName) {
@@ -3801,7 +3804,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation as paginated response with {@link PagedIterable}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TagContractInner> listByService(
@@ -3825,7 +3828,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetEntityStateResponse> getEntityStateWithResponseAsync(
@@ -3879,7 +3882,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetEntityStateResponse> getEntityStateWithResponseAsync(
@@ -3929,7 +3932,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity state version of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the entity state version of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> getEntityStateAsync(String resourceGroupName, String serviceName, String tagId) {
@@ -3979,7 +3982,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName, String tagId) {
@@ -4032,7 +4035,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsGetResponse> getWithResponseAsync(
@@ -4082,7 +4085,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the tag specified by its identifier on successful completion of {@link Mono}.
+     * @return the details of the tag specified by its identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagContractInner> getAsync(String resourceGroupName, String serviceName, String tagId) {
@@ -4142,7 +4145,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -4209,7 +4212,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -4273,7 +4276,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagContractInner> createOrUpdateAsync(
@@ -4303,7 +4306,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagContractInner> createOrUpdateAsync(
@@ -4377,7 +4380,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsUpdateResponse> updateWithResponseAsync(
@@ -4448,7 +4451,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagsUpdateResponse> updateWithResponseAsync(
@@ -4516,7 +4519,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag Contract details on successful completion of {@link Mono}.
+     * @return tag Contract details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TagContractInner> updateAsync(
@@ -4597,7 +4600,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -4657,7 +4660,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -4713,7 +4716,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String serviceName, String tagId, String ifMatch) {
@@ -4750,7 +4753,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -4765,7 +4768,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByOperationNextSinglePageAsync(String nextLink) {
@@ -4801,7 +4804,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByOperationNextSinglePageAsync(String nextLink, Context context) {
@@ -4836,7 +4839,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByApiNextSinglePageAsync(String nextLink) {
@@ -4872,7 +4875,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByApiNextSinglePageAsync(String nextLink, Context context) {
@@ -4907,7 +4910,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByProductNextSinglePageAsync(String nextLink) {
@@ -4943,7 +4946,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByProductNextSinglePageAsync(String nextLink, Context context) {
@@ -4978,7 +4981,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByServiceNextSinglePageAsync(String nextLink) {
@@ -5014,7 +5017,7 @@ public final class TagsClientImpl implements TagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged Tag list representation along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged Tag list representation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TagContractInner>> listByServiceNextSinglePageAsync(String nextLink, Context context) {

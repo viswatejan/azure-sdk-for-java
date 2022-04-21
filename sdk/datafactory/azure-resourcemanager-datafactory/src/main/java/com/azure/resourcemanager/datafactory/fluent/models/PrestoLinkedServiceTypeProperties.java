@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.PrestoAuthenticationType;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Presto server linked service properties. */
 @Fluent
 public final class PrestoLinkedServiceTypeProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrestoLinkedServiceTypeProperties.class);
+
     /*
      * The IP address or host name of the Presto server. (i.e. 192.168.222.160)
      */
@@ -415,25 +418,25 @@ public final class PrestoLinkedServiceTypeProperties {
      */
     public void validate() {
         if (host() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property host in model PrestoLinkedServiceTypeProperties"));
         }
         if (serverVersion() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property serverVersion in model PrestoLinkedServiceTypeProperties"));
         }
         if (catalog() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property catalog in model PrestoLinkedServiceTypeProperties"));
         }
         if (authenticationType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property authenticationType in model PrestoLinkedServiceTypeProperties"));
@@ -442,6 +445,4 @@ public final class PrestoLinkedServiceTypeProperties {
             password().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PrestoLinkedServiceTypeProperties.class);
 }

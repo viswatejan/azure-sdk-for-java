@@ -5,12 +5,15 @@
 package com.azure.resourcemanager.mediaservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mediaservices.models.JobInput;
 import com.azure.resourcemanager.mediaservices.models.JobOutput;
 import com.azure.resourcemanager.mediaservices.models.JobState;
 import com.azure.resourcemanager.mediaservices.models.Priority;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -20,13 +23,10 @@ import java.util.Map;
  * A Job resource type. The progress and state can be obtained by polling a Job or subscribing to events using
  * EventGrid.
  */
+@JsonFlatten
 @Fluent
-public final class JobInner extends ProxyResource {
-    /*
-     * The resource properties.
-     */
-    @JsonProperty(value = "properties")
-    private JobProperties innerProperties;
+public class JobInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(JobInner.class);
 
     /*
      * The system metadata relating to this resource.
@@ -34,14 +34,70 @@ public final class JobInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /**
-     * Get the innerProperties property: The resource properties.
-     *
-     * @return the innerProperties value.
+    /*
+     * The UTC date and time when the customer has created the Job, in
+     * 'YYYY-MM-DDThh:mm:ssZ' format.
      */
-    private JobProperties innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.created", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime created;
+
+    /*
+     * The current state of the job.
+     */
+    @JsonProperty(value = "properties.state", access = JsonProperty.Access.WRITE_ONLY)
+    private JobState state;
+
+    /*
+     * Optional customer supplied description of the Job.
+     */
+    @JsonProperty(value = "properties.description")
+    private String description;
+
+    /*
+     * The inputs for the Job.
+     */
+    @JsonProperty(value = "properties.input")
+    private JobInput input;
+
+    /*
+     * The UTC date and time when the customer has last updated the Job, in
+     * 'YYYY-MM-DDThh:mm:ssZ' format.
+     */
+    @JsonProperty(value = "properties.lastModified", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime lastModified;
+
+    /*
+     * The outputs for the Job.
+     */
+    @JsonProperty(value = "properties.outputs")
+    private List<JobOutput> outputs;
+
+    /*
+     * Priority with which the job should be processed. Higher priority jobs
+     * are processed before lower priority jobs. If not set, the default is
+     * normal.
+     */
+    @JsonProperty(value = "properties.priority")
+    private Priority priority;
+
+    /*
+     * Customer provided key, value pairs that will be returned in Job and
+     * JobOutput state events.
+     */
+    @JsonProperty(value = "properties.correlationData")
+    private Map<String, String> correlationData;
+
+    /*
+     * The UTC date and time at which this Job began processing.
+     */
+    @JsonProperty(value = "properties.startTime", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime startTime;
+
+    /*
+     * The UTC date and time at which this Job finished processing.
+     */
+    @JsonProperty(value = "properties.endTime", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime endTime;
 
     /**
      * Get the systemData property: The system metadata relating to this resource.
@@ -59,7 +115,7 @@ public final class JobInner extends ProxyResource {
      * @return the created value.
      */
     public OffsetDateTime created() {
-        return this.innerProperties() == null ? null : this.innerProperties().created();
+        return this.created;
     }
 
     /**
@@ -68,7 +124,7 @@ public final class JobInner extends ProxyResource {
      * @return the state value.
      */
     public JobState state() {
-        return this.innerProperties() == null ? null : this.innerProperties().state();
+        return this.state;
     }
 
     /**
@@ -77,7 +133,7 @@ public final class JobInner extends ProxyResource {
      * @return the description value.
      */
     public String description() {
-        return this.innerProperties() == null ? null : this.innerProperties().description();
+        return this.description;
     }
 
     /**
@@ -87,10 +143,7 @@ public final class JobInner extends ProxyResource {
      * @return the JobInner object itself.
      */
     public JobInner withDescription(String description) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new JobProperties();
-        }
-        this.innerProperties().withDescription(description);
+        this.description = description;
         return this;
     }
 
@@ -100,7 +153,7 @@ public final class JobInner extends ProxyResource {
      * @return the input value.
      */
     public JobInput input() {
-        return this.innerProperties() == null ? null : this.innerProperties().input();
+        return this.input;
     }
 
     /**
@@ -110,10 +163,7 @@ public final class JobInner extends ProxyResource {
      * @return the JobInner object itself.
      */
     public JobInner withInput(JobInput input) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new JobProperties();
-        }
-        this.innerProperties().withInput(input);
+        this.input = input;
         return this;
     }
 
@@ -124,7 +174,7 @@ public final class JobInner extends ProxyResource {
      * @return the lastModified value.
      */
     public OffsetDateTime lastModified() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastModified();
+        return this.lastModified;
     }
 
     /**
@@ -133,7 +183,7 @@ public final class JobInner extends ProxyResource {
      * @return the outputs value.
      */
     public List<JobOutput> outputs() {
-        return this.innerProperties() == null ? null : this.innerProperties().outputs();
+        return this.outputs;
     }
 
     /**
@@ -143,10 +193,7 @@ public final class JobInner extends ProxyResource {
      * @return the JobInner object itself.
      */
     public JobInner withOutputs(List<JobOutput> outputs) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new JobProperties();
-        }
-        this.innerProperties().withOutputs(outputs);
+        this.outputs = outputs;
         return this;
     }
 
@@ -157,7 +204,7 @@ public final class JobInner extends ProxyResource {
      * @return the priority value.
      */
     public Priority priority() {
-        return this.innerProperties() == null ? null : this.innerProperties().priority();
+        return this.priority;
     }
 
     /**
@@ -168,10 +215,7 @@ public final class JobInner extends ProxyResource {
      * @return the JobInner object itself.
      */
     public JobInner withPriority(Priority priority) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new JobProperties();
-        }
-        this.innerProperties().withPriority(priority);
+        this.priority = priority;
         return this;
     }
 
@@ -182,7 +226,7 @@ public final class JobInner extends ProxyResource {
      * @return the correlationData value.
      */
     public Map<String, String> correlationData() {
-        return this.innerProperties() == null ? null : this.innerProperties().correlationData();
+        return this.correlationData;
     }
 
     /**
@@ -193,10 +237,7 @@ public final class JobInner extends ProxyResource {
      * @return the JobInner object itself.
      */
     public JobInner withCorrelationData(Map<String, String> correlationData) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new JobProperties();
-        }
-        this.innerProperties().withCorrelationData(correlationData);
+        this.correlationData = correlationData;
         return this;
     }
 
@@ -206,7 +247,7 @@ public final class JobInner extends ProxyResource {
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().startTime();
+        return this.startTime;
     }
 
     /**
@@ -215,7 +256,7 @@ public final class JobInner extends ProxyResource {
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().endTime();
+        return this.endTime;
     }
 
     /**
@@ -224,8 +265,11 @@ public final class JobInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (input() != null) {
+            input().validate();
+        }
+        if (outputs() != null) {
+            outputs().forEach(e -> e.validate());
         }
     }
 }

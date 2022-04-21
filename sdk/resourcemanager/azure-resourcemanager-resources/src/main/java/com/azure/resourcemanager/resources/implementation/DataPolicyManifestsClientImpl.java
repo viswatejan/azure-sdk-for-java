@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resources.fluent.DataPolicyManifestsClient;
 import com.azure.resourcemanager.resources.fluent.models.DataPolicyManifestInner;
 import com.azure.resourcemanager.resources.models.DataPolicyManifestListResult;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in DataPolicyManifestsClient. */
 public final class DataPolicyManifestsClientImpl implements DataPolicyManifestsClient {
+    private final ClientLogger logger = new ClientLogger(DataPolicyManifestsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final DataPolicyManifestsService service;
 
