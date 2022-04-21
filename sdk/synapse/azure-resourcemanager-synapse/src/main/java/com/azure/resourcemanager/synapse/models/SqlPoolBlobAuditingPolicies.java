@@ -33,7 +33,7 @@ public interface SqlPoolBlobAuditingPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SQL pool's blob auditing policy along with {@link Response}.
+     * @return a SQL pool's blob auditing policy.
      */
     Response<SqlPoolBlobAuditingPolicy> getWithResponse(
         String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
@@ -74,7 +74,7 @@ public interface SqlPoolBlobAuditingPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SQL pool's blob auditing policy along with {@link Response}.
+     * @return a SQL pool's blob auditing policy.
      */
     SqlPoolBlobAuditingPolicy getById(String id);
 
@@ -86,7 +86,7 @@ public interface SqlPoolBlobAuditingPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SQL pool's blob auditing policy along with {@link Response}.
+     * @return a SQL pool's blob auditing policy.
      */
     Response<SqlPoolBlobAuditingPolicy> getByIdWithResponse(String id, Context context);
 

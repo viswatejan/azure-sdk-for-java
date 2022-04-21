@@ -131,8 +131,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of managed Virtual Network resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of managed Virtual Network resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ManagedVirtualNetworkResourceInner>> listByFactorySinglePageAsync(
@@ -190,8 +189,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of managed Virtual Network resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of managed Virtual Network resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ManagedVirtualNetworkResourceInner>> listByFactorySinglePageAsync(
@@ -245,7 +243,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of managed Virtual Network resources as paginated response with {@link PagedFlux}.
+     * @return a list of managed Virtual Network resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ManagedVirtualNetworkResourceInner> listByFactoryAsync(
@@ -264,7 +262,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of managed Virtual Network resources as paginated response with {@link PagedFlux}.
+     * @return a list of managed Virtual Network resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ManagedVirtualNetworkResourceInner> listByFactoryAsync(
@@ -282,7 +280,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of managed Virtual Network resources as paginated response with {@link PagedIterable}.
+     * @return a list of managed Virtual Network resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ManagedVirtualNetworkResourceInner> listByFactory(
@@ -299,7 +297,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of managed Virtual Network resources as paginated response with {@link PagedIterable}.
+     * @return a list of managed Virtual Network resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ManagedVirtualNetworkResourceInner> listByFactory(
@@ -319,8 +317,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return managed Virtual Network resource type along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return managed Virtual Network resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ManagedVirtualNetworkResourceInner>> createOrUpdateWithResponseAsync(
@@ -392,8 +389,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return managed Virtual Network resource type along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return managed Virtual Network resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ManagedVirtualNetworkResourceInner>> createOrUpdateWithResponseAsync(
@@ -462,7 +458,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return managed Virtual Network resource type on successful completion of {@link Mono}.
+     * @return managed Virtual Network resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ManagedVirtualNetworkResourceInner> createOrUpdateAsync(
@@ -493,7 +489,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return managed Virtual Network resource type on successful completion of {@link Mono}.
+     * @return managed Virtual Network resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ManagedVirtualNetworkResourceInner> createOrUpdateAsync(
@@ -551,7 +547,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return managed Virtual Network resource type along with {@link Response}.
+     * @return managed Virtual Network resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ManagedVirtualNetworkResourceInner> createOrUpdateWithResponse(
@@ -577,7 +573,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a managed Virtual Network along with {@link Response} on successful completion of {@link Mono}.
+     * @return a managed Virtual Network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ManagedVirtualNetworkResourceInner>> getWithResponseAsync(
@@ -637,7 +633,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a managed Virtual Network along with {@link Response} on successful completion of {@link Mono}.
+     * @return a managed Virtual Network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ManagedVirtualNetworkResourceInner>> getWithResponseAsync(
@@ -697,7 +693,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a managed Virtual Network on successful completion of {@link Mono}.
+     * @return a managed Virtual Network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ManagedVirtualNetworkResourceInner> getAsync(
@@ -722,7 +718,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a managed Virtual Network on successful completion of {@link Mono}.
+     * @return a managed Virtual Network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ManagedVirtualNetworkResourceInner> getAsync(
@@ -769,7 +765,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a managed Virtual Network along with {@link Response}.
+     * @return a managed Virtual Network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ManagedVirtualNetworkResourceInner> getWithResponse(
@@ -789,8 +785,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of managed Virtual Network resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of managed Virtual Network resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ManagedVirtualNetworkResourceInner>> listByFactoryNextSinglePageAsync(String nextLink) {
@@ -826,8 +821,7 @@ public final class ManagedVirtualNetworksClientImpl implements ManagedVirtualNet
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of managed Virtual Network resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of managed Virtual Network resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ManagedVirtualNetworkResourceInner>> listByFactoryNextSinglePageAsync(

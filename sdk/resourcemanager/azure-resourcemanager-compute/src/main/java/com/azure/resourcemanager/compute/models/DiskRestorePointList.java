@@ -7,12 +7,15 @@ package com.azure.resourcemanager.compute.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.models.DiskRestorePointInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The List Disk Restore Points operation response. */
 @Fluent
 public final class DiskRestorePointList {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DiskRestorePointList.class);
+
     /*
      * A list of disk restore points.
      */
@@ -75,13 +78,11 @@ public final class DiskRestorePointList {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model DiskRestorePointList"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DiskRestorePointList.class);
 }

@@ -115,8 +115,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of BackupEngineBase resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of BackupEngineBase resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupEngineBaseResourceInner>> listSinglePageAsync(
@@ -178,8 +177,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of BackupEngineBase resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of BackupEngineBase resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupEngineBaseResourceInner>> listSinglePageAsync(
@@ -237,7 +235,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of BackupEngineBase resources as paginated response with {@link PagedFlux}.
+     * @return list of BackupEngineBase resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BackupEngineBaseResourceInner> listAsync(
@@ -255,7 +253,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of BackupEngineBase resources as paginated response with {@link PagedFlux}.
+     * @return list of BackupEngineBase resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BackupEngineBaseResourceInner> listAsync(String vaultName, String resourceGroupName) {
@@ -277,7 +275,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of BackupEngineBase resources as paginated response with {@link PagedFlux}.
+     * @return list of BackupEngineBase resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BackupEngineBaseResourceInner> listAsync(
@@ -295,7 +293,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of BackupEngineBase resources as paginated response with {@link PagedIterable}.
+     * @return list of BackupEngineBase resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BackupEngineBaseResourceInner> list(String vaultName, String resourceGroupName) {
@@ -315,7 +313,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of BackupEngineBase resources as paginated response with {@link PagedIterable}.
+     * @return list of BackupEngineBase resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BackupEngineBaseResourceInner> list(
@@ -334,7 +332,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the base backup engine class along with {@link Response} on successful completion of {@link Mono}.
+     * @return the base backup engine class.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BackupEngineBaseResourceInner>> getWithResponseAsync(
@@ -393,7 +391,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the base backup engine class along with {@link Response} on successful completion of {@link Mono}.
+     * @return the base backup engine class.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BackupEngineBaseResourceInner>> getWithResponseAsync(
@@ -453,7 +451,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the base backup engine class on successful completion of {@link Mono}.
+     * @return the base backup engine class.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackupEngineBaseResourceInner> getAsync(
@@ -478,7 +476,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the base backup engine class on successful completion of {@link Mono}.
+     * @return the base backup engine class.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackupEngineBaseResourceInner> getAsync(
@@ -526,7 +524,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the base backup engine class along with {@link Response}.
+     * @return the base backup engine class.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BackupEngineBaseResourceInner> getWithResponse(
@@ -546,8 +544,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of BackupEngineBase resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of BackupEngineBase resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupEngineBaseResourceInner>> listNextSinglePageAsync(String nextLink) {
@@ -583,8 +580,7 @@ public final class BackupEnginesClientImpl implements BackupEnginesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of BackupEngineBase resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of BackupEngineBase resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupEngineBaseResourceInner>> listNextSinglePageAsync(

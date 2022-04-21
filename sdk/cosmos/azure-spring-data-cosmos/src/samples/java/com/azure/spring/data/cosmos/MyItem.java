@@ -2,10 +2,15 @@
 // Licensed under the MIT License.
 package com.azure.spring.data.cosmos;
 
+/**
+ * WARNING: MODIFYING THIS FILE WILL REQUIRE CORRESPONDING UPDATES TO README.md FILE. LINE NUMBERS
+ * ARE USED TO EXTRACT APPROPRIATE CODE SEGMENTS FROM THIS FILE. ADD NEW CODE AT THE BOTTOM TO AVOID CHANGING
+ * LINE NUMBERS OF EXISTING CODE SAMPLES.
+ */
+
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import org.springframework.data.annotation.Version;
 
-// BEGIN: readme-sample-MyItem
 @Container(containerName = "myContainer")
 public class MyItem {
     String id;
@@ -13,4 +18,3 @@ public class MyItem {
     @Version
     String _etag;
 }
-// END: readme-sample-MyItem

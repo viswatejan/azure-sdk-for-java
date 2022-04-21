@@ -40,7 +40,7 @@ public final class StorageDirectoryDeletedEventData {
      * Is this event for a recursive delete operation.
      */
     @JsonProperty(value = "recursive")
-    private String recursive;
+    private Boolean recursive;
 
     /*
      * An opaque string value representing the logical sequence of events for
@@ -154,7 +154,7 @@ public final class StorageDirectoryDeletedEventData {
      * @return the recursive value.
      */
     public Boolean isRecursive() {
-        return Boolean.getBoolean(this.recursive);
+        return this.recursive;
     }
 
     /**
@@ -164,7 +164,7 @@ public final class StorageDirectoryDeletedEventData {
      * @return the StorageDirectoryDeletedEventData object itself.
      */
     public StorageDirectoryDeletedEventData setRecursive(Boolean recursive) {
-        this.recursive = String.valueOf(recursive);
+        this.recursive = recursive;
         return this;
     }
 

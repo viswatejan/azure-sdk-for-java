@@ -33,8 +33,7 @@ public interface ProactiveDetectionConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of ProactiveDetection configurations of an Application Insights component along with {@link
-     *     Response}.
+     * @return a list of ProactiveDetection configurations of an Application Insights component.
      */
     Response<List<ApplicationInsightsComponentProactiveDetectionConfiguration>> listWithResponse(
         String resourceGroupName, String resourceName, Context context);
@@ -65,7 +64,7 @@ public interface ProactiveDetectionConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ProactiveDetection configuration for this configuration id along with {@link Response}.
+     * @return the ProactiveDetection configuration for this configuration id.
      */
     Response<ApplicationInsightsComponentProactiveDetectionConfiguration> getWithResponse(
         String resourceGroupName, String resourceName, String configurationId, Context context);
@@ -103,7 +102,7 @@ public interface ProactiveDetectionConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties that define a ProactiveDetection configuration along with {@link Response}.
+     * @return properties that define a ProactiveDetection configuration.
      */
     Response<ApplicationInsightsComponentProactiveDetectionConfiguration> updateWithResponse(
         String resourceGroupName,

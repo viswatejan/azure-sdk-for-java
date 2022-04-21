@@ -7,12 +7,15 @@ package com.azure.resourcemanager.containerservice.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.containerservice.models.OSOptionProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The OS option profile. */
 @Fluent
 public final class OSOptionProfileInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OSOptionProfileInner.class);
+
     /*
      * The ID of the OS option resource.
      */
@@ -103,7 +106,7 @@ public final class OSOptionProfileInner {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model OSOptionProfileInner"));
@@ -111,6 +114,4 @@ public final class OSOptionProfileInner {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OSOptionProfileInner.class);
 }

@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.redis.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redis.fluent.models.RedisUpdateProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -13,6 +15,8 @@ import java.util.Map;
 /** Parameters supplied to the Update Redis operation. */
 @Fluent
 public final class RedisUpdateParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RedisUpdateParameters.class);
+
     /*
      * Redis cache properties.
      */
@@ -25,12 +29,6 @@ public final class RedisUpdateParameters {
     @JsonProperty(value = "tags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
-
-    /*
-     * The identity of the resource.
-     */
-    @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
 
     /**
      * Get the innerProperties property: Redis cache properties.
@@ -58,26 +56,6 @@ public final class RedisUpdateParameters {
      */
     public RedisUpdateParameters withTags(Map<String, String> tags) {
         this.tags = tags;
-        return this;
-    }
-
-    /**
-     * Get the identity property: The identity of the resource.
-     *
-     * @return the identity value.
-     */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: The identity of the resource.
-     *
-     * @param identity the identity value to set.
-     * @return the RedisUpdateParameters object itself.
-     */
-    public RedisUpdateParameters withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
         return this;
     }
 
@@ -111,7 +89,7 @@ public final class RedisUpdateParameters {
      *
      * @return the redisConfiguration value.
      */
-    public RedisConfiguration redisConfiguration() {
+    public Map<String, String> redisConfiguration() {
         return this.innerProperties() == null ? null : this.innerProperties().redisConfiguration();
     }
 
@@ -123,7 +101,7 @@ public final class RedisUpdateParameters {
      * @param redisConfiguration the redisConfiguration value to set.
      * @return the RedisUpdateParameters object itself.
      */
-    public RedisUpdateParameters withRedisConfiguration(RedisConfiguration redisConfiguration) {
+    public RedisUpdateParameters withRedisConfiguration(Map<String, String> redisConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new RedisUpdateProperties();
         }
@@ -331,9 +309,6 @@ public final class RedisUpdateParameters {
     public void validate() {
         if (innerProperties() != null) {
             innerProperties().validate();
-        }
-        if (identity() != null) {
-            identity().validate();
         }
     }
 }

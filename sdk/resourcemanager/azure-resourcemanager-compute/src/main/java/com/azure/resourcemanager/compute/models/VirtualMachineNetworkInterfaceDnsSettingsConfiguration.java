@@ -5,12 +5,17 @@
 package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Describes a virtual machines network configuration's DNS settings. */
 @Fluent
 public final class VirtualMachineNetworkInterfaceDnsSettingsConfiguration {
+    @JsonIgnore
+    private final ClientLogger logger = new ClientLogger(VirtualMachineNetworkInterfaceDnsSettingsConfiguration.class);
+
     /*
      * List of DNS servers IP addresses
      */

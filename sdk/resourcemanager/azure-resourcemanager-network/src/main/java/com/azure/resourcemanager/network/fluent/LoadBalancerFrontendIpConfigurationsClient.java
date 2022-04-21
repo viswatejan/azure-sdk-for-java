@@ -26,7 +26,7 @@ public interface LoadBalancerFrontendIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer frontend IP configurations as paginated response with {@link PagedFlux}.
+     * @return all the load balancer frontend IP configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<FrontendIpConfigurationInner> listAsync(String resourceGroupName, String loadBalancerName);
@@ -39,7 +39,7 @@ public interface LoadBalancerFrontendIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer frontend IP configurations as paginated response with {@link PagedIterable}.
+     * @return all the load balancer frontend IP configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FrontendIpConfigurationInner> list(String resourceGroupName, String loadBalancerName);
@@ -53,7 +53,7 @@ public interface LoadBalancerFrontendIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer frontend IP configurations as paginated response with {@link PagedIterable}.
+     * @return all the load balancer frontend IP configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FrontendIpConfigurationInner> list(
@@ -68,8 +68,7 @@ public interface LoadBalancerFrontendIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return load balancer frontend IP configuration along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return load balancer frontend IP configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FrontendIpConfigurationInner>> getWithResponseAsync(
@@ -84,7 +83,7 @@ public interface LoadBalancerFrontendIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return load balancer frontend IP configuration on successful completion of {@link Mono}.
+     * @return load balancer frontend IP configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FrontendIpConfigurationInner> getAsync(
@@ -115,7 +114,7 @@ public interface LoadBalancerFrontendIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return load balancer frontend IP configuration along with {@link Response}.
+     * @return load balancer frontend IP configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FrontendIpConfigurationInner> getWithResponse(

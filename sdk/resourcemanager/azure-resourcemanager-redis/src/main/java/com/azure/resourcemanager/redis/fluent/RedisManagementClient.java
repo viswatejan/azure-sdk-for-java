@@ -93,11 +93,4 @@ public interface RedisManagementClient {
      * @return the PrivateLinkResourcesClient object.
      */
     PrivateLinkResourcesClient getPrivateLinkResources();
-
-    /**
-     * Gets the AsyncOperationStatusClient object to access its operations.
-     *
-     * @return the AsyncOperationStatusClient object.
-     */
-    AsyncOperationStatusClient getAsyncOperationStatus();
 }

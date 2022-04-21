@@ -25,6 +25,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.BackupsClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.ServerBackupInner;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerBackupListResult;
@@ -32,6 +33,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in BackupsClient. */
 public final class BackupsClientImpl implements BackupsClient {
+    private final ClientLogger logger = new ClientLogger(BackupsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final BackupsService service;
 
@@ -106,7 +109,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return server backup properties along with {@link Response} on successful completion of {@link Mono}.
+     * @return server backup properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServerBackupInner>> getWithResponseAsync(
@@ -160,7 +163,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return server backup properties along with {@link Response} on successful completion of {@link Mono}.
+     * @return server backup properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServerBackupInner>> getWithResponseAsync(
@@ -210,7 +213,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return server backup properties on successful completion of {@link Mono}.
+     * @return server backup properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ServerBackupInner> getAsync(String resourceGroupName, String serverName, String backupName) {
@@ -251,7 +254,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return server backup properties along with {@link Response}.
+     * @return server backup properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ServerBackupInner> getWithResponse(
@@ -267,7 +270,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of server backups along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of server backups.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServerBackupInner>> listByServerSinglePageAsync(
@@ -325,7 +328,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of server backups along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of server backups.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServerBackupInner>> listByServerSinglePageAsync(
@@ -379,7 +382,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of server backups as paginated response with {@link PagedFlux}.
+     * @return a list of server backups.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ServerBackupInner> listByServerAsync(String resourceGroupName, String serverName) {
@@ -397,7 +400,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of server backups as paginated response with {@link PagedFlux}.
+     * @return a list of server backups.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ServerBackupInner> listByServerAsync(
@@ -415,7 +418,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of server backups as paginated response with {@link PagedIterable}.
+     * @return a list of server backups.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ServerBackupInner> listByServer(String resourceGroupName, String serverName) {
@@ -431,7 +434,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of server backups as paginated response with {@link PagedIterable}.
+     * @return a list of server backups.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ServerBackupInner> listByServer(String resourceGroupName, String serverName, Context context) {
@@ -445,7 +448,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of server backups along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of server backups.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServerBackupInner>> listByServerNextSinglePageAsync(String nextLink) {
@@ -481,7 +484,7 @@ public final class BackupsClientImpl implements BackupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of server backups along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of server backups.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServerBackupInner>> listByServerNextSinglePageAsync(String nextLink, Context context) {

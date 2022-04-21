@@ -7,13 +7,9 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.resourcemanager.cdn.CdnManager;
 import com.azure.resourcemanager.cdn.fluent.models.ProfileInner;
 import com.azure.resourcemanager.cdn.fluent.models.SsoUriInner;
-import com.azure.resourcemanager.cdn.models.LoadParameters;
-import com.azure.resourcemanager.cdn.models.ProfileUpdateParameters;
-import com.azure.resourcemanager.cdn.models.PurgeParameters;
 import com.azure.resourcemanager.cdn.models.ResourceUsage;
 import com.azure.resourcemanager.cdn.models.Sku;
 import com.azure.resourcemanager.cdn.models.SkuName;
-import com.azure.resourcemanager.cdn.models.ValidateCustomDomainInput;
 import com.azure.resourcemanager.resources.fluentcore.arm.models.implementation.GroupableResourceImpl;
 import com.azure.resourcemanager.cdn.models.CdnEndpoint;
 import com.azure.resourcemanager.cdn.models.CdnProfile;
@@ -102,8 +98,7 @@ class CdnProfileImpl
     public Mono<Void> purgeEndpointContentAsync(String endpointName, Set<String> contentPaths) {
         if (contentPaths != null) {
             return this.manager().serviceClient().getEndpoints()
-                .purgeContentAsync(this.resourceGroupName(), this.name(), endpointName,
-                    new PurgeParameters().withContentPaths(new ArrayList<>(contentPaths)));
+                .purgeContentAsync(this.resourceGroupName(), this.name(), endpointName, new ArrayList<>(contentPaths));
         }
         return Mono.empty();
     }
@@ -117,8 +112,7 @@ class CdnProfileImpl
     public Mono<Void> loadEndpointContentAsync(String endpointName, Set<String> contentPaths) {
         if (contentPaths != null) {
             return this.manager().serviceClient().getEndpoints()
-                .loadContentAsync(this.resourceGroupName(), this.name(), endpointName,
-                    new LoadParameters().withContentPaths(new ArrayList<>(contentPaths)));
+                .loadContentAsync(this.resourceGroupName(), this.name(), endpointName, new ArrayList<>(contentPaths));
         }
         return Mono.empty();
     }
@@ -131,7 +125,7 @@ class CdnProfileImpl
     @Override
     public Mono<CustomDomainValidationResult> validateEndpointCustomDomainAsync(String endpointName, String hostName) {
         return this.manager().serviceClient().getEndpoints().validateCustomDomainAsync(
-            this.resourceGroupName(), this.name(), endpointName, new ValidateCustomDomainInput().withHostname(hostName))
+            this.resourceGroupName(), this.name(), endpointName, hostName)
             .map(CustomDomainValidationResult::new);
     }
 
@@ -183,8 +177,7 @@ class CdnProfileImpl
     public Mono<CdnProfile> updateResourceAsync() {
         final CdnProfileImpl self = this;
         return this.manager().serviceClient().getProfiles()
-            .updateAsync(this.resourceGroupName(), this.name(),
-                new ProfileUpdateParameters().withTags(innerModel().tags()))
+            .updateAsync(this.resourceGroupName(), this.name(), innerModel().tags())
             .map(inner -> {
                 self.setInner(inner);
                 return self;

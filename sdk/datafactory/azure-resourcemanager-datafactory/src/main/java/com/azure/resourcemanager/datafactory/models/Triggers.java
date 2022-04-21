@@ -18,7 +18,7 @@ public interface Triggers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of trigger resources as paginated response with {@link PagedIterable}.
+     * @return a list of trigger resources.
      */
     PagedIterable<TriggerResource> listByFactory(String resourceGroupName, String factoryName);
 
@@ -31,7 +31,7 @@ public interface Triggers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of trigger resources as paginated response with {@link PagedIterable}.
+     * @return a list of trigger resources.
      */
     PagedIterable<TriggerResource> listByFactory(String resourceGroupName, String factoryName, Context context);
 
@@ -59,7 +59,7 @@ public interface Triggers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a query of triggers along with {@link Response}.
+     * @return a query of triggers.
      */
     Response<TriggerQueryResponse> queryByFactoryWithResponse(
         String resourceGroupName, String factoryName, TriggerFilterParameters filterParameters, Context context);
@@ -89,7 +89,7 @@ public interface Triggers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a trigger along with {@link Response}.
+     * @return a trigger.
      */
     Response<TriggerResource> getWithResponse(
         String resourceGroupName, String factoryName, String triggerName, String ifNoneMatch, Context context);
@@ -116,7 +116,7 @@ public interface Triggers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String factoryName, String triggerName, Context context);
@@ -174,7 +174,7 @@ public interface Triggers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a trigger's event subscription status along with {@link Response}.
+     * @return a trigger's event subscription status.
      */
     Response<TriggerSubscriptionOperationStatus> getEventSubscriptionStatusWithResponse(
         String resourceGroupName, String factoryName, String triggerName, Context context);
@@ -265,7 +265,7 @@ public interface Triggers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a trigger along with {@link Response}.
+     * @return a trigger.
      */
     TriggerResource getById(String id);
 
@@ -279,7 +279,7 @@ public interface Triggers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a trigger along with {@link Response}.
+     * @return a trigger.
      */
     Response<TriggerResource> getByIdWithResponse(String id, String ifNoneMatch, Context context);
 
@@ -301,7 +301,7 @@ public interface Triggers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

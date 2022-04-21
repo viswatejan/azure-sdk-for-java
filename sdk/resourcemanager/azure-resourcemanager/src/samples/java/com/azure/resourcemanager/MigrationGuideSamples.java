@@ -25,28 +25,63 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * WARNING: MODIFYING THIS FILE WILL REQUIRE CORRESPONDING UPDATES TO README.md FILE. LINE NUMBERS
+ * ARE USED TO EXTRACT APPROPRIATE CODE SEGMENTS FROM THIS FILE. ADD NEW CODE AT THE BOTTOM TO AVOID CHANGING
+ * LINE NUMBERS OF EXISTING CODE SAMPLES.
+ *
  * Code samples for the MIGRATION_GUIDE.md
  */
 public class MigrationGuideSamples {
+    // extra empty lines to compensate import lines
 
-    public void authentication() {
-        // BEGIN: readme-sample-authenticationMigration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // THIS LINE MUST BE AT LINE NO. 70
+    public void authetication() {
         TokenCredential credential = new ClientSecretCredentialBuilder()
             .clientId("<ClientId>")
             .clientSecret("<ClientSecret>")
             .tenantId("<TenantId>")
             .build();
         AzureProfile profile = new AzureProfile("<TenantId>", "<SubscriptionId>", AzureEnvironment.AZURE);
-        // END: readme-sample-authenticationMigration
     }
 
     public void customizedPolicy(TokenCredential credential, AzureProfile profile) {
-        // BEGIN: readme-sample-customizedPolicy
         AzureResourceManager azure = AzureResourceManager.configure()
             .withPolicy(new CustomizedPolicy())
             .authenticate(credential, profile)
             .withDefaultSubscription();
-        // END: readme-sample-customizedPolicy
     }
 
     public static class CustomizedPolicy implements HttpPipelinePolicy {
@@ -57,7 +92,6 @@ public class MigrationGuideSamples {
     }
 
     public void customizedHttpClient(TokenCredential credential, AzureProfile profile) {
-        // BEGIN: readme-sample-customizedHttpClient
         HttpClient client = new OkHttpAsyncHttpClientBuilder()
             .proxy(new ProxyOptions(ProxyOptions.Type.HTTP, new InetSocketAddress("127.0.0.1", 8888)))
             .build();
@@ -66,11 +100,9 @@ public class MigrationGuideSamples {
             .withHttpClient(client)
             .authenticate(credential, profile)
             .withDefaultSubscription();
-        // END: readme-sample-customizedHttpClient
     }
 
     public void errorHandling(AzureResourceManager azure) {
-        // BEGIN: readme-sample-errorHandling
         final String resourceGroupName = "invalid resource group name";
         try {
             azure.resourceGroups().define(resourceGroupName)
@@ -80,7 +112,6 @@ public class MigrationGuideSamples {
             System.err.printf("Response code: %s%n", e.getValue().getCode());
             System.err.printf("Response message: %s%n", e.getValue().getMessage());
         }
-        // END: readme-sample-errorHandling
     }
 
     public void asynchronizeCreation(AzureResourceManager azure) {
@@ -99,7 +130,6 @@ public class MigrationGuideSamples {
         String natPool50XXto22 = "";
         String natPool60XXto23 = "";
 
-        // BEGIN: readme-sample-asynchronizeCreation
         final List<Object> createdResources = new ArrayList<>();
         azure.resourceGroups().define(rgName).withRegion(region).create();
         Flux.merge(
@@ -134,6 +164,5 @@ public class MigrationGuideSamples {
         )
             .doOnNext(createdResources::add)
             .blockLast();
-        // END: readme-sample-asynchronizeCreation
     }
 }

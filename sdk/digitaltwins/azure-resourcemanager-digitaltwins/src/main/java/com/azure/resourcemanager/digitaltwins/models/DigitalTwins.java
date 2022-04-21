@@ -31,7 +31,7 @@ public interface DigitalTwins {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return digitalTwinsInstances resource along with {@link Response}.
+     * @return digitalTwinsInstances resource.
      */
     Response<DigitalTwinsDescription> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context);
@@ -66,7 +66,7 @@ public interface DigitalTwins {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DigitalTwinsInstances in a subscription as paginated response with {@link PagedIterable}.
+     * @return all the DigitalTwinsInstances in a subscription.
      */
     PagedIterable<DigitalTwinsDescription> list();
 
@@ -77,7 +77,7 @@ public interface DigitalTwins {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DigitalTwinsInstances in a subscription as paginated response with {@link PagedIterable}.
+     * @return all the DigitalTwinsInstances in a subscription.
      */
     PagedIterable<DigitalTwinsDescription> list(Context context);
 
@@ -88,7 +88,7 @@ public interface DigitalTwins {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DigitalTwinsInstances in a resource group as paginated response with {@link PagedIterable}.
+     * @return all the DigitalTwinsInstances in a resource group.
      */
     PagedIterable<DigitalTwinsDescription> listByResourceGroup(String resourceGroupName);
 
@@ -100,7 +100,7 @@ public interface DigitalTwins {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DigitalTwinsInstances in a resource group as paginated response with {@link PagedIterable}.
+     * @return all the DigitalTwinsInstances in a resource group.
      */
     PagedIterable<DigitalTwinsDescription> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -127,7 +127,7 @@ public interface DigitalTwins {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response}.
+     * @return the result returned from a check name availability request.
      */
     Response<CheckNameResult> checkNameAvailabilityWithResponse(
         String location, CheckNameRequest digitalTwinsInstanceCheckName, Context context);
@@ -139,7 +139,7 @@ public interface DigitalTwins {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return digitalTwinsInstances resource along with {@link Response}.
+     * @return digitalTwinsInstances resource.
      */
     DigitalTwinsDescription getById(String id);
 
@@ -151,7 +151,7 @@ public interface DigitalTwins {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return digitalTwinsInstances resource along with {@link Response}.
+     * @return digitalTwinsInstances resource.
      */
     Response<DigitalTwinsDescription> getByIdWithResponse(String id, Context context);
 

@@ -7,12 +7,15 @@ package com.azure.resourcemanager.appservice.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.fluent.models.StaticSiteFunctionOverviewArmResourceInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Collection of static site functions. */
 @Fluent
 public final class StaticSiteFunctionOverviewCollection {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(StaticSiteFunctionOverviewCollection.class);
+
     /*
      * Collection of resources.
      */
@@ -61,7 +64,7 @@ public final class StaticSiteFunctionOverviewCollection {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model StaticSiteFunctionOverviewCollection"));
@@ -69,6 +72,4 @@ public final class StaticSiteFunctionOverviewCollection {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(StaticSiteFunctionOverviewCollection.class);
 }

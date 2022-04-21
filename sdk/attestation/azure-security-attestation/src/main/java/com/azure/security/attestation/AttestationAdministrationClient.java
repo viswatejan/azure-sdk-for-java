@@ -12,13 +12,15 @@ import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.security.attestation.models.AttestationPolicySetOptions;
 import com.azure.security.attestation.models.AttestationResponse;
-import com.azure.security.attestation.models.AttestationSignerCollection;
+import com.azure.security.attestation.models.AttestationSigner;
 import com.azure.security.attestation.models.AttestationSigningKey;
 import com.azure.security.attestation.models.AttestationTokenValidationOptions;
 import com.azure.security.attestation.models.AttestationType;
 import com.azure.security.attestation.models.PolicyCertificatesModificationResult;
 import com.azure.security.attestation.models.PolicyManagementCertificateOptions;
 import com.azure.security.attestation.models.PolicyResult;
+
+import java.util.List;
 
 /**
  *
@@ -162,8 +164,7 @@ public final class AttestationAdministrationClient {
      * <p><strong>Retrieve the current attestation policy for SGX enclaves.</strong></p>
      * <!-- src_embed com.azure.security.attestation.AttestationAdministrationClient.getPolicyWithResponse -->
      * <pre>
-     * Response&lt;String&gt; response = client.getAttestationPolicyWithResponse&#40;AttestationType.SGX_ENCLAVE, null,
-     *     Context.NONE&#41;;
+     * Response&lt;String&gt; response = client.getAttestationPolicyWithResponse&#40;AttestationType.SGX_ENCLAVE, null, Context.NONE&#41;;
      * </pre>
      * <!-- end com.azure.security.attestation.AttestationAdministrationClient.getPolicyWithResponse -->
      *
@@ -176,7 +177,7 @@ public final class AttestationAdministrationClient {
      * @return the attestation policy expressed as a string.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AttestationResponse<String> getAttestationPolicyWithResponse(AttestationType attestationType, AttestationTokenValidationOptions validationOptions, Context context) {
+    public Response<String> getAttestationPolicyWithResponse(AttestationType attestationType, AttestationTokenValidationOptions validationOptions, Context context) {
         return asyncClient.getAttestationPolicyWithResponse(attestationType, validationOptions, context).block();
     }
 
@@ -270,7 +271,7 @@ public final class AttestationAdministrationClient {
      * @return {@link PolicyResult} expressing the result of the attestation operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AttestationResponse<PolicyResult> setAttestationPolicyWithResponse(AttestationType attestationType, AttestationPolicySetOptions options, Context context) {
+    public Response<PolicyResult> setAttestationPolicyWithResponse(AttestationType attestationType, AttestationPolicySetOptions options, Context context) {
         return asyncClient.setAttestationPolicyWithResponse(attestationType, options, context).block();
     }
 
@@ -389,7 +390,7 @@ public final class AttestationAdministrationClient {
      * @return {@link PolicyResult} expressing the result of the attestation operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AttestationResponse<PolicyResult> resetAttestationPolicyWithResponse(AttestationType attestationType, AttestationPolicySetOptions options, Context context) {
+    public Response<PolicyResult> resetAttestationPolicyWithResponse(AttestationType attestationType, AttestationPolicySetOptions options, Context context) {
         return asyncClient.resetAttestationPolicyWithResponse(attestationType, options, context).block();
     }
 
@@ -411,8 +412,8 @@ public final class AttestationAdministrationClient {
      * <p><strong>Retrieve the set of policy management certificates for this instance.</strong></p>
      * <!-- src_embed com.azure.security.attestation.AttestationAdministrationClient.listPolicyManagementCertificatesSimple -->
      * <pre>
-     * AttestationSignerCollection signers = client.listPolicyManagementCertificates&#40;&#41;;
-     * System.out.printf&#40;&quot;There are %d signers on the instance&#92;n&quot;, signers.getAttestationSigners&#40;&#41;.size&#40;&#41;&#41;;
+     * List&lt;AttestationSigner&gt; signers = client.listPolicyManagementCertificates&#40;&#41;;
+     * System.out.printf&#40;&quot;There are %d signers on the instance&#92;n&quot;, signers.size&#40;&#41;&#41;;
      * </pre>
      * <!-- end com.azure.security.attestation.AttestationAdministrationClient.listPolicyManagementCertificatesSimple -->
      *
@@ -422,7 +423,7 @@ public final class AttestationAdministrationClient {
      * @return the response to an attestation policy operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AttestationSignerCollection listPolicyManagementCertificates() {
+    public List<AttestationSigner> listPolicyManagementCertificates() {
         return asyncClient.listPolicyManagementCertificates().block();
     }
 
@@ -444,11 +445,9 @@ public final class AttestationAdministrationClient {
      * <p><strong>Retrieve the set of policy management certificates for this instance.</strong></p>
      * <!-- src_embed com.azure.security.attestation.AttestationAdministrationClient.listPolicyManagementCertificatesWithResponse -->
      * <pre>
-     * AttestationResponse&lt;AttestationSignerCollection&gt; signersResponse =
-     *     client.listPolicyManagementCertificatesWithResponse&#40;
-     *         new AttestationTokenValidationOptions&#40;&#41;.setValidationSlack&#40;Duration.ofSeconds&#40;10&#41;&#41;, Context.NONE&#41;;
-     * System.out.printf&#40;&quot;There are %d signers on the instance&#92;n&quot;,
-     *     signersResponse.getValue&#40;&#41;.getAttestationSigners&#40;&#41;.size&#40;&#41;&#41;;
+     * Response&lt;List&lt;AttestationSigner&gt;&gt; signersResponse = client.listPolicyManagementCertificatesWithResponse&#40;
+     *     new AttestationTokenValidationOptions&#40;&#41;.setValidationSlack&#40;Duration.ofSeconds&#40;10&#41;&#41;, Context.NONE&#41;;
+     * System.out.printf&#40;&quot;There are %d signers on the instance&#92;n&quot;, signersResponse.getValue&#40;&#41;.size&#40;&#41;&#41;;
      * </pre>
      * <!-- end com.azure.security.attestation.AttestationAdministrationClient.listPolicyManagementCertificatesWithResponse -->
      *
@@ -460,7 +459,7 @@ public final class AttestationAdministrationClient {
      * @return the attestation policy expressed as a string.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AttestationResponse<AttestationSignerCollection> listPolicyManagementCertificatesWithResponse(AttestationTokenValidationOptions tokenValidationOptions, Context context) {
+    public Response<List<AttestationSigner>> listPolicyManagementCertificatesWithResponse(AttestationTokenValidationOptions tokenValidationOptions, Context context) {
         return asyncClient.listPolicyManagementCertificatesWithResponse(tokenValidationOptions, context).block();
     }
 
@@ -537,12 +536,12 @@ public final class AttestationAdministrationClient {
      * @return the response to an attestation policy operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AttestationResponse<PolicyCertificatesModificationResult> addPolicyManagementCertificateWithResponse(PolicyManagementCertificateOptions options, Context context) {
+    public Response<PolicyCertificatesModificationResult> addPolicyManagementCertificateWithResponse(PolicyManagementCertificateOptions options, Context context) {
         return asyncClient.addPolicyManagementCertificateWithResponse(options, context).block();
     }
 
     /**
-     * Deletes a policy management certificate from the set of policy management certificates.
+     * Removes a policy management certificate from the set of policy management certificates.
      * <p>
      * Each Isolated mode attestation service instance maintains a set of certificates which can be used to authorize
      * policy modification operations (in Isolated mode, each policy modification request needs to be signed with
@@ -559,7 +558,7 @@ public final class AttestationAdministrationClient {
      * <p><strong>Add a new certificate to the set of policy management certificates for this instance.</strong></p>
      * <!-- src_embed com.azure.security.attestation.AttestationAdministrationClient.removePolicyManagementCertificate -->
      * <pre>
-     * PolicyCertificatesModificationResult removeResult = client.deletePolicyManagementCertificate&#40;
+     * PolicyCertificatesModificationResult removeResult = client.removePolicyManagementCertificate&#40;
      *     new PolicyManagementCertificateOptions&#40;certificateToAdd, new AttestationSigningKey&#40;certificate, privateKey&#41;&#41;&#41;;
      * System.out.printf&#40;&quot; Result: %s&#92;n&quot;, removeResult.getCertificateResolution&#40;&#41;.toString&#40;&#41;&#41;;
      * </pre>
@@ -577,8 +576,8 @@ public final class AttestationAdministrationClient {
      * @return the response to an attestation policy operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public PolicyCertificatesModificationResult deletePolicyManagementCertificate(PolicyManagementCertificateOptions options) {
-        return asyncClient.deletePolicyManagementCertificate(options).block();
+    public PolicyCertificatesModificationResult removePolicyManagementCertificate(PolicyManagementCertificateOptions options) {
+        return asyncClient.removePolicyManagementCertificate(options).block();
     }
 
     /**
@@ -619,7 +618,7 @@ public final class AttestationAdministrationClient {
      * @return the response to an attestation policy operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AttestationResponse<PolicyCertificatesModificationResult> deletePolicyManagementCertificateWithResponse(PolicyManagementCertificateOptions options, Context context) {
-        return asyncClient.deletePolicyManagementCertificateWithResponse(options, context).block();
+    public Response<PolicyCertificatesModificationResult> removePolicyManagementCertificateWithResponse(PolicyManagementCertificateOptions options, Context context) {
+        return asyncClient.removePolicyManagementCertificateWithResponse(options, context).block();
     }
 }

@@ -7,12 +7,15 @@ package com.azure.resourcemanager.containerservice.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.containerservice.models.OrchestratorVersionProfile;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The properties of an orchestrator version profile. */
 @Fluent
 public final class OrchestratorVersionProfileProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OrchestratorVersionProfileProperties.class);
+
     /*
      * List of orchestrator version profiles.
      */
@@ -46,7 +49,7 @@ public final class OrchestratorVersionProfileProperties {
      */
     public void validate() {
         if (orchestrators() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property orchestrators in model OrchestratorVersionProfileProperties"));
@@ -54,6 +57,4 @@ public final class OrchestratorVersionProfileProperties {
             orchestrators().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OrchestratorVersionProfileProperties.class);
 }

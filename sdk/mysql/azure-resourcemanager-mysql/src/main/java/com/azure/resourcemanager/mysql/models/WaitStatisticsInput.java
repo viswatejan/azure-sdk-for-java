@@ -5,31 +5,35 @@
 package com.azure.resourcemanager.mysql.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.mysql.fluent.models.WaitStatisticsInputProperties;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Input to get wait statistics. */
+@JsonFlatten
 @Fluent
-public final class WaitStatisticsInput {
+public class WaitStatisticsInput {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(WaitStatisticsInput.class);
 
     /*
-     * The properties of a wait statistics input.
+     * Observation start time.
      */
-    @JsonProperty(value = "properties", required = true)
-    private WaitStatisticsInputProperties innerProperties = new WaitStatisticsInputProperties();
+    @JsonProperty(value = "properties.observationStartTime", required = true)
+    private OffsetDateTime observationStartTime;
 
-    /**
-     * Get the innerProperties property: The properties of a wait statistics input.
-     *
-     * @return the innerProperties value.
+    /*
+     * Observation end time.
      */
-    private WaitStatisticsInputProperties innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.observationEndTime", required = true)
+    private OffsetDateTime observationEndTime;
+
+    /*
+     * Aggregation interval type in ISO 8601 format.
+     */
+    @JsonProperty(value = "properties.aggregationWindow", required = true)
+    private String aggregationWindow;
 
     /**
      * Get the observationStartTime property: Observation start time.
@@ -37,7 +41,7 @@ public final class WaitStatisticsInput {
      * @return the observationStartTime value.
      */
     public OffsetDateTime observationStartTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().observationStartTime();
+        return this.observationStartTime;
     }
 
     /**
@@ -47,10 +51,7 @@ public final class WaitStatisticsInput {
      * @return the WaitStatisticsInput object itself.
      */
     public WaitStatisticsInput withObservationStartTime(OffsetDateTime observationStartTime) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WaitStatisticsInputProperties();
-        }
-        this.innerProperties().withObservationStartTime(observationStartTime);
+        this.observationStartTime = observationStartTime;
         return this;
     }
 
@@ -60,7 +61,7 @@ public final class WaitStatisticsInput {
      * @return the observationEndTime value.
      */
     public OffsetDateTime observationEndTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().observationEndTime();
+        return this.observationEndTime;
     }
 
     /**
@@ -70,10 +71,7 @@ public final class WaitStatisticsInput {
      * @return the WaitStatisticsInput object itself.
      */
     public WaitStatisticsInput withObservationEndTime(OffsetDateTime observationEndTime) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WaitStatisticsInputProperties();
-        }
-        this.innerProperties().withObservationEndTime(observationEndTime);
+        this.observationEndTime = observationEndTime;
         return this;
     }
 
@@ -83,7 +81,7 @@ public final class WaitStatisticsInput {
      * @return the aggregationWindow value.
      */
     public String aggregationWindow() {
-        return this.innerProperties() == null ? null : this.innerProperties().aggregationWindow();
+        return this.aggregationWindow;
     }
 
     /**
@@ -93,10 +91,7 @@ public final class WaitStatisticsInput {
      * @return the WaitStatisticsInput object itself.
      */
     public WaitStatisticsInput withAggregationWindow(String aggregationWindow) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WaitStatisticsInputProperties();
-        }
-        this.innerProperties().withAggregationWindow(aggregationWindow);
+        this.aggregationWindow = aggregationWindow;
         return this;
     }
 
@@ -106,13 +101,23 @@ public final class WaitStatisticsInput {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
+        if (observationStartTime() == null) {
             throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
-                        "Missing required property innerProperties in model WaitStatisticsInput"));
-        } else {
-            innerProperties().validate();
+                        "Missing required property observationStartTime in model WaitStatisticsInput"));
+        }
+        if (observationEndTime() == null) {
+            throw logger
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property observationEndTime in model WaitStatisticsInput"));
+        }
+        if (aggregationWindow() == null) {
+            throw logger
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property aggregationWindow in model WaitStatisticsInput"));
         }
     }
 }

@@ -4,10 +4,11 @@
 package com.azure.ai.formrecognizer.models;
 
 import com.azure.ai.formrecognizer.administration.models.DocumentModelOperationError;
+import com.azure.ai.formrecognizer.implementation.util.DocumentAnalysisExceptionHelper;
 import com.azure.core.exception.AzureException;
 
 /**
- * Exception for failures related to errors encountered during document analysis, or creation
+ * General exception for client-side related failures related to document model analysis, or creation
  * operation.
  *
  * @see DocumentModelOperationError
@@ -17,19 +18,7 @@ public final class DocumentModelOperationException extends AzureException {
     /**
      * the error information for this exception.
      */
-    private final DocumentModelOperationError documentModelOperationError;
-
-    /**
-     * Constructs a new DocumentModelOperationException
-     *
-     * @param documentModelOperationError the documentModelOperationError underlying this exception
-     */
-    public DocumentModelOperationException(DocumentModelOperationError documentModelOperationError) {
-        super(documentModelOperationError.getInnerError() != null
-            ? documentModelOperationError.getInnerError().getMessage()
-            : documentModelOperationError.getMessage());
-        this.documentModelOperationError = documentModelOperationError;
-    }
+    private DocumentModelOperationError documentModelOperationError;
 
     /**
      * Get the error information for this exception.
@@ -38,5 +27,18 @@ public final class DocumentModelOperationException extends AzureException {
      */
     public DocumentModelOperationError getDocumentModelOperationError() {
         return this.documentModelOperationError;
+    }
+
+    /**
+     * Set the error information for this exception.
+     */
+    void setDocumentModelOperationError(DocumentModelOperationError documentModelOperationError) {
+        this.documentModelOperationError = documentModelOperationError;
+    }
+
+    static {
+        DocumentAnalysisExceptionHelper.setAccessor(
+            ((documentModelOperationException, documentModelOperationError)
+                -> documentModelOperationException.setDocumentModelOperationError(documentModelOperationError)));
     }
 }

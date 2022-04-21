@@ -23,7 +23,7 @@ public interface LoadBalancerOutboundRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the outbound rules in a load balancer as paginated response with {@link PagedFlux}.
+     * @return all the outbound rules in a load balancer.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<OutboundRuleInner> listAsync(String resourceGroupName, String loadBalancerName);
@@ -36,7 +36,7 @@ public interface LoadBalancerOutboundRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the outbound rules in a load balancer as paginated response with {@link PagedIterable}.
+     * @return all the outbound rules in a load balancer.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<OutboundRuleInner> list(String resourceGroupName, String loadBalancerName);
@@ -50,7 +50,7 @@ public interface LoadBalancerOutboundRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the outbound rules in a load balancer as paginated response with {@link PagedIterable}.
+     * @return all the outbound rules in a load balancer.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<OutboundRuleInner> list(String resourceGroupName, String loadBalancerName, Context context);
@@ -64,8 +64,7 @@ public interface LoadBalancerOutboundRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified load balancer outbound rule along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified load balancer outbound rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<OutboundRuleInner>> getWithResponseAsync(
@@ -80,7 +79,7 @@ public interface LoadBalancerOutboundRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified load balancer outbound rule on successful completion of {@link Mono}.
+     * @return the specified load balancer outbound rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<OutboundRuleInner> getAsync(String resourceGroupName, String loadBalancerName, String outboundRuleName);
@@ -109,7 +108,7 @@ public interface LoadBalancerOutboundRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified load balancer outbound rule along with {@link Response}.
+     * @return the specified load balancer outbound rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<OutboundRuleInner> getWithResponse(

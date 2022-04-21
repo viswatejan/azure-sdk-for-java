@@ -6,12 +6,15 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Contains information about the auto-storage account associated with a Batch account. */
 @Fluent
 public final class AutoStorageProperties extends AutoStorageBaseProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AutoStorageProperties.class);
+
     /*
      * The UTC time at which storage keys were last synchronized with the Batch
      * account.
@@ -69,12 +72,10 @@ public final class AutoStorageProperties extends AutoStorageBaseProperties {
     public void validate() {
         super.validate();
         if (lastKeySync() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property lastKeySync in model AutoStorageProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AutoStorageProperties.class);
 }

@@ -7,11 +7,14 @@ package com.azure.resourcemanager.appservice.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.models.MySqlMigrationType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** MigrateMySqlRequest resource specific properties. */
 @Fluent
 public final class MigrateMySqlRequestProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MigrateMySqlRequestProperties.class);
+
     /*
      * Connection string to the remote MySQL database.
      */
@@ -71,18 +74,16 @@ public final class MigrateMySqlRequestProperties {
      */
     public void validate() {
         if (connectionString() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property connectionString in model MigrateMySqlRequestProperties"));
         }
         if (migrationType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property migrationType in model MigrateMySqlRequestProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MigrateMySqlRequestProperties.class);
 }

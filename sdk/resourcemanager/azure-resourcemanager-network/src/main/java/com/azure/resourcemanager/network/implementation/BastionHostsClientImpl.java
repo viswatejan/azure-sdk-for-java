@@ -192,7 +192,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String bastionHostname) {
@@ -242,7 +242,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -289,7 +289,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String bastionHostname) {
@@ -309,7 +309,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -329,7 +329,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String bastionHostname) {
@@ -345,7 +345,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -361,7 +361,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(String resourceGroupName, String bastionHostname) {
@@ -379,7 +379,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String bastionHostname, Context context) {
@@ -425,7 +425,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Bastion Host along with {@link Response} on successful completion of {@link Mono}.
+     * @return the specified Bastion Host.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BastionHostInner>> getByResourceGroupWithResponseAsync(
@@ -476,7 +476,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Bastion Host along with {@link Response} on successful completion of {@link Mono}.
+     * @return the specified Bastion Host.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BastionHostInner>> getByResourceGroupWithResponseAsync(
@@ -523,7 +523,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Bastion Host on successful completion of {@link Mono}.
+     * @return the specified Bastion Host.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BastionHostInner> getByResourceGroupAsync(String resourceGroupName, String bastionHostname) {
@@ -562,7 +562,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Bastion Host along with {@link Response}.
+     * @return the specified Bastion Host.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BastionHostInner> getByResourceGroupWithResponse(
@@ -579,7 +579,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bastion Host resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -637,7 +637,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bastion Host resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -691,7 +691,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of bastion Host resource.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<PollResult<BastionHostInner>, BastionHostInner> beginCreateOrUpdateAsync(
@@ -718,7 +718,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of bastion Host resource.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BastionHostInner>, BastionHostInner> beginCreateOrUpdateAsync(
@@ -741,7 +741,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of bastion Host resource.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BastionHostInner>, BastionHostInner> beginCreateOrUpdate(
@@ -759,7 +759,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of bastion Host resource.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BastionHostInner>, BastionHostInner> beginCreateOrUpdate(
@@ -776,7 +776,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bastion Host resource on successful completion of {@link Mono}.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BastionHostInner> createOrUpdateAsync(
@@ -796,7 +796,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bastion Host resource on successful completion of {@link Mono}.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BastionHostInner> createOrUpdateAsync(
@@ -850,7 +850,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bastion Host resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> updateTagsWithResponseAsync(
@@ -908,7 +908,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bastion Host resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateTagsWithResponseAsync(
@@ -962,7 +962,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of bastion Host resource.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<PollResult<BastionHostInner>, BastionHostInner> beginUpdateTagsAsync(
@@ -989,7 +989,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of bastion Host resource.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BastionHostInner>, BastionHostInner> beginUpdateTagsAsync(
@@ -1012,7 +1012,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of bastion Host resource.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BastionHostInner>, BastionHostInner> beginUpdateTags(
@@ -1030,7 +1030,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of bastion Host resource.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BastionHostInner>, BastionHostInner> beginUpdateTags(
@@ -1047,7 +1047,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bastion Host resource on successful completion of {@link Mono}.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BastionHostInner> updateTagsAsync(
@@ -1067,7 +1067,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bastion Host resource on successful completion of {@link Mono}.
+     * @return bastion Host resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BastionHostInner> updateTagsAsync(
@@ -1116,8 +1116,7 @@ public final class BastionHostsClientImpl
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BastionHostInner>> listSinglePageAsync() {
@@ -1159,8 +1158,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BastionHostInner>> listSinglePageAsync(Context context) {
@@ -1197,7 +1195,7 @@ public final class BastionHostsClientImpl
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call as paginated response with {@link PagedFlux}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BastionHostInner> listAsync() {
@@ -1211,7 +1209,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call as paginated response with {@link PagedFlux}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BastionHostInner> listAsync(Context context) {
@@ -1224,7 +1222,7 @@ public final class BastionHostsClientImpl
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call as paginated response with {@link PagedIterable}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BastionHostInner> list() {
@@ -1238,7 +1236,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call as paginated response with {@link PagedIterable}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BastionHostInner> list(Context context) {
@@ -1252,8 +1250,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BastionHostInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -1306,8 +1303,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BastionHostInner>> listByResourceGroupSinglePageAsync(
@@ -1357,7 +1353,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call as paginated response with {@link PagedFlux}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BastionHostInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -1374,7 +1370,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call as paginated response with {@link PagedFlux}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BastionHostInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -1390,7 +1386,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call as paginated response with {@link PagedIterable}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BastionHostInner> listByResourceGroup(String resourceGroupName) {
@@ -1405,7 +1401,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call as paginated response with {@link PagedIterable}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BastionHostInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -1419,8 +1415,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BastionHostInner>> listNextSinglePageAsync(String nextLink) {
@@ -1456,8 +1451,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BastionHostInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -1492,8 +1486,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BastionHostInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1530,8 +1523,7 @@ public final class BastionHostsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBastionHosts API service call along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return response for ListBastionHosts API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BastionHostInner>> listByResourceGroupNextSinglePageAsync(

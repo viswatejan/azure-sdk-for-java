@@ -32,7 +32,7 @@ public interface ResourceGuardProxyOperations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     Response<ResourceGuardProxyBaseResource> getWithResponse(
         String vaultName, String resourceGroupName, String resourceGuardProxyName, Context context);
@@ -60,7 +60,7 @@ public interface ResourceGuardProxyOperations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     Response<ResourceGuardProxyBaseResource> putWithResponse(
         String vaultName, String resourceGroupName, String resourceGuardProxyName, Context context);
@@ -87,7 +87,7 @@ public interface ResourceGuardProxyOperations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String vaultName, String resourceGroupName, String resourceGuardProxyName, Context context);
@@ -118,7 +118,7 @@ public interface ResourceGuardProxyOperations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of Unlock Delete API along with {@link Response}.
+     * @return response of Unlock Delete API.
      */
     Response<UnlockDeleteResponse> unlockDeleteWithResponse(
         String vaultName,

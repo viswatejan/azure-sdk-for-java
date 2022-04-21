@@ -272,7 +272,7 @@ public final class UrlBuilder {
 
                 case PATH:
                     final String tokenPath = emptyToNull(tokenText);
-                    if (path == null || "/".equals(path) || !"/".equals(tokenPath)) {
+                    if (path == null || path.equals("/") || !tokenPath.equals("/")) {
                         path = tokenPath;
                     }
                     break;

@@ -218,20 +218,6 @@ public final class AzureVmWorkloadSapAseDatabaseProtectedItem extends AzureVmWor
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public AzureVmWorkloadSapAseDatabaseProtectedItem withIsArchiveEnabled(Boolean isArchiveEnabled) {
-        super.withIsArchiveEnabled(isArchiveEnabled);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureVmWorkloadSapAseDatabaseProtectedItem withPolicyName(String policyName) {
-        super.withPolicyName(policyName);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

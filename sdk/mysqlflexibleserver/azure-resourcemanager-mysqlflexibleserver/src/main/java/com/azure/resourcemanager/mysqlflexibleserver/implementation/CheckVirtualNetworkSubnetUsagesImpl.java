@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.VirtualNetwor
 import com.azure.resourcemanager.mysqlflexibleserver.models.CheckVirtualNetworkSubnetUsages;
 import com.azure.resourcemanager.mysqlflexibleserver.models.VirtualNetworkSubnetUsageParameter;
 import com.azure.resourcemanager.mysqlflexibleserver.models.VirtualNetworkSubnetUsageResult;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class CheckVirtualNetworkSubnetUsagesImpl implements CheckVirtualNetworkSubnetUsages {
-    private static final ClientLogger LOGGER = new ClientLogger(CheckVirtualNetworkSubnetUsagesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CheckVirtualNetworkSubnetUsagesImpl.class);
 
     private final CheckVirtualNetworkSubnetUsagesClient innerClient;
 

@@ -18,7 +18,6 @@ import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
-import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.util.ClientOptions;
 import com.azure.core.util.Configuration;
@@ -28,11 +27,11 @@ import com.azure.storage.blob.BlobUrlParts;
 import com.azure.storage.blob.implementation.util.BlobUserAgentModificationPolicy;
 import com.azure.storage.blob.implementation.util.ModelHelper;
 import com.azure.storage.common.StorageSharedKeyCredential;
-import com.azure.storage.common.implementation.BuilderUtils;
 import com.azure.storage.common.implementation.Constants;
 import com.azure.storage.common.implementation.credentials.CredentialValidator;
 import com.azure.storage.common.policy.MetadataValidationPolicy;
 import com.azure.storage.common.policy.RequestRetryOptions;
+import com.azure.storage.common.policy.RequestRetryPolicy;
 import com.azure.storage.common.policy.ResponseValidationPolicyBuilder;
 import com.azure.storage.common.policy.ScrubEtagPolicy;
 import com.azure.storage.common.policy.StorageSharedKeyCredentialPolicy;
@@ -61,9 +60,9 @@ public final class BuilderHelper {
      * @param storageSharedKeyCredential {@link StorageSharedKeyCredential} if present.
      * @param tokenCredential {@link TokenCredential} if present.
      * @param azureSasCredential {@link AzureSasCredential} if present.
+     * @param sasToken The sas token if present.
      * @param endpoint The endpoint for the client.
-     * @param retryOptions Storage retry options to set in the retry policy.
-     * @param coreRetryOptions Core retry options to set in the retry policy.
+     * @param retryOptions Retry options to set in the retry policy.
      * @param logOptions Logging options to set in the logging policy.
      * @param clientOptions Client options.
      * @param httpClient HttpClient to use in the builder.
@@ -75,14 +74,13 @@ public final class BuilderHelper {
      */
     public static HttpPipeline buildPipeline(
         StorageSharedKeyCredential storageSharedKeyCredential,
-        TokenCredential tokenCredential, AzureSasCredential azureSasCredential, String endpoint,
-        RequestRetryOptions retryOptions, RetryOptions coreRetryOptions,
-        HttpLogOptions logOptions, ClientOptions clientOptions, HttpClient httpClient,
+        TokenCredential tokenCredential, AzureSasCredential azureSasCredential, String sasToken, String endpoint,
+        RequestRetryOptions retryOptions, HttpLogOptions logOptions, ClientOptions clientOptions, HttpClient httpClient,
         List<HttpPipelinePolicy> perCallPolicies, List<HttpPipelinePolicy> perRetryPolicies,
         Configuration configuration, ClientLogger logger) {
 
         CredentialValidator.validateSingleCredentialIsPresent(
-            storageSharedKeyCredential, tokenCredential, azureSasCredential, null, logger);
+            storageSharedKeyCredential, tokenCredential, azureSasCredential, sasToken, logger);
 
         // Closest to API goes first, closest to wire goes last.
         List<HttpPipelinePolicy> policies = new ArrayList<>();
@@ -92,7 +90,7 @@ public final class BuilderHelper {
 
         policies.addAll(perCallPolicies);
         HttpPolicyProviders.addBeforeRetryPolicies(policies);
-        policies.add(BuilderUtils.createRetryPolicy(retryOptions, coreRetryOptions, logger));
+        policies.add(new RequestRetryPolicy(retryOptions));
 
         policies.add(new AddDatePolicy());
 
@@ -113,6 +111,8 @@ public final class BuilderHelper {
             credentialPolicy =  new BearerTokenAuthenticationPolicy(tokenCredential, Constants.STORAGE_SCOPE);
         } else if (azureSasCredential != null) {
             credentialPolicy = new AzureSasCredentialPolicy(azureSasCredential, false);
+        } else if (sasToken != null) {
+            credentialPolicy = new AzureSasCredentialPolicy(new AzureSasCredential(sasToken), false);
         } else {
             credentialPolicy =  null;
         }

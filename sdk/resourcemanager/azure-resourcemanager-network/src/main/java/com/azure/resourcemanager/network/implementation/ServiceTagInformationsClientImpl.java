@@ -96,8 +96,7 @@ public final class ServiceTagInformationsClientImpl implements ServiceTagInforma
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources with pagination along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of service tag information resources with pagination.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceTagInformationInner>> listSinglePageAsync(
@@ -156,8 +155,7 @@ public final class ServiceTagInformationsClientImpl implements ServiceTagInforma
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources with pagination along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of service tag information resources with pagination.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceTagInformationInner>> listSinglePageAsync(
@@ -212,7 +210,7 @@ public final class ServiceTagInformationsClientImpl implements ServiceTagInforma
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources with pagination as paginated response with {@link PagedFlux}.
+     * @return a list of service tag information resources with pagination.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<ServiceTagInformationInner> listAsync(String location, Boolean noAddressPrefixes, String tagName) {
@@ -230,7 +228,7 @@ public final class ServiceTagInformationsClientImpl implements ServiceTagInforma
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources with pagination as paginated response with {@link PagedFlux}.
+     * @return a list of service tag information resources with pagination.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<ServiceTagInformationInner> listAsync(String location) {
@@ -253,7 +251,7 @@ public final class ServiceTagInformationsClientImpl implements ServiceTagInforma
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources with pagination as paginated response with {@link PagedFlux}.
+     * @return a list of service tag information resources with pagination.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ServiceTagInformationInner> listAsync(
@@ -272,8 +270,7 @@ public final class ServiceTagInformationsClientImpl implements ServiceTagInforma
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources with pagination as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of service tag information resources with pagination.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ServiceTagInformationInner> list(String location) {
@@ -294,8 +291,7 @@ public final class ServiceTagInformationsClientImpl implements ServiceTagInforma
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources with pagination as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of service tag information resources with pagination.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ServiceTagInformationInner> list(
@@ -310,8 +306,7 @@ public final class ServiceTagInformationsClientImpl implements ServiceTagInforma
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for Get ServiceTagInformation API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for Get ServiceTagInformation API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceTagInformationInner>> listNextSinglePageAsync(String nextLink) {
@@ -347,8 +342,7 @@ public final class ServiceTagInformationsClientImpl implements ServiceTagInforma
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for Get ServiceTagInformation API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for Get ServiceTagInformation API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceTagInformationInner>> listNextSinglePageAsync(String nextLink, Context context) {

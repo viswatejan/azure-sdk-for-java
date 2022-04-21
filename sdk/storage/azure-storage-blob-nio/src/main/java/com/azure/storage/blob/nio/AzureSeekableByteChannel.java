@@ -23,7 +23,7 @@ import java.nio.file.Path;
  * This type is not threadsafe to prevent having to hold locks across network calls.
  */
 public final class AzureSeekableByteChannel implements SeekableByteChannel {
-    private static final ClientLogger LOGGER = new ClientLogger(AzureSeekableByteChannel.class);
+    private final ClientLogger logger = new ClientLogger(AzureSeekableByteChannel.class);
 
     private final NioBlobInputStream reader;
     private final NioBlobOutputStream writer;
@@ -157,7 +157,7 @@ public final class AzureSeekableByteChannel implements SeekableByteChannel {
         validateReadMode();
 
         if (newPosition < 0) {
-            throw LoggingUtility.logError(LOGGER, new IllegalArgumentException("Seek position cannot be negative"));
+            throw LoggingUtility.logError(logger, new IllegalArgumentException("Seek position cannot be negative"));
         }
 
         /*
@@ -201,7 +201,7 @@ public final class AzureSeekableByteChannel implements SeekableByteChannel {
 
     @Override
     public AzureSeekableByteChannel truncate(long size) throws IOException {
-        throw LoggingUtility.logError(LOGGER, new UnsupportedOperationException());
+        throw LoggingUtility.logError(logger, new UnsupportedOperationException());
     }
 
     @Override
@@ -227,19 +227,19 @@ public final class AzureSeekableByteChannel implements SeekableByteChannel {
 
     private void validateOpen() throws ClosedChannelException {
         if (this.closed) {
-            throw LoggingUtility.logError(LOGGER, new ClosedChannelException());
+            throw LoggingUtility.logError(logger, new ClosedChannelException());
         }
     }
 
     private void validateReadMode() {
         if (this.reader == null) {
-            throw LoggingUtility.logError(LOGGER, new NonReadableChannelException());
+            throw LoggingUtility.logError(logger, new NonReadableChannelException());
         }
     }
 
     private void validateWriteMode() {
         if (this.writer == null) {
-            throw LoggingUtility.logError(LOGGER, new NonWritableChannelException());
+            throw LoggingUtility.logError(logger, new NonWritableChannelException());
         }
     }
 }

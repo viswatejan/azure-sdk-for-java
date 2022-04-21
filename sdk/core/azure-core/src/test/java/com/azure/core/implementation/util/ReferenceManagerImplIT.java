@@ -20,7 +20,7 @@ public class ReferenceManagerImplIT {
     public void validateImplementationVersion() {
         String javaSpecificationVersion = System.getProperty("java.specification.version");
         int implementationSpecificationVersion = ReferenceManagerImpl.getJavaImplementationMajorVersion();
-        if ("1.8".equals(javaSpecificationVersion)) {
+        if (javaSpecificationVersion.equals("1.8")) {
             assertEquals(8, implementationSpecificationVersion);
         } else {
             assertEquals(9, implementationSpecificationVersion);

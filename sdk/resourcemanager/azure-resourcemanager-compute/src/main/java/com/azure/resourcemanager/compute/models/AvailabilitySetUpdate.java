@@ -6,7 +6,9 @@ package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SubResource;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.models.AvailabilitySetProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +19,8 @@ import java.util.Map;
  */
 @Fluent
 public final class AvailabilitySetUpdate extends UpdateResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AvailabilitySetUpdate.class);
+
     /*
      * The instance view of a resource.
      */

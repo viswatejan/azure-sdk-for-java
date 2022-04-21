@@ -74,18 +74,6 @@ public final class ArtifactsClientImpl {
         return this.kqlScriptsOperations;
     }
 
-    /** The MetastoresImpl object to access its operations. */
-    private final MetastoresImpl metastores;
-
-    /**
-     * Gets the MetastoresImpl object to access its operations.
-     *
-     * @return the MetastoresImpl object.
-     */
-    public MetastoresImpl getMetastores() {
-        return this.metastores;
-    }
-
     /** The SparkConfigurationsImpl object to access its operations. */
     private final SparkConfigurationsImpl sparkConfigurations;
 
@@ -351,7 +339,6 @@ public final class ArtifactsClientImpl {
         this.endpoint = endpoint;
         this.kqlScripts = new KqlScriptsImpl(this);
         this.kqlScriptsOperations = new KqlScriptsOperationsImpl(this);
-        this.metastores = new MetastoresImpl(this);
         this.sparkConfigurations = new SparkConfigurationsImpl(this);
         this.bigDataPools = new BigDataPoolsImpl(this);
         this.dataFlows = new DataFlowsImpl(this);

@@ -80,8 +80,5 @@ public class ImmutabilityPolicyTests extends StorageManagementTest {
 
         // extend
         policy.extend(14);
-
-        // delete container
-        storageManager.blobContainers().delete(rgName, saName, "container");
     }
 }

@@ -135,11 +135,4 @@ public interface NetAppManagementClient {
      * @return the VolumeGroupsClient object.
      */
     VolumeGroupsClient getVolumeGroups();
-
-    /**
-     * Gets the SubvolumesClient object to access its operations.
-     *
-     * @return the SubvolumesClient object.
-     */
-    SubvolumesClient getSubvolumes();
 }

@@ -113,8 +113,7 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents the response to a List Sql pool replication link request along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return represents the response to a List Sql pool replication link request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReplicationLinkInner>> listSinglePageAsync(
@@ -178,8 +177,7 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents the response to a List Sql pool replication link request along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return represents the response to a List Sql pool replication link request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReplicationLinkInner>> listSinglePageAsync(
@@ -314,7 +312,7 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool replication link by name along with {@link Response} on successful completion of {@link Mono}.
+     * @return sQL pool replication link by name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ReplicationLinkInner>> getByNameWithResponseAsync(
@@ -374,7 +372,7 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool replication link by name along with {@link Response} on successful completion of {@link Mono}.
+     * @return sQL pool replication link by name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ReplicationLinkInner>> getByNameWithResponseAsync(
@@ -430,7 +428,7 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool replication link by name on successful completion of {@link Mono}.
+     * @return sQL pool replication link by name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ReplicationLinkInner> getByNameAsync(
@@ -475,7 +473,7 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool replication link by name along with {@link Response}.
+     * @return sQL pool replication link by name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ReplicationLinkInner> getByNameWithResponse(
@@ -490,8 +488,7 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents the response to a List Sql pool replication link request along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return represents the response to a List Sql pool replication link request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReplicationLinkInner>> listNextSinglePageAsync(String nextLink) {
@@ -527,8 +524,7 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents the response to a List Sql pool replication link request along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return represents the response to a List Sql pool replication link request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ReplicationLinkInner>> listNextSinglePageAsync(String nextLink, Context context) {

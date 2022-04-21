@@ -6,11 +6,14 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters supplied to the RegenerateKey operation. */
 @Fluent
 public final class BatchAccountRegenerateKeyParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BatchAccountRegenerateKeyParameters.class);
+
     /*
      * The type of account key to regenerate.
      */
@@ -44,12 +47,10 @@ public final class BatchAccountRegenerateKeyParameters {
      */
     public void validate() {
         if (keyName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property keyName in model BatchAccountRegenerateKeyParameters"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BatchAccountRegenerateKeyParameters.class);
 }

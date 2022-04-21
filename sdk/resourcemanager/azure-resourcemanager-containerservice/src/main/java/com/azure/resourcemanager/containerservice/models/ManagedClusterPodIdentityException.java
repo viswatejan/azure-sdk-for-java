@@ -6,6 +6,7 @@ package com.azure.resourcemanager.containerservice.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -18,6 +19,8 @@ import java.util.Map;
  */
 @Fluent
 public final class ManagedClusterPodIdentityException {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedClusterPodIdentityException.class);
+
     /*
      * The name of the pod identity exception.
      */
@@ -104,24 +107,22 @@ public final class ManagedClusterPodIdentityException {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property name in model ManagedClusterPodIdentityException"));
         }
         if (namespace() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property namespace in model ManagedClusterPodIdentityException"));
         }
         if (podLabels() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property podLabels in model ManagedClusterPodIdentityException"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ManagedClusterPodIdentityException.class);
 }

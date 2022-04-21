@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Definition of a single resource metric. */
 @Fluent
 public final class MetricSpecification {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(MetricSpecification.class);
+
     /*
      * The name property.
      */

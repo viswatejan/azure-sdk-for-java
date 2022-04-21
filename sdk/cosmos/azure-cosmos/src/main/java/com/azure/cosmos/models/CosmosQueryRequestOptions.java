@@ -4,17 +4,13 @@
 package com.azure.cosmos.models;
 
 import com.azure.cosmos.ConsistencyLevel;
-import com.azure.cosmos.implementation.Configs;
 import com.azure.cosmos.implementation.ImplementationBridgeHelpers;
 import com.azure.cosmos.implementation.spark.OperationContextAndListenerTuple;
 import com.azure.cosmos.util.Beta;
-import com.fasterxml.jackson.databind.JsonNode;
 
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
-import java.util.function.Function;
 
 /**
  * Specifies the options associated with query methods (enumeration operations)
@@ -43,16 +39,12 @@ public class CosmosQueryRequestOptions {
     private Map<String, String> customOptions;
     private boolean indexMetricsEnabled;
     private boolean queryPlanRetrievalDisallowed;
-    private UUID correlationActivityId;
-    private boolean emptyPageDiagnosticsEnabled;
-    private Function<JsonNode, ?> itemFactoryMethod;
+
     /**
      * Instantiates a new query request options.
      */
     public CosmosQueryRequestOptions() {
-
         this.queryMetricsEnabled = true;
-        this.emptyPageDiagnosticsEnabled = Configs.isEmptyPageDiagnosticsEnabled();
     }
 
     /**
@@ -80,9 +72,6 @@ public class CosmosQueryRequestOptions {
         this.customOptions = options.customOptions;
         this.indexMetricsEnabled = options.indexMetricsEnabled;
         this.queryPlanRetrievalDisallowed = options.queryPlanRetrievalDisallowed;
-        this.correlationActivityId = options.correlationActivityId;
-        this.emptyPageDiagnosticsEnabled = options.emptyPageDiagnosticsEnabled;
-        this.itemFactoryMethod = options.itemFactoryMethod;
     }
 
     void setOperationContextAndListenerTuple(OperationContextAndListenerTuple operationContextAndListenerTuple) {
@@ -177,29 +166,6 @@ public class CosmosQueryRequestOptions {
      */
     public CosmosQueryRequestOptions setScanInQueryEnabled(Boolean scanInQueryEnabled) {
         this.scanInQueryEnabled = scanInQueryEnabled;
-        return this;
-    }
-
-    /**
-     * Gets the correlation activityId which is used across requests/responses sent in the
-     * scope of this query execution. If no correlation activityId is specified (`null`) a
-     * random UUID will be generated for each query
-     *
-     * @return the correlation activityId
-     */
-    UUID getCorrelationActivityId() {
-        return this.correlationActivityId;
-    }
-
-    /**
-     * Sets the option to allow scan on the queries which couldn't be served as
-     * indexing was opted out on the requested paths.
-     *
-     * @param correlationActivityId the correlation activityId.
-     * @return the CosmosQueryRequestOptions.
-     */
-    CosmosQueryRequestOptions setCorrelationActivityId(UUID correlationActivityId) {
-        this.correlationActivityId = correlationActivityId;
         return this;
     }
 
@@ -584,21 +550,6 @@ public class CosmosQueryRequestOptions {
         return this.queryPlanRetrievalDisallowed;
     }
 
-    boolean isEmptyPageDiagnosticsEnabled() { return this.emptyPageDiagnosticsEnabled; }
-
-    CosmosQueryRequestOptions setEmptyPageDiagnosticsEnabled(boolean emptyPageDiagnosticsEnabled) {
-        this.emptyPageDiagnosticsEnabled = emptyPageDiagnosticsEnabled;
-        return this;
-    }
-
-    Function<JsonNode, ?> getItemFactoryMethod() { return this.itemFactoryMethod; }
-
-    CosmosQueryRequestOptions setItemFactoryMethod(Function<JsonNode, ?> factoryMethod) {
-        this.itemFactoryMethod = factoryMethod;
-
-        return this;
-    }
-
     ///////////////////////////////////////////////////////////////////////////////////////////
     // the following helper/accessor only helps to access this class outside of this package.//
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -637,50 +588,8 @@ public class CosmosQueryRequestOptions {
                 }
 
                 @Override
-                public UUID getCorrelationActivityId(CosmosQueryRequestOptions queryRequestOptions) {
-                    if (queryRequestOptions == null) {
-                        return null;
-                    }
-
-                    return queryRequestOptions.getCorrelationActivityId();
-                }
-
-                @Override
-                public CosmosQueryRequestOptions setCorrelationActivityId(
-                    CosmosQueryRequestOptions queryRequestOptions, UUID correlationActivityId) {
-
-                    return queryRequestOptions.setCorrelationActivityId(correlationActivityId);
-                }
-
-                @Override
                 public boolean isQueryPlanRetrievalDisallowed(CosmosQueryRequestOptions queryRequestOptions) {
                     return queryRequestOptions.isQueryPlanRetrievalDisallowed();
-                }
-
-                @Override
-                public boolean isEmptyPageDiagnosticsEnabled(CosmosQueryRequestOptions queryRequestOptions) {
-                    return queryRequestOptions.isEmptyPageDiagnosticsEnabled();
-                }
-
-                @Override
-                public CosmosQueryRequestOptions setEmptyPageDiagnosticsEnabled(CosmosQueryRequestOptions queryRequestOptions, boolean emptyPageDiagnosticsEnabled) {
-                    return queryRequestOptions.setEmptyPageDiagnosticsEnabled(emptyPageDiagnosticsEnabled);
-                }
-
-                @Override
-                @SuppressWarnings("unchecked")
-                public <T> Function<JsonNode, T> getItemFactoryMethod(
-                    CosmosQueryRequestOptions queryRequestOptions, Class<T> classOfT) {
-
-                    return (Function<JsonNode, T>)queryRequestOptions.getItemFactoryMethod();
-                }
-
-                @Override
-                public CosmosQueryRequestOptions setItemFactoryMethod(
-                    CosmosQueryRequestOptions queryRequestOptions,
-                    Function<JsonNode, ?> factoryMethod) {
-
-                    return queryRequestOptions.setItemFactoryMethod(factoryMethod);
                 }
             });
     }

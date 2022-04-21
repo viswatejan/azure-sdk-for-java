@@ -57,6 +57,14 @@ public class GoodLoggerCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void nonStaticLoggerTestData() throws Exception {
+        String[] expected = {
+            expectedErrorMessage(9, 5, STATIC_LOGGER_ERROR)
+        };
+        verify(checker, getPath("NonStaticLoggerTestData.java"), expected);
+    }
+
+    @Test
     public void wrongClassInLoggerConstructorTestData() throws Exception {
         String[] expected = {
             expectedErrorMessage(5, 64, String.format(LOGGER_NAME_MISMATCH_ERROR,

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The private endpoint property of a private endpoint connection. */
 @Immutable
-public final class PrivateEndpoint {
+public class PrivateEndpoint {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateEndpoint.class);
 
     /*

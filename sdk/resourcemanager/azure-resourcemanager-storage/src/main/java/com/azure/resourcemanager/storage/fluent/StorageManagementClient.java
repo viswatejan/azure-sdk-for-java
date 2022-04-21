@@ -115,13 +115,6 @@ public interface StorageManagementClient {
     ObjectReplicationPoliciesOperationsClient getObjectReplicationPoliciesOperations();
 
     /**
-     * Gets the LocalUsersOperationsClient object to access its operations.
-     *
-     * @return the LocalUsersOperationsClient object.
-     */
-    LocalUsersOperationsClient getLocalUsersOperations();
-
-    /**
      * Gets the EncryptionScopesClient object to access its operations.
      *
      * @return the EncryptionScopesClient object.

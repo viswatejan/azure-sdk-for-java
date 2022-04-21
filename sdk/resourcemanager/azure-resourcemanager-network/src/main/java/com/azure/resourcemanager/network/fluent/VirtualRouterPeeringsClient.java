@@ -29,7 +29,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -44,7 +44,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -59,7 +59,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -75,7 +75,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -90,7 +90,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String virtualRouterName, String peeringName);
@@ -131,8 +131,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Virtual Router Peering along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified Virtual Router Peering.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VirtualRouterPeeringInner>> getWithResponseAsync(
@@ -147,7 +146,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Virtual Router Peering on successful completion of {@link Mono}.
+     * @return the specified Virtual Router Peering.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VirtualRouterPeeringInner> getAsync(String resourceGroupName, String virtualRouterName, String peeringName);
@@ -176,7 +175,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Virtual Router Peering along with {@link Response}.
+     * @return the specified Virtual Router Peering.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VirtualRouterPeeringInner> getWithResponse(
@@ -192,7 +191,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Router Peering resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return virtual Router Peering resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -208,7 +207,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of virtual Router Peering resource.
+     * @return virtual Router Peering resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<VirtualRouterPeeringInner>, VirtualRouterPeeringInner> beginCreateOrUpdateAsync(
@@ -224,7 +223,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of virtual Router Peering resource.
+     * @return virtual Router Peering resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<VirtualRouterPeeringInner>, VirtualRouterPeeringInner> beginCreateOrUpdate(
@@ -241,7 +240,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of virtual Router Peering resource.
+     * @return virtual Router Peering resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<VirtualRouterPeeringInner>, VirtualRouterPeeringInner> beginCreateOrUpdate(
@@ -261,7 +260,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Router Peering resource on successful completion of {@link Mono}.
+     * @return virtual Router Peering resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VirtualRouterPeeringInner> createOrUpdateAsync(
@@ -312,7 +311,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListVirtualRouterPeerings API service call as paginated response with {@link PagedFlux}.
+     * @return response for ListVirtualRouterPeerings API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<VirtualRouterPeeringInner> listAsync(String resourceGroupName, String virtualRouterName);
@@ -325,7 +324,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListVirtualRouterPeerings API service call as paginated response with {@link PagedIterable}.
+     * @return response for ListVirtualRouterPeerings API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<VirtualRouterPeeringInner> list(String resourceGroupName, String virtualRouterName);
@@ -339,7 +338,7 @@ public interface VirtualRouterPeeringsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListVirtualRouterPeerings API service call as paginated response with {@link PagedIterable}.
+     * @return response for ListVirtualRouterPeerings API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<VirtualRouterPeeringInner> list(String resourceGroupName, String virtualRouterName, Context context);

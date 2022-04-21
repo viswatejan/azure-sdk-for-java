@@ -27,8 +27,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine image in an edge zone along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a virtual machine image in an edge zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VirtualMachineImageInner>> getWithResponseAsync(
@@ -46,7 +45,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine image in an edge zone on successful completion of {@link Mono}.
+     * @return a virtual machine image in an edge zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VirtualMachineImageInner> getAsync(
@@ -83,7 +82,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine image in an edge zone along with {@link Response}.
+     * @return a virtual machine image in an edge zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VirtualMachineImageInner> getWithResponse(
@@ -111,7 +110,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of all virtual machine image versions for the specified location, edge zone, publisher, offer, and
-     *     SKU along with {@link Response} on successful completion of {@link Mono}.
+     *     SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<VirtualMachineImageResourceInner>>> listWithResponseAsync(
@@ -140,7 +139,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of all virtual machine image versions for the specified location, edge zone, publisher, offer, and
-     *     SKU on successful completion of {@link Mono}.
+     *     SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VirtualMachineImageResourceInner>> listAsync(
@@ -166,7 +165,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of all virtual machine image versions for the specified location, edge zone, publisher, offer, and
-     *     SKU on successful completion of {@link Mono}.
+     *     SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VirtualMachineImageResourceInner>> listAsync(
@@ -208,7 +207,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of all virtual machine image versions for the specified location, edge zone, publisher, offer, and
-     *     SKU along with {@link Response}.
+     *     SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<VirtualMachineImageResourceInner>> listWithResponse(
@@ -231,8 +230,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image offers for the specified location, edge zone and publisher along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return a list of virtual machine image offers for the specified location, edge zone and publisher.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<VirtualMachineImageResourceInner>>> listOffersWithResponseAsync(
@@ -247,8 +245,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image offers for the specified location, edge zone and publisher on successful
-     *     completion of {@link Mono}.
+     * @return a list of virtual machine image offers for the specified location, edge zone and publisher.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VirtualMachineImageResourceInner>> listOffersAsync(
@@ -278,8 +275,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image offers for the specified location, edge zone and publisher along with
-     *     {@link Response}.
+     * @return a list of virtual machine image offers for the specified location, edge zone and publisher.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<VirtualMachineImageResourceInner>> listOffersWithResponse(
@@ -293,8 +289,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image publishers for the specified Azure location and edge zone along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return a list of virtual machine image publishers for the specified Azure location and edge zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<VirtualMachineImageResourceInner>>> listPublishersWithResponseAsync(
@@ -308,8 +303,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image publishers for the specified Azure location and edge zone on successful
-     *     completion of {@link Mono}.
+     * @return a list of virtual machine image publishers for the specified Azure location and edge zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VirtualMachineImageResourceInner>> listPublishersAsync(String location, String edgeZone);
@@ -336,8 +330,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image publishers for the specified Azure location and edge zone along with
-     *     {@link Response}.
+     * @return a list of virtual machine image publishers for the specified Azure location and edge zone.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<VirtualMachineImageResourceInner>> listPublishersWithResponse(
@@ -353,8 +346,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image SKUs for the specified location, edge zone, publisher, and offer along
-     *     with {@link Response} on successful completion of {@link Mono}.
+     * @return a list of virtual machine image SKUs for the specified location, edge zone, publisher, and offer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<VirtualMachineImageResourceInner>>> listSkusWithResponseAsync(
@@ -370,8 +362,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image SKUs for the specified location, edge zone, publisher, and offer on
-     *     successful completion of {@link Mono}.
+     * @return a list of virtual machine image SKUs for the specified location, edge zone, publisher, and offer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VirtualMachineImageResourceInner>> listSkusAsync(
@@ -404,8 +395,7 @@ public interface VirtualMachineImagesEdgeZonesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image SKUs for the specified location, edge zone, publisher, and offer along
-     *     with {@link Response}.
+     * @return a list of virtual machine image SKUs for the specified location, edge zone, publisher, and offer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<VirtualMachineImageResourceInner>> listSkusWithResponse(

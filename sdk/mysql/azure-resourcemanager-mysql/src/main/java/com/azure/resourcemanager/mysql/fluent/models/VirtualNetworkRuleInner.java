@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.mysql.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mysql.models.VirtualNetworkRuleState;
@@ -12,24 +13,29 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A virtual network rule. */
+@JsonFlatten
 @Fluent
-public final class VirtualNetworkRuleInner extends ProxyResource {
+public class VirtualNetworkRuleInner extends ProxyResource {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualNetworkRuleInner.class);
 
     /*
-     * Resource properties.
+     * The ARM resource id of the virtual network subnet.
      */
-    @JsonProperty(value = "properties")
-    private VirtualNetworkRuleProperties innerProperties;
+    @JsonProperty(value = "properties.virtualNetworkSubnetId")
+    private String virtualNetworkSubnetId;
 
-    /**
-     * Get the innerProperties property: Resource properties.
-     *
-     * @return the innerProperties value.
+    /*
+     * Create firewall rule before the virtual network has vnet service
+     * endpoint enabled.
      */
-    private VirtualNetworkRuleProperties innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.ignoreMissingVnetServiceEndpoint")
+    private Boolean ignoreMissingVnetServiceEndpoint;
+
+    /*
+     * Virtual Network Rule State
+     */
+    @JsonProperty(value = "properties.state", access = JsonProperty.Access.WRITE_ONLY)
+    private VirtualNetworkRuleState state;
 
     /**
      * Get the virtualNetworkSubnetId property: The ARM resource id of the virtual network subnet.
@@ -37,7 +43,7 @@ public final class VirtualNetworkRuleInner extends ProxyResource {
      * @return the virtualNetworkSubnetId value.
      */
     public String virtualNetworkSubnetId() {
-        return this.innerProperties() == null ? null : this.innerProperties().virtualNetworkSubnetId();
+        return this.virtualNetworkSubnetId;
     }
 
     /**
@@ -47,10 +53,7 @@ public final class VirtualNetworkRuleInner extends ProxyResource {
      * @return the VirtualNetworkRuleInner object itself.
      */
     public VirtualNetworkRuleInner withVirtualNetworkSubnetId(String virtualNetworkSubnetId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new VirtualNetworkRuleProperties();
-        }
-        this.innerProperties().withVirtualNetworkSubnetId(virtualNetworkSubnetId);
+        this.virtualNetworkSubnetId = virtualNetworkSubnetId;
         return this;
     }
 
@@ -61,7 +64,7 @@ public final class VirtualNetworkRuleInner extends ProxyResource {
      * @return the ignoreMissingVnetServiceEndpoint value.
      */
     public Boolean ignoreMissingVnetServiceEndpoint() {
-        return this.innerProperties() == null ? null : this.innerProperties().ignoreMissingVnetServiceEndpoint();
+        return this.ignoreMissingVnetServiceEndpoint;
     }
 
     /**
@@ -72,10 +75,7 @@ public final class VirtualNetworkRuleInner extends ProxyResource {
      * @return the VirtualNetworkRuleInner object itself.
      */
     public VirtualNetworkRuleInner withIgnoreMissingVnetServiceEndpoint(Boolean ignoreMissingVnetServiceEndpoint) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new VirtualNetworkRuleProperties();
-        }
-        this.innerProperties().withIgnoreMissingVnetServiceEndpoint(ignoreMissingVnetServiceEndpoint);
+        this.ignoreMissingVnetServiceEndpoint = ignoreMissingVnetServiceEndpoint;
         return this;
     }
 
@@ -85,7 +85,7 @@ public final class VirtualNetworkRuleInner extends ProxyResource {
      * @return the state value.
      */
     public VirtualNetworkRuleState state() {
-        return this.innerProperties() == null ? null : this.innerProperties().state();
+        return this.state;
     }
 
     /**
@@ -94,8 +94,5 @@ public final class VirtualNetworkRuleInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
-        }
     }
 }

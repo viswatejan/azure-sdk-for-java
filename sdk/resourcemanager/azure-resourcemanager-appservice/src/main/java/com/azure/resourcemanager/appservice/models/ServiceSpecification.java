@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Resource metrics service provided by Microsoft.Insights resource provider. */
 @Fluent
 public final class ServiceSpecification {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ServiceSpecification.class);
+
     /*
      * The metricSpecifications property.
      */

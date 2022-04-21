@@ -22,11 +22,10 @@ public final class KeyRotationPolicyAttributes {
 
     /**
      * Get the optional key expiration period used to define the duration after which a newly rotated key will expire.
-     * It should be at least 28 days and should be defined as an ISO 8601 duration. For example, 90 days would be
-     * "P90D", 3 months would be "P3M" and 1 year and 10 days would be "P1Y10D". See
-     * <a href="https://wikipedia.org/wiki/ISO_8601#Durations">Wikipedia</a> for more information on ISO 8601 durations.
+     * It should be defined as an ISO 8601 duration. For example, 90 days would be formatted as follows: "P90D", 3
+     * months would be "P3M", 48 hours would be "PT48H" and 1 year and 10 days would be "P1Y10D".
      *
-     * @return The expiry time in ISO 8601 duration format.
+     * @return The expiry time in ISO 8601 format.
      */
     public String getExpiryTime() {
         return this.expiryTime;
@@ -34,9 +33,8 @@ public final class KeyRotationPolicyAttributes {
 
     /**
      * Set the optional key expiration period used to define the duration after which a newly rotated key will expire.
-     * It should be at least 28 days and should be defined as an ISO 8601 duration. For example, 90 days would be
-     * "P90D", 3 months would be "P3M" and 1 year and 10 days would be "P1Y10D". See
-     * <a href="https://wikipedia.org/wiki/ISO_8601#Durations">Wikipedia</a> for more information on ISO 8601 durations.
+     * It should be defined as an ISO 8601 duration. For example, 90 days would be formatted as follows: "P90D", 3
+     * months would be "P3M", 48 hours would be "PT48H" and 1 year and 10 days would be "P1Y10D".
      *
      * @param expiryTime The expiry time to set in ISO 8601 format.
      *
@@ -49,18 +47,18 @@ public final class KeyRotationPolicyAttributes {
     }
 
     /**
-     * Get the created time in UTC.
+     * Get the {@link KeyRotationPolicy policy's} created time in UTC.
      *
-     * @return The created time in UTC.
+     * @return The {@link KeyRotationPolicy policy's} created time in UTC.
      */
     public Long getCreatedOn() {
         return this.createdOn;
     }
 
     /**
-     * Get the last updated time in UTC.
+     * Get the {@link KeyRotationPolicy policy's} last updated time in UTC.
      *
-     * @return The the last updated time in UTC.
+     * @return The the {@link KeyRotationPolicy policy's} last updated time in UTC.
      */
     public Long getUpdatedOn() {
         return this.updatedOn;

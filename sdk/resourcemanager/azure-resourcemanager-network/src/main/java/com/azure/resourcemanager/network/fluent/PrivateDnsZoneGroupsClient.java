@@ -29,7 +29,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -44,7 +44,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -59,7 +59,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -75,7 +75,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -90,7 +90,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String privateEndpointName, String privateDnsZoneGroupName);
@@ -131,8 +131,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private dns zone group resource by specified private dns zone group name along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return the private dns zone group resource by specified private dns zone group name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PrivateDnsZoneGroupInner>> getWithResponseAsync(
@@ -147,8 +146,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private dns zone group resource by specified private dns zone group name on successful completion of
-     *     {@link Mono}.
+     * @return the private dns zone group resource by specified private dns zone group name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PrivateDnsZoneGroupInner> getAsync(
@@ -178,7 +176,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private dns zone group resource by specified private dns zone group name along with {@link Response}.
+     * @return the private dns zone group resource by specified private dns zone group name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateDnsZoneGroupInner> getWithResponse(
@@ -194,7 +192,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private dns zone group resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return private dns zone group resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -213,7 +211,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of private dns zone group resource.
+     * @return private dns zone group resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<PrivateDnsZoneGroupInner>, PrivateDnsZoneGroupInner> beginCreateOrUpdateAsync(
@@ -232,7 +230,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of private dns zone group resource.
+     * @return private dns zone group resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<PrivateDnsZoneGroupInner>, PrivateDnsZoneGroupInner> beginCreateOrUpdate(
@@ -252,7 +250,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of private dns zone group resource.
+     * @return private dns zone group resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<PrivateDnsZoneGroupInner>, PrivateDnsZoneGroupInner> beginCreateOrUpdate(
@@ -272,7 +270,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private dns zone group resource on successful completion of {@link Mono}.
+     * @return private dns zone group resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PrivateDnsZoneGroupInner> createOrUpdateAsync(
@@ -329,7 +327,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private dns zone groups in a private endpoint as paginated response with {@link PagedFlux}.
+     * @return all private dns zone groups in a private endpoint.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<PrivateDnsZoneGroupInner> listAsync(String privateEndpointName, String resourceGroupName);
@@ -342,7 +340,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private dns zone groups in a private endpoint as paginated response with {@link PagedIterable}.
+     * @return all private dns zone groups in a private endpoint.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PrivateDnsZoneGroupInner> list(String privateEndpointName, String resourceGroupName);
@@ -356,7 +354,7 @@ public interface PrivateDnsZoneGroupsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private dns zone groups in a private endpoint as paginated response with {@link PagedIterable}.
+     * @return all private dns zone groups in a private endpoint.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PrivateDnsZoneGroupInner> list(String privateEndpointName, String resourceGroupName, Context context);

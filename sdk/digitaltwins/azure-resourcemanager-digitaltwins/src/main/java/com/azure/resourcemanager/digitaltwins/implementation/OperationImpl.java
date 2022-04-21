@@ -4,19 +4,17 @@
 
 package com.azure.resourcemanager.digitaltwins.implementation;
 
+import com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager;
 import com.azure.resourcemanager.digitaltwins.fluent.models.OperationInner;
 import com.azure.resourcemanager.digitaltwins.models.Operation;
 import com.azure.resourcemanager.digitaltwins.models.OperationDisplay;
-import java.util.Collections;
-import java.util.Map;
 
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
 
-    private final com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager;
+    private final AzureDigitalTwinsManager serviceManager;
 
-    OperationImpl(
-        OperationInner innerObject, com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager) {
+    OperationImpl(OperationInner innerObject, AzureDigitalTwinsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -37,20 +35,11 @@ public final class OperationImpl implements Operation {
         return this.innerModel().isDataAction();
     }
 
-    public Map<String, Object> properties() {
-        Map<String, Object> inner = this.innerModel().properties();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
     public OperationInner innerModel() {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager() {
+    private AzureDigitalTwinsManager manager() {
         return this.serviceManager;
     }
 }

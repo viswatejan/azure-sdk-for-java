@@ -19,9 +19,6 @@ public final class ScheduleRunType extends ExpandableStringEnum<ScheduleRunType>
     /** Static value Weekly for ScheduleRunType. */
     public static final ScheduleRunType WEEKLY = fromString("Weekly");
 
-    /** Static value Hourly for ScheduleRunType. */
-    public static final ScheduleRunType HOURLY = fromString("Hourly");
-
     /**
      * Creates or finds a ScheduleRunType from its string representation.
      *

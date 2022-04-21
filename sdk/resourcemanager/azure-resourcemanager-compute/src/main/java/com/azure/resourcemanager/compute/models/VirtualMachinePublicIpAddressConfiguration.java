@@ -8,12 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SubResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.models.VirtualMachinePublicIpAddressConfigurationProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Describes a virtual machines IP Configuration's PublicIPAddress configuration. */
 @Fluent
 public final class VirtualMachinePublicIpAddressConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualMachinePublicIpAddressConfiguration.class);
+
     /*
      * The publicIP address configuration name.
      */
@@ -28,8 +31,7 @@ public final class VirtualMachinePublicIpAddressConfiguration {
     private VirtualMachinePublicIpAddressConfigurationProperties innerProperties;
 
     /*
-     * Describes the public IP Sku. It can only be set with OrchestrationMode
-     * as Flexible.
+     * Describes the public IP Sku
      */
     @JsonProperty(value = "sku")
     private PublicIpAddressSku sku;
@@ -64,7 +66,7 @@ public final class VirtualMachinePublicIpAddressConfiguration {
     }
 
     /**
-     * Get the sku property: Describes the public IP Sku. It can only be set with OrchestrationMode as Flexible.
+     * Get the sku property: Describes the public IP Sku.
      *
      * @return the sku value.
      */
@@ -73,7 +75,7 @@ public final class VirtualMachinePublicIpAddressConfiguration {
     }
 
     /**
-     * Set the sku property: Describes the public IP Sku. It can only be set with OrchestrationMode as Flexible.
+     * Set the sku property: Describes the public IP Sku.
      *
      * @param sku the sku value to set.
      * @return the VirtualMachinePublicIpAddressConfiguration object itself.
@@ -255,7 +257,7 @@ public final class VirtualMachinePublicIpAddressConfiguration {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property name in model VirtualMachinePublicIpAddressConfiguration"));
@@ -267,6 +269,4 @@ public final class VirtualMachinePublicIpAddressConfiguration {
             sku().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(VirtualMachinePublicIpAddressConfiguration.class);
 }

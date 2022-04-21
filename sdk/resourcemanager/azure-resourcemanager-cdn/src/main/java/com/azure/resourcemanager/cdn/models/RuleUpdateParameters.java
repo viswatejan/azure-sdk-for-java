@@ -5,40 +5,47 @@
 package com.azure.resourcemanager.cdn.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.cdn.fluent.models.RuleUpdatePropertiesParameters;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The domain JSON object required for domain creation or update. */
+@JsonFlatten
 @Fluent
-public final class RuleUpdateParameters {
+public class RuleUpdateParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(RuleUpdateParameters.class);
 
     /*
-     * The JSON object that contains the properties of the rule to update.
+     * The order in which the rules are applied for the endpoint. Possible
+     * values {0,1,2,3,………}. A rule with a lesser order will be applied before
+     * a rule with a greater order. Rule with order 0 is a special rule. It
+     * does not require any condition and actions listed in it will always be
+     * applied.
      */
-    @JsonProperty(value = "properties")
-    private RuleUpdatePropertiesParameters innerProperties;
+    @JsonProperty(value = "properties.order")
+    private Integer order;
 
-    /**
-     * Get the innerProperties property: The JSON object that contains the properties of the rule to update.
-     *
-     * @return the innerProperties value.
+    /*
+     * A list of conditions that must be matched for the actions to be executed
      */
-    private RuleUpdatePropertiesParameters innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.conditions")
+    private List<DeliveryRuleCondition> conditions;
 
-    /**
-     * Get the ruleSetName property: The name of the rule set containing the rule.
-     *
-     * @return the ruleSetName value.
+    /*
+     * A list of actions that are executed when all the conditions of a rule
+     * are satisfied.
      */
-    public String ruleSetName() {
-        return this.innerProperties() == null ? null : this.innerProperties().ruleSetName();
-    }
+    @JsonProperty(value = "properties.actions")
+    private List<DeliveryRuleAction> actions;
+
+    /*
+     * If this rule is a match should the rules engine continue running the
+     * remaining rules or stop. If not present, defaults to Continue.
+     */
+    @JsonProperty(value = "properties.matchProcessingBehavior")
+    private MatchProcessingBehavior matchProcessingBehavior;
 
     /**
      * Get the order property: The order in which the rules are applied for the endpoint. Possible values {0,1,2,3,………}.
@@ -48,7 +55,7 @@ public final class RuleUpdateParameters {
      * @return the order value.
      */
     public Integer order() {
-        return this.innerProperties() == null ? null : this.innerProperties().order();
+        return this.order;
     }
 
     /**
@@ -60,10 +67,7 @@ public final class RuleUpdateParameters {
      * @return the RuleUpdateParameters object itself.
      */
     public RuleUpdateParameters withOrder(Integer order) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RuleUpdatePropertiesParameters();
-        }
-        this.innerProperties().withOrder(order);
+        this.order = order;
         return this;
     }
 
@@ -73,7 +77,7 @@ public final class RuleUpdateParameters {
      * @return the conditions value.
      */
     public List<DeliveryRuleCondition> conditions() {
-        return this.innerProperties() == null ? null : this.innerProperties().conditions();
+        return this.conditions;
     }
 
     /**
@@ -83,10 +87,7 @@ public final class RuleUpdateParameters {
      * @return the RuleUpdateParameters object itself.
      */
     public RuleUpdateParameters withConditions(List<DeliveryRuleCondition> conditions) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RuleUpdatePropertiesParameters();
-        }
-        this.innerProperties().withConditions(conditions);
+        this.conditions = conditions;
         return this;
     }
 
@@ -96,7 +97,7 @@ public final class RuleUpdateParameters {
      * @return the actions value.
      */
     public List<DeliveryRuleAction> actions() {
-        return this.innerProperties() == null ? null : this.innerProperties().actions();
+        return this.actions;
     }
 
     /**
@@ -106,10 +107,7 @@ public final class RuleUpdateParameters {
      * @return the RuleUpdateParameters object itself.
      */
     public RuleUpdateParameters withActions(List<DeliveryRuleAction> actions) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RuleUpdatePropertiesParameters();
-        }
-        this.innerProperties().withActions(actions);
+        this.actions = actions;
         return this;
     }
 
@@ -120,7 +118,7 @@ public final class RuleUpdateParameters {
      * @return the matchProcessingBehavior value.
      */
     public MatchProcessingBehavior matchProcessingBehavior() {
-        return this.innerProperties() == null ? null : this.innerProperties().matchProcessingBehavior();
+        return this.matchProcessingBehavior;
     }
 
     /**
@@ -131,10 +129,7 @@ public final class RuleUpdateParameters {
      * @return the RuleUpdateParameters object itself.
      */
     public RuleUpdateParameters withMatchProcessingBehavior(MatchProcessingBehavior matchProcessingBehavior) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RuleUpdatePropertiesParameters();
-        }
-        this.innerProperties().withMatchProcessingBehavior(matchProcessingBehavior);
+        this.matchProcessingBehavior = matchProcessingBehavior;
         return this;
     }
 
@@ -144,8 +139,11 @@ public final class RuleUpdateParameters {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (conditions() != null) {
+            conditions().forEach(e -> e.validate());
+        }
+        if (actions() != null) {
+            actions().forEach(e -> e.validate());
         }
     }
 }

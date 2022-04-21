@@ -8,12 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SubResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.models.VirtualMachineNetworkInterfaceConfigurationProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Describes a virtual machine network interface configurations. */
 @Fluent
 public final class VirtualMachineNetworkInterfaceConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualMachineNetworkInterfaceConfiguration.class);
+
     /*
      * The network interface configuration name.
      */
@@ -276,7 +279,7 @@ public final class VirtualMachineNetworkInterfaceConfiguration {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property name in model VirtualMachineNetworkInterfaceConfiguration"));
@@ -285,6 +288,4 @@ public final class VirtualMachineNetworkInterfaceConfiguration {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(VirtualMachineNetworkInterfaceConfiguration.class);
 }

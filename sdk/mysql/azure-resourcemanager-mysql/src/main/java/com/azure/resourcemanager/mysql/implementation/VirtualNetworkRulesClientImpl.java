@@ -150,7 +150,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule along with {@link Response} on successful completion of {@link Mono}.
+     * @return a virtual network rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VirtualNetworkRuleInner>> getWithResponseAsync(
@@ -207,7 +207,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule along with {@link Response} on successful completion of {@link Mono}.
+     * @return a virtual network rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VirtualNetworkRuleInner>> getWithResponseAsync(
@@ -260,7 +260,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule on successful completion of {@link Mono}.
+     * @return a virtual network rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VirtualNetworkRuleInner> getAsync(
@@ -302,7 +302,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule along with {@link Response}.
+     * @return a virtual network rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<VirtualNetworkRuleInner> getWithResponse(
@@ -320,7 +320,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule along with {@link Response} on successful completion of {@link Mono}.
+     * @return a virtual network rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -387,7 +387,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule along with {@link Response} on successful completion of {@link Mono}.
+     * @return a virtual network rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -451,9 +451,9 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule along with {@link Response} on successful completion of {@link Mono}.
+     * @return a virtual network rule.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<VirtualNetworkRuleInner>, VirtualNetworkRuleInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serverName,
@@ -468,7 +468,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
                 this.client.getHttpPipeline(),
                 VirtualNetworkRuleInner.class,
                 VirtualNetworkRuleInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -482,9 +482,9 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule along with {@link Response} on successful completion of {@link Mono}.
+     * @return a virtual network rule.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<VirtualNetworkRuleInner>, VirtualNetworkRuleInner> beginCreateOrUpdateAsync(
         String resourceGroupName,
         String serverName,
@@ -514,9 +514,9 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule along with {@link Response} on successful completion of {@link Mono}.
+     * @return a virtual network rule.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<VirtualNetworkRuleInner>, VirtualNetworkRuleInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serverName,
@@ -537,9 +537,9 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule along with {@link Response} on successful completion of {@link Mono}.
+     * @return a virtual network rule.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<VirtualNetworkRuleInner>, VirtualNetworkRuleInner> beginCreateOrUpdate(
         String resourceGroupName,
         String serverName,
@@ -560,7 +560,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule on successful completion of {@link Mono}.
+     * @return a virtual network rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VirtualNetworkRuleInner> createOrUpdateAsync(
@@ -584,7 +584,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual network rule on successful completion of {@link Mono}.
+     * @return a virtual network rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VirtualNetworkRuleInner> createOrUpdateAsync(
@@ -651,7 +651,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -706,7 +706,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -757,17 +757,16 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String serverName, String virtualNetworkRuleName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
             deleteWithResponseAsync(resourceGroupName, serverName, virtualNetworkRuleName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -780,9 +779,9 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String serverName, String virtualNetworkRuleName, Context context) {
         context = this.client.mergeContext(context);
@@ -802,9 +801,9 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String serverName, String virtualNetworkRuleName) {
         return beginDeleteAsync(resourceGroupName, serverName, virtualNetworkRuleName).getSyncPoller();
@@ -820,9 +819,9 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String serverName, String virtualNetworkRuleName, Context context) {
         return beginDeleteAsync(resourceGroupName, serverName, virtualNetworkRuleName, context).getSyncPoller();
@@ -837,7 +836,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String serverName, String virtualNetworkRuleName) {
@@ -856,7 +855,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -905,8 +904,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual network rules in a server along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of virtual network rules in a server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkRuleInner>> listByServerSinglePageAsync(
@@ -965,8 +963,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual network rules in a server along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of virtual network rules in a server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkRuleInner>> listByServerSinglePageAsync(
@@ -1088,8 +1085,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual network rules along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a list of virtual network rules.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkRuleInner>> listByServerNextSinglePageAsync(String nextLink) {
@@ -1125,8 +1121,7 @@ public final class VirtualNetworkRulesClientImpl implements VirtualNetworkRulesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual network rules along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a list of virtual network rules.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkRuleInner>> listByServerNextSinglePageAsync(

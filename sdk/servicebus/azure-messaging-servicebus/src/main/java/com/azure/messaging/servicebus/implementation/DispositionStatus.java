@@ -9,8 +9,7 @@ public enum DispositionStatus {
     COMPLETED("completed"),
     DEFERRED("defered"),
     SUSPENDED("suspended"),
-    ABANDONED("abandoned"),
-    RELEASED("released");
+    ABANDONED("abandoned");
 
     private final String value;
 

@@ -12,7 +12,7 @@ import java.util.List;
 
 /** A site for the Direct Line channel. */
 @Fluent
-public class DirectLineSite {
+public final class DirectLineSite {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(DirectLineSite.class);
 
     /*
@@ -64,12 +64,6 @@ public class DirectLineSite {
      */
     @JsonProperty(value = "isSecureSiteEnabled")
     private Boolean isSecureSiteEnabled;
-
-    /*
-     * Whether this site is enabled for block user upload.
-     */
-    @JsonProperty(value = "isBlockUserUploadEnabled")
-    private Boolean isBlockUserUploadEnabled;
 
     /*
      * List of Trusted Origin URLs for this site. This field is applicable only
@@ -204,26 +198,6 @@ public class DirectLineSite {
      */
     public DirectLineSite withIsSecureSiteEnabled(Boolean isSecureSiteEnabled) {
         this.isSecureSiteEnabled = isSecureSiteEnabled;
-        return this;
-    }
-
-    /**
-     * Get the isBlockUserUploadEnabled property: Whether this site is enabled for block user upload.
-     *
-     * @return the isBlockUserUploadEnabled value.
-     */
-    public Boolean isBlockUserUploadEnabled() {
-        return this.isBlockUserUploadEnabled;
-    }
-
-    /**
-     * Set the isBlockUserUploadEnabled property: Whether this site is enabled for block user upload.
-     *
-     * @param isBlockUserUploadEnabled the isBlockUserUploadEnabled value to set.
-     * @return the DirectLineSite object itself.
-     */
-    public DirectLineSite withIsBlockUserUploadEnabled(Boolean isBlockUserUploadEnabled) {
-        this.isBlockUserUploadEnabled = isBlockUserUploadEnabled;
         return this;
     }
 

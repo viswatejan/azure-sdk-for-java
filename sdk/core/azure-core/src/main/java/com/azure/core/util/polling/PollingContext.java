@@ -17,8 +17,7 @@ import java.util.Objects;
  * @param <T> the type of the poll response.
  */
 public final class PollingContext<T> {
-    // PollingContext is a commonly used class, use a static logger.
-    private static final ClientLogger LOGGER = new ClientLogger(PollingContext.class);
+    private final ClientLogger logger = new ClientLogger(PollingContext.class);
     private final Map<String, String> map;
     private volatile PollResponse<T> activationResponse;
     private volatile PollResponse<T> latestResponse;
@@ -80,8 +79,9 @@ public final class PollingContext<T> {
      */
     void setOnetimeActivationResponse(PollResponse<T> activationResponse) {
         if (this.activationResponse != null) {
-            throw LOGGER.logExceptionAsError(new IllegalStateException(
-                "setOnetimeActivationResponse can be called only once."));
+            throw logger
+                    .logExceptionAsError(new IllegalStateException(
+                            "setOnetimeActivationResponse can be called only once."));
         } else {
             this.activationResponse = activationResponse;
             this.latestResponse = this.activationResponse;

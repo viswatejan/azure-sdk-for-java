@@ -22,6 +22,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.compute.fluent.GallerySharingProfilesClient;
@@ -33,6 +34,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in GallerySharingProfilesClient. */
 public final class GallerySharingProfilesClientImpl implements GallerySharingProfilesClient {
+    private final ClientLogger logger = new ClientLogger(GallerySharingProfilesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final GallerySharingProfilesService service;
 
@@ -84,8 +87,7 @@ public final class GallerySharingProfilesClientImpl implements GallerySharingPro
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the gallery sharing profile update along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -114,7 +116,7 @@ public final class GallerySharingProfilesClientImpl implements GallerySharingPro
         } else {
             sharingUpdate.validate();
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -142,8 +144,7 @@ public final class GallerySharingProfilesClientImpl implements GallerySharingPro
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the gallery sharing profile update along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -172,7 +173,7 @@ public final class GallerySharingProfilesClientImpl implements GallerySharingPro
         } else {
             sharingUpdate.validate();
         }
-        final String apiVersion = "2021-10-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -196,7 +197,7 @@ public final class GallerySharingProfilesClientImpl implements GallerySharingPro
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of specifies information about the gallery sharing profile update.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<PollResult<SharingUpdateInner>, SharingUpdateInner> beginUpdateAsync(
@@ -222,7 +223,7 @@ public final class GallerySharingProfilesClientImpl implements GallerySharingPro
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of specifies information about the gallery sharing profile update.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SharingUpdateInner>, SharingUpdateInner> beginUpdateAsync(
@@ -245,7 +246,7 @@ public final class GallerySharingProfilesClientImpl implements GallerySharingPro
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of specifies information about the gallery sharing profile update.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SharingUpdateInner>, SharingUpdateInner> beginUpdate(
@@ -263,7 +264,7 @@ public final class GallerySharingProfilesClientImpl implements GallerySharingPro
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of specifies information about the gallery sharing profile update.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SharingUpdateInner>, SharingUpdateInner> beginUpdate(
@@ -280,7 +281,7 @@ public final class GallerySharingProfilesClientImpl implements GallerySharingPro
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the gallery sharing profile update on successful completion of {@link Mono}.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<SharingUpdateInner> updateAsync(
@@ -300,7 +301,7 @@ public final class GallerySharingProfilesClientImpl implements GallerySharingPro
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the gallery sharing profile update on successful completion of {@link Mono}.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SharingUpdateInner> updateAsync(

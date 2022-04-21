@@ -30,7 +30,7 @@ public interface PrivateLinkResources {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a Digital Twin along with {@link Response}.
+     * @return the available private link resources for a Digital Twin.
      */
     Response<GroupIdInformationResponse> listWithResponse(
         String resourceGroupName, String resourceName, Context context);
@@ -58,7 +58,7 @@ public interface PrivateLinkResources {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given Digital Twin along with {@link Response}.
+     * @return the specified private link resource for the given Digital Twin.
      */
     Response<GroupIdInformation> getWithResponse(
         String resourceGroupName, String resourceName, String resourceId, Context context);

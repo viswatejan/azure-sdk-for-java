@@ -24,9 +24,9 @@ public interface VirtualMachineImagesClient {
      * @param skus A valid image SKU.
      * @param version A valid image SKU version.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine image along with {@link Response} on successful completion of {@link Mono}.
+     * @return a virtual machine image.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VirtualMachineImageInner>> getWithResponseAsync(
@@ -41,9 +41,9 @@ public interface VirtualMachineImagesClient {
      * @param skus A valid image SKU.
      * @param version A valid image SKU version.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine image on successful completion of {@link Mono}.
+     * @return a virtual machine image.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VirtualMachineImageInner> getAsync(
@@ -58,7 +58,7 @@ public interface VirtualMachineImagesClient {
      * @param skus A valid image SKU.
      * @param version A valid image SKU version.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a virtual machine image.
      */
@@ -75,9 +75,9 @@ public interface VirtualMachineImagesClient {
      * @param version A valid image SKU version.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine image along with {@link Response}.
+     * @return a virtual machine image.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VirtualMachineImageInner> getWithResponse(
@@ -94,10 +94,9 @@ public interface VirtualMachineImagesClient {
      * @param top The top parameter.
      * @param orderby The orderby parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU along
-     *     with {@link Response} on successful completion of {@link Mono}.
+     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<VirtualMachineImageResourceInner>>> listWithResponseAsync(
@@ -114,10 +113,9 @@ public interface VirtualMachineImagesClient {
      * @param top The top parameter.
      * @param orderby The orderby parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU on
-     *     successful completion of {@link Mono}.
+     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VirtualMachineImageResourceInner>> listAsync(
@@ -131,10 +129,9 @@ public interface VirtualMachineImagesClient {
      * @param offer A valid image publisher offer.
      * @param skus A valid image SKU.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU on
-     *     successful completion of {@link Mono}.
+     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VirtualMachineImageResourceInner>> listAsync(
@@ -148,7 +145,7 @@ public interface VirtualMachineImagesClient {
      * @param offer A valid image publisher offer.
      * @param skus A valid image SKU.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU.
      */
@@ -167,10 +164,9 @@ public interface VirtualMachineImagesClient {
      * @param orderby The orderby parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU along
-     *     with {@link Response}.
+     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<VirtualMachineImageResourceInner>> listWithResponse(
@@ -189,10 +185,9 @@ public interface VirtualMachineImagesClient {
      * @param location The name of a supported Azure region.
      * @param publisherName A valid image publisher.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image offers for the specified location and publisher along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return a list of virtual machine image offers for the specified location and publisher.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<VirtualMachineImageResourceInner>>> listOffersWithResponseAsync(
@@ -204,10 +199,9 @@ public interface VirtualMachineImagesClient {
      * @param location The name of a supported Azure region.
      * @param publisherName A valid image publisher.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image offers for the specified location and publisher on successful completion
-     *     of {@link Mono}.
+     * @return a list of virtual machine image offers for the specified location and publisher.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VirtualMachineImageResourceInner>> listOffersAsync(String location, String publisherName);
@@ -218,7 +212,7 @@ public interface VirtualMachineImagesClient {
      * @param location The name of a supported Azure region.
      * @param publisherName A valid image publisher.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of virtual machine image offers for the specified location and publisher.
      */
@@ -232,10 +226,9 @@ public interface VirtualMachineImagesClient {
      * @param publisherName A valid image publisher.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image offers for the specified location and publisher along with {@link
-     *     Response}.
+     * @return a list of virtual machine image offers for the specified location and publisher.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<VirtualMachineImageResourceInner>> listOffersWithResponse(
@@ -246,10 +239,9 @@ public interface VirtualMachineImagesClient {
      *
      * @param location The name of a supported Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image publishers for the specified Azure location along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return a list of virtual machine image publishers for the specified Azure location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<VirtualMachineImageResourceInner>>> listPublishersWithResponseAsync(String location);
@@ -259,10 +251,9 @@ public interface VirtualMachineImagesClient {
      *
      * @param location The name of a supported Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image publishers for the specified Azure location on successful completion of
-     *     {@link Mono}.
+     * @return a list of virtual machine image publishers for the specified Azure location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VirtualMachineImageResourceInner>> listPublishersAsync(String location);
@@ -272,7 +263,7 @@ public interface VirtualMachineImagesClient {
      *
      * @param location The name of a supported Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of virtual machine image publishers for the specified Azure location.
      */
@@ -285,9 +276,9 @@ public interface VirtualMachineImagesClient {
      * @param location The name of a supported Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image publishers for the specified Azure location along with {@link Response}.
+     * @return a list of virtual machine image publishers for the specified Azure location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<VirtualMachineImageResourceInner>> listPublishersWithResponse(String location, Context context);
@@ -299,10 +290,9 @@ public interface VirtualMachineImagesClient {
      * @param publisherName A valid image publisher.
      * @param offer A valid image publisher offer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<VirtualMachineImageResourceInner>>> listSkusWithResponseAsync(
@@ -315,10 +305,9 @@ public interface VirtualMachineImagesClient {
      * @param publisherName A valid image publisher.
      * @param offer A valid image publisher offer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer on successful
-     *     completion of {@link Mono}.
+     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VirtualMachineImageResourceInner>> listSkusAsync(String location, String publisherName, String offer);
@@ -330,7 +319,7 @@ public interface VirtualMachineImagesClient {
      * @param publisherName A valid image publisher.
      * @param offer A valid image publisher offer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of virtual machine image SKUs for the specified location, publisher, and offer.
      */
@@ -345,10 +334,9 @@ public interface VirtualMachineImagesClient {
      * @param offer A valid image publisher offer.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer along with {@link
-     *     Response}.
+     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<VirtualMachineImageResourceInner>> listSkusWithResponse(

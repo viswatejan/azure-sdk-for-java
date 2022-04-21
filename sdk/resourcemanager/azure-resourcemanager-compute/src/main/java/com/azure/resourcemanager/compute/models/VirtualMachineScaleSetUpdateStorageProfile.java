@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Describes a virtual machine scale set storage profile. */
 @Fluent
 public final class VirtualMachineScaleSetUpdateStorageProfile {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualMachineScaleSetUpdateStorageProfile.class);
+
     /*
      * The image reference.
      */

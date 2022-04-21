@@ -48,7 +48,7 @@ public interface AnalyticsItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Analytics Items defined within an Application Insights component along with {@link Response}.
+     * @return a list of Analytics Items defined within an Application Insights component.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<ApplicationInsightsComponentAnalyticsItemInner>> listWithResponse(
@@ -89,7 +89,7 @@ public interface AnalyticsItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific Analytics Items defined within an Application Insights component along with {@link Response}.
+     * @return a specific Analytics Items defined within an Application Insights component.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationInsightsComponentAnalyticsItemInner> getWithResponse(
@@ -136,8 +136,7 @@ public interface AnalyticsItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties that define an Analytics item that is associated to an Application Insights component along
-     *     with {@link Response}.
+     * @return properties that define an Analytics item that is associated to an Application Insights component.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationInsightsComponentAnalyticsItemInner> putWithResponse(
@@ -175,7 +174,7 @@ public interface AnalyticsItemsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(

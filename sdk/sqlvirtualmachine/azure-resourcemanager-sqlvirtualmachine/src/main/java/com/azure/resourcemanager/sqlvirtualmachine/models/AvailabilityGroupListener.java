@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.sqlvirtualmachine.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.models.AvailabilityGroupListenerInner;
 import java.util.List;
@@ -31,13 +30,6 @@ public interface AvailabilityGroupListener {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the provisioningState property: Provisioning state to track the async operation status.
@@ -77,13 +69,6 @@ public interface AvailabilityGroupListener {
     Integer port();
 
     /**
-     * Gets the availabilityGroupConfiguration property: Availability Group configuration.
-     *
-     * @return the availabilityGroupConfiguration value.
-     */
-    AgConfiguration availabilityGroupConfiguration();
-
-    /**
      * Gets the inner com.azure.resourcemanager.sqlvirtualmachine.fluent.models.AvailabilityGroupListenerInner object.
      *
      * @return the inner object.
@@ -119,8 +104,7 @@ public interface AvailabilityGroupListener {
             extends DefinitionStages.WithAvailabilityGroupName,
                 DefinitionStages.WithLoadBalancerConfigurations,
                 DefinitionStages.WithCreateDefaultAvailabilityGroupIfNotExist,
-                DefinitionStages.WithPort,
-                DefinitionStages.WithAvailabilityGroupConfiguration {
+                DefinitionStages.WithPort {
             /**
              * Executes the create request.
              *
@@ -182,16 +166,6 @@ public interface AvailabilityGroupListener {
              */
             WithCreate withPort(Integer port);
         }
-        /** The stage of the AvailabilityGroupListener definition allowing to specify availabilityGroupConfiguration. */
-        interface WithAvailabilityGroupConfiguration {
-            /**
-             * Specifies the availabilityGroupConfiguration property: Availability Group configuration..
-             *
-             * @param availabilityGroupConfiguration Availability Group configuration.
-             * @return the next definition stage.
-             */
-            WithCreate withAvailabilityGroupConfiguration(AgConfiguration availabilityGroupConfiguration);
-        }
     }
     /**
      * Begins update for the AvailabilityGroupListener resource.
@@ -205,8 +179,7 @@ public interface AvailabilityGroupListener {
         extends UpdateStages.WithAvailabilityGroupName,
             UpdateStages.WithLoadBalancerConfigurations,
             UpdateStages.WithCreateDefaultAvailabilityGroupIfNotExist,
-            UpdateStages.WithPort,
-            UpdateStages.WithAvailabilityGroupConfiguration {
+            UpdateStages.WithPort {
         /**
          * Executes the update request.
          *
@@ -269,16 +242,6 @@ public interface AvailabilityGroupListener {
              * @return the next definition stage.
              */
             Update withPort(Integer port);
-        }
-        /** The stage of the AvailabilityGroupListener update allowing to specify availabilityGroupConfiguration. */
-        interface WithAvailabilityGroupConfiguration {
-            /**
-             * Specifies the availabilityGroupConfiguration property: Availability Group configuration..
-             *
-             * @param availabilityGroupConfiguration Availability Group configuration.
-             * @return the next definition stage.
-             */
-            Update withAvailabilityGroupConfiguration(AgConfiguration availabilityGroupConfiguration);
         }
     }
     /**

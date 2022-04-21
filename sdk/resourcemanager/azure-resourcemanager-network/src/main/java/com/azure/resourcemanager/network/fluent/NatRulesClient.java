@@ -29,7 +29,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnGatewayNatRule Resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return vpnGatewayNatRule Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VpnGatewayNatRuleInner>> getWithResponseAsync(
@@ -44,7 +44,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnGatewayNatRule Resource on successful completion of {@link Mono}.
+     * @return vpnGatewayNatRule Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VpnGatewayNatRuleInner> getAsync(String resourceGroupName, String gatewayName, String natRuleName);
@@ -73,7 +73,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnGatewayNatRule Resource along with {@link Response}.
+     * @return vpnGatewayNatRule Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VpnGatewayNatRuleInner> getWithResponse(
@@ -89,7 +89,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnGatewayNatRule Resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return vpnGatewayNatRule Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -105,7 +105,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of vpnGatewayNatRule Resource.
+     * @return vpnGatewayNatRule Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<VpnGatewayNatRuleInner>, VpnGatewayNatRuleInner> beginCreateOrUpdateAsync(
@@ -121,7 +121,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of vpnGatewayNatRule Resource.
+     * @return vpnGatewayNatRule Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<VpnGatewayNatRuleInner>, VpnGatewayNatRuleInner> beginCreateOrUpdate(
@@ -138,7 +138,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of vpnGatewayNatRule Resource.
+     * @return vpnGatewayNatRule Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<VpnGatewayNatRuleInner>, VpnGatewayNatRuleInner> beginCreateOrUpdate(
@@ -158,7 +158,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnGatewayNatRule Resource on successful completion of {@link Mono}.
+     * @return vpnGatewayNatRule Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VpnGatewayNatRuleInner> createOrUpdateAsync(
@@ -210,7 +210,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -225,7 +225,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -240,7 +240,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String gatewayName, String natRuleName);
@@ -255,7 +255,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -270,7 +270,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String gatewayName, String natRuleName);
@@ -310,8 +310,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list all nat rules to a virtual wan vpn gateway as paginated response with
-     *     {@link PagedFlux}.
+     * @return result of the request to list all nat rules to a virtual wan vpn gateway.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<VpnGatewayNatRuleInner> listByVpnGatewayAsync(String resourceGroupName, String gatewayName);
@@ -324,8 +323,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list all nat rules to a virtual wan vpn gateway as paginated response with
-     *     {@link PagedIterable}.
+     * @return result of the request to list all nat rules to a virtual wan vpn gateway.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<VpnGatewayNatRuleInner> listByVpnGateway(String resourceGroupName, String gatewayName);
@@ -339,8 +337,7 @@ public interface NatRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list all nat rules to a virtual wan vpn gateway as paginated response with
-     *     {@link PagedIterable}.
+     * @return result of the request to list all nat rules to a virtual wan vpn gateway.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<VpnGatewayNatRuleInner> listByVpnGateway(

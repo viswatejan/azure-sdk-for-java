@@ -8,7 +8,6 @@ import com.azure.analytics.synapse.artifacts.implementation.SqlPoolsImpl;
 import com.azure.analytics.synapse.artifacts.models.ErrorContractException;
 import com.azure.analytics.synapse.artifacts.models.SqlPool;
 import com.azure.analytics.synapse.artifacts.models.SqlPoolInfoListResult;
-import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
 import com.azure.core.annotation.ServiceMethod;
@@ -18,14 +17,13 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the asynchronous ArtifactsClient type. */
 @ServiceClient(builder = ArtifactsClientBuilder.class, isAsync = true)
 public final class SqlPoolsAsyncClient {
-    @Generated private final SqlPoolsImpl serviceClient;
+    private final SqlPoolsImpl serviceClient;
 
     /**
      * Initializes an instance of SqlPools client.
      *
      * @param serviceClient the service client implementation.
      */
-    @Generated
     SqlPoolsAsyncClient(SqlPoolsImpl serviceClient) {
         this.serviceClient = serviceClient;
     }
@@ -35,9 +33,8 @@ public final class SqlPoolsAsyncClient {
      *
      * @throws ErrorContractException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool collection along with {@link Response} on successful completion of {@link Mono}.
+     * @return sQL pool collection.
      */
-    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<SqlPoolInfoListResult>> listWithResponse() {
         return this.serviceClient.listWithResponseAsync();
@@ -48,9 +45,8 @@ public final class SqlPoolsAsyncClient {
      *
      * @throws ErrorContractException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool collection on successful completion of {@link Mono}.
+     * @return sQL pool collection.
      */
-    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<SqlPoolInfoListResult> list() {
         return this.serviceClient.listAsync();
@@ -63,9 +59,8 @@ public final class SqlPoolsAsyncClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorContractException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sql Pool along with {@link Response} on successful completion of {@link Mono}.
+     * @return sql Pool.
      */
-    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<SqlPool>> getWithResponse(String sqlPoolName) {
         return this.serviceClient.getWithResponseAsync(sqlPoolName);
@@ -78,9 +73,8 @@ public final class SqlPoolsAsyncClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorContractException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sql Pool on successful completion of {@link Mono}.
+     * @return sql Pool.
      */
-    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<SqlPool> get(String sqlPoolName) {
         return this.serviceClient.getAsync(sqlPoolName);

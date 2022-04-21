@@ -70,8 +70,7 @@ function DeployStressTests(
     [string]$deployId = 'local',
     [switch]$login,
     [string]$subscription = '',
-    [switch]$CI,
-    [string]$Namespace
+    [switch]$CI
 ) {
     if ($environment -eq 'test') {
         if ($clusterGroup -or $subscription) {
@@ -87,6 +86,12 @@ function DeployStressTests(
         $subscription = 'Azure SDK Test Resources'
     }
 
+    if (!$repository) {
+        $repository = if ($env:USER) { $env:USER } else { "${env:USERNAME}" }
+        # Remove spaces, etc. that may be in $namespace
+        $repository -replace '\W'
+    }
+
     if ($login) {
         if (!$clusterGroup -or !$subscription) {
             throw "clusterGroup and subscription parameters must be specified when logging into an environment that is not test or prod."
@@ -98,7 +103,7 @@ function DeployStressTests(
     Run helm repo update
     if ($LASTEXITCODE) { return $LASTEXITCODE }
 
-    $pkgs = FindStressPackages -directory $searchDirectory -filters $filters -CI:$CI -namespaceOverride $Namespace
+    $pkgs = FindStressPackages -directory $searchDirectory -filters $filters -CI:$CI
     Write-Host "" "Found $($pkgs.Length) stress test packages:"
     Write-Host $pkgs.Directory ""
     foreach ($pkg in $pkgs) {
@@ -151,34 +156,12 @@ function DeployStressPackage(
     }
     $imageTag += "/$($pkg.Namespace)/$($pkg.ReleaseName):${deployId}"
 
-    $dockerFilePath = if ($pkg.Dockerfile) {
-        Join-Path $pkg.Directory $pkg.Dockerfile
-    } else {
-        "$($pkg.Directory)/Dockerfile"
-    }
-    $dockerFilePath = [System.IO.Path]::GetFullPath($dockerFilePath)
-
+    $dockerFilePath = "$($pkg.Directory)/Dockerfile"
     if ($pushImages -and (Test-Path $dockerFilePath)) {
         Write-Host "Building and pushing stress test docker image '$imageTag'"
         $dockerFile = Get-ChildItem $dockerFilePath
-        $dockerBuildFolder = if ($pkg.DockerBuildDir) {
-            Join-Path $pkg.Directory $pkg.DockerBuildDir
-        } else {
-            $dockerFile.DirectoryName
-        }
-        $dockerBuildFolder = [System.IO.Path]::GetFullPath($dockerBuildFolder).Trim()
-
-        Run docker build -t $imageTag -f $dockerFile $dockerBuildFolder
+        Run docker build -t $imageTag -f $dockerFile.FullName $dockerFile.DirectoryName
         if ($LASTEXITCODE) { return }
-
-        Write-Host "`nContainer image '$imageTag' successfully built. To run commands on the container locally:" -ForegroundColor Blue
-        Write-Host "  docker run -it $imageTag" -ForegroundColor DarkBlue
-        Write-Host "  docker run -it $imageTag <shell, e.g. 'bash' 'pwsh' 'sh'>" -ForegroundColor DarkBlue
-        Write-Host "To show installed container images:" -ForegroundColor Blue
-        Write-Host "  docker image ls" -ForegroundColor DarkBlue
-        Write-Host "To show running containers:" -ForegroundColor Blue
-        Write-Host "  docker ps" -ForegroundColor DarkBlue
-
         Run docker push $imageTag
         if ($LASTEXITCODE) {
             if ($login) {

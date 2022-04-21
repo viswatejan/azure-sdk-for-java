@@ -16,7 +16,9 @@ Key concepts are explained in detail [here][sdk_readme_key_concepts].
 
 To create a pipeline topology you need to define parameters, sources, and sinks.
 
-```java readme-sample-buildPipelineTopology
+<!-- embedme C:\azure-sdk-for-java\sdk\videoanalyzer\azure-media-videoanalyzer-edge\src\samples\java\com\azure\media\videoanalyzer\edge\LvaInvokeModuleSample.java#L25-L72 -->
+
+```java
 private static PipelineTopology buildPipeLineTopology() {
     IotHubMessageSource msgSource = new IotHubMessageSource("iotMsgSource")
         .setHubInputName("${hubSourceInput}");
@@ -46,9 +48,7 @@ private static PipelineTopology buildPipeLineTopology() {
 
     NodeInput nodeInput = new NodeInput("inferenceClient");
 
-    IotHubMessageSink msgSink = new IotHubMessageSink("msgSink",
-        Arrays.asList(nodeInput),
-        "${hubSinkOutputName}");
+    IotHubMessageSink msgSink = new IotHubMessageSink("msgSink", Arrays.asList(nodeInput),"${hubSinkOutputName}");
 
     ParameterDeclaration userName = new ParameterDeclaration("rtspUserName", ParameterType.STRING);
 
@@ -62,8 +62,10 @@ private static PipelineTopology buildPipeLineTopology() {
         .setSinks(Arrays.asList(msgSink))
         .setProcessors(Arrays.asList(httpExtension));
 
-    return new PipelineTopology(TOPOLOGY_NAME)
+    PipelineTopology pipelineTopology = new PipelineTopology(TOPOLOGY_NAME)
         .setProperties(pipeProps);
+
+    return pipelineTopology;
 }
 ```
 
@@ -71,7 +73,9 @@ private static PipelineTopology buildPipeLineTopology() {
 
 To create a live pipeline instance, you need to have an existing pipeline topology.
 
-```java readme-sample-buildLivePipeline
+<!-- embedme C:\azure-sdk-for-java\sdk\videoanalyzer\azure-media-videoanalyzer-edge\src\samples\java\com\azure\media\videoanalyzer\edge\LvaInvokeModuleSample.java#L74-L92 -->
+
+```java
 private static LivePipeline buildLivePipeline() {
     ParameterDefinition hubParam = new ParameterDefinition("hubSinkOutputName")
         .setValue("testHubOutput");
@@ -86,18 +90,22 @@ private static LivePipeline buildLivePipeline() {
         .setParameters(Arrays.asList(urlParam, userParam, passParam, hubParam))
         .setTopologyName(TOPOLOGY_NAME);
 
-    return new LivePipeline(LIVE_PIPELINE_NAME)
+    LivePipeline livePipeline = new LivePipeline(LIVE_PIPELINE_NAME)
         .setProperties(livePipelineProps);
+
+    return livePipeline;
 }
 ```
 
 ### Invoking a pipeline method request
 
-```java readme-sample-invokeDirectMethodHelper
+<!-- embedme C:\azure-sdk-for-java\sdk\videoanalyzer\azure-media-videoanalyzer-edge\src\samples\java\com\azure\media\videoanalyzer\edge\LvaInvokeModuleSample.java#L94-L104 -->
+
+```java
 private static MethodResult invokeDirectMethodHelper(DeviceMethod client, String methodName, String payload) throws IOException, IotHubException {
     MethodResult result = null;
     try {
-        result = client.invoke(iothubDeviceid, iothubModuleid, methodName, null, null, payload);
+        result = client.invoke(DEVICE_ID, MODULE_ID, methodName, null, null, payload);
     } catch (IotHubException e) {
         System.out.println("An error has occurred.");
         System.out.println(e.toString());
@@ -107,10 +115,11 @@ private static MethodResult invokeDirectMethodHelper(DeviceMethod client, String
 }
 ```
 
-```java readme-sample-setPipelineTopologyRequest
+<!-- embedme C:\azure-sdk-for-java\sdk\videoanalyzer\azure-media-videoanalyzer-edge\src\samples\java\com\azure\media\videoanalyzer\edge\LvaInvokeModuleSample.java#L111-L112 -->
+
+```java
 PipelineTopologySetRequest setPipelineTopologyRequest = new PipelineTopologySetRequest(pipelineTopology);
 MethodResult setPipelineResult = invokeDirectMethodHelper(dClient, setPipelineTopologyRequest.getMethodName(), setPipelineTopologyRequest.getPayloadAsJson());
-System.out.println(setPipelineResult.getPayload());
 ```
 
 ## Troubleshooting

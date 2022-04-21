@@ -85,8 +85,7 @@ public final class EdgeNodesClientImpl implements EdgeNodesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list CDN edgenodes along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the request to list CDN edgenodes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EdgeNodeInner>> listSinglePageAsync() {
@@ -109,7 +108,7 @@ public final class EdgeNodesClientImpl implements EdgeNodesClient {
                         res.getValue().value(),
                         res.getValue().nextLink(),
                         null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -119,8 +118,7 @@ public final class EdgeNodesClientImpl implements EdgeNodesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list CDN edgenodes along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the request to list CDN edgenodes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EdgeNodeInner>> listSinglePageAsync(Context context) {
@@ -150,7 +148,7 @@ public final class EdgeNodesClientImpl implements EdgeNodesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list CDN edgenodes as paginated response with {@link PagedFlux}.
+     * @return result of the request to list CDN edgenodes.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<EdgeNodeInner> listAsync() {
@@ -164,7 +162,7 @@ public final class EdgeNodesClientImpl implements EdgeNodesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list CDN edgenodes as paginated response with {@link PagedFlux}.
+     * @return result of the request to list CDN edgenodes.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<EdgeNodeInner> listAsync(Context context) {
@@ -177,7 +175,7 @@ public final class EdgeNodesClientImpl implements EdgeNodesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list CDN edgenodes as paginated response with {@link PagedIterable}.
+     * @return result of the request to list CDN edgenodes.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<EdgeNodeInner> list() {
@@ -191,7 +189,7 @@ public final class EdgeNodesClientImpl implements EdgeNodesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list CDN edgenodes as paginated response with {@link PagedIterable}.
+     * @return result of the request to list CDN edgenodes.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<EdgeNodeInner> list(Context context) {
@@ -205,8 +203,7 @@ public final class EdgeNodesClientImpl implements EdgeNodesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list CDN edgenodes along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the request to list CDN edgenodes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EdgeNodeInner>> listNextSinglePageAsync(String nextLink) {
@@ -231,7 +228,7 @@ public final class EdgeNodesClientImpl implements EdgeNodesClient {
                         res.getValue().value(),
                         res.getValue().nextLink(),
                         null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -242,8 +239,7 @@ public final class EdgeNodesClientImpl implements EdgeNodesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list CDN edgenodes along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the request to list CDN edgenodes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EdgeNodeInner>> listNextSinglePageAsync(String nextLink, Context context) {

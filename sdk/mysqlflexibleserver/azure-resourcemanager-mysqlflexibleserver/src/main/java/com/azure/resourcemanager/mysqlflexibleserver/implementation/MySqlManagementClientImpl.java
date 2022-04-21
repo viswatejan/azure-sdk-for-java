@@ -46,6 +46,8 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the MySqlManagementClientImpl type. */
 @ServiceClient(builder = MySqlManagementClientBuilder.class)
 public final class MySqlManagementClientImpl implements MySqlManagementClient {
+    private final ClientLogger logger = new ClientLogger(MySqlManagementClientImpl.class);
+
     /** The ID of the target subscription. */
     private final String subscriptionId;
 
@@ -369,7 +371,7 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        LOGGER.logThrowableAsWarning(ioe);
+                        logger.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -428,6 +430,4 @@ public final class MySqlManagementClientImpl implements MySqlManagementClient {
             return Mono.just(new String(responseBody, charset));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MySqlManagementClientImpl.class);
 }

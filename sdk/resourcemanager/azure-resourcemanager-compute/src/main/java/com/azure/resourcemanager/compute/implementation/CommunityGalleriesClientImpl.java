@@ -20,6 +20,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.CommunityGalleriesClient;
 import com.azure.resourcemanager.compute.fluent.models.CommunityGalleryInner;
 import com.azure.resourcemanager.compute.models.ApiErrorException;
@@ -27,6 +28,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in CommunityGalleriesClient. */
 public final class CommunityGalleriesClientImpl implements CommunityGalleriesClient {
+    private final ClientLogger logger = new ClientLogger(CommunityGalleriesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final CommunityGalleriesService service;
 
@@ -75,8 +78,7 @@ public final class CommunityGalleriesClientImpl implements CommunityGalleriesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a community gallery by gallery public name along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a community gallery by gallery public name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<CommunityGalleryInner>> getWithResponseAsync(String location, String publicGalleryName) {
@@ -125,8 +127,7 @@ public final class CommunityGalleriesClientImpl implements CommunityGalleriesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a community gallery by gallery public name along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a community gallery by gallery public name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CommunityGalleryInner>> getWithResponseAsync(
@@ -172,7 +173,7 @@ public final class CommunityGalleriesClientImpl implements CommunityGalleriesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a community gallery by gallery public name on successful completion of {@link Mono}.
+     * @return a community gallery by gallery public name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<CommunityGalleryInner> getAsync(String location, String publicGalleryName) {
@@ -211,7 +212,7 @@ public final class CommunityGalleriesClientImpl implements CommunityGalleriesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a community gallery by gallery public name along with {@link Response}.
+     * @return a community gallery by gallery public name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CommunityGalleryInner> getWithResponse(String location, String publicGalleryName, Context context) {

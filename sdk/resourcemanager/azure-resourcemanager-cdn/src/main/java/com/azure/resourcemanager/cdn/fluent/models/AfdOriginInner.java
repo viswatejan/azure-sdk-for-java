@@ -5,13 +5,14 @@
 package com.azure.resourcemanager.cdn.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.cdn.models.AfdProvisioningState;
 import com.azure.resourcemanager.cdn.models.DeploymentStatus;
 import com.azure.resourcemanager.cdn.models.EnabledState;
 import com.azure.resourcemanager.cdn.models.ResourceReference;
+import com.azure.resourcemanager.cdn.models.SystemData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,15 +20,87 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * CDN origin is the source of the content being delivered via CDN. When the edge nodes represented by an endpoint do
  * not have the requested content cached, they attempt to fetch it from one or more of the configured origins.
  */
+@JsonFlatten
 @Fluent
-public final class AfdOriginInner extends ProxyResource {
+public class AfdOriginInner extends ProxyResource {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(AfdOriginInner.class);
 
     /*
-     * The JSON object that contains the properties of the origin.
+     * Resource reference to the Azure origin resource.
      */
-    @JsonProperty(value = "properties")
-    private AfdOriginProperties innerProperties;
+    @JsonProperty(value = "properties.azureOrigin")
+    private ResourceReference azureOrigin;
+
+    /*
+     * The address of the origin. Domain names, IPv4 addresses, and IPv6
+     * addresses are supported.This should be unique across all origins in an
+     * endpoint.
+     */
+    @JsonProperty(value = "properties.hostName")
+    private String hostname;
+
+    /*
+     * The value of the HTTP port. Must be between 1 and 65535.
+     */
+    @JsonProperty(value = "properties.httpPort")
+    private Integer httpPort;
+
+    /*
+     * The value of the HTTPS port. Must be between 1 and 65535.
+     */
+    @JsonProperty(value = "properties.httpsPort")
+    private Integer httpsPort;
+
+    /*
+     * The host header value sent to the origin with each request. If you leave
+     * this blank, the request hostname determines this value. Azure CDN
+     * origins, such as Web Apps, Blob Storage, and Cloud Services require this
+     * host header value to match the origin hostname by default. This
+     * overrides the host header defined at Endpoint
+     */
+    @JsonProperty(value = "properties.originHostHeader")
+    private String originHostHeader;
+
+    /*
+     * Priority of origin in given origin group for load balancing. Higher
+     * priorities will not be used for load balancing if any lower priority
+     * origin is healthy.Must be between 1 and 5
+     */
+    @JsonProperty(value = "properties.priority")
+    private Integer priority;
+
+    /*
+     * Weight of the origin in given origin group for load balancing. Must be
+     * between 1 and 1000
+     */
+    @JsonProperty(value = "properties.weight")
+    private Integer weight;
+
+    /*
+     * The properties of the private link resource for private origin.
+     */
+    @JsonProperty(value = "properties.sharedPrivateLinkResource")
+    private Object sharedPrivateLinkResource;
+
+    /*
+     * Whether to enable health probes to be made against backends defined
+     * under backendPools. Health probes can only be disabled if there is a
+     * single enabled backend in single enabled backend pool.
+     */
+    @JsonProperty(value = "properties.enabledState")
+    private EnabledState enabledState;
+
+    /*
+     * Provisioning status
+     */
+    @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AfdProvisioningState provisioningState;
+
+    /*
+     * The deploymentStatus property.
+     */
+    @JsonProperty(value = "properties.deploymentStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private DeploymentStatus deploymentStatus;
 
     /*
      * Read only system data
@@ -36,57 +109,12 @@ public final class AfdOriginInner extends ProxyResource {
     private SystemData systemData;
 
     /**
-     * Get the innerProperties property: The JSON object that contains the properties of the origin.
-     *
-     * @return the innerProperties value.
-     */
-    private AfdOriginProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: Read only system data.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * Get the provisioningState property: Provisioning status.
-     *
-     * @return the provisioningState value.
-     */
-    public AfdProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the deploymentStatus property: The deploymentStatus property.
-     *
-     * @return the deploymentStatus value.
-     */
-    public DeploymentStatus deploymentStatus() {
-        return this.innerProperties() == null ? null : this.innerProperties().deploymentStatus();
-    }
-
-    /**
-     * Get the originGroupName property: The name of the origin group which contains this origin.
-     *
-     * @return the originGroupName value.
-     */
-    public String originGroupName() {
-        return this.innerProperties() == null ? null : this.innerProperties().originGroupName();
-    }
-
-    /**
      * Get the azureOrigin property: Resource reference to the Azure origin resource.
      *
      * @return the azureOrigin value.
      */
     public ResourceReference azureOrigin() {
-        return this.innerProperties() == null ? null : this.innerProperties().azureOrigin();
+        return this.azureOrigin;
     }
 
     /**
@@ -96,10 +124,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the AfdOriginInner object itself.
      */
     public AfdOriginInner withAzureOrigin(ResourceReference azureOrigin) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginProperties();
-        }
-        this.innerProperties().withAzureOrigin(azureOrigin);
+        this.azureOrigin = azureOrigin;
         return this;
     }
 
@@ -110,7 +135,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the hostname value.
      */
     public String hostname() {
-        return this.innerProperties() == null ? null : this.innerProperties().hostname();
+        return this.hostname;
     }
 
     /**
@@ -121,10 +146,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the AfdOriginInner object itself.
      */
     public AfdOriginInner withHostname(String hostname) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginProperties();
-        }
-        this.innerProperties().withHostname(hostname);
+        this.hostname = hostname;
         return this;
     }
 
@@ -134,7 +156,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the httpPort value.
      */
     public Integer httpPort() {
-        return this.innerProperties() == null ? null : this.innerProperties().httpPort();
+        return this.httpPort;
     }
 
     /**
@@ -144,10 +166,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the AfdOriginInner object itself.
      */
     public AfdOriginInner withHttpPort(Integer httpPort) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginProperties();
-        }
-        this.innerProperties().withHttpPort(httpPort);
+        this.httpPort = httpPort;
         return this;
     }
 
@@ -157,7 +176,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the httpsPort value.
      */
     public Integer httpsPort() {
-        return this.innerProperties() == null ? null : this.innerProperties().httpsPort();
+        return this.httpsPort;
     }
 
     /**
@@ -167,10 +186,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the AfdOriginInner object itself.
      */
     public AfdOriginInner withHttpsPort(Integer httpsPort) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginProperties();
-        }
-        this.innerProperties().withHttpsPort(httpsPort);
+        this.httpsPort = httpsPort;
         return this;
     }
 
@@ -183,7 +199,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the originHostHeader value.
      */
     public String originHostHeader() {
-        return this.innerProperties() == null ? null : this.innerProperties().originHostHeader();
+        return this.originHostHeader;
     }
 
     /**
@@ -196,10 +212,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the AfdOriginInner object itself.
      */
     public AfdOriginInner withOriginHostHeader(String originHostHeader) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginProperties();
-        }
-        this.innerProperties().withOriginHostHeader(originHostHeader);
+        this.originHostHeader = originHostHeader;
         return this;
     }
 
@@ -210,7 +223,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the priority value.
      */
     public Integer priority() {
-        return this.innerProperties() == null ? null : this.innerProperties().priority();
+        return this.priority;
     }
 
     /**
@@ -221,10 +234,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the AfdOriginInner object itself.
      */
     public AfdOriginInner withPriority(Integer priority) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginProperties();
-        }
-        this.innerProperties().withPriority(priority);
+        this.priority = priority;
         return this;
     }
 
@@ -235,7 +245,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the weight value.
      */
     public Integer weight() {
-        return this.innerProperties() == null ? null : this.innerProperties().weight();
+        return this.weight;
     }
 
     /**
@@ -246,10 +256,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the AfdOriginInner object itself.
      */
     public AfdOriginInner withWeight(Integer weight) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginProperties();
-        }
-        this.innerProperties().withWeight(weight);
+        this.weight = weight;
         return this;
     }
 
@@ -259,7 +266,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the sharedPrivateLinkResource value.
      */
     public Object sharedPrivateLinkResource() {
-        return this.innerProperties() == null ? null : this.innerProperties().sharedPrivateLinkResource();
+        return this.sharedPrivateLinkResource;
     }
 
     /**
@@ -269,10 +276,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the AfdOriginInner object itself.
      */
     public AfdOriginInner withSharedPrivateLinkResource(Object sharedPrivateLinkResource) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginProperties();
-        }
-        this.innerProperties().withSharedPrivateLinkResource(sharedPrivateLinkResource);
+        this.sharedPrivateLinkResource = sharedPrivateLinkResource;
         return this;
     }
 
@@ -284,7 +288,7 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the enabledState value.
      */
     public EnabledState enabledState() {
-        return this.innerProperties() == null ? null : this.innerProperties().enabledState();
+        return this.enabledState;
     }
 
     /**
@@ -296,34 +300,35 @@ public final class AfdOriginInner extends ProxyResource {
      * @return the AfdOriginInner object itself.
      */
     public AfdOriginInner withEnabledState(EnabledState enabledState) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginProperties();
-        }
-        this.innerProperties().withEnabledState(enabledState);
+        this.enabledState = enabledState;
         return this;
     }
 
     /**
-     * Get the enforceCertificateNameCheck property: Whether to enable certificate name check at origin level.
+     * Get the provisioningState property: Provisioning status.
      *
-     * @return the enforceCertificateNameCheck value.
+     * @return the provisioningState value.
      */
-    public Boolean enforceCertificateNameCheck() {
-        return this.innerProperties() == null ? null : this.innerProperties().enforceCertificateNameCheck();
+    public AfdProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
-     * Set the enforceCertificateNameCheck property: Whether to enable certificate name check at origin level.
+     * Get the deploymentStatus property: The deploymentStatus property.
      *
-     * @param enforceCertificateNameCheck the enforceCertificateNameCheck value to set.
-     * @return the AfdOriginInner object itself.
+     * @return the deploymentStatus value.
      */
-    public AfdOriginInner withEnforceCertificateNameCheck(Boolean enforceCertificateNameCheck) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginProperties();
-        }
-        this.innerProperties().withEnforceCertificateNameCheck(enforceCertificateNameCheck);
-        return this;
+    public DeploymentStatus deploymentStatus() {
+        return this.deploymentStatus;
+    }
+
+    /**
+     * Get the systemData property: Read only system data.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -332,8 +337,11 @@ public final class AfdOriginInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (azureOrigin() != null) {
+            azureOrigin().validate();
+        }
+        if (systemData() != null) {
+            systemData().validate();
         }
     }
 }

@@ -4,88 +4,78 @@
 package com.azure.security.keyvault.keys.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.security.keyvault.keys.implementation.models.LifetimeActionTrigger;
-import com.azure.security.keyvault.keys.implementation.models.LifetimeActionType;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Represents an action that will be performed by Key Vault over the lifetime of a key.
  */
 @Fluent
 public final class KeyRotationLifetimeAction {
-    @JsonProperty(value = "trigger")
-    private final LifetimeActionTrigger trigger;
-
-    @JsonProperty(value = "action")
-    private final LifetimeActionType actionType;
+    private final KeyRotationPolicyAction type;
+    private String timeAfterCreate;
+    private String timeBeforeExpiry;
 
     /**
      * Creates a {@link KeyRotationLifetimeAction}.
      *
-     * @param action The {@link KeyRotationPolicyAction policy action}.
+     * @param type The {@link KeyRotationPolicyAction type} of the action.
      */
-    public KeyRotationLifetimeAction(KeyRotationPolicyAction action) {
-        this.actionType = new LifetimeActionType().setType(action);
-        this.trigger = new LifetimeActionTrigger();
+    public KeyRotationLifetimeAction(KeyRotationPolicyAction type) {
+        this.type = type;
     }
 
     /**
-     * Get the {@link KeyRotationPolicyAction policy action}.
+     * Get the {@link KeyRotationPolicyAction type} of the action.
      *
-     * @return The {@link KeyRotationPolicyAction policy action}.
+     * @return The {@link KeyRotationPolicyAction type} of the action.
      */
-    public KeyRotationPolicyAction getAction() {
-        return this.actionType.getType();
+    public KeyRotationPolicyAction getType() {
+        return this.type;
     }
 
     /**
-     * Get the time after creation to attempt to rotate in ISO 8601 duration format. For example, 90 days would be
-     * "P90D", 3 months would be "P3M" and 1 year and 10 days would be "P1Y10D". See
-     * <a href="https://wikipedia.org/wiki/ISO_8601#Durations">Wikipedia</a> for more information on ISO 8601 durations.
+     * Get the time after creation to attempt to rotate in ISO 8601 duration format. For example, 90 days is represented
+     * as follows: "P90D".
      *
-     * @return The time after creation to attempt to rotate in ISO duration format.
+     * @return The time after creation to attempt to rotate.
      */
     public String getTimeAfterCreate() {
-        return this.trigger.getTimeAfterCreate();
+        return this.timeAfterCreate;
     }
 
     /**
-     * Set the time after creation to attempt to rotate in ISO 8601 duration format. For example, 90 days would be
-     * "P90D", 3 months would be "P3M" and 1 year and 10 days would be "P1Y10D". See
-     * <a href="https://wikipedia.org/wiki/ISO_8601#Durations">Wikipedia</a> for more information on ISO 8601 durations.
+     * Set the time after creation to attempt to rotate in ISO 8601 duration format. For example, 90 days is represented
+     * as follows: "P90D".
      *
-     * @param timeAfterCreate The time after creation to attempt to rotate in ISO duration format.
+     * @param timeAfterCreate The time after creation to attempt to rotate.
      *
      * @return The updated {@link KeyRotationLifetimeAction} object.
      */
     public KeyRotationLifetimeAction setTimeAfterCreate(String timeAfterCreate) {
-        this.trigger.setTimeAfterCreate(timeAfterCreate);
+        this.timeAfterCreate = timeAfterCreate;
 
         return this;
     }
 
     /**
-     * Get the time before expiry to attempt to rotate or notify in ISO 8601 duration format. For example, 90 days would
-     * be "P90D", 3 months would be "P3M" and 1 year and 10 days would be "P1Y10D". See
-     * <a href="https://wikipedia.org/wiki/ISO_8601#Durations">Wikipedia</a> for more information on ISO 8601 durations.
+     * Get the time before expiry to attempt to rotate or notify in ISO 8601 duration format. For example, 90 days is
+     * represented as follows: "P90D".
      *
-     * @return The time before expiry to attempt to rotate or notify in ISO duration format.
+     * @return The time before expiry to attempt to rotate or notify.
      */
     public String getTimeBeforeExpiry() {
-        return this.trigger.getTimeBeforeExpiry();
+        return this.timeBeforeExpiry;
     }
 
     /**
-     * Set the time before expiry to attempt to rotate or notify in ISO 8601 duration format. For example, 90 days would
-     * be "P90D", 3 months would be "P3M" and 1 year and 10 days would be "P1Y10D". See
-     * <a href="https://wikipedia.org/wiki/ISO_8601#Durations">Wikipedia</a> for more information on ISO 8601 durations.
+     * Set the time before expiry to attempt to rotate or notify in ISO 8601 duration format. For example, 90 days is
+     * represented as follows: "P90D".
      *
-     * @param timeBeforeExpiry The time before expiry to attempt to rotate or notify in ISO duration format.
+     * @param timeBeforeExpiry The time before expiry to attempt to rotate or notify.
      *
      * @return The updated {@link KeyRotationLifetimeAction} object.
      */
     public KeyRotationLifetimeAction setTimeBeforeExpiry(String timeBeforeExpiry) {
-        this.trigger.setTimeBeforeExpiry(timeBeforeExpiry);
+        this.timeBeforeExpiry = timeBeforeExpiry;
 
         return this;
     }

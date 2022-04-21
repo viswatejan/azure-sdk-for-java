@@ -15,9 +15,6 @@ import java.util.Objects;
  */
 @Immutable
 public final class GeoLinearRing {
-    // GeoLinearRing is a commonly used model class, use a static logger.
-    private static final ClientLogger LOGGER = new ClientLogger(GeoLinearRing.class);
-
     private final GeoArray<GeoPosition> coordinates;
 
     /**
@@ -31,14 +28,15 @@ public final class GeoLinearRing {
     public GeoLinearRing(List<GeoPosition> coordinates) {
         Objects.requireNonNull(coordinates, "'coordinates' cannot be null.");
 
+        ClientLogger logger = new ClientLogger(GeoLinearRing.class);
         int size = coordinates.size();
         if (size < 4) {
-            throw LOGGER.logExceptionAsError(
+            throw logger.logExceptionAsError(
                 new IllegalArgumentException("A linear ring requires at least 4 coordinates."));
         }
 
         if (!Objects.equals(coordinates.get(0), coordinates.get(size - 1))) {
-            throw LOGGER.logExceptionAsError(
+            throw logger.logExceptionAsError(
                 new IllegalArgumentException("The first and last coordinates of a linear ring must be equivalent."));
         }
 

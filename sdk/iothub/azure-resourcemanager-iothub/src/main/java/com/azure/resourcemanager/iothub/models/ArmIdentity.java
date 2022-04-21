@@ -7,7 +7,6 @@ package com.azure.resourcemanager.iothub.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
@@ -41,7 +40,6 @@ public class ArmIdentity {
      * Dictionary of <ArmUserIdentity>
      */
     @JsonProperty(value = "userAssignedIdentities")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, ArmUserIdentity> userAssignedIdentities;
 
     /**

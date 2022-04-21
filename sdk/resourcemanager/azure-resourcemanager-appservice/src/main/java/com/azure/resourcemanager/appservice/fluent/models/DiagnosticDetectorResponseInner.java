@@ -5,11 +5,13 @@
 package com.azure.resourcemanager.appservice.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.models.DetectorAbnormalTimePeriod;
 import com.azure.resourcemanager.appservice.models.DiagnosticMetricSet;
 import com.azure.resourcemanager.appservice.models.NameValuePair;
 import com.azure.resourcemanager.appservice.models.ProxyOnlyResource;
 import com.azure.resourcemanager.appservice.models.ResponseMetadata;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -17,6 +19,8 @@ import java.util.List;
 /** Class representing Response from Diagnostic Detectors. */
 @Fluent
 public final class DiagnosticDetectorResponseInner extends ProxyOnlyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DiagnosticDetectorResponseInner.class);
+
     /*
      * DiagnosticDetectorResponse resource specific properties
      */

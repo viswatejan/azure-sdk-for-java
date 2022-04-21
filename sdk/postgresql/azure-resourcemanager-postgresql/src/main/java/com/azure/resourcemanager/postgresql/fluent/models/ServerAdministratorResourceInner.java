@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.postgresql.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.postgresql.models.AdministratorType;
@@ -13,24 +14,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
 /** Represents a and external administrator to be created. */
+@JsonFlatten
 @Fluent
-public final class ServerAdministratorResourceInner extends ProxyResource {
+public class ServerAdministratorResourceInner extends ProxyResource {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(ServerAdministratorResourceInner.class);
 
     /*
-     * Properties of the server AAD administrator.
+     * The type of administrator.
      */
-    @JsonProperty(value = "properties")
-    private ServerAdministratorProperties innerProperties;
+    @JsonProperty(value = "properties.administratorType")
+    private AdministratorType administratorType;
 
-    /**
-     * Get the innerProperties property: Properties of the server AAD administrator.
-     *
-     * @return the innerProperties value.
+    /*
+     * The server administrator login account name.
      */
-    private ServerAdministratorProperties innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.login")
+    private String login;
+
+    /*
+     * The server administrator Sid (Secure ID).
+     */
+    @JsonProperty(value = "properties.sid")
+    private UUID sid;
+
+    /*
+     * The server Active Directory Administrator tenant id.
+     */
+    @JsonProperty(value = "properties.tenantId")
+    private UUID tenantId;
 
     /**
      * Get the administratorType property: The type of administrator.
@@ -38,7 +49,7 @@ public final class ServerAdministratorResourceInner extends ProxyResource {
      * @return the administratorType value.
      */
     public AdministratorType administratorType() {
-        return this.innerProperties() == null ? null : this.innerProperties().administratorType();
+        return this.administratorType;
     }
 
     /**
@@ -48,10 +59,7 @@ public final class ServerAdministratorResourceInner extends ProxyResource {
      * @return the ServerAdministratorResourceInner object itself.
      */
     public ServerAdministratorResourceInner withAdministratorType(AdministratorType administratorType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ServerAdministratorProperties();
-        }
-        this.innerProperties().withAdministratorType(administratorType);
+        this.administratorType = administratorType;
         return this;
     }
 
@@ -61,7 +69,7 @@ public final class ServerAdministratorResourceInner extends ProxyResource {
      * @return the login value.
      */
     public String login() {
-        return this.innerProperties() == null ? null : this.innerProperties().login();
+        return this.login;
     }
 
     /**
@@ -71,10 +79,7 @@ public final class ServerAdministratorResourceInner extends ProxyResource {
      * @return the ServerAdministratorResourceInner object itself.
      */
     public ServerAdministratorResourceInner withLogin(String login) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ServerAdministratorProperties();
-        }
-        this.innerProperties().withLogin(login);
+        this.login = login;
         return this;
     }
 
@@ -84,7 +89,7 @@ public final class ServerAdministratorResourceInner extends ProxyResource {
      * @return the sid value.
      */
     public UUID sid() {
-        return this.innerProperties() == null ? null : this.innerProperties().sid();
+        return this.sid;
     }
 
     /**
@@ -94,10 +99,7 @@ public final class ServerAdministratorResourceInner extends ProxyResource {
      * @return the ServerAdministratorResourceInner object itself.
      */
     public ServerAdministratorResourceInner withSid(UUID sid) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ServerAdministratorProperties();
-        }
-        this.innerProperties().withSid(sid);
+        this.sid = sid;
         return this;
     }
 
@@ -107,7 +109,7 @@ public final class ServerAdministratorResourceInner extends ProxyResource {
      * @return the tenantId value.
      */
     public UUID tenantId() {
-        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+        return this.tenantId;
     }
 
     /**
@@ -117,10 +119,7 @@ public final class ServerAdministratorResourceInner extends ProxyResource {
      * @return the ServerAdministratorResourceInner object itself.
      */
     public ServerAdministratorResourceInner withTenantId(UUID tenantId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ServerAdministratorProperties();
-        }
-        this.innerProperties().withTenantId(tenantId);
+        this.tenantId = tenantId;
         return this;
     }
 
@@ -130,8 +129,5 @@ public final class ServerAdministratorResourceInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
-        }
     }
 }

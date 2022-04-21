@@ -22,12 +22,15 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.containerservice.fluent.ResolvePrivateLinkServiceIdsClient;
 import com.azure.resourcemanager.containerservice.fluent.models.PrivateLinkResourceInner;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ResolvePrivateLinkServiceIdsClient. */
 public final class ResolvePrivateLinkServiceIdsClientImpl implements ResolvePrivateLinkServiceIdsClient {
+    private final ClientLogger logger = new ClientLogger(ResolvePrivateLinkServiceIdsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ResolvePrivateLinkServiceIdsService service;
 
@@ -80,8 +83,7 @@ public final class ResolvePrivateLinkServiceIdsClientImpl implements ResolvePriv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link service ID for the specified managed cluster along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the private link service ID for the specified managed cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<PrivateLinkResourceInner>> postWithResponseAsync(
@@ -110,7 +112,7 @@ public final class ResolvePrivateLinkServiceIdsClientImpl implements ResolvePriv
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-01-01";
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -138,8 +140,7 @@ public final class ResolvePrivateLinkServiceIdsClientImpl implements ResolvePriv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link service ID for the specified managed cluster along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the private link service ID for the specified managed cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<PrivateLinkResourceInner>> postWithResponseAsync(
@@ -168,7 +169,7 @@ public final class ResolvePrivateLinkServiceIdsClientImpl implements ResolvePriv
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2022-01-01";
+        final String apiVersion = "2021-10-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -192,7 +193,7 @@ public final class ResolvePrivateLinkServiceIdsClientImpl implements ResolvePriv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link service ID for the specified managed cluster on successful completion of {@link Mono}.
+     * @return the private link service ID for the specified managed cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PrivateLinkResourceInner> postAsync(
@@ -235,7 +236,7 @@ public final class ResolvePrivateLinkServiceIdsClientImpl implements ResolvePriv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link service ID for the specified managed cluster along with {@link Response}.
+     * @return the private link service ID for the specified managed cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<PrivateLinkResourceInner> postWithResponse(

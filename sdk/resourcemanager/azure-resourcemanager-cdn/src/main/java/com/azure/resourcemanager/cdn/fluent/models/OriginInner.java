@@ -5,11 +5,12 @@
 package com.azure.resourcemanager.cdn.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.cdn.models.OriginResourceState;
 import com.azure.resourcemanager.cdn.models.PrivateEndpointStatus;
+import com.azure.resourcemanager.cdn.models.SystemData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,15 +18,107 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * CDN origin is the source of the content being delivered via CDN. When the edge nodes represented by an endpoint do
  * not have the requested content cached, they attempt to fetch it from one or more of the configured origins.
  */
+@JsonFlatten
 @Fluent
-public final class OriginInner extends ProxyResource {
+public class OriginInner extends ProxyResource {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(OriginInner.class);
 
     /*
-     * The JSON object that contains the properties of the origin.
+     * The address of the origin. Domain names, IPv4 addresses, and IPv6
+     * addresses are supported.This should be unique across all origins in an
+     * endpoint.
      */
-    @JsonProperty(value = "properties")
-    private OriginProperties innerProperties;
+    @JsonProperty(value = "properties.hostName")
+    private String hostname;
+
+    /*
+     * The value of the HTTP port. Must be between 1 and 65535.
+     */
+    @JsonProperty(value = "properties.httpPort")
+    private Integer httpPort;
+
+    /*
+     * The value of the HTTPS port. Must be between 1 and 65535.
+     */
+    @JsonProperty(value = "properties.httpsPort")
+    private Integer httpsPort;
+
+    /*
+     * The host header value sent to the origin with each request. If you leave
+     * this blank, the request hostname determines this value. Azure CDN
+     * origins, such as Web Apps, Blob Storage, and Cloud Services require this
+     * host header value to match the origin hostname by default. This
+     * overrides the host header defined at Endpoint
+     */
+    @JsonProperty(value = "properties.originHostHeader")
+    private String originHostHeader;
+
+    /*
+     * Priority of origin in given origin group for load balancing. Higher
+     * priorities will not be used for load balancing if any lower priority
+     * origin is healthy.Must be between 1 and 5
+     */
+    @JsonProperty(value = "properties.priority")
+    private Integer priority;
+
+    /*
+     * Weight of the origin in given origin group for load balancing. Must be
+     * between 1 and 1000
+     */
+    @JsonProperty(value = "properties.weight")
+    private Integer weight;
+
+    /*
+     * Origin is enabled for load balancing or not
+     */
+    @JsonProperty(value = "properties.enabled")
+    private Boolean enabled;
+
+    /*
+     * The Alias of the Private Link resource. Populating this optional field
+     * indicates that this origin is 'Private'
+     */
+    @JsonProperty(value = "properties.privateLinkAlias")
+    private String privateLinkAlias;
+
+    /*
+     * The Resource Id of the Private Link resource. Populating this optional
+     * field indicates that this backend is 'Private'
+     */
+    @JsonProperty(value = "properties.privateLinkResourceId")
+    private String privateLinkResourceId;
+
+    /*
+     * The location of the Private Link resource. Required only if
+     * 'privateLinkResourceId' is populated
+     */
+    @JsonProperty(value = "properties.privateLinkLocation")
+    private String privateLinkLocation;
+
+    /*
+     * A custom message to be included in the approval request to connect to
+     * the Private Link.
+     */
+    @JsonProperty(value = "properties.privateLinkApprovalMessage")
+    private String privateLinkApprovalMessage;
+
+    /*
+     * Resource status of the origin.
+     */
+    @JsonProperty(value = "properties.resourceState", access = JsonProperty.Access.WRITE_ONLY)
+    private OriginResourceState resourceState;
+
+    /*
+     * Provisioning status of the origin.
+     */
+    @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private String provisioningState;
+
+    /*
+     * The approval status for the connection to the Private Link
+     */
+    @JsonProperty(value = "properties.privateEndpointStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private PrivateEndpointStatus privateEndpointStatus;
 
     /*
      * Read only system data
@@ -34,58 +127,13 @@ public final class OriginInner extends ProxyResource {
     private SystemData systemData;
 
     /**
-     * Get the innerProperties property: The JSON object that contains the properties of the origin.
-     *
-     * @return the innerProperties value.
-     */
-    private OriginProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: Read only system data.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * Get the resourceState property: Resource status of the origin.
-     *
-     * @return the resourceState value.
-     */
-    public OriginResourceState resourceState() {
-        return this.innerProperties() == null ? null : this.innerProperties().resourceState();
-    }
-
-    /**
-     * Get the provisioningState property: Provisioning status of the origin.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the privateEndpointStatus property: The approval status for the connection to the Private Link.
-     *
-     * @return the privateEndpointStatus value.
-     */
-    public PrivateEndpointStatus privateEndpointStatus() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointStatus();
-    }
-
-    /**
      * Get the hostname property: The address of the origin. Domain names, IPv4 addresses, and IPv6 addresses are
      * supported.This should be unique across all origins in an endpoint.
      *
      * @return the hostname value.
      */
     public String hostname() {
-        return this.innerProperties() == null ? null : this.innerProperties().hostname();
+        return this.hostname;
     }
 
     /**
@@ -96,10 +144,7 @@ public final class OriginInner extends ProxyResource {
      * @return the OriginInner object itself.
      */
     public OriginInner withHostname(String hostname) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginProperties();
-        }
-        this.innerProperties().withHostname(hostname);
+        this.hostname = hostname;
         return this;
     }
 
@@ -109,7 +154,7 @@ public final class OriginInner extends ProxyResource {
      * @return the httpPort value.
      */
     public Integer httpPort() {
-        return this.innerProperties() == null ? null : this.innerProperties().httpPort();
+        return this.httpPort;
     }
 
     /**
@@ -119,10 +164,7 @@ public final class OriginInner extends ProxyResource {
      * @return the OriginInner object itself.
      */
     public OriginInner withHttpPort(Integer httpPort) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginProperties();
-        }
-        this.innerProperties().withHttpPort(httpPort);
+        this.httpPort = httpPort;
         return this;
     }
 
@@ -132,7 +174,7 @@ public final class OriginInner extends ProxyResource {
      * @return the httpsPort value.
      */
     public Integer httpsPort() {
-        return this.innerProperties() == null ? null : this.innerProperties().httpsPort();
+        return this.httpsPort;
     }
 
     /**
@@ -142,10 +184,7 @@ public final class OriginInner extends ProxyResource {
      * @return the OriginInner object itself.
      */
     public OriginInner withHttpsPort(Integer httpsPort) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginProperties();
-        }
-        this.innerProperties().withHttpsPort(httpsPort);
+        this.httpsPort = httpsPort;
         return this;
     }
 
@@ -158,7 +197,7 @@ public final class OriginInner extends ProxyResource {
      * @return the originHostHeader value.
      */
     public String originHostHeader() {
-        return this.innerProperties() == null ? null : this.innerProperties().originHostHeader();
+        return this.originHostHeader;
     }
 
     /**
@@ -171,10 +210,7 @@ public final class OriginInner extends ProxyResource {
      * @return the OriginInner object itself.
      */
     public OriginInner withOriginHostHeader(String originHostHeader) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginProperties();
-        }
-        this.innerProperties().withOriginHostHeader(originHostHeader);
+        this.originHostHeader = originHostHeader;
         return this;
     }
 
@@ -185,7 +221,7 @@ public final class OriginInner extends ProxyResource {
      * @return the priority value.
      */
     public Integer priority() {
-        return this.innerProperties() == null ? null : this.innerProperties().priority();
+        return this.priority;
     }
 
     /**
@@ -196,10 +232,7 @@ public final class OriginInner extends ProxyResource {
      * @return the OriginInner object itself.
      */
     public OriginInner withPriority(Integer priority) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginProperties();
-        }
-        this.innerProperties().withPriority(priority);
+        this.priority = priority;
         return this;
     }
 
@@ -210,7 +243,7 @@ public final class OriginInner extends ProxyResource {
      * @return the weight value.
      */
     public Integer weight() {
-        return this.innerProperties() == null ? null : this.innerProperties().weight();
+        return this.weight;
     }
 
     /**
@@ -221,10 +254,7 @@ public final class OriginInner extends ProxyResource {
      * @return the OriginInner object itself.
      */
     public OriginInner withWeight(Integer weight) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginProperties();
-        }
-        this.innerProperties().withWeight(weight);
+        this.weight = weight;
         return this;
     }
 
@@ -234,7 +264,7 @@ public final class OriginInner extends ProxyResource {
      * @return the enabled value.
      */
     public Boolean enabled() {
-        return this.innerProperties() == null ? null : this.innerProperties().enabled();
+        return this.enabled;
     }
 
     /**
@@ -244,10 +274,7 @@ public final class OriginInner extends ProxyResource {
      * @return the OriginInner object itself.
      */
     public OriginInner withEnabled(Boolean enabled) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginProperties();
-        }
-        this.innerProperties().withEnabled(enabled);
+        this.enabled = enabled;
         return this;
     }
 
@@ -258,7 +285,7 @@ public final class OriginInner extends ProxyResource {
      * @return the privateLinkAlias value.
      */
     public String privateLinkAlias() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateLinkAlias();
+        return this.privateLinkAlias;
     }
 
     /**
@@ -269,10 +296,7 @@ public final class OriginInner extends ProxyResource {
      * @return the OriginInner object itself.
      */
     public OriginInner withPrivateLinkAlias(String privateLinkAlias) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginProperties();
-        }
-        this.innerProperties().withPrivateLinkAlias(privateLinkAlias);
+        this.privateLinkAlias = privateLinkAlias;
         return this;
     }
 
@@ -283,7 +307,7 @@ public final class OriginInner extends ProxyResource {
      * @return the privateLinkResourceId value.
      */
     public String privateLinkResourceId() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateLinkResourceId();
+        return this.privateLinkResourceId;
     }
 
     /**
@@ -294,10 +318,7 @@ public final class OriginInner extends ProxyResource {
      * @return the OriginInner object itself.
      */
     public OriginInner withPrivateLinkResourceId(String privateLinkResourceId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginProperties();
-        }
-        this.innerProperties().withPrivateLinkResourceId(privateLinkResourceId);
+        this.privateLinkResourceId = privateLinkResourceId;
         return this;
     }
 
@@ -308,7 +329,7 @@ public final class OriginInner extends ProxyResource {
      * @return the privateLinkLocation value.
      */
     public String privateLinkLocation() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateLinkLocation();
+        return this.privateLinkLocation;
     }
 
     /**
@@ -319,10 +340,7 @@ public final class OriginInner extends ProxyResource {
      * @return the OriginInner object itself.
      */
     public OriginInner withPrivateLinkLocation(String privateLinkLocation) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginProperties();
-        }
-        this.innerProperties().withPrivateLinkLocation(privateLinkLocation);
+        this.privateLinkLocation = privateLinkLocation;
         return this;
     }
 
@@ -333,7 +351,7 @@ public final class OriginInner extends ProxyResource {
      * @return the privateLinkApprovalMessage value.
      */
     public String privateLinkApprovalMessage() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateLinkApprovalMessage();
+        return this.privateLinkApprovalMessage;
     }
 
     /**
@@ -344,11 +362,44 @@ public final class OriginInner extends ProxyResource {
      * @return the OriginInner object itself.
      */
     public OriginInner withPrivateLinkApprovalMessage(String privateLinkApprovalMessage) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginProperties();
-        }
-        this.innerProperties().withPrivateLinkApprovalMessage(privateLinkApprovalMessage);
+        this.privateLinkApprovalMessage = privateLinkApprovalMessage;
         return this;
+    }
+
+    /**
+     * Get the resourceState property: Resource status of the origin.
+     *
+     * @return the resourceState value.
+     */
+    public OriginResourceState resourceState() {
+        return this.resourceState;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning status of the origin.
+     *
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the privateEndpointStatus property: The approval status for the connection to the Private Link.
+     *
+     * @return the privateEndpointStatus value.
+     */
+    public PrivateEndpointStatus privateEndpointStatus() {
+        return this.privateEndpointStatus;
+    }
+
+    /**
+     * Get the systemData property: Read only system data.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -357,8 +408,8 @@ public final class OriginInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (systemData() != null) {
+            systemData().validate();
         }
     }
 }

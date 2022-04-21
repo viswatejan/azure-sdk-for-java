@@ -78,8 +78,7 @@ public final class ExtensionTopicsClientImpl implements ExtensionTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of an extension topic along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the properties of an extension topic.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExtensionTopicInner>> getWithResponseAsync(String scope) {
@@ -112,8 +111,7 @@ public final class ExtensionTopicsClientImpl implements ExtensionTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of an extension topic along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the properties of an extension topic.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExtensionTopicInner>> getWithResponseAsync(String scope, Context context) {
@@ -143,7 +141,7 @@ public final class ExtensionTopicsClientImpl implements ExtensionTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of an extension topic on successful completion of {@link Mono}.
+     * @return the properties of an extension topic.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ExtensionTopicInner> getAsync(String scope) {
@@ -190,7 +188,7 @@ public final class ExtensionTopicsClientImpl implements ExtensionTopicsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of an extension topic along with {@link Response}.
+     * @return the properties of an extension topic.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ExtensionTopicInner> getWithResponse(String scope, Context context) {

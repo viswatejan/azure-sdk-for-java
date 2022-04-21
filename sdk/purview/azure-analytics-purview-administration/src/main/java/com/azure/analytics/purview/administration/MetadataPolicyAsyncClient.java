@@ -225,7 +225,7 @@ public final class MetadataPolicyAsyncClient {
      * @param policyId Unique policy id.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -298,7 +298,7 @@ public final class MetadataPolicyAsyncClient {
      * @param policyId Id of an existing policy that needs to be fetched.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return a metadata policy along with {@link Response} on successful completion of {@link Mono}.
+     * @return a metadata policy.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)

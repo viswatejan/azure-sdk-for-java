@@ -101,8 +101,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata sync configuration for a SQL pool along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the metadata sync configuration for a SQL pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MetadataSyncConfigInner>> getWithResponseAsync(
@@ -157,8 +156,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata sync configuration for a SQL pool along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the metadata sync configuration for a SQL pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MetadataSyncConfigInner>> getWithResponseAsync(
@@ -209,7 +207,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata sync configuration for a SQL pool on successful completion of {@link Mono}.
+     * @return the metadata sync configuration for a SQL pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSyncConfigInner> getAsync(String resourceGroupName, String workspaceName, String sqlPoolName) {
@@ -250,7 +248,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata sync configuration for a SQL pool along with {@link Response}.
+     * @return the metadata sync configuration for a SQL pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MetadataSyncConfigInner> getWithResponse(
@@ -268,7 +266,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata sync configuration along with {@link Response} on successful completion of {@link Mono}.
+     * @return metadata sync configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MetadataSyncConfigInner>> createWithResponseAsync(
@@ -336,7 +334,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata sync configuration along with {@link Response} on successful completion of {@link Mono}.
+     * @return metadata sync configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MetadataSyncConfigInner>> createWithResponseAsync(
@@ -401,7 +399,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata sync configuration on successful completion of {@link Mono}.
+     * @return metadata sync configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSyncConfigInner> createAsync(
@@ -452,7 +450,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata sync configuration along with {@link Response}.
+     * @return metadata sync configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MetadataSyncConfigInner> createWithResponse(

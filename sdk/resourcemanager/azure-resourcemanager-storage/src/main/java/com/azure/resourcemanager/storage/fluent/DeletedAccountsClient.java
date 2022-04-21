@@ -20,7 +20,7 @@ public interface DeletedAccountsClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the List Deleted Accounts operation as paginated response with {@link PagedFlux}.
+     * @return the response from the List Deleted Accounts operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<DeletedAccountInner> listAsync();
@@ -30,7 +30,7 @@ public interface DeletedAccountsClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the List Deleted Accounts operation as paginated response with {@link PagedIterable}.
+     * @return the response from the List Deleted Accounts operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DeletedAccountInner> list();
@@ -42,7 +42,7 @@ public interface DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response from the List Deleted Accounts operation as paginated response with {@link PagedIterable}.
+     * @return the response from the List Deleted Accounts operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DeletedAccountInner> list(Context context);
@@ -55,8 +55,7 @@ public interface DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of specified deleted account resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return properties of specified deleted account resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<DeletedAccountInner>> getWithResponseAsync(String deletedAccountName, String location);
@@ -69,7 +68,7 @@ public interface DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of specified deleted account resource on successful completion of {@link Mono}.
+     * @return properties of specified deleted account resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<DeletedAccountInner> getAsync(String deletedAccountName, String location);
@@ -96,7 +95,7 @@ public interface DeletedAccountsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of specified deleted account resource along with {@link Response}.
+     * @return properties of specified deleted account resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<DeletedAccountInner> getWithResponse(String deletedAccountName, String location, Context context);

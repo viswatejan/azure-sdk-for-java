@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
-import org.springframework.lang.Nullable;
-import org.springframework.util.ErrorHandler;
 
 abstract class AbstractListenerContainer implements BeanNameAware, DisposableBean, MessageListenerContainer {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractListenerContainer.class);
@@ -17,8 +15,6 @@ abstract class AbstractListenerContainer implements BeanNameAware, DisposableBea
     private String destination;
     private String group;
     private AzureMessageHandler messageHandler;
-    @Nullable
-    private ErrorHandler errorHandler;
     private boolean autoStartup = true;
     private int phase = 0;
 
@@ -125,24 +121,5 @@ abstract class AbstractListenerContainer implements BeanNameAware, DisposableBea
     @Override
     public boolean isAutoStartup() {
         return autoStartup;
-    }
-
-    /**
-     * Return the ErrorHandler to be invoked in case of any uncaught exceptions thrown
-     * while processing a Message.
-     */
-    @Nullable
-    public ErrorHandler getErrorHandler() {
-        return errorHandler;
-    }
-
-    /**
-     * Set the ErrorHandler to be invoked in case of any uncaught exceptions thrown
-     * while processing a Message.
-     * <p>By default, there will be <b>no</b> ErrorHandler so that error-level
-     * logging is the only result.
-     */
-    public void setErrorHandler(@Nullable ErrorHandler errorHandler) {
-        this.errorHandler = errorHandler;
     }
 }

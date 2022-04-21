@@ -22,7 +22,6 @@ import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.Shared
 import com.azure.resourcemanager.deviceprovisioningservices.models.OperationInputs;
 import com.azure.resourcemanager.deviceprovisioningservices.models.TagsResource;
 import java.util.List;
-import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in IotDpsResourcesClient. */
 public interface IotDpsResourcesClient {
@@ -50,7 +49,7 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of the provisioning service without SAS keys along with {@link Response}.
+     * @return the metadata of the provisioning service without SAS keys.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ProvisioningServiceDescriptionInner> getByResourceGroupWithResponse(
@@ -68,10 +67,9 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the description of the provisioning service.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
         beginCreateOrUpdate(
             String resourceGroupName,
@@ -91,10 +89,9 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the description of the provisioning service.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner>
         beginCreateOrUpdate(
             String resourceGroupName,
@@ -153,10 +150,9 @@ public interface IotDpsResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the description of the provisioning service.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner> beginUpdate(
         String resourceGroupName, String provisioningServiceName, TagsResource provisioningServiceTags);
 
@@ -170,10 +166,9 @@ public interface IotDpsResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of the provisioning service along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the description of the provisioning service.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ProvisioningServiceDescriptionInner>, ProvisioningServiceDescriptionInner> beginUpdate(
         String resourceGroupName,
         String provisioningServiceName,
@@ -223,9 +218,9 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String provisioningServiceName);
 
     /**
@@ -238,9 +233,9 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String provisioningServiceName, Context context);
 
@@ -353,8 +348,7 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of a long running operation, such as create, update or delete a provisioning service along
-     *     with {@link Response}.
+     * @return the status of a long running operation, such as create, update or delete a provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AsyncOperationResultInner> getOperationResultWithResponse(
@@ -420,7 +414,7 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of name availability along with {@link Response}.
+     * @return description of name availability.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<NameAvailabilityInfoInner> checkProvisioningServiceNameAvailabilityWithResponse(
@@ -484,7 +478,7 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the shared access key along with {@link Response}.
+     * @return description of the shared access key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SharedAccessSignatureAuthorizationRuleInner> listKeysForKeyNameWithResponse(
@@ -514,7 +508,7 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a provisioning service along with {@link Response}.
+     * @return the available private link resources for a provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateLinkResourcesInner> listPrivateLinkResourcesWithResponse(
@@ -546,7 +540,7 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given provisioning service along with {@link Response}.
+     * @return the specified private link resource for the given provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<GroupIdInformationInner> getPrivateLinkResourcesWithResponse(
@@ -576,7 +570,7 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of private endpoint connections for a provisioning service along with {@link Response}.
+     * @return the list of private endpoint connections for a provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<PrivateEndpointConnectionInner>> listPrivateEndpointConnectionsWithResponse(
@@ -609,7 +603,7 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection properties along with {@link Response}.
+     * @return private endpoint connection properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateEndpointConnectionInner> getPrivateEndpointConnectionWithResponse(
@@ -626,10 +620,9 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private endpoint connection of a provisioning service along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the private endpoint connection of a provisioning service.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
         beginCreateOrUpdatePrivateEndpointConnection(
             String resourceGroupName,
@@ -649,10 +642,9 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private endpoint connection of a provisioning service along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the private endpoint connection of a provisioning service.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
         beginCreateOrUpdatePrivateEndpointConnection(
             String resourceGroupName,
@@ -713,10 +705,9 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private endpoint connection of a provisioning service along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the private endpoint connection of a provisioning service.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
         beginDeletePrivateEndpointConnection(
             String resourceGroupName, String resourceName, String privateEndpointConnectionName);
@@ -732,10 +723,9 @@ public interface IotDpsResourcesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private endpoint connection of a provisioning service along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the private endpoint connection of a provisioning service.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<PrivateEndpointConnectionInner>, PrivateEndpointConnectionInner>
         beginDeletePrivateEndpointConnection(
             String resourceGroupName, String resourceName, String privateEndpointConnectionName, Context context);

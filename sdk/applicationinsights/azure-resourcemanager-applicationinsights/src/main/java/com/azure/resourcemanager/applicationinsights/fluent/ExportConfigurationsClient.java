@@ -36,8 +36,7 @@ public interface ExportConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Continuous Export configuration of an Application Insights component along with {@link
-     *     Response}.
+     * @return a list of Continuous Export configuration of an Application Insights component.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<ApplicationInsightsComponentExportConfigurationInner>> listWithResponse(
@@ -70,7 +69,7 @@ public interface ExportConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Continuous Export configurations along with {@link Response}.
+     * @return a list of Continuous Export configurations.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<ApplicationInsightsComponentExportConfigurationInner>> createWithResponse(
@@ -104,7 +103,7 @@ public interface ExportConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties that define a Continuous Export configuration along with {@link Response}.
+     * @return properties that define a Continuous Export configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationInsightsComponentExportConfigurationInner> deleteWithResponse(
@@ -135,7 +134,7 @@ public interface ExportConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Continuous Export configuration for this export id along with {@link Response}.
+     * @return the Continuous Export configuration for this export id.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationInsightsComponentExportConfigurationInner> getWithResponse(
@@ -171,7 +170,7 @@ public interface ExportConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties that define a Continuous Export configuration along with {@link Response}.
+     * @return properties that define a Continuous Export configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationInsightsComponentExportConfigurationInner> updateWithResponse(

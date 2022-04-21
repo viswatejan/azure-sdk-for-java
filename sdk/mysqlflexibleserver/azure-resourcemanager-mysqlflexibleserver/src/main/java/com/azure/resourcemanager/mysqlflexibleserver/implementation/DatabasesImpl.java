@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mysqlflexibleserver.fluent.DatabasesClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.DatabaseInner;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Database;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Databases;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class DatabasesImpl implements Databases {
-    private static final ClientLogger LOGGER = new ClientLogger(DatabasesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DatabasesImpl.class);
 
     private final DatabasesClient innerClient;
 
@@ -72,7 +73,7 @@ public final class DatabasesImpl implements Databases {
     public Database getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -80,7 +81,7 @@ public final class DatabasesImpl implements Databases {
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -88,7 +89,7 @@ public final class DatabasesImpl implements Databases {
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
@@ -99,7 +100,7 @@ public final class DatabasesImpl implements Databases {
     public Response<Database> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -107,7 +108,7 @@ public final class DatabasesImpl implements Databases {
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -115,7 +116,7 @@ public final class DatabasesImpl implements Databases {
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
@@ -126,7 +127,7 @@ public final class DatabasesImpl implements Databases {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -134,7 +135,7 @@ public final class DatabasesImpl implements Databases {
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -142,7 +143,7 @@ public final class DatabasesImpl implements Databases {
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));
@@ -153,7 +154,7 @@ public final class DatabasesImpl implements Databases {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -161,7 +162,7 @@ public final class DatabasesImpl implements Databases {
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -169,7 +170,7 @@ public final class DatabasesImpl implements Databases {
         }
         String databaseName = Utils.getValueFromIdByName(id, "databases");
         if (databaseName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'databases'.", id)));

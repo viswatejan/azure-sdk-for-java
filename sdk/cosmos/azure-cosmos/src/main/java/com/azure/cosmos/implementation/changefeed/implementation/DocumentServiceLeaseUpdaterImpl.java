@@ -72,8 +72,7 @@ class DocumentServiceLeaseUpdaterImpl implements ServiceItemLeaseUpdater {
                         if (throwable instanceof CosmosException) {
                             CosmosException ex = (CosmosException) throwable;
                             if (ex.getStatusCode() == HTTP_STATUS_CODE_NOT_FOUND) {
-                                logger.info(
-                                    "Partition {} could not be found.", cachedLease.getLeaseToken());
+                                // Partition lease no longer exists
                                 throw new LeaseLostException(cachedLease);
                             }
                         }
@@ -89,15 +88,8 @@ class DocumentServiceLeaseUpdaterImpl implements ServiceItemLeaseUpdater {
                             cachedLease.getConcurrencyToken(),
                             serverLease.getOwner(),
                             serverLease.getConcurrencyToken());
-
-                        // Check if we still have the expected ownership on the target lease.
-                        if (serverLease.getOwner() != null && !serverLease.getOwner().equalsIgnoreCase(cachedLease.getOwner())) {
-                            logger.info("Partition {} lease was acquired already by owner '{}'", serverLease.getLeaseToken(), serverLease.getOwner());
-                            throw new LeaseLostException(serverLease);
-                        }
-
-                        cachedLease.setTimestamp(Instant.now());
                         cachedLease.setConcurrencyToken(serverLease.getConcurrencyToken());
+                        cachedLease.setOwner(serverLease.getOwner());
 
                         throw new LeaseConflictException(cachedLease, "Partition update failed");
                     });

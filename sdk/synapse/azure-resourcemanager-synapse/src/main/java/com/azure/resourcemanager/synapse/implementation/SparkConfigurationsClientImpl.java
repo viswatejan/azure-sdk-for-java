@@ -80,8 +80,7 @@ public final class SparkConfigurationsClientImpl implements SparkConfigurationsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sparkConfiguration by name in a workspace along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return sparkConfiguration by name in a workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SparkConfigurationResourceInner>> getWithResponseAsync(
@@ -138,8 +137,7 @@ public final class SparkConfigurationsClientImpl implements SparkConfigurationsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sparkConfiguration by name in a workspace along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return sparkConfiguration by name in a workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SparkConfigurationResourceInner>> getWithResponseAsync(
@@ -192,7 +190,7 @@ public final class SparkConfigurationsClientImpl implements SparkConfigurationsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sparkConfiguration by name in a workspace on successful completion of {@link Mono}.
+     * @return sparkConfiguration by name in a workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SparkConfigurationResourceInner> getAsync(
@@ -235,7 +233,7 @@ public final class SparkConfigurationsClientImpl implements SparkConfigurationsC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sparkConfiguration by name in a workspace along with {@link Response}.
+     * @return sparkConfiguration by name in a workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SparkConfigurationResourceInner> getWithResponse(

@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Suggested utterances where the detector can be applicable. */
 @Fluent
 public final class QueryUtterancesResults {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(QueryUtterancesResults.class);
+
     /*
      * Search Query.
      */

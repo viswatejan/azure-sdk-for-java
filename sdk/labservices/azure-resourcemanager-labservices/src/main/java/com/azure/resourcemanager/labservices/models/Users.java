@@ -11,143 +11,133 @@ import com.azure.core.util.Context;
 /** Resource collection API of Users. */
 public interface Users {
     /**
-     * Returns a list of all users for a lab.
+     * List users in a given lab.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
-     *     URIs.
+     * @param resourceGroupName The name of the resource group.
+     * @param labAccountName The name of the lab Account.
+     * @param labName The name of the lab.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of users.
+     * @return the response of a list operation.
      */
-    PagedIterable<User> listByLab(String resourceGroupName, String labName);
+    PagedIterable<User> list(String resourceGroupName, String labAccountName, String labName);
 
     /**
-     * Returns a list of all users for a lab.
+     * List users in a given lab.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
-     *     URIs.
+     * @param resourceGroupName The name of the resource group.
+     * @param labAccountName The name of the lab Account.
+     * @param labName The name of the lab.
+     * @param expand Specify the $expand query. Example: 'properties($select=email)'.
      * @param filter The filter to apply to the operation.
+     * @param top The maximum number of resources to return from the operation.
+     * @param orderby The ordering expression for the results, using OData notation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of users.
+     * @return the response of a list operation.
      */
-    PagedIterable<User> listByLab(String resourceGroupName, String labName, String filter, Context context);
+    PagedIterable<User> list(
+        String resourceGroupName,
+        String labAccountName,
+        String labName,
+        String expand,
+        String filter,
+        Integer top,
+        String orderby,
+        Context context);
 
     /**
-     * Returns the properties of a lab user.
+     * Get user.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
-     *     URIs.
-     * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
+     * @param resourceGroupName The name of the resource group.
+     * @param labAccountName The name of the lab Account.
+     * @param labName The name of the lab.
+     * @param username The name of the user.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user of a lab that can register for and use virtual machines within the lab.
+     * @return user.
      */
-    User get(String resourceGroupName, String labName, String username);
+    User get(String resourceGroupName, String labAccountName, String labName, String username);
 
     /**
-     * Returns the properties of a lab user.
+     * Get user.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
-     *     URIs.
-     * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
+     * @param resourceGroupName The name of the resource group.
+     * @param labAccountName The name of the lab Account.
+     * @param labName The name of the lab.
+     * @param username The name of the user.
+     * @param expand Specify the $expand query. Example: 'properties($select=email)'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user of a lab that can register for and use virtual machines within the lab along with {@link Response}.
+     * @return user.
      */
-    Response<User> getWithResponse(String resourceGroupName, String labName, String username, Context context);
+    Response<User> getWithResponse(
+        String resourceGroupName,
+        String labAccountName,
+        String labName,
+        String username,
+        String expand,
+        Context context);
 
     /**
-     * Operation to delete a user resource.
+     * Delete user. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
-     *     URIs.
-     * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
+     * @param resourceGroupName The name of the resource group.
+     * @param labAccountName The name of the lab Account.
+     * @param labName The name of the lab.
+     * @param username The name of the user.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String labName, String username);
+    void delete(String resourceGroupName, String labAccountName, String labName, String username);
 
     /**
-     * Operation to delete a user resource.
+     * Delete user. This operation can take a while to complete.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
-     *     URIs.
-     * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String labName, String username, Context context);
-
-    /**
-     * Operation to invite a user to a lab.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
-     *     URIs.
-     * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
-     * @param body The request body.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void invite(String resourceGroupName, String labName, String username, InviteBody body);
-
-    /**
-     * Operation to invite a user to a lab.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
-     *     URIs.
-     * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
-     * @param body The request body.
+     * @param resourceGroupName The name of the resource group.
+     * @param labAccountName The name of the lab Account.
+     * @param labName The name of the lab.
+     * @param username The name of the user.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void invite(String resourceGroupName, String labName, String username, InviteBody body, Context context);
+    void delete(String resourceGroupName, String labAccountName, String labName, String username, Context context);
 
     /**
-     * Returns the properties of a lab user.
+     * Get user.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user of a lab that can register for and use virtual machines within the lab along with {@link Response}.
+     * @return user.
      */
     User getById(String id);
 
     /**
-     * Returns the properties of a lab user.
+     * Get user.
      *
      * @param id the resource ID.
+     * @param expand Specify the $expand query. Example: 'properties($select=email)'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user of a lab that can register for and use virtual machines within the lab along with {@link Response}.
+     * @return user.
      */
-    Response<User> getByIdWithResponse(String id, Context context);
+    Response<User> getByIdWithResponse(String id, String expand, Context context);
 
     /**
-     * Operation to delete a user resource.
+     * Delete user. This operation can take a while to complete.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -157,7 +147,7 @@ public interface Users {
     void deleteById(String id);
 
     /**
-     * Operation to delete a user resource.
+     * Delete user. This operation can take a while to complete.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

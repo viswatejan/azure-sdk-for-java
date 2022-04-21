@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Instance view status. */
 @Fluent
 public final class InstanceViewStatus {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(InstanceViewStatus.class);
+
     /*
      * The status code.
      */

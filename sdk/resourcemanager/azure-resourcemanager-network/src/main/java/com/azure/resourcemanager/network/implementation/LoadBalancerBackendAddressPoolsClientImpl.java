@@ -154,8 +154,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer backed address pools along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return all the load balancer backed address pools.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackendAddressPoolInner>> listSinglePageAsync(
@@ -215,8 +214,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer backed address pools along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return all the load balancer backed address pools.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackendAddressPoolInner>> listSinglePageAsync(
@@ -272,7 +270,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer backed address pools as paginated response with {@link PagedFlux}.
+     * @return all the load balancer backed address pools.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BackendAddressPoolInner> listAsync(String resourceGroupName, String loadBalancerName) {
@@ -290,7 +288,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer backed address pools as paginated response with {@link PagedFlux}.
+     * @return all the load balancer backed address pools.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BackendAddressPoolInner> listAsync(
@@ -308,7 +306,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer backed address pools as paginated response with {@link PagedIterable}.
+     * @return all the load balancer backed address pools.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BackendAddressPoolInner> list(String resourceGroupName, String loadBalancerName) {
@@ -324,7 +322,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer backed address pools as paginated response with {@link PagedIterable}.
+     * @return all the load balancer backed address pools.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BackendAddressPoolInner> list(
@@ -341,7 +339,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return load balancer backend address pool along with {@link Response} on successful completion of {@link Mono}.
+     * @return load balancer backend address pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BackendAddressPoolInner>> getWithResponseAsync(
@@ -399,7 +397,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return load balancer backend address pool along with {@link Response} on successful completion of {@link Mono}.
+     * @return load balancer backend address pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BackendAddressPoolInner>> getWithResponseAsync(
@@ -453,7 +451,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return load balancer backend address pool on successful completion of {@link Mono}.
+     * @return load balancer backend address pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BackendAddressPoolInner> getAsync(
@@ -496,7 +494,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return load balancer backend address pool along with {@link Response}.
+     * @return load balancer backend address pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BackendAddressPoolInner> getWithResponse(
@@ -514,7 +512,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pool of backend IP addresses along with {@link Response} on successful completion of {@link Mono}.
+     * @return pool of backend IP addresses.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -582,7 +580,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pool of backend IP addresses along with {@link Response} on successful completion of {@link Mono}.
+     * @return pool of backend IP addresses.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -647,7 +645,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of pool of backend IP addresses.
+     * @return pool of backend IP addresses.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<PollResult<BackendAddressPoolInner>, BackendAddressPoolInner> beginCreateOrUpdateAsync(
@@ -678,7 +676,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of pool of backend IP addresses.
+     * @return pool of backend IP addresses.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BackendAddressPoolInner>, BackendAddressPoolInner> beginCreateOrUpdateAsync(
@@ -711,7 +709,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of pool of backend IP addresses.
+     * @return pool of backend IP addresses.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BackendAddressPoolInner>, BackendAddressPoolInner> beginCreateOrUpdate(
@@ -734,7 +732,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of pool of backend IP addresses.
+     * @return pool of backend IP addresses.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BackendAddressPoolInner>, BackendAddressPoolInner> beginCreateOrUpdate(
@@ -758,7 +756,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pool of backend IP addresses on successful completion of {@link Mono}.
+     * @return pool of backend IP addresses.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BackendAddressPoolInner> createOrUpdateAsync(
@@ -782,7 +780,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pool of backend IP addresses on successful completion of {@link Mono}.
+     * @return pool of backend IP addresses.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackendAddressPoolInner> createOrUpdateAsync(
@@ -851,7 +849,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -909,7 +907,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -963,7 +961,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -986,7 +984,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -1008,7 +1006,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -1026,7 +1024,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -1043,7 +1041,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(String resourceGroupName, String loadBalancerName, String backendAddressPoolName) {
@@ -1062,7 +1060,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1111,8 +1109,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBackendAddressPool API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for ListBackendAddressPool API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackendAddressPoolInner>> listNextSinglePageAsync(String nextLink) {
@@ -1148,8 +1145,7 @@ public final class LoadBalancerBackendAddressPoolsClientImpl implements LoadBala
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListBackendAddressPool API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for ListBackendAddressPool API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackendAddressPoolInner>> listNextSinglePageAsync(String nextLink, Context context) {

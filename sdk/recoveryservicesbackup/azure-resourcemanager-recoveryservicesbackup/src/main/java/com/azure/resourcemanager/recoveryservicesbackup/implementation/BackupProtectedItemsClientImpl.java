@@ -98,8 +98,7 @@ public final class BackupProtectedItemsClientImpl implements BackupProtectedItem
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectedItem resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectedItem resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectedItemResourceInner>> listSinglePageAsync(
@@ -161,8 +160,7 @@ public final class BackupProtectedItemsClientImpl implements BackupProtectedItem
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectedItem resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectedItem resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectedItemResourceInner>> listSinglePageAsync(
@@ -220,7 +218,7 @@ public final class BackupProtectedItemsClientImpl implements BackupProtectedItem
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectedItem resources as paginated response with {@link PagedFlux}.
+     * @return list of ProtectedItem resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProtectedItemResourceInner> listAsync(
@@ -238,7 +236,7 @@ public final class BackupProtectedItemsClientImpl implements BackupProtectedItem
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectedItem resources as paginated response with {@link PagedFlux}.
+     * @return list of ProtectedItem resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProtectedItemResourceInner> listAsync(String vaultName, String resourceGroupName) {
@@ -260,7 +258,7 @@ public final class BackupProtectedItemsClientImpl implements BackupProtectedItem
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectedItem resources as paginated response with {@link PagedFlux}.
+     * @return list of ProtectedItem resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProtectedItemResourceInner> listAsync(
@@ -278,7 +276,7 @@ public final class BackupProtectedItemsClientImpl implements BackupProtectedItem
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectedItem resources as paginated response with {@link PagedIterable}.
+     * @return list of ProtectedItem resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProtectedItemResourceInner> list(String vaultName, String resourceGroupName) {
@@ -298,7 +296,7 @@ public final class BackupProtectedItemsClientImpl implements BackupProtectedItem
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectedItem resources as paginated response with {@link PagedIterable}.
+     * @return list of ProtectedItem resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProtectedItemResourceInner> list(
@@ -313,8 +311,7 @@ public final class BackupProtectedItemsClientImpl implements BackupProtectedItem
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectedItem resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectedItem resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectedItemResourceInner>> listNextSinglePageAsync(String nextLink) {
@@ -350,8 +347,7 @@ public final class BackupProtectedItemsClientImpl implements BackupProtectedItem
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectedItem resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectedItem resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectedItemResourceInner>> listNextSinglePageAsync(String nextLink, Context context) {

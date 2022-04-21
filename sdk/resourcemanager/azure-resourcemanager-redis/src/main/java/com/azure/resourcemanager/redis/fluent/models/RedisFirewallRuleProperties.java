@@ -6,11 +6,14 @@ package com.azure.resourcemanager.redis.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Specifies a range of IP addresses permitted to connect to the cache. */
 @Fluent
 public final class RedisFirewallRuleProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RedisFirewallRuleProperties.class);
+
     /*
      * lowest IP address included in the range
      */
@@ -70,18 +73,16 @@ public final class RedisFirewallRuleProperties {
      */
     public void validate() {
         if (startIp() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property startIp in model RedisFirewallRuleProperties"));
         }
         if (endIp() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property endIp in model RedisFirewallRuleProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RedisFirewallRuleProperties.class);
 }

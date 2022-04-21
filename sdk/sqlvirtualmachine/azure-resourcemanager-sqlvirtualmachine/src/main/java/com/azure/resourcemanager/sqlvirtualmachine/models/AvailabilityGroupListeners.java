@@ -32,18 +32,16 @@ public interface AvailabilityGroupListeners {
      *     the Azure Resource Manager API or the portal.
      * @param sqlVirtualMachineGroupName Name of the SQL virtual machine group.
      * @param availabilityGroupListenerName Name of the availability group listener.
-     * @param expand The child resources to include in the response.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an availability group listener along with {@link Response}.
+     * @return an availability group listener.
      */
     Response<AvailabilityGroupListener> getWithResponse(
         String resourceGroupName,
         String sqlVirtualMachineGroupName,
         String availabilityGroupListenerName,
-        String expand,
         Context context);
 
     /**
@@ -86,7 +84,7 @@ public interface AvailabilityGroupListeners {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of availability group listeners as paginated response with {@link PagedIterable}.
+     * @return a list of availability group listeners.
      */
     PagedIterable<AvailabilityGroupListener> listByGroup(String resourceGroupName, String sqlVirtualMachineGroupName);
 
@@ -100,7 +98,7 @@ public interface AvailabilityGroupListeners {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of availability group listeners as paginated response with {@link PagedIterable}.
+     * @return a list of availability group listeners.
      */
     PagedIterable<AvailabilityGroupListener> listByGroup(
         String resourceGroupName, String sqlVirtualMachineGroupName, Context context);
@@ -112,7 +110,7 @@ public interface AvailabilityGroupListeners {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an availability group listener along with {@link Response}.
+     * @return an availability group listener.
      */
     AvailabilityGroupListener getById(String id);
 
@@ -120,14 +118,13 @@ public interface AvailabilityGroupListeners {
      * Gets an availability group listener.
      *
      * @param id the resource ID.
-     * @param expand The child resources to include in the response.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an availability group listener along with {@link Response}.
+     * @return an availability group listener.
      */
-    Response<AvailabilityGroupListener> getByIdWithResponse(String id, String expand, Context context);
+    Response<AvailabilityGroupListener> getByIdWithResponse(String id, Context context);
 
     /**
      * Deletes an availability group listener.

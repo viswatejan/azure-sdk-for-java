@@ -6,11 +6,14 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters for a check name availability request. */
 @Fluent
 public final class CheckNameAvailabilityParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CheckNameAvailabilityParameters.class);
+
     /*
      * The name to check for availability
      */
@@ -21,7 +24,7 @@ public final class CheckNameAvailabilityParameters {
      * The resource type.
      */
     @JsonProperty(value = "type", required = true)
-    private String type = "Microsoft.Batch/batchAccounts";
+    private String type;
 
     /** Creates an instance of CheckNameAvailabilityParameters class. */
     public CheckNameAvailabilityParameters() {
@@ -75,12 +78,10 @@ public final class CheckNameAvailabilityParameters {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property name in model CheckNameAvailabilityParameters"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CheckNameAvailabilityParameters.class);
 }

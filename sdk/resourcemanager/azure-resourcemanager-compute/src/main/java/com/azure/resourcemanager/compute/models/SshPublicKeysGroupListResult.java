@@ -7,12 +7,15 @@ package com.azure.resourcemanager.compute.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.models.SshPublicKeyResourceInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The list SSH public keys operation response. */
 @Fluent
 public final class SshPublicKeysGroupListResult {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SshPublicKeysGroupListResult.class);
+
     /*
      * The list of SSH public keys
      */
@@ -75,7 +78,7 @@ public final class SshPublicKeysGroupListResult {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model SshPublicKeysGroupListResult"));
@@ -83,6 +86,4 @@ public final class SshPublicKeysGroupListResult {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SshPublicKeysGroupListResult.class);
 }

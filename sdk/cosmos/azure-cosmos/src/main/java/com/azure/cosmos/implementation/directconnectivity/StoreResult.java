@@ -35,7 +35,6 @@ public class StoreResult {
     final public ISessionToken sessionToken;
     final public double requestCharge;
     final public String activityId;
-    final public String correlatedActivityId;
     final public int currentReplicaSetSize;
     final public int currentWriteQuorum;
     final public boolean isValid;
@@ -54,7 +53,6 @@ public class StoreResult {
             long quorumAckedLsn,
             double requestCharge,
             String activityId,
-            String correlatedActivityId,
             int currentReplicaSetSize,
             int currentWriteQuorum,
             boolean isValid,
@@ -71,7 +69,6 @@ public class StoreResult {
         this.quorumAckedLSN = quorumAckedLsn;
         this.requestCharge = requestCharge;
         this.activityId= activityId;
-        this.correlatedActivityId = correlatedActivityId;
         this.currentReplicaSetSize = currentReplicaSetSize;
         this.currentWriteQuorum = currentWriteQuorum;
         this.isValid = isValid;

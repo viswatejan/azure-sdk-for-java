@@ -49,7 +49,7 @@ public final class AttestSgxEnclaveRequest {
      */
     public byte[] getQuote() {
         if (this.quote == null) {
-            return new byte[0];
+            return null;
         }
         return this.quote.decodedBytes();
     }

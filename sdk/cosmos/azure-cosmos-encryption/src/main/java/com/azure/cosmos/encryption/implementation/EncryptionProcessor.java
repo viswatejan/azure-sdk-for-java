@@ -6,19 +6,14 @@ package com.azure.cosmos.encryption.implementation;
 import com.azure.cosmos.BridgeInternal;
 import com.azure.cosmos.CosmosAsyncContainer;
 import com.azure.cosmos.encryption.CosmosEncryptionAsyncClient;
-import com.azure.cosmos.encryption.implementation.keyprovider.EncryptionKeyStoreProviderImpl;
-import com.azure.cosmos.encryption.implementation.mdesrc.cryptography.EncryptionType;
-import com.azure.cosmos.encryption.implementation.mdesrc.cryptography.ProtectedDataEncryptionKey;
-import com.azure.cosmos.encryption.implementation.mdesrc.cryptography.SqlSerializerFactory;
+import com.azure.cosmos.encryption.EncryptionBridgeInternal;
 import com.azure.cosmos.encryption.models.CosmosEncryptionType;
-import com.azure.cosmos.encryption.implementation.mdesrc.cryptography.MicrosoftDataEncryptionException;
 import com.azure.cosmos.implementation.ImplementationBridgeHelpers;
 import com.azure.cosmos.implementation.Utils;
 import com.azure.cosmos.implementation.apachecommons.lang.StringUtils;
 import com.azure.cosmos.implementation.apachecommons.lang.tuple.Pair;
 import com.azure.cosmos.models.ClientEncryptionIncludedPath;
 import com.azure.cosmos.models.ClientEncryptionPolicy;
-import com.azure.cosmos.models.CosmosClientEncryptionKeyProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -27,6 +22,11 @@ import com.fasterxml.jackson.databind.node.DoubleNode;
 import com.fasterxml.jackson.databind.node.LongNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
+import com.microsoft.data.encryption.cryptography.EncryptionKeyStoreProvider;
+import com.microsoft.data.encryption.cryptography.EncryptionType;
+import com.microsoft.data.encryption.cryptography.MicrosoftDataEncryptionException;
+import com.microsoft.data.encryption.cryptography.ProtectedDataEncryptionKey;
+import com.microsoft.data.encryption.cryptography.SqlSerializerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Flux;
@@ -53,16 +53,13 @@ public class EncryptionProcessor {
     private final static Logger LOGGER = LoggerFactory.getLogger(EncryptionProcessor.class);
     private CosmosEncryptionAsyncClient encryptionCosmosClient;
     private CosmosAsyncContainer cosmosAsyncContainer;
+    private EncryptionKeyStoreProvider encryptionKeyStoreProvider;
     private EncryptionSettings encryptionSettings;
     private AtomicBoolean isEncryptionSettingsInitDone;
     private ClientEncryptionPolicy clientEncryptionPolicy;
     private String containerRid;
     private String databaseRid;
-    private CosmosClientEncryptionKeyProperties cosmosClientEncryptionKeyProperties;
-    private final EncryptionKeyStoreProviderImpl encryptionKeyStoreProviderImpl;
-    private final static ImplementationBridgeHelpers.CosmosContainerPropertiesHelper.CosmosContainerPropertiesAccessor cosmosContainerPropertiesAccessor = ImplementationBridgeHelpers.CosmosContainerPropertiesHelper.getCosmosContainerPropertiesAccessor();
-    private final static EncryptionImplementationBridgeHelpers.CosmosEncryptionAsyncClientHelper.CosmosEncryptionAsyncClientAccessor cosmosEncryptionAsyncClientAccessor =
-        EncryptionImplementationBridgeHelpers.CosmosEncryptionAsyncClientHelper.getCosmosEncryptionAsyncClientAccessor();
+    private ImplementationBridgeHelpers.CosmosContainerPropertiesHelper.CosmosContainerPropertiesAccessor cosmosContainerPropertiesAccessor;
 
     public EncryptionProcessor(CosmosAsyncContainer cosmosAsyncContainer,
                                CosmosEncryptionAsyncClient encryptionCosmosClient) {
@@ -76,7 +73,8 @@ public class EncryptionProcessor {
         this.cosmosAsyncContainer = cosmosAsyncContainer;
         this.encryptionCosmosClient = encryptionCosmosClient;
         this.isEncryptionSettingsInitDone = new AtomicBoolean(false);
-        this.encryptionKeyStoreProviderImpl = cosmosEncryptionAsyncClientAccessor.getEncryptionKeyStoreProviderImpl(this.encryptionCosmosClient);
+        this.encryptionKeyStoreProvider = this.encryptionCosmosClient.getEncryptionKeyStoreProvider();
+        this.cosmosContainerPropertiesAccessor = ImplementationBridgeHelpers.CosmosContainerPropertiesHelper.getCosmosContainerPropertiesAccessor();
         this.encryptionSettings = new EncryptionSettings();
     }
 
@@ -94,7 +92,7 @@ public class EncryptionProcessor {
             throw new IllegalStateException("The Encryption Processor has already been initialized. ");
         }
         Map<String, EncryptionSettings> settingsByDekId = new ConcurrentHashMap<>();
-        return cosmosEncryptionAsyncClientAccessor.getContainerPropertiesAsync(this.encryptionCosmosClient,
+        return EncryptionBridgeInternal.getContainerPropertiesMono(this.encryptionCosmosClient,
             this.cosmosAsyncContainer, isRetry).flatMap(cosmosContainerProperties ->
         {
             this.containerRid = cosmosContainerProperties.getResourceId();
@@ -110,15 +108,11 @@ public class EncryptionProcessor {
             this.clientEncryptionPolicy.getIncludedPaths().stream()
                 .map(clientEncryptionIncludedPath -> clientEncryptionIncludedPath.getClientEncryptionKeyId()).distinct().forEach(clientEncryptionKeyId -> {
                 AtomicBoolean forceRefreshClientEncryptionKey = new AtomicBoolean(false);
-                AtomicBoolean forceRefreshClientEncryptionKeyGateway = new AtomicBoolean(false);
-                AtomicReference<String> existingCekEtag = new AtomicReference<>();
                 Mono<Object> clientEncryptionPropertiesMono =
-                    cosmosEncryptionAsyncClientAccessor.getClientEncryptionPropertiesAsync(this.encryptionCosmosClient,
-                        clientEncryptionKeyId, this.databaseRid, this.cosmosAsyncContainer, forceRefreshClientEncryptionKey.get(),
-                        existingCekEtag.get(), forceRefreshClientEncryptionKeyGateway.get())
+                    EncryptionBridgeInternal.getClientEncryptionPropertiesAsync(this.encryptionCosmosClient,
+                        clientEncryptionKeyId, this.databaseRid, this.cosmosAsyncContainer, forceRefreshClientEncryptionKey.get())
                         .publishOn(Schedulers.boundedElastic())
                         .flatMap(keyProperties -> {
-                            cosmosClientEncryptionKeyProperties = keyProperties;
                             ProtectedDataEncryptionKey protectedDataEncryptionKey;
                             try {
                                 // we pull out the Encrypted Client Encryption Key and Build the Protected Data
@@ -127,7 +121,7 @@ public class EncryptionProcessor {
                                 // Encryption Key.
                                 protectedDataEncryptionKey =
                                     this.encryptionSettings.buildProtectedDataEncryptionKey(keyProperties,
-                                        this.encryptionKeyStoreProviderImpl,
+                                        this.encryptionKeyStoreProvider,
                                         clientEncryptionKeyId);
                             } catch (Exception ex) {
                                 return Mono.error(ex);
@@ -155,13 +149,6 @@ public class EncryptionProcessor {
                             forceRefreshClientEncryptionKey.set(true);
                             return Mono.delay(Duration.ZERO).flux();
                         }
-                        // Retrying again to force refresh the gateway cache to fetch the latest client
-                        // encryption key to build ProtectedDataEncryptionKey object for the encryption setting.
-                        if (invalidKeyException != null && !forceRefreshClientEncryptionKeyGateway.get()) {
-                            forceRefreshClientEncryptionKeyGateway.set(true);
-                            existingCekEtag.set(cosmosClientEncryptionKeyProperties.getETag());
-                            return Mono.delay(Duration.ZERO).flux();
-                        }
                         return Flux.error(throwable);
                     }))));
                 monoList.add(clientEncryptionPropertiesMono);
@@ -173,11 +160,11 @@ public class EncryptionProcessor {
         }).flatMap(ignoreVoid -> {
             for (ClientEncryptionIncludedPath propertyToEncrypt : clientEncryptionPolicy.getIncludedPaths()) {
                 EncryptionType encryptionType = EncryptionType.Plaintext;
-                switch (CosmosEncryptionType.get(propertyToEncrypt.getEncryptionType())) {
-                    case DETERMINISTIC:
+                switch (propertyToEncrypt.getEncryptionType()) {
+                    case CosmosEncryptionType.DETERMINISTIC:
                         encryptionType = EncryptionType.Deterministic;
                         break;
-                    case RANDOMIZED:
+                    case CosmosEncryptionType.RANDOMIZED:
                         encryptionType = EncryptionType.Randomized;
                         break;
                     default:
@@ -230,6 +217,15 @@ public class EncryptionProcessor {
      */
     public CosmosEncryptionAsyncClient getEncryptionCosmosClient() {
         return encryptionCosmosClient;
+    }
+
+    /**
+     * Gets the provider that allows interaction with the master keys.
+     *
+     * @return encryptionKeyStoreProvider
+     */
+    public EncryptionKeyStoreProvider getEncryptionKeyStoreProvider() {
+        return encryptionKeyStoreProvider;
     }
 
     public EncryptionSettings getEncryptionSettings() {
@@ -331,7 +327,7 @@ public class EncryptionProcessor {
                 if (child.getValue().isObject() || child.getValue().isArray()) {
                     JsonNode encryptedValue = encryptAndSerializePatchProperty(encryptionSettings, child.getValue(), child.getKey());
                     assert propertyValueHolder instanceof ObjectNode;
-                    ((ObjectNode) propertyValueHolder).set(child.getKey(), encryptedValue);
+                    ((ObjectNode) propertyValueHolder).put(child.getKey(), encryptedValue);
                 } else if (!child.getValue().isNull()){
                     assert propertyValueHolder instanceof ObjectNode;
                     encryptAndSerializeValue(encryptionSettings, (ObjectNode) propertyValueHolder, child.getValue(),
@@ -355,7 +351,7 @@ public class EncryptionProcessor {
                             if (child.getValue().isObject() || child.getValue().isArray()) {
                                 JsonNode encryptedValue = encryptAndSerializePatchProperty(encryptionSettings,
                                     child.getValue(), child.getKey());
-                                ((ObjectNode) nodeInArray).set(child.getKey(), encryptedValue);
+                                ((ObjectNode) nodeInArray).put(child.getKey(), encryptedValue);
 
                             } else if (!child.getValue().isNull()) {
                                 encryptAndSerializeValue(encryptionSettings, (ObjectNode) nodeInArray, child.getValue(),
@@ -655,9 +651,5 @@ public class EncryptionProcessor {
     }
     public AtomicBoolean getIsEncryptionSettingsInitDone(){
         return this.isEncryptionSettingsInitDone;
-    }
-
-    EncryptionKeyStoreProviderImpl getEncryptionKeyStoreProviderImpl() {
-        return encryptionKeyStoreProviderImpl;
     }
 }

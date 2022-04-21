@@ -36,8 +36,11 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.cdn.fluent.AfdCustomDomainsClient;
 import com.azure.resourcemanager.cdn.fluent.models.AfdDomainInner;
+import com.azure.resourcemanager.cdn.fluent.models.ValidationTokenInner;
+import com.azure.resourcemanager.cdn.models.AfdDomainHttpsParameters;
 import com.azure.resourcemanager.cdn.models.AfdDomainListResult;
 import com.azure.resourcemanager.cdn.models.AfdDomainUpdateParameters;
+import com.azure.resourcemanager.cdn.models.ResourceReference;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -155,7 +158,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles"
                 + "/{profileName}/customDomains/{customDomainName}/refreshValidationToken")
-        @ExpectedResponses({200, 202})
+        @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> refreshValidationToken(
             @HostParam("$host") String endpoint,
@@ -182,13 +185,11 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Lists existing AzureFrontDoor domains.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile or CDN profile which
-     *     is unique within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list domains along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return result of the request to list domains.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AfdDomainInner>> listByProfileSinglePageAsync(
@@ -234,21 +235,19 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
                         res.getValue().value(),
                         res.getValue().nextLink(),
                         null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
      * Lists existing AzureFrontDoor domains.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile or CDN profile which
-     *     is unique within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list domains along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return result of the request to list domains.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AfdDomainInner>> listByProfileSinglePageAsync(
@@ -298,12 +297,11 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Lists existing AzureFrontDoor domains.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile or CDN profile which
-     *     is unique within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list domains as paginated response with {@link PagedFlux}.
+     * @return result of the request to list domains.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<AfdDomainInner> listByProfileAsync(String resourceGroupName, String profileName) {
@@ -316,13 +314,12 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Lists existing AzureFrontDoor domains.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile or CDN profile which
-     *     is unique within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list domains as paginated response with {@link PagedFlux}.
+     * @return result of the request to list domains.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AfdDomainInner> listByProfileAsync(
@@ -336,12 +333,11 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Lists existing AzureFrontDoor domains.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile or CDN profile which
-     *     is unique within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list domains as paginated response with {@link PagedIterable}.
+     * @return result of the request to list domains.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AfdDomainInner> listByProfile(String resourceGroupName, String profileName) {
@@ -352,13 +348,12 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Lists existing AzureFrontDoor domains.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile or CDN profile which
-     *     is unique within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list domains as paginated response with {@link PagedIterable}.
+     * @return result of the request to list domains.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AfdDomainInner> listByProfile(String resourceGroupName, String profileName, Context context) {
@@ -370,14 +365,13 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing AzureFrontDoor domain with the specified domain name under the specified subscription,
-     *     resource group and profile along with {@link Response} on successful completion of {@link Mono}.
+     *     resource group and profile.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<AfdDomainInner>> getWithResponseAsync(
@@ -419,7 +413,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
                             this.client.getApiVersion(),
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -427,15 +421,14 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing AzureFrontDoor domain with the specified domain name under the specified subscription,
-     *     resource group and profile along with {@link Response} on successful completion of {@link Mono}.
+     *     resource group and profile.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AfdDomainInner>> getWithResponseAsync(
@@ -482,14 +475,13 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing AzureFrontDoor domain with the specified domain name under the specified subscription,
-     *     resource group and profile on successful completion of {@link Mono}.
+     *     resource group and profile.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<AfdDomainInner> getAsync(String resourceGroupName, String profileName, String customDomainName) {
@@ -509,8 +501,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -528,15 +519,14 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing AzureFrontDoor domain with the specified domain name under the specified subscription,
-     *     resource group and profile along with {@link Response}.
+     *     resource group and profile.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AfdDomainInner> getWithResponse(
@@ -548,15 +538,14 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Creates a new domain within the specified profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param customDomain Domain properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g along with {@link Response} on successful completion of {@link Mono}.
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -604,15 +593,14 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
                             customDomain,
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
      * Creates a new domain within the specified profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param customDomain Domain properties.
      * @param context The context to associate with this operation.
@@ -620,7 +608,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g along with {@link Response} on successful completion of {@link Mono}.
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -676,17 +664,16 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Creates a new domain within the specified profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param customDomain Domain properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of friendly domain name mapping to the endpoint hostname that the
-     *     customer provides for branding purposes, e.g.
+     * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
+     *     e.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public PollerFlux<PollResult<AfdDomainInner>, AfdDomainInner> beginCreateAsync(
         String resourceGroupName, String profileName, String customDomainName, AfdDomainInner customDomain) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -705,18 +692,17 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Creates a new domain within the specified profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param customDomain Domain properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of friendly domain name mapping to the endpoint hostname that the
-     *     customer provides for branding purposes, e.g.
+     * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
+     *     e.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<AfdDomainInner>, AfdDomainInner> beginCreateAsync(
         String resourceGroupName,
         String profileName,
@@ -736,17 +722,16 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Creates a new domain within the specified profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param customDomain Domain properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of friendly domain name mapping to the endpoint hostname that the
-     *     customer provides for branding purposes, e.g.
+     * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
+     *     e.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<AfdDomainInner>, AfdDomainInner> beginCreate(
         String resourceGroupName, String profileName, String customDomainName, AfdDomainInner customDomain) {
         return beginCreateAsync(resourceGroupName, profileName, customDomainName, customDomain).getSyncPoller();
@@ -756,18 +741,17 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Creates a new domain within the specified profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param customDomain Domain properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of friendly domain name mapping to the endpoint hostname that the
-     *     customer provides for branding purposes, e.g.
+     * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
+     *     e.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<AfdDomainInner>, AfdDomainInner> beginCreate(
         String resourceGroupName,
         String profileName,
@@ -782,15 +766,14 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Creates a new domain within the specified profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param customDomain Domain properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g on successful completion of {@link Mono}.
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<AfdDomainInner> createAsync(
@@ -804,8 +787,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Creates a new domain within the specified profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param customDomain Domain properties.
      * @param context The context to associate with this operation.
@@ -813,7 +795,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g on successful completion of {@link Mono}.
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AfdDomainInner> createAsync(
@@ -831,15 +813,14 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Creates a new domain within the specified profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param customDomain Domain properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g.
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AfdDomainInner create(
@@ -851,8 +832,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Creates a new domain within the specified profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param customDomain Domain properties.
      * @param context The context to associate with this operation.
@@ -860,7 +840,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g.
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AfdDomainInner create(
@@ -876,22 +856,25 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates an existing domain within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
-     * @param customDomainUpdateProperties Domain properties.
+     * @param tlsSettings The configuration specifying how to enable HTTPS for the domain - using AzureFrontDoor managed
+     *     certificate or user's own certificate. If not specified, enabling ssl uses AzureFrontDoor managed certificate
+     *     by default.
+     * @param azureDnsZone Resource reference to the Azure DNS zone.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g along with {@link Response} on successful completion of {@link Mono}.
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
         String resourceGroupName,
         String profileName,
         String customDomainName,
-        AfdDomainUpdateParameters customDomainUpdateProperties) {
+        AfdDomainHttpsParameters tlsSettings,
+        ResourceReference azureDnsZone) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -915,15 +898,16 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (customDomainUpdateProperties == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter customDomainUpdateProperties is required and cannot be null."));
-        } else {
-            customDomainUpdateProperties.validate();
+        if (tlsSettings != null) {
+            tlsSettings.validate();
+        }
+        if (azureDnsZone != null) {
+            azureDnsZone.validate();
         }
         final String accept = "application/json";
+        AfdDomainUpdateParameters customDomainUpdateProperties = new AfdDomainUpdateParameters();
+        customDomainUpdateProperties.withTlsSettings(tlsSettings);
+        customDomainUpdateProperties.withAzureDnsZone(azureDnsZone);
         return FluxUtil
             .withContext(
                 context ->
@@ -938,30 +922,33 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
                             customDomainUpdateProperties,
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
      * Updates an existing domain within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
-     * @param customDomainUpdateProperties Domain properties.
+     * @param tlsSettings The configuration specifying how to enable HTTPS for the domain - using AzureFrontDoor managed
+     *     certificate or user's own certificate. If not specified, enabling ssl uses AzureFrontDoor managed certificate
+     *     by default.
+     * @param azureDnsZone Resource reference to the Azure DNS zone.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g along with {@link Response} on successful completion of {@link Mono}.
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
         String resourceGroupName,
         String profileName,
         String customDomainName,
-        AfdDomainUpdateParameters customDomainUpdateProperties,
+        AfdDomainHttpsParameters tlsSettings,
+        ResourceReference azureDnsZone,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -986,15 +973,16 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (customDomainUpdateProperties == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter customDomainUpdateProperties is required and cannot be null."));
-        } else {
-            customDomainUpdateProperties.validate();
+        if (tlsSettings != null) {
+            tlsSettings.validate();
+        }
+        if (azureDnsZone != null) {
+            azureDnsZone.validate();
         }
         final String accept = "application/json";
+        AfdDomainUpdateParameters customDomainUpdateProperties = new AfdDomainUpdateParameters();
+        customDomainUpdateProperties.withTlsSettings(tlsSettings);
+        customDomainUpdateProperties.withAzureDnsZone(azureDnsZone);
         context = this.client.mergeContext(context);
         return service
             .update(
@@ -1013,24 +1001,27 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates an existing domain within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
-     * @param customDomainUpdateProperties Domain properties.
+     * @param tlsSettings The configuration specifying how to enable HTTPS for the domain - using AzureFrontDoor managed
+     *     certificate or user's own certificate. If not specified, enabling ssl uses AzureFrontDoor managed certificate
+     *     by default.
+     * @param azureDnsZone Resource reference to the Azure DNS zone.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of friendly domain name mapping to the endpoint hostname that the
-     *     customer provides for branding purposes, e.g.
+     * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
+     *     e.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public PollerFlux<PollResult<AfdDomainInner>, AfdDomainInner> beginUpdateAsync(
         String resourceGroupName,
         String profileName,
         String customDomainName,
-        AfdDomainUpdateParameters customDomainUpdateProperties) {
+        AfdDomainHttpsParameters tlsSettings,
+        ResourceReference azureDnsZone) {
         Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, profileName, customDomainName, customDomainUpdateProperties);
+            updateWithResponseAsync(resourceGroupName, profileName, customDomainName, tlsSettings, azureDnsZone);
         return this
             .client
             .<AfdDomainInner, AfdDomainInner>getLroResult(
@@ -1045,28 +1036,31 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates an existing domain within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
-     * @param customDomainUpdateProperties Domain properties.
+     * @param tlsSettings The configuration specifying how to enable HTTPS for the domain - using AzureFrontDoor managed
+     *     certificate or user's own certificate. If not specified, enabling ssl uses AzureFrontDoor managed certificate
+     *     by default.
+     * @param azureDnsZone Resource reference to the Azure DNS zone.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of friendly domain name mapping to the endpoint hostname that the
-     *     customer provides for branding purposes, e.g.
+     * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
+     *     e.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<AfdDomainInner>, AfdDomainInner> beginUpdateAsync(
         String resourceGroupName,
         String profileName,
         String customDomainName,
-        AfdDomainUpdateParameters customDomainUpdateProperties,
+        AfdDomainHttpsParameters tlsSettings,
+        ResourceReference azureDnsZone,
         Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
             updateWithResponseAsync(
-                resourceGroupName, profileName, customDomainName, customDomainUpdateProperties, context);
+                resourceGroupName, profileName, customDomainName, tlsSettings, azureDnsZone, context);
         return this
             .client
             .<AfdDomainInner, AfdDomainInner>getLroResult(
@@ -1077,73 +1071,82 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates an existing domain within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
-     * @param customDomainUpdateProperties Domain properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of friendly domain name mapping to the endpoint hostname that the
-     *     customer provides for branding purposes, e.g.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<AfdDomainInner>, AfdDomainInner> beginUpdate(
-        String resourceGroupName,
-        String profileName,
-        String customDomainName,
-        AfdDomainUpdateParameters customDomainUpdateProperties) {
-        return beginUpdateAsync(resourceGroupName, profileName, customDomainName, customDomainUpdateProperties)
-            .getSyncPoller();
-    }
-
-    /**
-     * Updates an existing domain within a profile.
-     *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
-     * @param customDomainName Name of the domain under the profile which is unique globally.
-     * @param customDomainUpdateProperties Domain properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of friendly domain name mapping to the endpoint hostname that the
-     *     customer provides for branding purposes, e.g.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<AfdDomainInner>, AfdDomainInner> beginUpdate(
-        String resourceGroupName,
-        String profileName,
-        String customDomainName,
-        AfdDomainUpdateParameters customDomainUpdateProperties,
-        Context context) {
-        return beginUpdateAsync(resourceGroupName, profileName, customDomainName, customDomainUpdateProperties, context)
-            .getSyncPoller();
-    }
-
-    /**
-     * Updates an existing domain within a profile.
-     *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
-     * @param customDomainName Name of the domain under the profile which is unique globally.
-     * @param customDomainUpdateProperties Domain properties.
+     * @param tlsSettings The configuration specifying how to enable HTTPS for the domain - using AzureFrontDoor managed
+     *     certificate or user's own certificate. If not specified, enabling ssl uses AzureFrontDoor managed certificate
+     *     by default.
+     * @param azureDnsZone Resource reference to the Azure DNS zone.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g on successful completion of {@link Mono}.
+     *     e.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SyncPoller<PollResult<AfdDomainInner>, AfdDomainInner> beginUpdate(
+        String resourceGroupName,
+        String profileName,
+        String customDomainName,
+        AfdDomainHttpsParameters tlsSettings,
+        ResourceReference azureDnsZone) {
+        return beginUpdateAsync(resourceGroupName, profileName, customDomainName, tlsSettings, azureDnsZone)
+            .getSyncPoller();
+    }
+
+    /**
+     * Updates an existing domain within a profile.
+     *
+     * @param resourceGroupName Name of the Resource group within the Azure subscription.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
+     * @param customDomainName Name of the domain under the profile which is unique globally.
+     * @param tlsSettings The configuration specifying how to enable HTTPS for the domain - using AzureFrontDoor managed
+     *     certificate or user's own certificate. If not specified, enabling ssl uses AzureFrontDoor managed certificate
+     *     by default.
+     * @param azureDnsZone Resource reference to the Azure DNS zone.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
+     *     e.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SyncPoller<PollResult<AfdDomainInner>, AfdDomainInner> beginUpdate(
+        String resourceGroupName,
+        String profileName,
+        String customDomainName,
+        AfdDomainHttpsParameters tlsSettings,
+        ResourceReference azureDnsZone,
+        Context context) {
+        return beginUpdateAsync(resourceGroupName, profileName, customDomainName, tlsSettings, azureDnsZone, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Updates an existing domain within a profile.
+     *
+     * @param resourceGroupName Name of the Resource group within the Azure subscription.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
+     * @param customDomainName Name of the domain under the profile which is unique globally.
+     * @param tlsSettings The configuration specifying how to enable HTTPS for the domain - using AzureFrontDoor managed
+     *     certificate or user's own certificate. If not specified, enabling ssl uses AzureFrontDoor managed certificate
+     *     by default.
+     * @param azureDnsZone Resource reference to the Azure DNS zone.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<AfdDomainInner> updateAsync(
         String resourceGroupName,
         String profileName,
         String customDomainName,
-        AfdDomainUpdateParameters customDomainUpdateProperties) {
-        return beginUpdateAsync(resourceGroupName, profileName, customDomainName, customDomainUpdateProperties)
+        AfdDomainHttpsParameters tlsSettings,
+        ResourceReference azureDnsZone) {
+        return beginUpdateAsync(resourceGroupName, profileName, customDomainName, tlsSettings, azureDnsZone)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1152,25 +1155,49 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates an existing domain within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
-     * @param customDomainUpdateProperties Domain properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
+     *     e.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<AfdDomainInner> updateAsync(String resourceGroupName, String profileName, String customDomainName) {
+        final AfdDomainHttpsParameters tlsSettings = null;
+        final ResourceReference azureDnsZone = null;
+        return beginUpdateAsync(resourceGroupName, profileName, customDomainName, tlsSettings, azureDnsZone)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Updates an existing domain within a profile.
+     *
+     * @param resourceGroupName Name of the Resource group within the Azure subscription.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
+     * @param customDomainName Name of the domain under the profile which is unique globally.
+     * @param tlsSettings The configuration specifying how to enable HTTPS for the domain - using AzureFrontDoor managed
+     *     certificate or user's own certificate. If not specified, enabling ssl uses AzureFrontDoor managed certificate
+     *     by default.
+     * @param azureDnsZone Resource reference to the Azure DNS zone.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g on successful completion of {@link Mono}.
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AfdDomainInner> updateAsync(
         String resourceGroupName,
         String profileName,
         String customDomainName,
-        AfdDomainUpdateParameters customDomainUpdateProperties,
+        AfdDomainHttpsParameters tlsSettings,
+        ResourceReference azureDnsZone,
         Context context) {
-        return beginUpdateAsync(resourceGroupName, profileName, customDomainName, customDomainUpdateProperties, context)
+        return beginUpdateAsync(resourceGroupName, profileName, customDomainName, tlsSettings, azureDnsZone, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -1179,48 +1206,73 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates an existing domain within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
-     * @param customDomainUpdateProperties Domain properties.
+     * @param tlsSettings The configuration specifying how to enable HTTPS for the domain - using AzureFrontDoor managed
+     *     certificate or user's own certificate. If not specified, enabling ssl uses AzureFrontDoor managed certificate
+     *     by default.
+     * @param azureDnsZone Resource reference to the Azure DNS zone.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g.
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AfdDomainInner update(
         String resourceGroupName,
         String profileName,
         String customDomainName,
-        AfdDomainUpdateParameters customDomainUpdateProperties) {
-        return updateAsync(resourceGroupName, profileName, customDomainName, customDomainUpdateProperties).block();
+        AfdDomainHttpsParameters tlsSettings,
+        ResourceReference azureDnsZone) {
+        return updateAsync(resourceGroupName, profileName, customDomainName, tlsSettings, azureDnsZone).block();
     }
 
     /**
      * Updates an existing domain within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
-     * @param customDomainUpdateProperties Domain properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
+     *     e.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AfdDomainInner update(String resourceGroupName, String profileName, String customDomainName) {
+        final AfdDomainHttpsParameters tlsSettings = null;
+        final ResourceReference azureDnsZone = null;
+        return updateAsync(resourceGroupName, profileName, customDomainName, tlsSettings, azureDnsZone).block();
+    }
+
+    /**
+     * Updates an existing domain within a profile.
+     *
+     * @param resourceGroupName Name of the Resource group within the Azure subscription.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
+     * @param customDomainName Name of the domain under the profile which is unique globally.
+     * @param tlsSettings The configuration specifying how to enable HTTPS for the domain - using AzureFrontDoor managed
+     *     certificate or user's own certificate. If not specified, enabling ssl uses AzureFrontDoor managed certificate
+     *     by default.
+     * @param azureDnsZone Resource reference to the Azure DNS zone.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes,
-     *     e.g.
+     *     e.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AfdDomainInner update(
         String resourceGroupName,
         String profileName,
         String customDomainName,
-        AfdDomainUpdateParameters customDomainUpdateProperties,
+        AfdDomainHttpsParameters tlsSettings,
+        ResourceReference azureDnsZone,
         Context context) {
-        return updateAsync(resourceGroupName, profileName, customDomainName, customDomainUpdateProperties, context)
+        return updateAsync(resourceGroupName, profileName, customDomainName, tlsSettings, azureDnsZone, context)
             .block();
     }
 
@@ -1229,13 +1281,12 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * resource group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1277,7 +1328,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
                             this.client.getApiVersion(),
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -1285,14 +1336,13 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * resource group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1339,15 +1389,14 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * resource group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String profileName, String customDomainName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -1363,16 +1412,15 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * resource group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String profileName, String customDomainName, Context context) {
         context = this.client.mergeContext(context);
@@ -1388,15 +1436,14 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * resource group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String profileName, String customDomainName) {
         return beginDeleteAsync(resourceGroupName, profileName, customDomainName).getSyncPoller();
@@ -1407,16 +1454,15 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * resource group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String profileName, String customDomainName, Context context) {
         return beginDeleteAsync(resourceGroupName, profileName, customDomainName, context).getSyncPoller();
@@ -1427,13 +1473,12 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * resource group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(String resourceGroupName, String profileName, String customDomainName) {
@@ -1447,14 +1492,13 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * resource group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1469,8 +1513,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * resource group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1486,8 +1529,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * resource group and profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1503,13 +1545,12 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates the domain validation token.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the validation token.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> refreshValidationTokenWithResponseAsync(
@@ -1551,21 +1592,20 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
                             this.client.getApiVersion(),
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
      * Updates the domain validation token.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the validation token.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> refreshValidationTokenWithResponseAsync(
@@ -1611,63 +1651,65 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates the domain validation token.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the validation token.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<PollResult<Void>, Void> beginRefreshValidationTokenAsync(
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PollerFlux<PollResult<ValidationTokenInner>, ValidationTokenInner> beginRefreshValidationTokenAsync(
         String resourceGroupName, String profileName, String customDomainName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
             refreshValidationTokenWithResponseAsync(resourceGroupName, profileName, customDomainName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<ValidationTokenInner, ValidationTokenInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                ValidationTokenInner.class,
+                ValidationTokenInner.class,
+                this.client.getContext());
     }
 
     /**
      * Updates the domain validation token.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the validation token.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginRefreshValidationTokenAsync(
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private PollerFlux<PollResult<ValidationTokenInner>, ValidationTokenInner> beginRefreshValidationTokenAsync(
         String resourceGroupName, String profileName, String customDomainName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
             refreshValidationTokenWithResponseAsync(resourceGroupName, profileName, customDomainName, context);
         return this
             .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+            .<ValidationTokenInner, ValidationTokenInner>getLroResult(
+                mono, this.client.getHttpPipeline(), ValidationTokenInner.class, ValidationTokenInner.class, context);
     }
 
     /**
      * Updates the domain validation token.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the validation token.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginRefreshValidationToken(
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SyncPoller<PollResult<ValidationTokenInner>, ValidationTokenInner> beginRefreshValidationToken(
         String resourceGroupName, String profileName, String customDomainName) {
         return beginRefreshValidationTokenAsync(resourceGroupName, profileName, customDomainName).getSyncPoller();
     }
@@ -1676,17 +1718,16 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates the domain validation token.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the validation token.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginRefreshValidationToken(
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SyncPoller<PollResult<ValidationTokenInner>, ValidationTokenInner> beginRefreshValidationToken(
         String resourceGroupName, String profileName, String customDomainName, Context context) {
         return beginRefreshValidationTokenAsync(resourceGroupName, profileName, customDomainName, context)
             .getSyncPoller();
@@ -1696,16 +1737,15 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates the domain validation token.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the validation token.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> refreshValidationTokenAsync(
+    public Mono<ValidationTokenInner> refreshValidationTokenAsync(
         String resourceGroupName, String profileName, String customDomainName) {
         return beginRefreshValidationTokenAsync(resourceGroupName, profileName, customDomainName)
             .last()
@@ -1716,17 +1756,16 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates the domain validation token.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the validation token.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> refreshValidationTokenAsync(
+    private Mono<ValidationTokenInner> refreshValidationTokenAsync(
         String resourceGroupName, String profileName, String customDomainName, Context context) {
         return beginRefreshValidationTokenAsync(resourceGroupName, profileName, customDomainName, context)
             .last()
@@ -1737,34 +1776,35 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * Updates the domain validation token.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the validation token.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void refreshValidationToken(String resourceGroupName, String profileName, String customDomainName) {
-        refreshValidationTokenAsync(resourceGroupName, profileName, customDomainName).block();
+    public ValidationTokenInner refreshValidationToken(
+        String resourceGroupName, String profileName, String customDomainName) {
+        return refreshValidationTokenAsync(resourceGroupName, profileName, customDomainName).block();
     }
 
     /**
      * Updates the domain validation token.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param customDomainName Name of the domain under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the validation token.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void refreshValidationToken(
+    public ValidationTokenInner refreshValidationToken(
         String resourceGroupName, String profileName, String customDomainName, Context context) {
-        refreshValidationTokenAsync(resourceGroupName, profileName, customDomainName, context).block();
+        return refreshValidationTokenAsync(resourceGroupName, profileName, customDomainName, context).block();
     }
 
     /**
@@ -1774,8 +1814,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list domains along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return result of the request to list domains.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AfdDomainInner>> listByProfileNextSinglePageAsync(String nextLink) {
@@ -1800,7 +1839,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
                         res.getValue().value(),
                         res.getValue().nextLink(),
                         null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -1811,8 +1850,7 @@ public final class AfdCustomDomainsClientImpl implements AfdCustomDomainsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list domains along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return result of the request to list domains.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AfdDomainInner>> listByProfileNextSinglePageAsync(String nextLink, Context context) {

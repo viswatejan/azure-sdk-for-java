@@ -31,8 +31,7 @@ public interface ExportConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Continuous Export configuration of an Application Insights component along with {@link
-     *     Response}.
+     * @return a list of Continuous Export configuration of an Application Insights component.
      */
     Response<List<ApplicationInsightsComponentExportConfiguration>> listWithResponse(
         String resourceGroupName, String resourceName, Context context);
@@ -63,7 +62,7 @@ public interface ExportConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Continuous Export configurations along with {@link Response}.
+     * @return a list of Continuous Export configurations.
      */
     Response<List<ApplicationInsightsComponentExportConfiguration>> createWithResponse(
         String resourceGroupName,
@@ -95,7 +94,7 @@ public interface ExportConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties that define a Continuous Export configuration along with {@link Response}.
+     * @return properties that define a Continuous Export configuration.
      */
     Response<ApplicationInsightsComponentExportConfiguration> deleteWithResponse(
         String resourceGroupName, String resourceName, String exportId, Context context);
@@ -123,7 +122,7 @@ public interface ExportConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Continuous Export configuration for this export id along with {@link Response}.
+     * @return the Continuous Export configuration for this export id.
      */
     Response<ApplicationInsightsComponentExportConfiguration> getWithResponse(
         String resourceGroupName, String resourceName, String exportId, Context context);
@@ -157,7 +156,7 @@ public interface ExportConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties that define a Continuous Export configuration along with {@link Response}.
+     * @return properties that define a Continuous Export configuration.
      */
     Response<ApplicationInsightsComponentExportConfiguration> updateWithResponse(
         String resourceGroupName,

@@ -141,13 +141,6 @@ public class IaaSvmContainer extends ProtectionContainer {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public IaaSvmContainer withProtectableObjectType(String protectableObjectType) {
-        super.withProtectableObjectType(protectableObjectType);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

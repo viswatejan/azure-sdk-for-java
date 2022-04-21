@@ -110,7 +110,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnSiteLink Resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return vpnSiteLink Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<VpnSiteLinkInner>> getWithResponseAsync(
@@ -166,7 +166,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnSiteLink Resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return vpnSiteLink Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VpnSiteLinkInner>> getWithResponseAsync(
@@ -218,7 +218,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnSiteLink Resource on successful completion of {@link Mono}.
+     * @return vpnSiteLink Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<VpnSiteLinkInner> getAsync(String resourceGroupName, String vpnSiteName, String vpnSiteLinkName) {
@@ -259,7 +259,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnSiteLink Resource along with {@link Response}.
+     * @return vpnSiteLink Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<VpnSiteLinkInner> getWithResponse(
@@ -275,8 +275,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list VpnSiteLinks along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the request to list VpnSiteLinks.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VpnSiteLinkInner>> listByVpnSiteSinglePageAsync(
@@ -335,8 +334,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list VpnSiteLinks along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the request to list VpnSiteLinks.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VpnSiteLinkInner>> listByVpnSiteSinglePageAsync(
@@ -391,7 +389,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list VpnSiteLinks as paginated response with {@link PagedFlux}.
+     * @return result of the request to list VpnSiteLinks.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<VpnSiteLinkInner> listByVpnSiteAsync(String resourceGroupName, String vpnSiteName) {
@@ -409,7 +407,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list VpnSiteLinks as paginated response with {@link PagedFlux}.
+     * @return result of the request to list VpnSiteLinks.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VpnSiteLinkInner> listByVpnSiteAsync(
@@ -427,7 +425,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list VpnSiteLinks as paginated response with {@link PagedIterable}.
+     * @return result of the request to list VpnSiteLinks.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<VpnSiteLinkInner> listByVpnSite(String resourceGroupName, String vpnSiteName) {
@@ -443,7 +441,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list VpnSiteLinks as paginated response with {@link PagedIterable}.
+     * @return result of the request to list VpnSiteLinks.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<VpnSiteLinkInner> listByVpnSite(
@@ -458,8 +456,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list VpnSiteLinks along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the request to list VpnSiteLinks.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VpnSiteLinkInner>> listByVpnSiteNextSinglePageAsync(String nextLink) {
@@ -495,8 +492,7 @@ public final class VpnSiteLinksClientImpl implements VpnSiteLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list VpnSiteLinks along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the request to list VpnSiteLinks.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VpnSiteLinkInner>> listByVpnSiteNextSinglePageAsync(String nextLink, Context context) {

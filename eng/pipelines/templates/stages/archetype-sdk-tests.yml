@@ -59,6 +59,16 @@ parameters:
 - name: TestMode
   type: string
   default: 'LIVE'
+- name: TestStepMavenInputs
+  type: object
+  default:
+    options: '$(DefaultTestOptions)'
+    mavenOptions: '$(DefaultTestMavenOptions)'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '$(JavaTestVersion)'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: false
+    goals: 'verify'
 - name: CloudConfig
   type: object
   default:
@@ -95,15 +105,6 @@ parameters:
 - name: PlatformPostSteps
   type: object
   default: []
-- name: TestGoals
-  type: string
-  default: $(TestGoals)
-- name: TestOptions
-  type: string
-  default: $(TestOptions)
-- name: AdditionalBuildOptions
-  type: string
-  default: $(AdditionalBuildOptions)
 
 stages:
 - ${{ each cloud in parameters.CloudConfig }}:
@@ -131,14 +132,11 @@ stages:
               TestResourceDirectories: ${{ parameters.TestResourceDirectories }}
               TestSetupSteps: ${{ parameters.TestSetupSteps }}
               TestMode: ${{ parameters.TestMode }}
+              TestStepMavenInputs: ${{ parameters.TestStepMavenInputs }}
               Artifacts: ${{ parameters.Artifacts }}
               AdditionalModules: ${{ parameters.AdditionalModules }}
               TestResultsFiles: ${{ parameters.TestResultsFiles }}
               DisableAzureResourceCreation: ${{ parameters.DisableAzureResourceCreation }}
-              TestGoals: ${{ parameters.TestGoals }}
-              TestOptions: ${{ parameters.TestOptions }}
-              AdditionalBuildOptions: ${{ parameters.AdditionalBuildOptions }}
-
             MatrixConfigs:
               # Enumerate platforms and additional platforms based on supported clouds (sparse platform<-->cloud matrix).
               - ${{ each config in parameters.MatrixConfigs }}:

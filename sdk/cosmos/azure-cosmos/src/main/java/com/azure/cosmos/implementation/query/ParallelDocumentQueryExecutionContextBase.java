@@ -7,6 +7,7 @@ import com.azure.cosmos.implementation.DiagnosticsClientContext;
 import com.azure.cosmos.implementation.DocumentClientRetryPolicy;
 import com.azure.cosmos.implementation.HttpConstants;
 import com.azure.cosmos.implementation.PartitionKeyRange;
+import com.azure.cosmos.implementation.Resource;
 import com.azure.cosmos.implementation.ResourceType;
 import com.azure.cosmos.implementation.RxDocumentServiceRequest;
 import com.azure.cosmos.implementation.Strings;
@@ -16,7 +17,8 @@ import com.azure.cosmos.models.CosmosQueryRequestOptions;
 import com.azure.cosmos.models.FeedResponse;
 import com.azure.cosmos.models.PartitionKey;
 import com.azure.cosmos.models.SqlQuerySpec;
-import com.fasterxml.jackson.databind.JsonNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -32,24 +34,24 @@ import java.util.function.Function;
  * While this class is public, but it is not part of our published public APIs.
  * This is meant to be internally used only by our sdk.
  */
-public abstract class ParallelDocumentQueryExecutionContextBase<T>
+public abstract class ParallelDocumentQueryExecutionContextBase<T extends Resource>
         extends DocumentQueryExecutionContextBase<T> implements IDocumentQueryExecutionComponent<T> {
 
+    protected final Logger logger;
     protected final List<DocumentProducer<T>> documentProducers;
     protected final SqlQuerySpec querySpec;
     protected int pageSize;
     protected int top = -1;
-    private final Function<JsonNode, T> factoryMethod;
 
     protected ParallelDocumentQueryExecutionContextBase(DiagnosticsClientContext diagnosticsClientContext,
                                                         IDocumentQueryClient client,
                                                         ResourceType resourceTypeEnum, Class<T> resourceType,
                                                         SqlQuerySpec query, CosmosQueryRequestOptions cosmosQueryRequestOptions, String resourceLink, String rewrittenQuery,
-                                                        UUID correlatedActivityId, boolean shouldUnwrapSelectValue) {
-        super(diagnosticsClientContext, client, resourceTypeEnum, resourceType, query, cosmosQueryRequestOptions, resourceLink, correlatedActivityId);
+                                                        boolean isContinuationExpected, boolean getLazyFeedResponse, UUID correlatedActivityId) {
+        super(diagnosticsClientContext, client, resourceTypeEnum, resourceType, query, cosmosQueryRequestOptions, resourceLink, getLazyFeedResponse,
+                correlatedActivityId);
 
-        this.factoryMethod =  DocumentQueryExecutionContextBase.getEffectiveFactoryMethod(
-            this.cosmosQueryRequestOptions, shouldUnwrapSelectValue, resourceType);
+        logger = LoggerFactory.getLogger(this.getClass());
         documentProducers = new ArrayList<>();
         if (!Strings.isNullOrEmpty(rewrittenQuery)) {
             this.querySpec = new SqlQuerySpec(rewrittenQuery, super.query.getParameters());
@@ -69,7 +71,6 @@ public abstract class ParallelDocumentQueryExecutionContextBase<T>
                 Map<String, String> headers = new HashMap<>(commonRequestHeaders);
                 headers.put(HttpConstants.HttpHeaders.CONTINUATION, continuationToken);
                 headers.put(HttpConstants.HttpHeaders.PAGE_SIZE, Strings.toString(pageSize));
-                headers.put(HttpConstants.HttpHeaders.CORRELATED_ACTIVITY_ID, correlatedActivityId.toString());
 
                 PartitionKeyInternal partitionKeyInternal = null;
                 if (cosmosQueryRequestOptions.getPartitionKey() != null && cosmosQueryRequestOptions.getPartitionKey() != PartitionKey.NONE) {
@@ -81,9 +82,9 @@ public abstract class ParallelDocumentQueryExecutionContextBase<T>
                                                          collectionRid, cosmosQueryRequestOptions.getThroughputControlGroupName());
             };
 
-            Function<RxDocumentServiceRequest, Mono<FeedResponse<T>>> executeFunc = (request) ->  this.executeRequestAsync(
-                    this.factoryMethod,
-                    request);
+            Function<RxDocumentServiceRequest, Mono<FeedResponse<T>>> executeFunc = (request) -> {
+                return this.executeRequestAsync(request);
+            };
             final FeedRangeEpkImpl targetRange = entry.getKey();
             final String continuationToken = entry.getValue();
             DocumentProducer<T> dp = createDocumentProducer(collectionRid,
@@ -94,6 +95,7 @@ public abstract class ParallelDocumentQueryExecutionContextBase<T>
 
             documentProducers.add(dp);
         }
+
     }
 
     abstract protected DocumentProducer<T> createDocumentProducer(String collectionRid, PartitionKeyRange targetRange,
@@ -102,7 +104,7 @@ public abstract class ParallelDocumentQueryExecutionContextBase<T>
                                                                   SqlQuerySpec querySpecForInit,
                                                                   Map<String, String> commonRequestHeaders,
                                                                   TriFunction<FeedRangeEpkImpl, String, Integer,
-                                                                      RxDocumentServiceRequest> createRequestFunc,
+                                                                                 RxDocumentServiceRequest> createRequestFunc,
                                                                   Function<RxDocumentServiceRequest, Mono<FeedResponse<T>>> executeFunc,
                                                                   Callable<DocumentClientRetryPolicy> createRetryPolicyFunc,
                                                                   FeedRangeEpkImpl feedRange);
@@ -119,8 +121,10 @@ public abstract class ParallelDocumentQueryExecutionContextBase<T>
     }
 
     protected void initializeReadMany(
+        IDocumentQueryClient queryClient, String collectionResourceId, SqlQuerySpec sqlQuerySpec,
         Map<PartitionKeyRange, SqlQuerySpec> rangeQueryMap,
         CosmosQueryRequestOptions cosmosQueryRequestOptions,
+        UUID activityId,
         String collectionRid) {
         Map<String, String> commonRequestHeaders = createCommonHeadersAsync(this.getFeedOptions(null, null));
 
@@ -143,9 +147,9 @@ public abstract class ParallelDocumentQueryExecutionContextBase<T>
                     cosmosQueryRequestOptions.getThroughputControlGroupName());
             };
 
-            Function<RxDocumentServiceRequest, Mono<FeedResponse<T>>> executeFunc = (request) -> this.executeRequestAsync(
-                    this.factoryMethod,
-                    request);
+            Function<RxDocumentServiceRequest, Mono<FeedResponse<T>>> executeFunc = (request) -> {
+                return this.executeRequestAsync(request);
+            };
 
             // TODO: Review pagesize -1
             DocumentProducer<T> dp = createDocumentProducer(collectionRid, targetRange,

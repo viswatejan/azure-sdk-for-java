@@ -24,7 +24,7 @@ public interface TableServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ListTableServicesInner>> listWithResponseAsync(String resourceGroupName, String accountName);
@@ -39,7 +39,7 @@ public interface TableServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ListTableServicesInner> listAsync(String resourceGroupName, String accountName);
@@ -70,7 +70,7 @@ public interface TableServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ListTableServicesInner> listWithResponse(String resourceGroupName, String accountName, Context context);
@@ -88,8 +88,7 @@ public interface TableServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a storage account’s Table service along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return the properties of a storage account’s Table service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TableServicePropertiesInner>> setServicePropertiesWithResponseAsync(
@@ -108,7 +107,7 @@ public interface TableServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a storage account’s Table service on successful completion of {@link Mono}.
+     * @return the properties of a storage account’s Table service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<TableServicePropertiesInner> setServicePropertiesAsync(
@@ -147,7 +146,7 @@ public interface TableServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a storage account’s Table service along with {@link Response}.
+     * @return the properties of a storage account’s Table service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TableServicePropertiesInner> setServicePropertiesWithResponse(
@@ -165,7 +164,7 @@ public interface TableServicesClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the properties of a storage account’s Table service, including properties for Storage Analytics and CORS
-     *     (Cross-Origin Resource Sharing) rules along with {@link Response} on successful completion of {@link Mono}.
+     *     (Cross-Origin Resource Sharing) rules.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TableServicePropertiesInner>> getServicePropertiesWithResponseAsync(
@@ -183,7 +182,7 @@ public interface TableServicesClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the properties of a storage account’s Table service, including properties for Storage Analytics and CORS
-     *     (Cross-Origin Resource Sharing) rules on successful completion of {@link Mono}.
+     *     (Cross-Origin Resource Sharing) rules.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<TableServicePropertiesInner> getServicePropertiesAsync(String resourceGroupName, String accountName);
@@ -218,7 +217,7 @@ public interface TableServicesClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the properties of a storage account’s Table service, including properties for Storage Analytics and CORS
-     *     (Cross-Origin Resource Sharing) rules along with {@link Response}.
+     *     (Cross-Origin Resource Sharing) rules.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TableServicePropertiesInner> getServicePropertiesWithResponse(

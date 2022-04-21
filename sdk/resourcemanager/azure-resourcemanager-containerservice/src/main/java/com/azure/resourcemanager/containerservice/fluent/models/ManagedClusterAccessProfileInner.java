@@ -6,12 +6,16 @@ package com.azure.resourcemanager.containerservice.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** Managed cluster Access Profile. */
 @Fluent
 public final class ManagedClusterAccessProfileInner extends Resource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedClusterAccessProfileInner.class);
+
     /*
      * AccessProfile of a managed cluster.
      */

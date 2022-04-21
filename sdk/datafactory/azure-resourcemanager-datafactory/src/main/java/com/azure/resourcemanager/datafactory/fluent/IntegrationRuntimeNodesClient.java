@@ -41,7 +41,7 @@ public interface IntegrationRuntimeNodesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a self-hosted integration runtime node along with {@link Response}.
+     * @return a self-hosted integration runtime node.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SelfHostedIntegrationRuntimeNodeInner> getWithResponse(
@@ -72,7 +72,7 @@ public interface IntegrationRuntimeNodesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
@@ -111,7 +111,7 @@ public interface IntegrationRuntimeNodesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of Self-hosted integration runtime node along with {@link Response}.
+     * @return properties of Self-hosted integration runtime node.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SelfHostedIntegrationRuntimeNodeInner> updateWithResponse(
@@ -149,7 +149,7 @@ public interface IntegrationRuntimeNodesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the IP address of self-hosted integration runtime node along with {@link Response}.
+     * @return the IP address of self-hosted integration runtime node.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IntegrationRuntimeNodeIpAddressInner> getIpAddressWithResponse(

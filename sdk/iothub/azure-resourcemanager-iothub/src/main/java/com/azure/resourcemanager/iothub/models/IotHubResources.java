@@ -33,7 +33,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the non-security related metadata of an IoT hub along with {@link Response}.
+     * @return the non-security related metadata of an IoT hub.
      */
     Response<IotHubDescription> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context);
@@ -135,7 +135,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the statistics from an IoT hub along with {@link Response}.
+     * @return the statistics from an IoT hub.
      */
     Response<RegistryStatistics> getStatsWithResponse(String resourceGroupName, String resourceName, Context context);
 
@@ -225,8 +225,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub along with {@link
-     *     Response}.
+     * @return a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub.
      */
     Response<EventHubConsumerGroupInfo> getEventHubConsumerGroupWithResponse(
         String resourceGroupName, String resourceName, String eventHubEndpointName, String name, Context context);
@@ -258,7 +257,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteEventHubConsumerGroupWithResponse(
         String resourceGroupName, String resourceName, String eventHubEndpointName, String name, Context context);
@@ -319,7 +318,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of a job from an IoT hub along with {@link Response}.
+     * @return the details of a job from an IoT hub.
      */
     Response<JobResponse> getJobWithResponse(
         String resourceGroupName, String resourceName, String jobId, Context context);
@@ -402,7 +401,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties indicating whether a given IoT hub name is available along with {@link Response}.
+     * @return the properties indicating whether a given IoT hub name is available.
      */
     Response<IotHubNameAvailabilityInfo> checkNameAvailabilityWithResponse(
         OperationInputs operationInputs, Context context);
@@ -432,7 +431,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of testing all routes along with {@link Response}.
+     * @return result of testing all routes.
      */
     Response<TestAllRoutesResult> testAllRoutesWithResponse(
         String iotHubName, String resourceGroupName, TestAllRoutesInput input, Context context);
@@ -462,7 +461,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of testing one route along with {@link Response}.
+     * @return result of testing one route.
      */
     Response<TestRouteResult> testRouteWithResponse(
         String iotHubName, String resourceGroupName, TestRouteInput input, Context context);
@@ -525,7 +524,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a shared access policy by name from an IoT hub along with {@link Response}.
+     * @return a shared access policy by name from an IoT hub.
      */
     Response<SharedAccessSignatureAuthorizationRule> getKeysForKeyNameWithResponse(
         String resourceGroupName, String resourceName, String keyName, Context context);
@@ -560,7 +559,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the Job Response object along with {@link Response}.
+     * @return the properties of the Job Response object.
      */
     Response<JobResponse> exportDevicesWithResponse(
         String resourceGroupName, String resourceName, ExportDevicesRequest exportDevicesParameters, Context context);
@@ -595,7 +594,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the Job Response object along with {@link Response}.
+     * @return the properties of the Job Response object.
      */
     Response<JobResponse> importDevicesWithResponse(
         String resourceGroupName, String resourceName, ImportDevicesRequest importDevicesParameters, Context context);
@@ -608,7 +607,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the non-security related metadata of an IoT hub along with {@link Response}.
+     * @return the non-security related metadata of an IoT hub.
      */
     IotHubDescription getById(String id);
 
@@ -621,7 +620,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the non-security related metadata of an IoT hub along with {@link Response}.
+     * @return the non-security related metadata of an IoT hub.
      */
     Response<IotHubDescription> getByIdWithResponse(String id, Context context);
 
@@ -633,8 +632,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub along with {@link
-     *     Response}.
+     * @return a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub.
      */
     EventHubConsumerGroupInfo getEventHubConsumerGroupById(String id);
 
@@ -647,8 +645,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub along with {@link
-     *     Response}.
+     * @return a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub.
      */
     Response<EventHubConsumerGroupInfo> getEventHubConsumerGroupByIdWithResponse(String id, Context context);
 
@@ -697,7 +694,7 @@ public interface IotHubResources {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteEventHubConsumerGroupByIdWithResponse(String id, Context context);
 

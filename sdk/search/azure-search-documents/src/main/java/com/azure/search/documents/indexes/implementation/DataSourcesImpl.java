@@ -136,8 +136,7 @@ public final class DataSourcesImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a datasource definition, which can be used to configure an indexer along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return represents a datasource definition, which can be used to configure an indexer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<SearchIndexerDataSource>> createOrUpdateWithResponseAsync(
@@ -182,7 +181,7 @@ public final class DataSourcesImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteWithResponseAsync(
@@ -213,8 +212,7 @@ public final class DataSourcesImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a datasource definition, which can be used to configure an indexer along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return represents a datasource definition, which can be used to configure an indexer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<SearchIndexerDataSource>> getWithResponseAsync(
@@ -244,8 +242,7 @@ public final class DataSourcesImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response from a List Datasources request along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return response from a List Datasources request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ListDataSourcesResult>> listWithResponseAsync(
@@ -269,8 +266,7 @@ public final class DataSourcesImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a datasource definition, which can be used to configure an indexer along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return represents a datasource definition, which can be used to configure an indexer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<SearchIndexerDataSource>> createWithResponseAsync(

@@ -14,8 +14,7 @@ public interface Operations {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of operations that can be performed by the Data Factory service as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of operations that can be performed by the Data Factory service.
      */
     PagedIterable<Operation> list();
 
@@ -26,8 +25,7 @@ public interface Operations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of operations that can be performed by the Data Factory service as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of operations that can be performed by the Data Factory service.
      */
     PagedIterable<Operation> list(Context context);
 }

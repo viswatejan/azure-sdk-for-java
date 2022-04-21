@@ -25,8 +25,7 @@ public interface HostSettings {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return per subscription settings needed to host bot in compute resource such as Azure App Service along with
-     *     {@link Response}.
+     * @return per subscription settings needed to host bot in compute resource such as Azure App Service.
      */
     Response<HostSettingsResponse> getWithResponse(Context context);
 }

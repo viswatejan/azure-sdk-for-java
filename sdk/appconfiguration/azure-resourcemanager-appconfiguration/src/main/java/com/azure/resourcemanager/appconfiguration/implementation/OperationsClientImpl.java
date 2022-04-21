@@ -87,21 +87,6 @@ public final class OperationsClientImpl implements OperationsClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.AppConfiguration/locations/{location}"
-                + "/checkNameAvailability")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<NameAvailabilityStatusInner>> regionalCheckNameAvailability(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("location") String location,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") CheckNameAvailabilityParameters checkNameAvailabilityParameters,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -119,8 +104,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the result of a request to check the availability of a resource name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NameAvailabilityStatusInner>> checkNameAvailabilityWithResponseAsync(
@@ -168,8 +152,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the result of a request to check the availability of a resource name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NameAvailabilityStatusInner>> checkNameAvailabilityWithResponseAsync(
@@ -213,8 +196,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name on successful completion of {@link
-     *     Mono}.
+     * @return the result of a request to check the availability of a resource name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NameAvailabilityStatusInner> checkNameAvailabilityAsync(
@@ -253,7 +235,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name along with {@link Response}.
+     * @return the result of a request to check the availability of a resource name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NameAvailabilityStatusInner> checkNameAvailabilityWithResponse(
@@ -270,8 +252,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration store operations along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return the result of a request to list configuration store operations.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OperationDefinitionInner>> listSinglePageAsync(String skipToken) {
@@ -308,8 +289,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration store operations along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return the result of a request to list configuration store operations.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OperationDefinitionInner>> listSinglePageAsync(String skipToken, Context context) {
@@ -343,8 +323,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration store operations as paginated response with {@link
-     *     PagedFlux}.
+     * @return the result of a request to list configuration store operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OperationDefinitionInner> listAsync(String skipToken) {
@@ -356,8 +335,7 @@ public final class OperationsClientImpl implements OperationsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration store operations as paginated response with {@link
-     *     PagedFlux}.
+     * @return the result of a request to list configuration store operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OperationDefinitionInner> listAsync() {
@@ -375,8 +353,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration store operations as paginated response with {@link
-     *     PagedFlux}.
+     * @return the result of a request to list configuration store operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<OperationDefinitionInner> listAsync(String skipToken, Context context) {
@@ -389,8 +366,7 @@ public final class OperationsClientImpl implements OperationsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration store operations as paginated response with {@link
-     *     PagedIterable}.
+     * @return the result of a request to list configuration store operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OperationDefinitionInner> list() {
@@ -408,175 +384,11 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration store operations as paginated response with {@link
-     *     PagedIterable}.
+     * @return the result of a request to list configuration store operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<OperationDefinitionInner> list(String skipToken, Context context) {
         return new PagedIterable<>(listAsync(skipToken, context));
-    }
-
-    /**
-     * Checks whether the configuration store name is available for use.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param checkNameAvailabilityParameters The object containing information for the availability request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name along with {@link Response} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityStatusInner>> regionalCheckNameAvailabilityWithResponseAsync(
-        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
-        }
-        if (checkNameAvailabilityParameters == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter checkNameAvailabilityParameters is required and cannot be null."));
-        } else {
-            checkNameAvailabilityParameters.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .regionalCheckNameAvailability(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            location,
-                            this.client.getApiVersion(),
-                            checkNameAvailabilityParameters,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Checks whether the configuration store name is available for use.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param checkNameAvailabilityParameters The object containing information for the availability request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name along with {@link Response} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NameAvailabilityStatusInner>> regionalCheckNameAvailabilityWithResponseAsync(
-        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
-        }
-        if (checkNameAvailabilityParameters == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter checkNameAvailabilityParameters is required and cannot be null."));
-        } else {
-            checkNameAvailabilityParameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .regionalCheckNameAvailability(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                location,
-                this.client.getApiVersion(),
-                checkNameAvailabilityParameters,
-                accept,
-                context);
-    }
-
-    /**
-     * Checks whether the configuration store name is available for use.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param checkNameAvailabilityParameters The object containing information for the availability request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NameAvailabilityStatusInner> regionalCheckNameAvailabilityAsync(
-        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters) {
-        return regionalCheckNameAvailabilityWithResponseAsync(location, checkNameAvailabilityParameters)
-            .flatMap(
-                (Response<NameAvailabilityStatusInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Checks whether the configuration store name is available for use.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param checkNameAvailabilityParameters The object containing information for the availability request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public NameAvailabilityStatusInner regionalCheckNameAvailability(
-        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters) {
-        return regionalCheckNameAvailabilityAsync(location, checkNameAvailabilityParameters).block();
-    }
-
-    /**
-     * Checks whether the configuration store name is available for use.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param checkNameAvailabilityParameters The object containing information for the availability request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NameAvailabilityStatusInner> regionalCheckNameAvailabilityWithResponse(
-        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters, Context context) {
-        return regionalCheckNameAvailabilityWithResponseAsync(location, checkNameAvailabilityParameters, context)
-            .block();
     }
 
     /**
@@ -586,8 +398,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration store operations along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return the result of a request to list configuration store operations.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OperationDefinitionInner>> listNextSinglePageAsync(String nextLink) {
@@ -623,8 +434,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration store operations along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return the result of a request to list configuration store operations.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<OperationDefinitionInner>> listNextSinglePageAsync(String nextLink, Context context) {

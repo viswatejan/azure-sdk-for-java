@@ -40,13 +40,16 @@ public final class IdentitySslUtil {
      * Pins the specified HTTPS URL Connection to work against a specific server-side certificate with
      * the specified thumbprint only.
      *
+     * @param className The class calling the method.
      * @param httpsUrlConnection The https url connection to configure
      * @param certificateThumbprint The thumbprint of the certificate
-     * @param logger The {@link ClientLogger} used to log any errors that occur in this method call.
      */
-    public static void addTrustedCertificateThumbprint(HttpsURLConnection httpsUrlConnection,
-                                                       String certificateThumbprint, ClientLogger logger) {
-        //We expect the connection to work against a specific server side certificate only, so it's safe to disable the
+    public static void addTrustedCertificateThumbprint(String className, HttpsURLConnection httpsUrlConnection,
+                                                       String certificateThumbprint) {
+
+        ClientLogger logger = new ClientLogger(className);
+
+        //We expect the connection to work against a specific server side certificate only, so its safe to disable the
         // host name verification.
         if (httpsUrlConnection.getHostnameVerifier() != ALL_HOSTS_ACCEPT_HOSTNAME_VERIFIER) {
             httpsUrlConnection.setHostnameVerifier(ALL_HOSTS_ACCEPT_HOSTNAME_VERIFIER);
@@ -77,7 +80,8 @@ public final class IdentitySslUtil {
                     }
                 }
                 throw logger.logExceptionAsError(new RuntimeException(
-                    "Thumbprint of certificates received did not match the expected thumbprint."));
+                    "Thumbprint of certificates receieved did not match the "
+                        + "expected thumbprint."));
             }
         }
         };
@@ -99,7 +103,7 @@ public final class IdentitySslUtil {
 
     private static String extractCertificateThumbprint(Certificate certificate, ClientLogger logger) {
         try {
-            StringBuilder thumbprint = new StringBuilder();
+            StringBuffer thumbprint = new StringBuffer();
             MessageDigest messageDigest;
             messageDigest = MessageDigest.getInstance("SHA-1");
 
@@ -113,8 +117,8 @@ public final class IdentitySslUtil {
 
             byte[]  updatedDigest = messageDigest.digest(encodedCertificate);
 
-            for (byte b : updatedDigest) {
-                int unsignedByte = b & 0xff;
+            for (int i = 0; i < updatedDigest.length; i++) {
+                int unsignedByte = updatedDigest[i] & 0xff;
 
                 if (unsignedByte < 16) {
                     thumbprint.append("0");

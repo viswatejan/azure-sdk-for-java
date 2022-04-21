@@ -11,7 +11,6 @@ import com.azure.resourcemanager.redis.models.RebootType;
 import com.azure.resourcemanager.redis.models.RedisAccessKeys;
 import com.azure.resourcemanager.redis.models.RedisCache;
 import com.azure.resourcemanager.redis.models.RedisCachePremium;
-import com.azure.resourcemanager.redis.models.RedisConfiguration;
 import com.azure.resourcemanager.redis.models.RedisKeyType;
 import com.azure.resourcemanager.redis.models.ReplicationRole;
 import com.azure.resourcemanager.redis.models.ScheduleEntry;
@@ -64,6 +63,7 @@ public class RedisCacheOperationsTests extends RedisManagementTest {
                 .withRegion(Region.US_CENTRAL)
                 .withNewResourceGroup(resourceGroups)
                 .withPremiumSku(2)
+                .withRedisConfiguration("maxclients", "2")
                 .withNonSslPort()
                 .withFirewallRule("rule1", "192.168.0.1", "192.168.0.4")
                 .withFirewallRule("rule2", "192.168.0.10", "192.168.0.40");
@@ -96,6 +96,7 @@ public class RedisCacheOperationsTests extends RedisManagementTest {
         // Redis configuration update
         premiumCache
             .update()
+            .withRedisConfiguration("maxclients", "3")
             .withoutFirewallRule("rule1")
             .withFirewallRule("rule3", "192.168.0.10", "192.168.0.104")
             .withoutMinimumTlsVersion()
@@ -313,16 +314,11 @@ public class RedisCacheOperationsTests extends RedisManagementTest {
                 .withExistingResourceGroup(rgName)
                 .withPremiumSku()
                 .withMinimumTlsVersion(TlsVersion.ONE_TWO)
-                .withRedisConfiguration(new RedisConfiguration()
-                    .withRdbBackupEnabled("true")
-                    .withRdbBackupFrequency("15")
-                    .withRdbBackupMaxSnapshotCount("1")
-                    .withRdbStorageConnectionString(connectionString))
+                .withRedisConfiguration("rdb-backup-enabled", "true")
+                .withRedisConfiguration("rdb-backup-frequency", "15")
+                .withRedisConfiguration("rdb-backup-max-snapshot-count", "1")
+                .withRedisConfiguration("rdb-storage-connection-string", connectionString)
                 .create();
-        Assertions.assertEquals("true", redisCache.innerModel().redisConfiguration().rdbBackupEnabled());
-        Assertions.assertEquals("15", redisCache.innerModel().redisConfiguration().rdbBackupFrequency());
-        Assertions.assertEquals("1", redisCache.innerModel().redisConfiguration().rdbBackupMaxSnapshotCount());
-        Assertions.assertNotNull(redisCache.innerModel().redisConfiguration().rdbStorageConnectionString());
 
         redisManager.redisCaches().deleteById(redisCache.id());
 
@@ -339,8 +335,5 @@ public class RedisCacheOperationsTests extends RedisManagementTest {
                 .withRedisConfiguration("aof-storage-connection-string-0", connectionString)
                 .withRedisConfiguration("aof-storage-connection-string-1", connectionString)
                 .create();
-        Assertions.assertEquals("true", redisCache.innerModel().redisConfiguration().additionalProperties().get("aof-backup-enabled"));
-        Assertions.assertNotNull(redisCache.innerModel().redisConfiguration().aofStorageConnectionString0());
-        Assertions.assertNotNull(redisCache.innerModel().redisConfiguration().aofStorageConnectionString1());
     }
 }

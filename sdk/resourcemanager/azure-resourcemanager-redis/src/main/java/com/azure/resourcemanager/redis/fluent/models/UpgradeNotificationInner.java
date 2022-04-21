@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.redis.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -13,6 +15,8 @@ import java.util.Map;
 /** Properties of upgrade notification. */
 @Immutable
 public final class UpgradeNotificationInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(UpgradeNotificationInner.class);
+
     /*
      * Name of upgrade notification.
      */

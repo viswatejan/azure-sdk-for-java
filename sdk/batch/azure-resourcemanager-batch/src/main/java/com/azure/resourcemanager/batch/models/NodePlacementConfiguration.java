@@ -5,13 +5,15 @@
 package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Node placement configuration for batch pools. Allocation configuration used by Batch Service to provision the nodes.
- */
+/** Allocation configuration used by Batch Service to provision the nodes. */
 @Fluent
 public final class NodePlacementConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(NodePlacementConfiguration.class);
+
     /*
      * The placement policy for allocating nodes in the pool. Allocation policy
      * used by Batch Service to provision the nodes. If not specified, Batch

@@ -7,12 +7,15 @@ package com.azure.resourcemanager.appservice.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.fluent.models.ProcessModuleInfoInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Collection of Kudu thread information elements. */
 @Fluent
 public final class ProcessModuleInfoCollection {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ProcessModuleInfoCollection.class);
+
     /*
      * Collection of resources.
      */
@@ -61,7 +64,7 @@ public final class ProcessModuleInfoCollection {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model ProcessModuleInfoCollection"));
@@ -69,6 +72,4 @@ public final class ProcessModuleInfoCollection {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ProcessModuleInfoCollection.class);
 }

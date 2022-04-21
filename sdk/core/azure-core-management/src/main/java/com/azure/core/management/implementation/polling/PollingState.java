@@ -113,7 +113,7 @@ public final class PollingState {
     public static <T> PollingState from(SerializerAdapter serializerAdapter, PollingContext<T> context) {
         Objects.requireNonNull(serializerAdapter, "'serializerAdapter' cannot be null.");
         String value = context.getData(KEY);
-        if (value == null || "".equalsIgnoreCase(value)) {
+        if (value == null || value.equalsIgnoreCase("")) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException("The provided context does not contain"
                 + " serialized PollingState."));
         }
@@ -139,7 +139,7 @@ public final class PollingState {
      */
     public static PollingState from(SerializerAdapter serializerAdapter, String value) {
         Objects.requireNonNull(serializerAdapter, "'serializerAdapter' cannot be null.");
-        if (value == null || "".equalsIgnoreCase(value)) {
+        if (value == null || value.equalsIgnoreCase("")) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException("'value' is required"));
         }
         try {

@@ -35,7 +35,7 @@ public interface PrivateEndpointConnectionOperations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private endpoint connection along with {@link Response}.
+     * @return a private endpoint connection.
      */
     Response<PrivateEndpointConnectionResource> getWithResponse(
         String resourceGroupName,
@@ -66,7 +66,7 @@ public interface PrivateEndpointConnectionOperations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String factoryName, String privateEndpointConnectionName, Context context);
@@ -78,7 +78,7 @@ public interface PrivateEndpointConnectionOperations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private endpoint connection along with {@link Response}.
+     * @return a private endpoint connection.
      */
     PrivateEndpointConnectionResource getById(String id);
 
@@ -92,7 +92,7 @@ public interface PrivateEndpointConnectionOperations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private endpoint connection along with {@link Response}.
+     * @return a private endpoint connection.
      */
     Response<PrivateEndpointConnectionResource> getByIdWithResponse(String id, String ifNoneMatch, Context context);
 
@@ -114,7 +114,7 @@ public interface PrivateEndpointConnectionOperations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

@@ -25,8 +25,7 @@ public interface ManagementPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the managementpolicy associated with the specified storage account along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the managementpolicy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ManagementPolicyInner>> getWithResponseAsync(
@@ -43,8 +42,7 @@ public interface ManagementPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the managementpolicy associated with the specified storage account on successful completion of {@link
-     *     Mono}.
+     * @return the managementpolicy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ManagementPolicyInner> getAsync(
@@ -78,7 +76,7 @@ public interface ManagementPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the managementpolicy associated with the specified storage account along with {@link Response}.
+     * @return the managementpolicy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ManagementPolicyInner> getWithResponse(
@@ -96,8 +94,7 @@ public interface ManagementPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Get Storage Account ManagementPolicies operation response along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the Get Storage Account ManagementPolicies operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ManagementPolicyInner>> createOrUpdateWithResponseAsync(
@@ -118,7 +115,7 @@ public interface ManagementPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Get Storage Account ManagementPolicies operation response on successful completion of {@link Mono}.
+     * @return the Get Storage Account ManagementPolicies operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ManagementPolicyInner> createOrUpdateAsync(
@@ -161,7 +158,7 @@ public interface ManagementPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Get Storage Account ManagementPolicies operation response along with {@link Response}.
+     * @return the Get Storage Account ManagementPolicies operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ManagementPolicyInner> createOrUpdateWithResponse(
@@ -182,7 +179,7 @@ public interface ManagementPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteWithResponseAsync(
@@ -199,7 +196,7 @@ public interface ManagementPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String accountName, ManagementPolicyName managementPolicyName);
@@ -231,7 +228,7 @@ public interface ManagementPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(

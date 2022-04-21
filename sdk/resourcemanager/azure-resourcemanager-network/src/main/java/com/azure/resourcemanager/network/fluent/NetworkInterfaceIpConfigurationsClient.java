@@ -25,7 +25,7 @@ public interface NetworkInterfaceIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all ip configurations in a network interface as paginated response with {@link PagedFlux}.
+     * @return all ip configurations in a network interface.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<NetworkInterfaceIpConfigurationInner> listAsync(String resourceGroupName, String networkInterfaceName);
@@ -38,7 +38,7 @@ public interface NetworkInterfaceIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all ip configurations in a network interface as paginated response with {@link PagedIterable}.
+     * @return all ip configurations in a network interface.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<NetworkInterfaceIpConfigurationInner> list(String resourceGroupName, String networkInterfaceName);
@@ -52,7 +52,7 @@ public interface NetworkInterfaceIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all ip configurations in a network interface as paginated response with {@link PagedIterable}.
+     * @return all ip configurations in a network interface.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<NetworkInterfaceIpConfigurationInner> list(
@@ -67,8 +67,7 @@ public interface NetworkInterfaceIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified network interface ip configuration along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the specified network interface ip configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<NetworkInterfaceIpConfigurationInner>> getWithResponseAsync(
@@ -83,7 +82,7 @@ public interface NetworkInterfaceIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified network interface ip configuration on successful completion of {@link Mono}.
+     * @return the specified network interface ip configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<NetworkInterfaceIpConfigurationInner> getAsync(
@@ -114,7 +113,7 @@ public interface NetworkInterfaceIpConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified network interface ip configuration along with {@link Response}.
+     * @return the specified network interface ip configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<NetworkInterfaceIpConfigurationInner> getWithResponse(

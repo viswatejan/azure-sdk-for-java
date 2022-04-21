@@ -124,29 +124,6 @@ public interface ConfigurationStore {
     Boolean disableLocalAuth();
 
     /**
-     * Gets the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
-     * retained when it is soft deleted.
-     *
-     * @return the softDeleteRetentionInDays value.
-     */
-    Integer softDeleteRetentionInDays();
-
-    /**
-     * Gets the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
-     * configuration store.
-     *
-     * @return the enablePurgeProtection value.
-     */
-    Boolean enablePurgeProtection();
-
-    /**
-     * Gets the createMode property: Indicates whether the configuration store need to be recovered.
-     *
-     * @return the createMode value.
-     */
-    CreateMode createMode();
-
-    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -227,10 +204,7 @@ public interface ConfigurationStore {
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithEncryption,
                 DefinitionStages.WithPublicNetworkAccess,
-                DefinitionStages.WithDisableLocalAuth,
-                DefinitionStages.WithSoftDeleteRetentionInDays,
-                DefinitionStages.WithEnablePurgeProtection,
-                DefinitionStages.WithCreateMode {
+                DefinitionStages.WithDisableLocalAuth {
             /**
              * Executes the create request.
              *
@@ -299,40 +273,6 @@ public interface ConfigurationStore {
              */
             WithCreate withDisableLocalAuth(Boolean disableLocalAuth);
         }
-        /** The stage of the ConfigurationStore definition allowing to specify softDeleteRetentionInDays. */
-        interface WithSoftDeleteRetentionInDays {
-            /**
-             * Specifies the softDeleteRetentionInDays property: The amount of time in days that the configuration store
-             * will be retained when it is soft deleted..
-             *
-             * @param softDeleteRetentionInDays The amount of time in days that the configuration store will be retained
-             *     when it is soft deleted.
-             * @return the next definition stage.
-             */
-            WithCreate withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays);
-        }
-        /** The stage of the ConfigurationStore definition allowing to specify enablePurgeProtection. */
-        interface WithEnablePurgeProtection {
-            /**
-             * Specifies the enablePurgeProtection property: Property specifying whether protection against purge is
-             * enabled for this configuration store..
-             *
-             * @param enablePurgeProtection Property specifying whether protection against purge is enabled for this
-             *     configuration store.
-             * @return the next definition stage.
-             */
-            WithCreate withEnablePurgeProtection(Boolean enablePurgeProtection);
-        }
-        /** The stage of the ConfigurationStore definition allowing to specify createMode. */
-        interface WithCreateMode {
-            /**
-             * Specifies the createMode property: Indicates whether the configuration store need to be recovered..
-             *
-             * @param createMode Indicates whether the configuration store need to be recovered.
-             * @return the next definition stage.
-             */
-            WithCreate withCreateMode(CreateMode createMode);
-        }
     }
     /**
      * Begins update for the ConfigurationStore resource.
@@ -348,8 +288,7 @@ public interface ConfigurationStore {
             UpdateStages.WithSku,
             UpdateStages.WithEncryption,
             UpdateStages.WithDisableLocalAuth,
-            UpdateStages.WithPublicNetworkAccess,
-            UpdateStages.WithEnablePurgeProtection {
+            UpdateStages.WithPublicNetworkAccess {
         /**
          * Executes the update request.
          *
@@ -430,18 +369,6 @@ public interface ConfigurationStore {
              */
             Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
-        /** The stage of the ConfigurationStore update allowing to specify enablePurgeProtection. */
-        interface WithEnablePurgeProtection {
-            /**
-             * Specifies the enablePurgeProtection property: Property specifying whether protection against purge is
-             * enabled for this configuration store..
-             *
-             * @param enablePurgeProtection Property specifying whether protection against purge is enabled for this
-             *     configuration store.
-             * @return the next definition stage.
-             */
-            Update withEnablePurgeProtection(Boolean enablePurgeProtection);
-        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -463,7 +390,7 @@ public interface ConfigurationStore {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list API keys as paginated response with {@link PagedIterable}.
+     * @return the result of a request to list API keys.
      */
     PagedIterable<ApiKey> listKeys();
 
@@ -477,7 +404,7 @@ public interface ConfigurationStore {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list API keys as paginated response with {@link PagedIterable}.
+     * @return the result of a request to list API keys.
      */
     PagedIterable<ApiKey> listKeys(String skipToken, Context context);
 
@@ -500,7 +427,7 @@ public interface ConfigurationStore {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an API key used for authenticating with a configuration store endpoint along with {@link Response}.
+     * @return an API key used for authenticating with a configuration store endpoint.
      */
     Response<ApiKey> regenerateKeyWithResponse(RegenerateKeyParameters regenerateKeyParameters, Context context);
 }

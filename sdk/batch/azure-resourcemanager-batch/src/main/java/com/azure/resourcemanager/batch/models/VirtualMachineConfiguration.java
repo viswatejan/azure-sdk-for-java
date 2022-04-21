@@ -6,12 +6,15 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The configuration for compute nodes in a pool based on the Azure Virtual Machines infrastructure. */
 @Fluent
 public final class VirtualMachineConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualMachineConfiguration.class);
+
     /*
      * A reference to an Azure Virtual Machines Marketplace image or the Azure
      * Image resource of a custom Virtual Machine. To get the list of all
@@ -353,7 +356,7 @@ public final class VirtualMachineConfiguration {
      */
     public void validate() {
         if (imageReference() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property imageReference in model VirtualMachineConfiguration"));
@@ -361,7 +364,7 @@ public final class VirtualMachineConfiguration {
             imageReference().validate();
         }
         if (nodeAgentSkuId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property nodeAgentSkuId in model VirtualMachineConfiguration"));
@@ -388,6 +391,4 @@ public final class VirtualMachineConfiguration {
             osDisk().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(VirtualMachineConfiguration.class);
 }

@@ -6,12 +6,15 @@ package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Collection of resources. */
 @Fluent
 public final class ResourceCollection {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceCollection.class);
+
     /*
      * Collection of resources.
      */
@@ -60,11 +63,9 @@ public final class ResourceCollection {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model ResourceCollection"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ResourceCollection.class);
 }

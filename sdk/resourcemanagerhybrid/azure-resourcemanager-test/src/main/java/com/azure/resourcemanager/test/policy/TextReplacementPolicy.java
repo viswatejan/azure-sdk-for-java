@@ -162,7 +162,7 @@ public class TextReplacementPolicy implements HttpPipelinePolicy {
                 return responseData;
             });
         } else if (contentType.equalsIgnoreCase(ContentType.APPLICATION_OCTET_STREAM)
-            || "avro/binary".equalsIgnoreCase(contentType)) {
+            || contentType.equalsIgnoreCase("avro/binary")) {
             return response.getBodyAsByteArray().switchIfEmpty(Mono.just(new byte[0])).map(bytes -> {
                 if (bytes.length == 0) {
                     return responseData;

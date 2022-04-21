@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The type Feed response diagnostics.
@@ -29,32 +28,20 @@ public class FeedResponseDiagnostics {
     private static final Logger LOGGER = LoggerFactory.getLogger(FeedResponseDiagnostics.class);
     private Map<String, QueryMetrics> queryMetricsMap;
     private QueryInfo.QueryPlanDiagnosticsContext diagnosticsContext;
-    private final List<ClientSideRequestStatistics> clientSideRequestStatisticsList;
+    private List<ClientSideRequestStatistics> clientSideRequestStatisticsList;
 
     public FeedResponseDiagnostics(Map<String, QueryMetrics> queryMetricsMap) {
         this.queryMetricsMap = queryMetricsMap;
         this.clientSideRequestStatisticsList = Collections.synchronizedList(new ArrayList<>());
     }
 
-    public FeedResponseDiagnostics(FeedResponseDiagnostics toBeCloned) {
-        if (toBeCloned.queryMetricsMap != null) {
-            this.queryMetricsMap = new ConcurrentHashMap<>(toBeCloned.queryMetricsMap);
-        }
-
-        this.clientSideRequestStatisticsList = Collections.synchronizedList(
-            new ArrayList<>(toBeCloned.clientSideRequestStatisticsList));
-
-        if (diagnosticsContext != null) {
-            this.diagnosticsContext = new QueryInfo.QueryPlanDiagnosticsContext(
-                toBeCloned.diagnosticsContext.getStartTimeUTC(),
-                toBeCloned.diagnosticsContext.getEndTimeUTC(),
-                toBeCloned.diagnosticsContext.getRequestTimeline()
-            );
-        }
-    }
-
     public Map<String, QueryMetrics> getQueryMetricsMap() {
         return queryMetricsMap;
+    }
+
+    FeedResponseDiagnostics setQueryMetricsMap(Map<String, QueryMetrics> queryMetricsMap) {
+        this.queryMetricsMap = queryMetricsMap;
+        return this;
     }
 
     /**

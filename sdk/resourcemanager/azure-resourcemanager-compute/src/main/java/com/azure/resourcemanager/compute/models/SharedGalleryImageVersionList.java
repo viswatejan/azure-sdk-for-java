@@ -7,12 +7,15 @@ package com.azure.resourcemanager.compute.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.models.SharedGalleryImageVersionInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The List Shared Gallery Image versions operation response. */
 @Fluent
 public final class SharedGalleryImageVersionList {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SharedGalleryImageVersionList.class);
+
     /*
      * A list of shared gallery images versions.
      */
@@ -76,7 +79,7 @@ public final class SharedGalleryImageVersionList {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model SharedGalleryImageVersionList"));
@@ -84,6 +87,4 @@ public final class SharedGalleryImageVersionList {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SharedGalleryImageVersionList.class);
 }

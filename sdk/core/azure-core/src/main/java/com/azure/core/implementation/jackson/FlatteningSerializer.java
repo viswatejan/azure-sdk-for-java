@@ -62,8 +62,7 @@ class FlatteningSerializer extends StdSerializer<Object> implements ResolvableSe
     private static final Pattern CHECK_IF_ESCAPED_MAP_PATTERN = Pattern.compile(".*[^\\\\]\\\\..+");
     private static final Pattern REPLACE_ESCAPED_MAP_PATTERN = Pattern.compile("\\\\.");
 
-    // FlatteningSerializer is a commonly used serializer, use a static logger.
-    private static final ClientLogger LOGGER = new ClientLogger(FlatteningSerializer.class);
+    private final ClientLogger logger = new ClientLogger(FlatteningSerializer.class);
 
     private final BeanDescription beanDescription;
 
@@ -310,7 +309,7 @@ class FlatteningSerializer extends StdSerializer<Object> implements ResolvableSe
             try {
                 anyGetterWriter.getAndSerialize(value, gen, provider);
             } catch (Exception exception) {
-                throw LOGGER.logThrowableAsError(new IOException(exception));
+                throw logger.logThrowableAsError(new IOException(exception));
             }
         }
 
@@ -318,7 +317,7 @@ class FlatteningSerializer extends StdSerializer<Object> implements ResolvableSe
     }
 
     private void classLevelFlattenSerialize(Object value, JsonGenerator gen) throws IOException {
-        escapeMapKeys(value, LOGGER);
+        escapeMapKeys(value, logger);
 
         // BFS for all collapsed properties
         ObjectNode root = mapper.valueToTree(value);

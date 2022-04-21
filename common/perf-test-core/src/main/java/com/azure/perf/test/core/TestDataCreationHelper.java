@@ -4,7 +4,6 @@
 package com.azure.perf.test.core;
 
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,8 +38,7 @@ public class TestDataCreationHelper {
         int remainder = (int) (size % array.length);
 
         if (quotient == 0) {
-            // Must allocate buffer each time it's consumed otherwise buffers get empty on 2+ consumption.
-            return Mono.fromSupplier(() -> allocateByteBuffer(array, remainder)).flux();
+            return Flux.just(allocateByteBuffer(array, remainder));
         } else {
             return Flux.just(Boolean.TRUE).repeat(quotient - 1)
                 .map(i -> allocateByteBuffer(array, array.length))

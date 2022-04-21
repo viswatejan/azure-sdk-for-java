@@ -6,12 +6,15 @@ package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Describes a virtual machine scale set operating system disk. */
 @Fluent
 public final class VirtualMachineScaleSetOSDisk {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualMachineScaleSetOSDisk.class);
+
     /*
      * The disk name.
      */
@@ -320,7 +323,7 @@ public final class VirtualMachineScaleSetOSDisk {
      */
     public void validate() {
         if (createOption() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property createOption in model VirtualMachineScaleSetOSDisk"));
@@ -335,6 +338,4 @@ public final class VirtualMachineScaleSetOSDisk {
             managedDisk().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(VirtualMachineScaleSetOSDisk.class);
 }

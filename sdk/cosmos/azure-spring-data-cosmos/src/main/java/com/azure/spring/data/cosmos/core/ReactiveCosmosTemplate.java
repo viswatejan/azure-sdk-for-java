@@ -15,7 +15,6 @@ import com.azure.cosmos.models.PartitionKey;
 import com.azure.cosmos.models.SqlParameter;
 import com.azure.cosmos.models.SqlQuerySpec;
 import com.azure.cosmos.models.ThroughputProperties;
-import com.azure.cosmos.models.UniqueKeyPolicy;
 import com.azure.spring.data.cosmos.Constants;
 import com.azure.spring.data.cosmos.CosmosFactory;
 import com.azure.spring.data.cosmos.common.CosmosUtils;
@@ -163,10 +162,6 @@ public class ReactiveCosmosTemplate implements ReactiveCosmosOperations, Applica
                     new CosmosContainerProperties(information.getContainerName(), information.getPartitionKeyPath());
                 cosmosContainerProperties.setDefaultTimeToLiveInSeconds(information.getTimeToLive());
                 cosmosContainerProperties.setIndexingPolicy(information.getIndexingPolicy());
-                final UniqueKeyPolicy uniqueKeyPolicy = information.getUniqueKeyPolicy();
-                if (uniqueKeyPolicy != null) {
-                    cosmosContainerProperties.setUniqueKeyPolicy(uniqueKeyPolicy);
-                }
 
                 CosmosAsyncDatabase database =
                     cosmosAsyncClient.getDatabase(cosmosDatabaseResponse.getProperties().getId());

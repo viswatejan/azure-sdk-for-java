@@ -138,8 +138,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an extended Sql pool's blob auditing policy along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return an extended Sql pool's blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExtendedSqlPoolBlobAuditingPolicyInner>> getWithResponseAsync(
@@ -196,8 +195,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an extended Sql pool's blob auditing policy along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return an extended Sql pool's blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExtendedSqlPoolBlobAuditingPolicyInner>> getWithResponseAsync(
@@ -250,7 +248,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an extended Sql pool's blob auditing policy on successful completion of {@link Mono}.
+     * @return an extended Sql pool's blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ExtendedSqlPoolBlobAuditingPolicyInner> getAsync(
@@ -293,7 +291,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an extended Sql pool's blob auditing policy along with {@link Response}.
+     * @return an extended Sql pool's blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ExtendedSqlPoolBlobAuditingPolicyInner> getWithResponse(
@@ -311,8 +309,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an extended Sql pool blob auditing policy along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an extended Sql pool blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExtendedSqlPoolBlobAuditingPolicyInner>> createOrUpdateWithResponseAsync(
@@ -379,8 +376,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an extended Sql pool blob auditing policy along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return an extended Sql pool blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExtendedSqlPoolBlobAuditingPolicyInner>> createOrUpdateWithResponseAsync(
@@ -444,7 +440,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an extended Sql pool blob auditing policy on successful completion of {@link Mono}.
+     * @return an extended Sql pool blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ExtendedSqlPoolBlobAuditingPolicyInner> createOrUpdateAsync(
@@ -495,7 +491,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an extended Sql pool blob auditing policy along with {@link Response}.
+     * @return an extended Sql pool blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ExtendedSqlPoolBlobAuditingPolicyInner> createOrUpdateWithResponse(
@@ -517,8 +513,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of sql pool extended auditing settings along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return a list of sql pool extended auditing settings.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExtendedSqlPoolBlobAuditingPolicyInner>> listBySqlPoolSinglePageAsync(
@@ -582,8 +577,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of sql pool extended auditing settings along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return a list of sql pool extended auditing settings.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExtendedSqlPoolBlobAuditingPolicyInner>> listBySqlPoolSinglePageAsync(
@@ -715,8 +709,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of sql pool extended auditing settings along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return a list of sql pool extended auditing settings.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExtendedSqlPoolBlobAuditingPolicyInner>> listBySqlPoolNextSinglePageAsync(
@@ -753,8 +746,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of sql pool extended auditing settings along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return a list of sql pool extended auditing settings.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExtendedSqlPoolBlobAuditingPolicyInner>> listBySqlPoolNextSinglePageAsync(

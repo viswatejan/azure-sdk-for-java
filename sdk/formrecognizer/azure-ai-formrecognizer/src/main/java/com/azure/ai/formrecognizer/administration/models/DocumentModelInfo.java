@@ -6,7 +6,6 @@ package com.azure.ai.formrecognizer.administration.models;
 import com.azure.ai.formrecognizer.implementation.util.DocumentModelInfoHelper;
 
 import java.time.OffsetDateTime;
-import java.util.Map;
 
 /**
  * Model summary for the built and prebuilt models.
@@ -26,11 +25,6 @@ public final class DocumentModelInfo {
      * Date and time (UTC) when the model was created.
      */
     private OffsetDateTime createdOn;
-
-    /*
-     * List of key-value tag attributes associated with the model.
-     */
-    private Map<String, String> tags;
 
     /**
      * Get the unique model identifier.
@@ -89,19 +83,6 @@ public final class DocumentModelInfo {
         this.createdOn = createdOn;
     }
 
-    /**
-     * Get the user defined attributes associated with the model.
-     *
-     * @return the tags value.
-     */
-    public Map<String, String> getTags() {
-        return this.tags;
-    }
-
-    void setTags(Map<String, String> tags) {
-        this.tags = tags;
-    }
-
     static {
         DocumentModelInfoHelper.setAccessor(new DocumentModelInfoHelper.DocumentModelInfoAccessor() {
             @Override
@@ -117,11 +98,6 @@ public final class DocumentModelInfo {
             @Override
             public void setCreatedOn(DocumentModelInfo documentModelInfo, OffsetDateTime createdDateTime) {
                 documentModelInfo.setCreatedOn(createdDateTime);
-            }
-
-            @Override
-            public void setTags(DocumentModelInfo documentModelInfo, Map<String, String> tags) {
-                documentModelInfo.setTags(tags);
             }
         });
     }

@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.cdn.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.cdn.models.AfdProvisioningState;
 import com.azure.resourcemanager.cdn.models.DeploymentStatus;
@@ -14,6 +14,7 @@ import com.azure.resourcemanager.cdn.models.EnabledState;
 import com.azure.resourcemanager.cdn.models.HealthProbeParameters;
 import com.azure.resourcemanager.cdn.models.LoadBalancingSettingsParameters;
 import com.azure.resourcemanager.cdn.models.ResponseBasedOriginErrorDetectionParameters;
+import com.azure.resourcemanager.cdn.models.SystemData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -21,15 +22,57 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * AFDOrigin group comprising of origins is used for load balancing to origins when the content cannot be served from
  * CDN.
  */
+@JsonFlatten
 @Fluent
-public final class AfdOriginGroupInner extends ProxyResource {
+public class AfdOriginGroupInner extends ProxyResource {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(AfdOriginGroupInner.class);
 
     /*
-     * The JSON object that contains the properties of the origin group.
+     * Load balancing settings for a backend pool
      */
-    @JsonProperty(value = "properties")
-    private AfdOriginGroupProperties innerProperties;
+    @JsonProperty(value = "properties.loadBalancingSettings")
+    private LoadBalancingSettingsParameters loadBalancingSettings;
+
+    /*
+     * Health probe settings to the origin that is used to determine the health
+     * of the origin.
+     */
+    @JsonProperty(value = "properties.healthProbeSettings")
+    private HealthProbeParameters healthProbeSettings;
+
+    /*
+     * Time in minutes to shift the traffic to the endpoint gradually when an
+     * unhealthy endpoint comes healthy or a new endpoint is added. Default is
+     * 10 mins. This property is currently not supported.
+     */
+    @JsonProperty(value = "properties.trafficRestorationTimeToHealedOrNewEndpointsInMinutes")
+    private Integer trafficRestorationTimeToHealedOrNewEndpointsInMinutes;
+
+    /*
+     * The JSON object that contains the properties to determine origin health
+     * using real requests/responses. This property is currently not supported.
+     */
+    @JsonProperty(value = "properties.responseBasedAfdOriginErrorDetectionSettings")
+    private ResponseBasedOriginErrorDetectionParameters responseBasedAfdOriginErrorDetectionSettings;
+
+    /*
+     * Whether to allow session affinity on this host. Valid options are
+     * 'Enabled' or 'Disabled'
+     */
+    @JsonProperty(value = "properties.sessionAffinityState")
+    private EnabledState sessionAffinityState;
+
+    /*
+     * Provisioning status
+     */
+    @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AfdProvisioningState provisioningState;
+
+    /*
+     * The deploymentStatus property.
+     */
+    @JsonProperty(value = "properties.deploymentStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private DeploymentStatus deploymentStatus;
 
     /*
      * Read only system data
@@ -38,57 +81,12 @@ public final class AfdOriginGroupInner extends ProxyResource {
     private SystemData systemData;
 
     /**
-     * Get the innerProperties property: The JSON object that contains the properties of the origin group.
-     *
-     * @return the innerProperties value.
-     */
-    private AfdOriginGroupProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: Read only system data.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * Get the provisioningState property: Provisioning status.
-     *
-     * @return the provisioningState value.
-     */
-    public AfdProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the deploymentStatus property: The deploymentStatus property.
-     *
-     * @return the deploymentStatus value.
-     */
-    public DeploymentStatus deploymentStatus() {
-        return this.innerProperties() == null ? null : this.innerProperties().deploymentStatus();
-    }
-
-    /**
-     * Get the profileName property: The name of the profile which holds the origin group.
-     *
-     * @return the profileName value.
-     */
-    public String profileName() {
-        return this.innerProperties() == null ? null : this.innerProperties().profileName();
-    }
-
-    /**
      * Get the loadBalancingSettings property: Load balancing settings for a backend pool.
      *
      * @return the loadBalancingSettings value.
      */
     public LoadBalancingSettingsParameters loadBalancingSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().loadBalancingSettings();
+        return this.loadBalancingSettings;
     }
 
     /**
@@ -98,10 +96,7 @@ public final class AfdOriginGroupInner extends ProxyResource {
      * @return the AfdOriginGroupInner object itself.
      */
     public AfdOriginGroupInner withLoadBalancingSettings(LoadBalancingSettingsParameters loadBalancingSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginGroupProperties();
-        }
-        this.innerProperties().withLoadBalancingSettings(loadBalancingSettings);
+        this.loadBalancingSettings = loadBalancingSettings;
         return this;
     }
 
@@ -112,7 +107,7 @@ public final class AfdOriginGroupInner extends ProxyResource {
      * @return the healthProbeSettings value.
      */
     public HealthProbeParameters healthProbeSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().healthProbeSettings();
+        return this.healthProbeSettings;
     }
 
     /**
@@ -123,10 +118,7 @@ public final class AfdOriginGroupInner extends ProxyResource {
      * @return the AfdOriginGroupInner object itself.
      */
     public AfdOriginGroupInner withHealthProbeSettings(HealthProbeParameters healthProbeSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginGroupProperties();
-        }
-        this.innerProperties().withHealthProbeSettings(healthProbeSettings);
+        this.healthProbeSettings = healthProbeSettings;
         return this;
     }
 
@@ -138,9 +130,7 @@ public final class AfdOriginGroupInner extends ProxyResource {
      * @return the trafficRestorationTimeToHealedOrNewEndpointsInMinutes value.
      */
     public Integer trafficRestorationTimeToHealedOrNewEndpointsInMinutes() {
-        return this.innerProperties() == null
-            ? null
-            : this.innerProperties().trafficRestorationTimeToHealedOrNewEndpointsInMinutes();
+        return this.trafficRestorationTimeToHealedOrNewEndpointsInMinutes;
     }
 
     /**
@@ -154,13 +144,8 @@ public final class AfdOriginGroupInner extends ProxyResource {
      */
     public AfdOriginGroupInner withTrafficRestorationTimeToHealedOrNewEndpointsInMinutes(
         Integer trafficRestorationTimeToHealedOrNewEndpointsInMinutes) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginGroupProperties();
-        }
-        this
-            .innerProperties()
-            .withTrafficRestorationTimeToHealedOrNewEndpointsInMinutes(
-                trafficRestorationTimeToHealedOrNewEndpointsInMinutes);
+        this.trafficRestorationTimeToHealedOrNewEndpointsInMinutes =
+            trafficRestorationTimeToHealedOrNewEndpointsInMinutes;
         return this;
     }
 
@@ -171,9 +156,7 @@ public final class AfdOriginGroupInner extends ProxyResource {
      * @return the responseBasedAfdOriginErrorDetectionSettings value.
      */
     public ResponseBasedOriginErrorDetectionParameters responseBasedAfdOriginErrorDetectionSettings() {
-        return this.innerProperties() == null
-            ? null
-            : this.innerProperties().responseBasedAfdOriginErrorDetectionSettings();
+        return this.responseBasedAfdOriginErrorDetectionSettings;
     }
 
     /**
@@ -186,12 +169,7 @@ public final class AfdOriginGroupInner extends ProxyResource {
      */
     public AfdOriginGroupInner withResponseBasedAfdOriginErrorDetectionSettings(
         ResponseBasedOriginErrorDetectionParameters responseBasedAfdOriginErrorDetectionSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginGroupProperties();
-        }
-        this
-            .innerProperties()
-            .withResponseBasedAfdOriginErrorDetectionSettings(responseBasedAfdOriginErrorDetectionSettings);
+        this.responseBasedAfdOriginErrorDetectionSettings = responseBasedAfdOriginErrorDetectionSettings;
         return this;
     }
 
@@ -202,7 +180,7 @@ public final class AfdOriginGroupInner extends ProxyResource {
      * @return the sessionAffinityState value.
      */
     public EnabledState sessionAffinityState() {
-        return this.innerProperties() == null ? null : this.innerProperties().sessionAffinityState();
+        return this.sessionAffinityState;
     }
 
     /**
@@ -213,11 +191,35 @@ public final class AfdOriginGroupInner extends ProxyResource {
      * @return the AfdOriginGroupInner object itself.
      */
     public AfdOriginGroupInner withSessionAffinityState(EnabledState sessionAffinityState) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdOriginGroupProperties();
-        }
-        this.innerProperties().withSessionAffinityState(sessionAffinityState);
+        this.sessionAffinityState = sessionAffinityState;
         return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning status.
+     *
+     * @return the provisioningState value.
+     */
+    public AfdProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the deploymentStatus property: The deploymentStatus property.
+     *
+     * @return the deploymentStatus value.
+     */
+    public DeploymentStatus deploymentStatus() {
+        return this.deploymentStatus;
+    }
+
+    /**
+     * Get the systemData property: Read only system data.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -226,8 +228,17 @@ public final class AfdOriginGroupInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (loadBalancingSettings() != null) {
+            loadBalancingSettings().validate();
+        }
+        if (healthProbeSettings() != null) {
+            healthProbeSettings().validate();
+        }
+        if (responseBasedAfdOriginErrorDetectionSettings() != null) {
+            responseBasedAfdOriginErrorDetectionSettings().validate();
+        }
+        if (systemData() != null) {
+            systemData().validate();
         }
     }
 }

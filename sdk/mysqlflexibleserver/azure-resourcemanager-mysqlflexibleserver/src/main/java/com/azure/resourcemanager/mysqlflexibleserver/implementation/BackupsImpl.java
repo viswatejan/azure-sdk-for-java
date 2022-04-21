@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mysqlflexibleserver.fluent.BackupsClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.ServerBackupInner;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Backups;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ServerBackup;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class BackupsImpl implements Backups {
-    private static final ClientLogger LOGGER = new ClientLogger(BackupsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackupsImpl.class);
 
     private final BackupsClient innerClient;
 

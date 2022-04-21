@@ -14,7 +14,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @JsonSerialize(using = ClientTelemetrySerializer.class)
 public class ClientTelemetryInfo {
     private String timeStamp;
-    private String machineId;
     private String clientId;
     private String processId;
     private String userAgent;
@@ -29,8 +28,7 @@ public class ClientTelemetryInfo {
     private Map<ReportPayload, ConcurrentDoubleHistogram> cacheRefreshInfoMap;
     private Map<ReportPayload, ConcurrentDoubleHistogram> operationInfoMap;
 
-    public ClientTelemetryInfo(String machineId,
-                               String clientId,
+    public ClientTelemetryInfo(String clientId,
                                String processId,
                                String userAgent,
                                ConnectionMode connectionMode,
@@ -39,7 +37,6 @@ public class ClientTelemetryInfo {
                                String hostEnvInfo,
                                Boolean acceleratedNetworking,
                                List<String> preferredRegions) {
-        this.machineId = machineId;
         this.clientId = clientId;
         this.processId = processId;
         this.userAgent = userAgent;
@@ -109,14 +106,6 @@ public class ClientTelemetryInfo {
 
     public void setApplicationRegion(String applicationRegion) {
         this.applicationRegion = applicationRegion;
-    }
-
-    public String getMachineId() {
-        return machineId;
-    }
-
-    public void setMachineId(String machineId) {
-        this.machineId = machineId;
     }
 
     public String getHostEnvInfo() {

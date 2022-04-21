@@ -33,7 +33,7 @@ public interface TriggerRuns {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> rerunWithResponse(
         String resourceGroupName, String factoryName, String triggerName, String runId, Context context);
@@ -62,7 +62,7 @@ public interface TriggerRuns {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> cancelWithResponse(
         String resourceGroupName, String factoryName, String triggerName, String runId, Context context);
@@ -91,7 +91,7 @@ public interface TriggerRuns {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of trigger runs along with {@link Response}.
+     * @return a list of trigger runs.
      */
     Response<TriggerRunsQueryResponse> queryByFactoryWithResponse(
         String resourceGroupName, String factoryName, RunFilterParameters filterParameters, Context context);

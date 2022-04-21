@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.containerservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Time in a week. */
 @Fluent
 public final class TimeInWeek {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TimeInWeek.class);
+
     /*
      * The day of the week.
      */

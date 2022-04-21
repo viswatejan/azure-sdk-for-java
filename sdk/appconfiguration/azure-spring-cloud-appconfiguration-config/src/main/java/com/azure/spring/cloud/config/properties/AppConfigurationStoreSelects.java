@@ -65,7 +65,7 @@ public final class AppConfigurationStoreSelects {
 
         // The use of trim makes label= dev,prod and label= dev, prod equal.
         List<String> labels = Arrays.stream(labelFilter.split(LABEL_SEPARATOR))
-            .map(this::mapLabel)
+            .map(label -> mapLabel(label))
             .distinct()
             .collect(Collectors.toList());
 

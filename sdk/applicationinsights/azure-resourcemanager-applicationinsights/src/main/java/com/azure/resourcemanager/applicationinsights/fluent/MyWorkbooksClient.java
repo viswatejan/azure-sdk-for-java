@@ -109,7 +109,7 @@ public interface MyWorkbooksClient {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single private workbook by its resourceName along with {@link Response}.
+     * @return a single private workbook by its resourceName.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MyWorkbookInner> getByResourceGroupWithResponse(
@@ -138,7 +138,7 @@ public interface MyWorkbooksClient {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(String resourceGroupName, String resourceName, Context context);
@@ -170,7 +170,7 @@ public interface MyWorkbooksClient {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights private workbook definition along with {@link Response}.
+     * @return an Application Insights private workbook definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MyWorkbookInner> createOrUpdateWithResponse(
@@ -207,7 +207,7 @@ public interface MyWorkbooksClient {
      * @throws com.azure.resourcemanager.applicationinsights.models.ErrorDefinitionException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights private workbook definition along with {@link Response}.
+     * @return an Application Insights private workbook definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MyWorkbookInner> updateWithResponse(

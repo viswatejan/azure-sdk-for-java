@@ -144,7 +144,7 @@
     <parallelizeLiveTests>false</parallelizeLiveTests>
 
     <!-- This property configures whether the codesnippet-maven-plugin should be used. -->
-    <codesnippet.skip>false</codesnippet.skip>
+    <codesnippet.skip>true</codesnippet.skip>
 
     <!-- The following properties configure the maven-checkstyle-plugin. -->
     <!-- This property configures whether the maven-checkstyle-plugin should be used. -->
@@ -170,6 +170,9 @@
     <!-- This property configures whether the spotbugs-maven-plugin should fail on errors. -->
     <spotbugs.failOnError>true</spotbugs.failOnError>
 
+    <!-- These properties exist for libraries using the new codesnippet-maven-plugin can easily disable the old doclet. -->
+    <javadocDoclet>org.apidesign.javadoc.codesnippet.Doclet</javadocDoclet>
+    <javadocDocletOptions>-maxLineLength 120 -snippetpath ${project.basedir}/src/samples/java -suppressMissingLinkWarnings</javadocDocletOptions>
     <graalvm.enable>false</graalvm.enable>
 
     <!-- The following properties configure the revapi-maven-plugin. -->
@@ -178,18 +181,6 @@
 
     <!-- This property configures whether the revapi-maven-plugin should fail on errors. -->
     <revapi.failBuildOnProblemsFound>true</revapi.failBuildOnProblemsFound>
-
-    <!-- This property configures whether doclinting is performed when generating Javadocs. -->
-    <doclint>all</doclint>
-
-    <!-- The following properties configure compile skipping. -->
-    <!-- While maven-compiler-plugin has properties for skipping source and test compile other plugins -->
-    <!-- key in on the properties as well. These properties ensure that skipping compiles doesn't result -->
-    <!-- in unexpected plugin changes outside of maven-compiler-plugin. -->
-    <skipCompile>false</skipCompile>
-    <skipTestCompile>false</skipTestCompile>
-
-    <compiler.proc>none</compiler.proc>
   </properties>
 
   <build>
@@ -257,10 +248,9 @@
       <plugin>
         <groupId>com.azure.tools</groupId>
         <artifactId>codesnippet-maven-plugin</artifactId>
-        <version>1.0.0-beta.6</version> <!-- {x-version-update;com.azure.tools:codesnippet-maven-plugin;external_dependency} -->
+        <version>1.0.0-beta.4</version> <!-- {x-version-update;com.azure.tools:codesnippet-maven-plugin;external_dependency} -->
         <configuration>
           <skip>${codesnippet.skip}</skip>
-          <readmeGlob>**/*.md</readmeGlob>
         </configuration>
         <executions>
           <execution>
@@ -375,7 +365,6 @@
                 <exclude>**/com/azure/cosmos/implementation/apachecommons/**/*</exclude>
                 <exclude>**/com/azure/cosmos/implementation/guava25/**/*</exclude>
                 <exclude>**/com/azure/cosmos/implementation/guava27/**/*</exclude>
-                <exclude>**/com/azure/cosmos/encryption/implementation/mdesrc/**/*</exclude>
               </excludes>
             </configuration>
           </execution>
@@ -519,9 +508,10 @@
           <configuration>
             <showWarnings>true</showWarnings>
             <failOnWarning>true</failOnWarning>
-            <skipMain>${skipCompile}</skipMain>
-            <skip>${skipTestCompile}</skip>
             <compilerArgs combine.children="append" combine.self="append">
+              <!-- Turn off annotation processing -->
+              <arg>-proc:none</arg>
+
               <!-- https://docs.oracle.com/javase/7/docs/technotes/tools/windows/javac.html#xlintwarnings -->
               <arg>-Xlint:cast</arg>
               <arg>-Xlint:classfile</arg>
@@ -542,9 +532,6 @@
               <arg>-Xlint:unchecked</arg>
               <arg>-Xlint:varargs</arg>
             </compilerArgs>
-
-            <!-- Default is annotation processing being off. -->
-            <proc>${compiler.proc}</proc>
           </configuration>
         </plugin>
 
@@ -642,8 +629,7 @@
               com.azure.core.test*:
               com.azure.endtoend*:
               com.azure.perf*:
-              com.azure.storage.internal.avro*:
-              com.azure.cosmos.encryption.implementation.mdesrc*
+              com.azure.storage.internal.avro*
             </excludePackageNames>
             <!-- CosmosSkip - This is temporary, BridgeInternal gets converted to implementation -->
             <sourceFileExcludes>
@@ -720,9 +706,21 @@
             </offlineLinks>
             <failOnError>true</failOnError>
             <failOnWarnings>true</failOnWarnings>
-            <doclint>${doclint}</doclint>
+            <doclint>all</doclint>
             <quiet>true</quiet>
             <jarOutputDirectory>${packageOutputDirectory}</jarOutputDirectory>
+            <doclet>${javadocDoclet}</doclet>
+            <docletArtifact>
+              <groupId>org.apidesign.javadoc</groupId>
+              <artifactId>codesnippet-doclet</artifactId>
+              <version>0.53</version> <!-- {x-version-update;org.apidesign.javadoc:codesnippet-doclet;external_dependency} -->
+            </docletArtifact>
+            <additionalOptions>
+              <!-- '-version' is a dummy option, it's needed to prevent the Javadoc plugin from throwing a NullPointerException when '${javadocDocletOptions}' is empty. -->
+              <!-- '${javadocDocletOptions}' will be empty when the new codesnippet tooling is being used. -->
+              <!-- '-version' will indicate to Javadoc to include '@version' tags in generation, but none of the SDKs use this, so it is a good dummy option. -->
+              <additionalOption>-version ${javadocDocletOptions}</additionalOption>
+            </additionalOptions>
           </configuration>
         </plugin>
 
@@ -777,20 +775,12 @@
             <analysisConfiguration>
               <revapi.reporter.json id="file-report">
                 <minSeverity>NON_BREAKING</minSeverity>
-                <minCriticality>error</minCriticality>
+                <minCriticality>documented</minCriticality>
                 <indent>true</indent>
                 <output>${project.build.directory}/revapi.json</output>
                 <keepEmptyFile>false</keepEmptyFile>
               </revapi.reporter.json>
             </analysisConfiguration>
-            <pipelineConfiguration>
-              <transformationBlocks>
-                <block>
-                  <item>revapi.differences</item>
-                  <item>transitive-core-changes</item>
-                </block>
-              </transformationBlocks>
-            </pipelineConfiguration>
           </configuration>
           <dependencies>
             <dependency>
@@ -1080,6 +1070,80 @@
             <configuration combine.children="append">
               <overview>${project.build.directory}/readme_overview.html</overview>
             </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Profiles for updating README file using embedme tool to inject code snippets from compilable Java source files.
+     Activate the profile below to update README files when corresponding Java files are updated. -->
+    <profile>
+      <id>readme-codesnippet</id>
+      <activation>
+        <property>
+          <name>readme-codesnippet</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.2.1</version> <!-- {x-version-update;org.codehaus.mojo:exec-maven-plugin;external_dependency} -->
+            <executions>
+              <execution>
+                <id>code-snippet-for-readme</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <executable>python</executable>
+                  <arguments>
+                    <argument>${project.basedir}/${relative.path.to.eng.folder}/eng/scripts/invoke_embedme.py</argument>
+                    <argument>--readme</argument>
+                    <argument>${project.basedir}/README.md</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Verify that there are no changes to README file. Build fails if the there's a difference in README after running the embedme tool. -->
+    <profile>
+      <id>verify-readme</id>
+      <activation>
+        <property>
+          <name>verify-readme</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.2.1</version> <!-- {x-version-update;org.codehaus.mojo:exec-maven-plugin;external_dependency} -->
+            <executions>
+              <execution>
+                <id>verify-readme-codesnippet</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <executable>python</executable>
+                  <arguments>
+                    <argument>${project.basedir}/${relative.path.to.eng.folder}/eng/scripts/invoke_embedme.py</argument>
+                    <argument>--readme</argument>
+                    <argument>${project.basedir}/README.md</argument>
+                    <argument>--verify</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
@@ -1378,7 +1442,7 @@
         <dependency>
           <groupId>org.graalvm.buildtools</groupId>
           <artifactId>junit-platform-native</artifactId>
-          <version>0.9.10</version> <!-- {x-version-update;org.graalvm.buildtools:junit-platform-native;external_dependency} -->
+          <version>0.9.8</version> <!-- {x-version-update;org.graalvm.buildtools:junit-platform-native;external_dependency} -->
           <scope>test</scope>
         </dependency>
       </dependencies>
@@ -1387,7 +1451,7 @@
           <plugin>
             <groupId>org.graalvm.buildtools</groupId>
             <artifactId>native-maven-plugin</artifactId>
-            <version>0.9.10</version>  <!-- {x-version-update;org.graalvm.buildtools:native-maven-plugin;external_dependency} -->
+            <version>0.9.8</version>  <!-- {x-version-update;org.graalvm.buildtools:native-maven-plugin;external_dependency} -->
             <configuration>
               <skip>${graalvm.enable}</skip>
               <buildArgs>--no-fallback</buildArgs>

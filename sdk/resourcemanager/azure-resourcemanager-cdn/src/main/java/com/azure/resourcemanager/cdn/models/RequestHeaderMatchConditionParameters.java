@@ -16,10 +16,10 @@ public final class RequestHeaderMatchConditionParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(RequestHeaderMatchConditionParameters.class);
 
     /*
-     * The typeName property.
+     * The @odata.type property.
      */
-    @JsonProperty(value = "typeName", required = true)
-    private String typeName = "DeliveryRuleRequestHeaderConditionParameters";
+    @JsonProperty(value = "@odata.type", required = true)
+    private String odataType;
 
     /*
      * Name of Header to be matched
@@ -53,26 +53,26 @@ public final class RequestHeaderMatchConditionParameters {
 
     /** Creates an instance of RequestHeaderMatchConditionParameters class. */
     public RequestHeaderMatchConditionParameters() {
-        typeName = "DeliveryRuleRequestHeaderConditionParameters";
+        odataType = "#Microsoft.Azure.Cdn.Models.DeliveryRuleRequestHeaderConditionParameters";
     }
 
     /**
-     * Get the typeName property: The typeName property.
+     * Get the odataType property: The @odata.type property.
      *
-     * @return the typeName value.
+     * @return the odataType value.
      */
-    public String typeName() {
-        return this.typeName;
+    public String odataType() {
+        return this.odataType;
     }
 
     /**
-     * Set the typeName property: The typeName property.
+     * Set the odataType property: The @odata.type property.
      *
-     * @param typeName the typeName value to set.
+     * @param odataType the odataType value to set.
      * @return the RequestHeaderMatchConditionParameters object itself.
      */
-    public RequestHeaderMatchConditionParameters withTypeName(String typeName) {
-        this.typeName = typeName;
+    public RequestHeaderMatchConditionParameters withOdataType(String odataType) {
+        this.odataType = odataType;
         return this;
     }
 

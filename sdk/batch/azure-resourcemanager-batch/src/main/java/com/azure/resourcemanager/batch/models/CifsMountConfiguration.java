@@ -6,11 +6,14 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Information used to connect to a CIFS file system. */
 @Fluent
 public final class CifsMountConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CifsMountConfiguration.class);
+
     /*
      * The user to use for authentication against the CIFS file system.
      */
@@ -158,27 +161,25 @@ public final class CifsMountConfiguration {
      */
     public void validate() {
         if (username() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property username in model CifsMountConfiguration"));
         }
         if (source() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property source in model CifsMountConfiguration"));
         }
         if (relativeMountPath() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property relativeMountPath in model CifsMountConfiguration"));
         }
         if (password() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property password in model CifsMountConfiguration"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CifsMountConfiguration.class);
 }

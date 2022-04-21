@@ -31,7 +31,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -46,7 +46,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -61,7 +61,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -77,7 +77,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -95,7 +95,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(
@@ -141,8 +141,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified service endpoint policy definitions from service endpoint policy along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return the specified service endpoint policy definitions from service endpoint policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ServiceEndpointPolicyDefinitionInner>> getWithResponseAsync(
@@ -157,8 +156,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified service endpoint policy definitions from service endpoint policy on successful completion
-     *     of {@link Mono}.
+     * @return the specified service endpoint policy definitions from service endpoint policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ServiceEndpointPolicyDefinitionInner> getAsync(
@@ -189,8 +187,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified service endpoint policy definitions from service endpoint policy along with {@link
-     *     Response}.
+     * @return the specified service endpoint policy definitions from service endpoint policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServiceEndpointPolicyDefinitionInner> getWithResponse(
@@ -210,7 +207,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service Endpoint policy definitions along with {@link Response} on successful completion of {@link Mono}.
+     * @return service Endpoint policy definitions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -230,7 +227,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of service Endpoint policy definitions.
+     * @return service Endpoint policy definitions.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<ServiceEndpointPolicyDefinitionInner>, ServiceEndpointPolicyDefinitionInner>
@@ -251,7 +248,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of service Endpoint policy definitions.
+     * @return service Endpoint policy definitions.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ServiceEndpointPolicyDefinitionInner>, ServiceEndpointPolicyDefinitionInner>
@@ -273,7 +270,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of service Endpoint policy definitions.
+     * @return service Endpoint policy definitions.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ServiceEndpointPolicyDefinitionInner>, ServiceEndpointPolicyDefinitionInner>
@@ -295,7 +292,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service Endpoint policy definitions on successful completion of {@link Mono}.
+     * @return service Endpoint policy definitions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ServiceEndpointPolicyDefinitionInner> createOrUpdateAsync(
@@ -354,8 +351,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all service endpoint policy definitions in a service end point policy as paginated response with {@link
-     *     PagedFlux}.
+     * @return all service endpoint policy definitions in a service end point policy.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ServiceEndpointPolicyDefinitionInner> listByResourceGroupAsync(
@@ -369,8 +365,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all service endpoint policy definitions in a service end point policy as paginated response with {@link
-     *     PagedIterable}.
+     * @return all service endpoint policy definitions in a service end point policy.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ServiceEndpointPolicyDefinitionInner> listByResourceGroup(
@@ -385,8 +380,7 @@ public interface ServiceEndpointPolicyDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all service endpoint policy definitions in a service end point policy as paginated response with {@link
-     *     PagedIterable}.
+     * @return all service endpoint policy definitions in a service end point policy.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ServiceEndpointPolicyDefinitionInner> listByResourceGroup(

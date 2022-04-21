@@ -99,8 +99,7 @@ public final class TopicTypesClientImpl implements TopicTypesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Topic Types operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the List Topic Types operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TopicTypeInfoInner>> listSinglePageAsync() {
@@ -128,8 +127,7 @@ public final class TopicTypesClientImpl implements TopicTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Topic Types operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the List Topic Types operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TopicTypeInfoInner>> listSinglePageAsync(Context context) {
@@ -208,7 +206,7 @@ public final class TopicTypesClientImpl implements TopicTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a topic type along with {@link Response} on successful completion of {@link Mono}.
+     * @return information about a topic type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TopicTypeInfoInner>> getWithResponseAsync(String topicTypeName) {
@@ -237,7 +235,7 @@ public final class TopicTypesClientImpl implements TopicTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a topic type along with {@link Response} on successful completion of {@link Mono}.
+     * @return information about a topic type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TopicTypeInfoInner>> getWithResponseAsync(String topicTypeName, Context context) {
@@ -262,7 +260,7 @@ public final class TopicTypesClientImpl implements TopicTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a topic type on successful completion of {@link Mono}.
+     * @return information about a topic type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TopicTypeInfoInner> getAsync(String topicTypeName) {
@@ -299,7 +297,7 @@ public final class TopicTypesClientImpl implements TopicTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a topic type along with {@link Response}.
+     * @return information about a topic type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TopicTypeInfoInner> getWithResponse(String topicTypeName, Context context) {
@@ -313,8 +311,7 @@ public final class TopicTypesClientImpl implements TopicTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Event Types operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the List Event Types operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EventTypeInner>> listEventTypesSinglePageAsync(String topicTypeName) {
@@ -349,8 +346,7 @@ public final class TopicTypesClientImpl implements TopicTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List Event Types operation along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return result of the List Event Types operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EventTypeInner>> listEventTypesSinglePageAsync(String topicTypeName, Context context) {

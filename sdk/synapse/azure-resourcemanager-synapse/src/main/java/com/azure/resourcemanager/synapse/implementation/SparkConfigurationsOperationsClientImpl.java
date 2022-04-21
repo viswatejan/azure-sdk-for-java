@@ -97,8 +97,7 @@ public final class SparkConfigurationsOperationsClientImpl implements SparkConfi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SparkConfiguration resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of SparkConfiguration resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SparkConfigurationResourceInner>> listByWorkspaceSinglePageAsync(
@@ -157,8 +156,7 @@ public final class SparkConfigurationsOperationsClientImpl implements SparkConfi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SparkConfiguration resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of SparkConfiguration resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SparkConfigurationResourceInner>> listByWorkspaceSinglePageAsync(
@@ -282,8 +280,7 @@ public final class SparkConfigurationsOperationsClientImpl implements SparkConfi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SparkConfiguration resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of SparkConfiguration resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SparkConfigurationResourceInner>> listByWorkspaceNextSinglePageAsync(String nextLink) {
@@ -319,8 +316,7 @@ public final class SparkConfigurationsOperationsClientImpl implements SparkConfi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SparkConfiguration resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of SparkConfiguration resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SparkConfigurationResourceInner>> listByWorkspaceNextSinglePageAsync(

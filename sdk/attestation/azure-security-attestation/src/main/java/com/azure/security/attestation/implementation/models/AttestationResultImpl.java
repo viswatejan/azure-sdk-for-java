@@ -8,8 +8,6 @@ import com.azure.security.attestation.models.AttestationResult;
 import com.azure.security.attestation.models.AttestationSigner;
 
 import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
 
 /** A Microsoft Azure Attestation response token body - the body of a response token issued by MAA. */
 
@@ -28,19 +26,19 @@ public final class AttestationResultImpl implements com.azure.security.attestati
      * The time at which the token was issued, in the number of seconds since
      * 1970-01-0T00:00:00Z UTC
      */
-    private OffsetDateTime iat;
+    private Instant iat;
 
     /*
      * The expiration time after which the token is no longer valid, in the
      * number of seconds since 1970-01-0T00:00:00Z UTC
      */
-    private OffsetDateTime exp;
+    private Instant exp;
 
     /*
      * The "not before" time before which the token cannot be considered valid,
      * in the number of seconds since 1970-01-0T00:00:00Z UTC
      */
-    private OffsetDateTime nbf;
+    private Instant nbf;
 
     /*
      * The Nonce input to the attestation request, if provided.
@@ -91,7 +89,7 @@ public final class AttestationResultImpl implements com.azure.security.attestati
     /*
      * The SGX Product ID for the enclave.
      */
-    private int productId;
+    private Float productId;
 
     /*
      * The HEX encoded SGX MRENCLAVE value for the enclave.
@@ -106,7 +104,7 @@ public final class AttestationResultImpl implements com.azure.security.attestati
     /*
      * The SGX SVN value for the enclave.
      */
-    private int svn;
+    private Float svn;
 
     /*
      * A copy of the RuntimeData specified as an input to the Attest call.
@@ -142,7 +140,7 @@ public final class AttestationResultImpl implements com.azure.security.attestati
      *
      * @return the iat value.
      */
-    @Override public OffsetDateTime getIssuedAt() {
+    @Override public Instant getIssuedAt() {
         return this.iat;
     }
 
@@ -152,7 +150,7 @@ public final class AttestationResultImpl implements com.azure.security.attestati
      *
      * @return the exp value.
      */
-    @Override public OffsetDateTime getExpiresOn() {
+    @Override public Instant getExpiresOn() {
         return this.exp;
     }
 
@@ -163,7 +161,7 @@ public final class AttestationResultImpl implements com.azure.security.attestati
      *
      * @return the nbf value.
      */
-    @Override public OffsetDateTime getNotBefore() {
+    @Override public Instant getNotBefore() {
         return this.nbf;
     }
 
@@ -253,7 +251,7 @@ public final class AttestationResultImpl implements com.azure.security.attestati
      *
      * @return the productId value.
      */
-    @Override public int getProductId() {
+    @Override public Float getProductId() {
         return this.productId;
     }
 
@@ -280,7 +278,7 @@ public final class AttestationResultImpl implements com.azure.security.attestati
      *
      * @return the svn value.
      */
-    @Override public int getSvn() {
+    @Override public Float getSvn() {
         return this.svn;
     }
 
@@ -324,9 +322,9 @@ public final class AttestationResultImpl implements com.azure.security.attestati
         result.jti = generated.getJti();
 
         // RFC 7515 Claims
-        result.exp = OffsetDateTime.ofInstant(Instant.ofEpochSecond(generated.getExp().longValue()), ZoneOffset.UTC);
-        result.iat =  OffsetDateTime.ofInstant(Instant.ofEpochSecond(generated.getIat().longValue()), ZoneOffset.UTC);
-        result.nbf  =  OffsetDateTime.ofInstant(Instant.ofEpochSecond(generated.getNbf().longValue()), ZoneOffset.UTC);
+        result.exp = Instant.ofEpochSecond(generated.getExp().longValue());
+        result.iat = Instant.ofEpochSecond(generated.getIat().longValue());
+        result.nbf  = Instant.ofEpochSecond(generated.getNbf().longValue());
 
         // SGX properties.
         result.mrEnclave = generated.getMrEnclave();
@@ -337,8 +335,8 @@ public final class AttestationResultImpl implements com.azure.security.attestati
             result.policySigner = AttestationSignerImpl.fromJsonWebKey(generated.getPolicySigner());
         }
         result.sgxCollateral = generated.getSgxCollateral();
-        result.svn = generated.getSvn().intValue();
-        result.productId = generated.getProductId().intValue();
+        result.svn = generated.getSvn();
+        result.productId = generated.getProductId();
 
         return result;
     }

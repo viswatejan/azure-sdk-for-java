@@ -3,10 +3,12 @@
 
 package com.azure.spring.jms;
 /**
+ * WARNING: MODIFYING THIS FILE WILL REQUIRE CORRESPONDING UPDATES TO README.md FILE. LINE NUMBERS
+ * ARE USED TO EXTRACT APPROPRIATE CODE SEGMENTS FROM THIS FILE. ADD NEW CODE AT THE BOTTOM TO AVOID CHANGING
+ * LINE NUMBERS OF EXISTING CODE SAMPLES.
+ * <p>
  * Code samples for the Key Vault in README.md
  */
-
-// BEGIN: readme-sample-CustomMessageConverter
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.apache.qpid.jms.message.JmsBytesMessage;
 import org.apache.qpid.jms.provider.amqp.message.AmqpJmsMessageFacade;
@@ -41,4 +43,3 @@ public class CustomMessageConverter extends MappingJackson2MessageConverter {
         return jmsBytesMessage;
     }
 }
-// END: readme-sample-CustomMessageConverter

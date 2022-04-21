@@ -48,8 +48,7 @@ public final class ScriptInner extends ProxyResource {
     }
 
     /**
-     * Get the scriptUrl property: The url to the KQL script blob file. Must not be used together with scriptContent
-     * property.
+     * Get the scriptUrl property: The url to the KQL script blob file.
      *
      * @return the scriptUrl value.
      */
@@ -58,8 +57,7 @@ public final class ScriptInner extends ProxyResource {
     }
 
     /**
-     * Set the scriptUrl property: The url to the KQL script blob file. Must not be used together with scriptContent
-     * property.
+     * Set the scriptUrl property: The url to the KQL script blob file.
      *
      * @param scriptUrl the scriptUrl value to set.
      * @return the ScriptInner object itself.
@@ -73,8 +71,7 @@ public final class ScriptInner extends ProxyResource {
     }
 
     /**
-     * Get the scriptUrlSasToken property: The SaS token that provide read access to the file which contain the script.
-     * Must be provided when using scriptUrl property.
+     * Get the scriptUrlSasToken property: The SaS token.
      *
      * @return the scriptUrlSasToken value.
      */
@@ -83,8 +80,7 @@ public final class ScriptInner extends ProxyResource {
     }
 
     /**
-     * Set the scriptUrlSasToken property: The SaS token that provide read access to the file which contain the script.
-     * Must be provided when using scriptUrl property.
+     * Set the scriptUrlSasToken property: The SaS token.
      *
      * @param scriptUrlSasToken the scriptUrlSasToken value to set.
      * @return the ScriptInner object itself.
@@ -94,31 +90,6 @@ public final class ScriptInner extends ProxyResource {
             this.innerProperties = new ScriptProperties();
         }
         this.innerProperties().withScriptUrlSasToken(scriptUrlSasToken);
-        return this;
-    }
-
-    /**
-     * Get the scriptContent property: The script content. This property should be used when the script is provide
-     * inline and not through file in a SA. Must not be used together with scriptUrl and scriptUrlSasToken properties.
-     *
-     * @return the scriptContent value.
-     */
-    public String scriptContent() {
-        return this.innerProperties() == null ? null : this.innerProperties().scriptContent();
-    }
-
-    /**
-     * Set the scriptContent property: The script content. This property should be used when the script is provide
-     * inline and not through file in a SA. Must not be used together with scriptUrl and scriptUrlSasToken properties.
-     *
-     * @param scriptContent the scriptContent value to set.
-     * @return the ScriptInner object itself.
-     */
-    public ScriptInner withScriptContent(String scriptContent) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScriptProperties();
-        }
-        this.innerProperties().withScriptContent(scriptContent);
         return this;
     }
 

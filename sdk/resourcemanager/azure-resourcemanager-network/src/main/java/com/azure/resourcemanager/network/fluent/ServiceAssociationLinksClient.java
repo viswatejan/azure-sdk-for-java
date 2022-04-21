@@ -22,8 +22,7 @@ public interface ServiceAssociationLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service association links for a subnet along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a list of service association links for a subnet.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ServiceAssociationLinksListResultInner>> listWithResponseAsync(
@@ -38,7 +37,7 @@ public interface ServiceAssociationLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service association links for a subnet on successful completion of {@link Mono}.
+     * @return a list of service association links for a subnet.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ServiceAssociationLinksListResultInner> listAsync(
@@ -68,7 +67,7 @@ public interface ServiceAssociationLinksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service association links for a subnet along with {@link Response}.
+     * @return a list of service association links for a subnet.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServiceAssociationLinksListResultInner> listWithResponse(

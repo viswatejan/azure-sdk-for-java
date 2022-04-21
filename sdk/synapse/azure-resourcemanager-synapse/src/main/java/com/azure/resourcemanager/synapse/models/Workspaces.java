@@ -54,7 +54,7 @@ public interface Workspaces {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace along with {@link Response}.
+     * @return a workspace.
      */
     Response<Workspace> getByResourceGroupWithResponse(String resourceGroupName, String workspaceName, Context context);
 
@@ -110,7 +110,7 @@ public interface Workspaces {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace along with {@link Response}.
+     * @return a workspace.
      */
     Workspace getById(String id);
 
@@ -122,7 +122,7 @@ public interface Workspaces {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace along with {@link Response}.
+     * @return a workspace.
      */
     Response<Workspace> getByIdWithResponse(String id, Context context);
 

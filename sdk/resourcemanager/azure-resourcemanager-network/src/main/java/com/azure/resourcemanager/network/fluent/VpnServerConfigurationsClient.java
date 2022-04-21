@@ -35,7 +35,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnServerConfiguration Resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return vpnServerConfiguration Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VpnServerConfigurationInner>> getByResourceGroupWithResponseAsync(
@@ -49,7 +49,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnServerConfiguration Resource on successful completion of {@link Mono}.
+     * @return vpnServerConfiguration Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VpnServerConfigurationInner> getByResourceGroupAsync(
@@ -77,7 +77,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnServerConfiguration Resource along with {@link Response}.
+     * @return vpnServerConfiguration Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VpnServerConfigurationInner> getByResourceGroupWithResponse(
@@ -92,7 +92,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnServerConfiguration Resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return vpnServerConfiguration Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -109,7 +109,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of vpnServerConfiguration Resource.
+     * @return vpnServerConfiguration Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<VpnServerConfigurationInner>, VpnServerConfigurationInner> beginCreateOrUpdateAsync(
@@ -126,7 +126,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of vpnServerConfiguration Resource.
+     * @return vpnServerConfiguration Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<VpnServerConfigurationInner>, VpnServerConfigurationInner> beginCreateOrUpdate(
@@ -144,7 +144,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of vpnServerConfiguration Resource.
+     * @return vpnServerConfiguration Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<VpnServerConfigurationInner>, VpnServerConfigurationInner> beginCreateOrUpdate(
@@ -162,7 +162,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnServerConfiguration Resource on successful completion of {@link Mono}.
+     * @return vpnServerConfiguration Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VpnServerConfigurationInner> createOrUpdateAsync(
@@ -215,7 +215,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnServerConfiguration Resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return vpnServerConfiguration Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VpnServerConfigurationInner>> updateTagsWithResponseAsync(
@@ -230,7 +230,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnServerConfiguration Resource on successful completion of {@link Mono}.
+     * @return vpnServerConfiguration Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VpnServerConfigurationInner> updateTagsAsync(
@@ -261,7 +261,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnServerConfiguration Resource along with {@link Response}.
+     * @return vpnServerConfiguration Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VpnServerConfigurationInner> updateTagsWithResponse(
@@ -278,7 +278,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -292,7 +292,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String vpnServerConfigurationName);
@@ -305,7 +305,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String vpnServerConfigurationName);
@@ -319,7 +319,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -333,7 +333,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String vpnServerConfigurationName);
@@ -370,7 +370,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list all VpnServerConfigurations as paginated response with {@link PagedFlux}.
+     * @return result of the request to list all VpnServerConfigurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<VpnServerConfigurationInner> listByResourceGroupAsync(String resourceGroupName);
@@ -382,8 +382,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list all VpnServerConfigurations as paginated response with {@link
-     *     PagedIterable}.
+     * @return result of the request to list all VpnServerConfigurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<VpnServerConfigurationInner> listByResourceGroup(String resourceGroupName);
@@ -396,8 +395,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list all VpnServerConfigurations as paginated response with {@link
-     *     PagedIterable}.
+     * @return result of the request to list all VpnServerConfigurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<VpnServerConfigurationInner> listByResourceGroup(String resourceGroupName, Context context);
@@ -407,7 +405,7 @@ public interface VpnServerConfigurationsClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list all VpnServerConfigurations as paginated response with {@link PagedFlux}.
+     * @return result of the request to list all VpnServerConfigurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<VpnServerConfigurationInner> listAsync();
@@ -417,8 +415,7 @@ public interface VpnServerConfigurationsClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list all VpnServerConfigurations as paginated response with {@link
-     *     PagedIterable}.
+     * @return result of the request to list all VpnServerConfigurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<VpnServerConfigurationInner> list();
@@ -430,8 +427,7 @@ public interface VpnServerConfigurationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list all VpnServerConfigurations as paginated response with {@link
-     *     PagedIterable}.
+     * @return result of the request to list all VpnServerConfigurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<VpnServerConfigurationInner> list(Context context);

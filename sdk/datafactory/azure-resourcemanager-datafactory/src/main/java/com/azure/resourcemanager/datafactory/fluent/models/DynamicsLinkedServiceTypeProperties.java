@@ -6,7 +6,6 @@ package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.datafactory.models.CredentialReference;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -114,12 +113,6 @@ public final class DynamicsLinkedServiceTypeProperties {
      */
     @JsonProperty(value = "encryptedCredential")
     private Object encryptedCredential;
-
-    /*
-     * The credential reference containing authentication information.
-     */
-    @JsonProperty(value = "credential")
-    private CredentialReference credential;
 
     /**
      * Get the deploymentType property: The deployment type of the Dynamics instance. 'Online' for Dynamics Online and
@@ -395,26 +388,6 @@ public final class DynamicsLinkedServiceTypeProperties {
     }
 
     /**
-     * Get the credential property: The credential reference containing authentication information.
-     *
-     * @return the credential value.
-     */
-    public CredentialReference credential() {
-        return this.credential;
-    }
-
-    /**
-     * Set the credential property: The credential reference containing authentication information.
-     *
-     * @param credential the credential value to set.
-     * @return the DynamicsLinkedServiceTypeProperties object itself.
-     */
-    public DynamicsLinkedServiceTypeProperties withCredential(CredentialReference credential) {
-        this.credential = credential;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -437,9 +410,6 @@ public final class DynamicsLinkedServiceTypeProperties {
         }
         if (servicePrincipalCredential() != null) {
             servicePrincipalCredential().validate();
-        }
-        if (credential() != null) {
-            credential().validate();
         }
     }
 }

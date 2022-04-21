@@ -15,10 +15,10 @@ public final class KeyVaultCertificateSourceParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(KeyVaultCertificateSourceParameters.class);
 
     /*
-     * The typeName property.
+     * The @odata.type property.
      */
-    @JsonProperty(value = "typeName", required = true)
-    private String typeName = "KeyVaultCertificateSourceParameters";
+    @JsonProperty(value = "@odata.type", required = true)
+    private String odataType;
 
     /*
      * Subscription Id of the user's Key Vault containing the SSL certificate
@@ -67,26 +67,26 @@ public final class KeyVaultCertificateSourceParameters {
 
     /** Creates an instance of KeyVaultCertificateSourceParameters class. */
     public KeyVaultCertificateSourceParameters() {
-        typeName = "KeyVaultCertificateSourceParameters";
+        odataType = "#Microsoft.Azure.Cdn.Models.KeyVaultCertificateSourceParameters";
     }
 
     /**
-     * Get the typeName property: The typeName property.
+     * Get the odataType property: The @odata.type property.
      *
-     * @return the typeName value.
+     * @return the odataType value.
      */
-    public String typeName() {
-        return this.typeName;
+    public String odataType() {
+        return this.odataType;
     }
 
     /**
-     * Set the typeName property: The typeName property.
+     * Set the odataType property: The @odata.type property.
      *
-     * @param typeName the typeName value to set.
+     * @param odataType the odataType value to set.
      * @return the KeyVaultCertificateSourceParameters object itself.
      */
-    public KeyVaultCertificateSourceParameters withTypeName(String typeName) {
-        this.typeName = typeName;
+    public KeyVaultCertificateSourceParameters withOdataType(String odataType) {
+        this.odataType = odataType;
         return this;
     }
 

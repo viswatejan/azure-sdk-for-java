@@ -13,7 +13,6 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
 
@@ -38,7 +37,8 @@ public class GoodLoggingCheck extends AbstractCheck {
         TokenTypes.CLASS_DEF,
         TokenTypes.LITERAL_NEW,
         TokenTypes.VARIABLE_DEF,
-        TokenTypes.METHOD_CALL
+        TokenTypes.METHOD_CALL,
+        TokenTypes.METHOD_DEF
     };
 
     static final String STATIC_LOGGER_ERROR = "Use a static ClientLogger instance in a static method.";
@@ -116,6 +116,9 @@ public class GoodLoggingCheck extends AbstractCheck {
                     log(ast, String.format(NOT_CLIENT_LOGGER_ERROR, "Java System", CLIENT_LOGGER_PATH, methodCallName));
                 }
                 break;
+            case TokenTypes.METHOD_DEF:
+                checkForInvalidStaticLoggerUsage(ast);
+                break;
             default:
                 // Checkstyle complains if there's no default block in switch
                 break;
@@ -159,7 +162,7 @@ public class GoodLoggingCheck extends AbstractCheck {
             final String containerClassName = FullIdent.createFullIdent(exprToken.getFirstChild()).getText();
             // Add suffix of '.class' at the end of class name
             final String className = classNameDeque.peek();
-            if (!Objects.equals(className + ".class", containerClassName)) {
+            if (!containerClassName.equals(className + ".class")) {
                 log(exprToken, String.format(LOGGER_NAME_MISMATCH_ERROR, className, containerClassName));
             }
             return true;
@@ -181,4 +184,33 @@ public class GoodLoggingCheck extends AbstractCheck {
             log(varToken, String.format(LOGGER_NAME_ERROR, LOGGER, identAST.getText()));
         }
     }
+
+    /**
+     * Report error if a static ClientLogger instance used in a non-static method.
+     *
+     * @param methodDefToken METHOD_DEF AST node
+     */
+    private void checkForInvalidStaticLoggerUsage(DetailAST methodDefToken) {
+
+        // if not a static method
+        if (!(TokenUtil.findFirstTokenByPredicate(methodDefToken,
+            node -> node.branchContains(TokenTypes.LITERAL_STATIC)).isPresent())) {
+
+            // error if static `LOGGER` present, LOGGER.*
+            if (methodDefToken.findFirstToken(TokenTypes.SLIST) != null) {
+                TokenUtil.forEachChild(methodDefToken.findFirstToken(TokenTypes.SLIST), TokenTypes.EXPR, exprToken -> {
+                    if (exprToken != null) {
+                        DetailAST methodCallToken = exprToken.findFirstToken(TokenTypes.METHOD_CALL);
+                        if (methodCallToken != null && methodCallToken.findFirstToken(TokenTypes.DOT) != null) {
+                            if (methodCallToken.findFirstToken(TokenTypes.DOT)
+                                .findFirstToken(TokenTypes.IDENT).getText().equals(LOGGER.toUpperCase())) {
+                                log(methodDefToken, STATIC_LOGGER_ERROR);
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    }
+
 }

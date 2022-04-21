@@ -6,6 +6,7 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -16,6 +17,8 @@ import java.util.Map;
  */
 @Fluent
 public class BatchAccountIdentity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BatchAccountIdentity.class);
+
     /*
      * The principal id of the Batch account. This property will only be
      * provided for a system assigned identity.
@@ -110,7 +113,7 @@ public class BatchAccountIdentity {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property type in model BatchAccountIdentity"));
         }
@@ -125,6 +128,4 @@ public class BatchAccountIdentity {
                     });
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BatchAccountIdentity.class);
 }

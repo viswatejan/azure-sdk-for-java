@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.digitaltwins.fluent.models.DigitalTwinsEndpointResourceInner;
 
@@ -30,13 +29,6 @@ public interface DigitalTwinsEndpointResource {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the properties property: DigitalTwinsInstance endpoint resource properties.

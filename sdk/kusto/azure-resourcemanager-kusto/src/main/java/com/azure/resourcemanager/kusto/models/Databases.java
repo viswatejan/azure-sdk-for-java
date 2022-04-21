@@ -34,7 +34,7 @@ public interface Databases {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response}.
+     * @return the result returned from a check name availability request.
      */
     Response<CheckNameResult> checkNameAvailabilityWithResponse(
         String resourceGroupName, String clusterName, CheckNameRequest resourceName, Context context);
@@ -47,7 +47,7 @@ public interface Databases {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto databases operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto databases operation response.
      */
     PagedIterable<Database> listByCluster(String resourceGroupName, String clusterName);
 
@@ -60,7 +60,7 @@ public interface Databases {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto databases operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto databases operation response.
      */
     PagedIterable<Database> listByCluster(String resourceGroupName, String clusterName, Context context);
 
@@ -87,7 +87,7 @@ public interface Databases {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a Kusto database along with {@link Response}.
+     * @return class representing a Kusto database.
      */
     Response<Database> getWithResponse(
         String resourceGroupName, String clusterName, String databaseName, Context context);
@@ -187,7 +187,7 @@ public interface Databases {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto database principals operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto database principals operation response.
      */
     PagedIterable<DatabasePrincipal> listPrincipals(String resourceGroupName, String clusterName, String databaseName);
 
@@ -201,7 +201,7 @@ public interface Databases {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto database principals operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto database principals operation response.
      */
     PagedIterable<DatabasePrincipal> listPrincipals(
         String resourceGroupName, String clusterName, String databaseName, Context context);
@@ -235,7 +235,7 @@ public interface Databases {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto database principals operation response along with {@link Response}.
+     * @return the list Kusto database principals operation response.
      */
     Response<DatabasePrincipalListResult> addPrincipalsWithResponse(
         String resourceGroupName,
@@ -273,7 +273,7 @@ public interface Databases {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto database principals operation response along with {@link Response}.
+     * @return the list Kusto database principals operation response.
      */
     Response<DatabasePrincipalListResult> removePrincipalsWithResponse(
         String resourceGroupName,

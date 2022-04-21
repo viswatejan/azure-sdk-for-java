@@ -6,7 +6,6 @@ package com.azure.resourcemanager.digitaltwins.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,13 +21,6 @@ public class DigitalTwinsResource extends Resource {
      */
     @JsonProperty(value = "identity")
     private DigitalTwinsIdentity identity;
-
-    /*
-     * Metadata pertaining to creation and last modification of the
-     * DigitalTwinsInstance.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
 
     /**
      * Get the identity property: The managed identity for the DigitalTwinsInstance.
@@ -48,15 +40,6 @@ public class DigitalTwinsResource extends Resource {
     public DigitalTwinsResource withIdentity(DigitalTwinsIdentity identity) {
         this.identity = identity;
         return this;
-    }
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the DigitalTwinsInstance.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /** {@inheritDoc} */

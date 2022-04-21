@@ -2,13 +2,10 @@
 // Licensed under the MIT License.
 package com.azure.spring.cloud.config;
 
-import com.azure.spring.cloud.config.properties.AppConfigurationProperties;
-import com.azure.spring.cloud.config.properties.AppConfigurationProviderProperties;
-import com.azure.spring.cloud.config.properties.ConfigStore;
-import com.azure.spring.cloud.config.resource.AppConfigManagedIdentityProperties;
-import com.azure.spring.cloud.config.resource.Connection;
-import com.azure.spring.cloud.config.resource.ConnectionPool;
-import com.azure.spring.cloud.config.stores.ClientStore;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -20,8 +17,13 @@ import org.springframework.core.env.Environment;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import java.util.List;
-import java.util.Optional;
+import com.azure.spring.cloud.config.properties.AppConfigurationProperties;
+import com.azure.spring.cloud.config.properties.AppConfigurationProviderProperties;
+import com.azure.spring.cloud.config.properties.ConfigStore;
+import com.azure.spring.cloud.config.resource.AppConfigManagedIdentityProperties;
+import com.azure.spring.cloud.config.resource.Connection;
+import com.azure.spring.cloud.config.resource.ConnectionPool;
+import com.azure.spring.cloud.config.stores.ClientStore;
 
 /**
  * Setup ConnectionPool, AppConfigurationPropertySourceLocator, and ClientStore when
@@ -37,7 +39,7 @@ public class AppConfigurationBootstrapConfiguration {
 
     /**
      * Creates Connections Pool. Contains basic connection info to each App Configuration Store.
-     *
+     * 
      * @param properties Configured properties to setup connections.
      * @return ConnectionPool
      */
@@ -67,7 +69,7 @@ public class AppConfigurationBootstrapConfiguration {
     }
 
     /**
-     *
+     * 
      * @param properties Client properties
      * @param appProperties Library properties
      * @param clients Store Connections
@@ -117,7 +119,7 @@ public class AppConfigurationBootstrapConfiguration {
 
     /**
      * Builds ClientStores used for connecting to App Configuration.
-     *
+     * 
      * @param properties Client configurations for setting up connections to each config store.
      * @param appProperties Library configurations for setting up connections to each config store.
      * @param pool Basic connection info for connecting to each config store.
@@ -155,10 +157,11 @@ public class AppConfigurationBootstrapConfiguration {
         boolean isDev = false;
         boolean isKeyVaultConfigured = false;
 
-        for (String profile : env.getActiveProfiles()) {
-            if ("dev".equalsIgnoreCase(profile)) {
+        List<String> profiles = Arrays.asList(env.getActiveProfiles());
+
+        for (String profile : profiles) {
+            if (profile.equalsIgnoreCase("dev")) {
                 isDev = true;
-                break;
             }
         }
 

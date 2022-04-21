@@ -211,7 +211,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an event subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return an event subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EventSubscriptionInner>> getWithResponseAsync(
@@ -268,7 +268,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an event subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return an event subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EventSubscriptionInner>> getWithResponseAsync(
@@ -321,7 +321,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an event subscription on successful completion of {@link Mono}.
+     * @return an event subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EventSubscriptionInner> getAsync(
@@ -365,7 +365,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an event subscription along with {@link Response}.
+     * @return an event subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EventSubscriptionInner> getWithResponse(
@@ -385,7 +385,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -454,7 +454,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -520,7 +520,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginCreateOrUpdateAsync(
@@ -554,7 +554,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginCreateOrUpdateAsync(
@@ -589,7 +589,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginCreateOrUpdate(
@@ -615,7 +615,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginCreateOrUpdate(
@@ -641,7 +641,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EventSubscriptionInner> createOrUpdateAsync(
@@ -668,7 +668,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EventSubscriptionInner> createOrUpdateAsync(
@@ -744,7 +744,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -799,7 +799,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -850,7 +850,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -874,7 +874,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -897,7 +897,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -916,7 +916,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -934,7 +934,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String systemTopicName, String eventSubscriptionName) {
@@ -954,7 +954,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1009,7 +1009,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1079,7 +1079,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1146,7 +1146,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginUpdateAsync(
@@ -1179,7 +1179,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginUpdateAsync(
@@ -1213,7 +1213,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginUpdate(
@@ -1238,7 +1238,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription along with {@link Response} on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<EventSubscriptionInner>, EventSubscriptionInner> beginUpdate(
@@ -1263,7 +1263,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EventSubscriptionInner> updateAsync(
@@ -1289,7 +1289,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Subscription on successful completion of {@link Mono}.
+     * @return event Subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EventSubscriptionInner> updateAsync(
@@ -1363,8 +1363,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the full endpoint URL for an event subscription of a system topic along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the full endpoint URL for an event subscription of a system topic.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EventSubscriptionFullUrlInner>> getFullUrlWithResponseAsync(
@@ -1421,8 +1420,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the full endpoint URL for an event subscription of a system topic along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the full endpoint URL for an event subscription of a system topic.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EventSubscriptionFullUrlInner>> getFullUrlWithResponseAsync(
@@ -1475,8 +1473,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the full endpoint URL for an event subscription of a system topic on successful completion of {@link
-     *     Mono}.
+     * @return the full endpoint URL for an event subscription of a system topic.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EventSubscriptionFullUrlInner> getFullUrlAsync(
@@ -1521,7 +1518,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the full endpoint URL for an event subscription of a system topic along with {@link Response}.
+     * @return the full endpoint URL for an event subscription of a system topic.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EventSubscriptionFullUrlInner> getFullUrlWithResponse(
@@ -1545,8 +1542,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List EventSubscriptions operation along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return result of the List EventSubscriptions operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EventSubscriptionInner>> listBySystemTopicSinglePageAsync(
@@ -1615,8 +1611,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List EventSubscriptions operation along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return result of the List EventSubscriptions operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EventSubscriptionInner>> listBySystemTopicSinglePageAsync(
@@ -1789,8 +1784,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all delivery attributes for an event subscription along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return all delivery attributes for an event subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DeliveryAttributeListResultInner>> getDeliveryAttributesWithResponseAsync(
@@ -1847,8 +1841,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all delivery attributes for an event subscription along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return all delivery attributes for an event subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DeliveryAttributeListResultInner>> getDeliveryAttributesWithResponseAsync(
@@ -1901,7 +1894,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all delivery attributes for an event subscription on successful completion of {@link Mono}.
+     * @return all delivery attributes for an event subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DeliveryAttributeListResultInner> getDeliveryAttributesAsync(
@@ -1946,7 +1939,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all delivery attributes for an event subscription along with {@link Response}.
+     * @return all delivery attributes for an event subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DeliveryAttributeListResultInner> getDeliveryAttributesWithResponse(
@@ -1963,8 +1956,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List EventSubscriptions operation along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return result of the List EventSubscriptions operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EventSubscriptionInner>> listBySystemTopicNextSinglePageAsync(String nextLink) {
@@ -2000,8 +1992,7 @@ public final class SystemTopicEventSubscriptionsClientImpl implements SystemTopi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the List EventSubscriptions operation along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return result of the List EventSubscriptions operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EventSubscriptionInner>> listBySystemTopicNextSinglePageAsync(

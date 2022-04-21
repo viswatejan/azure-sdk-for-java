@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The configuration settings of the Azure Active Directory login flow. */
 @Fluent
 public final class AzureActiveDirectoryLogin {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureActiveDirectoryLogin.class);
+
     /*
      * Login parameters to send to the OpenID Connect authorization endpoint
      * when

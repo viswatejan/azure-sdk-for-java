@@ -6,7 +6,6 @@ package com.azure.ai.anomalydetector;
 import com.azure.ai.anomalydetector.models.DetectRequest;
 import com.azure.ai.anomalydetector.models.EntireDetectResponse;
 import com.azure.ai.anomalydetector.models.TimeGranularity;
-import com.azure.ai.anomalydetector.models.ImputeMode;
 import com.azure.ai.anomalydetector.models.TimeSeriesPoint;
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.core.http.ContentType;
@@ -82,7 +81,6 @@ public class DetectAnomaliesEntireSeries {
         request.setSeries(series);
         // Set the granularity to be DAILY since the minimal interval in time of the sample data is one day.
         request.setGranularity(TimeGranularity.DAILY);
-        request.setImputeMode(ImputeMode.AUTO);
         EntireDetectResponse response = anomalyDetectorClient.detectEntireSeries(request);
         if (response.getIsAnomaly().contains(true)) {
             System.out.println("Anomalies found in the following data positions:");

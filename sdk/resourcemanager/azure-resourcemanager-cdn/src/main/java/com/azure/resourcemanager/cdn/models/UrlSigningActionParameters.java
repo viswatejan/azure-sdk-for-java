@@ -16,10 +16,10 @@ public final class UrlSigningActionParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(UrlSigningActionParameters.class);
 
     /*
-     * The typeName property.
+     * The @odata.type property.
      */
-    @JsonProperty(value = "typeName", required = true)
-    private String typeName = "DeliveryRuleUrlSigningActionParameters";
+    @JsonProperty(value = "@odata.type", required = true)
+    private String odataType;
 
     /*
      * Algorithm to use for URL signing
@@ -36,26 +36,26 @@ public final class UrlSigningActionParameters {
 
     /** Creates an instance of UrlSigningActionParameters class. */
     public UrlSigningActionParameters() {
-        typeName = "DeliveryRuleUrlSigningActionParameters";
+        odataType = "#Microsoft.Azure.Cdn.Models.DeliveryRuleUrlSigningActionParameters";
     }
 
     /**
-     * Get the typeName property: The typeName property.
+     * Get the odataType property: The @odata.type property.
      *
-     * @return the typeName value.
+     * @return the odataType value.
      */
-    public String typeName() {
-        return this.typeName;
+    public String odataType() {
+        return this.odataType;
     }
 
     /**
-     * Set the typeName property: The typeName property.
+     * Set the odataType property: The @odata.type property.
      *
-     * @param typeName the typeName value to set.
+     * @param odataType the odataType value to set.
      * @return the UrlSigningActionParameters object itself.
      */
-    public UrlSigningActionParameters withTypeName(String typeName) {
-        this.typeName = typeName;
+    public UrlSigningActionParameters withOdataType(String odataType) {
+        this.odataType = odataType;
         return this;
     }
 

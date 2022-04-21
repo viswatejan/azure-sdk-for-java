@@ -96,8 +96,7 @@ public final class SystemScanRulesetsAsyncClient {
      * @param dataSourceType The dataSourceType parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return a system scan ruleset for a data source along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a system scan ruleset for a data source.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -132,7 +131,7 @@ public final class SystemScanRulesetsAsyncClient {
      * @param version The version parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return a scan ruleset by version along with {@link Response} on successful completion of {@link Mono}.
+     * @return a scan ruleset by version.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -166,8 +165,7 @@ public final class SystemScanRulesetsAsyncClient {
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the latest version of a system scan ruleset along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the latest version of a system scan ruleset.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)

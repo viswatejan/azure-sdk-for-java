@@ -7,12 +7,15 @@ package com.azure.resourcemanager.appservice.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.fluent.models.BillingMeterInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Collection of Billing Meters. */
 @Fluent
 public final class BillingMeterCollection {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingMeterCollection.class);
+
     /*
      * Collection of resources.
      */
@@ -61,13 +64,11 @@ public final class BillingMeterCollection {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model BillingMeterCollection"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(BillingMeterCollection.class);
 }

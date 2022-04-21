@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The authentication client credentials of the custom Open ID Connect provider. */
 @Fluent
 public final class OpenIdConnectClientCredential {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OpenIdConnectClientCredential.class);
+
     /*
      * The method that should be used to authenticate the user.
      */

@@ -8,7 +8,6 @@ import com.azure.ai.formrecognizer.administration.models.BuildModelOptions;
 import com.azure.ai.formrecognizer.administration.models.CopyAuthorization;
 import com.azure.ai.formrecognizer.administration.models.CopyAuthorizationOptions;
 import com.azure.ai.formrecognizer.administration.models.CreateComposedModelOptions;
-import com.azure.ai.formrecognizer.administration.models.DocumentBuildMode;
 import com.azure.ai.formrecognizer.administration.models.DocumentModel;
 import com.azure.ai.formrecognizer.administration.models.ModelOperation;
 import com.azure.ai.formrecognizer.administration.models.ModelOperationStatus;
@@ -18,9 +17,7 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.util.polling.AsyncPollResponse;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Code snippet for {@link DocumentModelAdministrationAsyncClient}
@@ -58,14 +55,12 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginBuildModel(String, DocumentBuildMode, String)}
+     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginBuildModel(String, String)}
      */
     public void beginBuildModel() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginBuildModel#String-String
         String trainingFilesUrl = "{SAS-URL-of-your-container-in-blob-storage}";
-        documentModelAdministrationAsyncClient.beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE,
-                "model-name"
-            )
+        documentModelAdministrationAsyncClient.beginBuildModel(trainingFilesUrl, "model-name")
             // if polling operation completed, retrieve the final result.
             .flatMap(AsyncPollResponse::getFinalResult)
             .subscribe(documentModel -> {
@@ -83,28 +78,23 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginBuildModel(String, DocumentBuildMode, String, BuildModelOptions)}
+     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginBuildModel(String, String, BuildModelOptions)}
      * with options
      */
     public void beginBuildModelWithOptions() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginBuildModel#String-String-BuildModelOptions
         String trainingFilesUrl = "{SAS-URL-of-your-container-in-blob-storage}";
-        Map<String, String> attrs = new HashMap<String, String>();
-        attrs.put("createdBy", "sample");
-
         documentModelAdministrationAsyncClient.beginBuildModel(trainingFilesUrl,
-                DocumentBuildMode.TEMPLATE, "model-name",
+                "model-name",
                 new BuildModelOptions()
                     .setDescription("model desc")
-                    .setPrefix("Invoice")
-                    .setTags(attrs))
+                    .setPrefix("Invoice"))
             // if polling operation completed, retrieve the final result.
             .flatMap(AsyncPollResponse::getFinalResult)
             .subscribe(documentModel -> {
                 System.out.printf("Model ID: %s%n", documentModel.getModelId());
                 System.out.printf("Model Description: %s%n", documentModel.getDescription());
                 System.out.printf("Model Created on: %s%n", documentModel.getCreatedOn());
-                System.out.printf("Model assigned tags: %s%n", documentModel.getTags());
                 documentModel.getDocTypes().forEach((key, docTypeInfo) -> {
                     docTypeInfo.getFieldSchema().forEach((field, documentFieldSchema) -> {
                         System.out.printf("Field: %s", field);
@@ -166,13 +156,8 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
     public void getCopyAuthorizationWithResponse() {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.getCopyAuthorizationWithResponse#string-CopyAuthorizationOptions
         String modelId = "my-copied-model";
-        Map<String, String> attrs = new HashMap<String, String>();
-        attrs.put("createdBy", "sample");
-
         documentModelAdministrationAsyncClient.getCopyAuthorizationWithResponse(modelId,
-                new CopyAuthorizationOptions()
-                    .setDescription("model desc")
-                    .setTags(attrs))
+                new CopyAuthorizationOptions().setDescription("model desc"))
             .subscribe(copyAuthorization ->
                 System.out.printf("Copy Authorization response status: %s, for model id: %s, access token: %s, "
                         + "expiration time: %s, target resource ID; %s, target resource region: %s%n",
@@ -251,19 +236,15 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
         // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCreateComposedModel#list-String-createComposedModelOptions
         String modelId1 = "{model_Id_1}";
         String modelId2 = "{model_Id_2}";
-        Map<String, String> attrs = new HashMap<String, String>();
-        attrs.put("createdBy", "sample");
-
         documentModelAdministrationAsyncClient.beginCreateComposedModel(Arrays.asList(modelId1, modelId2),
                 "my-composed-model",
-                new CreateComposedModelOptions().setDescription("model-desc").setTags(attrs))
+                new CreateComposedModelOptions().setDescription("model-desc"))
             // if polling operation completed, retrieve the final result.
             .flatMap(AsyncPollResponse::getFinalResult)
             .subscribe(documentModel -> {
                 System.out.printf("Model ID: %s%n", documentModel.getModelId());
                 System.out.printf("Model Description: %s%n", documentModel.getDescription());
                 System.out.printf("Model Created on: %s%n", documentModel.getCreatedOn());
-                System.out.printf("Model assigned tags: %s%n", documentModel.getTags());
                 documentModel.getDocTypes().forEach((key, docTypeInfo) -> {
                     docTypeInfo.getFieldSchema().forEach((field, documentFieldSchema) -> {
                         System.out.printf("Field: %s", field);
@@ -276,17 +257,17 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
     }
 
     /**
-     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginCopyModelTo(String, CopyAuthorization)}
+     * Code snippet for {@link DocumentModelAdministrationAsyncClient#beginCopyModel(String, CopyAuthorization)}
      */
     public void beginCopy() {
-        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCopyModelTo#string-copyAuthorization
+        // BEGIN: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCopyModel#string-copyAuthorization
         String copyModelId = "copy-model";
         String targetModelId = "my-copied-model-id";
         // Get authorization to copy the model to target resource
         documentModelAdministrationAsyncClient.getCopyAuthorization(targetModelId)
             // Start copy operation from the source client
             // The ID of the model that needs to be copied to the target resource
-            .subscribe(copyAuthorization -> documentModelAdministrationAsyncClient.beginCopyModelTo(copyModelId,
+            .subscribe(copyAuthorization -> documentModelAdministrationAsyncClient.beginCopyModel(copyModelId,
                     copyAuthorization)
                 .filter(pollResponse -> pollResponse.getStatus().isComplete())
                 .flatMap(AsyncPollResponse::getFinalResult)
@@ -295,7 +276,7 @@ public class DocumentModelAdminAsyncClientJavaDocCodeSnippets {
                         documentModel.getModelId(),
                         documentModel.getCreatedOn())));
 
-        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCopyModelTo#string-copyAuthorization
+        // END: com.azure.ai.formrecognizer.administration.DocumentModelAdministrationAsyncClient.beginCopyModel#string-copyAuthorization
     }
 
     /**

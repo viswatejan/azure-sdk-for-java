@@ -224,7 +224,7 @@ public final class MetadataPolicyClient {
      * @param policyId Unique policy id.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -297,7 +297,7 @@ public final class MetadataPolicyClient {
      * @param policyId Id of an existing policy that needs to be fetched.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return a metadata policy along with {@link Response}.
+     * @return a metadata policy.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)

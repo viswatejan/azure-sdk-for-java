@@ -36,7 +36,7 @@ public interface DpsCertificates {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the certificate from the provisioning service along with {@link Response}.
+     * @return the certificate from the provisioning service.
      */
     Response<CertificateResponse> getWithResponse(
         String certificateName,
@@ -81,7 +81,7 @@ public interface DpsCertificates {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName,
@@ -121,7 +121,7 @@ public interface DpsCertificates {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the certificates tied to the provisioning service along with {@link Response}.
+     * @return all the certificates tied to the provisioning service.
      */
     Response<CertificateListDescription> listWithResponse(
         String resourceGroupName, String provisioningServiceName, Context context);
@@ -166,7 +166,7 @@ public interface DpsCertificates {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the response of the verification code along with {@link Response}.
+     * @return description of the response of the verification code.
      */
     Response<VerificationCodeResponse> generateVerificationCodeWithResponse(
         String certificateName,
@@ -229,7 +229,7 @@ public interface DpsCertificates {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate along with {@link Response}.
+     * @return the X509 Certificate.
      */
     Response<CertificateResponse> verifyCertificateWithResponse(
         String certificateName,
@@ -255,7 +255,7 @@ public interface DpsCertificates {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the certificate from the provisioning service along with {@link Response}.
+     * @return the certificate from the provisioning service.
      */
     CertificateResponse getById(String id);
 
@@ -269,7 +269,7 @@ public interface DpsCertificates {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the certificate from the provisioning service along with {@link Response}.
+     * @return the certificate from the provisioning service.
      */
     Response<CertificateResponse> getByIdWithResponse(String id, String ifMatch, Context context);
 
@@ -302,7 +302,7 @@ public interface DpsCertificates {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(
         String id,

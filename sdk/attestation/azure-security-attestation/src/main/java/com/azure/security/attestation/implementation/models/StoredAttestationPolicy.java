@@ -25,7 +25,7 @@ public final class StoredAttestationPolicy {
      */
     public byte[] getAttestationPolicy() {
         if (this.attestationPolicy == null) {
-            return new byte[0];
+            return null;
         }
         return this.attestationPolicy.decodedBytes();
     }

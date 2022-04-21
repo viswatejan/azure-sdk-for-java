@@ -32,7 +32,7 @@ public class PersistentTokenCacheImpl implements ITokenCacheAccessAspect {
     private static final String DEFAULT_KEYRING_ATTR_NAME = "MsalClientID";
     private static final String DEFAULT_KEYRING_ATTR_VALUE = "Microsoft.Developer.IdentityService";
 
-    private static final ClientLogger LOGGER = new ClientLogger(PersistentTokenCacheImpl.class);
+    private final ClientLogger logger = new ClientLogger(PersistentTokenCacheImpl.class);
     private boolean allowUnencryptedStorage;
     private String name;
     private PersistenceTokenCacheAccessAspect cacheAccessAspect;
@@ -58,7 +58,7 @@ public class PersistentTokenCacheImpl implements ITokenCacheAccessAspect {
                 cacheAccessAspect = new PersistenceTokenCacheAccessAspect(persistenceSettings);
                 return Mono.just(true);
             } catch (Throwable t) {
-                return Mono.error(LOGGER.logExceptionAsError(new ClientAuthenticationException(
+                return Mono.error(logger.logExceptionAsError(new ClientAuthenticationException(
                     "Shared token cache is unavailable in this environment.", null, t)));
             }
         });
@@ -88,7 +88,7 @@ public class PersistentTokenCacheImpl implements ITokenCacheAccessAspect {
                 return persistenceSettingsBuilder.build();
             } catch (KeyRingAccessException e) {
                 if (!allowUnencryptedStorage) {
-                    throw LOGGER.logExceptionAsError(e);
+                    throw logger.logExceptionAsError(e);
                 }
                 persistenceSettingsBuilder.setLinuxUseUnprotectedFileAsCacheStorage(true);
                 return persistenceSettingsBuilder.build();

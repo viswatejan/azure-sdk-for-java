@@ -31,7 +31,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> walkUpdateDomainWithResponseAsync(
@@ -48,7 +48,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginWalkUpdateDomainAsync(
@@ -65,7 +65,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginWalkUpdateDomain(
@@ -83,7 +83,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginWalkUpdateDomain(
@@ -104,7 +104,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> walkUpdateDomainAsync(
@@ -120,7 +120,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> walkUpdateDomainAsync(String resourceGroupName, String cloudServiceName, int updateDomain);
@@ -187,8 +187,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified update domain of a cloud service along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the specified update domain of a cloud service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<UpdateDomainInner>> getUpdateDomainWithResponseAsync(
@@ -205,7 +204,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified update domain of a cloud service on successful completion of {@link Mono}.
+     * @return the specified update domain of a cloud service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<UpdateDomainInner> getUpdateDomainAsync(String resourceGroupName, String cloudServiceName, int updateDomain);
@@ -238,7 +237,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified update domain of a cloud service along with {@link Response}.
+     * @return the specified update domain of a cloud service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<UpdateDomainInner> getUpdateDomainWithResponse(
@@ -252,7 +251,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all update domains in a cloud service as paginated response with {@link PagedFlux}.
+     * @return a list of all update domains in a cloud service.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<UpdateDomainInner> listUpdateDomainsAsync(String resourceGroupName, String cloudServiceName);
@@ -265,7 +264,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all update domains in a cloud service as paginated response with {@link PagedIterable}.
+     * @return a list of all update domains in a cloud service.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<UpdateDomainInner> listUpdateDomains(String resourceGroupName, String cloudServiceName);
@@ -279,7 +278,7 @@ public interface CloudServicesUpdateDomainsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all update domains in a cloud service as paginated response with {@link PagedIterable}.
+     * @return a list of all update domains in a cloud service.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<UpdateDomainInner> listUpdateDomains(

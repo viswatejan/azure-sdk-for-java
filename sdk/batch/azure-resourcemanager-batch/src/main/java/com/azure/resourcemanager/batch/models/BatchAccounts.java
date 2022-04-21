@@ -54,7 +54,7 @@ public interface BatchAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified Batch account along with {@link Response}.
+     * @return information about the specified Batch account.
      */
     Response<BatchAccount> getByResourceGroupWithResponse(
         String resourceGroupName, String accountName, Context context);
@@ -64,8 +64,7 @@ public interface BatchAccounts {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the Batch accounts associated with the subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return information about the Batch accounts associated with the subscription.
      */
     PagedIterable<BatchAccount> list();
 
@@ -76,8 +75,7 @@ public interface BatchAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the Batch accounts associated with the subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return information about the Batch accounts associated with the subscription.
      */
     PagedIterable<BatchAccount> list(Context context);
 
@@ -88,8 +86,7 @@ public interface BatchAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the Batch accounts associated with the specified resource group as paginated response
-     *     with {@link PagedIterable}.
+     * @return information about the Batch accounts associated with the specified resource group.
      */
     PagedIterable<BatchAccount> listByResourceGroup(String resourceGroupName);
 
@@ -101,8 +98,7 @@ public interface BatchAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the Batch accounts associated with the specified resource group as paginated response
-     *     with {@link PagedIterable}.
+     * @return information about the Batch accounts associated with the specified resource group.
      */
     PagedIterable<BatchAccount> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -128,7 +124,7 @@ public interface BatchAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> synchronizeAutoStorageKeysWithResponse(
         String resourceGroupName, String accountName, Context context);
@@ -163,7 +159,7 @@ public interface BatchAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a set of Azure Batch account keys along with {@link Response}.
+     * @return a set of Azure Batch account keys.
      */
     Response<BatchAccountKeys> regenerateKeyWithResponse(
         String resourceGroupName, String accountName, BatchAccountRegenerateKeyParameters parameters, Context context);
@@ -193,64 +189,9 @@ public interface BatchAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a set of Azure Batch account keys along with {@link Response}.
+     * @return a set of Azure Batch account keys.
      */
     Response<BatchAccountKeys> getKeysWithResponse(String resourceGroupName, String accountName, Context context);
-
-    /**
-     * Gets information about the detectors available for a given Batch account.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the detectors available for a given Batch account as paginated response with {@link
-     *     PagedIterable}.
-     */
-    PagedIterable<DetectorResponse> listDetectors(String resourceGroupName, String accountName);
-
-    /**
-     * Gets information about the detectors available for a given Batch account.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the detectors available for a given Batch account as paginated response with {@link
-     *     PagedIterable}.
-     */
-    PagedIterable<DetectorResponse> listDetectors(String resourceGroupName, String accountName, Context context);
-
-    /**
-     * Gets information about the given detector for a given Batch account.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param detectorId The name of the detector.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the given detector for a given Batch account.
-     */
-    DetectorResponse getDetector(String resourceGroupName, String accountName, String detectorId);
-
-    /**
-     * Gets information about the given detector for a given Batch account.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param detectorId The name of the detector.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the given detector for a given Batch account along with {@link Response}.
-     */
-    Response<DetectorResponse> getDetectorWithResponse(
-        String resourceGroupName, String accountName, String detectorId, Context context);
 
     /**
      * Lists the endpoints that a Batch Compute Node under this Batch Account may call as part of Batch service
@@ -264,7 +205,7 @@ public interface BatchAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return values returned by the List operation as paginated response with {@link PagedIterable}.
+     * @return values returned by the List operation.
      */
     PagedIterable<OutboundEnvironmentEndpoint> listOutboundNetworkDependenciesEndpoints(
         String resourceGroupName, String accountName);
@@ -282,7 +223,7 @@ public interface BatchAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return values returned by the List operation as paginated response with {@link PagedIterable}.
+     * @return values returned by the List operation.
      */
     PagedIterable<OutboundEnvironmentEndpoint> listOutboundNetworkDependenciesEndpoints(
         String resourceGroupName, String accountName, Context context);
@@ -294,7 +235,7 @@ public interface BatchAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified Batch account along with {@link Response}.
+     * @return information about the specified Batch account.
      */
     BatchAccount getById(String id);
 
@@ -306,7 +247,7 @@ public interface BatchAccounts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified Batch account along with {@link Response}.
+     * @return information about the specified Batch account.
      */
     Response<BatchAccount> getByIdWithResponse(String id, Context context);
 

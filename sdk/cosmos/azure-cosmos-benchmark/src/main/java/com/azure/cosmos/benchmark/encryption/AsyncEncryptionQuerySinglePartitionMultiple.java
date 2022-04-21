@@ -9,6 +9,7 @@ import com.azure.cosmos.models.CosmosQueryRequestOptions;
 import com.azure.cosmos.models.FeedResponse;
 import com.azure.cosmos.models.PartitionKey;
 import com.azure.cosmos.util.CosmosPagedFlux;
+import com.microsoft.data.encryption.cryptography.MicrosoftDataEncryptionException;
 import reactor.core.publisher.BaseSubscriber;
 import reactor.core.scheduler.Schedulers;
 
@@ -20,7 +21,7 @@ public class AsyncEncryptionQuerySinglePartitionMultiple extends AsyncEncryption
     private CosmosQueryRequestOptions options;
     private int pageCount = 0;
 
-    public AsyncEncryptionQuerySinglePartitionMultiple(Configuration cfg) throws IOException {
+    public AsyncEncryptionQuerySinglePartitionMultiple(Configuration cfg) throws IOException, MicrosoftDataEncryptionException {
         super(cfg);
         options = new CosmosQueryRequestOptions();
         options.setPartitionKey(new PartitionKey("pk"));

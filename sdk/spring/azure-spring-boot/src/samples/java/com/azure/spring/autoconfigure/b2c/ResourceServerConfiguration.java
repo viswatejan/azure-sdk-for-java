@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-// BEGIN: readme-sample-ResourceServerConfiguration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfiguration extends WebSecurityConfigurerAdapter {
@@ -22,4 +21,3 @@ public class ResourceServerConfiguration extends WebSecurityConfigurerAdapter {
             .jwtAuthenticationConverter(new AADJwtBearerTokenAuthenticationConverter());
     }
 }
-// END: readme-sample-ResourceServerConfiguration

@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The ContainerThrottlingData model. */
 @Fluent
 public final class ContainerThrottlingData {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContainerThrottlingData.class);
+
     /*
      * The periods property.
      */

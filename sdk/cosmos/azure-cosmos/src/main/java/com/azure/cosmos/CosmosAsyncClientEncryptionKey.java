@@ -4,9 +4,7 @@
 package com.azure.cosmos;
 
 import com.azure.core.util.Context;
-import com.azure.cosmos.implementation.ImplementationBridgeHelpers;
 import com.azure.cosmos.implementation.Paths;
-import com.azure.cosmos.implementation.RequestOptions;
 import com.azure.cosmos.models.CosmosClientEncryptionKeyProperties;
 import com.azure.cosmos.models.CosmosClientEncryptionKeyResponse;
 import com.azure.cosmos.models.ModelBridgeInternal;
@@ -45,23 +43,13 @@ public final class CosmosAsyncClientEncryptionKey {
      */
     @Beta(value = Beta.SinceVersion.V4_14_0, warningText = Beta.PREVIEW_SUBJECT_TO_CHANGE_WARNING)
     public Mono<CosmosClientEncryptionKeyResponse> read() {
-        return withContext(context -> readInternal(context, null));
+        return withContext(context -> readInternal(context));
     }
 
-    /**
-     * Reads a cosmos client encryption key
-     *
-     * @param requestOptions  the request options.
-     * @return a {@link Mono} containing the single resource response with the read client encryption key or an error.
-     */
-    Mono<CosmosClientEncryptionKeyResponse> read(RequestOptions requestOptions) {
-        return withContext(context -> readInternal(context, requestOptions));
-    }
-
-    private Mono<CosmosClientEncryptionKeyResponse> readInternal(Context context, RequestOptions requestOptions) {
+    private Mono<CosmosClientEncryptionKeyResponse> readInternal(Context context) {
         String spanName = "readClientEncryptionKey." + getId();
         Mono<CosmosClientEncryptionKeyResponse> responseMono = this.database.getDocClientWrapper()
-            .readClientEncryptionKey(getLink(), requestOptions)
+            .readClientEncryptionKey(getLink(), null)
             .map(response -> ModelBridgeInternal.createCosmosClientEncryptionKeyResponse(response)).single();
         return database.getClient().getTracerProvider().traceEnabledCosmosResponsePublisher(responseMono, context,
             spanName,
@@ -108,16 +96,5 @@ public final class CosmosAsyncClientEncryptionKey {
         builder.append("/");
         builder.append(getId());
         return builder.toString();
-    }
-
-    static {
-        ImplementationBridgeHelpers.CosmosAsyncClientEncryptionKeyHelper.setCosmosAsyncClientEncryptionKeyAccessor(
-            new ImplementationBridgeHelpers.CosmosAsyncClientEncryptionKeyHelper.CosmosAsyncClientEncryptionKeyAccessor() {
-
-                @Override
-                public Mono<CosmosClientEncryptionKeyResponse> readClientEncryptionKey(CosmosAsyncClientEncryptionKey cosmosAsyncClientEncryptionKey, RequestOptions requestOptions) {
-                    return cosmosAsyncClientEncryptionKey.read(requestOptions);
-                }
-            });
     }
 }

@@ -24,7 +24,7 @@ public interface ServiceTagInformationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources with pagination as paginated response with {@link PagedFlux}.
+     * @return a list of service tag information resources with pagination.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ServiceTagInformationInner> listAsync(String location, Boolean noAddressPrefixes, String tagName);
@@ -38,7 +38,7 @@ public interface ServiceTagInformationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources with pagination as paginated response with {@link PagedFlux}.
+     * @return a list of service tag information resources with pagination.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ServiceTagInformationInner> listAsync(String location);
@@ -52,8 +52,7 @@ public interface ServiceTagInformationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources with pagination as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of service tag information resources with pagination.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ServiceTagInformationInner> list(String location);
@@ -70,8 +69,7 @@ public interface ServiceTagInformationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources with pagination as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of service tag information resources with pagination.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ServiceTagInformationInner> list(

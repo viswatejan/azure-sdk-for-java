@@ -7,12 +7,15 @@ package com.azure.resourcemanager.containerservice.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.containerservice.models.OSOptionProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The list of OS option properties. */
 @Fluent
 public final class OSOptionPropertyList {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OSOptionPropertyList.class);
+
     /*
      * The list of OS options.
      */
@@ -46,7 +49,7 @@ public final class OSOptionPropertyList {
      */
     public void validate() {
         if (osOptionPropertyList() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property osOptionPropertyList in model OSOptionPropertyList"));
@@ -54,6 +57,4 @@ public final class OSOptionPropertyList {
             osOptionPropertyList().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OSOptionPropertyList.class);
 }

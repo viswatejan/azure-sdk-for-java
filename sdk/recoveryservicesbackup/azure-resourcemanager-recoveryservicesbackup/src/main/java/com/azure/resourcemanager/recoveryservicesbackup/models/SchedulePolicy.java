@@ -21,8 +21,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "LogSchedulePolicy", value = LogSchedulePolicy.class),
     @JsonSubTypes.Type(name = "LongTermSchedulePolicy", value = LongTermSchedulePolicy.class),
-    @JsonSubTypes.Type(name = "SimpleSchedulePolicy", value = SimpleSchedulePolicy.class),
-    @JsonSubTypes.Type(name = "SimpleSchedulePolicyV2", value = SimpleSchedulePolicyV2.class)
+    @JsonSubTypes.Type(name = "SimpleSchedulePolicy", value = SimpleSchedulePolicy.class)
 })
 @Immutable
 public class SchedulePolicy {

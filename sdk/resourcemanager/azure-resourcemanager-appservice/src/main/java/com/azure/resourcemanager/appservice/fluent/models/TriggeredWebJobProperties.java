@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.appservice.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.models.TriggeredJobRun;
 import com.azure.resourcemanager.appservice.models.WebJobType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -14,6 +16,8 @@ import java.util.Map;
 /** TriggeredWebJob resource specific properties. */
 @Fluent
 public final class TriggeredWebJobProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TriggeredWebJobProperties.class);
+
     /*
      * Latest job run information.
      */

@@ -6,11 +6,14 @@ package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Describes the load balancer configuration. */
 @Fluent
 public final class LoadBalancerConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LoadBalancerConfiguration.class);
+
     /*
      * Resource Id
      */
@@ -96,12 +99,12 @@ public final class LoadBalancerConfiguration {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model LoadBalancerConfiguration"));
         }
         if (properties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property properties in model LoadBalancerConfiguration"));
@@ -109,6 +112,4 @@ public final class LoadBalancerConfiguration {
             properties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(LoadBalancerConfiguration.class);
 }

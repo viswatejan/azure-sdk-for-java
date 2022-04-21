@@ -5,30 +5,29 @@
 package com.azure.resourcemanager.mysql.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Represents a Query Text. */
+@JsonFlatten
 @Fluent
-public final class QueryTextInner extends ProxyResource {
+public class QueryTextInner extends ProxyResource {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(QueryTextInner.class);
 
     /*
-     * The properties of a query text.
+     * Query identifier unique to the server.
      */
-    @JsonProperty(value = "properties")
-    private QueryTextProperties innerProperties;
+    @JsonProperty(value = "properties.queryId")
+    private String queryId;
 
-    /**
-     * Get the innerProperties property: The properties of a query text.
-     *
-     * @return the innerProperties value.
+    /*
+     * Query text.
      */
-    private QueryTextProperties innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.queryText")
+    private String queryText;
 
     /**
      * Get the queryId property: Query identifier unique to the server.
@@ -36,7 +35,7 @@ public final class QueryTextInner extends ProxyResource {
      * @return the queryId value.
      */
     public String queryId() {
-        return this.innerProperties() == null ? null : this.innerProperties().queryId();
+        return this.queryId;
     }
 
     /**
@@ -46,10 +45,7 @@ public final class QueryTextInner extends ProxyResource {
      * @return the QueryTextInner object itself.
      */
     public QueryTextInner withQueryId(String queryId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new QueryTextProperties();
-        }
-        this.innerProperties().withQueryId(queryId);
+        this.queryId = queryId;
         return this;
     }
 
@@ -59,7 +55,7 @@ public final class QueryTextInner extends ProxyResource {
      * @return the queryText value.
      */
     public String queryText() {
-        return this.innerProperties() == null ? null : this.innerProperties().queryText();
+        return this.queryText;
     }
 
     /**
@@ -69,10 +65,7 @@ public final class QueryTextInner extends ProxyResource {
      * @return the QueryTextInner object itself.
      */
     public QueryTextInner withQueryText(String queryText) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new QueryTextProperties();
-        }
-        this.innerProperties().withQueryText(queryText);
+        this.queryText = queryText;
         return this;
     }
 
@@ -82,8 +75,5 @@ public final class QueryTextInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
-        }
     }
 }

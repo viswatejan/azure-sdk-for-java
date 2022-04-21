@@ -24,7 +24,12 @@ public final class CheckNameAvailabilityInput {
      * The type of the resource whose name is to be validated.
      */
     @JsonProperty(value = "type", required = true)
-    private ResourceType type;
+    private String type;
+
+    /** Creates an instance of CheckNameAvailabilityInput class. */
+    public CheckNameAvailabilityInput() {
+        type = "Microsoft.Cdn/Profiles/Endpoints";
+    }
 
     /**
      * Get the name property: The resource name to validate.
@@ -51,7 +56,7 @@ public final class CheckNameAvailabilityInput {
      *
      * @return the type value.
      */
-    public ResourceType type() {
+    public String type() {
         return this.type;
     }
 
@@ -61,7 +66,7 @@ public final class CheckNameAvailabilityInput {
      * @param type the type value to set.
      * @return the CheckNameAvailabilityInput object itself.
      */
-    public CheckNameAvailabilityInput withType(ResourceType type) {
+    public CheckNameAvailabilityInput withType(String type) {
         this.type = type;
         return this;
     }
@@ -76,11 +81,6 @@ public final class CheckNameAvailabilityInput {
             throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model CheckNameAvailabilityInput"));
-        }
-        if (type() == null) {
-            throw logger
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model CheckNameAvailabilityInput"));
         }
     }
 }

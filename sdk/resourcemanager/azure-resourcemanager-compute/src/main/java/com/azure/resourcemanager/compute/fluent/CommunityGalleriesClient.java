@@ -21,8 +21,7 @@ public interface CommunityGalleriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a community gallery by gallery public name along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a community gallery by gallery public name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CommunityGalleryInner>> getWithResponseAsync(String location, String publicGalleryName);
@@ -35,7 +34,7 @@ public interface CommunityGalleriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a community gallery by gallery public name on successful completion of {@link Mono}.
+     * @return a community gallery by gallery public name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CommunityGalleryInner> getAsync(String location, String publicGalleryName);
@@ -62,7 +61,7 @@ public interface CommunityGalleriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a community gallery by gallery public name along with {@link Response}.
+     * @return a community gallery by gallery public name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CommunityGalleryInner> getWithResponse(String location, String publicGalleryName, Context context);

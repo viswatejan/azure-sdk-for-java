@@ -16,7 +16,7 @@ import java.util.List;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("WebApplicationFirewall")
 @Fluent
-public final class SecurityPolicyWebApplicationFirewallParameters extends SecurityPolicyPropertiesParameters {
+public final class SecurityPolicyWebApplicationFirewallParameters extends SecurityPolicyParameters {
     @JsonIgnore
     private final ClientLogger logger = new ClientLogger(SecurityPolicyWebApplicationFirewallParameters.class);
 

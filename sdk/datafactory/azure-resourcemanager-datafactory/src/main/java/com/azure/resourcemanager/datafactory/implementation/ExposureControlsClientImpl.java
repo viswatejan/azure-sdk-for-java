@@ -112,8 +112,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return exposure control feature for specific location along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return exposure control feature for specific location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExposureControlResponseInner>> getFeatureValueWithResponseAsync(
@@ -165,8 +164,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return exposure control feature for specific location along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return exposure control feature for specific location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExposureControlResponseInner>> getFeatureValueWithResponseAsync(
@@ -214,7 +212,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return exposure control feature for specific location on successful completion of {@link Mono}.
+     * @return exposure control feature for specific location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ExposureControlResponseInner> getFeatureValueAsync(
@@ -255,7 +253,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return exposure control feature for specific location along with {@link Response}.
+     * @return exposure control feature for specific location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ExposureControlResponseInner> getFeatureValueWithResponse(
@@ -272,8 +270,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return exposure control feature for specific factory along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return exposure control feature for specific factory.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExposureControlResponseInner>> getFeatureValueByFactoryWithResponseAsync(
@@ -331,8 +328,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return exposure control feature for specific factory along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return exposure control feature for specific factory.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExposureControlResponseInner>> getFeatureValueByFactoryWithResponseAsync(
@@ -386,7 +382,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return exposure control feature for specific factory on successful completion of {@link Mono}.
+     * @return exposure control feature for specific factory.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ExposureControlResponseInner> getFeatureValueByFactoryAsync(
@@ -429,7 +425,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return exposure control feature for specific factory along with {@link Response}.
+     * @return exposure control feature for specific factory.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ExposureControlResponseInner> getFeatureValueByFactoryWithResponse(
@@ -448,8 +444,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of exposure control features for specific factory along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return list of exposure control features for specific factory.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExposureControlBatchResponseInner>> queryFeatureValuesByFactoryWithResponseAsync(
@@ -508,8 +503,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of exposure control features for specific factory along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return list of exposure control features for specific factory.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExposureControlBatchResponseInner>> queryFeatureValuesByFactoryWithResponseAsync(
@@ -567,7 +561,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of exposure control features for specific factory on successful completion of {@link Mono}.
+     * @return list of exposure control features for specific factory.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ExposureControlBatchResponseInner> queryFeatureValuesByFactoryAsync(
@@ -610,7 +604,7 @@ public final class ExposureControlsClientImpl implements ExposureControlsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of exposure control features for specific factory along with {@link Response}.
+     * @return list of exposure control features for specific factory.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ExposureControlBatchResponseInner> queryFeatureValuesByFactoryWithResponse(

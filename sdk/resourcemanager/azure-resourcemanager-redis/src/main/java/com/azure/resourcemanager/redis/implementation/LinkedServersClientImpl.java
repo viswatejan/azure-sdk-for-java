@@ -29,6 +29,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.redis.fluent.LinkedServersClient;
@@ -41,6 +42,8 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in LinkedServersClient. */
 public final class LinkedServersClientImpl implements LinkedServersClient {
+    private final ClientLogger logger = new ClientLogger(LinkedServersClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final LinkedServersService service;
 
@@ -150,8 +153,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response to put/get linked server (with properties) for Redis cache along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return response to put/get linked server (with properties) for Redis cache.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -213,8 +215,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response to put/get linked server (with properties) for Redis cache along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return response to put/get linked server (with properties) for Redis cache.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -276,10 +277,9 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of response to put/get linked server (with properties) for Redis
-     *     cache.
+     * @return response to put/get linked server (with properties) for Redis cache.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public PollerFlux<PollResult<RedisLinkedServerWithPropertiesInner>, RedisLinkedServerWithPropertiesInner>
         beginCreateAsync(
             String resourceGroupName,
@@ -309,10 +309,9 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of response to put/get linked server (with properties) for Redis
-     *     cache.
+     * @return response to put/get linked server (with properties) for Redis cache.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<RedisLinkedServerWithPropertiesInner>, RedisLinkedServerWithPropertiesInner>
         beginCreateAsync(
             String resourceGroupName,
@@ -343,10 +342,9 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response to put/get linked server (with properties) for Redis
-     *     cache.
+     * @return response to put/get linked server (with properties) for Redis cache.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<RedisLinkedServerWithPropertiesInner>, RedisLinkedServerWithPropertiesInner>
         beginCreate(
             String resourceGroupName,
@@ -367,10 +365,9 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response to put/get linked server (with properties) for Redis
-     *     cache.
+     * @return response to put/get linked server (with properties) for Redis cache.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<RedisLinkedServerWithPropertiesInner>, RedisLinkedServerWithPropertiesInner>
         beginCreate(
             String resourceGroupName,
@@ -391,8 +388,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response to put/get linked server (with properties) for Redis cache on successful completion of {@link
-     *     Mono}.
+     * @return response to put/get linked server (with properties) for Redis cache.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RedisLinkedServerWithPropertiesInner> createAsync(
@@ -413,8 +409,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response to put/get linked server (with properties) for Redis cache on successful completion of {@link
-     *     Mono}.
+     * @return response to put/get linked server (with properties) for Redis cache.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<RedisLinkedServerWithPropertiesInner> createAsync(
@@ -478,7 +473,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteWithResponseAsync(
@@ -533,7 +528,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -584,7 +579,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(String resourceGroupName, String name, String linkedServerName) {
@@ -617,7 +612,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -634,8 +629,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the detailed information about a linked server of a redis cache (requires Premium SKU) along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return the detailed information about a linked server of a redis cache (requires Premium SKU).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<RedisLinkedServerWithPropertiesInner>> getWithResponseAsync(
@@ -690,8 +684,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the detailed information about a linked server of a redis cache (requires Premium SKU) along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return the detailed information about a linked server of a redis cache (requires Premium SKU).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RedisLinkedServerWithPropertiesInner>> getWithResponseAsync(
@@ -742,8 +735,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the detailed information about a linked server of a redis cache (requires Premium SKU) on successful
-     *     completion of {@link Mono}.
+     * @return the detailed information about a linked server of a redis cache (requires Premium SKU).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RedisLinkedServerWithPropertiesInner> getAsync(
@@ -785,8 +777,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the detailed information about a linked server of a redis cache (requires Premium SKU) along with {@link
-     *     Response}.
+     * @return the detailed information about a linked server of a redis cache (requires Premium SKU).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<RedisLinkedServerWithPropertiesInner> getWithResponse(
@@ -802,8 +793,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of linked servers associated with this redis cache (requires Premium SKU) along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the list of linked servers associated with this redis cache (requires Premium SKU).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RedisLinkedServerWithPropertiesInner>> listSinglePageAsync(
@@ -861,8 +851,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of linked servers associated with this redis cache (requires Premium SKU) along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the list of linked servers associated with this redis cache (requires Premium SKU).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RedisLinkedServerWithPropertiesInner>> listSinglePageAsync(
@@ -916,8 +905,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of linked servers associated with this redis cache (requires Premium SKU) as paginated response
-     *     with {@link PagedFlux}.
+     * @return the list of linked servers associated with this redis cache (requires Premium SKU).
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<RedisLinkedServerWithPropertiesInner> listAsync(String resourceGroupName, String name) {
@@ -934,8 +922,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of linked servers associated with this redis cache (requires Premium SKU) as paginated response
-     *     with {@link PagedFlux}.
+     * @return the list of linked servers associated with this redis cache (requires Premium SKU).
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RedisLinkedServerWithPropertiesInner> listAsync(
@@ -953,8 +940,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of linked servers associated with this redis cache (requires Premium SKU) as paginated response
-     *     with {@link PagedIterable}.
+     * @return the list of linked servers associated with this redis cache (requires Premium SKU).
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RedisLinkedServerWithPropertiesInner> list(String resourceGroupName, String name) {
@@ -970,8 +956,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of linked servers associated with this redis cache (requires Premium SKU) as paginated response
-     *     with {@link PagedIterable}.
+     * @return the list of linked servers associated with this redis cache (requires Premium SKU).
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RedisLinkedServerWithPropertiesInner> list(
@@ -986,8 +971,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of linked servers (with properties) of a Redis cache along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return list of linked servers (with properties) of a Redis cache.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RedisLinkedServerWithPropertiesInner>> listNextSinglePageAsync(String nextLink) {
@@ -1023,8 +1007,7 @@ public final class LinkedServersClientImpl implements LinkedServersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of linked servers (with properties) of a Redis cache along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return list of linked servers (with properties) of a Redis cache.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RedisLinkedServerWithPropertiesInner>> listNextSinglePageAsync(

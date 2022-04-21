@@ -6,11 +6,14 @@ package com.azure.resourcemanager.containerservice.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Profile for Windows VMs in the managed cluster. */
 @Fluent
 public final class ManagedClusterWindowsProfile {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedClusterWindowsProfile.class);
+
     /*
      * Specifies the name of the administrator account. <br><br>
      * **Restriction:** Cannot end in "." <br><br> **Disallowed values:**
@@ -189,7 +192,7 @@ public final class ManagedClusterWindowsProfile {
      */
     public void validate() {
         if (adminUsername() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property adminUsername in model ManagedClusterWindowsProfile"));
@@ -198,6 +201,4 @@ public final class ManagedClusterWindowsProfile {
             gmsaProfile().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ManagedClusterWindowsProfile.class);
 }

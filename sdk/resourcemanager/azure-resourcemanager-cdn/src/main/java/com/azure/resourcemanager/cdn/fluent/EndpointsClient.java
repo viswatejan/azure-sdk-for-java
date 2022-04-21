@@ -17,10 +17,8 @@ import com.azure.resourcemanager.cdn.fluent.models.EndpointInner;
 import com.azure.resourcemanager.cdn.fluent.models.ResourceUsageInner;
 import com.azure.resourcemanager.cdn.fluent.models.ValidateCustomDomainOutputInner;
 import com.azure.resourcemanager.cdn.models.EndpointUpdateParameters;
-import com.azure.resourcemanager.cdn.models.LoadParameters;
-import com.azure.resourcemanager.cdn.models.PurgeParameters;
-import com.azure.resourcemanager.cdn.models.ValidateCustomDomainInput;
 import java.nio.ByteBuffer;
+import java.util.List;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -34,7 +32,7 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list endpoints as paginated response with {@link PagedFlux}.
+     * @return result of the request to list endpoints.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<EndpointInner> listByProfileAsync(String resourceGroupName, String profileName);
@@ -47,7 +45,7 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list endpoints as paginated response with {@link PagedIterable}.
+     * @return result of the request to list endpoints.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<EndpointInner> listByProfile(String resourceGroupName, String profileName);
@@ -61,7 +59,7 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list endpoints as paginated response with {@link PagedIterable}.
+     * @return result of the request to list endpoints.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<EndpointInner> listByProfile(String resourceGroupName, String profileName, Context context);
@@ -77,7 +75,7 @@ public interface EndpointsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing CDN endpoint with the specified endpoint name under the specified subscription, resource
-     *     group and profile along with {@link Response} on successful completion of {@link Mono}.
+     *     group and profile.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<EndpointInner>> getWithResponseAsync(
@@ -94,7 +92,7 @@ public interface EndpointsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing CDN endpoint with the specified endpoint name under the specified subscription, resource
-     *     group and profile on successful completion of {@link Mono}.
+     *     group and profile.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<EndpointInner> getAsync(String resourceGroupName, String profileName, String endpointName);
@@ -127,7 +125,7 @@ public interface EndpointsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing CDN endpoint with the specified endpoint name under the specified subscription, resource
-     *     group and profile along with {@link Response}.
+     *     group and profile.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<EndpointInner> getWithResponse(
@@ -140,17 +138,16 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param endpointParam Endpoint properties.
+     * @param endpoint Endpoint properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
-     *     protocol, content caching and delivery behavior along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     *     protocol, content caching and delivery behavior.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
-        String resourceGroupName, String profileName, String endpointName, EndpointInner endpointParam);
+        String resourceGroupName, String profileName, String endpointName, EndpointInner endpoint);
 
     /**
      * Creates a new CDN endpoint with the specified endpoint name under the specified subscription, resource group and
@@ -159,75 +156,71 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param endpointParam Endpoint properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    PollerFlux<PollResult<EndpointInner>, EndpointInner> beginCreateAsync(
-        String resourceGroupName, String profileName, String endpointName, EndpointInner endpointParam);
-
-    /**
-     * Creates a new CDN endpoint with the specified endpoint name under the specified subscription, resource group and
-     * profile.
-     *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the CDN profile which is unique within the resource group.
-     * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param endpointParam Endpoint properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<EndpointInner>, EndpointInner> beginCreate(
-        String resourceGroupName, String profileName, String endpointName, EndpointInner endpointParam);
-
-    /**
-     * Creates a new CDN endpoint with the specified endpoint name under the specified subscription, resource group and
-     * profile.
-     *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the CDN profile which is unique within the resource group.
-     * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param endpointParam Endpoint properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<EndpointInner>, EndpointInner> beginCreate(
-        String resourceGroupName,
-        String profileName,
-        String endpointName,
-        EndpointInner endpointParam,
-        Context context);
-
-    /**
-     * Creates a new CDN endpoint with the specified endpoint name under the specified subscription, resource group and
-     * profile.
-     *
-     * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the CDN profile which is unique within the resource group.
-     * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param endpointParam Endpoint properties.
+     * @param endpoint Endpoint properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
-     *     protocol, content caching and delivery behavior on successful completion of {@link Mono}.
+     *     protocol, content caching and delivery behavior.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PollerFlux<PollResult<EndpointInner>, EndpointInner> beginCreateAsync(
+        String resourceGroupName, String profileName, String endpointName, EndpointInner endpoint);
+
+    /**
+     * Creates a new CDN endpoint with the specified endpoint name under the specified subscription, resource group and
+     * profile.
+     *
+     * @param resourceGroupName Name of the Resource group within the Azure subscription.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
+     * @param endpointName Name of the endpoint under the profile which is unique globally.
+     * @param endpoint Endpoint properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SyncPoller<PollResult<EndpointInner>, EndpointInner> beginCreate(
+        String resourceGroupName, String profileName, String endpointName, EndpointInner endpoint);
+
+    /**
+     * Creates a new CDN endpoint with the specified endpoint name under the specified subscription, resource group and
+     * profile.
+     *
+     * @param resourceGroupName Name of the Resource group within the Azure subscription.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
+     * @param endpointName Name of the endpoint under the profile which is unique globally.
+     * @param endpoint Endpoint properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SyncPoller<PollResult<EndpointInner>, EndpointInner> beginCreate(
+        String resourceGroupName, String profileName, String endpointName, EndpointInner endpoint, Context context);
+
+    /**
+     * Creates a new CDN endpoint with the specified endpoint name under the specified subscription, resource group and
+     * profile.
+     *
+     * @param resourceGroupName Name of the Resource group within the Azure subscription.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
+     * @param endpointName Name of the endpoint under the profile which is unique globally.
+     * @param endpoint Endpoint properties.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<EndpointInner> createAsync(
-        String resourceGroupName, String profileName, String endpointName, EndpointInner endpointParam);
+        String resourceGroupName, String profileName, String endpointName, EndpointInner endpoint);
 
     /**
      * Creates a new CDN endpoint with the specified endpoint name under the specified subscription, resource group and
@@ -236,7 +229,7 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param endpointParam Endpoint properties.
+     * @param endpoint Endpoint properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -244,8 +237,7 @@ public interface EndpointsClient {
      *     protocol, content caching and delivery behavior.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    EndpointInner create(
-        String resourceGroupName, String profileName, String endpointName, EndpointInner endpointParam);
+    EndpointInner create(String resourceGroupName, String profileName, String endpointName, EndpointInner endpoint);
 
     /**
      * Creates a new CDN endpoint with the specified endpoint name under the specified subscription, resource group and
@@ -254,7 +246,7 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param endpointParam Endpoint properties.
+     * @param endpoint Endpoint properties.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -264,11 +256,7 @@ public interface EndpointsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     EndpointInner create(
-        String resourceGroupName,
-        String profileName,
-        String endpointName,
-        EndpointInner endpointParam,
-        Context context);
+        String resourceGroupName, String profileName, String endpointName, EndpointInner endpoint, Context context);
 
     /**
      * Updates an existing CDN endpoint with the specified endpoint name under the specified subscription, resource
@@ -284,8 +272,7 @@ public interface EndpointsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
-     *     protocol, content caching and delivery behavior along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     *     protocol, content caching and delivery behavior.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -307,10 +294,10 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     PollerFlux<PollResult<EndpointInner>, EndpointInner> beginUpdateAsync(
         String resourceGroupName,
         String profileName,
@@ -330,10 +317,10 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<EndpointInner>, EndpointInner> beginUpdate(
         String resourceGroupName,
         String profileName,
@@ -354,10 +341,10 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<EndpointInner>, EndpointInner> beginUpdate(
         String resourceGroupName,
         String profileName,
@@ -379,7 +366,7 @@ public interface EndpointsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
-     *     protocol, content caching and delivery behavior on successful completion of {@link Mono}.
+     *     protocol, content caching and delivery behavior.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<EndpointInner> updateAsync(
@@ -446,7 +433,7 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -462,9 +449,9 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String profileName, String endpointName);
 
@@ -478,9 +465,9 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String profileName, String endpointName);
 
     /**
@@ -494,9 +481,9 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String profileName, String endpointName, Context context);
 
@@ -510,7 +497,7 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String profileName, String endpointName);
@@ -554,8 +541,7 @@ public interface EndpointsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
-     *     protocol, content caching and delivery behavior along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     *     protocol, content caching and delivery behavior.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(
@@ -570,10 +556,10 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     PollerFlux<PollResult<EndpointInner>, EndpointInner> beginStartAsync(
         String resourceGroupName, String profileName, String endpointName);
 
@@ -586,10 +572,10 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<EndpointInner>, EndpointInner> beginStart(
         String resourceGroupName, String profileName, String endpointName);
 
@@ -603,10 +589,10 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<EndpointInner>, EndpointInner> beginStart(
         String resourceGroupName, String profileName, String endpointName, Context context);
 
@@ -620,7 +606,7 @@ public interface EndpointsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
-     *     protocol, content caching and delivery behavior on successful completion of {@link Mono}.
+     *     protocol, content caching and delivery behavior.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<EndpointInner> startAsync(String resourceGroupName, String profileName, String endpointName);
@@ -666,8 +652,7 @@ public interface EndpointsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
-     *     protocol, content caching and delivery behavior along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     *     protocol, content caching and delivery behavior.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> stopWithResponseAsync(
@@ -682,10 +667,10 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     PollerFlux<PollResult<EndpointInner>, EndpointInner> beginStopAsync(
         String resourceGroupName, String profileName, String endpointName);
 
@@ -698,10 +683,10 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<EndpointInner>, EndpointInner> beginStop(
         String resourceGroupName, String profileName, String endpointName);
 
@@ -715,10 +700,10 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of cDN endpoint is the entity within a CDN profile containing
-     *     configuration information such as origin, protocol, content caching and delivery behavior.
+     * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
+     *     protocol, content caching and delivery behavior.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<EndpointInner>, EndpointInner> beginStop(
         String resourceGroupName, String profileName, String endpointName, Context context);
 
@@ -732,7 +717,7 @@ public interface EndpointsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return cDN endpoint is the entity within a CDN profile containing configuration information such as origin,
-     *     protocol, content caching and delivery behavior on successful completion of {@link Mono}.
+     *     protocol, content caching and delivery behavior.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<EndpointInner> stopAsync(String resourceGroupName, String profileName, String endpointName);
@@ -774,17 +759,15 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be purged. Path can be a full URL, e.g. '/pictures/city.png'
-     *     which removes a single file, or a directory with a wildcard, e.g. '/pictures/*' which removes all folders and
-     *     files in the directory.
+     * @param contentPaths The path to the content to be purged. Can describe a file path or a wild card directory.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> purgeContentWithResponseAsync(
-        String resourceGroupName, String profileName, String endpointName, PurgeParameters contentFilePaths);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths);
 
     /**
      * Removes a content from CDN.
@@ -792,17 +775,15 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be purged. Path can be a full URL, e.g. '/pictures/city.png'
-     *     which removes a single file, or a directory with a wildcard, e.g. '/pictures/*' which removes all folders and
-     *     files in the directory.
+     * @param contentPaths The path to the content to be purged. Can describe a file path or a wild card directory.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     PollerFlux<PollResult<Void>, Void> beginPurgeContentAsync(
-        String resourceGroupName, String profileName, String endpointName, PurgeParameters contentFilePaths);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths);
 
     /**
      * Removes a content from CDN.
@@ -810,17 +791,15 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be purged. Path can be a full URL, e.g. '/pictures/city.png'
-     *     which removes a single file, or a directory with a wildcard, e.g. '/pictures/*' which removes all folders and
-     *     files in the directory.
+     * @param contentPaths The path to the content to be purged. Can describe a file path or a wild card directory.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginPurgeContent(
-        String resourceGroupName, String profileName, String endpointName, PurgeParameters contentFilePaths);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths);
 
     /**
      * Removes a content from CDN.
@@ -828,22 +807,16 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be purged. Path can be a full URL, e.g. '/pictures/city.png'
-     *     which removes a single file, or a directory with a wildcard, e.g. '/pictures/*' which removes all folders and
-     *     files in the directory.
+     * @param contentPaths The path to the content to be purged. Can describe a file path or a wild card directory.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginPurgeContent(
-        String resourceGroupName,
-        String profileName,
-        String endpointName,
-        PurgeParameters contentFilePaths,
-        Context context);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths, Context context);
 
     /**
      * Removes a content from CDN.
@@ -851,17 +824,15 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be purged. Path can be a full URL, e.g. '/pictures/city.png'
-     *     which removes a single file, or a directory with a wildcard, e.g. '/pictures/*' which removes all folders and
-     *     files in the directory.
+     * @param contentPaths The path to the content to be purged. Can describe a file path or a wild card directory.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> purgeContentAsync(
-        String resourceGroupName, String profileName, String endpointName, PurgeParameters contentFilePaths);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths);
 
     /**
      * Removes a content from CDN.
@@ -869,16 +840,13 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be purged. Path can be a full URL, e.g. '/pictures/city.png'
-     *     which removes a single file, or a directory with a wildcard, e.g. '/pictures/*' which removes all folders and
-     *     files in the directory.
+     * @param contentPaths The path to the content to be purged. Can describe a file path or a wild card directory.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void purgeContent(
-        String resourceGroupName, String profileName, String endpointName, PurgeParameters contentFilePaths);
+    void purgeContent(String resourceGroupName, String profileName, String endpointName, List<String> contentPaths);
 
     /**
      * Removes a content from CDN.
@@ -886,9 +854,7 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be purged. Path can be a full URL, e.g. '/pictures/city.png'
-     *     which removes a single file, or a directory with a wildcard, e.g. '/pictures/*' which removes all folders and
-     *     files in the directory.
+     * @param contentPaths The path to the content to be purged. Can describe a file path or a wild card directory.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -896,11 +862,7 @@ public interface EndpointsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void purgeContent(
-        String resourceGroupName,
-        String profileName,
-        String endpointName,
-        PurgeParameters contentFilePaths,
-        Context context);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths, Context context);
 
     /**
      * Pre-loads a content to CDN. Available for Verizon Profiles.
@@ -908,16 +870,15 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be loaded. Path should be a full URL, e.g.
-     *     ‘/pictures/city.png' which loads a single file.
+     * @param contentPaths The path to the content to be loaded. Path should be a relative file URL of the origin.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> loadContentWithResponseAsync(
-        String resourceGroupName, String profileName, String endpointName, LoadParameters contentFilePaths);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths);
 
     /**
      * Pre-loads a content to CDN. Available for Verizon Profiles.
@@ -925,16 +886,15 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be loaded. Path should be a full URL, e.g.
-     *     ‘/pictures/city.png' which loads a single file.
+     * @param contentPaths The path to the content to be loaded. Path should be a relative file URL of the origin.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     PollerFlux<PollResult<Void>, Void> beginLoadContentAsync(
-        String resourceGroupName, String profileName, String endpointName, LoadParameters contentFilePaths);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths);
 
     /**
      * Pre-loads a content to CDN. Available for Verizon Profiles.
@@ -942,16 +902,15 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be loaded. Path should be a full URL, e.g.
-     *     ‘/pictures/city.png' which loads a single file.
+     * @param contentPaths The path to the content to be loaded. Path should be a relative file URL of the origin.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginLoadContent(
-        String resourceGroupName, String profileName, String endpointName, LoadParameters contentFilePaths);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths);
 
     /**
      * Pre-loads a content to CDN. Available for Verizon Profiles.
@@ -959,21 +918,16 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be loaded. Path should be a full URL, e.g.
-     *     ‘/pictures/city.png' which loads a single file.
+     * @param contentPaths The path to the content to be loaded. Path should be a relative file URL of the origin.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginLoadContent(
-        String resourceGroupName,
-        String profileName,
-        String endpointName,
-        LoadParameters contentFilePaths,
-        Context context);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths, Context context);
 
     /**
      * Pre-loads a content to CDN. Available for Verizon Profiles.
@@ -981,16 +935,15 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be loaded. Path should be a full URL, e.g.
-     *     ‘/pictures/city.png' which loads a single file.
+     * @param contentPaths The path to the content to be loaded. Path should be a relative file URL of the origin.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> loadContentAsync(
-        String resourceGroupName, String profileName, String endpointName, LoadParameters contentFilePaths);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths);
 
     /**
      * Pre-loads a content to CDN. Available for Verizon Profiles.
@@ -998,15 +951,13 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be loaded. Path should be a full URL, e.g.
-     *     ‘/pictures/city.png' which loads a single file.
+     * @param contentPaths The path to the content to be loaded. Path should be a relative file URL of the origin.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void loadContent(
-        String resourceGroupName, String profileName, String endpointName, LoadParameters contentFilePaths);
+    void loadContent(String resourceGroupName, String profileName, String endpointName, List<String> contentPaths);
 
     /**
      * Pre-loads a content to CDN. Available for Verizon Profiles.
@@ -1014,8 +965,7 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param contentFilePaths The path to the content to be loaded. Path should be a full URL, e.g.
-     *     ‘/pictures/city.png' which loads a single file.
+     * @param contentPaths The path to the content to be loaded. Path should be a relative file URL of the origin.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -1023,11 +973,7 @@ public interface EndpointsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void loadContent(
-        String resourceGroupName,
-        String profileName,
-        String endpointName,
-        LoadParameters contentFilePaths,
-        Context context);
+        String resourceGroupName, String profileName, String endpointName, List<String> contentPaths, Context context);
 
     /**
      * Validates the custom domain mapping to ensure it maps to the correct CDN endpoint in DNS.
@@ -1035,18 +981,15 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param customDomainProperties Custom domain to be validated.
+     * @param hostname The host name of the custom domain. Must be a domain name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return output of custom domain validation along with {@link Response} on successful completion of {@link Mono}.
+     * @return output of custom domain validation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ValidateCustomDomainOutputInner>> validateCustomDomainWithResponseAsync(
-        String resourceGroupName,
-        String profileName,
-        String endpointName,
-        ValidateCustomDomainInput customDomainProperties);
+        String resourceGroupName, String profileName, String endpointName, String hostname);
 
     /**
      * Validates the custom domain mapping to ensure it maps to the correct CDN endpoint in DNS.
@@ -1054,18 +997,15 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param customDomainProperties Custom domain to be validated.
+     * @param hostname The host name of the custom domain. Must be a domain name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return output of custom domain validation on successful completion of {@link Mono}.
+     * @return output of custom domain validation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ValidateCustomDomainOutputInner> validateCustomDomainAsync(
-        String resourceGroupName,
-        String profileName,
-        String endpointName,
-        ValidateCustomDomainInput customDomainProperties);
+        String resourceGroupName, String profileName, String endpointName, String hostname);
 
     /**
      * Validates the custom domain mapping to ensure it maps to the correct CDN endpoint in DNS.
@@ -1073,7 +1013,7 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param customDomainProperties Custom domain to be validated.
+     * @param hostname The host name of the custom domain. Must be a domain name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1081,10 +1021,7 @@ public interface EndpointsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ValidateCustomDomainOutputInner validateCustomDomain(
-        String resourceGroupName,
-        String profileName,
-        String endpointName,
-        ValidateCustomDomainInput customDomainProperties);
+        String resourceGroupName, String profileName, String endpointName, String hostname);
 
     /**
      * Validates the custom domain mapping to ensure it maps to the correct CDN endpoint in DNS.
@@ -1092,20 +1029,16 @@ public interface EndpointsClient {
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
      * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
-     * @param customDomainProperties Custom domain to be validated.
+     * @param hostname The host name of the custom domain. Must be a domain name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return output of custom domain validation along with {@link Response}.
+     * @return output of custom domain validation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ValidateCustomDomainOutputInner> validateCustomDomainWithResponse(
-        String resourceGroupName,
-        String profileName,
-        String endpointName,
-        ValidateCustomDomainInput customDomainProperties,
-        Context context);
+        String resourceGroupName, String profileName, String endpointName, String hostname, Context context);
 
     /**
      * Checks the quota and usage of geo filters and custom domains under the given endpoint.
@@ -1116,7 +1049,7 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return output of check resource usage API as paginated response with {@link PagedFlux}.
+     * @return output of check resource usage API.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ResourceUsageInner> listResourceUsageAsync(
@@ -1131,7 +1064,7 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return output of check resource usage API as paginated response with {@link PagedIterable}.
+     * @return output of check resource usage API.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ResourceUsageInner> listResourceUsage(
@@ -1147,7 +1080,7 @@ public interface EndpointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return output of check resource usage API as paginated response with {@link PagedIterable}.
+     * @return output of check resource usage API.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ResourceUsageInner> listResourceUsage(

@@ -6,11 +6,14 @@ package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Specification for using a Virtual Network. */
 @Fluent
 public final class VirtualNetworkProfile {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualNetworkProfile.class);
+
     /*
      * Resource id of the Virtual Network.
      */
@@ -100,11 +103,9 @@ public final class VirtualNetworkProfile {
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property id in model VirtualNetworkProfile"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(VirtualNetworkProfile.class);
 }

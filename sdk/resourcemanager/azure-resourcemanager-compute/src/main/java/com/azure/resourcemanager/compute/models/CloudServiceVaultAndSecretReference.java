@@ -6,11 +6,15 @@ package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SubResource;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The CloudServiceVaultAndSecretReference model. */
 @Fluent
 public final class CloudServiceVaultAndSecretReference {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CloudServiceVaultAndSecretReference.class);
+
     /*
      * The sourceVault property.
      */

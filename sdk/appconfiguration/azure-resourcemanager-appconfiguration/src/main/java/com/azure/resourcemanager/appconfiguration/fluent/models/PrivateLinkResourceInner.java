@@ -4,15 +4,17 @@
 
 package com.azure.resourcemanager.appconfiguration.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A resource that supports private link capabilities. */
-@Fluent
-public final class PrivateLinkResourceInner {
+@JsonFlatten
+@Immutable
+public class PrivateLinkResourceInner {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateLinkResourceInner.class);
 
     /*
@@ -34,10 +36,22 @@ public final class PrivateLinkResourceInner {
     private String type;
 
     /*
-     * Private link resource properties.
+     * The private link resource group id.
      */
-    @JsonProperty(value = "properties")
-    private PrivateLinkResourceProperties innerProperties;
+    @JsonProperty(value = "properties.groupId", access = JsonProperty.Access.WRITE_ONLY)
+    private String groupId;
+
+    /*
+     * The private link resource required member names.
+     */
+    @JsonProperty(value = "properties.requiredMembers", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> requiredMembers;
+
+    /*
+     * The list of required DNS zone names of the private link resource.
+     */
+    @JsonProperty(value = "properties.requiredZoneNames", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> requiredZoneNames;
 
     /**
      * Get the id property: The resource ID.
@@ -67,21 +81,12 @@ public final class PrivateLinkResourceInner {
     }
 
     /**
-     * Get the innerProperties property: Private link resource properties.
-     *
-     * @return the innerProperties value.
-     */
-    private PrivateLinkResourceProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
      * Get the groupId property: The private link resource group id.
      *
      * @return the groupId value.
      */
     public String groupId() {
-        return this.innerProperties() == null ? null : this.innerProperties().groupId();
+        return this.groupId;
     }
 
     /**
@@ -90,7 +95,7 @@ public final class PrivateLinkResourceInner {
      * @return the requiredMembers value.
      */
     public List<String> requiredMembers() {
-        return this.innerProperties() == null ? null : this.innerProperties().requiredMembers();
+        return this.requiredMembers;
     }
 
     /**
@@ -99,7 +104,7 @@ public final class PrivateLinkResourceInner {
      * @return the requiredZoneNames value.
      */
     public List<String> requiredZoneNames() {
-        return this.innerProperties() == null ? null : this.innerProperties().requiredZoneNames();
+        return this.requiredZoneNames;
     }
 
     /**
@@ -108,8 +113,5 @@ public final class PrivateLinkResourceInner {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
-        }
     }
 }

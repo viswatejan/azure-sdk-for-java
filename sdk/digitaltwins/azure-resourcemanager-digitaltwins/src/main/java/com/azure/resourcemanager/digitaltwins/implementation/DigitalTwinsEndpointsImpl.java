@@ -9,6 +9,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager;
 import com.azure.resourcemanager.digitaltwins.fluent.DigitalTwinsEndpointsClient;
 import com.azure.resourcemanager.digitaltwins.fluent.models.DigitalTwinsEndpointResourceInner;
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsEndpointResource;
@@ -20,11 +21,9 @@ public final class DigitalTwinsEndpointsImpl implements DigitalTwinsEndpoints {
 
     private final DigitalTwinsEndpointsClient innerClient;
 
-    private final com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager;
+    private final AzureDigitalTwinsManager serviceManager;
 
-    public DigitalTwinsEndpointsImpl(
-        DigitalTwinsEndpointsClient innerClient,
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager) {
+    public DigitalTwinsEndpointsImpl(DigitalTwinsEndpointsClient innerClient, AzureDigitalTwinsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -208,7 +207,7 @@ public final class DigitalTwinsEndpointsImpl implements DigitalTwinsEndpoints {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager() {
+    private AzureDigitalTwinsManager manager() {
         return this.serviceManager;
     }
 

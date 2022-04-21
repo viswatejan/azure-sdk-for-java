@@ -86,8 +86,7 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SQL pool's available maintenance windows along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return list of SQL pool's available maintenance windows.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MaintenanceWindowOptionsInner>> getWithResponseAsync(
@@ -150,8 +149,7 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SQL pool's available maintenance windows along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return list of SQL pool's available maintenance windows.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MaintenanceWindowOptionsInner>> getWithResponseAsync(
@@ -214,7 +212,7 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SQL pool's available maintenance windows on successful completion of {@link Mono}.
+     * @return list of SQL pool's available maintenance windows.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MaintenanceWindowOptionsInner> getAsync(
@@ -259,7 +257,7 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SQL pool's available maintenance windows along with {@link Response}.
+     * @return list of SQL pool's available maintenance windows.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MaintenanceWindowOptionsInner> getWithResponse(

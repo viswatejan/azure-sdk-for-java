@@ -13,10 +13,10 @@ import com.sun.jna.win32.W32APIOptions;
 import java.nio.charset.StandardCharsets;
 
 /**
- * This class allows access to Windows credentials via JNA.
+ * This class allows access to windows credentials via JNA.
  */
 public class WindowsCredentialAccessor {
-    private static final ClientLogger LOGGER = new ClientLogger(WindowsCredentialAccessor.class);
+    private final ClientLogger logger = new ClientLogger(WindowsCredentialAccessor.class);
     private WindowsCredentialApi accessor;
     private String serviceName;
     private String accountName;
@@ -48,17 +48,18 @@ public class WindowsCredentialAccessor {
             if (!readOk) {
                 int rc = Kernel32.INSTANCE.GetLastError();
                 String errMsg = Kernel32Util.formatMessage(rc);
-                throw LOGGER.logExceptionAsError(new RuntimeException(errMsg));
+                throw logger.logExceptionAsError(new RuntimeException(errMsg));
             }
             final WindowsCredentialApi.CREDENTIAL credential =
                     new WindowsCredentialApi.CREDENTIAL(pcredential.credential);
 
             byte[] secretBytes = credential.CredentialBlob.getByteArray(0, credential.CredentialBlobSize);
-            return new String(secretBytes, StandardCharsets.UTF_8);
+            final String secret = new String(secretBytes, StandardCharsets.UTF_8);
+            return secret;
         } catch (LastErrorException e) {
             int errorCode = e.getErrorCode();
             String errMsg = Kernel32Util.formatMessage(errorCode);
-            throw LOGGER.logExceptionAsError(new RuntimeException(errMsg));
+            throw logger.logExceptionAsError(new RuntimeException(errMsg));
 
         } finally {
             if (pcredential.credential != null) {

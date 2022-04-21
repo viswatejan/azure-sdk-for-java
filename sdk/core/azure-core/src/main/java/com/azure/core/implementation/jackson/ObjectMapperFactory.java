@@ -26,8 +26,7 @@ import java.lang.invoke.MethodType;
  * Constructs and configures {@link ObjectMapper} instances.
  */
 final class ObjectMapperFactory {
-    // ObjectMapperFactory is a commonly used factory, use a static logger.
-    private static final ClientLogger LOGGER = new ClientLogger(ObjectMapperFactory.class);
+    private final ClientLogger logger = new ClientLogger(ObjectMapperFactory.class);
 
     private static final String MUTABLE_COERCION_CONFIG = "com.fasterxml.jackson.databind.cfg.MutableCoercionConfig";
     private static final String COERCION_INPUT_SHAPE = "com.fasterxml.jackson.databind.cfg.CoercionInputShape";
@@ -61,7 +60,7 @@ final class ObjectMapperFactory {
                 .invoke();
             useReflectionToSetCoercion = true;
         } catch (Throwable ex) {
-            LOGGER.verbose("Failed to retrieve MethodHandles used to set coercion configurations. "
+            logger.verbose("Failed to retrieve MethodHandles used to set coercion configurations. "
                 + "Setting coercion configurations will be skipped.", ex);
         }
     }
@@ -97,10 +96,10 @@ final class ObjectMapperFactory {
                 Object object = coersionConfigDefaults.invoke(xmlMapper);
                 setCoercion.invoke(object, coercionInputShapeEmptyString, coercionActionAsNull);
             } catch (Throwable e) {
-                LOGGER.verbose("Failed to set coercion actions.", e);
+                logger.verbose("Failed to set coercion actions.", e);
             }
         } else {
-            LOGGER.verbose("Didn't set coercion defaults as it wasn't found on the classpath.");
+            logger.verbose("Didn't set coercion defaults as it wasn't found on the classpath.");
         }
 
         return xmlMapper;

@@ -30,11 +30,6 @@ public final class DocumentModel {
 
     private Map<String, DocTypeInfo> docTypes;
 
-    /*
-     * List of key-value tag attributes associated with the model.
-     */
-    private Map<String, String> tags;
-
     /**
      * Get the Unique model identifier.
      *
@@ -88,19 +83,6 @@ public final class DocumentModel {
         this.docTypes = docTypes;
     }
 
-    /**
-     * Get the user defined attributes associated with the model.
-     *
-     * @return the tags value.
-     */
-    public Map<String, String> getTags() {
-        return this.tags;
-    }
-
-    void setTags(Map<String, String> tags) {
-        this.tags = tags;
-    }
-
     static {
         DocumentModelHelper.setAccessor(new DocumentModelHelper.DocumentModelAccessor() {
             @Override
@@ -121,11 +103,6 @@ public final class DocumentModel {
             @Override
             public void setDocTypes(DocumentModel documentModel, Map<String, DocTypeInfo> docTypes) {
                 documentModel.setDocTypes(docTypes);
-            }
-
-            @Override
-            public void setTags(DocumentModel documentModel, Map<String, String> tags) {
-                documentModel.setTags(tags);
             }
         });
     }

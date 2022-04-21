@@ -6,11 +6,14 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Information used to connect to an Azure Storage Container using Blobfuse. */
 @Fluent
 public final class AzureBlobFileSystemConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureBlobFileSystemConfiguration.class);
+
     /*
      * The Azure Storage Account name.
      */
@@ -219,19 +222,19 @@ public final class AzureBlobFileSystemConfiguration {
      */
     public void validate() {
         if (accountName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property accountName in model AzureBlobFileSystemConfiguration"));
         }
         if (containerName() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property containerName in model AzureBlobFileSystemConfiguration"));
         }
         if (relativeMountPath() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property relativeMountPath in model AzureBlobFileSystemConfiguration"));
@@ -240,6 +243,4 @@ public final class AzureBlobFileSystemConfiguration {
             identityReference().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AzureBlobFileSystemConfiguration.class);
 }

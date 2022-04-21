@@ -38,12 +38,13 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * This class accesses IntelliJ Azure Tools credentials cache via JNA.
  */
 public class IntelliJCacheAccessor {
-    private static final ClientLogger LOGGER = new ClientLogger(IntelliJCacheAccessor.class);
+    private final ClientLogger logger = new ClientLogger(IntelliJCacheAccessor.class);
     private final String keePassDatabasePath;
     private static final byte[] CRYPTO_KEY = new byte[] {0x50, 0x72, 0x6f, 0x78, 0x79, 0x20, 0x43, 0x6f, 0x6e, 0x66,
         0x69, 0x67, 0x20, 0x53, 0x65, 0x63};
@@ -51,6 +52,8 @@ public class IntelliJCacheAccessor {
     private static final ObjectMapper DEFAULT_MAPPER = new ObjectMapper();
     private static final ObjectMapper DONT_FAIL_ON_UNKNOWN_PROPERTIES_MAPPER = new ObjectMapper()
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+    private static final Pattern CACHED_AUTH_RESULT_PATTERN = Pattern.compile("cachedAuthResult@");
 
     /**
      * Creates an instance of {@link IntelliJCacheAccessor}
@@ -61,7 +64,7 @@ public class IntelliJCacheAccessor {
         this.keePassDatabasePath = keePassDatabasePath;
     }
 
-    private List<String> getAzureToolsForIntelliJPluginConfigPaths() {
+    private List<String> getAzureToolsforIntelliJPluginConfigPaths() {
         return Arrays.asList(Paths.get(System.getProperty("user.home"), "AzureToolsForIntelliJ").toString(),
             Paths.get(System.getProperty("user.home"), ".AzureToolsForIntelliJ").toString());
     }
@@ -85,18 +88,15 @@ public class IntelliJCacheAccessor {
                 "account", "cachedAuthResult");
 
             String jsonCred  = new String(accessor.read(), StandardCharsets.UTF_8);
-
-            // If the JSON credential begins with 'cachedAuthResult@' create a substring with 'cachedAuthResult@'
-            // removed.
             if (jsonCred.startsWith("cachedAuthResult@")) {
-                jsonCred = jsonCred.substring("cachedAuthResult@".length());
+                jsonCred = CACHED_AUTH_RESULT_PATTERN.matcher(jsonCred).replaceFirst("");
             }
 
             return DEFAULT_MAPPER.readTree(jsonCred);
         } else if (Platform.isWindows()) {
             return getCredentialFromKdbx();
         } else {
-            throw LOGGER.logExceptionAsError(new RuntimeException(String.format("OS %s Platform not supported.",
+            throw logger.logExceptionAsError(new RuntimeException(String.format("OS %s Platform not supported.",
                     Platform.getOSType())));
         }
     }
@@ -132,9 +132,10 @@ public class IntelliJCacheAccessor {
     @SuppressWarnings({"rawtypes", "unchecked"})
     private JsonNode getCredentialFromKdbx() throws IOException {
         if (CoreUtils.isNullOrEmpty(keePassDatabasePath)) {
-            throw new CredentialUnavailableException("The KeePass database path is either empty or not configured."
+            throw logger.logExceptionAsError(
+                    new CredentialUnavailableException("The KeePass database path is either empty or not configured."
                            + " Please configure it on the builder. It is required to use "
-                           + "IntelliJ credential on the windows platform.");
+                           + "IntelliJ credential on the windows platform."));
         }
         String extractedpwd = getKdbxPassword();
 
@@ -154,7 +155,7 @@ public class IntelliJCacheAccessor {
             password = new String(decrypted, StandardCharsets.UTF_8);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
                 | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
-            throw LOGGER.logExceptionAsError(new RuntimeException("Unable to access cache.", e));
+            throw logger.logExceptionAsError(new RuntimeException("Unable to access cache.", e));
         }
 
         try (InputStream inputStream = new FileInputStream(keePassDatabasePath)) {
@@ -162,13 +163,13 @@ public class IntelliJCacheAccessor {
 
             String jsonToken = kdbxDatabase.getDatabaseEntryValue("ADAuthManager");
             if (CoreUtils.isNullOrEmpty(jsonToken)) {
-                throw new CredentialUnavailableException("No credentials found in the cache."
-                        + " Please login with IntelliJ Azure Tools plugin in the IDE.");
+                throw logger.logExceptionAsError(new CredentialUnavailableException("No credentials found in the cache."
+                        + " Please login with IntelliJ Azure Tools plugin in the IDE."));
             }
 
             return DEFAULT_MAPPER.readTree(jsonToken);
         } catch (Exception e) {
-            throw LOGGER.logExceptionAsError(new RuntimeException("Failed to read KeePass database.", e));
+            throw logger.logExceptionAsError(new RuntimeException("Failed to read KeePass database.", e));
         }
     }
 
@@ -186,7 +187,7 @@ public class IntelliJCacheAccessor {
                         extractedpwd = tokens[2];
                         break;
                     } else {
-                        throw LOGGER.logExceptionAsError(new RuntimeException("Password not found in the file."));
+                        throw logger.logExceptionAsError(new RuntimeException("Password not found in the file."));
                     }
                 }
                 line = reader.readLine();
@@ -236,7 +237,7 @@ public class IntelliJCacheAccessor {
      */
     public IntelliJAuthMethodDetails getAuthDetailsIfAvailable() throws IOException {
         File authFile = null;
-        for (String metadataPath : getAzureToolsForIntelliJPluginConfigPaths()) {
+        for (String metadataPath : getAzureToolsforIntelliJPluginConfigPaths()) {
             String authMethodDetailsPath =
                 Paths.get(metadataPath, "AuthMethodDetails.json").toString();
             authFile = new File(authMethodDetailsPath);
@@ -254,11 +255,11 @@ public class IntelliJCacheAccessor {
         if (CoreUtils.isNullOrEmpty(authType)) {
             return null;
         }
-        if ("SP".equalsIgnoreCase(authType)) {
+        if (authType.equalsIgnoreCase("SP")) {
             if (CoreUtils.isNullOrEmpty(authMethodDetails.getCredFilePath())) {
                 return null;
             }
-        } else if ("DC".equalsIgnoreCase(authType)) {
+        } else if (authType.equalsIgnoreCase("DC")) {
             if (CoreUtils.isNullOrEmpty(authMethodDetails.getAccountEmail())) {
                 return null;
             }

@@ -739,7 +739,7 @@ import java.util.Map;
 /** Samples for Components CreateOrUpdate. */
 public final class ComponentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2020-02-02/examples/ComponentsCreate.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/preview/2018-05-01-preview/examples/ComponentsCreate.json
      */
     /**
      * Sample code: ComponentCreate.
@@ -757,13 +757,11 @@ public final class ComponentsCreateOrUpdateSamples {
             .withApplicationType(ApplicationType.WEB)
             .withFlowType(FlowType.BLUEFIELD)
             .withRequestSource(RequestSource.REST)
-            .withWorkspaceResourceId(
-                "/subscriptions/subid/resourcegroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace")
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2020-02-02/examples/ComponentsUpdate.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/preview/2018-05-01-preview/examples/ComponentsUpdate.json
      */
     /**
      * Sample code: ComponentUpdate.
@@ -803,7 +801,7 @@ import com.azure.core.util.Context;
 /** Samples for Components Delete. */
 public final class ComponentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2020-02-02/examples/ComponentsDelete.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/preview/2018-05-01-preview/examples/ComponentsDelete.json
      */
     /**
      * Sample code: ComponentsDelete.
@@ -825,7 +823,7 @@ import com.azure.core.util.Context;
 /** Samples for Components GetByResourceGroup. */
 public final class ComponentsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2020-02-02/examples/ComponentsGet.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/preview/2018-05-01-preview/examples/ComponentsGet.json
      */
     /**
      * Sample code: ComponentGet.
@@ -846,7 +844,7 @@ import com.azure.core.util.Context;
 /** Samples for Components GetPurgeStatus. */
 public final class ComponentsGetPurgeStatusSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2020-02-02/examples/ComponentsPurgeStatus.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/preview/2018-05-01-preview/examples/ComponentsPurgeStatus.json
      */
     /**
      * Sample code: ComponentPurge.
@@ -871,7 +869,7 @@ import com.azure.core.util.Context;
 /** Samples for Components List. */
 public final class ComponentsListSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2020-02-02/examples/ComponentsList.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/preview/2018-05-01-preview/examples/ComponentsList.json
      */
     /**
      * Sample code: ComponentsList.json.
@@ -893,7 +891,7 @@ import com.azure.core.util.Context;
 /** Samples for Components ListByResourceGroup. */
 public final class ComponentsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2020-02-02/examples/ComponentsListByResourceGroup.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/preview/2018-05-01-preview/examples/ComponentsListByResourceGroup.json
      */
     /**
      * Sample code: ComponentListByResourceGroup.
@@ -918,7 +916,7 @@ import java.util.Arrays;
 /** Samples for Components Purge. */
 public final class ComponentsPurgeSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2020-02-02/examples/ComponentsPurge.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/preview/2018-05-01-preview/examples/ComponentsPurge.json
      */
     /**
      * Sample code: ComponentPurge.
@@ -957,7 +955,7 @@ import java.util.Map;
 /** Samples for Components UpdateTags. */
 public final class ComponentsUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2020-02-02/examples/ComponentsUpdateTagsOnly.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/preview/2018-05-01-preview/examples/ComponentsUpdateTagsOnly.json
      */
     /**
      * Sample code: ComponentUpdateTagsOnly.
@@ -1473,7 +1471,7 @@ import com.azure.core.util.Context;
 /** Samples for LiveToken Get. */
 public final class LiveTokenGetSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-10-14/examples/LiveTokenGet.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/preview/2020-06-02-preview/examples/LiveTokenGet.json
      */
     /**
      * Sample code: Get live token for resource.

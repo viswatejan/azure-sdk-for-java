@@ -6,8 +6,6 @@ package com.azure.spring.messaging.container;
 import com.azure.spring.messaging.endpoint.AbstractAzureListenerEndpoint;
 import com.azure.spring.messaging.endpoint.AzureListenerEndpoint;
 import com.azure.spring.integration.core.api.SubscribeByGroupOperation;
-import org.springframework.lang.Nullable;
-import org.springframework.util.ErrorHandler;
 
 /**
  * Base {@link ListenerContainerFactory} for Spring's base container implementation.
@@ -21,9 +19,6 @@ abstract class AbstractAzureListenerContainerFactory<C extends AbstractListenerC
 
     private final SubscribeByGroupOperation subscribeOperation;
 
-    @Nullable
-    private ErrorHandler errorHandler;
-
     protected AbstractAzureListenerContainerFactory(SubscribeByGroupOperation subscribeOperation) {
         this.subscribeOperation = subscribeOperation;
     }
@@ -31,10 +26,6 @@ abstract class AbstractAzureListenerContainerFactory<C extends AbstractListenerC
     @Override
     public C createListenerContainer(AzureListenerEndpoint endpoint) {
         C instance = createContainerInstance();
-        if (this.errorHandler != null) {
-            instance.setErrorHandler(this.errorHandler);
-        }
-
         initializeContainer(instance);
         endpoint.setupListenerContainer(instance);
         return instance;
@@ -60,7 +51,4 @@ abstract class AbstractAzureListenerContainerFactory<C extends AbstractListenerC
         return subscribeOperation;
     }
 
-    public void setErrorHandler(@Nullable ErrorHandler errorHandler) {
-        this.errorHandler = errorHandler;
-    }
 }

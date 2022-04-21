@@ -24,7 +24,7 @@ public interface SharedGalleriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Shared Galleries operation response as paginated response with {@link PagedFlux}.
+     * @return the List Shared Galleries operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SharedGalleryInner> listAsync(String location, SharedToValues sharedTo);
@@ -36,7 +36,7 @@ public interface SharedGalleriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Shared Galleries operation response as paginated response with {@link PagedFlux}.
+     * @return the List Shared Galleries operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SharedGalleryInner> listAsync(String location);
@@ -48,7 +48,7 @@ public interface SharedGalleriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Shared Galleries operation response as paginated response with {@link PagedIterable}.
+     * @return the List Shared Galleries operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SharedGalleryInner> list(String location);
@@ -62,7 +62,7 @@ public interface SharedGalleriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Shared Galleries operation response as paginated response with {@link PagedIterable}.
+     * @return the List Shared Galleries operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SharedGalleryInner> list(String location, SharedToValues sharedTo, Context context);
@@ -75,8 +75,7 @@ public interface SharedGalleriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a shared gallery by subscription id or tenant id along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a shared gallery by subscription id or tenant id.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SharedGalleryInner>> getWithResponseAsync(String location, String galleryUniqueName);
@@ -89,7 +88,7 @@ public interface SharedGalleriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a shared gallery by subscription id or tenant id on successful completion of {@link Mono}.
+     * @return a shared gallery by subscription id or tenant id.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SharedGalleryInner> getAsync(String location, String galleryUniqueName);
@@ -116,7 +115,7 @@ public interface SharedGalleriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a shared gallery by subscription id or tenant id along with {@link Response}.
+     * @return a shared gallery by subscription id or tenant id.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SharedGalleryInner> getWithResponse(String location, String galleryUniqueName, Context context);

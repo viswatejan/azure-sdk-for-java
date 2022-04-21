@@ -9,22 +9,19 @@ import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
 import com.azure.core.annotation.ServiceMethod;
-import com.azure.core.exception.ClientAuthenticationException;
 import com.azure.core.exception.HttpResponseException;
-import com.azure.core.exception.ResourceModifiedException;
-import com.azure.core.exception.ResourceNotFoundException;
 import com.azure.core.http.rest.RequestOptions;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.BinaryData;
 import reactor.core.publisher.Mono;
 
 /** Initializes a new instance of the asynchronous PurviewCatalogClient type. */
-@ServiceClient(builder = TypesClientBuilder.class, isAsync = true)
+@ServiceClient(builder = PurviewCatalogClientBuilder.class, isAsync = true)
 public final class TypesAsyncClient {
     @Generated private final TypesImpl serviceClient;
 
     /**
-     * Initializes an instance of TypesAsyncClient class.
+     * Initializes an instance of Types client.
      *
      * @param serviceClient the service client implementation.
      */
@@ -135,11 +132,7 @@ public final class TypesAsyncClient {
      * @param guid The globally unique identifier of the classification.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the classification definition for the given GUID along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the classification definition for the given GUID.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -250,11 +243,7 @@ public final class TypesAsyncClient {
      * @param name The name of the classification.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the classification definition by its name (unique) along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return the classification definition by its name (unique).
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -385,11 +374,7 @@ public final class TypesAsyncClient {
      * @param guid The globally unique identifier of the entity.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Entity definition for the given GUID along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the Entity definition for the given GUID.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -520,11 +505,7 @@ public final class TypesAsyncClient {
      * @param name The name of the entity.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the entity definition by its name (unique) along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the entity definition by its name (unique).
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -608,11 +589,7 @@ public final class TypesAsyncClient {
      * @param guid The globally unique identifier of the enum.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the enum definition for the given GUID along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the enum definition for the given GUID.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -695,11 +672,7 @@ public final class TypesAsyncClient {
      * @param name The name of the enum.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the enum definition by its name (unique) along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the enum definition by its name (unique).
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -811,11 +784,7 @@ public final class TypesAsyncClient {
      * @param guid The globally unique identifier of the relationship.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the relationship definition for the given GUID along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the relationship definition for the given GUID.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -927,11 +896,7 @@ public final class TypesAsyncClient {
      * @param name The name of the relationship.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the relationship definition by its name (unique) along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the relationship definition by its name (unique).
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1032,11 +997,7 @@ public final class TypesAsyncClient {
      * @param guid The globally unique identifier of the struct.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the struct definition for the given GUID along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the struct definition for the given GUID.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1137,11 +1098,7 @@ public final class TypesAsyncClient {
      * @param name The name of the struct.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the struct definition by its name (unique) along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the struct definition by its name (unique).
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1293,11 +1250,7 @@ public final class TypesAsyncClient {
      * @param guid The globally unique identifier of the type.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the type definition for the given GUID along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the type definition for the given GUID.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1449,11 +1402,7 @@ public final class TypesAsyncClient {
      * @param name The name of the type.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the type definition by its name (unique) along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the type definition by its name (unique).
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1467,10 +1416,7 @@ public final class TypesAsyncClient {
      * @param name The name of the type.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1753,11 +1699,7 @@ public final class TypesAsyncClient {
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all type definitions in Atlas in bulk along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return all type definitions in Atlas in bulk.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -2292,10 +2234,7 @@ public final class TypesAsyncClient {
      * @param typesDef A composite wrapper object with corresponding lists of the type definition.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return atlasTypesDef along with {@link Response} on successful completion of {@link Mono}.
+     * @return atlasTypesDef.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -2830,10 +2769,7 @@ public final class TypesAsyncClient {
      * @param typesDef A composite object that captures all type definition changes.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return atlasTypesDef along with {@link Response} on successful completion of {@link Mono}.
+     * @return atlasTypesDef.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -3108,10 +3044,7 @@ public final class TypesAsyncClient {
      * @param typesDef A composite object that captures all types to be deleted.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -3146,11 +3079,7 @@ public final class TypesAsyncClient {
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return an array of AtlasTypeDefHeader matching the search criteria or an empty list if no match along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return an array of AtlasTypeDefHeader matching the search criteria or an empty list if no match.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -3166,7 +3095,7 @@ public final class TypesAsyncClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -3259,11 +3188,7 @@ public final class TypesAsyncClient {
      * @param guid The globally unique identifier of the term template.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the term template definition for the given GUID along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the term template definition for the given GUID.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -3279,7 +3204,7 @@ public final class TypesAsyncClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -3372,11 +3297,7 @@ public final class TypesAsyncClient {
      * @param name The name of the term template.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the term template definition by its name (unique) along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the term template definition by its name (unique).
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)

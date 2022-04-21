@@ -6,6 +6,7 @@ package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -14,6 +15,8 @@ import java.util.UUID;
 /** Information needed for cloning operation. */
 @Fluent
 public final class CloningInfo {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CloningInfo.class);
+
     /*
      * Correlation ID of cloning operation. This ID ties multiple cloning
      * operations
@@ -350,11 +353,9 @@ public final class CloningInfo {
      */
     public void validate() {
         if (sourceWebAppId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property sourceWebAppId in model CloningInfo"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CloningInfo.class);
 }

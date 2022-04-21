@@ -7,6 +7,7 @@ package com.azure.resourcemanager.redis.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -14,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public class RedisFirewallRuleInner extends ProxyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RedisFirewallRuleInner.class);
+
     /*
      * redis cache firewall rule properties
      */
@@ -82,7 +85,7 @@ public class RedisFirewallRuleInner extends ProxyResource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model RedisFirewallRuleInner"));
@@ -90,6 +93,4 @@ public class RedisFirewallRuleInner extends ProxyResource {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RedisFirewallRuleInner.class);
 }

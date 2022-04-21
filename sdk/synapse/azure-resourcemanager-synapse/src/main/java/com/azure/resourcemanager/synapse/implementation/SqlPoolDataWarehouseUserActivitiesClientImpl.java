@@ -89,8 +89,7 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the user activities of a SQL pool which includes running and suspended queries along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return the user activities of a SQL pool which includes running and suspended queries.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DataWarehouseUserActivitiesInner>> getWithResponseAsync(
@@ -156,8 +155,7 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the user activities of a SQL pool which includes running and suspended queries along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return the user activities of a SQL pool which includes running and suspended queries.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DataWarehouseUserActivitiesInner>> getWithResponseAsync(
@@ -220,8 +218,7 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the user activities of a SQL pool which includes running and suspended queries on successful completion
-     *     of {@link Mono}.
+     * @return the user activities of a SQL pool which includes running and suspended queries.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataWarehouseUserActivitiesInner> getAsync(
@@ -272,8 +269,7 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the user activities of a SQL pool which includes running and suspended queries along with {@link
-     *     Response}.
+     * @return the user activities of a SQL pool which includes running and suspended queries.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DataWarehouseUserActivitiesInner> getWithResponse(

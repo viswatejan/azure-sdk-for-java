@@ -148,8 +148,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Workbook templates defined within a specified resource group along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return all Workbook templates defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkbookTemplateInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -197,8 +196,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Workbook templates defined within a specified resource group along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return all Workbook templates defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkbookTemplateInner>> listByResourceGroupSinglePageAsync(
@@ -302,8 +300,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single workbook template by its resourceName along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a single workbook template by its resourceName.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkbookTemplateInner>> getByResourceGroupWithResponseAsync(
@@ -353,8 +350,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single workbook template by its resourceName along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a single workbook template by its resourceName.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkbookTemplateInner>> getByResourceGroupWithResponseAsync(
@@ -400,7 +396,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single workbook template by its resourceName on successful completion of {@link Mono}.
+     * @return a single workbook template by its resourceName.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkbookTemplateInner> getByResourceGroupAsync(String resourceGroupName, String resourceName) {
@@ -439,7 +435,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single workbook template by its resourceName along with {@link Response}.
+     * @return a single workbook template by its resourceName.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WorkbookTemplateInner> getByResourceGroupWithResponse(
@@ -455,7 +451,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String resourceName) {
@@ -504,7 +500,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -550,7 +546,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String resourceName) {
@@ -580,7 +576,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String resourceGroupName, String resourceName, Context context) {
@@ -596,8 +592,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights workbook template definition along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return an Application Insights workbook template definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkbookTemplateInner>> createOrUpdateWithResponseAsync(
@@ -657,8 +652,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights workbook template definition along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return an Application Insights workbook template definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkbookTemplateInner>> createOrUpdateWithResponseAsync(
@@ -717,7 +711,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights workbook template definition on successful completion of {@link Mono}.
+     * @return an Application Insights workbook template definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkbookTemplateInner> createOrUpdateAsync(
@@ -760,7 +754,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights workbook template definition along with {@link Response}.
+     * @return an Application Insights workbook template definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WorkbookTemplateInner> createOrUpdateWithResponse(
@@ -781,8 +775,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights workbook template definition along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return an Application Insights workbook template definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkbookTemplateInner>> updateWithResponseAsync(
@@ -839,8 +832,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights workbook template definition along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return an Application Insights workbook template definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkbookTemplateInner>> updateWithResponseAsync(
@@ -894,7 +886,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights workbook template definition on successful completion of {@link Mono}.
+     * @return an Application Insights workbook template definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkbookTemplateInner> updateAsync(
@@ -920,7 +912,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights workbook template definition on successful completion of {@link Mono}.
+     * @return an Application Insights workbook template definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkbookTemplateInner> updateAsync(String resourceGroupName, String resourceName) {
@@ -962,7 +954,7 @@ public final class WorkbookTemplatesClientImpl implements WorkbookTemplatesClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights workbook template definition along with {@link Response}.
+     * @return an Application Insights workbook template definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WorkbookTemplateInner> updateWithResponse(

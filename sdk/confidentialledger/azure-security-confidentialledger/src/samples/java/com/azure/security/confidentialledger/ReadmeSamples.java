@@ -18,6 +18,10 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * WARNING: MODIFYING THIS FILE WILL REQUIRE CORRESPONDING UPDATES TO README.md FILE. LINE NUMBERS
+ * ARE USED TO EXTRACT APPROPRIATE CODE SEGMENTS FROM THIS FILE. ADD NEW CODE AT THE BOTTOM TO AVOID CHANGING
+ * LINE NUMBERS OF EXISTING CODE SAMPLES.
+ *
  * Code samples for the README.md
  */
 public class ReadmeSamples {
@@ -25,7 +29,6 @@ public class ReadmeSamples {
      * Sample for creating low level client.
      */
     public void createClient() throws Exception {
-        // BEGIN: readme-sample-createClient
         ConfidentialLedgerIdentityServiceBaseClient identityServiceClient = new ConfidentialLedgerClientBuilder()
             .ledgerUri(new URL("<confidential-ledger-url>"))
             .identityServiceUri(new URL("<confidential-ledger-identity-service-url>"))
@@ -51,6 +54,5 @@ public class ReadmeSamples {
             .credential(new DefaultAzureCredentialBuilder().build())
             .httpClient(httpClient)
             .buildConfidentialLedgerBaseClient();
-        // END: readme-sample-createClient
     }
 }

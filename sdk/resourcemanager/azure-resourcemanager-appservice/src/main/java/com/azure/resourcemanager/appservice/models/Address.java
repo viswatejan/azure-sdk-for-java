@@ -6,11 +6,14 @@ package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Address information for domain registration. */
 @Fluent
 public final class Address {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(Address.class);
+
     /*
      * First line of an Address.
      */
@@ -174,29 +177,27 @@ public final class Address {
      */
     public void validate() {
         if (address1() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property address1 in model Address"));
         }
         if (city() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(new IllegalArgumentException("Missing required property city in model Address"));
         }
         if (country() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property country in model Address"));
         }
         if (postalCode() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property postalCode in model Address"));
         }
         if (state() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(new IllegalArgumentException("Missing required property state in model Address"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(Address.class);
 }

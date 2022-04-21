@@ -16,9 +16,10 @@ import com.azure.resourcemanager.mysqlflexibleserver.models.Configuration;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ConfigurationListForBatchUpdate;
 import com.azure.resourcemanager.mysqlflexibleserver.models.ConfigurationListResult;
 import com.azure.resourcemanager.mysqlflexibleserver.models.Configurations;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ConfigurationsImpl implements Configurations {
-    private static final ClientLogger LOGGER = new ClientLogger(ConfigurationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ConfigurationsImpl.class);
 
     private final ConfigurationsClient innerClient;
 

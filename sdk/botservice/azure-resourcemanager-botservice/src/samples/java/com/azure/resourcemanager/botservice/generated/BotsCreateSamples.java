@@ -7,7 +7,6 @@ package com.azure.resourcemanager.botservice.generated;
 import com.azure.resourcemanager.botservice.models.BotProperties;
 import com.azure.resourcemanager.botservice.models.Kind;
 import com.azure.resourcemanager.botservice.models.MsaAppType;
-import com.azure.resourcemanager.botservice.models.PublicNetworkAccess;
 import com.azure.resourcemanager.botservice.models.Sku;
 import com.azure.resourcemanager.botservice.models.SkuName;
 import java.util.Arrays;
@@ -49,7 +48,7 @@ public final class BotsCreateSamples {
                     .withLuisKey("luiskey")
                     .withIsCmekEnabled(true)
                     .withCmekKeyVaultUrl("https://myCmekKey")
-                    .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+                    .withIsIsolated(false)
                     .withDisableLocalAuth(true)
                     .withSchemaTransformationVersion("1.0"))
             .withSku(new Sku().withName(SkuName.S1))

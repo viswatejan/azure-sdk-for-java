@@ -86,8 +86,7 @@ public final class IntegrationRuntimeMonitoringDatasClientImpl implements Integr
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return monitoring data for an integration runtime along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return monitoring data for an integration runtime.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IntegrationRuntimeMonitoringDataInner>> listWithResponseAsync(
@@ -144,8 +143,7 @@ public final class IntegrationRuntimeMonitoringDatasClientImpl implements Integr
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return monitoring data for an integration runtime along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return monitoring data for an integration runtime.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IntegrationRuntimeMonitoringDataInner>> listWithResponseAsync(
@@ -198,7 +196,7 @@ public final class IntegrationRuntimeMonitoringDatasClientImpl implements Integr
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return monitoring data for an integration runtime on successful completion of {@link Mono}.
+     * @return monitoring data for an integration runtime.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IntegrationRuntimeMonitoringDataInner> listAsync(
@@ -241,7 +239,7 @@ public final class IntegrationRuntimeMonitoringDatasClientImpl implements Integr
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return monitoring data for an integration runtime along with {@link Response}.
+     * @return monitoring data for an integration runtime.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IntegrationRuntimeMonitoringDataInner> listWithResponse(

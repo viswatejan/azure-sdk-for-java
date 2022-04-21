@@ -4,7 +4,6 @@
 package com.azure.ai.formrecognizer.administration;
 
 import com.azure.ai.formrecognizer.administration.models.BuildModelOptions;
-import com.azure.ai.formrecognizer.administration.models.DocumentBuildMode;
 import com.azure.ai.formrecognizer.administration.models.DocumentModel;
 import com.azure.ai.formrecognizer.models.DocumentOperationResult;
 import com.azure.core.credential.AzureKeyCredential;
@@ -44,7 +43,7 @@ public class BuildModelAsync {
         // The shared access signature (SAS) Url of your Azure Blob Storage container with your forms.
         PollerFlux<DocumentOperationResult, DocumentModel> buildModelPoller =
             client.beginBuildModel(trainingFilesUrl,
-                DocumentBuildMode.TEMPLATE, "my-document-analysis-model",
+                "my-document-analysis-model",
                 new BuildModelOptions().setDescription("my custom model desc"));
 
         Mono<DocumentModel> customFormModelResult = buildModelPoller

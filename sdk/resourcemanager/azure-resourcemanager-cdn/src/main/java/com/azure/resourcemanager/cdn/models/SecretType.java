@@ -19,10 +19,6 @@ public final class SecretType extends ExpandableStringEnum<SecretType> {
     /** Static value ManagedCertificate for SecretType. */
     public static final SecretType MANAGED_CERTIFICATE = fromString("ManagedCertificate");
 
-    /** Static value AzureFirstPartyManagedCertificate for SecretType. */
-    public static final SecretType AZURE_FIRST_PARTY_MANAGED_CERTIFICATE =
-        fromString("AzureFirstPartyManagedCertificate");
-
     /**
      * Creates or finds a SecretType from its string representation.
      *

@@ -21,17 +21,15 @@ import java.io.UncheckedIOException;
  * no JsonSerializerProvider is in the class path.
  */
 public final class DefaultJsonSerializer implements JsonSerializer {
-    // DefaultJsonSerializer is a commonly used class, use a static logger.
-    private static final ClientLogger LOGGER = new ClientLogger(DefaultJsonSerializer.class);
-
     private final SerializerAdapter jacksonAdapter = JacksonAdapter.createDefaultSerializerAdapter();
+    private final ClientLogger logger = new ClientLogger(DefaultJsonSerializer.class);
 
     @Override
     public <T> T deserializeFromBytes(byte[] data, TypeReference<T> typeReference) {
         try {
             return jacksonAdapter.deserialize(data, typeReference.getJavaType(), SerializerEncoding.JSON);
         } catch (IOException e) {
-            throw LOGGER.logExceptionAsError(new UncheckedIOException(e));
+            throw logger.logExceptionAsError(new UncheckedIOException(e));
         }
     }
 
@@ -40,7 +38,7 @@ public final class DefaultJsonSerializer implements JsonSerializer {
         try {
             return jacksonAdapter.deserialize(stream, typeReference.getJavaType(), SerializerEncoding.JSON);
         } catch (IOException e) {
-            throw LOGGER.logExceptionAsError(new UncheckedIOException(e));
+            throw logger.logExceptionAsError(new UncheckedIOException(e));
         }
     }
 
@@ -59,7 +57,7 @@ public final class DefaultJsonSerializer implements JsonSerializer {
         try {
             return jacksonAdapter.serializeToBytes(value, SerializerEncoding.JSON);
         } catch (IOException e) {
-            throw LOGGER.logExceptionAsError(new UncheckedIOException(e));
+            throw logger.logExceptionAsError(new UncheckedIOException(e));
         }
     }
 
@@ -68,7 +66,7 @@ public final class DefaultJsonSerializer implements JsonSerializer {
         try {
             jacksonAdapter.serialize(value, SerializerEncoding.JSON, stream);
         } catch (IOException e) {
-            throw LOGGER.logExceptionAsError(new UncheckedIOException(e));
+            throw logger.logExceptionAsError(new UncheckedIOException(e));
         }
     }
 

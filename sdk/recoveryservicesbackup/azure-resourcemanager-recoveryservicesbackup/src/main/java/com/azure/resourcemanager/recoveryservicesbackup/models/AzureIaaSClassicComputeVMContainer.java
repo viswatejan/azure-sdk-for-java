@@ -66,13 +66,6 @@ public final class AzureIaaSClassicComputeVMContainer extends IaaSvmContainer {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public AzureIaaSClassicComputeVMContainer withProtectableObjectType(String protectableObjectType) {
-        super.withProtectableObjectType(protectableObjectType);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

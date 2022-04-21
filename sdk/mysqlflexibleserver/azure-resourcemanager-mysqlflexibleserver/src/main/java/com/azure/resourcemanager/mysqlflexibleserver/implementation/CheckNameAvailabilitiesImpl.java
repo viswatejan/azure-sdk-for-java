@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.NameAvailabil
 import com.azure.resourcemanager.mysqlflexibleserver.models.CheckNameAvailabilities;
 import com.azure.resourcemanager.mysqlflexibleserver.models.NameAvailability;
 import com.azure.resourcemanager.mysqlflexibleserver.models.NameAvailabilityRequest;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class CheckNameAvailabilitiesImpl implements CheckNameAvailabilities {
-    private static final ClientLogger LOGGER = new ClientLogger(CheckNameAvailabilitiesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CheckNameAvailabilitiesImpl.class);
 
     private final CheckNameAvailabilitiesClient innerClient;
 

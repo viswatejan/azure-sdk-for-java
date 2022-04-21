@@ -11,10 +11,6 @@ function CreateReleases($pkgList, $releaseApiUrl, $releaseSha) {
     if ($pkgInfo.ReleaseNotes -ne $null) {
       $releaseNotes = $pkgInfo.ReleaseNotes
     }
-    # As github api limit the body param length with 125000 characters, we have to truncate the release note if needed.
-    if ($releaseNotes.Length -gt 124996) {
-      $releaseNotes = $releaseNotes.SubString(0, 124996) + " ..."
-    }
 
     $isPrerelease = $False
 
@@ -46,10 +42,7 @@ function CreateReleases($pkgList, $releaseApiUrl, $releaseSha) {
 # Retrieves the list of all tags that exist on the target repository
 function GetExistingTags($apiUrl) {
   try {
-    $headers = @{
-      "Authorization" = "token $($env:GH_TOKEN)"
-    }
-    return (Invoke-RestMethod -Method "GET" -Uri "$apiUrl/git/refs/tags" -Headers $headers -MaximumRetryCount 3 -RetryIntervalSec 10) | % { $_.ref.Replace("refs/tags/", "") }
+    return (Invoke-RestMethod -Method "GET" -Uri "$apiUrl/git/refs/tags" -MaximumRetryCount 3 -RetryIntervalSec 10) | % { $_.ref.Replace("refs/tags/", "") }
   }
   catch {
     Write-Host $_

@@ -16,10 +16,10 @@ public final class HttpVersionMatchConditionParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(HttpVersionMatchConditionParameters.class);
 
     /*
-     * The typeName property.
+     * The @odata.type property.
      */
-    @JsonProperty(value = "typeName", required = true)
-    private String typeName = "DeliveryRuleHttpVersionConditionParameters";
+    @JsonProperty(value = "@odata.type", required = true)
+    private String odataType;
 
     /*
      * Describes operator to be matched
@@ -39,34 +39,28 @@ public final class HttpVersionMatchConditionParameters {
     @JsonProperty(value = "matchValues")
     private List<String> matchValues;
 
-    /*
-     * List of transforms
-     */
-    @JsonProperty(value = "transforms")
-    private List<Transform> transforms;
-
     /** Creates an instance of HttpVersionMatchConditionParameters class. */
     public HttpVersionMatchConditionParameters() {
-        typeName = "DeliveryRuleHttpVersionConditionParameters";
+        odataType = "#Microsoft.Azure.Cdn.Models.DeliveryRuleHttpVersionConditionParameters";
     }
 
     /**
-     * Get the typeName property: The typeName property.
+     * Get the odataType property: The @odata.type property.
      *
-     * @return the typeName value.
+     * @return the odataType value.
      */
-    public String typeName() {
-        return this.typeName;
+    public String odataType() {
+        return this.odataType;
     }
 
     /**
-     * Set the typeName property: The typeName property.
+     * Set the odataType property: The @odata.type property.
      *
-     * @param typeName the typeName value to set.
+     * @param odataType the odataType value to set.
      * @return the HttpVersionMatchConditionParameters object itself.
      */
-    public HttpVersionMatchConditionParameters withTypeName(String typeName) {
-        this.typeName = typeName;
+    public HttpVersionMatchConditionParameters withOdataType(String odataType) {
+        this.odataType = odataType;
         return this;
     }
 
@@ -127,26 +121,6 @@ public final class HttpVersionMatchConditionParameters {
      */
     public HttpVersionMatchConditionParameters withMatchValues(List<String> matchValues) {
         this.matchValues = matchValues;
-        return this;
-    }
-
-    /**
-     * Get the transforms property: List of transforms.
-     *
-     * @return the transforms value.
-     */
-    public List<Transform> transforms() {
-        return this.transforms;
-    }
-
-    /**
-     * Set the transforms property: List of transforms.
-     *
-     * @param transforms the transforms value to set.
-     * @return the HttpVersionMatchConditionParameters object itself.
-     */
-    public HttpVersionMatchConditionParameters withTransforms(List<Transform> transforms) {
-        this.transforms = transforms;
         return this;
     }
 

@@ -8,8 +8,6 @@ import com.azure.cosmos.implementation.batch.BatchRequestResponseConstants;
 import com.azure.cosmos.implementation.spark.OperationContextAndListenerTuple;
 
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument;
 
@@ -28,23 +26,17 @@ public final class CosmosBulkExecutionOptions {
     private final CosmosBulkExecutionThresholdsState thresholds;
     private Integer maxConcurrentCosmosPartitions = null;
     private OperationContextAndListenerTuple operationContextAndListenerTuple;
-    private Map<String, String> customOptions;
 
     /**
      * Constructor
      * @param thresholdsState thresholds
      */
-    CosmosBulkExecutionOptions(Object legacyBatchScopedContext, CosmosBulkExecutionThresholdsState thresholdsState, Map<String, String> customOptions) {
+    CosmosBulkExecutionOptions(Object legacyBatchScopedContext, CosmosBulkExecutionThresholdsState thresholdsState) {
         this.legacyBatchScopedContext = legacyBatchScopedContext;
         if (thresholdsState == null) {
             this.thresholds = new CosmosBulkExecutionThresholdsState();
         } else {
             this.thresholds = thresholdsState;
-        }
-        if (customOptions == null) {
-            this.customOptions = new HashMap<>();
-        } else {
-            this.customOptions = customOptions;
         }
     }
 
@@ -53,14 +45,14 @@ public final class CosmosBulkExecutionOptions {
      * @param thresholdsState thresholds
      */
     public CosmosBulkExecutionOptions(CosmosBulkExecutionThresholdsState thresholdsState) {
-        this(null, thresholdsState, null);
+        this(null, thresholdsState);
     }
 
     /**
      * Constructor
      */
     public CosmosBulkExecutionOptions() {
-        this(null, null, null);
+        this(null);
     }
 
     /**
@@ -222,30 +214,6 @@ public final class CosmosBulkExecutionOptions {
         this.operationContextAndListenerTuple = operationContextAndListenerTuple;
     }
 
-    /**
-     * Sets the custom bulk request option value by key
-     *
-     * @param name  a string representing the custom option's name
-     * @param value a string representing the custom option's value
-     * @return the CosmosBulkExecutionOptions.
-     */
-    CosmosBulkExecutionOptions setHeader(String name, String value) {
-        if (this.customOptions == null) {
-            this.customOptions = new HashMap<>();
-        }
-        this.customOptions.put(name, value);
-        return this;
-    }
-
-    /**
-     * Gets the custom batch request options
-     *
-     * @return Map of custom request options
-     */
-    Map<String, String> getHeaders() {
-        return this.customOptions;
-    }
-
     ///////////////////////////////////////////////////////////////////////////////////////////
     // the following helper/accessor only helps to access this class outside of this package.//
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -324,21 +292,6 @@ public final class CosmosBulkExecutionOptions {
                     return options.setTargetedMicroBatchRetryRate(minRetryRate, maxRetryRate);
                 }
 
-                @Override
-                public CosmosBulkExecutionOptions setHeader(CosmosBulkExecutionOptions cosmosBulkExecutionOptions,
-                                                            String name, String value) {
-                    return cosmosBulkExecutionOptions.setHeader(name, value);
-                }
-
-                @Override
-                public Map<String, String> getHeader(CosmosBulkExecutionOptions cosmosBulkExecutionOptions) {
-                    return cosmosBulkExecutionOptions.getHeaders();
-                }
-
-                @Override
-                public Map<String, String> getCustomOptions(CosmosBulkExecutionOptions cosmosBulkExecutionOptions) {
-                    return cosmosBulkExecutionOptions.customOptions;
-                }
 
             });
     }

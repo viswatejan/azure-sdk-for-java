@@ -32,7 +32,7 @@ public interface ProtectionIntents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response contract for enable backup validation request along with {@link Response}.
+     * @return response contract for enable backup validation request.
      */
     Response<PreValidateEnableBackupResponse> validateWithResponse(
         String azureRegion, PreValidateEnableBackupRequest parameters, Context context);
@@ -65,7 +65,7 @@ public interface ProtectionIntents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return base class for backup ProtectionIntent along with {@link Response}.
+     * @return base class for backup ProtectionIntent.
      */
     Response<ProtectionIntentResource> getWithResponse(
         String vaultName, String resourceGroupName, String fabricName, String intentObjectName, Context context);
@@ -94,7 +94,7 @@ public interface ProtectionIntents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String vaultName, String resourceGroupName, String fabricName, String intentObjectName, Context context);
@@ -107,7 +107,7 @@ public interface ProtectionIntents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return base class for backup ProtectionIntent along with {@link Response}.
+     * @return base class for backup ProtectionIntent.
      */
     ProtectionIntentResource getById(String id);
 
@@ -120,7 +120,7 @@ public interface ProtectionIntents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return base class for backup ProtectionIntent along with {@link Response}.
+     * @return base class for backup ProtectionIntent.
      */
     Response<ProtectionIntentResource> getByIdWithResponse(String id, Context context);
 
@@ -142,7 +142,7 @@ public interface ProtectionIntents {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

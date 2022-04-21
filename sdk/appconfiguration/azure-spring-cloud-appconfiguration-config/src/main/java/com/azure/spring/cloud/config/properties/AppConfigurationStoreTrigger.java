@@ -63,7 +63,7 @@ public final class AppConfigurationStoreTrigger {
     }
 
     private String mapLabel(String label) {
-        if (label == null || "".equals(label)) {
+        if (label == null || label.equals("")) {
             return EMPTY_LABEL;
         }
         return label.trim();

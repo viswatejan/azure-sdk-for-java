@@ -94,8 +94,7 @@ public final class ResourceGuardProxiesClientImpl implements ResourceGuardProxie
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ResourceGuardProxyBase resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return list of ResourceGuardProxyBase resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceGuardProxyBaseResourceInner>> getSinglePageAsync(
@@ -153,8 +152,7 @@ public final class ResourceGuardProxiesClientImpl implements ResourceGuardProxie
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ResourceGuardProxyBase resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return list of ResourceGuardProxyBase resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceGuardProxyBaseResourceInner>> getSinglePageAsync(
@@ -208,7 +206,7 @@ public final class ResourceGuardProxiesClientImpl implements ResourceGuardProxie
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ResourceGuardProxyBase resources as paginated response with {@link PagedFlux}.
+     * @return list of ResourceGuardProxyBase resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ResourceGuardProxyBaseResourceInner> getAsync(String vaultName, String resourceGroupName) {
@@ -225,7 +223,7 @@ public final class ResourceGuardProxiesClientImpl implements ResourceGuardProxie
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ResourceGuardProxyBase resources as paginated response with {@link PagedFlux}.
+     * @return list of ResourceGuardProxyBase resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ResourceGuardProxyBaseResourceInner> getAsync(
@@ -243,7 +241,7 @@ public final class ResourceGuardProxiesClientImpl implements ResourceGuardProxie
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ResourceGuardProxyBase resources as paginated response with {@link PagedIterable}.
+     * @return list of ResourceGuardProxyBase resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ResourceGuardProxyBaseResourceInner> get(String vaultName, String resourceGroupName) {
@@ -259,7 +257,7 @@ public final class ResourceGuardProxiesClientImpl implements ResourceGuardProxie
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ResourceGuardProxyBase resources as paginated response with {@link PagedIterable}.
+     * @return list of ResourceGuardProxyBase resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ResourceGuardProxyBaseResourceInner> get(
@@ -274,8 +272,7 @@ public final class ResourceGuardProxiesClientImpl implements ResourceGuardProxie
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ResourceGuardProxyBase resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return list of ResourceGuardProxyBase resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceGuardProxyBaseResourceInner>> getNextSinglePageAsync(String nextLink) {
@@ -311,8 +308,7 @@ public final class ResourceGuardProxiesClientImpl implements ResourceGuardProxie
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ResourceGuardProxyBase resources along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return list of ResourceGuardProxyBase resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ResourceGuardProxyBaseResourceInner>> getNextSinglePageAsync(

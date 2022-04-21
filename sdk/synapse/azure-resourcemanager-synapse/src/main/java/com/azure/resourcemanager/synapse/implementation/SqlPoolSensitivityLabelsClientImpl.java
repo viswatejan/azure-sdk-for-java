@@ -253,7 +253,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool sensitivity labels along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return sQL pool sensitivity labels.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SensitivityLabelInner>> listCurrentSinglePageAsync(
@@ -319,7 +319,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool sensitivity labels along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return sQL pool sensitivity labels.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SensitivityLabelInner>> listCurrentSinglePageAsync(
@@ -479,7 +479,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateWithResponseAsync(
@@ -539,7 +539,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateWithResponseAsync(
@@ -599,7 +599,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> updateAsync(
@@ -636,7 +636,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> updateWithResponse(
@@ -660,8 +660,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sensitivity labels of a given SQL pool along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return sensitivity labels of a given SQL pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SensitivityLabelInner>> listRecommendedSinglePageAsync(
@@ -736,8 +735,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sensitivity labels of a given SQL pool along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return sensitivity labels of a given SQL pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SensitivityLabelInner>> listRecommendedSinglePageAsync(
@@ -957,7 +955,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a sensitivity label along with {@link Response} on successful completion of {@link Mono}.
+     * @return a sensitivity label.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SensitivityLabelInner>> createOrUpdateWithResponseAsync(
@@ -1042,7 +1040,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a sensitivity label along with {@link Response} on successful completion of {@link Mono}.
+     * @return a sensitivity label.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SensitivityLabelInner>> createOrUpdateWithResponseAsync(
@@ -1124,7 +1122,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a sensitivity label on successful completion of {@link Mono}.
+     * @return a sensitivity label.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SensitivityLabelInner> createOrUpdateAsync(
@@ -1190,7 +1188,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a sensitivity label along with {@link Response}.
+     * @return a sensitivity label.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SensitivityLabelInner> createOrUpdateWithResponse(
@@ -1219,7 +1217,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1294,7 +1292,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1366,7 +1364,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1417,7 +1415,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1446,8 +1444,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the sensitivity label of a given column along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the sensitivity label of a given column.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SensitivityLabelInner>> getWithResponseAsync(
@@ -1530,8 +1527,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the sensitivity label of a given column along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the sensitivity label of a given column.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SensitivityLabelInner>> getWithResponseAsync(
@@ -1611,7 +1607,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the sensitivity label of a given column on successful completion of {@link Mono}.
+     * @return the sensitivity label of a given column.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SensitivityLabelInner> getAsync(
@@ -1689,7 +1685,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the sensitivity label of a given column along with {@link Response}.
+     * @return the sensitivity label of a given column.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SensitivityLabelInner> getWithResponse(
@@ -1725,7 +1721,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> enableRecommendationWithResponseAsync(
@@ -1800,7 +1796,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> enableRecommendationWithResponseAsync(
@@ -1872,7 +1868,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> enableRecommendationAsync(
@@ -1925,7 +1921,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> enableRecommendationWithResponse(
@@ -1953,7 +1949,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> disableRecommendationWithResponseAsync(
@@ -2028,7 +2024,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> disableRecommendationWithResponseAsync(
@@ -2100,7 +2096,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> disableRecommendationAsync(
@@ -2153,7 +2149,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> disableRecommendationWithResponse(
@@ -2176,7 +2172,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of sensitivity labels along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of sensitivity labels.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SensitivityLabelInner>> listCurrentNextSinglePageAsync(String nextLink) {
@@ -2212,7 +2208,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of sensitivity labels along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of sensitivity labels.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SensitivityLabelInner>> listCurrentNextSinglePageAsync(
@@ -2248,7 +2244,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of sensitivity labels along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of sensitivity labels.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SensitivityLabelInner>> listRecommendedNextSinglePageAsync(String nextLink) {
@@ -2284,7 +2280,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of sensitivity labels along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of sensitivity labels.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SensitivityLabelInner>> listRecommendedNextSinglePageAsync(

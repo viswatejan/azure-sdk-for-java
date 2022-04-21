@@ -7,7 +7,6 @@ package com.azure.resourcemanager.iothub.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.iothub.fluent.models.IotHubDescriptionInner;
 import java.util.Map;
@@ -77,13 +76,6 @@ public interface IotHubDescription {
      * @return the identity value.
      */
     ArmIdentity identity();
-
-    /**
-     * Gets the systemData property: The system meta data relating to this resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the region of the resource.
@@ -338,7 +330,7 @@ public interface IotHubDescription {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the Job Response object along with {@link Response}.
+     * @return the properties of the Job Response object.
      */
     Response<JobResponse> exportDevicesWithResponse(ExportDevicesRequest exportDevicesParameters, Context context);
 
@@ -367,7 +359,7 @@ public interface IotHubDescription {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the Job Response object along with {@link Response}.
+     * @return the properties of the Job Response object.
      */
     Response<JobResponse> importDevicesWithResponse(ImportDevicesRequest importDevicesParameters, Context context);
 }

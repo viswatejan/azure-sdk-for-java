@@ -6,8 +6,6 @@ package com.azure.storage.blob.nio
 import com.azure.storage.blob.BlobClient
 import com.azure.storage.blob.models.AccessTier
 import com.azure.storage.blob.models.BlobHttpHeaders
-import com.azure.storage.blob.models.BlobStorageException
-import com.azure.storage.common.test.shared.TestEnvironment
 import spock.lang.Unroll
 
 import java.nio.file.ClosedFileSystemException
@@ -47,7 +45,6 @@ class AttributeViewTest extends APISpec {
         attr.isRegularFile()
         bc.getBlobUrl() == attr.fileKey()
         !attr.isDirectory()
-        !attr.isVirtualDirectory()
         !attr.isSymbolicLink()
         !attr.isOther()
     }
@@ -62,40 +59,9 @@ class AttributeViewTest extends APISpec {
 
         then:
         attr.isDirectory()
-        !attr.isVirtualDirectory()
         !attr.isRegularFile()
         !attr.isOther()
         !attr.isSymbolicLink()
-    }
-
-    def "AzureBasicFileAttributeView directory virtual"() {
-        setup:
-        def dirName = generateBlobName()
-        def childName = generateContainerName()
-        def bc = cc.getBlobClient(dirName + '/' + childName)
-        bc.upload(data.getDefaultBinaryData())
-        def dirPath = fs.getPath(dirName)
-
-        when:
-        def attr = new AzureBasicFileAttributeView(dirPath).readAttributes()
-
-        then:
-        attr.isDirectory()
-        attr.isVirtualDirectory()
-        !attr.isRegularFile()
-        !attr.isOther()
-        !attr.isSymbolicLink()
-    }
-
-    def "AzureBasicFileAttributeView no exist"() {
-        setup:
-        def path = fs.getPath(generateBlobName())
-
-        when:
-        def attr = new AzureBasicFileAttributeView(path).readAttributes()
-
-        then:
-        thrown(IOException)
     }
 
     def "AzureBasicFileAttributeView fs closed"() {
@@ -127,7 +93,6 @@ class AttributeViewTest extends APISpec {
         attr.isRegularFile()
         bc.getBlobUrl() == attr.fileKey()
         !attr.isDirectory()
-        !attr.isVirtualDirectory()
         !attr.isSymbolicLink()
         !attr.isOther()
         props.getETag() == attr.eTag()
@@ -162,7 +127,6 @@ class AttributeViewTest extends APISpec {
         FileTime.from(props.getCreationTime().toInstant()) == suppliers.get("creationTime").get()
         attr.isRegularFile()
         !attr.isDirectory()
-        !attr.isVirtualDirectory()
         !attr.isSymbolicLink()
         !attr.isOther()
         props.getETag() == suppliers.get("eTag").get()

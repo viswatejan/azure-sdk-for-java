@@ -17,7 +17,6 @@ import org.testng.annotations.Test;
 
 import java.io.StringWriter;
 import java.time.Duration;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,8 +29,6 @@ public class CilentConfigDiagnosticsTest {
         DiagnosticsClientContext clientContext = Mockito.mock(DiagnosticsClientContext.class);
 
         DiagnosticsClientContext.DiagnosticsClientConfig diagnosticsClientConfig = new DiagnosticsClientContext.DiagnosticsClientConfig();
-        String machineId = "vmId:" + UUID.randomUUID().toString();
-        diagnosticsClientConfig.withMachineId(machineId);
         diagnosticsClientConfig.withClientId(1);
         diagnosticsClientConfig.withConnectionMode(ConnectionMode.DIRECT);
         diagnosticsClientConfig.withActiveClientCounter(new AtomicInteger(2));
@@ -46,7 +43,6 @@ public class CilentConfigDiagnosticsTest {
         ObjectNode objectNode = (ObjectNode) objectMapper.readTree(jsonWriter.toString());
 
         assertThat(objectNode.get("id").asInt()).isEqualTo(1);
-        assertThat(objectNode.get("machineId").asText()).isEqualTo(machineId);
         assertThat(objectNode.get("numberOfClients").asInt()).isEqualTo(2);
         assertThat(objectNode.get("consistencyCfg").asText()).isEqualTo("(consistency: null, mm: false, prgns: [])");
         assertThat(objectNode.get("connCfg").get("rntbd").asText()).isEqualTo("null");
@@ -60,8 +56,6 @@ public class CilentConfigDiagnosticsTest {
         DiagnosticsClientContext clientContext = Mockito.mock(DiagnosticsClientContext.class);
 
         DiagnosticsClientContext.DiagnosticsClientConfig diagnosticsClientConfig = new DiagnosticsClientContext.DiagnosticsClientConfig();
-        String machineId = "vmId:" + UUID.randomUUID().toString();
-        diagnosticsClientConfig.withMachineId(machineId);
         diagnosticsClientConfig.withClientId(1);
         diagnosticsClientConfig.withConnectionMode(ConnectionMode.DIRECT);
         diagnosticsClientConfig.withActiveClientCounter(new AtomicInteger(2));
@@ -78,7 +72,6 @@ public class CilentConfigDiagnosticsTest {
         ObjectNode objectNode = (ObjectNode) objectMapper.readTree(jsonWriter.toString());
 
         assertThat(objectNode.get("id").asInt()).isEqualTo(1);
-        assertThat(objectNode.get("machineId").asText()).isEqualTo(machineId);
         assertThat(objectNode.get("numberOfClients").asInt()).isEqualTo(2);
         assertThat(objectNode.get("consistencyCfg").asText()).isEqualTo("(consistency: null, mm: false, prgns: [])");
         assertThat(objectNode.get("connCfg").get("rntbd").asText()).isEqualTo("(cto:PT5S, nrto:PT5S, icto:PT0S, ieto:PT1H, mcpe:130, mrpc:30, cer:false)");
@@ -92,8 +85,6 @@ public class CilentConfigDiagnosticsTest {
         DiagnosticsClientContext clientContext = Mockito.mock(DiagnosticsClientContext.class);
 
         DiagnosticsClientContext.DiagnosticsClientConfig diagnosticsClientConfig = new DiagnosticsClientContext.DiagnosticsClientConfig();
-        String machineId = "vmId:" + UUID.randomUUID().toString();
-        diagnosticsClientConfig.withMachineId(machineId);
         diagnosticsClientConfig.withClientId(1);
         diagnosticsClientConfig.withConnectionMode(ConnectionMode.DIRECT);
         diagnosticsClientConfig.withActiveClientCounter(new AtomicInteger(2));
@@ -113,7 +104,6 @@ public class CilentConfigDiagnosticsTest {
         ObjectNode objectNode = (ObjectNode) objectMapper.readTree(jsonWriter.toString());
 
         assertThat(objectNode.get("id").asInt()).isEqualTo(1);
-        assertThat(objectNode.get("machineId").asText()).isEqualTo(machineId);
         assertThat(objectNode.get("numberOfClients").asInt()).isEqualTo(2);
         assertThat(objectNode.get("consistencyCfg").asText()).isEqualTo("(consistency: null, mm: false, prgns: [])");
         assertThat(objectNode.get("connCfg").get("rntbd").asText()).isEqualTo("null");
@@ -126,8 +116,6 @@ public class CilentConfigDiagnosticsTest {
         DiagnosticsClientContext clientContext = Mockito.mock(DiagnosticsClientContext.class);
 
         DiagnosticsClientContext.DiagnosticsClientConfig diagnosticsClientConfig = new DiagnosticsClientContext.DiagnosticsClientConfig();
-        String machineId = "vmId:" + UUID.randomUUID().toString();
-        diagnosticsClientConfig.withMachineId(machineId);
         diagnosticsClientConfig.withClientId(1);
         diagnosticsClientConfig.withConnectionMode(ConnectionMode.DIRECT);
         diagnosticsClientConfig.withActiveClientCounter(new AtomicInteger(2));
@@ -150,7 +138,6 @@ public class CilentConfigDiagnosticsTest {
         ObjectNode objectNode = (ObjectNode) objectMapper.readTree(jsonWriter.toString());
 
         assertThat(objectNode.get("id").asInt()).isEqualTo(1);
-        assertThat(objectNode.get("machineId").asText()).isEqualTo(machineId);
         assertThat(objectNode.get("numberOfClients").asInt()).isEqualTo(2);
         assertThat(objectNode.get("consistencyCfg").asText()).isEqualTo("(consistency: null, mm: false, prgns: [westus1,westus2])");
         assertThat(objectNode.get("connCfg").get("rntbd").asText()).isEqualTo("null");

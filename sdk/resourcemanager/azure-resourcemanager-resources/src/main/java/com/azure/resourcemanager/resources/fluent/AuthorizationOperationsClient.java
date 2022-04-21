@@ -18,8 +18,7 @@ public interface AuthorizationOperationsClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list Microsoft.Authorization operations as paginated response with {@link
-     *     PagedFlux}.
+     * @return result of the request to list Microsoft.Authorization operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<OperationInner> listAsync();
@@ -29,8 +28,7 @@ public interface AuthorizationOperationsClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list Microsoft.Authorization operations as paginated response with {@link
-     *     PagedIterable}.
+     * @return result of the request to list Microsoft.Authorization operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<OperationInner> list();
@@ -42,8 +40,7 @@ public interface AuthorizationOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list Microsoft.Authorization operations as paginated response with {@link
-     *     PagedIterable}.
+     * @return result of the request to list Microsoft.Authorization operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<OperationInner> list(Context context);

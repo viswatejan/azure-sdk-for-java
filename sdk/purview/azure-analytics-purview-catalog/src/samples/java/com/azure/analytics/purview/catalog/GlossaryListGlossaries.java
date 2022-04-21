@@ -12,10 +12,10 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 public class GlossaryListGlossaries {
     public static void main(String[] args) {
         GlossaryClient client =
-                new GlossaryClientBuilder()
+                new PurviewCatalogClientBuilder()
                         .endpoint(System.getenv("ENDPOINT"))
                         .credential(new DefaultAzureCredentialBuilder().build())
-                        .buildClient();
+                        .buildGlossaryClient();
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.addQueryParam("limit", "1");
         requestOptions.addQueryParam("sort", "ASC");

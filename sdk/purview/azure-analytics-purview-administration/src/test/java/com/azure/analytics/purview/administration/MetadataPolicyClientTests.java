@@ -20,7 +20,10 @@ public class MetadataPolicyClientTests extends PurviewAccountClientTestBase {
 
     @Override
     protected void beforeTest() {
-        client = purviewMetadataClientBuilderSetUp().endpoint(getEndpoint()).buildMetadataPolicyClient();
+        client = clientSetup(httpPipeline -> new PurviewMetadataClientBuilder()
+            .endpoint(getEndpoint())
+            .pipeline(httpPipeline)
+            .buildMetadataPolicyClient());
     }
 
     @Test

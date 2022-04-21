@@ -7,12 +7,15 @@ package com.azure.resourcemanager.compute.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.models.DedicatedHostInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The list dedicated host operation response. */
 @Fluent
 public final class DedicatedHostListResult {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DedicatedHostListResult.class);
+
     /*
      * The list of dedicated hosts
      */
@@ -75,13 +78,11 @@ public final class DedicatedHostListResult {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model DedicatedHostListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DedicatedHostListResult.class);
 }

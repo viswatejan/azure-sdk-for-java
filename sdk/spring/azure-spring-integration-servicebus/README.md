@@ -73,7 +73,6 @@ spring:
         producer:
           partitionKeyExpression:  "'partitionKey-' + headers[<message-header-key>]"
 ```
-
 ```java
 @PostMapping("/messages")
 public ResponseEntity<String> sendMessage(@RequestParam String message) {

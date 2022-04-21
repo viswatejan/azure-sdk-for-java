@@ -6,11 +6,14 @@ package com.azure.resourcemanager.redis.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters for Redis export operation. */
 @Fluent
 public final class ExportRdbParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ExportRdbParameters.class);
+
     /*
      * File format.
      */
@@ -96,16 +99,14 @@ public final class ExportRdbParameters {
      */
     public void validate() {
         if (prefix() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property prefix in model ExportRdbParameters"));
         }
         if (container() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property container in model ExportRdbParameters"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ExportRdbParameters.class);
 }

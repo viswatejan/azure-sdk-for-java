@@ -163,8 +163,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the table, including Id, resource name, resource type along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return properties of the table, including Id, resource name, resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<TableInner>> createWithResponseAsync(
@@ -221,8 +220,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the table, including Id, resource name, resource type along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return properties of the table, including Id, resource name, resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TableInner>> createWithResponseAsync(
@@ -275,8 +273,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the table, including Id, resource name, resource type on successful completion of {@link
-     *     Mono}.
+     * @return properties of the table, including Id, resource name, resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<TableInner> createAsync(String resourceGroupName, String accountName, String tableName) {
@@ -323,7 +320,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the table, including Id, resource name, resource type along with {@link Response}.
+     * @return properties of the table, including Id, resource name, resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TableInner> createWithResponse(
@@ -343,8 +340,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the table, including Id, resource name, resource type along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return properties of the table, including Id, resource name, resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<TableInner>> updateWithResponseAsync(
@@ -401,8 +397,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the table, including Id, resource name, resource type along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return properties of the table, including Id, resource name, resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TableInner>> updateWithResponseAsync(
@@ -455,8 +450,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the table, including Id, resource name, resource type on successful completion of {@link
-     *     Mono}.
+     * @return properties of the table, including Id, resource name, resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<TableInner> updateAsync(String resourceGroupName, String accountName, String tableName) {
@@ -503,7 +497,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the table, including Id, resource name, resource type along with {@link Response}.
+     * @return properties of the table, including Id, resource name, resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TableInner> updateWithResponse(
@@ -523,8 +517,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the table with the specified table name, under the specified account if it exists along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return the table with the specified table name, under the specified account if it exists.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<TableInner>> getWithResponseAsync(
@@ -581,8 +574,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the table with the specified table name, under the specified account if it exists along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return the table with the specified table name, under the specified account if it exists.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TableInner>> getWithResponseAsync(
@@ -635,8 +627,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the table with the specified table name, under the specified account if it exists on successful
-     *     completion of {@link Mono}.
+     * @return the table with the specified table name, under the specified account if it exists.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<TableInner> getAsync(String resourceGroupName, String accountName, String tableName) {
@@ -683,8 +674,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the table with the specified table name, under the specified account if it exists along with {@link
-     *     Response}.
+     * @return the table with the specified table name, under the specified account if it exists.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TableInner> getWithResponse(
@@ -704,7 +694,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteWithResponseAsync(
@@ -761,7 +751,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -814,7 +804,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(String resourceGroupName, String accountName, String tableName) {
@@ -853,7 +843,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -871,8 +861,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all the tables under the specified storage account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of all the tables under the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TableInner>> listSinglePageAsync(String resourceGroupName, String accountName) {
@@ -931,8 +920,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all the tables under the specified storage account along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of all the tables under the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TableInner>> listSinglePageAsync(
@@ -988,8 +976,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all the tables under the specified storage account as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of all the tables under the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<TableInner> listAsync(String resourceGroupName, String accountName) {
@@ -1008,8 +995,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all the tables under the specified storage account as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of all the tables under the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TableInner> listAsync(String resourceGroupName, String accountName, Context context) {
@@ -1028,8 +1014,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all the tables under the specified storage account as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of all the tables under the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TableInner> list(String resourceGroupName, String accountName) {
@@ -1047,8 +1032,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all the tables under the specified storage account as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of all the tables under the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TableInner> list(String resourceGroupName, String accountName, Context context) {
@@ -1062,7 +1046,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response schema along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return response schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TableInner>> listNextSinglePageAsync(String nextLink) {
@@ -1098,7 +1082,7 @@ public final class TablesClientImpl implements TablesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response schema along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return response schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TableInner>> listNextSinglePageAsync(String nextLink, Context context) {

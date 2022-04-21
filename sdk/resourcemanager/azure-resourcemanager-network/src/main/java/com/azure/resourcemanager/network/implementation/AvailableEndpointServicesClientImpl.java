@@ -93,8 +93,7 @@ public final class AvailableEndpointServicesClientImpl implements AvailableEndpo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListAvailableEndpointServices API service call along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return response for the ListAvailableEndpointServices API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EndpointServiceResultInner>> listSinglePageAsync(String location) {
@@ -146,8 +145,7 @@ public final class AvailableEndpointServicesClientImpl implements AvailableEndpo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListAvailableEndpointServices API service call along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return response for the ListAvailableEndpointServices API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EndpointServiceResultInner>> listSinglePageAsync(String location, Context context) {
@@ -189,8 +187,7 @@ public final class AvailableEndpointServicesClientImpl implements AvailableEndpo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListAvailableEndpointServices API service call as paginated response with {@link
-     *     PagedFlux}.
+     * @return response for the ListAvailableEndpointServices API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<EndpointServiceResultInner> listAsync(String location) {
@@ -205,8 +202,7 @@ public final class AvailableEndpointServicesClientImpl implements AvailableEndpo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListAvailableEndpointServices API service call as paginated response with {@link
-     *     PagedFlux}.
+     * @return response for the ListAvailableEndpointServices API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<EndpointServiceResultInner> listAsync(String location, Context context) {
@@ -221,8 +217,7 @@ public final class AvailableEndpointServicesClientImpl implements AvailableEndpo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListAvailableEndpointServices API service call as paginated response with {@link
-     *     PagedIterable}.
+     * @return response for the ListAvailableEndpointServices API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<EndpointServiceResultInner> list(String location) {
@@ -237,8 +232,7 @@ public final class AvailableEndpointServicesClientImpl implements AvailableEndpo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListAvailableEndpointServices API service call as paginated response with {@link
-     *     PagedIterable}.
+     * @return response for the ListAvailableEndpointServices API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<EndpointServiceResultInner> list(String location, Context context) {
@@ -252,8 +246,7 @@ public final class AvailableEndpointServicesClientImpl implements AvailableEndpo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListAvailableEndpointServices API service call along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return response for the ListAvailableEndpointServices API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EndpointServiceResultInner>> listNextSinglePageAsync(String nextLink) {
@@ -289,8 +282,7 @@ public final class AvailableEndpointServicesClientImpl implements AvailableEndpo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListAvailableEndpointServices API service call along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return response for the ListAvailableEndpointServices API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EndpointServiceResultInner>> listNextSinglePageAsync(String nextLink, Context context) {

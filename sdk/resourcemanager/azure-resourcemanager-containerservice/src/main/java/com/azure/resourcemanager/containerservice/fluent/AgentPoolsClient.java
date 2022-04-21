@@ -30,7 +30,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of agent pools in the specified managed cluster as paginated response with {@link PagedFlux}.
+     * @return a list of agent pools in the specified managed cluster.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<AgentPoolInner> listAsync(String resourceGroupName, String resourceName);
@@ -43,7 +43,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of agent pools in the specified managed cluster as paginated response with {@link PagedIterable}.
+     * @return a list of agent pools in the specified managed cluster.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AgentPoolInner> list(String resourceGroupName, String resourceName);
@@ -57,7 +57,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of agent pools in the specified managed cluster as paginated response with {@link PagedIterable}.
+     * @return a list of agent pools in the specified managed cluster.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AgentPoolInner> list(String resourceGroupName, String resourceName, Context context);
@@ -71,8 +71,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified managed cluster agent pool along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified managed cluster agent pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<AgentPoolInner>> getWithResponseAsync(
@@ -87,7 +86,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified managed cluster agent pool on successful completion of {@link Mono}.
+     * @return the specified managed cluster agent pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<AgentPoolInner> getAsync(String resourceGroupName, String resourceName, String agentPoolName);
@@ -116,7 +115,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified managed cluster agent pool along with {@link Response}.
+     * @return the specified managed cluster agent pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AgentPoolInner> getWithResponse(
@@ -132,7 +131,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return agent Pool along with {@link Response} on successful completion of {@link Mono}.
+     * @return agent Pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -148,7 +147,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of agent Pool.
+     * @return agent Pool.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdateAsync(
@@ -164,7 +163,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of agent Pool.
+     * @return agent Pool.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdate(
@@ -181,7 +180,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of agent Pool.
+     * @return agent Pool.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginCreateOrUpdate(
@@ -201,7 +200,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return agent Pool on successful completion of {@link Mono}.
+     * @return agent Pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<AgentPoolInner> createOrUpdateAsync(
@@ -253,7 +252,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -268,7 +267,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -283,7 +282,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String resourceName, String agentPoolName);
@@ -298,7 +297,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -313,7 +312,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String resourceName, String agentPoolName);
@@ -354,8 +353,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the upgrade profile for an agent pool along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the upgrade profile for an agent pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<AgentPoolUpgradeProfileInner>> getUpgradeProfileWithResponseAsync(
@@ -370,7 +368,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the upgrade profile for an agent pool on successful completion of {@link Mono}.
+     * @return the upgrade profile for an agent pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<AgentPoolUpgradeProfileInner> getUpgradeProfileAsync(
@@ -400,7 +398,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the upgrade profile for an agent pool along with {@link Response}.
+     * @return the upgrade profile for an agent pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AgentPoolUpgradeProfileInner> getUpgradeProfileWithResponse(
@@ -415,8 +413,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of available versions for an agent pool along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the list of available versions for an agent pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<AgentPoolAvailableVersionsInner>> getAvailableAgentPoolVersionsWithResponseAsync(
@@ -431,7 +428,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of available versions for an agent pool on successful completion of {@link Mono}.
+     * @return the list of available versions for an agent pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<AgentPoolAvailableVersionsInner> getAvailableAgentPoolVersionsAsync(
@@ -461,7 +458,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of available versions for an agent pool along with {@link Response}.
+     * @return the list of available versions for an agent pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AgentPoolAvailableVersionsInner> getAvailableAgentPoolVersionsWithResponse(
@@ -478,7 +475,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> upgradeNodeImageVersionWithResponseAsync(
@@ -495,7 +492,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<AgentPoolInner>, AgentPoolInner> beginUpgradeNodeImageVersionAsync(
@@ -512,7 +509,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginUpgradeNodeImageVersion(
@@ -530,7 +527,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<AgentPoolInner>, AgentPoolInner> beginUpgradeNodeImageVersion(
@@ -547,7 +544,7 @@ public interface AgentPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<AgentPoolInner> upgradeNodeImageVersionAsync(

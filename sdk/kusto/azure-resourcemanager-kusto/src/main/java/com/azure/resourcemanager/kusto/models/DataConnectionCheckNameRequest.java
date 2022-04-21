@@ -25,7 +25,7 @@ public final class DataConnectionCheckNameRequest {
      * Microsoft.Kusto/clusters/databases/dataConnections.
      */
     @JsonProperty(value = "type", required = true)
-    private String type = "Microsoft.Kusto/clusters/databases/dataConnections";
+    private String type;
 
     /** Creates an instance of DataConnectionCheckNameRequest class. */
     public DataConnectionCheckNameRequest() {

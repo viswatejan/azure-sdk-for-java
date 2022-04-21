@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -13,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public final class ImageReference {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ImageReference.class);
+
     /*
      * The publisher of the Azure Virtual Machines Marketplace image. For
      * example, Canonical or MicrosoftWindowsServer.
@@ -29,7 +33,7 @@ public final class ImageReference {
 
     /*
      * The SKU of the Azure Virtual Machines Marketplace image. For example,
-     * 18.04-LTS or 2022-datacenter.
+     * 18.04-LTS or 2019-Datacenter.
      */
     @JsonProperty(value = "sku")
     private String sku;
@@ -102,7 +106,7 @@ public final class ImageReference {
 
     /**
      * Get the sku property: The SKU of the Azure Virtual Machines Marketplace image. For example, 18.04-LTS or
-     * 2022-datacenter.
+     * 2019-Datacenter.
      *
      * @return the sku value.
      */
@@ -112,7 +116,7 @@ public final class ImageReference {
 
     /**
      * Set the sku property: The SKU of the Azure Virtual Machines Marketplace image. For example, 18.04-LTS or
-     * 2022-datacenter.
+     * 2019-Datacenter.
      *
      * @param sku the sku value to set.
      * @return the ImageReference object itself.

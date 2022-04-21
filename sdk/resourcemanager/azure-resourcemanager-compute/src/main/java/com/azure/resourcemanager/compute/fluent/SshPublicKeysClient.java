@@ -27,9 +27,9 @@ public interface SshPublicKeysClient
      * Lists all of the SSH public keys in the subscription. Use the nextLink property in the response to get the next
      * page of SSH public keys.
      *
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list SSH public keys operation response as paginated response with {@link PagedFlux}.
+     * @return the list SSH public keys operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SshPublicKeyResourceInner> listAsync();
@@ -38,9 +38,9 @@ public interface SshPublicKeysClient
      * Lists all of the SSH public keys in the subscription. Use the nextLink property in the response to get the next
      * page of SSH public keys.
      *
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list SSH public keys operation response as paginated response with {@link PagedIterable}.
+     * @return the list SSH public keys operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SshPublicKeyResourceInner> list();
@@ -51,9 +51,9 @@ public interface SshPublicKeysClient
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list SSH public keys operation response as paginated response with {@link PagedIterable}.
+     * @return the list SSH public keys operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SshPublicKeyResourceInner> list(Context context);
@@ -64,9 +64,9 @@ public interface SshPublicKeysClient
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list SSH public keys operation response as paginated response with {@link PagedFlux}.
+     * @return the list SSH public keys operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SshPublicKeyResourceInner> listByResourceGroupAsync(String resourceGroupName);
@@ -77,9 +77,9 @@ public interface SshPublicKeysClient
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list SSH public keys operation response as paginated response with {@link PagedIterable}.
+     * @return the list SSH public keys operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SshPublicKeyResourceInner> listByResourceGroup(String resourceGroupName);
@@ -91,9 +91,9 @@ public interface SshPublicKeysClient
      * @param resourceGroupName The name of the resource group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list SSH public keys operation response as paginated response with {@link PagedIterable}.
+     * @return the list SSH public keys operation response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SshPublicKeyResourceInner> listByResourceGroup(String resourceGroupName, Context context);
@@ -105,10 +105,9 @@ public interface SshPublicKeysClient
      * @param sshPublicKeyName The name of the SSH public key.
      * @param parameters Parameters supplied to create the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the SSH public key along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return specifies information about the SSH public key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SshPublicKeyResourceInner>> createWithResponseAsync(
@@ -121,9 +120,9 @@ public interface SshPublicKeysClient
      * @param sshPublicKeyName The name of the SSH public key.
      * @param parameters Parameters supplied to create the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the SSH public key on successful completion of {@link Mono}.
+     * @return specifies information about the SSH public key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SshPublicKeyResourceInner> createAsync(
@@ -136,7 +135,7 @@ public interface SshPublicKeysClient
      * @param sshPublicKeyName The name of the SSH public key.
      * @param parameters Parameters supplied to create the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return specifies information about the SSH public key.
      */
@@ -152,9 +151,9 @@ public interface SshPublicKeysClient
      * @param parameters Parameters supplied to create the SSH public key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the SSH public key along with {@link Response}.
+     * @return specifies information about the SSH public key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SshPublicKeyResourceInner> createWithResponse(
@@ -167,10 +166,9 @@ public interface SshPublicKeysClient
      * @param sshPublicKeyName The name of the SSH public key.
      * @param parameters Parameters supplied to update the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the SSH public key along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return specifies information about the SSH public key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SshPublicKeyResourceInner>> updateWithResponseAsync(
@@ -183,9 +181,9 @@ public interface SshPublicKeysClient
      * @param sshPublicKeyName The name of the SSH public key.
      * @param parameters Parameters supplied to update the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the SSH public key on successful completion of {@link Mono}.
+     * @return specifies information about the SSH public key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SshPublicKeyResourceInner> updateAsync(
@@ -198,7 +196,7 @@ public interface SshPublicKeysClient
      * @param sshPublicKeyName The name of the SSH public key.
      * @param parameters Parameters supplied to update the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return specifies information about the SSH public key.
      */
@@ -214,9 +212,9 @@ public interface SshPublicKeysClient
      * @param parameters Parameters supplied to update the SSH public key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the SSH public key along with {@link Response}.
+     * @return specifies information about the SSH public key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SshPublicKeyResourceInner> updateWithResponse(
@@ -228,9 +226,9 @@ public interface SshPublicKeysClient
      * @param resourceGroupName The name of the resource group.
      * @param sshPublicKeyName The name of the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String sshPublicKeyName);
@@ -241,9 +239,9 @@ public interface SshPublicKeysClient
      * @param resourceGroupName The name of the resource group.
      * @param sshPublicKeyName The name of the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String sshPublicKeyName);
@@ -254,7 +252,7 @@ public interface SshPublicKeysClient
      * @param resourceGroupName The name of the resource group.
      * @param sshPublicKeyName The name of the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -267,9 +265,9 @@ public interface SshPublicKeysClient
      * @param sshPublicKeyName The name of the SSH public key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(String resourceGroupName, String sshPublicKeyName, Context context);
@@ -280,10 +278,9 @@ public interface SshPublicKeysClient
      * @param resourceGroupName The name of the resource group.
      * @param sshPublicKeyName The name of the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the SSH public key along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return specifies information about the SSH public key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SshPublicKeyResourceInner>> getByResourceGroupWithResponseAsync(
@@ -295,9 +292,9 @@ public interface SshPublicKeysClient
      * @param resourceGroupName The name of the resource group.
      * @param sshPublicKeyName The name of the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the SSH public key on successful completion of {@link Mono}.
+     * @return specifies information about the SSH public key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SshPublicKeyResourceInner> getByResourceGroupAsync(String resourceGroupName, String sshPublicKeyName);
@@ -308,7 +305,7 @@ public interface SshPublicKeysClient
      * @param resourceGroupName The name of the resource group.
      * @param sshPublicKeyName The name of the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return specifies information about the SSH public key.
      */
@@ -322,9 +319,9 @@ public interface SshPublicKeysClient
      * @param sshPublicKeyName The name of the SSH public key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the SSH public key along with {@link Response}.
+     * @return specifies information about the SSH public key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SshPublicKeyResourceInner> getByResourceGroupWithResponse(
@@ -337,10 +334,9 @@ public interface SshPublicKeysClient
      * @param resourceGroupName The name of the resource group.
      * @param sshPublicKeyName The name of the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response from generation of an SSH key pair along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return response from generation of an SSH key pair.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SshPublicKeyGenerateKeyPairResultInner>> generateKeyPairWithResponseAsync(
@@ -353,9 +349,9 @@ public interface SshPublicKeysClient
      * @param resourceGroupName The name of the resource group.
      * @param sshPublicKeyName The name of the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response from generation of an SSH key pair on successful completion of {@link Mono}.
+     * @return response from generation of an SSH key pair.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SshPublicKeyGenerateKeyPairResultInner> generateKeyPairAsync(
@@ -368,7 +364,7 @@ public interface SshPublicKeysClient
      * @param resourceGroupName The name of the resource group.
      * @param sshPublicKeyName The name of the SSH public key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return response from generation of an SSH key pair.
      */
@@ -383,9 +379,9 @@ public interface SshPublicKeysClient
      * @param sshPublicKeyName The name of the SSH public key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response from generation of an SSH key pair along with {@link Response}.
+     * @return response from generation of an SSH key pair.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SshPublicKeyGenerateKeyPairResultInner> generateKeyPairWithResponse(

@@ -5,7 +5,6 @@ package com.azure.identity;
 
 import com.azure.core.credential.TokenRequestContext;
 import com.azure.identity.implementation.IdentityClient;
-import com.azure.identity.implementation.IdentityClientOptions;
 import com.azure.identity.util.TestUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +26,7 @@ import static org.mockito.Mockito.when;
 public class AzurePowerShellCredentialTest {
 
     @Test
-    public void getTokenMockAsync() throws Exception {
+    public void getTokenMockAsync() throws Exception {   
         // setup
         String token1 = "token1";
         TokenRequestContext request = new TokenRequestContext().addScopes("resourcename");
@@ -51,14 +50,13 @@ public class AzurePowerShellCredentialTest {
     public void azurePowerShellCredentialNotInstalledException() throws Exception {
         // setup
         TokenRequestContext request = new TokenRequestContext().addScopes("AzurePSNotInstalled");
-
+ 
         // mock
         IdentityClient identityClient = PowerMockito.mock(IdentityClient.class);
         when(identityClient.authenticateWithAzurePowerShell(request))
             .thenReturn(Mono.error(new Exception("Azure PowerShell not installed")));
-        when(identityClient.getIdentityClientOptions()).thenReturn(new IdentityClientOptions());
         PowerMockito.whenNew(IdentityClient.class).withAnyArguments().thenReturn(identityClient);
-
+ 
         // test
         AzurePowerShellCredential credential = new AzurePowerShellCredentialBuilder().build();
         StepVerifier.create(credential.getToken(request))

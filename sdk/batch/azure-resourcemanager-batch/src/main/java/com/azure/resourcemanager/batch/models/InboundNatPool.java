@@ -6,12 +6,15 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A inbound NAT pool that can be used to address specific ports on compute nodes in a Batch pool externally. */
 @Fluent
 public final class InboundNatPool {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(InboundNatPool.class);
+
     /*
      * The name of the endpoint. The name must be unique within a Batch pool,
      * can contain letters, numbers, underscores, periods, and hyphens. Names
@@ -229,12 +232,12 @@ public final class InboundNatPool {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model InboundNatPool"));
         }
         if (protocol() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property protocol in model InboundNatPool"));
         }
@@ -242,6 +245,4 @@ public final class InboundNatPool {
             networkSecurityGroupRules().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(InboundNatPool.class);
 }

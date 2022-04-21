@@ -45,7 +45,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response schema as paginated response with {@link PagedFlux}.
+     * @return response schema.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ListContainerItemInner> listAsync(
@@ -62,7 +62,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response schema as paginated response with {@link PagedFlux}.
+     * @return response schema.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ListContainerItemInner> listAsync(String resourceGroupName, String accountName);
@@ -78,7 +78,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response schema as paginated response with {@link PagedIterable}.
+     * @return response schema.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ListContainerItemInner> list(String resourceGroupName, String accountName);
@@ -98,7 +98,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response schema as paginated response with {@link PagedIterable}.
+     * @return response schema.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ListContainerItemInner> list(
@@ -124,8 +124,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the blob container, including Id, resource name, resource type, Etag along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return properties of the blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BlobContainerInner>> createWithResponseAsync(
@@ -146,8 +145,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the blob container, including Id, resource name, resource type, Etag on successful
-     *     completion of {@link Mono}.
+     * @return properties of the blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BlobContainerInner> createAsync(
@@ -190,8 +188,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the blob container, including Id, resource name, resource type, Etag along with {@link
-     *     Response}.
+     * @return properties of the blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BlobContainerInner> createWithResponse(
@@ -216,8 +213,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the blob container, including Id, resource name, resource type, Etag along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return properties of the blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BlobContainerInner>> updateWithResponseAsync(
@@ -238,8 +234,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the blob container, including Id, resource name, resource type, Etag on successful
-     *     completion of {@link Mono}.
+     * @return properties of the blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BlobContainerInner> updateAsync(
@@ -282,8 +277,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the blob container, including Id, resource name, resource type, Etag along with {@link
-     *     Response}.
+     * @return properties of the blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BlobContainerInner> updateWithResponse(
@@ -306,7 +300,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a specified container along with {@link Response} on successful completion of {@link Mono}.
+     * @return properties of a specified container.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BlobContainerInner>> getWithResponseAsync(
@@ -325,7 +319,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a specified container on successful completion of {@link Mono}.
+     * @return properties of a specified container.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BlobContainerInner> getAsync(String resourceGroupName, String accountName, String containerName);
@@ -362,7 +356,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a specified container along with {@link Response}.
+     * @return properties of a specified container.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BlobContainerInner> getWithResponse(
@@ -381,7 +375,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String accountName, String containerName);
@@ -399,7 +393,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String accountName, String containerName);
@@ -435,7 +429,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
@@ -456,8 +450,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the LegalHold property of a blob container along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the LegalHold property of a blob container.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<LegalHoldInner>> setLegalHoldWithResponseAsync(
@@ -478,7 +471,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the LegalHold property of a blob container on successful completion of {@link Mono}.
+     * @return the LegalHold property of a blob container.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<LegalHoldInner> setLegalHoldAsync(
@@ -521,7 +514,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the LegalHold property of a blob container along with {@link Response}.
+     * @return the LegalHold property of a blob container.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<LegalHoldInner> setLegalHoldWithResponse(
@@ -542,8 +535,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the LegalHold property of a blob container along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the LegalHold property of a blob container.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<LegalHoldInner>> clearLegalHoldWithResponseAsync(
@@ -564,7 +556,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the LegalHold property of a blob container on successful completion of {@link Mono}.
+     * @return the LegalHold property of a blob container.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<LegalHoldInner> clearLegalHoldAsync(
@@ -607,7 +599,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the LegalHold property of a blob container along with {@link Response}.
+     * @return the LegalHold property of a blob container.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<LegalHoldInner> clearLegalHoldWithResponse(
@@ -631,8 +623,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag on
-     *     successful completion of {@link Mono}.
+     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BlobContainersCreateOrUpdateImmutabilityPolicyResponse> createOrUpdateImmutabilityPolicyWithResponseAsync(
@@ -660,8 +651,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag on
-     *     successful completion of {@link Mono}.
+     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ImmutabilityPolicyInner> createOrUpdateImmutabilityPolicyAsync(
@@ -685,8 +675,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag on
-     *     successful completion of {@link Mono}.
+     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ImmutabilityPolicyInner> createOrUpdateImmutabilityPolicyAsync(
@@ -758,8 +747,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the existing immutability policy along with the corresponding ETag in response headers and body on
-     *     successful completion of {@link Mono}.
+     * @return the existing immutability policy along with the corresponding ETag in response headers and body.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BlobContainersGetImmutabilityPolicyResponse> getImmutabilityPolicyWithResponseAsync(
@@ -781,8 +769,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the existing immutability policy along with the corresponding ETag in response headers and body on
-     *     successful completion of {@link Mono}.
+     * @return the existing immutability policy along with the corresponding ETag in response headers and body.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ImmutabilityPolicyInner> getImmutabilityPolicyAsync(
@@ -801,8 +788,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the existing immutability policy along with the corresponding ETag in response headers and body on
-     *     successful completion of {@link Mono}.
+     * @return the existing immutability policy along with the corresponding ETag in response headers and body.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ImmutabilityPolicyInner> getImmutabilityPolicyAsync(
@@ -867,8 +853,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag on
-     *     successful completion of {@link Mono}.
+     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BlobContainersDeleteImmutabilityPolicyResponse> deleteImmutabilityPolicyWithResponseAsync(
@@ -892,8 +877,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag on
-     *     successful completion of {@link Mono}.
+     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ImmutabilityPolicyInner> deleteImmutabilityPolicyAsync(
@@ -965,8 +949,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag on
-     *     successful completion of {@link Mono}.
+     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BlobContainersLockImmutabilityPolicyResponse> lockImmutabilityPolicyWithResponseAsync(
@@ -989,8 +972,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag on
-     *     successful completion of {@link Mono}.
+     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ImmutabilityPolicyInner> lockImmutabilityPolicyAsync(
@@ -1061,8 +1043,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag on
-     *     successful completion of {@link Mono}.
+     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BlobContainersExtendImmutabilityPolicyResponse> extendImmutabilityPolicyWithResponseAsync(
@@ -1090,8 +1071,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag on
-     *     successful completion of {@link Mono}.
+     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ImmutabilityPolicyInner> extendImmutabilityPolicyAsync(
@@ -1118,8 +1098,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag on
-     *     successful completion of {@link Mono}.
+     * @return the ImmutabilityPolicy property of a blob container, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ImmutabilityPolicyInner> extendImmutabilityPolicyAsync(
@@ -1193,7 +1172,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lease Container response schema along with {@link Response} on successful completion of {@link Mono}.
+     * @return lease Container response schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<LeaseContainerResponseInner>> leaseWithResponseAsync(
@@ -1214,7 +1193,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lease Container response schema on successful completion of {@link Mono}.
+     * @return lease Container response schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<LeaseContainerResponseInner> leaseAsync(
@@ -1234,7 +1213,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lease Container response schema on successful completion of {@link Mono}.
+     * @return lease Container response schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<LeaseContainerResponseInner> leaseAsync(String resourceGroupName, String accountName, String containerName);
@@ -1274,7 +1253,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lease Container response schema along with {@link Response}.
+     * @return lease Container response schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<LeaseContainerResponseInner> leaseWithResponse(
@@ -1299,7 +1278,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> objectLevelWormWithResponseAsync(
@@ -1320,7 +1299,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginObjectLevelWormAsync(
@@ -1341,7 +1320,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginObjectLevelWorm(
@@ -1363,7 +1342,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginObjectLevelWorm(
@@ -1384,7 +1363,7 @@ public interface BlobContainersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> objectLevelWormAsync(String resourceGroupName, String accountName, String containerName);

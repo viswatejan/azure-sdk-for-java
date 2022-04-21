@@ -8,7 +8,6 @@ import com.azure.analytics.synapse.artifacts.implementation.IntegrationRuntimesI
 import com.azure.analytics.synapse.artifacts.models.ErrorContractException;
 import com.azure.analytics.synapse.artifacts.models.IntegrationRuntimeListResponse;
 import com.azure.analytics.synapse.artifacts.models.IntegrationRuntimeResource;
-import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
 import com.azure.core.annotation.ServiceMethod;
@@ -18,14 +17,13 @@ import com.azure.core.util.Context;
 /** Initializes a new instance of the synchronous ArtifactsClient type. */
 @ServiceClient(builder = ArtifactsClientBuilder.class)
 public final class IntegrationRuntimesClient {
-    @Generated private final IntegrationRuntimesImpl serviceClient;
+    private final IntegrationRuntimesImpl serviceClient;
 
     /**
      * Initializes an instance of IntegrationRuntimes client.
      *
      * @param serviceClient the service client implementation.
      */
-    @Generated
     IntegrationRuntimesClient(IntegrationRuntimesImpl serviceClient) {
         this.serviceClient = serviceClient;
     }
@@ -37,7 +35,6 @@ public final class IntegrationRuntimesClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of integration runtime resources.
      */
-    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public IntegrationRuntimeListResponse list() {
         return this.serviceClient.list();
@@ -50,9 +47,8 @@ public final class IntegrationRuntimesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorContractException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of integration runtime resources along with {@link Response}.
+     * @return a list of integration runtime resources.
      */
-    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IntegrationRuntimeListResponse> listWithResponse(Context context) {
         return this.serviceClient.listWithResponse(context);
@@ -67,7 +63,6 @@ public final class IntegrationRuntimesClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return integration Runtime.
      */
-    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public IntegrationRuntimeResource get(String integrationRuntimeName) {
         return this.serviceClient.get(integrationRuntimeName);
@@ -81,9 +76,8 @@ public final class IntegrationRuntimesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorContractException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return integration Runtime along with {@link Response}.
+     * @return integration Runtime.
      */
-    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IntegrationRuntimeResource> getWithResponse(String integrationRuntimeName, Context context) {
         return this.serviceClient.getWithResponse(integrationRuntimeName, context);

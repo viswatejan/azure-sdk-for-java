@@ -3,7 +3,6 @@
 
 package com.azure.resourcemanager.samples;
 
-import com.azure.core.test.annotation.DoNotRecord;
 import com.azure.resourcemanager.compute.samples.CreateVirtualMachineUsingCustomImageFromVHD;
 import com.azure.resourcemanager.compute.samples.CreateVirtualMachineUsingCustomImageFromVM;
 import com.azure.resourcemanager.compute.samples.CreateVirtualMachineUsingSpecializedDiskFromSnapshot;
@@ -84,8 +83,7 @@ public class ComputeSampleTests extends SamplesTestBase {
     }
 
     @Test
-    @DoNotRecord(skipInPlayback = true)
-    public void testListComputeSkus() {
+    public void testListListComputeSkus() {
         Assertions.assertTrue(ListComputeSkus.runSample(azureResourceManager));
     }
 

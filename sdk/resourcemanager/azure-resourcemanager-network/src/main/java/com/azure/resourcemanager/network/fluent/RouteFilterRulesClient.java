@@ -29,7 +29,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -44,7 +44,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -59,7 +59,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String routeFilterName, String ruleName);
@@ -74,7 +74,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -89,7 +89,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String routeFilterName, String ruleName);
@@ -130,8 +130,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified rule from a route filter along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified rule from a route filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RouteFilterRuleInner>> getWithResponseAsync(
@@ -146,7 +145,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified rule from a route filter on successful completion of {@link Mono}.
+     * @return the specified rule from a route filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RouteFilterRuleInner> getAsync(String resourceGroupName, String routeFilterName, String ruleName);
@@ -175,7 +174,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified rule from a route filter along with {@link Response}.
+     * @return the specified rule from a route filter.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RouteFilterRuleInner> getWithResponse(
@@ -191,7 +190,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return route Filter Rule Resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return route Filter Rule Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -210,7 +209,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of route Filter Rule Resource.
+     * @return route Filter Rule Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<RouteFilterRuleInner>, RouteFilterRuleInner> beginCreateOrUpdateAsync(
@@ -229,7 +228,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of route Filter Rule Resource.
+     * @return route Filter Rule Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<RouteFilterRuleInner>, RouteFilterRuleInner> beginCreateOrUpdate(
@@ -249,7 +248,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of route Filter Rule Resource.
+     * @return route Filter Rule Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<RouteFilterRuleInner>, RouteFilterRuleInner> beginCreateOrUpdate(
@@ -269,7 +268,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return route Filter Rule Resource on successful completion of {@link Mono}.
+     * @return route Filter Rule Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RouteFilterRuleInner> createOrUpdateAsync(
@@ -326,7 +325,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RouteFilterRules in a route filter as paginated response with {@link PagedFlux}.
+     * @return all RouteFilterRules in a route filter.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<RouteFilterRuleInner> listByRouteFilterAsync(String resourceGroupName, String routeFilterName);
@@ -339,7 +338,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RouteFilterRules in a route filter as paginated response with {@link PagedIterable}.
+     * @return all RouteFilterRules in a route filter.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<RouteFilterRuleInner> listByRouteFilter(String resourceGroupName, String routeFilterName);
@@ -353,7 +352,7 @@ public interface RouteFilterRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all RouteFilterRules in a route filter as paginated response with {@link PagedIterable}.
+     * @return all RouteFilterRules in a route filter.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<RouteFilterRuleInner> listByRouteFilter(

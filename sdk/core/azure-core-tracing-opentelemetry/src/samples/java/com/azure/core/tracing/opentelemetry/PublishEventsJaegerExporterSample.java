@@ -8,6 +8,8 @@ import com.azure.messaging.eventhubs.EventDataBatch;
 import com.azure.messaging.eventhubs.EventHubClientBuilder;
 import com.azure.messaging.eventhubs.EventHubProducerAsyncClient;
 import com.azure.messaging.eventhubs.models.CreateBatchOptions;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.exporter.jaeger.JaegerGrpcSpanExporter;
@@ -50,10 +52,13 @@ public class PublishEventsJaegerExporterSample {
      * @return The OpenTelemetry {@link Tracer} instance.
      */
     private static Tracer configureJaegerExporter() {
+        // Create a channel towards Jaeger end point
+        ManagedChannel jaegerChannel =
+            ManagedChannelBuilder.forAddress("localhost", 14250).usePlaintext().build();
         // Export traces to Jaeger
         JaegerGrpcSpanExporter jaegerExporter =
             JaegerGrpcSpanExporter.builder()
-                .setEndpoint("http://localhost:14250")
+                .setChannel(jaegerChannel)
                 .setTimeout(Duration.ofMinutes(30000))
                 .build();
 

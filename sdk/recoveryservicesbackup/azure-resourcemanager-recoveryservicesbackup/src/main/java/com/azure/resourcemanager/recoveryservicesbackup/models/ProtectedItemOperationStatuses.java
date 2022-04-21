@@ -48,7 +48,7 @@ public interface ProtectedItemOperationStatuses {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status along with {@link Response}.
+     * @return operation status.
      */
     Response<OperationStatus> getWithResponse(
         String vaultName,

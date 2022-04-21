@@ -33,7 +33,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String ipAllocationName);
@@ -46,7 +46,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String ipAllocationName);
@@ -59,7 +59,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String ipAllocationName);
@@ -73,7 +73,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String ipAllocationName, Context context);
@@ -86,7 +86,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String ipAllocationName);
@@ -125,8 +125,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified IpAllocation by resource group along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the specified IpAllocation by resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<IpAllocationInner>> getByResourceGroupWithResponseAsync(
@@ -141,7 +140,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified IpAllocation by resource group on successful completion of {@link Mono}.
+     * @return the specified IpAllocation by resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<IpAllocationInner> getByResourceGroupAsync(String resourceGroupName, String ipAllocationName, String expand);
@@ -154,7 +153,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified IpAllocation by resource group on successful completion of {@link Mono}.
+     * @return the specified IpAllocation by resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<IpAllocationInner> getByResourceGroupAsync(String resourceGroupName, String ipAllocationName);
@@ -182,7 +181,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified IpAllocation by resource group along with {@link Response}.
+     * @return the specified IpAllocation by resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IpAllocationInner> getByResourceGroupWithResponse(
@@ -197,7 +196,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return ipAllocation resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return ipAllocation resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -212,7 +211,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of ipAllocation resource.
+     * @return ipAllocation resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<IpAllocationInner>, IpAllocationInner> beginCreateOrUpdateAsync(
@@ -227,7 +226,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of ipAllocation resource.
+     * @return ipAllocation resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<IpAllocationInner>, IpAllocationInner> beginCreateOrUpdate(
@@ -243,7 +242,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of ipAllocation resource.
+     * @return ipAllocation resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<IpAllocationInner>, IpAllocationInner> beginCreateOrUpdate(
@@ -258,7 +257,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return ipAllocation resource on successful completion of {@link Mono}.
+     * @return ipAllocation resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<IpAllocationInner> createOrUpdateAsync(
@@ -303,7 +302,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return ipAllocation resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return ipAllocation resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<IpAllocationInner>> updateTagsWithResponseAsync(
@@ -318,7 +317,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return ipAllocation resource on successful completion of {@link Mono}.
+     * @return ipAllocation resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<IpAllocationInner> updateTagsAsync(String resourceGroupName, String ipAllocationName, TagsObject parameters);
@@ -347,7 +346,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return ipAllocation resource along with {@link Response}.
+     * @return ipAllocation resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IpAllocationInner> updateTagsWithResponse(
@@ -358,7 +357,7 @@ public interface IpAllocationsClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all IpAllocations in a subscription as paginated response with {@link PagedFlux}.
+     * @return all IpAllocations in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<IpAllocationInner> listAsync();
@@ -368,7 +367,7 @@ public interface IpAllocationsClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all IpAllocations in a subscription as paginated response with {@link PagedIterable}.
+     * @return all IpAllocations in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<IpAllocationInner> list();
@@ -380,7 +379,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all IpAllocations in a subscription as paginated response with {@link PagedIterable}.
+     * @return all IpAllocations in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<IpAllocationInner> list(Context context);
@@ -392,7 +391,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all IpAllocations in a resource group as paginated response with {@link PagedFlux}.
+     * @return all IpAllocations in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<IpAllocationInner> listByResourceGroupAsync(String resourceGroupName);
@@ -404,7 +403,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all IpAllocations in a resource group as paginated response with {@link PagedIterable}.
+     * @return all IpAllocations in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<IpAllocationInner> listByResourceGroup(String resourceGroupName);
@@ -417,7 +416,7 @@ public interface IpAllocationsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all IpAllocations in a resource group as paginated response with {@link PagedIterable}.
+     * @return all IpAllocations in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<IpAllocationInner> listByResourceGroup(String resourceGroupName, Context context);

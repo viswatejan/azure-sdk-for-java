@@ -6,7 +6,6 @@ package com.azure.ai.formrecognizer.implementation.util;
 import com.azure.ai.formrecognizer.administration.models.AccountProperties;
 import com.azure.ai.formrecognizer.administration.models.CopyAuthorization;
 import com.azure.ai.formrecognizer.administration.models.DocTypeInfo;
-import com.azure.ai.formrecognizer.administration.models.DocumentBuildMode;
 import com.azure.ai.formrecognizer.administration.models.DocumentFieldSchema;
 import com.azure.ai.formrecognizer.administration.models.DocumentModel;
 import com.azure.ai.formrecognizer.administration.models.DocumentModelInfo;
@@ -26,13 +25,11 @@ import com.azure.ai.formrecognizer.implementation.models.OperationInfo;
 import com.azure.ai.formrecognizer.models.AnalyzeResult;
 import com.azure.ai.formrecognizer.models.AnalyzedDocument;
 import com.azure.ai.formrecognizer.models.BoundingRegion;
-import com.azure.ai.formrecognizer.models.CurrencyValue;
 import com.azure.ai.formrecognizer.models.DocumentEntity;
 import com.azure.ai.formrecognizer.models.DocumentField;
 import com.azure.ai.formrecognizer.models.DocumentFieldType;
 import com.azure.ai.formrecognizer.models.DocumentKeyValueElement;
 import com.azure.ai.formrecognizer.models.DocumentKeyValuePair;
-import com.azure.ai.formrecognizer.models.DocumentLanguage;
 import com.azure.ai.formrecognizer.models.DocumentLine;
 import com.azure.ai.formrecognizer.models.DocumentModelOperationException;
 import com.azure.ai.formrecognizer.models.DocumentOperationResult;
@@ -89,21 +86,6 @@ public class Transforms {
 
         AnalyzeResultHelper.setContent(analyzeResult, innerAnalyzeResult.getContent());
         AnalyzeResultHelper.setModelId(analyzeResult, innerAnalyzeResult.getModelId());
-        if (!CoreUtils.isNullOrEmpty(innerAnalyzeResult.getLanguages())) {
-            AnalyzeResultHelper.setLanguages(analyzeResult, innerAnalyzeResult.getLanguages()
-                .stream()
-                .map(innerLanguage -> {
-                    DocumentLanguage documentLanguage = new DocumentLanguage();
-                    DocumentLanguageHelper.setCode(documentLanguage, innerLanguage.getLanguageCode());
-                    DocumentLanguageHelper.setSpans(documentLanguage, innerLanguage.getSpans()
-                        .stream()
-                        .map(innerDocumentSpan -> toDocumentSpan(innerDocumentSpan))
-                        .collect(Collectors.toList()));
-                    DocumentLanguageHelper.setConfidence(documentLanguage, innerLanguage.getConfidence());
-                    return documentLanguage;
-                })
-                .collect(Collectors.toList()));
-        }
 
         // add document entities
         if (!CoreUtils.isNullOrEmpty(innerAnalyzeResult.getEntities())) {
@@ -329,7 +311,6 @@ public class Transforms {
         Map<String, DocTypeInfo> docTypeMap = getStringDocTypeInfoMap(modelInfo);
         DocumentModelHelper.setDocTypes(documentModel, docTypeMap);
         DocumentModelHelper.setCreatedOn(documentModel, modelInfo.getCreatedDateTime());
-        DocumentModelHelper.setTags(documentModel, modelInfo.getTags());
         return documentModel;
     }
 
@@ -345,10 +326,6 @@ public class Transforms {
                 DocTypeInfoHelper.setFieldSchema(docTypeInfo, schemaMap);
                 DocTypeInfoHelper.setFieldConfidence(docTypeInfo, innerDocTypeInfo.getFieldConfidence());
                 docTypeMap.put(key, docTypeInfo);
-                DocTypeInfoHelper.setBuildMode(docTypeInfo,
-                    innerDocTypeInfo.getBuildMode() != null
-                        ? DocumentBuildMode.fromString(innerDocTypeInfo.getBuildMode().toString())
-                        : null);
             });
             return docTypeMap;
         }
@@ -499,17 +476,6 @@ public class Transforms {
                         -> documentFieldMap.put(key, toDocumentField(innerMapDocumentField)));
                 DocumentFieldHelper.setValueObject(documentField, documentFieldMap);
             }
-        } else if (com.azure.ai.formrecognizer.implementation.models.DocumentFieldType.CURRENCY.equals(
-            innerDocumentField.getType())) {
-            if (innerDocumentField.getValueCurrency() == null) {
-                DocumentFieldHelper.setValueCurrency(documentField, null);
-            } else {
-                CurrencyValue currencyValue = new CurrencyValue();
-                CurrencyValueHelper.setAmount(currencyValue, innerDocumentField.getValueCurrency().getAmount());
-                CurrencyValueHelper.setCurrencySymbol(currencyValue,
-                    innerDocumentField.getValueCurrency().getCurrencySymbol());
-                DocumentFieldHelper.setValueCurrency(documentField, currencyValue);
-            }
         }
     }
 
@@ -538,7 +504,6 @@ public class Transforms {
                 DocumentModelInfoHelper.setModelId(documentModelInfo, modelSummary.getModelId());
                 DocumentModelInfoHelper.setDescription(documentModelInfo, modelSummary.getDescription());
                 DocumentModelInfoHelper.setCreatedOn(documentModelInfo, modelSummary.getCreatedDateTime());
-                DocumentModelInfoHelper.setTags(documentModelInfo, modelSummary.getTags());
                 return documentModelInfo;
             }).collect(Collectors.toList());
     }
@@ -546,13 +511,9 @@ public class Transforms {
     public static ModelOperation toModelOperation(GetOperationResponse getOperationResponse) {
         ModelOperation modelOperation = new ModelOperation();
         ModelInfo modelInfo = getOperationResponse.getResult();
-        if (modelInfo != null) {
-            ModelOperationHelper.setModelId(modelOperation, modelInfo.getModelId());
-            ModelOperationHelper.setDescription(modelOperation, modelInfo.getDescription());
-            ModelOperationHelper.setCreatedOn(modelOperation, modelInfo.getCreatedDateTime());
-            Map<String, DocTypeInfo> docTypeMap = getStringDocTypeInfoMap(modelInfo);
-            ModelOperationHelper.setDocTypes(modelOperation, docTypeMap);
-        }
+        ModelOperationHelper.setModelId(modelOperation, modelInfo.getModelId());
+        ModelOperationHelper.setDescription(modelOperation, modelInfo.getDescription());
+        ModelOperationHelper.setCreatedOn(modelOperation, modelInfo.getCreatedDateTime());
         ModelOperationHelper.setOperationId(modelOperation, getOperationResponse.getOperationId());
         ModelOperationHelper.setCreatedOn(modelOperation, getOperationResponse.getCreatedDateTime());
         ModelOperationHelper.setKind(modelOperation,
@@ -564,6 +525,8 @@ public class Transforms {
         ModelOperationHelper.setStatus(modelOperation,
             ModelOperationStatus.fromString(getOperationResponse.getStatus().toString()));
         ModelOperationHelper.setResourceLocation(modelOperation, getOperationResponse.getResourceLocation());
+        Map<String, DocTypeInfo> docTypeMap = getStringDocTypeInfoMap(modelInfo);
+        ModelOperationHelper.setDocTypes(modelOperation, docTypeMap);
         DocumentModelOperationError error = toDocumentModelOperationError(getOperationResponse.getError());
         ModelOperationHelper.setError(modelOperation, error);
         return modelOperation;
@@ -600,9 +563,10 @@ public class Transforms {
     }
 
     public static DocumentModelOperationException toDocumentModelOperationException(Error error) {
+        DocumentModelOperationException documentModelOperationException = new DocumentModelOperationException();
         DocumentModelOperationError documentModelOperationError = toDocumentModelOperationError(error);
-        DocumentModelOperationException documentModelOperationException
-            = new DocumentModelOperationException(documentModelOperationError);
+        DocumentAnalysisExceptionHelper.setErrorInformation(documentModelOperationException,
+            documentModelOperationError);
         return documentModelOperationException;
     }
 
@@ -625,11 +589,11 @@ public class Transforms {
     private static DocumentModelOperationError toDocumentModelOperationError(Error error) {
         if (error != null) {
             DocumentModelOperationError documentModelOperationError = new DocumentModelOperationError();
-            DocumentModelOperationErrorHelper.setCode(documentModelOperationError, error.getCode());
-            DocumentModelOperationErrorHelper.setInnerError(documentModelOperationError, toInnerError(error.getInnererror()));
-            DocumentModelOperationErrorHelper.setDetails(documentModelOperationError, toErrorDetails(error.getDetails()));
-            DocumentModelOperationErrorHelper.setMessage(documentModelOperationError, error.getMessage());
-            DocumentModelOperationErrorHelper.setTarget(documentModelOperationError, error.getTarget());
+            FormRecognizerErrorHelper.setCode(documentModelOperationError, error.getCode());
+            FormRecognizerErrorHelper.setInnerError(documentModelOperationError, toInnerError(error.getInnererror()));
+            FormRecognizerErrorHelper.setDetails(documentModelOperationError, toErrorDetails(error.getDetails()));
+            FormRecognizerErrorHelper.setMessage(documentModelOperationError, error.getMessage());
+            FormRecognizerErrorHelper.setTarget(documentModelOperationError, error.getTarget());
             return documentModelOperationError;
         }
         return null;

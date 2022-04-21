@@ -5,15 +5,7 @@
 package com.azure.messaging.eventgrid.systemevents;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.core.util.serializer.JacksonAdapter;
-import com.azure.core.util.serializer.SerializerAdapter;
-import com.azure.core.util.serializer.SerializerEncoding;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.util.Map;
 
 /**
  * Schema of the Data property of an EventGridEvent for a Microsoft.Resources.ResourceActionSuccess event. This is
@@ -21,9 +13,6 @@ import java.util.Map;
  */
 @Fluent
 public final class ResourceActionSuccessEventData {
-    private static final ClientLogger LOGGER = new ClientLogger(ResourceActionSuccessEventData.class);
-    private static final SerializerAdapter DEFAULT_SERIALIZER_ADAPTER = JacksonAdapter.createDefaultSerializerAdapter();
-
     /*
      * The tenant ID of the resource.
      */
@@ -66,19 +55,17 @@ public final class ResourceActionSuccessEventData {
     @JsonProperty(value = "status")
     private String status;
 
-    private String authorizationString;
-
     /*
      * The requested authorization for the operation.
      */
     @JsonProperty(value = "authorization")
-    private ResourceAuthorization authorization;
+    private String authorization;
 
     /*
      * The properties of the claims.
      */
     @JsonProperty(value = "claims")
-    private Map<String, String> claims;
+    private String claims;
 
     /*
      * An operation ID used for troubleshooting.
@@ -90,7 +77,7 @@ public final class ResourceActionSuccessEventData {
      * The details of the operation.
      */
     @JsonProperty(value = "httpRequest")
-    private ResourceHttpRequest httpRequest;
+    private String httpRequest;
 
     /**
      * Get the tenantId property: The tenant ID of the resource.
@@ -236,45 +223,8 @@ public final class ResourceActionSuccessEventData {
      * Get the authorization property: The requested authorization for the operation.
      *
      * @return the authorization value.
-     * @deprecated This method is no longer supported since v4.9.0.
-     * <p> Use {@link ResourceActionSuccessEventData#getResourceAuthorization()} instead.
      */
-    @Deprecated
     public String getAuthorization() {
-        final ResourceAuthorization resourceAuthorization = getResourceAuthorization();
-        try {
-            return DEFAULT_SERIALIZER_ADAPTER.serialize(resourceAuthorization, SerializerEncoding.JSON);
-        } catch (IOException ex) {
-            throw LOGGER.logExceptionAsError(new UncheckedIOException(ex));
-        }
-    }
-
-    /**
-     * Set the authorization property: The requested authorization for the operation.
-     *
-     * @param authorization the authorization value to set.
-     * @return the ResourceActionSuccessEventData object itself.
-     * @deprecated This method is no longer supported since v4.9.0.
-     * <p> Use {@link ResourceActionSuccessEventData#setResourceAuthorization(ResourceAuthorization)} instead.
-     */
-    @Deprecated
-    public ResourceActionSuccessEventData setAuthorization(String authorization) {
-        try {
-            setResourceAuthorization(
-                DEFAULT_SERIALIZER_ADAPTER.deserialize(authorization, ResourceAuthorization.class,
-                    SerializerEncoding.JSON));
-        } catch (IOException ex) {
-            throw LOGGER.logExceptionAsError(new UncheckedIOException(ex));
-        }
-        return this;
-    }
-
-    /**
-     * Get the authorization property: The requested authorization for the operation.
-     *
-     * @return the authorization value.
-     */
-    public ResourceAuthorization getResourceAuthorization() {
         return this.authorization;
     }
 
@@ -284,7 +234,7 @@ public final class ResourceActionSuccessEventData {
      * @param authorization the authorization value to set.
      * @return the ResourceActionSuccessEventData object itself.
      */
-    public ResourceActionSuccessEventData setResourceAuthorization(ResourceAuthorization authorization) {
+    public ResourceActionSuccessEventData setAuthorization(String authorization) {
         this.authorization = authorization;
         return this;
     }
@@ -293,46 +243,8 @@ public final class ResourceActionSuccessEventData {
      * Get the claims property: The properties of the claims.
      *
      * @return the claims value.
-     * @deprecated This method is no longer supported since v4.9.0.
-     * <p> Use {@link ResourceActionSuccessEventData#getResourceClaims()} instead.
      */
-    @Deprecated
     public String getClaims() {
-        final Map<String, String> resourceClaims = getResourceClaims();
-        if (!resourceClaims.isEmpty()) {
-            try {
-                return DEFAULT_SERIALIZER_ADAPTER.serialize(resourceClaims, SerializerEncoding.JSON);
-            } catch (IOException ex) {
-                throw LOGGER.logExceptionAsError(new UncheckedIOException(ex));
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Set the claims property: The properties of the claims.
-     *
-     * @param claims the claims value to set.
-     * @return the ResourceActionSuccessEventData object itself.
-     * @deprecated This method is no longer supported since v4.9.0.
-     * <p> Use {@link ResourceActionSuccessEventData#setResourceClaims(Map)} instead.
-     */
-    @Deprecated
-    public ResourceActionSuccessEventData setClaims(String claims) {
-        try {
-            setResourceClaims(DEFAULT_SERIALIZER_ADAPTER.deserialize(claims, Map.class, SerializerEncoding.JSON));
-        } catch (IOException ex) {
-            throw LOGGER.logExceptionAsError(new UncheckedIOException(ex));
-        }
-        return this;
-    }
-
-    /**
-     * Get the claims property: The properties of the claims.
-     *
-     * @return the claims value.
-     */
-    public Map<String, String> getResourceClaims() {
         return this.claims;
     }
 
@@ -342,7 +254,7 @@ public final class ResourceActionSuccessEventData {
      * @param claims the claims value to set.
      * @return the ResourceActionSuccessEventData object itself.
      */
-    public ResourceActionSuccessEventData setResourceClaims(Map<String, String> claims) {
+    public ResourceActionSuccessEventData setClaims(String claims) {
         this.claims = claims;
         return this;
     }
@@ -371,44 +283,8 @@ public final class ResourceActionSuccessEventData {
      * Get the httpRequest property: The details of the operation.
      *
      * @return the httpRequest value.
-     * @deprecated This method is no longer supported since v4.9.0.
-     * <p> Use {@link ResourceActionSuccessEventData#getResourceHttpRequest()} instead.
      */
-    @Deprecated
     public String getHttpRequest() {
-        ResourceHttpRequest resourceHttpRequest = getResourceHttpRequest();
-        try {
-            return DEFAULT_SERIALIZER_ADAPTER.serialize(resourceHttpRequest, SerializerEncoding.JSON);
-        } catch (IOException ex) {
-            throw LOGGER.logExceptionAsError(new UncheckedIOException(ex));
-        }
-    }
-
-    /**
-     * Set the httpRequest property: The details of the operation.
-     *
-     * @param httpRequest the httpRequest value to set.
-     * @return the ResourceActionSuccessEventData object itself.
-     * @deprecated This method is no longer supported since v4.9.0.
-     * <p> Use {@link ResourceActionSuccessEventData#setResourceHttpRequest(ResourceHttpRequest)} instead.
-     */
-    @Deprecated
-    public ResourceActionSuccessEventData setHttpRequest(String httpRequest) {
-        try {
-            setResourceHttpRequest(
-                DEFAULT_SERIALIZER_ADAPTER.deserialize(httpRequest, ResourceHttpRequest.class, SerializerEncoding.JSON));
-        } catch (IOException ex) {
-            throw LOGGER.logExceptionAsError(new UncheckedIOException(ex));
-        }
-        return this;
-    }
-
-    /**
-     * Get the httpRequest property: The details of the operation.
-     *
-     * @return the httpRequest value.
-     */
-    public ResourceHttpRequest getResourceHttpRequest() {
         return this.httpRequest;
     }
 
@@ -418,7 +294,7 @@ public final class ResourceActionSuccessEventData {
      * @param httpRequest the httpRequest value to set.
      * @return the ResourceActionSuccessEventData object itself.
      */
-    public ResourceActionSuccessEventData setResourceHttpRequest(ResourceHttpRequest httpRequest) {
+    public ResourceActionSuccessEventData setHttpRequest(String httpRequest) {
         this.httpRequest = httpRequest;
         return this;
     }

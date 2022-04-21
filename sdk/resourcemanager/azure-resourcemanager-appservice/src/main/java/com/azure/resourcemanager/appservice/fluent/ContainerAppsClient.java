@@ -31,7 +31,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Container Apps in a given subscription as paginated response with {@link PagedFlux}.
+     * @return the Container Apps in a given subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ContainerAppInner> listAsync();
@@ -42,7 +42,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Container Apps in a given subscription as paginated response with {@link PagedIterable}.
+     * @return the Container Apps in a given subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ContainerAppInner> list();
@@ -55,7 +55,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Container Apps in a given subscription as paginated response with {@link PagedIterable}.
+     * @return the Container Apps in a given subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ContainerAppInner> list(Context context);
@@ -68,7 +68,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Container Apps in a given resource group as paginated response with {@link PagedFlux}.
+     * @return the Container Apps in a given resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ContainerAppInner> listByResourceGroupAsync(String resourceGroupName);
@@ -81,7 +81,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Container Apps in a given resource group as paginated response with {@link PagedIterable}.
+     * @return the Container Apps in a given resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ContainerAppInner> listByResourceGroup(String resourceGroupName);
@@ -95,7 +95,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Container Apps in a given resource group as paginated response with {@link PagedIterable}.
+     * @return the Container Apps in a given resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ContainerAppInner> listByResourceGroup(String resourceGroupName, Context context);
@@ -108,7 +108,7 @@ public interface ContainerAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a Container App along with {@link Response} on successful completion of {@link Mono}.
+     * @return the properties of a Container App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ContainerAppInner>> getByResourceGroupWithResponseAsync(String resourceGroupName, String name);
@@ -121,7 +121,7 @@ public interface ContainerAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a Container App on successful completion of {@link Mono}.
+     * @return the properties of a Container App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ContainerAppInner> getByResourceGroupAsync(String resourceGroupName, String name);
@@ -148,7 +148,7 @@ public interface ContainerAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a Container App along with {@link Response}.
+     * @return the properties of a Container App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ContainerAppInner> getByResourceGroupWithResponse(String resourceGroupName, String name, Context context);
@@ -163,7 +163,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return container App along with {@link Response} on successful completion of {@link Mono}.
+     * @return container App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -179,7 +179,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of container App.
+     * @return container App.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<ContainerAppInner>, ContainerAppInner> beginCreateOrUpdateAsync(
@@ -195,7 +195,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of container App.
+     * @return container App.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ContainerAppInner>, ContainerAppInner> beginCreateOrUpdate(
@@ -212,7 +212,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of container App.
+     * @return container App.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ContainerAppInner>, ContainerAppInner> beginCreateOrUpdate(
@@ -228,7 +228,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return container App on successful completion of {@link Mono}.
+     * @return container App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ContainerAppInner> createOrUpdateAsync(
@@ -275,7 +275,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String name);
@@ -289,7 +289,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String name);
@@ -303,7 +303,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String name);
@@ -318,7 +318,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String name, Context context);
@@ -332,7 +332,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String name);
@@ -372,8 +372,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return container App Secrets Collection ARM resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return container App Secrets Collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SecretsCollectionInner>> listSecretsWithResponseAsync(String name);
@@ -386,7 +385,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return container App Secrets Collection ARM resource on successful completion of {@link Mono}.
+     * @return container App Secrets Collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SecretsCollectionInner> listSecretsAsync(String name);
@@ -413,7 +412,7 @@ public interface ContainerAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return container App Secrets Collection ARM resource along with {@link Response}.
+     * @return container App Secrets Collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SecretsCollectionInner> listSecretsWithResponse(String name, Context context);

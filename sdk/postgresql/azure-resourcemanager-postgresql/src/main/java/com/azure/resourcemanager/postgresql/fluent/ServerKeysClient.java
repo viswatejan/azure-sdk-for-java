@@ -12,7 +12,6 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.postgresql.fluent.models.ServerKeyInner;
-import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ServerKeysClient. */
 public interface ServerKeysClient {
@@ -67,7 +66,7 @@ public interface ServerKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a PostgreSQL Server key along with {@link Response}.
+     * @return a PostgreSQL Server key.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServerKeyInner> getWithResponse(
@@ -83,9 +82,9 @@ public interface ServerKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a PostgreSQL Server key along with {@link Response} on successful completion of {@link Mono}.
+     * @return a PostgreSQL Server key.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ServerKeyInner>, ServerKeyInner> beginCreateOrUpdate(
         String serverName, String keyName, String resourceGroupName, ServerKeyInner parameters);
 
@@ -100,9 +99,9 @@ public interface ServerKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a PostgreSQL Server key along with {@link Response} on successful completion of {@link Mono}.
+     * @return a PostgreSQL Server key.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<ServerKeyInner>, ServerKeyInner> beginCreateOrUpdate(
         String serverName, String keyName, String resourceGroupName, ServerKeyInner parameters, Context context);
 
@@ -148,9 +147,9 @@ public interface ServerKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(String serverName, String keyName, String resourceGroupName);
 
     /**
@@ -163,9 +162,9 @@ public interface ServerKeysClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String serverName, String keyName, String resourceGroupName, Context context);
 

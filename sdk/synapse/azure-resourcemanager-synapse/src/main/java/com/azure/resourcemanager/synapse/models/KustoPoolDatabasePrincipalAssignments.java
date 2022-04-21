@@ -42,7 +42,7 @@ public interface KustoPoolDatabasePrincipalAssignments {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response}.
+     * @return the result returned from a check name availability request.
      */
     Response<CheckNameResult> checkNameAvailabilityWithResponse(
         String workspaceName,
@@ -115,7 +115,7 @@ public interface KustoPoolDatabasePrincipalAssignments {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto pool database principalAssignment along with {@link Response}.
+     * @return a Kusto pool database principalAssignment.
      */
     Response<DatabasePrincipalAssignment> getWithResponse(
         String workspaceName,
@@ -172,7 +172,7 @@ public interface KustoPoolDatabasePrincipalAssignments {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto pool database principalAssignment along with {@link Response}.
+     * @return a Kusto pool database principalAssignment.
      */
     DatabasePrincipalAssignment getById(String id);
 
@@ -184,7 +184,7 @@ public interface KustoPoolDatabasePrincipalAssignments {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto pool database principalAssignment along with {@link Response}.
+     * @return a Kusto pool database principalAssignment.
      */
     Response<DatabasePrincipalAssignment> getByIdWithResponse(String id, Context context);
 

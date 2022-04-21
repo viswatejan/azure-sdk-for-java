@@ -34,7 +34,7 @@ public interface AttachedDatabaseConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response}.
+     * @return the result returned from a check name availability request.
      */
     Response<CheckNameResult> checkNameAvailabilityWithResponse(
         String resourceGroupName,
@@ -50,8 +50,7 @@ public interface AttachedDatabaseConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list attached database configurations operation response as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list attached database configurations operation response.
      */
     PagedIterable<AttachedDatabaseConfiguration> listByCluster(String resourceGroupName, String clusterName);
 
@@ -64,8 +63,7 @@ public interface AttachedDatabaseConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list attached database configurations operation response as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list attached database configurations operation response.
      */
     PagedIterable<AttachedDatabaseConfiguration> listByCluster(
         String resourceGroupName, String clusterName, Context context);
@@ -94,7 +92,7 @@ public interface AttachedDatabaseConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing an attached database configuration along with {@link Response}.
+     * @return class representing an attached database configuration.
      */
     Response<AttachedDatabaseConfiguration> getWithResponse(
         String resourceGroupName, String clusterName, String attachedDatabaseConfigurationName, Context context);
@@ -132,7 +130,7 @@ public interface AttachedDatabaseConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing an attached database configuration along with {@link Response}.
+     * @return class representing an attached database configuration.
      */
     AttachedDatabaseConfiguration getById(String id);
 
@@ -144,7 +142,7 @@ public interface AttachedDatabaseConfigurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing an attached database configuration along with {@link Response}.
+     * @return class representing an attached database configuration.
      */
     Response<AttachedDatabaseConfiguration> getByIdWithResponse(String id, Context context);
 

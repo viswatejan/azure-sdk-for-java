@@ -9,6 +9,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.SqlVirtualMachinesClient;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.models.SqlVirtualMachineInner;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlVirtualMachine;
@@ -20,11 +21,9 @@ public final class SqlVirtualMachinesImpl implements SqlVirtualMachines {
 
     private final SqlVirtualMachinesClient innerClient;
 
-    private final com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager serviceManager;
+    private final SqlVirtualMachineManager serviceManager;
 
-    public SqlVirtualMachinesImpl(
-        SqlVirtualMachinesClient innerClient,
-        com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager serviceManager) {
+    public SqlVirtualMachinesImpl(SqlVirtualMachinesClient innerClient, SqlVirtualMachineManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -33,32 +32,24 @@ public final class SqlVirtualMachinesImpl implements SqlVirtualMachines {
         String resourceGroupName, String sqlVirtualMachineGroupName) {
         PagedIterable<SqlVirtualMachineInner> inner =
             this.serviceClient().listBySqlVmGroup(resourceGroupName, sqlVirtualMachineGroupName);
-        return Utils.mapPage(inner, inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
+        return inner.mapPage(inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
     }
 
     public PagedIterable<SqlVirtualMachine> listBySqlVmGroup(
         String resourceGroupName, String sqlVirtualMachineGroupName, Context context) {
         PagedIterable<SqlVirtualMachineInner> inner =
             this.serviceClient().listBySqlVmGroup(resourceGroupName, sqlVirtualMachineGroupName, context);
-        return Utils.mapPage(inner, inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
+        return inner.mapPage(inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
     }
 
     public PagedIterable<SqlVirtualMachine> list() {
         PagedIterable<SqlVirtualMachineInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
+        return inner.mapPage(inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
     }
 
     public PagedIterable<SqlVirtualMachine> list(Context context) {
         PagedIterable<SqlVirtualMachineInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
-    }
-
-    public void redeploy(String resourceGroupName, String sqlVirtualMachineName) {
-        this.serviceClient().redeploy(resourceGroupName, sqlVirtualMachineName);
-    }
-
-    public void redeploy(String resourceGroupName, String sqlVirtualMachineName, Context context) {
-        this.serviceClient().redeploy(resourceGroupName, sqlVirtualMachineName, context);
+        return inner.mapPage(inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
     }
 
     public SqlVirtualMachine getByResourceGroup(String resourceGroupName, String sqlVirtualMachineName) {
@@ -98,21 +89,13 @@ public final class SqlVirtualMachinesImpl implements SqlVirtualMachines {
 
     public PagedIterable<SqlVirtualMachine> listByResourceGroup(String resourceGroupName) {
         PagedIterable<SqlVirtualMachineInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return Utils.mapPage(inner, inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
+        return inner.mapPage(inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
     }
 
     public PagedIterable<SqlVirtualMachine> listByResourceGroup(String resourceGroupName, Context context) {
         PagedIterable<SqlVirtualMachineInner> inner =
             this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return Utils.mapPage(inner, inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
-    }
-
-    public void startAssessment(String resourceGroupName, String sqlVirtualMachineName) {
-        this.serviceClient().startAssessment(resourceGroupName, sqlVirtualMachineName);
-    }
-
-    public void startAssessment(String resourceGroupName, String sqlVirtualMachineName, Context context) {
-        this.serviceClient().startAssessment(resourceGroupName, sqlVirtualMachineName, context);
+        return inner.mapPage(inner1 -> new SqlVirtualMachineImpl(inner1, this.manager()));
     }
 
     public SqlVirtualMachine getById(String id) {
@@ -206,7 +189,7 @@ public final class SqlVirtualMachinesImpl implements SqlVirtualMachines {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager manager() {
+    private SqlVirtualMachineManager manager() {
         return this.serviceManager;
     }
 

@@ -38,19 +38,17 @@ public interface AvailabilityGroupListenersClient {
      *     the Azure Resource Manager API or the portal.
      * @param sqlVirtualMachineGroupName Name of the SQL virtual machine group.
      * @param availabilityGroupListenerName Name of the availability group listener.
-     * @param expand The child resources to include in the response.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an availability group listener along with {@link Response}.
+     * @return an availability group listener.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AvailabilityGroupListenerInner> getWithResponse(
         String resourceGroupName,
         String sqlVirtualMachineGroupName,
         String availabilityGroupListenerName,
-        String expand,
         Context context);
 
     /**
@@ -64,9 +62,9 @@ public interface AvailabilityGroupListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a SQL Server availability group listener.
+     * @return a SQL Server availability group listener.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<AvailabilityGroupListenerInner>, AvailabilityGroupListenerInner> beginCreateOrUpdate(
         String resourceGroupName,
         String sqlVirtualMachineGroupName,
@@ -85,9 +83,9 @@ public interface AvailabilityGroupListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a SQL Server availability group listener.
+     * @return a SQL Server availability group listener.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<AvailabilityGroupListenerInner>, AvailabilityGroupListenerInner> beginCreateOrUpdate(
         String resourceGroupName,
         String sqlVirtualMachineGroupName,
@@ -147,9 +145,9 @@ public interface AvailabilityGroupListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String sqlVirtualMachineGroupName, String availabilityGroupListenerName);
 
@@ -164,9 +162,9 @@ public interface AvailabilityGroupListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName,
         String sqlVirtualMachineGroupName,
@@ -215,7 +213,7 @@ public interface AvailabilityGroupListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of availability group listeners as paginated response with {@link PagedIterable}.
+     * @return a list of availability group listeners.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AvailabilityGroupListenerInner> listByGroup(
@@ -231,7 +229,7 @@ public interface AvailabilityGroupListenersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of availability group listeners as paginated response with {@link PagedIterable}.
+     * @return a list of availability group listeners.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AvailabilityGroupListenerInner> listByGroup(

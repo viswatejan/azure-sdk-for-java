@@ -269,7 +269,7 @@ public final class TextAnalyticsAsyncClient {
     public Mono<DetectLanguageResultCollection> detectLanguageBatch(
         Iterable<String> documents, String countryHint, TextAnalyticsRequestOptions options) {
 
-        if (countryHint != null && "none".equalsIgnoreCase(countryHint)) {
+        if (countryHint != null && countryHint.equalsIgnoreCase("none")) {
             countryHint = "";
         }
         final String finalCountryHint = countryHint;

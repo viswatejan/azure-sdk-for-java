@@ -81,8 +81,7 @@ public final class ResourceNavigationLinksClientImpl implements ResourceNavigati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of resource navigation links for a subnet along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a list of resource navigation links for a subnet.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ResourceNavigationLinksListResultInner>> listWithResponseAsync(
@@ -138,8 +137,7 @@ public final class ResourceNavigationLinksClientImpl implements ResourceNavigati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of resource navigation links for a subnet along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a list of resource navigation links for a subnet.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ResourceNavigationLinksListResultInner>> listWithResponseAsync(
@@ -191,7 +189,7 @@ public final class ResourceNavigationLinksClientImpl implements ResourceNavigati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of resource navigation links for a subnet on successful completion of {@link Mono}.
+     * @return a list of resource navigation links for a subnet.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ResourceNavigationLinksListResultInner> listAsync(
@@ -234,7 +232,7 @@ public final class ResourceNavigationLinksClientImpl implements ResourceNavigati
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of resource navigation links for a subnet along with {@link Response}.
+     * @return a list of resource navigation links for a subnet.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ResourceNavigationLinksListResultInner> listWithResponse(

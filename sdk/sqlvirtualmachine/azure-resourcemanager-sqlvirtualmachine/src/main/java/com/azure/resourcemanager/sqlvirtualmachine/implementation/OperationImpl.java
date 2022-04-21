@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.sqlvirtualmachine.implementation;
 
+import com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.models.OperationInner;
 import com.azure.resourcemanager.sqlvirtualmachine.models.Operation;
 import com.azure.resourcemanager.sqlvirtualmachine.models.OperationDisplay;
@@ -14,11 +15,9 @@ import java.util.Map;
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
 
-    private final com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager serviceManager;
+    private final SqlVirtualMachineManager serviceManager;
 
-    OperationImpl(
-        OperationInner innerObject,
-        com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager serviceManager) {
+    OperationImpl(OperationInner innerObject, SqlVirtualMachineManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -48,7 +47,7 @@ public final class OperationImpl implements Operation {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager manager() {
+    private SqlVirtualMachineManager manager() {
         return this.serviceManager;
     }
 }

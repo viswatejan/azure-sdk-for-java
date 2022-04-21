@@ -99,8 +99,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListNetworkVirtualApplianceSkus API service call along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return response for ListNetworkVirtualApplianceSkus API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NetworkVirtualApplianceSkuInner>> listSinglePageAsync() {
@@ -142,8 +141,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListNetworkVirtualApplianceSkus API service call along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return response for ListNetworkVirtualApplianceSkus API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NetworkVirtualApplianceSkuInner>> listSinglePageAsync(Context context) {
@@ -180,8 +178,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListNetworkVirtualApplianceSkus API service call as paginated response with {@link
-     *     PagedFlux}.
+     * @return response for ListNetworkVirtualApplianceSkus API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<NetworkVirtualApplianceSkuInner> listAsync() {
@@ -195,8 +192,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListNetworkVirtualApplianceSkus API service call as paginated response with {@link
-     *     PagedFlux}.
+     * @return response for ListNetworkVirtualApplianceSkus API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NetworkVirtualApplianceSkuInner> listAsync(Context context) {
@@ -209,8 +205,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListNetworkVirtualApplianceSkus API service call as paginated response with {@link
-     *     PagedIterable}.
+     * @return response for ListNetworkVirtualApplianceSkus API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NetworkVirtualApplianceSkuInner> list() {
@@ -224,8 +219,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListNetworkVirtualApplianceSkus API service call as paginated response with {@link
-     *     PagedIterable}.
+     * @return response for ListNetworkVirtualApplianceSkus API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NetworkVirtualApplianceSkuInner> list(Context context) {
@@ -239,8 +233,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return available NetworkVirtualApplianceSkus along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return available NetworkVirtualApplianceSkus.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<NetworkVirtualApplianceSkuInner>> getWithResponseAsync(String skuName) {
@@ -283,8 +276,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return available NetworkVirtualApplianceSkus along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return available NetworkVirtualApplianceSkus.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<NetworkVirtualApplianceSkuInner>> getWithResponseAsync(String skuName, Context context) {
@@ -317,7 +309,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return available NetworkVirtualApplianceSkus on successful completion of {@link Mono}.
+     * @return available NetworkVirtualApplianceSkus.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<NetworkVirtualApplianceSkuInner> getAsync(String skuName) {
@@ -354,7 +346,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return available NetworkVirtualApplianceSkus along with {@link Response}.
+     * @return available NetworkVirtualApplianceSkus.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NetworkVirtualApplianceSkuInner> getWithResponse(String skuName, Context context) {
@@ -368,8 +360,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListNetworkVirtualApplianceSkus API service call along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return response for ListNetworkVirtualApplianceSkus API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NetworkVirtualApplianceSkuInner>> listNextSinglePageAsync(String nextLink) {
@@ -405,8 +396,7 @@ public final class VirtualApplianceSkusClientImpl implements VirtualApplianceSku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListNetworkVirtualApplianceSkus API service call along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return response for ListNetworkVirtualApplianceSkus API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NetworkVirtualApplianceSkuInner>> listNextSinglePageAsync(

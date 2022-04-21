@@ -54,9 +54,6 @@ public interface Disk extends GroupableResource<ComputeManager, DiskInner>, Refr
     /** @return the disk encryption settings */
     EncryptionSettingsCollection encryptionSettings();
 
-    /** @return the disk encryption */
-    Encryption encryption();
-
     /**
      * Grants access to the disk.
      *
@@ -405,17 +402,6 @@ public interface Disk extends GroupableResource<ComputeManager, DiskInner>, Refr
             WithCreate withSku(DiskSkuTypes sku);
         }
 
-        /** The stage of the managed disk definition allowing to configure disk encryption. */
-        interface WithDiskEncryption {
-            /**
-             * Specifies the disk encryption set.
-             *
-             * @param diskEncryptionSetId the ID of disk encryption set.
-             * @return the next stage of the definition
-             */
-            WithCreate withDiskEncryptionSet(String diskEncryptionSetId);
-        }
-
         /**
          * The stage of the definition which contains all the minimum required inputs for the resource to be created,
          * but also allows for any other optional settings to be specified.
@@ -424,8 +410,7 @@ public interface Disk extends GroupableResource<ComputeManager, DiskInner>, Refr
             extends Creatable<Disk>,
                 Resource.DefinitionWithTags<Disk.DefinitionStages.WithCreate>,
                 WithSku,
-                WithAvailabilityZone,
-                WithDiskEncryption {
+                WithAvailabilityZone {
 
             /**
              * Begins creating the disk resource.
@@ -470,18 +455,6 @@ public interface Disk extends GroupableResource<ComputeManager, DiskInner>, Refr
              */
             Update withOSType(OperatingSystemTypes osType);
         }
-
-        /** The stage of the managed disk definition allowing to configure disk encryption. */
-        interface WithDiskEncryption {
-            /**
-             * Specifies the disk encryption set.
-             *
-             * @param diskEncryptionSetId the ID of disk encryption set.
-             * @param encryptionType the encryption type.
-             * @return the next stage of the definition
-             */
-            Update withDiskEncryptionSet(String diskEncryptionSetId, EncryptionType encryptionType);
-        }
     }
 
     /** The template for an update operation, containing all the settings that can be modified. */
@@ -490,7 +463,6 @@ public interface Disk extends GroupableResource<ComputeManager, DiskInner>, Refr
             Resource.UpdateWithTags<Disk.Update>,
             UpdateStages.WithSku,
             UpdateStages.WithSize,
-            UpdateStages.WithOSSettings,
-            UpdateStages.WithDiskEncryption {
+            UpdateStages.WithOSSettings {
     }
 }

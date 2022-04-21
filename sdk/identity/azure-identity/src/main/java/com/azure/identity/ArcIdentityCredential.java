@@ -17,9 +17,8 @@ import reactor.core.publisher.Mono;
  */
 @Immutable
 class ArcIdentityCredential extends ManagedIdentityServiceCredential {
-    private static final ClientLogger LOGGER = new ClientLogger(ArcIdentityCredential.class);
-
     private final String identityEndpoint;
+    private final ClientLogger logger = new ClientLogger(ArcIdentityCredential.class);
 
     /**
      * Creates an instance of {@link ArcIdentityCredential}.
@@ -32,7 +31,7 @@ class ArcIdentityCredential extends ManagedIdentityServiceCredential {
         Configuration configuration = Configuration.getGlobalConfiguration().clone();
         this.identityEndpoint = configuration.get(Configuration.PROPERTY_IDENTITY_ENDPOINT);
         if (identityEndpoint != null) {
-            validateEndpointProtocol(this.identityEndpoint, "Identity", LOGGER);
+            validateEndpointProtocol(this.identityEndpoint, "Identity", logger);
         }
     }
 
@@ -44,7 +43,7 @@ class ArcIdentityCredential extends ManagedIdentityServiceCredential {
      */
     public Mono<AccessToken> authenticate(TokenRequestContext request) {
         if  (getClientId() != null) {
-            return Mono.error(LOGGER.logExceptionAsError(new ClientAuthenticationException(
+            return Mono.error(logger.logExceptionAsError(new ClientAuthenticationException(
                 "User assigned identity is not supported by the Azure Arc Managed Identity Endpoint. To authenticate "
                     + "with the system assigned identity omit the client id when constructing the"
                     + " ManagedIdentityCredential.", null)));

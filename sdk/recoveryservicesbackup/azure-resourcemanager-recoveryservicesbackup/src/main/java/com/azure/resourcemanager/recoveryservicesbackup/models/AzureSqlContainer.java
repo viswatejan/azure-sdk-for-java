@@ -45,13 +45,6 @@ public final class AzureSqlContainer extends ProtectionContainer {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public AzureSqlContainer withProtectableObjectType(String protectableObjectType) {
-        super.withProtectableObjectType(protectableObjectType);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

@@ -97,8 +97,7 @@ public final class BackupProtectionContainersClientImpl implements BackupProtect
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionContainer resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectionContainer resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectionContainerResourceInner>> listSinglePageAsync(
@@ -158,8 +157,7 @@ public final class BackupProtectionContainersClientImpl implements BackupProtect
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionContainer resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectionContainer resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectionContainerResourceInner>> listSinglePageAsync(
@@ -215,7 +213,7 @@ public final class BackupProtectionContainersClientImpl implements BackupProtect
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionContainer resources as paginated response with {@link PagedFlux}.
+     * @return list of ProtectionContainer resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProtectionContainerResourceInner> listAsync(
@@ -233,7 +231,7 @@ public final class BackupProtectionContainersClientImpl implements BackupProtect
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionContainer resources as paginated response with {@link PagedFlux}.
+     * @return list of ProtectionContainer resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProtectionContainerResourceInner> listAsync(String vaultName, String resourceGroupName) {
@@ -253,7 +251,7 @@ public final class BackupProtectionContainersClientImpl implements BackupProtect
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionContainer resources as paginated response with {@link PagedFlux}.
+     * @return list of ProtectionContainer resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProtectionContainerResourceInner> listAsync(
@@ -271,7 +269,7 @@ public final class BackupProtectionContainersClientImpl implements BackupProtect
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionContainer resources as paginated response with {@link PagedIterable}.
+     * @return list of ProtectionContainer resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProtectionContainerResourceInner> list(String vaultName, String resourceGroupName) {
@@ -289,7 +287,7 @@ public final class BackupProtectionContainersClientImpl implements BackupProtect
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionContainer resources as paginated response with {@link PagedIterable}.
+     * @return list of ProtectionContainer resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProtectionContainerResourceInner> list(
@@ -304,8 +302,7 @@ public final class BackupProtectionContainersClientImpl implements BackupProtect
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionContainer resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectionContainer resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectionContainerResourceInner>> listNextSinglePageAsync(String nextLink) {
@@ -341,8 +338,7 @@ public final class BackupProtectionContainersClientImpl implements BackupProtect
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionContainer resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectionContainer resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectionContainerResourceInner>> listNextSinglePageAsync(

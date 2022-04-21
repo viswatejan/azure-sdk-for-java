@@ -4,13 +4,12 @@
 
 package com.azure.resourcemanager.recoveryservicesbackup.generated;
 
-import com.azure.resourcemanager.recoveryservicesbackup.models.AzureIaaSComputeVMProtectedItem;
-import com.azure.resourcemanager.recoveryservicesbackup.models.ProtectionState;
+import com.azure.resourcemanager.recoveryservicesbackup.models.ProtectedItem;
 
 /** Samples for ProtectedItems CreateOrUpdate. */
 public final class ProtectedItemsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2021-12-01/examples/AzureIaasVm/StopProtection.json
+     * x-ms-original-file: specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2021-07-01/examples/AzureIaasVm/StopProtection.json
      */
     /**
      * Sample code: Stop Protection with retain data on Azure IaasVm.
@@ -29,15 +28,14 @@ public final class ProtectedItemsCreateOrUpdateSamples {
                 "Azure",
                 "IaasVMContainer;iaasvmcontainerv2;netsdktestrg;netvmtestv2vm1")
             .withProperties(
-                new AzureIaaSComputeVMProtectedItem()
+                new ProtectedItem()
                     .withSourceResourceId(
-                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/netsdktestrg/providers/Microsoft.Compute/virtualMachines/netvmtestv2vm1")
-                    .withProtectionState(ProtectionState.PROTECTION_STOPPED))
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/netsdktestrg/providers/Microsoft.Compute/virtualMachines/netvmtestv2vm1"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2021-12-01/examples/AzureIaasVm/ConfigureProtection.json
+     * x-ms-original-file: specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2021-07-01/examples/AzureIaasVm/ConfigureProtection.json
      */
     /**
      * Sample code: Enable Protection on Azure IaasVm.
@@ -56,7 +54,7 @@ public final class ProtectedItemsCreateOrUpdateSamples {
                 "Azure",
                 "IaasVMContainer;iaasvmcontainerv2;netsdktestrg;netvmtestv2vm1")
             .withProperties(
-                new AzureIaaSComputeVMProtectedItem()
+                new ProtectedItem()
                     .withSourceResourceId(
                         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/netsdktestrg/providers/Microsoft.Compute/virtualMachines/netvmtestv2vm1")
                     .withPolicyId(

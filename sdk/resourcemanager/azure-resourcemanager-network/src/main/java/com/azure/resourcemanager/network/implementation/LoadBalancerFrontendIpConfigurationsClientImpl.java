@@ -117,8 +117,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer frontend IP configurations along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all the load balancer frontend IP configurations.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FrontendIpConfigurationInner>> listSinglePageAsync(
@@ -178,8 +177,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer frontend IP configurations along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all the load balancer frontend IP configurations.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FrontendIpConfigurationInner>> listSinglePageAsync(
@@ -235,7 +233,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer frontend IP configurations as paginated response with {@link PagedFlux}.
+     * @return all the load balancer frontend IP configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<FrontendIpConfigurationInner> listAsync(String resourceGroupName, String loadBalancerName) {
@@ -253,7 +251,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer frontend IP configurations as paginated response with {@link PagedFlux}.
+     * @return all the load balancer frontend IP configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<FrontendIpConfigurationInner> listAsync(
@@ -271,7 +269,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer frontend IP configurations as paginated response with {@link PagedIterable}.
+     * @return all the load balancer frontend IP configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<FrontendIpConfigurationInner> list(String resourceGroupName, String loadBalancerName) {
@@ -287,7 +285,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the load balancer frontend IP configurations as paginated response with {@link PagedIterable}.
+     * @return all the load balancer frontend IP configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<FrontendIpConfigurationInner> list(
@@ -304,8 +302,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return load balancer frontend IP configuration along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return load balancer frontend IP configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<FrontendIpConfigurationInner>> getWithResponseAsync(
@@ -364,8 +361,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return load balancer frontend IP configuration along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return load balancer frontend IP configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<FrontendIpConfigurationInner>> getWithResponseAsync(
@@ -420,7 +416,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return load balancer frontend IP configuration on successful completion of {@link Mono}.
+     * @return load balancer frontend IP configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<FrontendIpConfigurationInner> getAsync(
@@ -463,7 +459,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return load balancer frontend IP configuration along with {@link Response}.
+     * @return load balancer frontend IP configuration.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<FrontendIpConfigurationInner> getWithResponse(
@@ -478,8 +474,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListFrontendIPConfiguration API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for ListFrontendIPConfiguration API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FrontendIpConfigurationInner>> listNextSinglePageAsync(String nextLink) {
@@ -515,8 +510,7 @@ public final class LoadBalancerFrontendIpConfigurationsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListFrontendIPConfiguration API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for ListFrontendIPConfiguration API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FrontendIpConfigurationInner>> listNextSinglePageAsync(

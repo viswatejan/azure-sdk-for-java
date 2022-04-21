@@ -6,11 +6,14 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties used to create a user on an Azure Batch node. */
 @Fluent
 public final class UserAccount {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(UserAccount.class);
+
     /*
      * The name of the user account.
      */
@@ -166,12 +169,12 @@ public final class UserAccount {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model UserAccount"));
         }
         if (password() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property password in model UserAccount"));
         }
@@ -182,6 +185,4 @@ public final class UserAccount {
             windowsUserConfiguration().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(UserAccount.class);
 }

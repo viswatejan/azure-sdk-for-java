@@ -15,10 +15,10 @@ public final class CacheExpirationActionParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(CacheExpirationActionParameters.class);
 
     /*
-     * The typeName property.
+     * The @odata.type property.
      */
-    @JsonProperty(value = "typeName", required = true)
-    private String typeName = "DeliveryRuleCacheExpirationActionParameters";
+    @JsonProperty(value = "@odata.type", required = true)
+    private String odataType;
 
     /*
      * Caching behavior for the requests
@@ -41,26 +41,26 @@ public final class CacheExpirationActionParameters {
 
     /** Creates an instance of CacheExpirationActionParameters class. */
     public CacheExpirationActionParameters() {
-        typeName = "DeliveryRuleCacheExpirationActionParameters";
+        odataType = "#Microsoft.Azure.Cdn.Models.DeliveryRuleCacheExpirationActionParameters";
     }
 
     /**
-     * Get the typeName property: The typeName property.
+     * Get the odataType property: The @odata.type property.
      *
-     * @return the typeName value.
+     * @return the odataType value.
      */
-    public String typeName() {
-        return this.typeName;
+    public String odataType() {
+        return this.odataType;
     }
 
     /**
-     * Set the typeName property: The typeName property.
+     * Set the odataType property: The @odata.type property.
      *
-     * @param typeName the typeName value to set.
+     * @param odataType the odataType value to set.
      * @return the CacheExpirationActionParameters object itself.
      */
-    public CacheExpirationActionParameters withTypeName(String typeName) {
-        this.typeName = typeName;
+    public CacheExpirationActionParameters withOdataType(String odataType) {
+        this.odataType = odataType;
         return this;
     }
 

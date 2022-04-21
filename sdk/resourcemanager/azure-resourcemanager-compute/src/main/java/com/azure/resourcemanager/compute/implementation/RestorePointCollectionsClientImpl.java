@@ -29,6 +29,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.compute.fluent.RestorePointCollectionsClient;
@@ -50,6 +51,8 @@ public final class RestorePointCollectionsClientImpl
         InnerSupportsListing<RestorePointCollectionInner>,
         InnerSupportsDelete<Void>,
         RestorePointCollectionsClient {
+    private final ClientLogger logger = new ClientLogger(RestorePointCollectionsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final RestorePointCollectionsService service;
 
@@ -194,8 +197,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<RestorePointCollectionInner>> createOrUpdateWithResponseAsync(
@@ -227,7 +229,7 @@ public final class RestorePointCollectionsClientImpl
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -256,8 +258,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RestorePointCollectionInner>> createOrUpdateWithResponseAsync(
@@ -292,7 +293,7 @@ public final class RestorePointCollectionsClientImpl
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -317,7 +318,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters on successful completion of {@link Mono}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RestorePointCollectionInner> createOrUpdateAsync(
@@ -362,7 +363,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters along with {@link Response}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<RestorePointCollectionInner> createOrUpdateWithResponse(
@@ -383,8 +384,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<RestorePointCollectionInner>> updateWithResponseAsync(
@@ -416,7 +416,7 @@ public final class RestorePointCollectionsClientImpl
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -444,8 +444,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RestorePointCollectionInner>> updateWithResponseAsync(
@@ -480,7 +479,7 @@ public final class RestorePointCollectionsClientImpl
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -504,7 +503,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters on successful completion of {@link Mono}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RestorePointCollectionInner> updateAsync(
@@ -547,7 +546,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters along with {@link Response}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<RestorePointCollectionInner> updateWithResponse(
@@ -567,7 +566,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -594,7 +593,7 @@ public final class RestorePointCollectionsClientImpl
                     new IllegalArgumentException(
                         "Parameter restorePointCollectionName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -621,7 +620,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -648,7 +647,7 @@ public final class RestorePointCollectionsClientImpl
                     new IllegalArgumentException(
                         "Parameter restorePointCollectionName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -671,7 +670,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -693,7 +692,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -715,7 +714,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String restorePointCollectionName) {
@@ -732,7 +731,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -749,7 +748,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(String resourceGroupName, String restorePointCollectionName) {
@@ -768,7 +767,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String restorePointCollectionName, Context context) {
@@ -818,8 +817,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<RestorePointCollectionInner>> getByResourceGroupWithResponseAsync(
@@ -846,7 +844,7 @@ public final class RestorePointCollectionsClientImpl
                     new IllegalArgumentException(
                         "Parameter restorePointCollectionName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -875,8 +873,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RestorePointCollectionInner>> getByResourceGroupWithResponseAsync(
@@ -906,7 +903,7 @@ public final class RestorePointCollectionsClientImpl
                     new IllegalArgumentException(
                         "Parameter restorePointCollectionName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -931,7 +928,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters on successful completion of {@link Mono}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RestorePointCollectionInner> getByResourceGroupAsync(
@@ -955,7 +952,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters on successful completion of {@link Mono}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RestorePointCollectionInner> getByResourceGroupAsync(
@@ -999,7 +996,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return create or update Restore Point collection parameters along with {@link Response}.
+     * @return create or update Restore Point collection parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<RestorePointCollectionInner> getByResourceGroupWithResponse(
@@ -1018,8 +1015,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in a resource group along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of restore point collections in a resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RestorePointCollectionInner>> listByResourceGroupSinglePageAsync(
@@ -1040,7 +1036,7 @@ public final class RestorePointCollectionsClientImpl
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1073,8 +1069,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in a resource group along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of restore point collections in a resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RestorePointCollectionInner>> listByResourceGroupSinglePageAsync(
@@ -1095,7 +1090,7 @@ public final class RestorePointCollectionsClientImpl
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1124,7 +1119,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in a resource group as paginated response with {@link PagedFlux}.
+     * @return the list of restore point collections in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<RestorePointCollectionInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -1140,7 +1135,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in a resource group as paginated response with {@link PagedFlux}.
+     * @return the list of restore point collections in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RestorePointCollectionInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -1156,8 +1151,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in a resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of restore point collections in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RestorePointCollectionInner> listByResourceGroup(String resourceGroupName) {
@@ -1172,8 +1166,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in a resource group as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of restore point collections in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RestorePointCollectionInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -1187,8 +1180,7 @@ public final class RestorePointCollectionsClientImpl
      *
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in the subscription along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of restore point collections in the subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RestorePointCollectionInner>> listSinglePageAsync() {
@@ -1204,7 +1196,7 @@ public final class RestorePointCollectionsClientImpl
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1232,8 +1224,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in the subscription along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of restore point collections in the subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RestorePointCollectionInner>> listSinglePageAsync(Context context) {
@@ -1249,7 +1240,7 @@ public final class RestorePointCollectionsClientImpl
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1272,7 +1263,7 @@ public final class RestorePointCollectionsClientImpl
      *
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in the subscription as paginated response with {@link PagedFlux}.
+     * @return the list of restore point collections in the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<RestorePointCollectionInner> listAsync() {
@@ -1288,7 +1279,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in the subscription as paginated response with {@link PagedFlux}.
+     * @return the list of restore point collections in the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RestorePointCollectionInner> listAsync(Context context) {
@@ -1303,8 +1294,7 @@ public final class RestorePointCollectionsClientImpl
      *
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in the subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of restore point collections in the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RestorePointCollectionInner> list() {
@@ -1320,8 +1310,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of restore point collections in the subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of restore point collections in the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RestorePointCollectionInner> list(Context context) {
@@ -1335,8 +1324,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List restore point collection operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the List restore point collection operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RestorePointCollectionInner>> listNextSinglePageAsync(String nextLink) {
@@ -1372,8 +1360,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List restore point collection operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the List restore point collection operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RestorePointCollectionInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -1408,8 +1395,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List restore point collection operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the List restore point collection operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RestorePointCollectionInner>> listAllNextSinglePageAsync(String nextLink) {
@@ -1445,8 +1431,7 @@ public final class RestorePointCollectionsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List restore point collection operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the List restore point collection operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RestorePointCollectionInner>> listAllNextSinglePageAsync(

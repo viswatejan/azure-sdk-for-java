@@ -35,7 +35,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String customIpPrefixName);
@@ -48,7 +48,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String customIpPrefixName);
@@ -61,7 +61,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String customIpPrefixName);
@@ -75,7 +75,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -89,7 +89,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String customIpPrefixName);
@@ -128,8 +128,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified custom IP prefix in a specified resource group along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the specified custom IP prefix in a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CustomIpPrefixInner>> getByResourceGroupWithResponseAsync(
@@ -144,7 +143,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified custom IP prefix in a specified resource group on successful completion of {@link Mono}.
+     * @return the specified custom IP prefix in a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CustomIpPrefixInner> getByResourceGroupAsync(
@@ -158,7 +157,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified custom IP prefix in a specified resource group on successful completion of {@link Mono}.
+     * @return the specified custom IP prefix in a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CustomIpPrefixInner> getByResourceGroupAsync(String resourceGroupName, String customIpPrefixName);
@@ -186,7 +185,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified custom IP prefix in a specified resource group along with {@link Response}.
+     * @return the specified custom IP prefix in a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CustomIpPrefixInner> getByResourceGroupWithResponse(
@@ -201,7 +200,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom IP prefix resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return custom IP prefix resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -216,7 +215,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of custom IP prefix resource.
+     * @return custom IP prefix resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<CustomIpPrefixInner>, CustomIpPrefixInner> beginCreateOrUpdateAsync(
@@ -231,7 +230,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of custom IP prefix resource.
+     * @return custom IP prefix resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<CustomIpPrefixInner>, CustomIpPrefixInner> beginCreateOrUpdate(
@@ -247,7 +246,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of custom IP prefix resource.
+     * @return custom IP prefix resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<CustomIpPrefixInner>, CustomIpPrefixInner> beginCreateOrUpdate(
@@ -262,7 +261,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom IP prefix resource on successful completion of {@link Mono}.
+     * @return custom IP prefix resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CustomIpPrefixInner> createOrUpdateAsync(
@@ -308,7 +307,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom IP prefix resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return custom IP prefix resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CustomIpPrefixInner>> updateTagsWithResponseAsync(
@@ -323,7 +322,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom IP prefix resource on successful completion of {@link Mono}.
+     * @return custom IP prefix resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CustomIpPrefixInner> updateTagsAsync(
@@ -353,7 +352,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom IP prefix resource along with {@link Response}.
+     * @return custom IP prefix resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CustomIpPrefixInner> updateTagsWithResponse(
@@ -364,7 +363,7 @@ public interface CustomIpPrefixesClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the custom IP prefixes in a subscription as paginated response with {@link PagedFlux}.
+     * @return all the custom IP prefixes in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<CustomIpPrefixInner> listAsync();
@@ -374,7 +373,7 @@ public interface CustomIpPrefixesClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the custom IP prefixes in a subscription as paginated response with {@link PagedIterable}.
+     * @return all the custom IP prefixes in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CustomIpPrefixInner> list();
@@ -386,7 +385,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the custom IP prefixes in a subscription as paginated response with {@link PagedIterable}.
+     * @return all the custom IP prefixes in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CustomIpPrefixInner> list(Context context);
@@ -398,7 +397,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all custom IP prefixes in a resource group as paginated response with {@link PagedFlux}.
+     * @return all custom IP prefixes in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<CustomIpPrefixInner> listByResourceGroupAsync(String resourceGroupName);
@@ -410,7 +409,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all custom IP prefixes in a resource group as paginated response with {@link PagedIterable}.
+     * @return all custom IP prefixes in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CustomIpPrefixInner> listByResourceGroup(String resourceGroupName);
@@ -423,7 +422,7 @@ public interface CustomIpPrefixesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all custom IP prefixes in a resource group as paginated response with {@link PagedIterable}.
+     * @return all custom IP prefixes in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CustomIpPrefixInner> listByResourceGroup(String resourceGroupName, Context context);

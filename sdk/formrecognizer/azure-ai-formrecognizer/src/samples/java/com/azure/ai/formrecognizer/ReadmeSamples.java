@@ -7,7 +7,6 @@ import com.azure.ai.formrecognizer.administration.DocumentModelAdministrationCli
 import com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClientBuilder;
 import com.azure.ai.formrecognizer.administration.models.AccountProperties;
 import com.azure.ai.formrecognizer.administration.models.BuildModelOptions;
-import com.azure.ai.formrecognizer.administration.models.DocumentBuildMode;
 import com.azure.ai.formrecognizer.administration.models.DocumentModel;
 import com.azure.ai.formrecognizer.administration.models.DocumentModelInfo;
 import com.azure.ai.formrecognizer.models.AnalyzeResult;
@@ -35,9 +34,12 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
+ * WARNING: MODIFYING THIS FILE WILL REQUIRE CORRESPONDING UPDATES TO README.md FILE. LINE NUMBERS ARE USED TO EXTRACT
+ * APPROPRIATE CODE SEGMENTS FROM THIS FILE. ADD NEW CODE AT THE BOTTOM TO AVOID CHANGING LINE NUMBERS OF EXISTING CODE
+ * SAMPLES.
+ * <p>
  * Class containing code snippets that will be injected to README.md.
  */
-@SuppressWarnings("unused")
 public class ReadmeSamples {
     private final DocumentAnalysisClient documentAnalysisClient = new DocumentAnalysisClientBuilder().buildClient();
     private final DocumentModelAdministrationClient documentModelAdminClient =
@@ -217,8 +219,9 @@ public class ReadmeSamples {
         // The shared access signature (SAS) Url of your Azure Blob Storage container with your forms.
         SyncPoller<DocumentOperationResult, DocumentModel> buildOperationPoller =
             documentModelAdminClient.beginBuildModel(trainingFilesUrl,
-                DocumentBuildMode.TEMPLATE, "my-build-model",
-                new BuildModelOptions().setDescription("model desc"), Context.NONE);
+                "my-build-model",
+                new BuildModelOptions().setDescription("model desc"),
+                Context.NONE);
 
         DocumentModel documentModel = buildOperationPoller.getFinalResult();
 
@@ -257,7 +260,7 @@ public class ReadmeSamples {
             analyzedDocument.getFields().forEach((key, documentField) -> {
                 System.out.printf("Document Field content: %s%n", documentField.getContent());
                 System.out.printf("Document Field confidence: %.2f%n", documentField.getConfidence());
-                System.out.printf("Document Field Type: %s%n", documentField.getType());
+                System.out.printf("Document Field Type: %.2f%n", documentField.getType().toString());
                 System.out.printf("Document Field found within bounding region: %s%n",
                     documentField.getBoundingRegions().toString());
             });

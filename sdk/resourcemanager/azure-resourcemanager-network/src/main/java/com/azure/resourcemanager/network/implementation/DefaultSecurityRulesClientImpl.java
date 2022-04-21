@@ -110,8 +110,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all default security rules in a network security group along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all default security rules in a network security group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SecurityRuleInner>> listSinglePageAsync(
@@ -172,8 +171,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all default security rules in a network security group along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all default security rules in a network security group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SecurityRuleInner>> listSinglePageAsync(
@@ -230,7 +228,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all default security rules in a network security group as paginated response with {@link PagedFlux}.
+     * @return all default security rules in a network security group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<SecurityRuleInner> listAsync(String resourceGroupName, String networkSecurityGroupName) {
@@ -248,7 +246,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all default security rules in a network security group as paginated response with {@link PagedFlux}.
+     * @return all default security rules in a network security group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SecurityRuleInner> listAsync(
@@ -266,7 +264,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all default security rules in a network security group as paginated response with {@link PagedIterable}.
+     * @return all default security rules in a network security group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SecurityRuleInner> list(String resourceGroupName, String networkSecurityGroupName) {
@@ -282,7 +280,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all default security rules in a network security group as paginated response with {@link PagedIterable}.
+     * @return all default security rules in a network security group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SecurityRuleInner> list(
@@ -299,8 +297,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified default network security rule along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the specified default network security rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<SecurityRuleInner>> getWithResponseAsync(
@@ -359,8 +356,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified default network security rule along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the specified default network security rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SecurityRuleInner>> getWithResponseAsync(
@@ -415,7 +411,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified default network security rule on successful completion of {@link Mono}.
+     * @return the specified default network security rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<SecurityRuleInner> getAsync(
@@ -458,7 +454,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified default network security rule along with {@link Response}.
+     * @return the specified default network security rule.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SecurityRuleInner> getWithResponse(
@@ -474,8 +470,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListSecurityRule API service call along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return response for ListSecurityRule API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SecurityRuleInner>> listNextSinglePageAsync(String nextLink) {
@@ -511,8 +506,7 @@ public final class DefaultSecurityRulesClientImpl implements DefaultSecurityRule
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListSecurityRule API service call along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
+     * @return response for ListSecurityRule API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SecurityRuleInner>> listNextSinglePageAsync(String nextLink, Context context) {

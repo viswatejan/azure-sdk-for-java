@@ -202,13 +202,6 @@ public interface Workspace {
     Boolean azureADOnlyAuthentication();
 
     /**
-     * Gets the trustedServiceBypassEnabled property: Is trustedServiceBypassEnabled for the workspace.
-     *
-     * @return the trustedServiceBypassEnabled value.
-     */
-    Boolean trustedServiceBypassEnabled();
-
-    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -290,8 +283,7 @@ public interface Workspace {
                 DefinitionStages.WithPurviewConfiguration,
                 DefinitionStages.WithPublicNetworkAccess,
                 DefinitionStages.WithCspWorkspaceAdminProperties,
-                DefinitionStages.WithAzureADOnlyAuthentication,
-                DefinitionStages.WithTrustedServiceBypassEnabled {
+                DefinitionStages.WithAzureADOnlyAuthentication {
             /**
              * Executes the create request.
              *
@@ -488,16 +480,6 @@ public interface Workspace {
              * @return the next definition stage.
              */
             WithCreate withAzureADOnlyAuthentication(Boolean azureADOnlyAuthentication);
-        }
-        /** The stage of the Workspace definition allowing to specify trustedServiceBypassEnabled. */
-        interface WithTrustedServiceBypassEnabled {
-            /**
-             * Specifies the trustedServiceBypassEnabled property: Is trustedServiceBypassEnabled for the workspace.
-             *
-             * @param trustedServiceBypassEnabled Is trustedServiceBypassEnabled for the workspace.
-             * @return the next definition stage.
-             */
-            WithCreate withTrustedServiceBypassEnabled(Boolean trustedServiceBypassEnabled);
         }
     }
     /**

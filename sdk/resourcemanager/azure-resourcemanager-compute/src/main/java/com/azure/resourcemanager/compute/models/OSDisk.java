@@ -6,6 +6,7 @@ package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -15,6 +16,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public final class OSDisk {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OSDisk.class);
+
     /*
      * This property allows you to specify the type of the OS that is included
      * in the disk if creating a VM from user-image or a specialized VHD.
@@ -408,7 +411,7 @@ public final class OSDisk {
             diffDiskSettings().validate();
         }
         if (createOption() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property createOption in model OSDisk"));
         }
@@ -416,6 +419,4 @@ public final class OSDisk {
             managedDisk().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OSDisk.class);
 }

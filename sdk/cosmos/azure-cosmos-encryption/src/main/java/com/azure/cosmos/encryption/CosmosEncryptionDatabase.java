@@ -11,12 +11,13 @@ import com.azure.cosmos.models.CosmosClientEncryptionKeyProperties;
 import com.azure.cosmos.models.CosmosClientEncryptionKeyResponse;
 import com.azure.cosmos.models.EncryptionKeyWrapMetadata;
 import com.azure.cosmos.util.CosmosPagedIterable;
+import reactor.core.Exceptions;
 import reactor.core.publisher.Mono;
 
 /**
  * CosmosEncryptionDatabase with encryption capabilities.
  */
-public final class CosmosEncryptionDatabase {
+public class CosmosEncryptionDatabase {
     private final CosmosDatabase cosmosDatabase;
     private final CosmosEncryptionAsyncDatabase cosmosEncryptionAsyncDatabase;
 

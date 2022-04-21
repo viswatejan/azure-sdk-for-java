@@ -88,8 +88,7 @@ public final class HttpProxyHandler extends ProxyHandler {
      */
     private static final Supplier<byte[]> NO_BODY = () -> new byte[0];
 
-    // HttpProxyHandler will be created for each network request that is using proxy, use a static logger.
-    private static final ClientLogger LOGGER = new ClientLogger(HttpProxyHandler.class);
+    private final ClientLogger logger = new ClientLogger(HttpProxyHandler.class);
 
     private final AuthorizationChallengeHandler challengeHandler;
     private final AtomicReference<ChallengeHolder> proxyChallengeHolderReference;
@@ -208,7 +207,7 @@ public final class HttpProxyHandler extends ProxyHandler {
     protected boolean handleResponse(ChannelHandlerContext ctx, Object o) throws ProxyConnectException {
         if (o instanceof HttpResponse) {
             if (status != null) {
-                throw LOGGER.logExceptionAsWarning(new RuntimeException("Received too many responses for a request"));
+                throw logger.logExceptionAsWarning(new RuntimeException("Received too many responses for a request"));
             }
 
             HttpResponse response = (HttpResponse) o;
@@ -327,7 +326,7 @@ public final class HttpProxyHandler extends ProxyHandler {
             String receivedValue = authenticationInfoPieces.get(name);
 
             if (!receivedValue.equalsIgnoreCase(sentValue)) {
-                throw LOGGER.logExceptionAsError(new IllegalStateException(
+                throw logger.logExceptionAsError(new IllegalStateException(
                     String.format(VALIDATION_ERROR_TEMPLATE, name, sentValue, receivedValue)));
             }
         }

@@ -31,7 +31,7 @@ public interface BotConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of bot service providers response along with {@link Response}.
+     * @return the list of bot service providers response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServiceProviderResponseListInner> listServiceProvidersWithResponse(Context context);
@@ -60,7 +60,7 @@ public interface BotConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Connection Setting registration for a Bot Service along with {@link Response}.
+     * @return a Connection Setting registration for a Bot Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ConnectionSettingInner> listWithSecretsWithResponse(
@@ -93,7 +93,7 @@ public interface BotConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ConnectionSettingInner> createWithResponse(
@@ -130,7 +130,7 @@ public interface BotConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ConnectionSettingInner> updateWithResponse(
@@ -164,7 +164,7 @@ public interface BotConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Connection Setting registration for a Bot Service along with {@link Response}.
+     * @return a Connection Setting registration for a Bot Service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ConnectionSettingInner> getWithResponse(
@@ -193,7 +193,7 @@ public interface BotConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(

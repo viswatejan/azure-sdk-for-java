@@ -5,36 +5,13 @@
 package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /** Contains encryption settings for an OS disk image. */
 @Fluent
 public final class OSDiskImageEncryption extends DiskImageEncryption {
-    /*
-     * This property specifies the security profile of an OS disk image.
-     */
-    @JsonProperty(value = "securityProfile")
-    private OSDiskImageSecurityProfile securityProfile;
-
-    /**
-     * Get the securityProfile property: This property specifies the security profile of an OS disk image.
-     *
-     * @return the securityProfile value.
-     */
-    public OSDiskImageSecurityProfile securityProfile() {
-        return this.securityProfile;
-    }
-
-    /**
-     * Set the securityProfile property: This property specifies the security profile of an OS disk image.
-     *
-     * @param securityProfile the securityProfile value to set.
-     * @return the OSDiskImageEncryption object itself.
-     */
-    public OSDiskImageEncryption withSecurityProfile(OSDiskImageSecurityProfile securityProfile) {
-        this.securityProfile = securityProfile;
-        return this;
-    }
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OSDiskImageEncryption.class);
 
     /** {@inheritDoc} */
     @Override
@@ -51,8 +28,5 @@ public final class OSDiskImageEncryption extends DiskImageEncryption {
     @Override
     public void validate() {
         super.validate();
-        if (securityProfile() != null) {
-            securityProfile().validate();
-        }
     }
 }

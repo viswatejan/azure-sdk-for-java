@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.mysqlflexibleserver.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.ServerPropertiesForUpdate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -13,11 +15,7 @@ import java.util.Map;
 /** Parameters allowed to update for a server. */
 @Fluent
 public final class ServerForUpdate {
-    /*
-     * The cmk identity for the server.
-     */
-    @JsonProperty(value = "identity")
-    private Identity identity;
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ServerForUpdate.class);
 
     /*
      * The SKU (pricing tier) of the server.
@@ -37,26 +35,6 @@ public final class ServerForUpdate {
     @JsonProperty(value = "tags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
-
-    /**
-     * Get the identity property: The cmk identity for the server.
-     *
-     * @return the identity value.
-     */
-    public Identity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: The cmk identity for the server.
-     *
-     * @param identity the identity value to set.
-     * @return the ServerForUpdate object itself.
-     */
-    public ServerForUpdate withIdentity(Identity identity) {
-        this.identity = identity;
-        return this;
-    }
 
     /**
      * Get the sku property: The SKU (pricing tier) of the server.
@@ -246,37 +224,11 @@ public final class ServerForUpdate {
     }
 
     /**
-     * Get the dataEncryption property: The Data Encryption for CMK.
-     *
-     * @return the dataEncryption value.
-     */
-    public DataEncryption dataEncryption() {
-        return this.innerProperties() == null ? null : this.innerProperties().dataEncryption();
-    }
-
-    /**
-     * Set the dataEncryption property: The Data Encryption for CMK.
-     *
-     * @param dataEncryption the dataEncryption value to set.
-     * @return the ServerForUpdate object itself.
-     */
-    public ServerForUpdate withDataEncryption(DataEncryption dataEncryption) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ServerPropertiesForUpdate();
-        }
-        this.innerProperties().withDataEncryption(dataEncryption);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (identity() != null) {
-            identity().validate();
-        }
         if (sku() != null) {
             sku().validate();
         }

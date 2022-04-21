@@ -55,7 +55,7 @@ public class JdkAsyncHttpClientBuilder {
         DEFAULT_RESTRICTED_HEADERS = Collections.unmodifiableSet(treeSet);
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(JdkAsyncHttpClientBuilder.class);
+    private final ClientLogger logger = new ClientLogger(JdkAsyncHttpClientBuilder.class);
 
     private java.net.http.HttpClient.Builder httpClientBuilder;
     private Duration connectionTimeout;
@@ -241,7 +241,7 @@ public class JdkAsyncHttpClientBuilder {
         try (Reader reader = Files.newBufferedReader(path)) {
             properties.load(reader);
         } catch (IOException e) {
-            LOGGER.warning("Cannot read net properties file at path {}", path, e);
+            logger.warning("Cannot read net properties file at path {}", path, e);
         }
         return properties;
     }

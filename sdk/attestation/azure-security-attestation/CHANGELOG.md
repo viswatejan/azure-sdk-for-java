@@ -1,27 +1,8 @@
 # Release History
 
-## 1.2.0-beta.1 (Unreleased)
-
+## 1.0.0-beta.2 (Unreleased)
 ### Features Added
 
-### Breaking Changes
-
-### Bugs Fixed
-
-### Other Changes
-
-## 1.1.0 (2022-03-11)
-
-### Features Added
-- Added interfaces from `com.azure.core.client.traits` to `AttestationClientBuilder` and `AttestationAdministrationClientBuilder`.
-- Added `retryOptions()` to `AttestationClientBuilder` and `AttestationAdministrationClientBuilder`.
-
-### Other Changes
-
-#### Dependency Updates
-- Updated `azure-core` to `1.26.0`.
-
-## 1.0.0 (2022-02-08)
 ### Breaking Changes
  * Removed `buildSigningCertificatesClient` and `buildSigningCertificatesAsyncClient` replaced
    with `getAttestationSigners` and `getAttestationSignersWithResponse` on `AttestationClient` 
@@ -45,7 +26,7 @@
 factory method:
 ```java
 AttestSgxEnclaveOptions options = AttestSgxEnclaveOptions
-    .fromQuote(decodedSgxEnclaveReport)
+    .fromQuote(decodedOpenEnclaveReport)
     .setRunTimeData(new byte[] { 1, 2, 3, 4, 5});
 ```
 or
@@ -68,10 +49,11 @@ with the  `listPolicyManagementCertificates`, `addPolicyManagementCertificate` a
  * Removed `JsonWebKey`, `JsonWebKeySet`, `PolicyCertificatesModificationResult`, `PolicyCertificatesModifyResponse`, and `CertificatesResponse` objects 
 because they are no longer a part of the public API surface.
  * Refactored `AttestationSigningKey` class to require certificate and signing key parameters in constructor.
- * listAttestationSigners now returns an `AttestationSignersCollection` object instead of a raw `List<AttestationSigner>`
 
 ### Bugs Fixed
 * Attestation tests now all pass when run in Live mode.
+
+### Other Changes
 
 ## 1.0.0-beta.1 (2021-01-28)
 

@@ -236,28 +236,6 @@ public interface Cluster {
     List<String> allowedFqdnList();
 
     /**
-     * Gets the publicIpType property: Indicates what public IP type to create - IPv4 (default), or DualStack (both IPv4
-     * and IPv6).
-     *
-     * @return the publicIpType value.
-     */
-    PublicIpType publicIpType();
-
-    /**
-     * Gets the virtualClusterGraduationProperties property: Virtual Cluster graduation properties.
-     *
-     * @return the virtualClusterGraduationProperties value.
-     */
-    String virtualClusterGraduationProperties();
-
-    /**
-     * Gets the privateEndpointConnections property: A list of private endpoint connections.
-     *
-     * @return the privateEndpointConnections value.
-     */
-    List<PrivateEndpointConnection> privateEndpointConnections();
-
-    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -352,8 +330,6 @@ public interface Cluster {
                 DefinitionStages.WithEnableAutoStop,
                 DefinitionStages.WithRestrictOutboundNetworkAccess,
                 DefinitionStages.WithAllowedFqdnList,
-                DefinitionStages.WithPublicIpType,
-                DefinitionStages.WithVirtualClusterGraduationProperties,
                 DefinitionStages.WithIfMatch,
                 DefinitionStages.WithIfNoneMatch {
             /**
@@ -562,28 +538,6 @@ public interface Cluster {
              */
             WithCreate withAllowedFqdnList(List<String> allowedFqdnList);
         }
-        /** The stage of the Cluster definition allowing to specify publicIpType. */
-        interface WithPublicIpType {
-            /**
-             * Specifies the publicIpType property: Indicates what public IP type to create - IPv4 (default), or
-             * DualStack (both IPv4 and IPv6).
-             *
-             * @param publicIpType Indicates what public IP type to create - IPv4 (default), or DualStack (both IPv4 and
-             *     IPv6).
-             * @return the next definition stage.
-             */
-            WithCreate withPublicIpType(PublicIpType publicIpType);
-        }
-        /** The stage of the Cluster definition allowing to specify virtualClusterGraduationProperties. */
-        interface WithVirtualClusterGraduationProperties {
-            /**
-             * Specifies the virtualClusterGraduationProperties property: Virtual Cluster graduation properties.
-             *
-             * @param virtualClusterGraduationProperties Virtual Cluster graduation properties.
-             * @return the next definition stage.
-             */
-            WithCreate withVirtualClusterGraduationProperties(String virtualClusterGraduationProperties);
-        }
         /** The stage of the Cluster definition allowing to specify ifMatch. */
         interface WithIfMatch {
             /**
@@ -636,7 +590,6 @@ public interface Cluster {
             UpdateStages.WithEnableAutoStop,
             UpdateStages.WithRestrictOutboundNetworkAccess,
             UpdateStages.WithAllowedFqdnList,
-            UpdateStages.WithPublicIpType,
             UpdateStages.WithIfMatch {
         /**
          * Executes the update request.
@@ -846,18 +799,6 @@ public interface Cluster {
              */
             Update withAllowedFqdnList(List<String> allowedFqdnList);
         }
-        /** The stage of the Cluster update allowing to specify publicIpType. */
-        interface WithPublicIpType {
-            /**
-             * Specifies the publicIpType property: Indicates what public IP type to create - IPv4 (default), or
-             * DualStack (both IPv4 and IPv6).
-             *
-             * @param publicIpType Indicates what public IP type to create - IPv4 (default), or DualStack (both IPv4 and
-             *     IPv6).
-             * @return the next definition stage.
-             */
-            Update withPublicIpType(PublicIpType publicIpType);
-        }
         /** The stage of the Cluster update allowing to specify ifMatch. */
         interface WithIfMatch {
             /**
@@ -927,7 +868,7 @@ public interface Cluster {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto database principals operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto database principals operation response.
      */
     PagedIterable<FollowerDatabaseDefinition> listFollowerDatabases();
 
@@ -938,7 +879,7 @@ public interface Cluster {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto database principals operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto database principals operation response.
      */
     PagedIterable<FollowerDatabaseDefinition> listFollowerDatabases(Context context);
 
@@ -988,7 +929,7 @@ public interface Cluster {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of language extension objects as paginated response with {@link PagedIterable}.
+     * @return the list of language extension objects.
      */
     PagedIterable<LanguageExtension> listLanguageExtensions();
 
@@ -999,7 +940,7 @@ public interface Cluster {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of language extension objects as paginated response with {@link PagedIterable}.
+     * @return the list of language extension objects.
      */
     PagedIterable<LanguageExtension> listLanguageExtensions(Context context);
 

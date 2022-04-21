@@ -15,11 +15,10 @@ import java.util.HashMap;
  * @see OnBehalfOfCredential
  */
 public class OnBehalfOfCredentialBuilder extends AadCredentialBuilderBase<OnBehalfOfCredentialBuilder> {
-    private static final ClientLogger LOGGER = new ClientLogger(OnBehalfOfCredentialBuilder.class);
-
     private String clientSecret;
     private String clientCertificatePath;
     private String clientCertificatePassword;
+    private final ClientLogger logger = new ClientLogger(OnBehalfOfCredentialBuilder.class);
 
     /**
      * Sets the client secret for the authentication.
@@ -128,17 +127,17 @@ public class OnBehalfOfCredentialBuilder extends AadCredentialBuilderBase<OnBeha
                 put("clientId", clientId);
                 put("tenantId", tenantId);
             }
-        }, LOGGER);
+        });
 
         if (clientSecret == null && clientCertificatePath == null) {
-            throw LOGGER.logExceptionAsWarning(new IllegalArgumentException("At least client secret or certificate "
-                + "path should provided in OnBehalfOfCredentialBuilder. Only one of them should "
+            throw logger.logExceptionAsWarning(new IllegalArgumentException("Atleast client secret or certificate "
+                + "path should provided in OnBhealfOfCredentialBuilder. Only one of them should "
                 + "be provided."));
         }
 
         if (clientCertificatePath != null && clientSecret != null) {
-            throw LOGGER.logExceptionAsWarning(new IllegalArgumentException("Both client secret and certificate "
-                + "path are provided in OnBehalfCredentialBuilder. Only one of them should "
+            throw logger.logExceptionAsWarning(new IllegalArgumentException("Both client secret and certificate "
+                + "path are provided in OnBhealfCredentialBuilder. Only one of them should "
                 + "be provided."));
         }
 

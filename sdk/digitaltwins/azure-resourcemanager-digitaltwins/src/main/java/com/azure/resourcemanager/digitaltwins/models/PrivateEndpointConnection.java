@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.digitaltwins.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.digitaltwins.fluent.models.PrivateEndpointConnectionInner;
 
@@ -32,19 +31,11 @@ public interface PrivateEndpointConnection {
     String type();
 
     /**
-     * Gets the properties property: The connection properties.
+     * Gets the properties property: The properties of a private endpoint connection.
      *
      * @return the properties value.
      */
     ConnectionProperties properties();
-
-    /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the private endpoint
-     * connection.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the inner com.azure.resourcemanager.digitaltwins.fluent.models.PrivateEndpointConnectionInner object.
@@ -79,9 +70,9 @@ public interface PrivateEndpointConnection {
         /** The stage of the PrivateEndpointConnection definition allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: The connection properties..
+             * Specifies the properties property: The properties of a private endpoint connection..
              *
-             * @param properties The connection properties.
+             * @param properties The properties of a private endpoint connection.
              * @return the next definition stage.
              */
             WithCreate withProperties(ConnectionProperties properties);
@@ -136,9 +127,9 @@ public interface PrivateEndpointConnection {
         /** The stage of the PrivateEndpointConnection update allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: The connection properties..
+             * Specifies the properties property: The properties of a private endpoint connection..
              *
-             * @param properties The connection properties.
+             * @param properties The properties of a private endpoint connection.
              * @return the next definition stage.
              */
             Update withProperties(ConnectionProperties properties);

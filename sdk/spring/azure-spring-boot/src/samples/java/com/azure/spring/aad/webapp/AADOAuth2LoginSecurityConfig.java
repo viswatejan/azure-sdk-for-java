@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-// BEGIN: readme-sample-AADOAuth2LoginSecurityConfig
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AADOAuth2LoginSecurityConfig extends AADWebSecurityConfigurerAdapter {
@@ -23,4 +22,3 @@ public class AADOAuth2LoginSecurityConfig extends AADWebSecurityConfigurerAdapte
         // Do some custom configuration
     }
 }
-// END: readme-sample-AADOAuth2LoginSecurityConfig

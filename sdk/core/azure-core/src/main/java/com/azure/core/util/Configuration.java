@@ -3,7 +3,6 @@
 
 package com.azure.core.util;
 
-import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
@@ -215,7 +214,7 @@ public class Configuration implements Cloneable {
     @SuppressWarnings("StaticInitializerReferencesSubClass")
     public static final Configuration NONE = new NoopConfiguration();
 
-    private final ConcurrentMap<String, Optional<String>> configurations;
+    private final ConcurrentMap<String, String> configurations;
 
     /**
      * Constructs a configuration containing the known Azure properties constants.
@@ -225,7 +224,7 @@ public class Configuration implements Cloneable {
         loadBaseConfiguration(this);
     }
 
-    private Configuration(ConcurrentMap<String, Optional<String>> configurations) {
+    private Configuration(ConcurrentMap<String, String> configurations) {
         this.configurations = new ConcurrentHashMap<>(configurations);
     }
 
@@ -301,15 +300,18 @@ public class Configuration implements Cloneable {
      * variable, in that order, if found, otherwise null.
      */
     private String getOrLoad(String name) {
-        Optional<String> cached = configurations.get(name);
-        if (cached != null) {
-            return cached.orElse(null);
+        String value = configurations.get(name);
+        if (value != null) {
+            return value;
         }
 
-        String value = load(name);
-        configurations.put(name, Optional.ofNullable(value));
+        value = load(name);
+        if (value != null) {
+            configurations.put(name, value);
+            return value;
+        }
 
-        return value;
+        return null;
     }
 
     /*
@@ -348,7 +350,7 @@ public class Configuration implements Cloneable {
      * @return The updated Configuration object.
      */
     public Configuration put(String name, String value) {
-        configurations.put(name, Optional.of(value));
+        configurations.put(name, value);
         return this;
     }
 
@@ -361,8 +363,7 @@ public class Configuration implements Cloneable {
      * @return The configuration if it previously existed, otherwise null.
      */
     public String remove(String name) {
-        Optional<String> value = configurations.remove(name);
-        return (value != null && value.isPresent()) ? value.get() : null;
+        return configurations.remove(name);
     }
 
     /**
@@ -375,8 +376,7 @@ public class Configuration implements Cloneable {
      * @return True if the configuration exists, otherwise false.
      */
     public boolean contains(String name) {
-        Optional<String> value = configurations.get(name);
-        return value != null && value.isPresent();
+        return configurations.containsKey(name);
     }
 
     /**

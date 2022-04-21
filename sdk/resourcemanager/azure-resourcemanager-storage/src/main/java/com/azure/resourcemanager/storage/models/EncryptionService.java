@@ -17,16 +17,16 @@ public final class EncryptionService {
 
     /*
      * A boolean indicating whether or not the service encrypts the data as it
-     * is stored. Encryption at rest is enabled by default today and cannot be
-     * disabled.
+     * is stored.
      */
     @JsonProperty(value = "enabled")
     private Boolean enabled;
 
     /*
      * Gets a rough estimate of the date/time when the encryption was last
-     * enabled by the user. Data is encrypted at rest by default today and
-     * cannot be disabled.
+     * enabled by the user. Only returned when encryption is enabled. There
+     * might be some unencrypted blobs which were written after this time, as
+     * it is just a rough estimate.
      */
     @JsonProperty(value = "lastEnabledTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastEnabledTime;
@@ -41,7 +41,6 @@ public final class EncryptionService {
 
     /**
      * Get the enabled property: A boolean indicating whether or not the service encrypts the data as it is stored.
-     * Encryption at rest is enabled by default today and cannot be disabled.
      *
      * @return the enabled value.
      */
@@ -51,7 +50,6 @@ public final class EncryptionService {
 
     /**
      * Set the enabled property: A boolean indicating whether or not the service encrypts the data as it is stored.
-     * Encryption at rest is enabled by default today and cannot be disabled.
      *
      * @param enabled the enabled value to set.
      * @return the EncryptionService object itself.
@@ -63,7 +61,8 @@ public final class EncryptionService {
 
     /**
      * Get the lastEnabledTime property: Gets a rough estimate of the date/time when the encryption was last enabled by
-     * the user. Data is encrypted at rest by default today and cannot be disabled.
+     * the user. Only returned when encryption is enabled. There might be some unencrypted blobs which were written
+     * after this time, as it is just a rough estimate.
      *
      * @return the lastEnabledTime value.
      */

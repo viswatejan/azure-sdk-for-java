@@ -100,7 +100,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of App Service apps as paginated response with {@link PagedFlux}.
+     * @return collection of App Service apps.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SiteInner> listAsync();
@@ -111,7 +111,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of App Service apps as paginated response with {@link PagedIterable}.
+     * @return collection of App Service apps.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteInner> list();
@@ -124,7 +124,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of App Service apps as paginated response with {@link PagedIterable}.
+     * @return collection of App Service apps.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteInner> list(Context context);
@@ -139,7 +139,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of App Service apps as paginated response with {@link PagedFlux}.
+     * @return collection of App Service apps.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SiteInner> listByResourceGroupAsync(String resourceGroupName, Boolean includeSlots);
@@ -152,7 +152,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of App Service apps as paginated response with {@link PagedFlux}.
+     * @return collection of App Service apps.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SiteInner> listByResourceGroupAsync(String resourceGroupName);
@@ -165,7 +165,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of App Service apps as paginated response with {@link PagedIterable}.
+     * @return collection of App Service apps.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteInner> listByResourceGroup(String resourceGroupName);
@@ -181,7 +181,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of App Service apps as paginated response with {@link PagedIterable}.
+     * @return collection of App Service apps.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteInner> listByResourceGroup(String resourceGroupName, Boolean includeSlots, Context context);
@@ -194,8 +194,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteInner>> getByResourceGroupWithResponseAsync(String resourceGroupName, String name);
@@ -208,7 +207,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app on successful completion of {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteInner> getByResourceGroupAsync(String resourceGroupName, String name);
@@ -235,7 +234,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app along with {@link Response}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteInner> getByResourceGroupWithResponse(String resourceGroupName, String name, Context context);
@@ -251,8 +250,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -269,7 +267,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a web app, a mobile app backend, or an API app.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<SiteInner>, SiteInner> beginCreateOrUpdateAsync(
@@ -286,7 +284,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a web app, a mobile app backend, or an API app.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteInner>, SiteInner> beginCreateOrUpdate(
@@ -304,7 +302,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a web app, a mobile app backend, or an API app.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteInner>, SiteInner> beginCreateOrUpdate(
@@ -321,7 +319,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app on successful completion of {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteInner> createOrUpdateAsync(String resourceGroupName, String name, SiteInner siteEnvelope);
@@ -370,7 +368,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteWithResponseAsync(
@@ -387,7 +385,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String name, Boolean deleteMetrics, Boolean deleteEmptyServerFarm);
@@ -400,7 +398,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String name);
@@ -429,7 +427,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
@@ -446,8 +444,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteInner>> updateWithResponseAsync(
@@ -464,7 +461,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app on successful completion of {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteInner> updateAsync(String resourceGroupName, String name, SitePatchResourceInner siteEnvelope);
@@ -497,7 +494,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app along with {@link Response}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteInner> updateWithResponse(
@@ -513,7 +510,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain analysis along with {@link Response} on successful completion of {@link Mono}.
+     * @return custom domain analysis.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CustomHostnameAnalysisResultInner>> analyzeCustomHostnameWithResponseAsync(
@@ -529,7 +526,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain analysis on successful completion of {@link Mono}.
+     * @return custom domain analysis.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CustomHostnameAnalysisResultInner> analyzeCustomHostnameAsync(
@@ -544,7 +541,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain analysis on successful completion of {@link Mono}.
+     * @return custom domain analysis.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CustomHostnameAnalysisResultInner> analyzeCustomHostnameAsync(String resourceGroupName, String name);
@@ -574,7 +571,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain analysis along with {@link Response}.
+     * @return custom domain analysis.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CustomHostnameAnalysisResultInner> analyzeCustomHostnameWithResponse(
@@ -590,7 +587,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> applySlotConfigToProductionWithResponseAsync(
@@ -606,7 +603,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> applySlotConfigToProductionAsync(String resourceGroupName, String name, CsmSlotEntity slotSwapEntity);
@@ -636,7 +633,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> applySlotConfigToProductionWithResponse(
@@ -652,7 +649,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response} on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BackupItemInner>> backupWithResponseAsync(
@@ -668,7 +665,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BackupItemInner> backupAsync(String resourceGroupName, String name, BackupRequestInner request);
@@ -699,7 +696,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BackupItemInner> backupWithResponse(
@@ -714,7 +711,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedFlux}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<BackupItemInner> listBackupsAsync(String resourceGroupName, String name);
@@ -728,7 +725,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedIterable}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BackupItemInner> listBackups(String resourceGroupName, String name);
@@ -743,7 +740,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedIterable}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BackupItemInner> listBackups(String resourceGroupName, String name, Context context);
@@ -758,7 +755,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response} on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BackupItemInner>> getBackupStatusWithResponseAsync(
@@ -774,7 +771,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BackupItemInner> getBackupStatusAsync(String resourceGroupName, String name, String backupId);
@@ -805,7 +802,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BackupItemInner> getBackupStatusWithResponse(
@@ -820,7 +817,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteBackupWithResponseAsync(String resourceGroupName, String name, String backupId);
@@ -834,7 +831,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteBackupAsync(String resourceGroupName, String name, String backupId);
@@ -862,7 +859,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteBackupWithResponse(String resourceGroupName, String name, String backupId, Context context);
@@ -880,7 +877,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response} on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BackupItemInner>> listBackupStatusSecretsWithResponseAsync(
@@ -899,7 +896,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BackupItemInner> listBackupStatusSecretsAsync(
@@ -938,7 +935,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BackupItemInner> listBackupStatusSecretsWithResponse(
@@ -955,7 +952,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> restoreWithResponseAsync(
@@ -972,7 +969,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginRestoreAsync(
@@ -989,7 +986,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestore(
@@ -1007,7 +1004,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestore(
@@ -1024,7 +1021,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restoreAsync(String resourceGroupName, String name, String backupId, RestoreRequestInner request);
@@ -1069,8 +1066,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies entity collection ARM resource as paginated response with {@link
-     *     PagedFlux}.
+     * @return publishing Credentials Policies entity collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<CsmPublishingCredentialsPoliciesEntityInner> listBasicPublishingCredentialsPoliciesAsync(
@@ -1085,8 +1081,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies entity collection ARM resource as paginated response with {@link
-     *     PagedIterable}.
+     * @return publishing Credentials Policies entity collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CsmPublishingCredentialsPoliciesEntityInner> listBasicPublishingCredentialsPolicies(
@@ -1102,8 +1097,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies entity collection ARM resource as paginated response with {@link
-     *     PagedIterable}.
+     * @return publishing Credentials Policies entity collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CsmPublishingCredentialsPoliciesEntityInner> listBasicPublishingCredentialsPolicies(
@@ -1118,8 +1112,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CsmPublishingCredentialsPoliciesEntityInner>> getFtpAllowedWithResponseAsync(
@@ -1134,7 +1127,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters on successful completion of {@link Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CsmPublishingCredentialsPoliciesEntityInner> getFtpAllowedAsync(String resourceGroupName, String name);
@@ -1163,7 +1156,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CsmPublishingCredentialsPoliciesEntityInner> getFtpAllowedWithResponse(
@@ -1179,8 +1172,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CsmPublishingCredentialsPoliciesEntityInner>> updateFtpAllowedWithResponseAsync(
@@ -1198,7 +1190,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters on successful completion of {@link Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CsmPublishingCredentialsPoliciesEntityInner> updateFtpAllowedAsync(
@@ -1235,7 +1227,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CsmPublishingCredentialsPoliciesEntityInner> updateFtpAllowedWithResponse(
@@ -1253,8 +1245,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CsmPublishingCredentialsPoliciesEntityInner>> getScmAllowedWithResponseAsync(
@@ -1269,7 +1260,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters on successful completion of {@link Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CsmPublishingCredentialsPoliciesEntityInner> getScmAllowedAsync(String resourceGroupName, String name);
@@ -1298,7 +1289,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CsmPublishingCredentialsPoliciesEntityInner> getScmAllowedWithResponse(
@@ -1314,8 +1305,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CsmPublishingCredentialsPoliciesEntityInner>> updateScmAllowedWithResponseAsync(
@@ -1333,7 +1323,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters on successful completion of {@link Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CsmPublishingCredentialsPoliciesEntityInner> updateScmAllowedAsync(
@@ -1370,7 +1360,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CsmPublishingCredentialsPoliciesEntityInner> updateScmAllowedWithResponse(
@@ -1388,7 +1378,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of site configurations as paginated response with {@link PagedFlux}.
+     * @return collection of site configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SiteConfigResourceInner> listConfigurationsAsync(String resourceGroupName, String name);
@@ -1402,7 +1392,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of site configurations as paginated response with {@link PagedIterable}.
+     * @return collection of site configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteConfigResourceInner> listConfigurations(String resourceGroupName, String name);
@@ -1417,7 +1407,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of site configurations as paginated response with {@link PagedIterable}.
+     * @return collection of site configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteConfigResourceInner> listConfigurations(String resourceGroupName, String name, Context context);
@@ -1432,7 +1422,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StringDictionaryInner>> updateApplicationSettingsWithResponseAsync(
@@ -1448,7 +1438,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StringDictionaryInner> updateApplicationSettingsAsync(
@@ -1481,7 +1471,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StringDictionaryInner> updateApplicationSettingsWithResponse(
@@ -1496,7 +1486,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StringDictionaryInner>> listApplicationSettingsWithResponseAsync(
@@ -1511,7 +1501,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StringDictionaryInner> listApplicationSettingsAsync(String resourceGroupName, String name);
@@ -1540,7 +1530,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StringDictionaryInner> listApplicationSettingsWithResponse(
@@ -1556,8 +1546,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteAuthSettingsInner>> updateAuthSettingsWithResponseAsync(
@@ -1573,8 +1562,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature on successful
-     *     completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteAuthSettingsInner> updateAuthSettingsAsync(
@@ -1607,8 +1595,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature along with {@link
-     *     Response}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteAuthSettingsInner> updateAuthSettingsWithResponse(
@@ -1623,8 +1610,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteAuthSettingsInner>> getAuthSettingsWithResponseAsync(String resourceGroupName, String name);
@@ -1638,8 +1624,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature on successful
-     *     completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteAuthSettingsInner> getAuthSettingsAsync(String resourceGroupName, String name);
@@ -1668,8 +1653,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature along with {@link
-     *     Response}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteAuthSettingsInner> getAuthSettingsWithResponse(String resourceGroupName, String name, Context context);
@@ -1683,8 +1667,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteAuthSettingsV2Inner>> getAuthSettingsV2WithoutSecretsWithResponseAsync(
@@ -1699,8 +1682,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature on successful
-     *     completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteAuthSettingsV2Inner> getAuthSettingsV2WithoutSecretsAsync(String resourceGroupName, String name);
@@ -1729,8 +1711,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature along with
-     *     {@link Response}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteAuthSettingsV2Inner> getAuthSettingsV2WithoutSecretsWithResponse(
@@ -1746,8 +1727,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteAuthSettingsV2Inner>> updateAuthSettingsV2WithResponseAsync(
@@ -1763,8 +1743,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature on successful
-     *     completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteAuthSettingsV2Inner> updateAuthSettingsV2Async(
@@ -1797,8 +1776,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature along with
-     *     {@link Response}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteAuthSettingsV2Inner> updateAuthSettingsV2WithResponse(
@@ -1813,8 +1791,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteAuthSettingsV2Inner>> getAuthSettingsV2WithResponseAsync(String resourceGroupName, String name);
@@ -1828,8 +1805,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature on successful
-     *     completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteAuthSettingsV2Inner> getAuthSettingsV2Async(String resourceGroupName, String name);
@@ -1858,8 +1834,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature along with
-     *     {@link Response}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteAuthSettingsV2Inner> getAuthSettingsV2WithResponse(
@@ -1875,8 +1850,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<AzureStoragePropertyDictionaryResourceInner>> updateAzureStorageAccountsWithResponseAsync(
@@ -1892,7 +1866,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource on successful completion of {@link Mono}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<AzureStoragePropertyDictionaryResourceInner> updateAzureStorageAccountsAsync(
@@ -1925,7 +1899,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource along with {@link Response}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AzureStoragePropertyDictionaryResourceInner> updateAzureStorageAccountsWithResponse(
@@ -1943,8 +1917,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<AzureStoragePropertyDictionaryResourceInner>> listAzureStorageAccountsWithResponseAsync(
@@ -1959,7 +1932,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource on successful completion of {@link Mono}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<AzureStoragePropertyDictionaryResourceInner> listAzureStorageAccountsAsync(
@@ -1989,7 +1962,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource along with {@link Response}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AzureStoragePropertyDictionaryResourceInner> listAzureStorageAccountsWithResponse(
@@ -2005,8 +1978,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BackupRequestInner>> updateBackupConfigurationWithResponseAsync(
@@ -2022,7 +1994,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed on successful completion of {@link Mono}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BackupRequestInner> updateBackupConfigurationAsync(
@@ -2054,7 +2026,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed along with {@link Response}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BackupRequestInner> updateBackupConfigurationWithResponse(
@@ -2069,7 +2041,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteBackupConfigurationWithResponseAsync(String resourceGroupName, String name);
@@ -2083,7 +2055,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteBackupConfigurationAsync(String resourceGroupName, String name);
@@ -2111,7 +2083,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteBackupConfigurationWithResponse(String resourceGroupName, String name, Context context);
@@ -2125,8 +2097,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BackupRequestInner>> getBackupConfigurationWithResponseAsync(String resourceGroupName, String name);
@@ -2140,7 +2111,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed on successful completion of {@link Mono}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BackupRequestInner> getBackupConfigurationAsync(String resourceGroupName, String name);
@@ -2169,7 +2140,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed along with {@link Response}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BackupRequestInner> getBackupConfigurationWithResponse(
@@ -2184,7 +2155,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ApiKVReferenceInner> getAppSettingsKeyVaultReferencesAsync(String resourceGroupName, String name);
@@ -2198,7 +2169,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiKVReferenceInner> getAppSettingsKeyVaultReferences(String resourceGroupName, String name);
@@ -2213,7 +2184,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiKVReferenceInner> getAppSettingsKeyVaultReferences(
@@ -2229,8 +2200,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ApiKVReferenceInner>> getAppSettingKeyVaultReferenceWithResponseAsync(
@@ -2246,7 +2216,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references on successful completion of {@link Mono}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApiKVReferenceInner> getAppSettingKeyVaultReferenceAsync(
@@ -2278,7 +2248,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references along with {@link Response}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApiKVReferenceInner> getAppSettingKeyVaultReferenceWithResponse(
@@ -2293,7 +2263,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ApiKVReferenceInner> getSiteConnectionStringKeyVaultReferencesAsync(
@@ -2308,7 +2278,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiKVReferenceInner> getSiteConnectionStringKeyVaultReferences(String resourceGroupName, String name);
@@ -2323,7 +2293,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiKVReferenceInner> getSiteConnectionStringKeyVaultReferences(
@@ -2339,8 +2309,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ApiKVReferenceInner>> getSiteConnectionStringKeyVaultReferenceWithResponseAsync(
@@ -2356,7 +2325,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references on successful completion of {@link Mono}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApiKVReferenceInner> getSiteConnectionStringKeyVaultReferenceAsync(
@@ -2389,7 +2358,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references along with {@link Response}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApiKVReferenceInner> getSiteConnectionStringKeyVaultReferenceWithResponse(
@@ -2405,7 +2374,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ConnectionStringDictionaryInner>> updateConnectionStringsWithResponseAsync(
@@ -2421,7 +2390,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ConnectionStringDictionaryInner> updateConnectionStringsAsync(
@@ -2454,7 +2423,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ConnectionStringDictionaryInner> updateConnectionStringsWithResponse(
@@ -2469,7 +2438,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ConnectionStringDictionaryInner>> listConnectionStringsWithResponseAsync(
@@ -2484,7 +2453,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ConnectionStringDictionaryInner> listConnectionStringsAsync(String resourceGroupName, String name);
@@ -2513,7 +2482,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ConnectionStringDictionaryInner> listConnectionStringsWithResponse(
@@ -2528,8 +2497,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteLogsConfigInner>> getDiagnosticLogsConfigurationWithResponseAsync(
@@ -2544,7 +2512,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs on successful completion of {@link Mono}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteLogsConfigInner> getDiagnosticLogsConfigurationAsync(String resourceGroupName, String name);
@@ -2573,7 +2541,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs along with {@link Response}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteLogsConfigInner> getDiagnosticLogsConfigurationWithResponse(
@@ -2590,8 +2558,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteLogsConfigInner>> updateDiagnosticLogsConfigWithResponseAsync(
@@ -2608,7 +2575,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs on successful completion of {@link Mono}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteLogsConfigInner> updateDiagnosticLogsConfigAsync(
@@ -2643,7 +2610,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs along with {@link Response}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteLogsConfigInner> updateDiagnosticLogsConfigWithResponse(
@@ -2659,7 +2626,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StringDictionaryInner>> updateMetadataWithResponseAsync(
@@ -2675,7 +2642,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StringDictionaryInner> updateMetadataAsync(
@@ -2707,7 +2674,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StringDictionaryInner> updateMetadataWithResponse(
@@ -2722,7 +2689,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StringDictionaryInner>> listMetadataWithResponseAsync(String resourceGroupName, String name);
@@ -2736,7 +2703,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StringDictionaryInner> listMetadataAsync(String resourceGroupName, String name);
@@ -2765,7 +2732,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StringDictionaryInner> listMetadataWithResponse(String resourceGroupName, String name, Context context);
@@ -2779,8 +2746,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> listPublishingCredentialsWithResponseAsync(String resourceGroupName, String name);
@@ -2794,7 +2760,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of user credentials used for publishing activity.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<UserInner>, UserInner> beginListPublishingCredentialsAsync(
@@ -2809,7 +2775,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of user credentials used for publishing activity.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<UserInner>, UserInner> beginListPublishingCredentials(String resourceGroupName, String name);
@@ -2824,7 +2790,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of user credentials used for publishing activity.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<UserInner>, UserInner> beginListPublishingCredentials(
@@ -2839,7 +2805,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity on successful completion of {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<UserInner> listPublishingCredentialsAsync(String resourceGroupName, String name);
@@ -2883,7 +2849,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App along with {@link Response} on successful completion of {@link Mono}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PushSettingsInner>> updateSitePushSettingsWithResponseAsync(
@@ -2899,7 +2865,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App on successful completion of {@link Mono}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PushSettingsInner> updateSitePushSettingsAsync(
@@ -2931,7 +2897,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App along with {@link Response}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PushSettingsInner> updateSitePushSettingsWithResponse(
@@ -2946,7 +2912,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App along with {@link Response} on successful completion of {@link Mono}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PushSettingsInner>> listSitePushSettingsWithResponseAsync(String resourceGroupName, String name);
@@ -2960,7 +2926,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App on successful completion of {@link Mono}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PushSettingsInner> listSitePushSettingsAsync(String resourceGroupName, String name);
@@ -2989,7 +2955,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App along with {@link Response}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PushSettingsInner> listSitePushSettingsWithResponse(
@@ -3004,7 +2970,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return slot Config names azure resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return slot Config names azure resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SlotConfigNamesResourceInner>> listSlotConfigurationNamesWithResponseAsync(
@@ -3019,7 +2985,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return slot Config names azure resource on successful completion of {@link Mono}.
+     * @return slot Config names azure resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SlotConfigNamesResourceInner> listSlotConfigurationNamesAsync(String resourceGroupName, String name);
@@ -3048,7 +3014,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return slot Config names azure resource along with {@link Response}.
+     * @return slot Config names azure resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SlotConfigNamesResourceInner> listSlotConfigurationNamesWithResponse(
@@ -3065,7 +3031,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return slot Config names azure resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return slot Config names azure resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SlotConfigNamesResourceInner>> updateSlotConfigurationNamesWithResponseAsync(
@@ -3082,7 +3048,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return slot Config names azure resource on successful completion of {@link Mono}.
+     * @return slot Config names azure resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SlotConfigNamesResourceInner> updateSlotConfigurationNamesAsync(
@@ -3117,7 +3083,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return slot Config names azure resource along with {@link Response}.
+     * @return slot Config names azure resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SlotConfigNamesResourceInner> updateSlotConfigurationNamesWithResponse(
@@ -3133,7 +3099,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteConfigResourceInner>> getConfigurationWithResponseAsync(String resourceGroupName, String name);
@@ -3148,7 +3114,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteConfigResourceInner> getConfigurationAsync(String resourceGroupName, String name);
@@ -3179,7 +3145,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteConfigResourceInner> getConfigurationWithResponse(
@@ -3195,7 +3161,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteConfigResourceInner>> createOrUpdateConfigurationWithResponseAsync(
@@ -3211,7 +3177,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteConfigResourceInner> createOrUpdateConfigurationAsync(
@@ -3244,7 +3210,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteConfigResourceInner> createOrUpdateConfigurationWithResponse(
@@ -3260,7 +3226,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteConfigResourceInner>> updateConfigurationWithResponseAsync(
@@ -3276,7 +3242,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteConfigResourceInner> updateConfigurationAsync(
@@ -3309,7 +3275,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteConfigResourceInner> updateConfigurationWithResponse(
@@ -3325,8 +3291,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of metadata for the app configuration snapshots that can be restored as paginated response
-     *     with {@link PagedFlux}.
+     * @return collection of metadata for the app configuration snapshots that can be restored.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SiteConfigurationSnapshotInfoInner> listConfigurationSnapshotInfoAsync(
@@ -3342,8 +3307,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of metadata for the app configuration snapshots that can be restored as paginated response
-     *     with {@link PagedIterable}.
+     * @return collection of metadata for the app configuration snapshots that can be restored.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteConfigurationSnapshotInfoInner> listConfigurationSnapshotInfo(
@@ -3360,8 +3324,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of metadata for the app configuration snapshots that can be restored as paginated response
-     *     with {@link PagedIterable}.
+     * @return collection of metadata for the app configuration snapshots that can be restored.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteConfigurationSnapshotInfoInner> listConfigurationSnapshotInfo(
@@ -3377,7 +3340,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteConfigResourceInner>> getConfigurationSnapshotWithResponseAsync(
@@ -3393,7 +3356,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteConfigResourceInner> getConfigurationSnapshotAsync(
@@ -3425,7 +3388,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteConfigResourceInner> getConfigurationSnapshotWithResponse(
@@ -3441,7 +3404,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> recoverSiteConfigurationSnapshotWithResponseAsync(
@@ -3457,7 +3420,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> recoverSiteConfigurationSnapshotAsync(String resourceGroupName, String name, String snapshotId);
@@ -3487,7 +3450,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> recoverSiteConfigurationSnapshotWithResponse(
@@ -3501,7 +3464,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> getWebSiteContainerLogsWithResponseAsync(String resourceGroupName, String name);
@@ -3554,7 +3517,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> getContainerLogsZipWithResponseAsync(String resourceGroupName, String name);
@@ -3608,7 +3571,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ContinuousWebJobInner> listContinuousWebJobsAsync(String resourceGroupName, String name);
@@ -3622,8 +3585,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ContinuousWebJobInner> listContinuousWebJobs(String resourceGroupName, String name);
@@ -3638,8 +3600,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ContinuousWebJobInner> listContinuousWebJobs(String resourceGroupName, String name, Context context);
@@ -3653,7 +3614,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return continuous Web Job Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return continuous Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ContinuousWebJobInner>> getContinuousWebJobWithResponseAsync(
@@ -3668,7 +3629,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return continuous Web Job Information on successful completion of {@link Mono}.
+     * @return continuous Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ContinuousWebJobInner> getContinuousWebJobAsync(String resourceGroupName, String name, String webJobName);
@@ -3697,7 +3658,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return continuous Web Job Information along with {@link Response}.
+     * @return continuous Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ContinuousWebJobInner> getContinuousWebJobWithResponse(
@@ -3713,7 +3674,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteContinuousWebJobWithResponseAsync(
@@ -3729,7 +3690,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteContinuousWebJobAsync(String resourceGroupName, String name, String webJobName);
@@ -3759,7 +3720,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteContinuousWebJobWithResponse(
@@ -3774,7 +3735,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> startContinuousWebJobWithResponseAsync(
@@ -3789,7 +3750,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> startContinuousWebJobAsync(String resourceGroupName, String name, String webJobName);
@@ -3817,7 +3778,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> startContinuousWebJobWithResponse(
@@ -3832,7 +3793,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> stopContinuousWebJobWithResponseAsync(
@@ -3847,7 +3808,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> stopContinuousWebJobAsync(String resourceGroupName, String name, String webJobName);
@@ -3875,7 +3836,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> stopContinuousWebJobWithResponse(
@@ -3890,7 +3851,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app deployments as paginated response with {@link PagedFlux}.
+     * @return collection of app deployments.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<DeploymentInner> listDeploymentsAsync(String resourceGroupName, String name);
@@ -3904,7 +3865,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app deployments as paginated response with {@link PagedIterable}.
+     * @return collection of app deployments.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DeploymentInner> listDeployments(String resourceGroupName, String name);
@@ -3919,7 +3880,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app deployments as paginated response with {@link PagedIterable}.
+     * @return collection of app deployments.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DeploymentInner> listDeployments(String resourceGroupName, String name, Context context);
@@ -3934,8 +3895,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<DeploymentInner>> getDeploymentWithResponseAsync(String resourceGroupName, String name, String id);
@@ -3950,7 +3910,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity on successful completion of {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<DeploymentInner> getDeploymentAsync(String resourceGroupName, String name, String id);
@@ -3981,7 +3941,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<DeploymentInner> getDeploymentWithResponse(
@@ -3998,8 +3958,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<DeploymentInner>> createDeploymentWithResponseAsync(
@@ -4016,7 +3975,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity on successful completion of {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<DeploymentInner> createDeploymentAsync(
@@ -4050,7 +4009,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<DeploymentInner> createDeploymentWithResponse(
@@ -4066,7 +4025,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteDeploymentWithResponseAsync(String resourceGroupName, String name, String id);
@@ -4081,7 +4040,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteDeploymentAsync(String resourceGroupName, String name, String id);
@@ -4111,7 +4070,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteDeploymentWithResponse(String resourceGroupName, String name, String id, Context context);
@@ -4127,8 +4086,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<DeploymentInner>> listDeploymentLogWithResponseAsync(
@@ -4145,7 +4103,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity on successful completion of {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<DeploymentInner> listDeploymentLogAsync(String resourceGroupName, String name, String id);
@@ -4178,7 +4136,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<DeploymentInner> listDeploymentLogWithResponse(
@@ -4195,7 +4153,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a restore request along with {@link Response} on successful completion of {@link Mono}.
+     * @return description of a restore request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RestoreRequestInner>> discoverBackupWithResponseAsync(
@@ -4212,7 +4170,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a restore request on successful completion of {@link Mono}.
+     * @return description of a restore request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RestoreRequestInner> discoverBackupAsync(String resourceGroupName, String name, RestoreRequestInner request);
@@ -4245,7 +4203,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a restore request along with {@link Response}.
+     * @return description of a restore request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RestoreRequestInner> discoverBackupWithResponse(
@@ -4260,7 +4218,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of identifiers as paginated response with {@link PagedFlux}.
+     * @return collection of identifiers.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<IdentifierInner> listDomainOwnershipIdentifiersAsync(String resourceGroupName, String name);
@@ -4274,7 +4232,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of identifiers as paginated response with {@link PagedIterable}.
+     * @return collection of identifiers.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<IdentifierInner> listDomainOwnershipIdentifiers(String resourceGroupName, String name);
@@ -4289,7 +4247,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of identifiers as paginated response with {@link PagedIterable}.
+     * @return collection of identifiers.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<IdentifierInner> listDomainOwnershipIdentifiers(
@@ -4305,8 +4263,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<IdentifierInner>> getDomainOwnershipIdentifierWithResponseAsync(
@@ -4322,7 +4279,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier on successful completion of {@link Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<IdentifierInner> getDomainOwnershipIdentifierAsync(
@@ -4355,7 +4312,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IdentifierInner> getDomainOwnershipIdentifierWithResponse(
@@ -4372,8 +4329,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<IdentifierInner>> createOrUpdateDomainOwnershipIdentifierWithResponseAsync(
@@ -4393,7 +4349,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier on successful completion of {@link Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<IdentifierInner> createOrUpdateDomainOwnershipIdentifierAsync(
@@ -4434,7 +4390,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IdentifierInner> createOrUpdateDomainOwnershipIdentifierWithResponse(
@@ -4454,7 +4410,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteDomainOwnershipIdentifierWithResponseAsync(
@@ -4470,7 +4426,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteDomainOwnershipIdentifierAsync(
@@ -4501,7 +4457,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteDomainOwnershipIdentifierWithResponse(
@@ -4518,8 +4474,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<IdentifierInner>> updateDomainOwnershipIdentifierWithResponseAsync(
@@ -4539,7 +4494,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier on successful completion of {@link Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<IdentifierInner> updateDomainOwnershipIdentifierAsync(
@@ -4580,7 +4535,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IdentifierInner> updateDomainOwnershipIdentifierWithResponse(
@@ -4599,7 +4554,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MSDeployStatusInner>> getMSDeployStatusWithResponseAsync(String resourceGroupName, String name);
@@ -4613,7 +4568,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployStatusInner> getMSDeployStatusAsync(String resourceGroupName, String name);
@@ -4642,7 +4597,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MSDeployStatusInner> getMSDeployStatusWithResponse(String resourceGroupName, String name, Context context);
@@ -4656,7 +4611,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createMSDeployOperationWithResponseAsync(
@@ -4671,7 +4626,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateMSDeployOperationAsync(
@@ -4686,7 +4641,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateMSDeployOperation(
@@ -4702,7 +4657,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateMSDeployOperation(
@@ -4717,7 +4672,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployStatusInner> createMSDeployOperationAsync(String resourceGroupName, String name, MSDeploy mSDeploy);
@@ -4760,7 +4715,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MSDeployLogInner>> getMSDeployLogWithResponseAsync(String resourceGroupName, String name);
@@ -4773,7 +4728,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log on successful completion of {@link Mono}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployLogInner> getMSDeployLogAsync(String resourceGroupName, String name);
@@ -4800,124 +4755,10 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log along with {@link Response}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MSDeployLogInner> getMSDeployLogWithResponse(String resourceGroupName, String name, Context context);
-
-    /**
-     * Description for Invoke onedeploy status API /api/deployments and gets the deployment status for the site.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<Object>> getOneDeployStatusWithResponseAsync(String resourceGroupName, String name);
-
-    /**
-     * Description for Invoke onedeploy status API /api/deployments and gets the deployment status for the site.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Object> getOneDeployStatusAsync(String resourceGroupName, String name);
-
-    /**
-     * Description for Invoke onedeploy status API /api/deployments and gets the deployment status for the site.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Object getOneDeployStatus(String resourceGroupName, String name);
-
-    /**
-     * Description for Invoke onedeploy status API /api/deployments and gets the deployment status for the site.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Object> getOneDeployStatusWithResponse(String resourceGroupName, String name, Context context);
-
-    /**
-     * Description for Invoke the OneDeploy publish web app extension.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<Object>> createOneDeployOperationWithResponseAsync(String resourceGroupName, String name);
-
-    /**
-     * Description for Invoke the OneDeploy publish web app extension.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Object> createOneDeployOperationAsync(String resourceGroupName, String name);
-
-    /**
-     * Description for Invoke the OneDeploy publish web app extension.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Object createOneDeployOperation(String resourceGroupName, String name);
-
-    /**
-     * Description for Invoke the OneDeploy publish web app extension.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Object> createOneDeployOperationWithResponse(String resourceGroupName, String name, Context context);
 
     /**
      * Description for List the functions for a web site, or a deployment slot.
@@ -4927,7 +4768,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu function information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu function information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<FunctionEnvelopeInner> listFunctionsAsync(String resourceGroupName, String name);
@@ -4940,7 +4781,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu function information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu function information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FunctionEnvelopeInner> listFunctions(String resourceGroupName, String name);
@@ -4954,7 +4795,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu function information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu function information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FunctionEnvelopeInner> listFunctions(String resourceGroupName, String name, Context context);
@@ -4968,7 +4809,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<String>> getFunctionsAdminTokenWithResponseAsync(String resourceGroupName, String name);
@@ -4982,7 +4823,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<String> getFunctionsAdminTokenAsync(String resourceGroupName, String name);
@@ -5011,7 +4852,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<String> getFunctionsAdminTokenWithResponse(String resourceGroupName, String name, Context context);
@@ -5025,7 +4866,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function information along with {@link Response} on successful completion of {@link Mono}.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FunctionEnvelopeInner>> getFunctionWithResponseAsync(
@@ -5040,7 +4881,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function information on successful completion of {@link Mono}.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FunctionEnvelopeInner> getFunctionAsync(String resourceGroupName, String name, String functionName);
@@ -5069,7 +4910,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function information along with {@link Response}.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FunctionEnvelopeInner> getFunctionWithResponse(
@@ -5086,7 +4927,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function information along with {@link Response} on successful completion of {@link Mono}.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createFunctionWithResponseAsync(
@@ -5103,7 +4944,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of function information.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<FunctionEnvelopeInner>, FunctionEnvelopeInner> beginCreateFunctionAsync(
@@ -5120,7 +4961,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of function information.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<FunctionEnvelopeInner>, FunctionEnvelopeInner> beginCreateFunction(
@@ -5138,7 +4979,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of function information.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<FunctionEnvelopeInner>, FunctionEnvelopeInner> beginCreateFunction(
@@ -5159,7 +5000,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function information on successful completion of {@link Mono}.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FunctionEnvelopeInner> createFunctionAsync(
@@ -5213,7 +5054,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteFunctionWithResponseAsync(String resourceGroupName, String name, String functionName);
@@ -5227,7 +5068,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteFunctionAsync(String resourceGroupName, String name, String functionName);
@@ -5255,7 +5096,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteFunctionWithResponse(
@@ -5273,7 +5114,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info along with {@link Response} on successful completion of {@link Mono}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<KeyInfoInner>> createOrUpdateFunctionSecretWithResponseAsync(
@@ -5291,7 +5132,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info on successful completion of {@link Mono}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<KeyInfoInner> createOrUpdateFunctionSecretAsync(
@@ -5328,7 +5169,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info along with {@link Response}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<KeyInfoInner> createOrUpdateFunctionSecretWithResponse(
@@ -5344,7 +5185,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteFunctionSecretWithResponseAsync(
@@ -5360,7 +5201,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteFunctionSecretAsync(String resourceGroupName, String name, String functionName, String keyName);
@@ -5390,7 +5231,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteFunctionSecretWithResponse(
@@ -5406,7 +5247,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StringDictionaryInner>> listFunctionKeysWithResponseAsync(
@@ -5422,7 +5263,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StringDictionaryInner> listFunctionKeysAsync(String resourceGroupName, String name, String functionName);
@@ -5453,7 +5294,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StringDictionaryInner> listFunctionKeysWithResponse(
@@ -5469,7 +5310,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets along with {@link Response} on successful completion of {@link Mono}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FunctionSecretsInner>> listFunctionSecretsWithResponseAsync(
@@ -5485,7 +5326,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets on successful completion of {@link Mono}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FunctionSecretsInner> listFunctionSecretsAsync(String resourceGroupName, String name, String functionName);
@@ -5516,7 +5357,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets along with {@link Response}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FunctionSecretsInner> listFunctionSecretsWithResponse(
@@ -5531,7 +5372,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return functions host level keys along with {@link Response} on successful completion of {@link Mono}.
+     * @return functions host level keys.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HostKeysInner>> listHostKeysWithResponseAsync(String resourceGroupName, String name);
@@ -5545,7 +5386,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return functions host level keys on successful completion of {@link Mono}.
+     * @return functions host level keys.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HostKeysInner> listHostKeysAsync(String resourceGroupName, String name);
@@ -5574,7 +5415,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return functions host level keys along with {@link Response}.
+     * @return functions host level keys.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HostKeysInner> listHostKeysWithResponse(String resourceGroupName, String name, Context context);
@@ -5588,7 +5429,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> listSyncStatusWithResponseAsync(String resourceGroupName, String name);
@@ -5602,7 +5443,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> listSyncStatusAsync(String resourceGroupName, String name);
@@ -5630,7 +5471,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> listSyncStatusWithResponse(String resourceGroupName, String name, Context context);
@@ -5644,7 +5485,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> syncFunctionsWithResponseAsync(String resourceGroupName, String name);
@@ -5658,7 +5499,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> syncFunctionsAsync(String resourceGroupName, String name);
@@ -5686,7 +5527,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> syncFunctionsWithResponse(String resourceGroupName, String name, Context context);
@@ -5703,7 +5544,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info along with {@link Response} on successful completion of {@link Mono}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<KeyInfoInner>> createOrUpdateHostSecretWithResponseAsync(
@@ -5721,7 +5562,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info on successful completion of {@link Mono}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<KeyInfoInner> createOrUpdateHostSecretAsync(
@@ -5758,7 +5599,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info along with {@link Response}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<KeyInfoInner> createOrUpdateHostSecretWithResponse(
@@ -5774,7 +5615,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteHostSecretWithResponseAsync(
@@ -5790,7 +5631,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteHostSecretAsync(String resourceGroupName, String name, String keyType, String keyName);
@@ -5820,7 +5661,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteHostSecretWithResponse(
@@ -5835,7 +5676,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of hostname bindings as paginated response with {@link PagedFlux}.
+     * @return collection of hostname bindings.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<HostnameBindingInner> listHostnameBindingsAsync(String resourceGroupName, String name);
@@ -5849,7 +5690,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of hostname bindings as paginated response with {@link PagedIterable}.
+     * @return collection of hostname bindings.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<HostnameBindingInner> listHostnameBindings(String resourceGroupName, String name);
@@ -5864,7 +5705,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of hostname bindings as paginated response with {@link PagedIterable}.
+     * @return collection of hostname bindings.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<HostnameBindingInner> listHostnameBindings(String resourceGroupName, String name, Context context);
@@ -5879,7 +5720,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object along with {@link Response} on successful completion of {@link Mono}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HostnameBindingInner>> getHostnameBindingWithResponseAsync(
@@ -5895,7 +5736,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object on successful completion of {@link Mono}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HostnameBindingInner> getHostnameBindingAsync(String resourceGroupName, String name, String hostname);
@@ -5926,7 +5767,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object along with {@link Response}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HostnameBindingInner> getHostnameBindingWithResponse(
@@ -5943,7 +5784,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object along with {@link Response} on successful completion of {@link Mono}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HostnameBindingInner>> createOrUpdateHostnameBindingWithResponseAsync(
@@ -5960,7 +5801,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object on successful completion of {@link Mono}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HostnameBindingInner> createOrUpdateHostnameBindingAsync(
@@ -5995,7 +5836,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object along with {@link Response}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HostnameBindingInner> createOrUpdateHostnameBindingWithResponse(
@@ -6011,7 +5852,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteHostnameBindingWithResponseAsync(String resourceGroupName, String name, String hostname);
@@ -6026,7 +5867,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteHostnameBindingAsync(String resourceGroupName, String name, String hostname);
@@ -6056,7 +5897,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteHostnameBindingWithResponse(
@@ -6073,7 +5914,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HybridConnectionInner>> getHybridConnectionWithResponseAsync(
@@ -6090,7 +5931,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HybridConnectionInner> getHybridConnectionAsync(
@@ -6125,7 +5966,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HybridConnectionInner> getHybridConnectionWithResponse(
@@ -6143,7 +5984,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HybridConnectionInner>> createOrUpdateHybridConnectionWithResponseAsync(
@@ -6165,7 +6006,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HybridConnectionInner> createOrUpdateHybridConnectionAsync(
@@ -6210,7 +6051,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HybridConnectionInner> createOrUpdateHybridConnectionWithResponse(
@@ -6231,7 +6072,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteHybridConnectionWithResponseAsync(
@@ -6247,7 +6088,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteHybridConnectionAsync(
@@ -6278,7 +6119,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteHybridConnectionWithResponse(
@@ -6296,7 +6137,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HybridConnectionInner>> updateHybridConnectionWithResponseAsync(
@@ -6318,7 +6159,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HybridConnectionInner> updateHybridConnectionAsync(
@@ -6363,7 +6204,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HybridConnectionInner> updateHybridConnectionWithResponse(
@@ -6383,7 +6224,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HybridConnectionInner>> listHybridConnectionsWithResponseAsync(String resourceGroupName, String name);
@@ -6397,7 +6238,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HybridConnectionInner> listHybridConnectionsAsync(String resourceGroupName, String name);
@@ -6426,7 +6267,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HybridConnectionInner> listHybridConnectionsWithResponse(
@@ -6441,8 +6282,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RelayServiceConnectionEntityInner>> listRelayServiceConnectionsWithResponseAsync(
@@ -6457,7 +6297,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app on successful completion of {@link Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RelayServiceConnectionEntityInner> listRelayServiceConnectionsAsync(String resourceGroupName, String name);
@@ -6486,7 +6326,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RelayServiceConnectionEntityInner> listRelayServiceConnectionsWithResponse(
@@ -6502,8 +6342,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RelayServiceConnectionEntityInner>> getRelayServiceConnectionWithResponseAsync(
@@ -6519,7 +6358,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app on successful completion of {@link Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RelayServiceConnectionEntityInner> getRelayServiceConnectionAsync(
@@ -6552,7 +6391,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RelayServiceConnectionEntityInner> getRelayServiceConnectionWithResponse(
@@ -6569,8 +6408,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RelayServiceConnectionEntityInner>> createOrUpdateRelayServiceConnectionWithResponseAsync(
@@ -6587,7 +6425,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app on successful completion of {@link Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RelayServiceConnectionEntityInner> createOrUpdateRelayServiceConnectionAsync(
@@ -6622,7 +6460,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RelayServiceConnectionEntityInner> createOrUpdateRelayServiceConnectionWithResponse(
@@ -6641,7 +6479,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteRelayServiceConnectionWithResponseAsync(
@@ -6656,7 +6494,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteRelayServiceConnectionAsync(String resourceGroupName, String name, String entityName);
@@ -6684,7 +6522,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteRelayServiceConnectionWithResponse(
@@ -6701,8 +6539,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RelayServiceConnectionEntityInner>> updateRelayServiceConnectionWithResponseAsync(
@@ -6719,7 +6556,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app on successful completion of {@link Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RelayServiceConnectionEntityInner> updateRelayServiceConnectionAsync(
@@ -6754,7 +6591,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RelayServiceConnectionEntityInner> updateRelayServiceConnectionWithResponse(
@@ -6773,7 +6610,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app instances as paginated response with {@link PagedFlux}.
+     * @return collection of app instances.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<WebSiteInstanceStatusInner> listInstanceIdentifiersAsync(String resourceGroupName, String name);
@@ -6787,7 +6624,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app instances as paginated response with {@link PagedIterable}.
+     * @return collection of app instances.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WebSiteInstanceStatusInner> listInstanceIdentifiers(String resourceGroupName, String name);
@@ -6802,7 +6639,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app instances as paginated response with {@link PagedIterable}.
+     * @return collection of app instances.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WebSiteInstanceStatusInner> listInstanceIdentifiers(
@@ -6818,7 +6655,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<WebSiteInstanceStatusInner>> getInstanceInfoWithResponseAsync(
@@ -6834,7 +6671,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<WebSiteInstanceStatusInner> getInstanceInfoAsync(String resourceGroupName, String name, String instanceId);
@@ -6865,7 +6702,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WebSiteInstanceStatusInner> getInstanceInfoWithResponse(
@@ -6881,7 +6718,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MSDeployStatusInner>> getInstanceMsDeployStatusWithResponseAsync(
@@ -6897,7 +6734,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployStatusInner> getInstanceMsDeployStatusAsync(String resourceGroupName, String name, String instanceId);
@@ -6928,7 +6765,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MSDeployStatusInner> getInstanceMsDeployStatusWithResponse(
@@ -6944,7 +6781,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createInstanceMSDeployOperationWithResponseAsync(
@@ -6960,7 +6797,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateInstanceMSDeployOperationAsync(
@@ -6976,7 +6813,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateInstanceMSDeployOperation(
@@ -6993,7 +6830,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateInstanceMSDeployOperation(
@@ -7009,7 +6846,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployStatusInner> createInstanceMSDeployOperationAsync(
@@ -7057,7 +6894,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MSDeployLogInner>> getInstanceMSDeployLogWithResponseAsync(
@@ -7072,7 +6909,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log on successful completion of {@link Mono}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployLogInner> getInstanceMSDeployLogAsync(String resourceGroupName, String name, String instanceId);
@@ -7101,7 +6938,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log along with {@link Response}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MSDeployLogInner> getInstanceMSDeployLogWithResponse(
@@ -7118,7 +6955,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessInfoInner> listInstanceProcessesAsync(String resourceGroupName, String name, String instanceId);
@@ -7134,7 +6971,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessInfoInner> listInstanceProcesses(String resourceGroupName, String name, String instanceId);
@@ -7151,7 +6988,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessInfoInner> listInstanceProcesses(
@@ -7168,7 +7005,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ProcessInfoInner>> getInstanceProcessWithResponseAsync(
@@ -7185,7 +7022,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information on successful completion of {@link Mono}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ProcessInfoInner> getInstanceProcessAsync(
@@ -7219,7 +7056,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information along with {@link Response}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ProcessInfoInner> getInstanceProcessWithResponse(
@@ -7237,7 +7074,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteInstanceProcessWithResponseAsync(
@@ -7255,7 +7092,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteInstanceProcessAsync(String resourceGroupName, String name, String processId, String instanceId);
@@ -7289,7 +7126,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteInstanceProcessWithResponse(
@@ -7306,7 +7143,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> getInstanceProcessDumpWithResponseAsync(
@@ -7374,7 +7211,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessModuleInfoInner> listInstanceProcessModulesAsync(
@@ -7391,7 +7228,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessModuleInfoInner> listInstanceProcessModules(
@@ -7409,7 +7246,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessModuleInfoInner> listInstanceProcessModules(
@@ -7427,7 +7264,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ProcessModuleInfoInner>> getInstanceProcessModuleWithResponseAsync(
@@ -7445,7 +7282,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information on successful completion of {@link Mono}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ProcessModuleInfoInner> getInstanceProcessModuleAsync(
@@ -7482,7 +7319,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information along with {@link Response}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ProcessModuleInfoInner> getInstanceProcessModuleWithResponse(
@@ -7504,7 +7341,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessThreadInfoInner> listInstanceProcessThreadsAsync(
@@ -7521,7 +7358,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessThreadInfoInner> listInstanceProcessThreads(
@@ -7539,7 +7376,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessThreadInfoInner> listInstanceProcessThreads(
@@ -7554,8 +7391,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents whether or not an app is cloneable along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return represents whether or not an app is cloneable.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteCloneabilityInner>> isCloneableWithResponseAsync(String resourceGroupName, String name);
@@ -7569,7 +7405,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents whether or not an app is cloneable on successful completion of {@link Mono}.
+     * @return represents whether or not an app is cloneable.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteCloneabilityInner> isCloneableAsync(String resourceGroupName, String name);
@@ -7598,7 +7434,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents whether or not an app is cloneable along with {@link Response}.
+     * @return represents whether or not an app is cloneable.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteCloneabilityInner> isCloneableWithResponse(String resourceGroupName, String name, Context context);
@@ -7612,7 +7448,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedFlux}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<BackupItemInner> listSiteBackupsAsync(String resourceGroupName, String name);
@@ -7626,7 +7462,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedIterable}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BackupItemInner> listSiteBackups(String resourceGroupName, String name);
@@ -7641,7 +7477,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedIterable}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BackupItemInner> listSiteBackups(String resourceGroupName, String name, Context context);
@@ -7655,7 +7491,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets along with {@link Response} on successful completion of {@link Mono}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FunctionSecretsInner>> listSyncFunctionTriggersWithResponseAsync(
@@ -7670,7 +7506,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets on successful completion of {@link Mono}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FunctionSecretsInner> listSyncFunctionTriggersAsync(String resourceGroupName, String name);
@@ -7699,7 +7535,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets along with {@link Response}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FunctionSecretsInner> listSyncFunctionTriggersWithResponse(
@@ -7716,8 +7552,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for a migration of app content request along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return response for a migration of app content request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> migrateStorageWithResponseAsync(
@@ -7734,7 +7569,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of response for a migration of app content request.
+     * @return response for a migration of app content request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<StorageMigrationResponseInner>, StorageMigrationResponseInner> beginMigrateStorageAsync(
@@ -7751,7 +7586,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response for a migration of app content request.
+     * @return response for a migration of app content request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<StorageMigrationResponseInner>, StorageMigrationResponseInner> beginMigrateStorage(
@@ -7769,7 +7604,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of response for a migration of app content request.
+     * @return response for a migration of app content request.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<StorageMigrationResponseInner>, StorageMigrationResponseInner> beginMigrateStorage(
@@ -7790,7 +7625,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for a migration of app content request on successful completion of {@link Mono}.
+     * @return response for a migration of app content request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StorageMigrationResponseInner> migrateStorageAsync(
@@ -7845,7 +7680,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an operation on a resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return an operation on a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> migrateMySqlWithResponseAsync(
@@ -7861,7 +7696,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of an operation on a resource.
+     * @return an operation on a resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<OperationInner>, OperationInner> beginMigrateMySqlAsync(
@@ -7877,7 +7712,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of an operation on a resource.
+     * @return an operation on a resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationInner>, OperationInner> beginMigrateMySql(
@@ -7894,7 +7729,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of an operation on a resource.
+     * @return an operation on a resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationInner>, OperationInner> beginMigrateMySql(
@@ -7910,7 +7745,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an operation on a resource on successful completion of {@link Mono}.
+     * @return an operation on a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<OperationInner> migrateMySqlAsync(
@@ -7958,7 +7793,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mySQL migration status along with {@link Response} on successful completion of {@link Mono}.
+     * @return mySQL migration status.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MigrateMySqlStatusInner>> getMigrateMySqlStatusWithResponseAsync(
@@ -7974,7 +7809,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mySQL migration status on successful completion of {@link Mono}.
+     * @return mySQL migration status.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MigrateMySqlStatusInner> getMigrateMySqlStatusAsync(String resourceGroupName, String name);
@@ -8005,7 +7840,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mySQL migration status along with {@link Response}.
+     * @return mySQL migration status.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MigrateMySqlStatusInner> getMigrateMySqlStatusWithResponse(
@@ -8020,7 +7855,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SwiftVirtualNetworkInner>> getSwiftVirtualNetworkConnectionWithResponseAsync(
@@ -8035,7 +7870,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SwiftVirtualNetworkInner> getSwiftVirtualNetworkConnectionAsync(String resourceGroupName, String name);
@@ -8064,7 +7899,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SwiftVirtualNetworkInner> getSwiftVirtualNetworkConnectionWithResponse(
@@ -8082,7 +7917,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SwiftVirtualNetworkInner>> createOrUpdateSwiftVirtualNetworkConnectionWithCheckWithResponseAsync(
@@ -8100,7 +7935,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SwiftVirtualNetworkInner> createOrUpdateSwiftVirtualNetworkConnectionWithCheckAsync(
@@ -8137,7 +7972,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SwiftVirtualNetworkInner> createOrUpdateSwiftVirtualNetworkConnectionWithCheckWithResponse(
@@ -8151,7 +7986,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteSwiftVirtualNetworkWithResponseAsync(String resourceGroupName, String name);
@@ -8164,7 +7999,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteSwiftVirtualNetworkAsync(String resourceGroupName, String name);
@@ -8190,7 +8025,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteSwiftVirtualNetworkWithResponse(String resourceGroupName, String name, Context context);
@@ -8207,7 +8042,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SwiftVirtualNetworkInner>> updateSwiftVirtualNetworkConnectionWithCheckWithResponseAsync(
@@ -8225,7 +8060,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SwiftVirtualNetworkInner> updateSwiftVirtualNetworkConnectionWithCheckAsync(
@@ -8262,7 +8097,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SwiftVirtualNetworkInner> updateSwiftVirtualNetworkConnectionWithCheckWithResponse(
@@ -8277,8 +8112,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return full view of network features for an app (presently VNET integration and Hybrid Connections) along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return full view of network features for an app (presently VNET integration and Hybrid Connections).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<NetworkFeaturesInner>> listNetworkFeaturesWithResponseAsync(
@@ -8293,8 +8127,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return full view of network features for an app (presently VNET integration and Hybrid Connections) on
-     *     successful completion of {@link Mono}.
+     * @return full view of network features for an app (presently VNET integration and Hybrid Connections).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<NetworkFeaturesInner> listNetworkFeaturesAsync(String resourceGroupName, String name, String view);
@@ -8323,8 +8156,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return full view of network features for an app (presently VNET integration and Hybrid Connections) along with
-     *     {@link Response}.
+     * @return full view of network features for an app (presently VNET integration and Hybrid Connections).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<NetworkFeaturesInner> listNetworkFeaturesWithResponse(
@@ -8340,7 +8172,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Object>> getNetworkTraceOperationWithResponseAsync(
@@ -8356,7 +8188,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> getNetworkTraceOperationAsync(String resourceGroupName, String name, String operationId);
@@ -8387,7 +8219,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Object> getNetworkTraceOperationWithResponse(
@@ -8405,7 +8237,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<String>> startWebSiteNetworkTraceWithResponseAsync(
@@ -8423,7 +8255,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<String> startWebSiteNetworkTraceAsync(
@@ -8438,7 +8270,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<String> startWebSiteNetworkTraceAsync(String resourceGroupName, String name);
@@ -8470,7 +8302,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<String> startWebSiteNetworkTraceWithResponse(
@@ -8493,7 +8325,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> startWebSiteNetworkTraceOperationWithResponseAsync(
@@ -8511,7 +8343,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Object>, Object> beginStartWebSiteNetworkTraceOperationAsync(
@@ -8529,7 +8361,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginStartWebSiteNetworkTraceOperation(
@@ -8548,7 +8380,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginStartWebSiteNetworkTraceOperation(
@@ -8571,7 +8403,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> startWebSiteNetworkTraceOperationAsync(
@@ -8586,7 +8418,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> startWebSiteNetworkTraceOperationAsync(String resourceGroupName, String name);
@@ -8656,7 +8488,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> stopWebSiteNetworkTraceWithResponseAsync(String resourceGroupName, String name);
@@ -8670,7 +8502,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> stopWebSiteNetworkTraceAsync(String resourceGroupName, String name);
@@ -8698,7 +8530,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> stopWebSiteNetworkTraceWithResponse(String resourceGroupName, String name, Context context);
@@ -8713,7 +8545,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<NetworkTraceInner>>> getNetworkTracesWithResponseAsync(
@@ -8729,7 +8561,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<NetworkTraceInner>> getNetworkTracesAsync(String resourceGroupName, String name, String operationId);
@@ -8760,7 +8592,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<NetworkTraceInner>> getNetworkTracesWithResponse(
@@ -8776,7 +8608,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Object>> getNetworkTraceOperationV2WithResponseAsync(
@@ -8792,7 +8624,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> getNetworkTraceOperationV2Async(String resourceGroupName, String name, String operationId);
@@ -8823,7 +8655,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Object> getNetworkTraceOperationV2WithResponse(
@@ -8839,7 +8671,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<NetworkTraceInner>>> getNetworkTracesV2WithResponseAsync(
@@ -8855,7 +8687,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<NetworkTraceInner>> getNetworkTracesV2Async(String resourceGroupName, String name, String operationId);
@@ -8886,7 +8718,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<NetworkTraceInner>> getNetworkTracesV2WithResponse(
@@ -8901,7 +8733,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> generateNewSitePublishingPasswordWithResponseAsync(String resourceGroupName, String name);
@@ -8915,7 +8747,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> generateNewSitePublishingPasswordAsync(String resourceGroupName, String name);
@@ -8943,7 +8775,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> generateNewSitePublishingPasswordWithResponse(
@@ -8961,7 +8793,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of performance monitor counters as paginated response with {@link PagedFlux}.
+     * @return collection of performance monitor counters.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<PerfMonResponseInner> listPerfMonCountersAsync(String resourceGroupName, String name, String filter);
@@ -8975,7 +8807,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of performance monitor counters as paginated response with {@link PagedFlux}.
+     * @return collection of performance monitor counters.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<PerfMonResponseInner> listPerfMonCountersAsync(String resourceGroupName, String name);
@@ -8989,7 +8821,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of performance monitor counters as paginated response with {@link PagedIterable}.
+     * @return collection of performance monitor counters.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PerfMonResponseInner> listPerfMonCounters(String resourceGroupName, String name);
@@ -9007,7 +8839,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of performance monitor counters as paginated response with {@link PagedIterable}.
+     * @return collection of performance monitor counters.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PerfMonResponseInner> listPerfMonCounters(
@@ -9022,8 +8854,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return used for getting PHP error logging flag along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return used for getting PHP error logging flag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SitePhpErrorLogFlagInner>> getSitePhpErrorLogFlagWithResponseAsync(
@@ -9038,7 +8869,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return used for getting PHP error logging flag on successful completion of {@link Mono}.
+     * @return used for getting PHP error logging flag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SitePhpErrorLogFlagInner> getSitePhpErrorLogFlagAsync(String resourceGroupName, String name);
@@ -9067,7 +8898,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return used for getting PHP error logging flag along with {@link Response}.
+     * @return used for getting PHP error logging flag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SitePhpErrorLogFlagInner> getSitePhpErrorLogFlagWithResponse(
@@ -9082,7 +8913,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response} on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PremierAddOnInner>> listPremierAddOnsWithResponseAsync(String resourceGroupName, String name);
@@ -9096,7 +8927,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PremierAddOnInner> listPremierAddOnsAsync(String resourceGroupName, String name);
@@ -9125,7 +8956,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PremierAddOnInner> listPremierAddOnsWithResponse(String resourceGroupName, String name, Context context);
@@ -9140,7 +8971,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response} on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PremierAddOnInner>> getPremierAddOnWithResponseAsync(
@@ -9156,7 +8987,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PremierAddOnInner> getPremierAddOnAsync(String resourceGroupName, String name, String premierAddOnName);
@@ -9187,7 +9018,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PremierAddOnInner> getPremierAddOnWithResponse(
@@ -9204,7 +9035,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response} on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PremierAddOnInner>> addPremierAddOnWithResponseAsync(
@@ -9221,7 +9052,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PremierAddOnInner> addPremierAddOnAsync(
@@ -9256,7 +9087,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PremierAddOnInner> addPremierAddOnWithResponse(
@@ -9276,7 +9107,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deletePremierAddOnWithResponseAsync(
@@ -9292,7 +9123,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deletePremierAddOnAsync(String resourceGroupName, String name, String premierAddOnName);
@@ -9322,7 +9153,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deletePremierAddOnWithResponse(
@@ -9339,7 +9170,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response} on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PremierAddOnInner>> updatePremierAddOnWithResponseAsync(
@@ -9356,7 +9187,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PremierAddOnInner> updatePremierAddOnAsync(
@@ -9391,7 +9222,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PremierAddOnInner> updatePremierAddOnWithResponse(
@@ -9411,8 +9242,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PrivateAccessInner>> getPrivateAccessWithResponseAsync(String resourceGroupName, String name);
@@ -9427,7 +9257,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site on successful completion of {@link Mono}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PrivateAccessInner> getPrivateAccessAsync(String resourceGroupName, String name);
@@ -9458,7 +9288,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site along with {@link Response}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateAccessInner> getPrivateAccessWithResponse(String resourceGroupName, String name, Context context);
@@ -9474,8 +9304,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PrivateAccessInner>> putPrivateAccessVnetWithResponseAsync(
@@ -9492,7 +9321,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site on successful completion of {@link Mono}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PrivateAccessInner> putPrivateAccessVnetAsync(
@@ -9526,7 +9355,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site along with {@link Response}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateAccessInner> putPrivateAccessVnetWithResponse(
@@ -9541,7 +9370,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<RemotePrivateEndpointConnectionArmResourceInner> getPrivateEndpointConnectionListAsync(
@@ -9556,7 +9385,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<RemotePrivateEndpointConnectionArmResourceInner> getPrivateEndpointConnectionList(
@@ -9572,7 +9401,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<RemotePrivateEndpointConnectionArmResourceInner> getPrivateEndpointConnectionList(
@@ -9588,8 +9417,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remote Private Endpoint Connection ARM resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RemotePrivateEndpointConnectionArmResourceInner>> getPrivateEndpointConnectionWithResponseAsync(
@@ -9605,7 +9433,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remote Private Endpoint Connection ARM resource on successful completion of {@link Mono}.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RemotePrivateEndpointConnectionArmResourceInner> getPrivateEndpointConnectionAsync(
@@ -9638,7 +9466,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remote Private Endpoint Connection ARM resource along with {@link Response}.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RemotePrivateEndpointConnectionArmResourceInner> getPrivateEndpointConnectionWithResponse(
@@ -9655,8 +9483,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remote Private Endpoint Connection ARM resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> approveOrRejectPrivateEndpointConnectionWithResponseAsync(
@@ -9676,7 +9503,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of remote Private Endpoint Connection ARM resource.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<
@@ -9699,7 +9526,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of remote Private Endpoint Connection ARM resource.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<
@@ -9723,7 +9550,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of remote Private Endpoint Connection ARM resource.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<
@@ -9747,7 +9574,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remote Private Endpoint Connection ARM resource on successful completion of {@link Mono}.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RemotePrivateEndpointConnectionArmResourceInner> approveOrRejectPrivateEndpointConnectionAsync(
@@ -9808,7 +9635,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response} on successful completion of {@link Mono}.
+     * @return any object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deletePrivateEndpointConnectionWithResponseAsync(
@@ -9824,7 +9651,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of any object.
+     * @return any object.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Object>, Object> beginDeletePrivateEndpointConnectionAsync(
@@ -9840,7 +9667,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of any object.
+     * @return any object.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginDeletePrivateEndpointConnection(
@@ -9857,7 +9684,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of any object.
+     * @return any object.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginDeletePrivateEndpointConnection(
@@ -9873,7 +9700,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object on successful completion of {@link Mono}.
+     * @return any object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> deletePrivateEndpointConnectionAsync(
@@ -9920,8 +9747,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return wrapper for a collection of private link resources along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return wrapper for a collection of private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PrivateLinkResourcesWrapperInner>> getPrivateLinkResourcesWithResponseAsync(
@@ -9936,7 +9762,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return wrapper for a collection of private link resources on successful completion of {@link Mono}.
+     * @return wrapper for a collection of private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PrivateLinkResourcesWrapperInner> getPrivateLinkResourcesAsync(String resourceGroupName, String name);
@@ -9965,7 +9791,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return wrapper for a collection of private link resources along with {@link Response}.
+     * @return wrapper for a collection of private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateLinkResourcesWrapperInner> getPrivateLinkResourcesWithResponse(
@@ -9980,7 +9806,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessInfoInner> listProcessesAsync(String resourceGroupName, String name);
@@ -9994,7 +9820,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessInfoInner> listProcesses(String resourceGroupName, String name);
@@ -10009,7 +9835,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessInfoInner> listProcesses(String resourceGroupName, String name, Context context);
@@ -10023,7 +9849,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ProcessInfoInner>> getProcessWithResponseAsync(
@@ -10038,7 +9864,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information on successful completion of {@link Mono}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ProcessInfoInner> getProcessAsync(String resourceGroupName, String name, String processId);
@@ -10067,7 +9893,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information along with {@link Response}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ProcessInfoInner> getProcessWithResponse(
@@ -10083,7 +9909,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteProcessWithResponseAsync(String resourceGroupName, String name, String processId);
@@ -10098,7 +9924,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteProcessAsync(String resourceGroupName, String name, String processId);
@@ -10128,7 +9954,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteProcessWithResponse(String resourceGroupName, String name, String processId, Context context);
@@ -10142,7 +9968,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> getProcessDumpWithResponseAsync(String resourceGroupName, String name, String processId);
@@ -10199,7 +10025,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessModuleInfoInner> listProcessModulesAsync(String resourceGroupName, String name, String processId);
@@ -10213,7 +10039,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessModuleInfoInner> listProcessModules(String resourceGroupName, String name, String processId);
@@ -10228,7 +10054,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessModuleInfoInner> listProcessModules(
@@ -10244,7 +10070,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ProcessModuleInfoInner>> getProcessModuleWithResponseAsync(
@@ -10260,7 +10086,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information on successful completion of {@link Mono}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ProcessModuleInfoInner> getProcessModuleAsync(
@@ -10293,7 +10119,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information along with {@link Response}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ProcessModuleInfoInner> getProcessModuleWithResponse(
@@ -10308,7 +10134,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessThreadInfoInner> listProcessThreadsAsync(String resourceGroupName, String name, String processId);
@@ -10322,7 +10148,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessThreadInfoInner> listProcessThreads(String resourceGroupName, String name, String processId);
@@ -10337,7 +10163,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessThreadInfoInner> listProcessThreads(
@@ -10352,7 +10178,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of public certificates as paginated response with {@link PagedFlux}.
+     * @return collection of public certificates.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<PublicCertificateInner> listPublicCertificatesAsync(String resourceGroupName, String name);
@@ -10366,7 +10192,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of public certificates as paginated response with {@link PagedIterable}.
+     * @return collection of public certificates.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PublicCertificateInner> listPublicCertificates(String resourceGroupName, String name);
@@ -10381,7 +10207,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of public certificates as paginated response with {@link PagedIterable}.
+     * @return collection of public certificates.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PublicCertificateInner> listPublicCertificates(
@@ -10397,7 +10223,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object along with {@link Response} on successful completion of {@link Mono}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PublicCertificateInner>> getPublicCertificateWithResponseAsync(
@@ -10413,7 +10239,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object on successful completion of {@link Mono}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PublicCertificateInner> getPublicCertificateAsync(
@@ -10445,7 +10271,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object along with {@link Response}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PublicCertificateInner> getPublicCertificateWithResponse(
@@ -10463,7 +10289,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object along with {@link Response} on successful completion of {@link Mono}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PublicCertificateInner>> createOrUpdatePublicCertificateWithResponseAsync(
@@ -10481,7 +10307,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object on successful completion of {@link Mono}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PublicCertificateInner> createOrUpdatePublicCertificateAsync(
@@ -10518,7 +10344,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object along with {@link Response}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PublicCertificateInner> createOrUpdatePublicCertificateWithResponse(
@@ -10538,7 +10364,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deletePublicCertificateWithResponseAsync(
@@ -10554,7 +10380,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deletePublicCertificateAsync(String resourceGroupName, String name, String publicCertificateName);
@@ -10584,7 +10410,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deletePublicCertificateWithResponse(
@@ -10601,7 +10427,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> listPublishingProfileXmlWithSecretsWithResponseAsync(
@@ -10669,7 +10495,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> resetProductionSlotConfigWithResponseAsync(String resourceGroupName, String name);
@@ -10684,7 +10510,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> resetProductionSlotConfigAsync(String resourceGroupName, String name);
@@ -10714,7 +10540,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> resetProductionSlotConfigWithResponse(String resourceGroupName, String name, Context context);
@@ -10732,7 +10558,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> restartWithResponseAsync(
@@ -10751,7 +10577,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restartAsync(String resourceGroupName, String name, Boolean softRestart, Boolean synchronous);
@@ -10765,7 +10591,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restartAsync(String resourceGroupName, String name);
@@ -10797,7 +10623,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> restartWithResponse(
@@ -10813,7 +10639,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> restoreFromBackupBlobWithResponseAsync(
@@ -10829,7 +10655,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginRestoreFromBackupBlobAsync(
@@ -10845,7 +10671,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreFromBackupBlob(
@@ -10862,7 +10688,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreFromBackupBlob(
@@ -10878,7 +10704,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restoreFromBackupBlobAsync(String resourceGroupName, String name, RestoreRequestInner request);
@@ -10922,7 +10748,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> restoreFromDeletedAppWithResponseAsync(
@@ -10938,7 +10764,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginRestoreFromDeletedAppAsync(
@@ -10954,7 +10780,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreFromDeletedApp(
@@ -10971,7 +10797,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreFromDeletedApp(
@@ -10987,7 +10813,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restoreFromDeletedAppAsync(
@@ -11034,7 +10860,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> restoreSnapshotWithResponseAsync(
@@ -11051,7 +10877,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginRestoreSnapshotAsync(
@@ -11068,7 +10894,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreSnapshot(
@@ -11086,7 +10912,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreSnapshot(
@@ -11103,7 +10929,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restoreSnapshotAsync(String resourceGroupName, String name, SnapshotRestoreRequest restoreRequest);
@@ -11147,7 +10973,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu site extension information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu site extension information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SiteExtensionInfoInner> listSiteExtensionsAsync(String resourceGroupName, String name);
@@ -11160,7 +10986,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu site extension information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu site extension information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteExtensionInfoInner> listSiteExtensions(String resourceGroupName, String name);
@@ -11174,7 +11000,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu site extension information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu site extension information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteExtensionInfoInner> listSiteExtensions(String resourceGroupName, String name, Context context);
@@ -11188,7 +11014,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site Extension Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteExtensionInfoInner>> getSiteExtensionWithResponseAsync(
@@ -11203,7 +11029,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site Extension Information on successful completion of {@link Mono}.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteExtensionInfoInner> getSiteExtensionAsync(String resourceGroupName, String name, String siteExtensionId);
@@ -11232,7 +11058,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site Extension Information along with {@link Response}.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteExtensionInfoInner> getSiteExtensionWithResponse(
@@ -11247,7 +11073,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site Extension Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> installSiteExtensionWithResponseAsync(
@@ -11262,7 +11088,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of site Extension Information.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<SiteExtensionInfoInner>, SiteExtensionInfoInner> beginInstallSiteExtensionAsync(
@@ -11277,7 +11103,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of site Extension Information.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteExtensionInfoInner>, SiteExtensionInfoInner> beginInstallSiteExtension(
@@ -11293,7 +11119,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of site Extension Information.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteExtensionInfoInner>, SiteExtensionInfoInner> beginInstallSiteExtension(
@@ -11308,7 +11134,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site Extension Information on successful completion of {@link Mono}.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteExtensionInfoInner> installSiteExtensionAsync(
@@ -11353,7 +11179,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteSiteExtensionWithResponseAsync(
@@ -11368,7 +11194,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteSiteExtensionAsync(String resourceGroupName, String name, String siteExtensionId);
@@ -11396,7 +11222,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteSiteExtensionWithResponse(
@@ -11411,7 +11237,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of App Service apps as paginated response with {@link PagedFlux}.
+     * @return collection of App Service apps.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SiteInner> listSlotsAsync(String resourceGroupName, String name);
@@ -11425,7 +11251,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of App Service apps as paginated response with {@link PagedIterable}.
+     * @return collection of App Service apps.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteInner> listSlots(String resourceGroupName, String name);
@@ -11440,7 +11266,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of App Service apps as paginated response with {@link PagedIterable}.
+     * @return collection of App Service apps.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteInner> listSlots(String resourceGroupName, String name, Context context);
@@ -11454,8 +11280,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteInner>> getSlotWithResponseAsync(String resourceGroupName, String name, String slot);
@@ -11469,7 +11294,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app on successful completion of {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteInner> getSlotAsync(String resourceGroupName, String name, String slot);
@@ -11498,7 +11323,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app along with {@link Response}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteInner> getSlotWithResponse(String resourceGroupName, String name, String slot, Context context);
@@ -11516,8 +11341,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateSlotWithResponseAsync(
@@ -11536,7 +11360,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of a web app, a mobile app backend, or an API app.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<SiteInner>, SiteInner> beginCreateOrUpdateSlotAsync(
@@ -11555,7 +11379,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a web app, a mobile app backend, or an API app.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteInner>, SiteInner> beginCreateOrUpdateSlot(
@@ -11575,7 +11399,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of a web app, a mobile app backend, or an API app.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteInner>, SiteInner> beginCreateOrUpdateSlot(
@@ -11594,7 +11418,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app on successful completion of {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteInner> createOrUpdateSlotAsync(String resourceGroupName, String name, String slot, SiteInner siteEnvelope);
@@ -11649,7 +11473,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteSlotWithResponseAsync(
@@ -11667,7 +11491,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteSlotAsync(
@@ -11682,7 +11506,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteSlotAsync(String resourceGroupName, String name, String slot);
@@ -11713,7 +11537,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteSlotWithResponse(
@@ -11737,8 +11561,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteInner>> updateSlotWithResponseAsync(
@@ -11757,7 +11580,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app on successful completion of {@link Mono}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteInner> updateSlotAsync(
@@ -11795,7 +11618,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a web app, a mobile app backend, or an API app along with {@link Response}.
+     * @return a web app, a mobile app backend, or an API app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteInner> updateSlotWithResponse(
@@ -11812,7 +11635,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain analysis along with {@link Response} on successful completion of {@link Mono}.
+     * @return custom domain analysis.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CustomHostnameAnalysisResultInner>> analyzeCustomHostnameSlotWithResponseAsync(
@@ -11829,7 +11652,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain analysis on successful completion of {@link Mono}.
+     * @return custom domain analysis.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CustomHostnameAnalysisResultInner> analyzeCustomHostnameSlotAsync(
@@ -11845,7 +11668,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain analysis on successful completion of {@link Mono}.
+     * @return custom domain analysis.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CustomHostnameAnalysisResultInner> analyzeCustomHostnameSlotAsync(
@@ -11878,7 +11701,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain analysis along with {@link Response}.
+     * @return custom domain analysis.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CustomHostnameAnalysisResultInner> analyzeCustomHostnameSlotWithResponse(
@@ -11895,7 +11718,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> applySlotConfigurationSlotWithResponseAsync(
@@ -11912,7 +11735,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> applySlotConfigurationSlotAsync(
@@ -11945,7 +11768,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> applySlotConfigurationSlotWithResponse(
@@ -11963,7 +11786,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response} on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BackupItemInner>> backupSlotWithResponseAsync(
@@ -11981,7 +11804,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BackupItemInner> backupSlotAsync(
@@ -12017,7 +11840,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BackupItemInner> backupSlotWithResponse(
@@ -12034,7 +11857,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedFlux}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<BackupItemInner> listBackupsSlotAsync(String resourceGroupName, String name, String slot);
@@ -12050,7 +11873,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedIterable}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BackupItemInner> listBackupsSlot(String resourceGroupName, String name, String slot);
@@ -12067,7 +11890,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedIterable}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BackupItemInner> listBackupsSlot(String resourceGroupName, String name, String slot, Context context);
@@ -12084,7 +11907,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response} on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BackupItemInner>> getBackupStatusSlotWithResponseAsync(
@@ -12102,7 +11925,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BackupItemInner> getBackupStatusSlotAsync(String resourceGroupName, String name, String backupId, String slot);
@@ -12137,7 +11960,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BackupItemInner> getBackupStatusSlotWithResponse(
@@ -12154,7 +11977,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteBackupSlotWithResponseAsync(
@@ -12171,7 +11994,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteBackupSlotAsync(String resourceGroupName, String name, String backupId, String slot);
@@ -12203,7 +12026,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteBackupSlotWithResponse(
@@ -12223,7 +12046,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response} on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BackupItemInner>> listBackupStatusSecretsSlotWithResponseAsync(
@@ -12243,7 +12066,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description on successful completion of {@link Mono}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BackupItemInner> listBackupStatusSecretsSlotAsync(
@@ -12284,7 +12107,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup description along with {@link Response}.
+     * @return backup description.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BackupItemInner> listBackupStatusSecretsSlotWithResponse(
@@ -12308,7 +12131,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> restoreSlotWithResponseAsync(
@@ -12327,7 +12150,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginRestoreSlotAsync(
@@ -12346,7 +12169,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreSlot(
@@ -12366,7 +12189,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreSlot(
@@ -12390,7 +12213,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restoreSlotAsync(
@@ -12447,8 +12270,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies entity collection ARM resource as paginated response with {@link
-     *     PagedFlux}.
+     * @return publishing Credentials Policies entity collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<CsmPublishingCredentialsPoliciesEntityInner> listBasicPublishingCredentialsPoliciesSlotAsync(
@@ -12464,8 +12286,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies entity collection ARM resource as paginated response with {@link
-     *     PagedIterable}.
+     * @return publishing Credentials Policies entity collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CsmPublishingCredentialsPoliciesEntityInner> listBasicPublishingCredentialsPoliciesSlot(
@@ -12482,8 +12303,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies entity collection ARM resource as paginated response with {@link
-     *     PagedIterable}.
+     * @return publishing Credentials Policies entity collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CsmPublishingCredentialsPoliciesEntityInner> listBasicPublishingCredentialsPoliciesSlot(
@@ -12499,8 +12319,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CsmPublishingCredentialsPoliciesEntityInner>> getFtpAllowedSlotWithResponseAsync(
@@ -12516,7 +12335,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters on successful completion of {@link Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CsmPublishingCredentialsPoliciesEntityInner> getFtpAllowedSlotAsync(
@@ -12548,7 +12367,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CsmPublishingCredentialsPoliciesEntityInner> getFtpAllowedSlotWithResponse(
@@ -12565,8 +12384,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CsmPublishingCredentialsPoliciesEntityInner>> updateFtpAllowedSlotWithResponseAsync(
@@ -12586,7 +12404,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters on successful completion of {@link Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CsmPublishingCredentialsPoliciesEntityInner> updateFtpAllowedSlotAsync(
@@ -12627,7 +12445,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CsmPublishingCredentialsPoliciesEntityInner> updateFtpAllowedSlotWithResponse(
@@ -12647,8 +12465,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CsmPublishingCredentialsPoliciesEntityInner>> getScmAllowedSlotWithResponseAsync(
@@ -12664,7 +12481,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters on successful completion of {@link Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CsmPublishingCredentialsPoliciesEntityInner> getScmAllowedSlotAsync(
@@ -12696,7 +12513,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CsmPublishingCredentialsPoliciesEntityInner> getScmAllowedSlotWithResponse(
@@ -12713,8 +12530,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<CsmPublishingCredentialsPoliciesEntityInner>> updateScmAllowedSlotWithResponseAsync(
@@ -12734,7 +12550,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters on successful completion of {@link Mono}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<CsmPublishingCredentialsPoliciesEntityInner> updateScmAllowedSlotAsync(
@@ -12775,7 +12591,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return publishing Credentials Policies parameters along with {@link Response}.
+     * @return publishing Credentials Policies parameters.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CsmPublishingCredentialsPoliciesEntityInner> updateScmAllowedSlotWithResponse(
@@ -12796,7 +12612,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of site configurations as paginated response with {@link PagedFlux}.
+     * @return collection of site configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SiteConfigResourceInner> listConfigurationsSlotAsync(String resourceGroupName, String name, String slot);
@@ -12812,7 +12628,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of site configurations as paginated response with {@link PagedIterable}.
+     * @return collection of site configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteConfigResourceInner> listConfigurationsSlot(String resourceGroupName, String name, String slot);
@@ -12829,7 +12645,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of site configurations as paginated response with {@link PagedIterable}.
+     * @return collection of site configurations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteConfigResourceInner> listConfigurationsSlot(
@@ -12847,7 +12663,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StringDictionaryInner>> updateApplicationSettingsSlotWithResponseAsync(
@@ -12865,7 +12681,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StringDictionaryInner> updateApplicationSettingsSlotAsync(
@@ -12902,7 +12718,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StringDictionaryInner> updateApplicationSettingsSlotWithResponse(
@@ -12919,7 +12735,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StringDictionaryInner>> listApplicationSettingsSlotWithResponseAsync(
@@ -12936,7 +12752,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StringDictionaryInner> listApplicationSettingsSlotAsync(String resourceGroupName, String name, String slot);
@@ -12969,7 +12785,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StringDictionaryInner> listApplicationSettingsSlotWithResponse(
@@ -12986,8 +12802,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteAuthSettingsInner>> updateAuthSettingsSlotWithResponseAsync(
@@ -13004,8 +12819,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature on successful
-     *     completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteAuthSettingsInner> updateAuthSettingsSlotAsync(
@@ -13040,8 +12854,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature along with {@link
-     *     Response}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteAuthSettingsInner> updateAuthSettingsSlotWithResponse(
@@ -13058,8 +12871,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteAuthSettingsInner>> getAuthSettingsSlotWithResponseAsync(
@@ -13076,8 +12888,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature on successful
-     *     completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteAuthSettingsInner> getAuthSettingsSlotAsync(String resourceGroupName, String name, String slot);
@@ -13110,81 +12921,10 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization feature along with {@link
-     *     Response}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteAuthSettingsInner> getAuthSettingsSlotWithResponse(
-        String resourceGroupName, String name, String slot, Context context);
-
-    /**
-     * Gets site's Authentication / Authorization settings for apps via the V2 format.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of the app.
-     * @param slot Name of the deployment slot. If a slot is not specified, the API will get the settings for the
-     *     production slot.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site's Authentication / Authorization settings for apps via the V2 format along with {@link Response} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<SiteAuthSettingsV2Inner>> getAuthSettingsV2WithoutSecretsSlotWithResponseAsync(
-        String resourceGroupName, String name, String slot);
-
-    /**
-     * Gets site's Authentication / Authorization settings for apps via the V2 format.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of the app.
-     * @param slot Name of the deployment slot. If a slot is not specified, the API will get the settings for the
-     *     production slot.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site's Authentication / Authorization settings for apps via the V2 format on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<SiteAuthSettingsV2Inner> getAuthSettingsV2WithoutSecretsSlotAsync(
-        String resourceGroupName, String name, String slot);
-
-    /**
-     * Gets site's Authentication / Authorization settings for apps via the V2 format.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of the app.
-     * @param slot Name of the deployment slot. If a slot is not specified, the API will get the settings for the
-     *     production slot.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site's Authentication / Authorization settings for apps via the V2 format.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SiteAuthSettingsV2Inner getAuthSettingsV2WithoutSecretsSlot(String resourceGroupName, String name, String slot);
-
-    /**
-     * Gets site's Authentication / Authorization settings for apps via the V2 format.
-     *
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of the app.
-     * @param slot Name of the deployment slot. If a slot is not specified, the API will get the settings for the
-     *     production slot.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
-     *     rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site's Authentication / Authorization settings for apps via the V2 format along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<SiteAuthSettingsV2Inner> getAuthSettingsV2WithoutSecretsSlotWithResponse(
         String resourceGroupName, String name, String slot, Context context);
 
     /**
@@ -13198,8 +12938,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteAuthSettingsV2Inner>> updateAuthSettingsV2SlotWithResponseAsync(
@@ -13216,8 +12955,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature on successful
-     *     completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteAuthSettingsV2Inner> updateAuthSettingsV2SlotAsync(
@@ -13252,8 +12990,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature along with
-     *     {@link Response}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteAuthSettingsV2Inner> updateAuthSettingsV2SlotWithResponse(
@@ -13274,8 +13011,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteAuthSettingsV2Inner>> getAuthSettingsV2SlotWithResponseAsync(
@@ -13292,8 +13028,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature on successful
-     *     completion of {@link Mono}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteAuthSettingsV2Inner> getAuthSettingsV2SlotAsync(String resourceGroupName, String name, String slot);
@@ -13326,8 +13061,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature along with
-     *     {@link Response}.
+     * @return configuration settings for the Azure App Service Authentication / Authorization V2 feature.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteAuthSettingsV2Inner> getAuthSettingsV2SlotWithResponse(
@@ -13345,8 +13079,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<AzureStoragePropertyDictionaryResourceInner>> updateAzureStorageAccountsSlotWithResponseAsync(
@@ -13367,7 +13100,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource on successful completion of {@link Mono}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<AzureStoragePropertyDictionaryResourceInner> updateAzureStorageAccountsSlotAsync(
@@ -13410,7 +13143,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource along with {@link Response}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AzureStoragePropertyDictionaryResourceInner> updateAzureStorageAccountsSlotWithResponse(
@@ -13431,8 +13164,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<AzureStoragePropertyDictionaryResourceInner>> listAzureStorageAccountsSlotWithResponseAsync(
@@ -13449,7 +13181,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource on successful completion of {@link Mono}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<AzureStoragePropertyDictionaryResourceInner> listAzureStorageAccountsSlotAsync(
@@ -13484,7 +13216,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureStorageInfo dictionary resource along with {@link Response}.
+     * @return azureStorageInfo dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AzureStoragePropertyDictionaryResourceInner> listAzureStorageAccountsSlotWithResponse(
@@ -13502,8 +13234,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BackupRequestInner>> updateBackupConfigurationSlotWithResponseAsync(
@@ -13521,7 +13252,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed on successful completion of {@link Mono}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BackupRequestInner> updateBackupConfigurationSlotAsync(
@@ -13558,7 +13289,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed along with {@link Response}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BackupRequestInner> updateBackupConfigurationSlotWithResponse(
@@ -13575,7 +13306,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteBackupConfigurationSlotWithResponseAsync(
@@ -13592,7 +13323,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteBackupConfigurationSlotAsync(String resourceGroupName, String name, String slot);
@@ -13624,7 +13355,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteBackupConfigurationSlotWithResponse(
@@ -13641,8 +13372,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<BackupRequestInner>> getBackupConfigurationSlotWithResponseAsync(
@@ -13659,7 +13389,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed on successful completion of {@link Mono}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<BackupRequestInner> getBackupConfigurationSlotAsync(String resourceGroupName, String name, String slot);
@@ -13692,7 +13422,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a backup which will be performed along with {@link Response}.
+     * @return description of a backup which will be performed.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BackupRequestInner> getBackupConfigurationSlotWithResponse(
@@ -13708,7 +13438,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ApiKVReferenceInner> getAppSettingsKeyVaultReferencesSlotAsync(
@@ -13724,7 +13454,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiKVReferenceInner> getAppSettingsKeyVaultReferencesSlot(
@@ -13741,7 +13471,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiKVReferenceInner> getAppSettingsKeyVaultReferencesSlot(
@@ -13758,8 +13488,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ApiKVReferenceInner>> getAppSettingKeyVaultReferenceSlotWithResponseAsync(
@@ -13776,7 +13505,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references on successful completion of {@link Mono}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApiKVReferenceInner> getAppSettingKeyVaultReferenceSlotAsync(
@@ -13811,7 +13540,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references along with {@link Response}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApiKVReferenceInner> getAppSettingKeyVaultReferenceSlotWithResponse(
@@ -13827,7 +13556,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ApiKVReferenceInner> getSiteConnectionStringKeyVaultReferencesSlotAsync(
@@ -13843,7 +13572,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiKVReferenceInner> getSiteConnectionStringKeyVaultReferencesSlot(
@@ -13860,7 +13589,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiKVReferenceInner> getSiteConnectionStringKeyVaultReferencesSlot(
@@ -13877,8 +13606,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ApiKVReferenceInner>> getSiteConnectionStringKeyVaultReferenceSlotWithResponseAsync(
@@ -13895,7 +13623,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references on successful completion of {@link Mono}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApiKVReferenceInner> getSiteConnectionStringKeyVaultReferenceSlotAsync(
@@ -13930,7 +13658,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of site key vault references along with {@link Response}.
+     * @return description of site key vault references.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApiKVReferenceInner> getSiteConnectionStringKeyVaultReferenceSlotWithResponse(
@@ -13948,7 +13676,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ConnectionStringDictionaryInner>> updateConnectionStringsSlotWithResponseAsync(
@@ -13966,7 +13694,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ConnectionStringDictionaryInner> updateConnectionStringsSlotAsync(
@@ -14003,7 +13731,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ConnectionStringDictionaryInner> updateConnectionStringsSlotWithResponse(
@@ -14024,7 +13752,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ConnectionStringDictionaryInner>> listConnectionStringsSlotWithResponseAsync(
@@ -14041,7 +13769,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ConnectionStringDictionaryInner> listConnectionStringsSlotAsync(
@@ -14075,7 +13803,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ConnectionStringDictionaryInner> listConnectionStringsSlotWithResponse(
@@ -14092,8 +13820,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteLogsConfigInner>> getDiagnosticLogsConfigurationSlotWithResponseAsync(
@@ -14110,7 +13837,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs on successful completion of {@link Mono}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteLogsConfigInner> getDiagnosticLogsConfigurationSlotAsync(
@@ -14144,7 +13871,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs along with {@link Response}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteLogsConfigInner> getDiagnosticLogsConfigurationSlotWithResponse(
@@ -14163,8 +13890,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteLogsConfigInner>> updateDiagnosticLogsConfigSlotWithResponseAsync(
@@ -14183,7 +13909,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs on successful completion of {@link Mono}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteLogsConfigInner> updateDiagnosticLogsConfigSlotAsync(
@@ -14222,7 +13948,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration of App Service site logs along with {@link Response}.
+     * @return configuration of App Service site logs.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteLogsConfigInner> updateDiagnosticLogsConfigSlotWithResponse(
@@ -14240,7 +13966,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StringDictionaryInner>> updateMetadataSlotWithResponseAsync(
@@ -14258,7 +13984,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StringDictionaryInner> updateMetadataSlotAsync(
@@ -14295,7 +14021,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StringDictionaryInner> updateMetadataSlotWithResponse(
@@ -14312,7 +14038,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StringDictionaryInner>> listMetadataSlotWithResponseAsync(
@@ -14329,7 +14055,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StringDictionaryInner> listMetadataSlotAsync(String resourceGroupName, String name, String slot);
@@ -14362,7 +14088,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StringDictionaryInner> listMetadataSlotWithResponse(
@@ -14379,8 +14105,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> listPublishingCredentialsSlotWithResponseAsync(
@@ -14397,7 +14122,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of user credentials used for publishing activity.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<UserInner>, UserInner> beginListPublishingCredentialsSlotAsync(
@@ -14414,7 +14139,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of user credentials used for publishing activity.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<UserInner>, UserInner> beginListPublishingCredentialsSlot(
@@ -14432,7 +14157,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of user credentials used for publishing activity.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<UserInner>, UserInner> beginListPublishingCredentialsSlot(
@@ -14449,7 +14174,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity on successful completion of {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<UserInner> listPublishingCredentialsSlotAsync(String resourceGroupName, String name, String slot);
@@ -14498,7 +14223,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App along with {@link Response} on successful completion of {@link Mono}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PushSettingsInner>> updateSitePushSettingsSlotWithResponseAsync(
@@ -14515,7 +14240,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App on successful completion of {@link Mono}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PushSettingsInner> updateSitePushSettingsSlotAsync(
@@ -14550,7 +14275,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App along with {@link Response}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PushSettingsInner> updateSitePushSettingsSlotWithResponse(
@@ -14566,7 +14291,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App along with {@link Response} on successful completion of {@link Mono}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PushSettingsInner>> listSitePushSettingsSlotWithResponseAsync(
@@ -14582,7 +14307,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App on successful completion of {@link Mono}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PushSettingsInner> listSitePushSettingsSlotAsync(String resourceGroupName, String name, String slot);
@@ -14613,7 +14338,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return push settings for the App along with {@link Response}.
+     * @return push settings for the App.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PushSettingsInner> listSitePushSettingsSlotWithResponse(
@@ -14631,7 +14356,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteConfigResourceInner>> getConfigurationSlotWithResponseAsync(
@@ -14649,7 +14374,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteConfigResourceInner> getConfigurationSlotAsync(String resourceGroupName, String name, String slot);
@@ -14684,7 +14409,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteConfigResourceInner> getConfigurationSlotWithResponse(
@@ -14702,7 +14427,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteConfigResourceInner>> createOrUpdateConfigurationSlotWithResponseAsync(
@@ -14720,7 +14445,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteConfigResourceInner> createOrUpdateConfigurationSlotAsync(
@@ -14757,7 +14482,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteConfigResourceInner> createOrUpdateConfigurationSlotWithResponse(
@@ -14775,7 +14500,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteConfigResourceInner>> updateConfigurationSlotWithResponseAsync(
@@ -14793,7 +14518,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteConfigResourceInner> updateConfigurationSlotAsync(
@@ -14830,7 +14555,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteConfigResourceInner> updateConfigurationSlotWithResponse(
@@ -14848,8 +14573,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of metadata for the app configuration snapshots that can be restored as paginated response
-     *     with {@link PagedFlux}.
+     * @return collection of metadata for the app configuration snapshots that can be restored.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SiteConfigurationSnapshotInfoInner> listConfigurationSnapshotInfoSlotAsync(
@@ -14867,8 +14591,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of metadata for the app configuration snapshots that can be restored as paginated response
-     *     with {@link PagedIterable}.
+     * @return collection of metadata for the app configuration snapshots that can be restored.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteConfigurationSnapshotInfoInner> listConfigurationSnapshotInfoSlot(
@@ -14887,8 +14610,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of metadata for the app configuration snapshots that can be restored as paginated response
-     *     with {@link PagedIterable}.
+     * @return collection of metadata for the app configuration snapshots that can be restored.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteConfigurationSnapshotInfoInner> listConfigurationSnapshotInfoSlot(
@@ -14906,7 +14628,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteConfigResourceInner>> getConfigurationSnapshotSlotWithResponseAsync(
@@ -14924,7 +14646,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource on successful completion of {@link Mono}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteConfigResourceInner> getConfigurationSnapshotSlotAsync(
@@ -14961,7 +14683,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web app configuration ARM resource along with {@link Response}.
+     * @return web app configuration ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteConfigResourceInner> getConfigurationSnapshotSlotWithResponse(
@@ -14979,7 +14701,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> recoverSiteConfigurationSnapshotSlotWithResponseAsync(
@@ -14997,7 +14719,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> recoverSiteConfigurationSnapshotSlotAsync(
@@ -15032,7 +14754,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> recoverSiteConfigurationSnapshotSlotWithResponse(
@@ -15047,7 +14769,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> getWebSiteContainerLogsSlotWithResponseAsync(
@@ -15106,7 +14828,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> getContainerLogsZipSlotWithResponseAsync(String resourceGroupName, String name, String slot);
@@ -15166,7 +14888,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ContinuousWebJobInner> listContinuousWebJobsSlotAsync(String resourceGroupName, String name, String slot);
@@ -15182,8 +14904,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ContinuousWebJobInner> listContinuousWebJobsSlot(String resourceGroupName, String name, String slot);
@@ -15200,8 +14921,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ContinuousWebJobInner> listContinuousWebJobsSlot(
@@ -15218,7 +14938,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return continuous Web Job Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return continuous Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ContinuousWebJobInner>> getContinuousWebJobSlotWithResponseAsync(
@@ -15235,7 +14955,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return continuous Web Job Information on successful completion of {@link Mono}.
+     * @return continuous Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ContinuousWebJobInner> getContinuousWebJobSlotAsync(
@@ -15270,7 +14990,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return continuous Web Job Information along with {@link Response}.
+     * @return continuous Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ContinuousWebJobInner> getContinuousWebJobSlotWithResponse(
@@ -15288,7 +15008,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteContinuousWebJobSlotWithResponseAsync(
@@ -15306,7 +15026,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteContinuousWebJobSlotAsync(String resourceGroupName, String name, String webJobName, String slot);
@@ -15340,7 +15060,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteContinuousWebJobSlotWithResponse(
@@ -15357,7 +15077,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> startContinuousWebJobSlotWithResponseAsync(
@@ -15374,7 +15094,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> startContinuousWebJobSlotAsync(String resourceGroupName, String name, String webJobName, String slot);
@@ -15406,7 +15126,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> startContinuousWebJobSlotWithResponse(
@@ -15423,7 +15143,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> stopContinuousWebJobSlotWithResponseAsync(
@@ -15440,7 +15160,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> stopContinuousWebJobSlotAsync(String resourceGroupName, String name, String webJobName, String slot);
@@ -15472,7 +15192,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> stopContinuousWebJobSlotWithResponse(
@@ -15489,7 +15209,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app deployments as paginated response with {@link PagedFlux}.
+     * @return collection of app deployments.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<DeploymentInner> listDeploymentsSlotAsync(String resourceGroupName, String name, String slot);
@@ -15505,7 +15225,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app deployments as paginated response with {@link PagedIterable}.
+     * @return collection of app deployments.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DeploymentInner> listDeploymentsSlot(String resourceGroupName, String name, String slot);
@@ -15522,7 +15242,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app deployments as paginated response with {@link PagedIterable}.
+     * @return collection of app deployments.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DeploymentInner> listDeploymentsSlot(
@@ -15540,8 +15260,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<DeploymentInner>> getDeploymentSlotWithResponseAsync(
@@ -15559,7 +15278,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity on successful completion of {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<DeploymentInner> getDeploymentSlotAsync(String resourceGroupName, String name, String id, String slot);
@@ -15594,7 +15313,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<DeploymentInner> getDeploymentSlotWithResponse(
@@ -15613,8 +15332,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<DeploymentInner>> createDeploymentSlotWithResponseAsync(
@@ -15633,7 +15351,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity on successful completion of {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<DeploymentInner> createDeploymentSlotAsync(
@@ -15672,7 +15390,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<DeploymentInner> createDeploymentSlotWithResponse(
@@ -15690,7 +15408,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteDeploymentSlotWithResponseAsync(
@@ -15708,7 +15426,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteDeploymentSlotAsync(String resourceGroupName, String name, String id, String slot);
@@ -15742,7 +15460,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteDeploymentSlotWithResponse(
@@ -15761,8 +15479,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<DeploymentInner>> listDeploymentLogSlotWithResponseAsync(
@@ -15781,7 +15498,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity on successful completion of {@link Mono}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<DeploymentInner> listDeploymentLogSlotAsync(String resourceGroupName, String name, String id, String slot);
@@ -15818,7 +15535,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user credentials used for publishing activity along with {@link Response}.
+     * @return user credentials used for publishing activity.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<DeploymentInner> listDeploymentLogSlotWithResponse(
@@ -15837,7 +15554,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a restore request along with {@link Response} on successful completion of {@link Mono}.
+     * @return description of a restore request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RestoreRequestInner>> discoverBackupSlotWithResponseAsync(
@@ -15856,7 +15573,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a restore request on successful completion of {@link Mono}.
+     * @return description of a restore request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RestoreRequestInner> discoverBackupSlotAsync(
@@ -15895,7 +15612,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of a restore request along with {@link Response}.
+     * @return description of a restore request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RestoreRequestInner> discoverBackupSlotWithResponse(
@@ -15912,7 +15629,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of identifiers as paginated response with {@link PagedFlux}.
+     * @return collection of identifiers.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<IdentifierInner> listDomainOwnershipIdentifiersSlotAsync(
@@ -15929,7 +15646,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of identifiers as paginated response with {@link PagedIterable}.
+     * @return collection of identifiers.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<IdentifierInner> listDomainOwnershipIdentifiersSlot(
@@ -15947,7 +15664,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of identifiers as paginated response with {@link PagedIterable}.
+     * @return collection of identifiers.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<IdentifierInner> listDomainOwnershipIdentifiersSlot(
@@ -15965,8 +15682,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<IdentifierInner>> getDomainOwnershipIdentifierSlotWithResponseAsync(
@@ -15984,7 +15700,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier on successful completion of {@link Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<IdentifierInner> getDomainOwnershipIdentifierSlotAsync(
@@ -16021,7 +15737,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IdentifierInner> getDomainOwnershipIdentifierSlotWithResponse(
@@ -16040,8 +15756,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<IdentifierInner>> createOrUpdateDomainOwnershipIdentifierSlotWithResponseAsync(
@@ -16064,7 +15779,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier on successful completion of {@link Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<IdentifierInner> createOrUpdateDomainOwnershipIdentifierSlotAsync(
@@ -16111,7 +15826,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IdentifierInner> createOrUpdateDomainOwnershipIdentifierSlotWithResponse(
@@ -16134,7 +15849,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteDomainOwnershipIdentifierSlotWithResponseAsync(
@@ -16152,7 +15867,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteDomainOwnershipIdentifierSlotAsync(
@@ -16188,7 +15903,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteDomainOwnershipIdentifierSlotWithResponse(
@@ -16207,8 +15922,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<IdentifierInner>> updateDomainOwnershipIdentifierSlotWithResponseAsync(
@@ -16231,7 +15945,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier on successful completion of {@link Mono}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<IdentifierInner> updateDomainOwnershipIdentifierSlotAsync(
@@ -16278,7 +15992,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a domain specific resource identifier along with {@link Response}.
+     * @return a domain specific resource identifier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<IdentifierInner> updateDomainOwnershipIdentifierSlotWithResponse(
@@ -16299,7 +16013,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MSDeployStatusInner>> getMSDeployStatusSlotWithResponseAsync(
@@ -16315,7 +16029,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployStatusInner> getMSDeployStatusSlotAsync(String resourceGroupName, String name, String slot);
@@ -16346,7 +16060,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MSDeployStatusInner> getMSDeployStatusSlotWithResponse(
@@ -16362,7 +16076,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createMSDeployOperationSlotWithResponseAsync(
@@ -16378,7 +16092,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateMSDeployOperationSlotAsync(
@@ -16394,7 +16108,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateMSDeployOperationSlot(
@@ -16411,7 +16125,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateMSDeployOperationSlot(
@@ -16427,7 +16141,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployStatusInner> createMSDeployOperationSlotAsync(
@@ -16475,7 +16189,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MSDeployLogInner>> getMSDeployLogSlotWithResponseAsync(
@@ -16490,7 +16204,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log on successful completion of {@link Mono}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployLogInner> getMSDeployLogSlotAsync(String resourceGroupName, String name, String slot);
@@ -16519,7 +16233,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log along with {@link Response}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MSDeployLogInner> getMSDeployLogSlotWithResponse(
@@ -16534,7 +16248,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu function information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu function information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<FunctionEnvelopeInner> listInstanceFunctionsSlotAsync(String resourceGroupName, String name, String slot);
@@ -16548,7 +16262,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu function information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu function information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FunctionEnvelopeInner> listInstanceFunctionsSlot(String resourceGroupName, String name, String slot);
@@ -16563,7 +16277,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu function information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu function information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FunctionEnvelopeInner> listInstanceFunctionsSlot(
@@ -16579,7 +16293,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<String>> getFunctionsAdminTokenSlotWithResponseAsync(
@@ -16595,7 +16309,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<String> getFunctionsAdminTokenSlotAsync(String resourceGroupName, String name, String slot);
@@ -16626,7 +16340,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<String> getFunctionsAdminTokenSlotWithResponse(
@@ -16642,7 +16356,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function information along with {@link Response} on successful completion of {@link Mono}.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FunctionEnvelopeInner>> getInstanceFunctionSlotWithResponseAsync(
@@ -16658,7 +16372,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function information on successful completion of {@link Mono}.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FunctionEnvelopeInner> getInstanceFunctionSlotAsync(
@@ -16691,7 +16405,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function information along with {@link Response}.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FunctionEnvelopeInner> getInstanceFunctionSlotWithResponse(
@@ -16709,7 +16423,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function information along with {@link Response} on successful completion of {@link Mono}.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createInstanceFunctionSlotWithResponseAsync(
@@ -16731,7 +16445,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of function information.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<FunctionEnvelopeInner>, FunctionEnvelopeInner> beginCreateInstanceFunctionSlotAsync(
@@ -16753,7 +16467,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of function information.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<FunctionEnvelopeInner>, FunctionEnvelopeInner> beginCreateInstanceFunctionSlot(
@@ -16776,7 +16490,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of function information.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<FunctionEnvelopeInner>, FunctionEnvelopeInner> beginCreateInstanceFunctionSlot(
@@ -16799,7 +16513,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function information on successful completion of {@link Mono}.
+     * @return function information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FunctionEnvelopeInner> createInstanceFunctionSlotAsync(
@@ -16865,7 +16579,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteInstanceFunctionSlotWithResponseAsync(
@@ -16881,7 +16595,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteInstanceFunctionSlotAsync(String resourceGroupName, String name, String functionName, String slot);
@@ -16911,7 +16625,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteInstanceFunctionSlotWithResponse(
@@ -16930,7 +16644,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info along with {@link Response} on successful completion of {@link Mono}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<KeyInfoInner>> createOrUpdateFunctionSecretSlotWithResponseAsync(
@@ -16949,7 +16663,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info on successful completion of {@link Mono}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<KeyInfoInner> createOrUpdateFunctionSecretSlotAsync(
@@ -16988,7 +16702,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info along with {@link Response}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<KeyInfoInner> createOrUpdateFunctionSecretSlotWithResponse(
@@ -17011,7 +16725,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteFunctionSecretSlotWithResponseAsync(
@@ -17028,7 +16742,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteFunctionSecretSlotAsync(
@@ -17062,7 +16776,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteFunctionSecretSlotWithResponse(
@@ -17079,7 +16793,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StringDictionaryInner>> listFunctionKeysSlotWithResponseAsync(
@@ -17096,7 +16810,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource on successful completion of {@link Mono}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StringDictionaryInner> listFunctionKeysSlotAsync(
@@ -17130,7 +16844,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return string dictionary resource along with {@link Response}.
+     * @return string dictionary resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StringDictionaryInner> listFunctionKeysSlotWithResponse(
@@ -17147,7 +16861,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets along with {@link Response} on successful completion of {@link Mono}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FunctionSecretsInner>> listFunctionSecretsSlotWithResponseAsync(
@@ -17164,7 +16878,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets on successful completion of {@link Mono}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FunctionSecretsInner> listFunctionSecretsSlotAsync(
@@ -17199,7 +16913,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets along with {@link Response}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FunctionSecretsInner> listFunctionSecretsSlotWithResponse(
@@ -17215,7 +16929,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return functions host level keys along with {@link Response} on successful completion of {@link Mono}.
+     * @return functions host level keys.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HostKeysInner>> listHostKeysSlotWithResponseAsync(String resourceGroupName, String name, String slot);
@@ -17230,7 +16944,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return functions host level keys on successful completion of {@link Mono}.
+     * @return functions host level keys.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HostKeysInner> listHostKeysSlotAsync(String resourceGroupName, String name, String slot);
@@ -17261,7 +16975,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return functions host level keys along with {@link Response}.
+     * @return functions host level keys.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HostKeysInner> listHostKeysSlotWithResponse(
@@ -17277,7 +16991,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> listSyncStatusSlotWithResponseAsync(String resourceGroupName, String name, String slot);
@@ -17292,7 +17006,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> listSyncStatusSlotAsync(String resourceGroupName, String name, String slot);
@@ -17322,7 +17036,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> listSyncStatusSlotWithResponse(String resourceGroupName, String name, String slot, Context context);
@@ -17337,7 +17051,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> syncFunctionsSlotWithResponseAsync(String resourceGroupName, String name, String slot);
@@ -17352,7 +17066,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> syncFunctionsSlotAsync(String resourceGroupName, String name, String slot);
@@ -17382,7 +17096,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> syncFunctionsSlotWithResponse(String resourceGroupName, String name, String slot, Context context);
@@ -17400,7 +17114,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info along with {@link Response} on successful completion of {@link Mono}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<KeyInfoInner>> createOrUpdateHostSecretSlotWithResponseAsync(
@@ -17419,7 +17133,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info on successful completion of {@link Mono}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<KeyInfoInner> createOrUpdateHostSecretSlotAsync(
@@ -17458,7 +17172,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function key info along with {@link Response}.
+     * @return function key info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<KeyInfoInner> createOrUpdateHostSecretSlotWithResponse(
@@ -17481,7 +17195,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteHostSecretSlotWithResponseAsync(
@@ -17498,7 +17212,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteHostSecretSlotAsync(
@@ -17531,7 +17245,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteHostSecretSlotWithResponse(
@@ -17548,7 +17262,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of hostname bindings as paginated response with {@link PagedFlux}.
+     * @return collection of hostname bindings.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<HostnameBindingInner> listHostnameBindingsSlotAsync(String resourceGroupName, String name, String slot);
@@ -17564,7 +17278,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of hostname bindings as paginated response with {@link PagedIterable}.
+     * @return collection of hostname bindings.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<HostnameBindingInner> listHostnameBindingsSlot(String resourceGroupName, String name, String slot);
@@ -17581,7 +17295,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of hostname bindings as paginated response with {@link PagedIterable}.
+     * @return collection of hostname bindings.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<HostnameBindingInner> listHostnameBindingsSlot(
@@ -17599,7 +17313,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object along with {@link Response} on successful completion of {@link Mono}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HostnameBindingInner>> getHostnameBindingSlotWithResponseAsync(
@@ -17617,7 +17331,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object on successful completion of {@link Mono}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HostnameBindingInner> getHostnameBindingSlotAsync(
@@ -17653,7 +17367,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object along with {@link Response}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HostnameBindingInner> getHostnameBindingSlotWithResponse(
@@ -17672,7 +17386,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object along with {@link Response} on successful completion of {@link Mono}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HostnameBindingInner>> createOrUpdateHostnameBindingSlotWithResponseAsync(
@@ -17691,7 +17405,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object on successful completion of {@link Mono}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HostnameBindingInner> createOrUpdateHostnameBindingSlotAsync(
@@ -17730,7 +17444,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a hostname binding object along with {@link Response}.
+     * @return a hostname binding object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HostnameBindingInner> createOrUpdateHostnameBindingSlotWithResponse(
@@ -17753,7 +17467,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteHostnameBindingSlotWithResponseAsync(
@@ -17771,7 +17485,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteHostnameBindingSlotAsync(String resourceGroupName, String name, String slot, String hostname);
@@ -17805,7 +17519,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteHostnameBindingSlotWithResponse(
@@ -17823,7 +17537,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HybridConnectionInner>> getHybridConnectionSlotWithResponseAsync(
@@ -17841,7 +17555,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HybridConnectionInner> getHybridConnectionSlotAsync(
@@ -17878,7 +17592,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HybridConnectionInner> getHybridConnectionSlotWithResponse(
@@ -17897,7 +17611,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HybridConnectionInner>> createOrUpdateHybridConnectionSlotWithResponseAsync(
@@ -17921,7 +17635,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HybridConnectionInner> createOrUpdateHybridConnectionSlotAsync(
@@ -17970,7 +17684,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HybridConnectionInner> createOrUpdateHybridConnectionSlotWithResponse(
@@ -17993,7 +17707,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteHybridConnectionSlotWithResponseAsync(
@@ -18010,7 +17724,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteHybridConnectionSlotAsync(
@@ -18044,7 +17758,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteHybridConnectionSlotWithResponse(
@@ -18063,7 +17777,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HybridConnectionInner>> updateHybridConnectionSlotWithResponseAsync(
@@ -18087,7 +17801,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HybridConnectionInner> updateHybridConnectionSlotAsync(
@@ -18136,7 +17850,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HybridConnectionInner> updateHybridConnectionSlotWithResponse(
@@ -18158,7 +17872,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<HybridConnectionInner>> listHybridConnectionsSlotWithResponseAsync(
@@ -18174,7 +17888,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract on successful completion of {@link Mono}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<HybridConnectionInner> listHybridConnectionsSlotAsync(String resourceGroupName, String name, String slot);
@@ -18205,7 +17919,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection contract along with {@link Response}.
+     * @return hybrid Connection contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HybridConnectionInner> listHybridConnectionsSlotWithResponse(
@@ -18222,8 +17936,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RelayServiceConnectionEntityInner>> listRelayServiceConnectionsSlotWithResponseAsync(
@@ -18240,7 +17953,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app on successful completion of {@link Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RelayServiceConnectionEntityInner> listRelayServiceConnectionsSlotAsync(
@@ -18275,7 +17988,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RelayServiceConnectionEntityInner> listRelayServiceConnectionsSlotWithResponse(
@@ -18293,8 +18006,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RelayServiceConnectionEntityInner>> getRelayServiceConnectionSlotWithResponseAsync(
@@ -18312,7 +18024,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app on successful completion of {@link Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RelayServiceConnectionEntityInner> getRelayServiceConnectionSlotAsync(
@@ -18349,7 +18061,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RelayServiceConnectionEntityInner> getRelayServiceConnectionSlotWithResponse(
@@ -18368,8 +18080,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RelayServiceConnectionEntityInner>> createOrUpdateRelayServiceConnectionSlotWithResponseAsync(
@@ -18392,7 +18103,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app on successful completion of {@link Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RelayServiceConnectionEntityInner> createOrUpdateRelayServiceConnectionSlotAsync(
@@ -18439,7 +18150,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RelayServiceConnectionEntityInner> createOrUpdateRelayServiceConnectionSlotWithResponse(
@@ -18461,7 +18172,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteRelayServiceConnectionSlotWithResponseAsync(
@@ -18478,7 +18189,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteRelayServiceConnectionSlotAsync(
@@ -18511,7 +18222,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteRelayServiceConnectionSlotWithResponse(
@@ -18530,8 +18241,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RelayServiceConnectionEntityInner>> updateRelayServiceConnectionSlotWithResponseAsync(
@@ -18554,7 +18264,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app on successful completion of {@link Mono}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RelayServiceConnectionEntityInner> updateRelayServiceConnectionSlotAsync(
@@ -18601,7 +18311,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hybrid Connection for an App Service app along with {@link Response}.
+     * @return hybrid Connection for an App Service app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RelayServiceConnectionEntityInner> updateRelayServiceConnectionSlotWithResponse(
@@ -18622,7 +18332,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app instances as paginated response with {@link PagedFlux}.
+     * @return collection of app instances.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<WebSiteInstanceStatusInner> listInstanceIdentifiersSlotAsync(
@@ -18638,7 +18348,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app instances as paginated response with {@link PagedIterable}.
+     * @return collection of app instances.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WebSiteInstanceStatusInner> listInstanceIdentifiersSlot(
@@ -18655,7 +18365,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of app instances as paginated response with {@link PagedIterable}.
+     * @return collection of app instances.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WebSiteInstanceStatusInner> listInstanceIdentifiersSlot(
@@ -18672,7 +18382,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<WebSiteInstanceStatusInner>> getInstanceInfoSlotWithResponseAsync(
@@ -18689,7 +18399,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<WebSiteInstanceStatusInner> getInstanceInfoSlotAsync(
@@ -18724,7 +18434,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WebSiteInstanceStatusInner> getInstanceInfoSlotWithResponse(
@@ -18741,7 +18451,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MSDeployStatusInner>> getInstanceMsDeployStatusSlotWithResponseAsync(
@@ -18758,7 +18468,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployStatusInner> getInstanceMsDeployStatusSlotAsync(
@@ -18793,7 +18503,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MSDeployStatusInner> getInstanceMsDeployStatusSlotWithResponse(
@@ -18810,7 +18520,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createInstanceMSDeployOperationSlotWithResponseAsync(
@@ -18827,7 +18537,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateInstanceMSDeployOperationSlotAsync(
@@ -18844,7 +18554,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateInstanceMSDeployOperationSlot(
@@ -18862,7 +18572,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of mSDeploy ARM response.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MSDeployStatusInner>, MSDeployStatusInner> beginCreateInstanceMSDeployOperationSlot(
@@ -18879,7 +18589,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy ARM response on successful completion of {@link Mono}.
+     * @return mSDeploy ARM response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployStatusInner> createInstanceMSDeployOperationSlotAsync(
@@ -18930,7 +18640,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log along with {@link Response} on successful completion of {@link Mono}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MSDeployLogInner>> getInstanceMSDeployLogSlotWithResponseAsync(
@@ -18946,7 +18656,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log on successful completion of {@link Mono}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MSDeployLogInner> getInstanceMSDeployLogSlotAsync(
@@ -18978,7 +18688,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mSDeploy log along with {@link Response}.
+     * @return mSDeploy log.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MSDeployLogInner> getInstanceMSDeployLogSlotWithResponse(
@@ -18997,7 +18707,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessInfoInner> listInstanceProcessesSlotAsync(
@@ -19016,7 +18726,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessInfoInner> listInstanceProcessesSlot(
@@ -19036,7 +18746,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessInfoInner> listInstanceProcessesSlot(
@@ -19055,7 +18765,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ProcessInfoInner>> getInstanceProcessSlotWithResponseAsync(
@@ -19074,7 +18784,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information on successful completion of {@link Mono}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ProcessInfoInner> getInstanceProcessSlotAsync(
@@ -19113,7 +18823,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information along with {@link Response}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ProcessInfoInner> getInstanceProcessSlotWithResponse(
@@ -19133,7 +18843,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteInstanceProcessSlotWithResponseAsync(
@@ -19153,7 +18863,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteInstanceProcessSlotAsync(
@@ -19193,7 +18903,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteInstanceProcessSlotWithResponse(
@@ -19212,7 +18922,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> getInstanceProcessDumpSlotWithResponseAsync(
@@ -19289,7 +18999,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessModuleInfoInner> listInstanceProcessModulesSlotAsync(
@@ -19308,7 +19018,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessModuleInfoInner> listInstanceProcessModulesSlot(
@@ -19328,7 +19038,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessModuleInfoInner> listInstanceProcessModulesSlot(
@@ -19348,7 +19058,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ProcessModuleInfoInner>> getInstanceProcessModuleSlotWithResponseAsync(
@@ -19368,7 +19078,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information on successful completion of {@link Mono}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ProcessModuleInfoInner> getInstanceProcessModuleSlotAsync(
@@ -19409,7 +19119,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information along with {@link Response}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ProcessModuleInfoInner> getInstanceProcessModuleSlotWithResponse(
@@ -19434,7 +19144,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessThreadInfoInner> listInstanceProcessThreadsSlotAsync(
@@ -19453,7 +19163,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessThreadInfoInner> listInstanceProcessThreadsSlot(
@@ -19473,7 +19183,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessThreadInfoInner> listInstanceProcessThreadsSlot(
@@ -19489,8 +19199,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents whether or not an app is cloneable along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return represents whether or not an app is cloneable.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteCloneabilityInner>> isCloneableSlotWithResponseAsync(
@@ -19506,7 +19215,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents whether or not an app is cloneable on successful completion of {@link Mono}.
+     * @return represents whether or not an app is cloneable.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteCloneabilityInner> isCloneableSlotAsync(String resourceGroupName, String name, String slot);
@@ -19537,7 +19246,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents whether or not an app is cloneable along with {@link Response}.
+     * @return represents whether or not an app is cloneable.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteCloneabilityInner> isCloneableSlotWithResponse(
@@ -19554,7 +19263,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedFlux}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<BackupItemInner> listSiteBackupsSlotAsync(String resourceGroupName, String name, String slot);
@@ -19570,7 +19279,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedIterable}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BackupItemInner> listSiteBackupsSlot(String resourceGroupName, String name, String slot);
@@ -19587,7 +19296,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of backup items as paginated response with {@link PagedIterable}.
+     * @return collection of backup items.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<BackupItemInner> listSiteBackupsSlot(
@@ -19603,7 +19312,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets along with {@link Response} on successful completion of {@link Mono}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FunctionSecretsInner>> listSyncFunctionTriggersSlotWithResponseAsync(
@@ -19619,7 +19328,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets on successful completion of {@link Mono}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FunctionSecretsInner> listSyncFunctionTriggersSlotAsync(String resourceGroupName, String name, String slot);
@@ -19650,7 +19359,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return function secrets along with {@link Response}.
+     * @return function secrets.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FunctionSecretsInner> listSyncFunctionTriggersSlotWithResponse(
@@ -19667,7 +19376,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mySQL migration status along with {@link Response} on successful completion of {@link Mono}.
+     * @return mySQL migration status.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<MigrateMySqlStatusInner>> getMigrateMySqlStatusSlotWithResponseAsync(
@@ -19684,7 +19393,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mySQL migration status on successful completion of {@link Mono}.
+     * @return mySQL migration status.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<MigrateMySqlStatusInner> getMigrateMySqlStatusSlotAsync(String resourceGroupName, String name, String slot);
@@ -19717,7 +19426,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mySQL migration status along with {@link Response}.
+     * @return mySQL migration status.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MigrateMySqlStatusInner> getMigrateMySqlStatusSlotWithResponse(
@@ -19734,7 +19443,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SwiftVirtualNetworkInner>> getSwiftVirtualNetworkConnectionSlotWithResponseAsync(
@@ -19751,7 +19460,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SwiftVirtualNetworkInner> getSwiftVirtualNetworkConnectionSlotAsync(
@@ -19785,7 +19494,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SwiftVirtualNetworkInner> getSwiftVirtualNetworkConnectionSlotWithResponse(
@@ -19805,7 +19514,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SwiftVirtualNetworkInner>> createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotWithResponseAsync(
@@ -19825,7 +19534,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SwiftVirtualNetworkInner> createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotAsync(
@@ -19866,7 +19575,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SwiftVirtualNetworkInner> createOrUpdateSwiftVirtualNetworkConnectionWithCheckSlotWithResponse(
@@ -19886,7 +19595,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteSwiftVirtualNetworkSlotWithResponseAsync(
@@ -19902,7 +19611,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteSwiftVirtualNetworkSlotAsync(String resourceGroupName, String name, String slot);
@@ -19932,7 +19641,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteSwiftVirtualNetworkSlotWithResponse(
@@ -19952,7 +19661,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response} on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SwiftVirtualNetworkInner>> updateSwiftVirtualNetworkConnectionWithCheckSlotWithResponseAsync(
@@ -19972,7 +19681,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract on successful completion of {@link Mono}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SwiftVirtualNetworkInner> updateSwiftVirtualNetworkConnectionWithCheckSlotAsync(
@@ -20013,7 +19722,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return swift Virtual Network Contract along with {@link Response}.
+     * @return swift Virtual Network Contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SwiftVirtualNetworkInner> updateSwiftVirtualNetworkConnectionWithCheckSlotWithResponse(
@@ -20034,8 +19743,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return full view of network features for an app (presently VNET integration and Hybrid Connections) along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * @return full view of network features for an app (presently VNET integration and Hybrid Connections).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<NetworkFeaturesInner>> listNetworkFeaturesSlotWithResponseAsync(
@@ -20052,8 +19760,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return full view of network features for an app (presently VNET integration and Hybrid Connections) on
-     *     successful completion of {@link Mono}.
+     * @return full view of network features for an app (presently VNET integration and Hybrid Connections).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<NetworkFeaturesInner> listNetworkFeaturesSlotAsync(
@@ -20087,8 +19794,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return full view of network features for an app (presently VNET integration and Hybrid Connections) along with
-     *     {@link Response}.
+     * @return full view of network features for an app (presently VNET integration and Hybrid Connections).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<NetworkFeaturesInner> listNetworkFeaturesSlotWithResponse(
@@ -20106,7 +19812,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Object>> getNetworkTraceOperationSlotWithResponseAsync(
@@ -20124,7 +19830,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> getNetworkTraceOperationSlotAsync(
@@ -20160,7 +19866,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Object> getNetworkTraceOperationSlotWithResponse(
@@ -20179,7 +19885,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<String>> startWebSiteNetworkTraceSlotWithResponseAsync(
@@ -20203,7 +19909,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<String> startWebSiteNetworkTraceSlotAsync(
@@ -20224,7 +19930,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<String> startWebSiteNetworkTraceSlotAsync(String resourceGroupName, String name, String slot);
@@ -20258,7 +19964,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<String> startWebSiteNetworkTraceSlotWithResponse(
@@ -20283,7 +19989,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> startWebSiteNetworkTraceOperationSlotWithResponseAsync(
@@ -20307,7 +20013,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Object>, Object> beginStartWebSiteNetworkTraceOperationSlotAsync(
@@ -20331,7 +20037,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginStartWebSiteNetworkTraceOperationSlot(
@@ -20356,7 +20062,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginStartWebSiteNetworkTraceOperationSlot(
@@ -20381,7 +20087,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> startWebSiteNetworkTraceOperationSlotAsync(
@@ -20402,7 +20108,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> startWebSiteNetworkTraceOperationSlotAsync(String resourceGroupName, String name, String slot);
@@ -20482,7 +20188,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> stopWebSiteNetworkTraceSlotWithResponseAsync(
@@ -20498,7 +20204,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> stopWebSiteNetworkTraceSlotAsync(String resourceGroupName, String name, String slot);
@@ -20528,7 +20234,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> stopWebSiteNetworkTraceSlotWithResponse(
@@ -20546,7 +20252,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<NetworkTraceInner>>> getNetworkTracesSlotWithResponseAsync(
@@ -20564,7 +20270,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<NetworkTraceInner>> getNetworkTracesSlotAsync(
@@ -20601,7 +20307,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<NetworkTraceInner>> getNetworkTracesSlotWithResponse(
@@ -20619,7 +20325,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Object>> getNetworkTraceOperationSlotV2WithResponseAsync(
@@ -20637,7 +20343,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> getNetworkTraceOperationSlotV2Async(
@@ -20673,7 +20379,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Object> getNetworkTraceOperationSlotV2WithResponse(
@@ -20691,7 +20397,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<NetworkTraceInner>>> getNetworkTracesSlotV2WithResponseAsync(
@@ -20709,7 +20415,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<NetworkTraceInner>> getNetworkTracesSlotV2Async(
@@ -20746,7 +20452,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<NetworkTraceInner>> getNetworkTracesSlotV2WithResponse(
@@ -20763,7 +20469,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> generateNewSitePublishingPasswordSlotWithResponseAsync(
@@ -20780,7 +20486,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> generateNewSitePublishingPasswordSlotAsync(String resourceGroupName, String name, String slot);
@@ -20812,7 +20518,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> generateNewSitePublishingPasswordSlotWithResponse(
@@ -20831,7 +20537,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of performance monitor counters as paginated response with {@link PagedFlux}.
+     * @return collection of performance monitor counters.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<PerfMonResponseInner> listPerfMonCountersSlotAsync(
@@ -20847,7 +20553,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of performance monitor counters as paginated response with {@link PagedFlux}.
+     * @return collection of performance monitor counters.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<PerfMonResponseInner> listPerfMonCountersSlotAsync(String resourceGroupName, String name, String slot);
@@ -20862,7 +20568,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of performance monitor counters as paginated response with {@link PagedIterable}.
+     * @return collection of performance monitor counters.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PerfMonResponseInner> listPerfMonCountersSlot(String resourceGroupName, String name, String slot);
@@ -20881,7 +20587,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of performance monitor counters as paginated response with {@link PagedIterable}.
+     * @return collection of performance monitor counters.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PerfMonResponseInner> listPerfMonCountersSlot(
@@ -20897,8 +20603,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return used for getting PHP error logging flag along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return used for getting PHP error logging flag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SitePhpErrorLogFlagInner>> getSitePhpErrorLogFlagSlotWithResponseAsync(
@@ -20914,7 +20619,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return used for getting PHP error logging flag on successful completion of {@link Mono}.
+     * @return used for getting PHP error logging flag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SitePhpErrorLogFlagInner> getSitePhpErrorLogFlagSlotAsync(String resourceGroupName, String name, String slot);
@@ -20945,7 +20650,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return used for getting PHP error logging flag along with {@link Response}.
+     * @return used for getting PHP error logging flag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SitePhpErrorLogFlagInner> getSitePhpErrorLogFlagSlotWithResponse(
@@ -20962,7 +20667,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response} on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PremierAddOnInner>> listPremierAddOnsSlotWithResponseAsync(
@@ -20979,7 +20684,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PremierAddOnInner> listPremierAddOnsSlotAsync(String resourceGroupName, String name, String slot);
@@ -21012,7 +20717,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PremierAddOnInner> listPremierAddOnsSlotWithResponse(
@@ -21030,7 +20735,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response} on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PremierAddOnInner>> getPremierAddOnSlotWithResponseAsync(
@@ -21048,7 +20753,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PremierAddOnInner> getPremierAddOnSlotAsync(
@@ -21084,7 +20789,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PremierAddOnInner> getPremierAddOnSlotWithResponse(
@@ -21103,7 +20808,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response} on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PremierAddOnInner>> addPremierAddOnSlotWithResponseAsync(
@@ -21122,7 +20827,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PremierAddOnInner> addPremierAddOnSlotAsync(
@@ -21161,7 +20866,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PremierAddOnInner> addPremierAddOnSlotWithResponse(
@@ -21184,7 +20889,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deletePremierAddOnSlotWithResponseAsync(
@@ -21202,7 +20907,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deletePremierAddOnSlotAsync(String resourceGroupName, String name, String premierAddOnName, String slot);
@@ -21236,7 +20941,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deletePremierAddOnSlotWithResponse(
@@ -21255,7 +20960,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response} on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PremierAddOnInner>> updatePremierAddOnSlotWithResponseAsync(
@@ -21278,7 +20983,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on on successful completion of {@link Mono}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PremierAddOnInner> updatePremierAddOnSlotAsync(
@@ -21325,7 +21030,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return premier add-on along with {@link Response}.
+     * @return premier add-on.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PremierAddOnInner> updatePremierAddOnSlotWithResponse(
@@ -21347,8 +21052,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PrivateAccessInner>> getPrivateAccessSlotWithResponseAsync(
@@ -21365,7 +21069,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site on successful completion of {@link Mono}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PrivateAccessInner> getPrivateAccessSlotAsync(String resourceGroupName, String name, String slot);
@@ -21398,7 +21102,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site along with {@link Response}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateAccessInner> getPrivateAccessSlotWithResponse(
@@ -21416,8 +21120,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PrivateAccessInner>> putPrivateAccessVnetSlotWithResponseAsync(
@@ -21435,7 +21138,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site on successful completion of {@link Mono}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PrivateAccessInner> putPrivateAccessVnetSlotAsync(
@@ -21472,7 +21175,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the parameters of Private Access for a Web Site along with {@link Response}.
+     * @return description of the parameters of Private Access for a Web Site.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateAccessInner> putPrivateAccessVnetSlotWithResponse(
@@ -21488,7 +21191,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedFlux}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<RemotePrivateEndpointConnectionArmResourceInner> getPrivateEndpointConnectionListSlotAsync(
@@ -21504,7 +21207,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<RemotePrivateEndpointConnectionArmResourceInner> getPrivateEndpointConnectionListSlot(
@@ -21521,7 +21224,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the paginated response with {@link PagedIterable}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<RemotePrivateEndpointConnectionArmResourceInner> getPrivateEndpointConnectionListSlot(
@@ -21538,8 +21241,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remote Private Endpoint Connection ARM resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RemotePrivateEndpointConnectionArmResourceInner>> getPrivateEndpointConnectionSlotWithResponseAsync(
@@ -21556,7 +21258,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remote Private Endpoint Connection ARM resource on successful completion of {@link Mono}.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RemotePrivateEndpointConnectionArmResourceInner> getPrivateEndpointConnectionSlotAsync(
@@ -21591,7 +21293,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remote Private Endpoint Connection ARM resource along with {@link Response}.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RemotePrivateEndpointConnectionArmResourceInner> getPrivateEndpointConnectionSlotWithResponse(
@@ -21609,8 +21311,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remote Private Endpoint Connection ARM resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> approveOrRejectPrivateEndpointConnectionSlotWithResponseAsync(
@@ -21632,7 +21333,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of remote Private Endpoint Connection ARM resource.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<
@@ -21657,7 +21358,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of remote Private Endpoint Connection ARM resource.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<
@@ -21683,7 +21384,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of remote Private Endpoint Connection ARM resource.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<
@@ -21709,7 +21410,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return remote Private Endpoint Connection ARM resource on successful completion of {@link Mono}.
+     * @return remote Private Endpoint Connection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RemotePrivateEndpointConnectionArmResourceInner> approveOrRejectPrivateEndpointConnectionSlotAsync(
@@ -21776,7 +21477,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response} on successful completion of {@link Mono}.
+     * @return any object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deletePrivateEndpointConnectionSlotWithResponseAsync(
@@ -21793,7 +21494,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of any object.
+     * @return any object.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Object>, Object> beginDeletePrivateEndpointConnectionSlotAsync(
@@ -21810,7 +21511,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of any object.
+     * @return any object.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginDeletePrivateEndpointConnectionSlot(
@@ -21828,7 +21529,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of any object.
+     * @return any object.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginDeletePrivateEndpointConnectionSlot(
@@ -21845,7 +21546,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object on successful completion of {@link Mono}.
+     * @return any object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> deletePrivateEndpointConnectionSlotAsync(
@@ -21896,8 +21597,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return wrapper for a collection of private link resources along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return wrapper for a collection of private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PrivateLinkResourcesWrapperInner>> getPrivateLinkResourcesSlotWithResponseAsync(
@@ -21913,7 +21613,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return wrapper for a collection of private link resources on successful completion of {@link Mono}.
+     * @return wrapper for a collection of private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PrivateLinkResourcesWrapperInner> getPrivateLinkResourcesSlotAsync(
@@ -21945,7 +21645,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return wrapper for a collection of private link resources along with {@link Response}.
+     * @return wrapper for a collection of private link resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateLinkResourcesWrapperInner> getPrivateLinkResourcesSlotWithResponse(
@@ -21962,7 +21662,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessInfoInner> listProcessesSlotAsync(String resourceGroupName, String name, String slot);
@@ -21978,7 +21678,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessInfoInner> listProcessesSlot(String resourceGroupName, String name, String slot);
@@ -21995,7 +21695,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu process information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu process information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessInfoInner> listProcessesSlot(
@@ -22012,7 +21712,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ProcessInfoInner>> getProcessSlotWithResponseAsync(
@@ -22029,7 +21729,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information on successful completion of {@link Mono}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ProcessInfoInner> getProcessSlotAsync(String resourceGroupName, String name, String processId, String slot);
@@ -22062,7 +21762,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Information along with {@link Response}.
+     * @return process Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ProcessInfoInner> getProcessSlotWithResponse(
@@ -22080,7 +21780,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteProcessSlotWithResponseAsync(
@@ -22098,7 +21798,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteProcessSlotAsync(String resourceGroupName, String name, String processId, String slot);
@@ -22132,7 +21832,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteProcessSlotWithResponse(
@@ -22149,7 +21849,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> getProcessDumpSlotWithResponseAsync(
@@ -22216,7 +21916,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessModuleInfoInner> listProcessModulesSlotAsync(
@@ -22233,7 +21933,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessModuleInfoInner> listProcessModulesSlot(
@@ -22251,7 +21951,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessModuleInfoInner> listProcessModulesSlot(
@@ -22269,7 +21969,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ProcessModuleInfoInner>> getProcessModuleSlotWithResponseAsync(
@@ -22287,7 +21987,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information on successful completion of {@link Mono}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ProcessModuleInfoInner> getProcessModuleSlotAsync(
@@ -22324,7 +22024,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return process Module Information along with {@link Response}.
+     * @return process Module Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ProcessModuleInfoInner> getProcessModuleSlotWithResponse(
@@ -22341,7 +22041,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ProcessThreadInfoInner> listProcessThreadsSlotAsync(
@@ -22358,7 +22058,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessThreadInfoInner> listProcessThreadsSlot(
@@ -22376,7 +22076,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu thread information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu thread information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ProcessThreadInfoInner> listProcessThreadsSlot(
@@ -22393,7 +22093,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of public certificates as paginated response with {@link PagedFlux}.
+     * @return collection of public certificates.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<PublicCertificateInner> listPublicCertificatesSlotAsync(
@@ -22410,7 +22110,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of public certificates as paginated response with {@link PagedIterable}.
+     * @return collection of public certificates.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PublicCertificateInner> listPublicCertificatesSlot(
@@ -22428,7 +22128,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of public certificates as paginated response with {@link PagedIterable}.
+     * @return collection of public certificates.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PublicCertificateInner> listPublicCertificatesSlot(
@@ -22446,7 +22146,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object along with {@link Response} on successful completion of {@link Mono}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PublicCertificateInner>> getPublicCertificateSlotWithResponseAsync(
@@ -22464,7 +22164,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object on successful completion of {@link Mono}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PublicCertificateInner> getPublicCertificateSlotAsync(
@@ -22501,7 +22201,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object along with {@link Response}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PublicCertificateInner> getPublicCertificateSlotWithResponse(
@@ -22521,7 +22221,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object along with {@link Response} on successful completion of {@link Mono}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PublicCertificateInner>> createOrUpdatePublicCertificateSlotWithResponseAsync(
@@ -22545,7 +22245,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object on successful completion of {@link Mono}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PublicCertificateInner> createOrUpdatePublicCertificateSlotAsync(
@@ -22594,7 +22294,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return public certificate object along with {@link Response}.
+     * @return public certificate object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PublicCertificateInner> createOrUpdatePublicCertificateSlotWithResponse(
@@ -22617,7 +22317,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deletePublicCertificateSlotWithResponseAsync(
@@ -22635,7 +22335,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deletePublicCertificateSlotAsync(
@@ -22670,7 +22370,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deletePublicCertificateSlotWithResponse(
@@ -22689,7 +22389,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StreamResponse> listPublishingProfileXmlWithSecretsSlotWithResponseAsync(
@@ -22769,7 +22469,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> resetSlotConfigurationSlotWithResponseAsync(
@@ -22787,7 +22487,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> resetSlotConfigurationSlotAsync(String resourceGroupName, String name, String slot);
@@ -22821,7 +22521,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> resetSlotConfigurationSlotWithResponse(
@@ -22841,7 +22541,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> restartSlotWithResponseAsync(
@@ -22861,7 +22561,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restartSlotAsync(
@@ -22877,7 +22577,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restartSlotAsync(String resourceGroupName, String name, String slot);
@@ -22911,7 +22611,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> restartSlotWithResponse(
@@ -22929,7 +22629,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> restoreFromBackupBlobSlotWithResponseAsync(
@@ -22947,7 +22647,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginRestoreFromBackupBlobSlotAsync(
@@ -22965,7 +22665,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreFromBackupBlobSlot(
@@ -22984,7 +22684,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreFromBackupBlobSlot(
@@ -23002,7 +22702,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restoreFromBackupBlobSlotAsync(
@@ -23053,7 +22753,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> restoreFromDeletedAppSlotWithResponseAsync(
@@ -23070,7 +22770,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginRestoreFromDeletedAppSlotAsync(
@@ -23087,7 +22787,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreFromDeletedAppSlot(
@@ -23105,7 +22805,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreFromDeletedAppSlot(
@@ -23122,7 +22822,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restoreFromDeletedAppSlotAsync(
@@ -23173,7 +22873,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> restoreSnapshotSlotWithResponseAsync(
@@ -23191,7 +22891,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginRestoreSnapshotSlotAsync(
@@ -23209,7 +22909,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreSnapshotSlot(
@@ -23228,7 +22928,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginRestoreSnapshotSlot(
@@ -23246,7 +22946,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restoreSnapshotSlotAsync(
@@ -23295,7 +22995,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu site extension information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu site extension information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SiteExtensionInfoInner> listSiteExtensionsSlotAsync(String resourceGroupName, String name, String slot);
@@ -23309,7 +23009,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu site extension information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu site extension information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteExtensionInfoInner> listSiteExtensionsSlot(String resourceGroupName, String name, String slot);
@@ -23324,7 +23024,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu site extension information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu site extension information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SiteExtensionInfoInner> listSiteExtensionsSlot(
@@ -23340,7 +23040,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site Extension Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteExtensionInfoInner>> getSiteExtensionSlotWithResponseAsync(
@@ -23356,7 +23056,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site Extension Information on successful completion of {@link Mono}.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteExtensionInfoInner> getSiteExtensionSlotAsync(
@@ -23389,7 +23089,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site Extension Information along with {@link Response}.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteExtensionInfoInner> getSiteExtensionSlotWithResponse(
@@ -23405,7 +23105,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site Extension Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> installSiteExtensionSlotWithResponseAsync(
@@ -23421,7 +23121,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of site Extension Information.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<SiteExtensionInfoInner>, SiteExtensionInfoInner> beginInstallSiteExtensionSlotAsync(
@@ -23437,7 +23137,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of site Extension Information.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteExtensionInfoInner>, SiteExtensionInfoInner> beginInstallSiteExtensionSlot(
@@ -23454,7 +23154,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of site Extension Information.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteExtensionInfoInner>, SiteExtensionInfoInner> beginInstallSiteExtensionSlot(
@@ -23470,7 +23170,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return site Extension Information on successful completion of {@link Mono}.
+     * @return site Extension Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteExtensionInfoInner> installSiteExtensionSlotAsync(
@@ -23520,7 +23220,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteSiteExtensionSlotWithResponseAsync(
@@ -23537,7 +23237,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteSiteExtensionSlotAsync(String resourceGroupName, String name, String siteExtensionId, String slot);
@@ -23569,7 +23269,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteSiteExtensionSlotWithResponse(
@@ -23586,7 +23286,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of slot differences as paginated response with {@link PagedFlux}.
+     * @return collection of slot differences.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SlotDifferenceInner> listSlotDifferencesSlotAsync(
@@ -23603,7 +23303,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of slot differences as paginated response with {@link PagedIterable}.
+     * @return collection of slot differences.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SlotDifferenceInner> listSlotDifferencesSlot(
@@ -23621,7 +23321,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of slot differences as paginated response with {@link PagedIterable}.
+     * @return collection of slot differences.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SlotDifferenceInner> listSlotDifferencesSlot(
@@ -23638,7 +23338,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> swapSlotWithResponseAsync(
@@ -23655,7 +23355,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginSwapSlotAsync(
@@ -23672,7 +23372,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginSwapSlot(
@@ -23690,7 +23390,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginSwapSlot(
@@ -23707,7 +23407,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> swapSlotAsync(String resourceGroupName, String name, String slot, CsmSlotEntity slotSwapEntity);
@@ -23753,8 +23453,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedFlux}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SnapshotInner> listSnapshotsSlotAsync(String resourceGroupName, String name, String slot);
@@ -23769,8 +23468,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedIterable}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SnapshotInner> listSnapshotsSlot(String resourceGroupName, String name, String slot);
@@ -23786,8 +23484,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedIterable}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SnapshotInner> listSnapshotsSlot(String resourceGroupName, String name, String slot, Context context);
@@ -23802,8 +23499,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedFlux}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SnapshotInner> listSnapshotsFromDRSecondarySlotAsync(String resourceGroupName, String name, String slot);
@@ -23818,8 +23514,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedIterable}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SnapshotInner> listSnapshotsFromDRSecondarySlot(String resourceGroupName, String name, String slot);
@@ -23835,8 +23530,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedIterable}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SnapshotInner> listSnapshotsFromDRSecondarySlot(
@@ -23853,8 +23547,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteSourceControlInner>> getSourceControlSlotWithResponseAsync(
@@ -23871,7 +23564,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app on successful completion of {@link Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteSourceControlInner> getSourceControlSlotAsync(String resourceGroupName, String name, String slot);
@@ -23904,7 +23597,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app along with {@link Response}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteSourceControlInner> getSourceControlSlotWithResponse(
@@ -23922,8 +23615,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateSourceControlSlotWithResponseAsync(
@@ -23941,7 +23633,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of source control configuration for an app.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<SiteSourceControlInner>, SiteSourceControlInner> beginCreateOrUpdateSourceControlSlotAsync(
@@ -23959,7 +23651,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of source control configuration for an app.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteSourceControlInner>, SiteSourceControlInner> beginCreateOrUpdateSourceControlSlot(
@@ -23978,7 +23670,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of source control configuration for an app.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteSourceControlInner>, SiteSourceControlInner> beginCreateOrUpdateSourceControlSlot(
@@ -23996,7 +23688,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app on successful completion of {@link Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteSourceControlInner> createOrUpdateSourceControlSlotAsync(
@@ -24050,7 +23742,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteSourceControlSlotWithResponseAsync(
@@ -24067,7 +23759,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteSourceControlSlotAsync(String resourceGroupName, String name, String slot, String additionalFlags);
@@ -24082,7 +23774,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteSourceControlSlotAsync(String resourceGroupName, String name, String slot);
@@ -24113,7 +23805,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteSourceControlSlotWithResponse(
@@ -24131,8 +23823,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteSourceControlInner>> updateSourceControlSlotWithResponseAsync(
@@ -24150,7 +23841,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app on successful completion of {@link Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteSourceControlInner> updateSourceControlSlotAsync(
@@ -24187,7 +23878,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app along with {@link Response}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteSourceControlInner> updateSourceControlSlotWithResponse(
@@ -24203,7 +23894,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> startSlotWithResponseAsync(String resourceGroupName, String name, String slot);
@@ -24218,7 +23909,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> startSlotAsync(String resourceGroupName, String name, String slot);
@@ -24248,7 +23939,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> startSlotWithResponse(String resourceGroupName, String name, String slot, Context context);
@@ -24266,7 +23957,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> startNetworkTraceSlotWithResponseAsync(
@@ -24290,7 +23981,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Object>, Object> beginStartNetworkTraceSlotAsync(
@@ -24314,7 +24005,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginStartNetworkTraceSlot(
@@ -24339,7 +24030,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginStartNetworkTraceSlot(
@@ -24364,7 +24055,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> startNetworkTraceSlotAsync(
@@ -24385,7 +24076,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> startNetworkTraceSlotAsync(String resourceGroupName, String name, String slot);
@@ -24465,7 +24156,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> stopSlotWithResponseAsync(String resourceGroupName, String name, String slot);
@@ -24480,7 +24171,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> stopSlotAsync(String resourceGroupName, String name, String slot);
@@ -24510,7 +24201,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> stopSlotWithResponse(String resourceGroupName, String name, String slot, Context context);
@@ -24525,7 +24216,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> stopNetworkTraceSlotWithResponseAsync(String resourceGroupName, String name, String slot);
@@ -24540,7 +24231,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> stopNetworkTraceSlotAsync(String resourceGroupName, String name, String slot);
@@ -24570,7 +24261,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> stopNetworkTraceSlotWithResponse(
@@ -24586,7 +24277,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> syncRepositorySlotWithResponseAsync(String resourceGroupName, String name, String slot);
@@ -24601,7 +24292,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> syncRepositorySlotAsync(String resourceGroupName, String name, String slot);
@@ -24631,7 +24322,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> syncRepositorySlotWithResponse(String resourceGroupName, String name, String slot, Context context);
@@ -24646,7 +24337,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> syncFunctionTriggersSlotWithResponseAsync(String resourceGroupName, String name, String slot);
@@ -24661,7 +24352,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> syncFunctionTriggersSlotAsync(String resourceGroupName, String name, String slot);
@@ -24691,7 +24382,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> syncFunctionTriggersSlotWithResponse(
@@ -24708,7 +24399,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<TriggeredWebJobInner> listTriggeredWebJobsSlotAsync(String resourceGroupName, String name, String slot);
@@ -24724,8 +24415,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TriggeredWebJobInner> listTriggeredWebJobsSlot(String resourceGroupName, String name, String slot);
@@ -24742,8 +24432,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TriggeredWebJobInner> listTriggeredWebJobsSlot(
@@ -24759,7 +24448,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return triggered Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TriggeredWebJobInner>> getTriggeredWebJobSlotWithResponseAsync(
@@ -24775,7 +24464,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job Information on successful completion of {@link Mono}.
+     * @return triggered Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<TriggeredWebJobInner> getTriggeredWebJobSlotAsync(
@@ -24807,7 +24496,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job Information along with {@link Response}.
+     * @return triggered Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TriggeredWebJobInner> getTriggeredWebJobSlotWithResponse(
@@ -24825,7 +24514,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteTriggeredWebJobSlotWithResponseAsync(
@@ -24843,7 +24532,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteTriggeredWebJobSlotAsync(String resourceGroupName, String name, String webJobName, String slot);
@@ -24877,7 +24566,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteTriggeredWebJobSlotWithResponse(
@@ -24893,7 +24582,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<TriggeredJobHistoryInner> listTriggeredWebJobHistorySlotAsync(
@@ -24909,8 +24598,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TriggeredJobHistoryInner> listTriggeredWebJobHistorySlot(
@@ -24927,8 +24615,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TriggeredJobHistoryInner> listTriggeredWebJobHistorySlot(
@@ -24945,7 +24632,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job History along with {@link Response} on successful completion of {@link Mono}.
+     * @return triggered Web Job History.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TriggeredJobHistoryInner>> getTriggeredWebJobHistorySlotWithResponseAsync(
@@ -24962,7 +24649,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job History on successful completion of {@link Mono}.
+     * @return triggered Web Job History.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<TriggeredJobHistoryInner> getTriggeredWebJobHistorySlotAsync(
@@ -24997,7 +24684,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job History along with {@link Response}.
+     * @return triggered Web Job History.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TriggeredJobHistoryInner> getTriggeredWebJobHistorySlotWithResponse(
@@ -25013,7 +24700,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> runTriggeredWebJobSlotWithResponseAsync(
@@ -25029,7 +24716,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> runTriggeredWebJobSlotAsync(String resourceGroupName, String name, String webJobName, String slot);
@@ -25059,7 +24746,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> runTriggeredWebJobSlotWithResponse(
@@ -25079,7 +24766,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of CSM usage quotas as paginated response with {@link PagedFlux}.
+     * @return collection of CSM usage quotas.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<CsmUsageQuotaInner> listUsagesSlotAsync(
@@ -25096,7 +24783,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of CSM usage quotas as paginated response with {@link PagedFlux}.
+     * @return collection of CSM usage quotas.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<CsmUsageQuotaInner> listUsagesSlotAsync(String resourceGroupName, String name, String slot);
@@ -25112,7 +24799,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of CSM usage quotas as paginated response with {@link PagedIterable}.
+     * @return collection of CSM usage quotas.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CsmUsageQuotaInner> listUsagesSlot(String resourceGroupName, String name, String slot);
@@ -25132,7 +24819,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of CSM usage quotas as paginated response with {@link PagedIterable}.
+     * @return collection of CSM usage quotas.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CsmUsageQuotaInner> listUsagesSlot(
@@ -25149,7 +24836,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of VnetInfoResource along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of VnetInfoResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<VnetInfoResourceInner>>> listVnetConnectionsSlotWithResponseAsync(
@@ -25166,7 +24853,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of VnetInfoResource on successful completion of {@link Mono}.
+     * @return array of VnetInfoResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VnetInfoResourceInner>> listVnetConnectionsSlotAsync(String resourceGroupName, String name, String slot);
@@ -25199,7 +24886,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of VnetInfoResource along with {@link Response}.
+     * @return array of VnetInfoResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<VnetInfoResourceInner>> listVnetConnectionsSlotWithResponse(
@@ -25217,8 +24904,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetInfoResourceInner>> getVnetConnectionSlotWithResponseAsync(
@@ -25236,7 +24922,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource on successful completion of {@link Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetInfoResourceInner> getVnetConnectionSlotAsync(
@@ -25272,7 +24958,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetInfoResourceInner> getVnetConnectionSlotWithResponse(
@@ -25292,8 +24978,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetInfoResourceInner>> createOrUpdateVnetConnectionSlotWithResponseAsync(
@@ -25313,7 +24998,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource on successful completion of {@link Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetInfoResourceInner> createOrUpdateVnetConnectionSlotAsync(
@@ -25354,7 +25039,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetInfoResourceInner> createOrUpdateVnetConnectionSlotWithResponse(
@@ -25376,7 +25061,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteVnetConnectionSlotWithResponseAsync(
@@ -25393,7 +25078,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteVnetConnectionSlotAsync(String resourceGroupName, String name, String vnetName, String slot);
@@ -25425,7 +25110,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteVnetConnectionSlotWithResponse(
@@ -25445,8 +25130,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetInfoResourceInner>> updateVnetConnectionSlotWithResponseAsync(
@@ -25466,7 +25150,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource on successful completion of {@link Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetInfoResourceInner> updateVnetConnectionSlotAsync(
@@ -25507,7 +25191,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetInfoResourceInner> updateVnetConnectionSlotWithResponse(
@@ -25530,8 +25214,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetGatewayInner>> getVnetConnectionGatewaySlotWithResponseAsync(
@@ -25549,7 +25232,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract on successful completion of {@link Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetGatewayInner> getVnetConnectionGatewaySlotAsync(
@@ -25586,7 +25269,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetGatewayInner> getVnetConnectionGatewaySlotWithResponse(
@@ -25606,8 +25289,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetGatewayInner>> createOrUpdateVnetConnectionGatewaySlotWithResponseAsync(
@@ -25632,7 +25314,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract on successful completion of {@link Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetGatewayInner> createOrUpdateVnetConnectionGatewaySlotAsync(
@@ -25683,7 +25365,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetGatewayInner> createOrUpdateVnetConnectionGatewaySlotWithResponse(
@@ -25709,8 +25391,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetGatewayInner>> updateVnetConnectionGatewaySlotWithResponseAsync(
@@ -25735,7 +25416,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract on successful completion of {@link Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetGatewayInner> updateVnetConnectionGatewaySlotAsync(
@@ -25786,7 +25467,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetGatewayInner> updateVnetConnectionGatewaySlotWithResponse(
@@ -25809,7 +25490,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu web job information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<WebJobInner> listWebJobsSlotAsync(String resourceGroupName, String name, String slot);
@@ -25825,7 +25506,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu web job information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WebJobInner> listWebJobsSlot(String resourceGroupName, String name, String slot);
@@ -25842,7 +25523,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu web job information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WebJobInner> listWebJobsSlot(String resourceGroupName, String name, String slot, Context context);
@@ -25859,7 +25540,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web Job Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<WebJobInner>> getWebJobSlotWithResponseAsync(
@@ -25877,7 +25558,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web Job Information on successful completion of {@link Mono}.
+     * @return web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<WebJobInner> getWebJobSlotAsync(String resourceGroupName, String name, String webJobName, String slot);
@@ -25912,7 +25593,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web Job Information along with {@link Response}.
+     * @return web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WebJobInner> getWebJobSlotWithResponse(
@@ -25928,7 +25609,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of slot differences as paginated response with {@link PagedFlux}.
+     * @return collection of slot differences.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SlotDifferenceInner> listSlotDifferencesFromProductionAsync(
@@ -25944,7 +25625,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of slot differences as paginated response with {@link PagedIterable}.
+     * @return collection of slot differences.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SlotDifferenceInner> listSlotDifferencesFromProduction(
@@ -25961,7 +25642,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of slot differences as paginated response with {@link PagedIterable}.
+     * @return collection of slot differences.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SlotDifferenceInner> listSlotDifferencesFromProduction(
@@ -25977,7 +25658,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> swapSlotWithProductionWithResponseAsync(
@@ -25993,7 +25674,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginSwapSlotWithProductionAsync(
@@ -26009,7 +25690,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginSwapSlotWithProduction(
@@ -26026,7 +25707,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginSwapSlotWithProduction(
@@ -26042,7 +25723,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> swapSlotWithProductionAsync(String resourceGroupName, String name, CsmSlotEntity slotSwapEntity);
@@ -26085,8 +25766,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedFlux}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SnapshotInner> listSnapshotsAsync(String resourceGroupName, String name);
@@ -26100,8 +25780,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedIterable}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SnapshotInner> listSnapshots(String resourceGroupName, String name);
@@ -26116,8 +25795,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedIterable}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SnapshotInner> listSnapshots(String resourceGroupName, String name, Context context);
@@ -26131,8 +25809,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedFlux}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<SnapshotInner> listSnapshotsFromDRSecondaryAsync(String resourceGroupName, String name);
@@ -26146,8 +25823,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedIterable}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SnapshotInner> listSnapshotsFromDRSecondary(String resourceGroupName, String name);
@@ -26162,8 +25838,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of snapshots which can be used to revert an app to a previous time as paginated response with
-     *     {@link PagedIterable}.
+     * @return collection of snapshots which can be used to revert an app to a previous time.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SnapshotInner> listSnapshotsFromDRSecondary(String resourceGroupName, String name, Context context);
@@ -26177,8 +25852,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteSourceControlInner>> getSourceControlWithResponseAsync(String resourceGroupName, String name);
@@ -26192,7 +25866,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app on successful completion of {@link Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteSourceControlInner> getSourceControlAsync(String resourceGroupName, String name);
@@ -26221,7 +25895,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app along with {@link Response}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteSourceControlInner> getSourceControlWithResponse(
@@ -26237,8 +25911,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateSourceControlWithResponseAsync(
@@ -26254,7 +25927,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of source control configuration for an app.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<SiteSourceControlInner>, SiteSourceControlInner> beginCreateOrUpdateSourceControlAsync(
@@ -26270,7 +25943,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of source control configuration for an app.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteSourceControlInner>, SiteSourceControlInner> beginCreateOrUpdateSourceControl(
@@ -26287,7 +25960,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of source control configuration for an app.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SiteSourceControlInner>, SiteSourceControlInner> beginCreateOrUpdateSourceControl(
@@ -26303,7 +25976,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app on successful completion of {@link Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteSourceControlInner> createOrUpdateSourceControlAsync(
@@ -26351,7 +26024,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteSourceControlWithResponseAsync(
@@ -26366,7 +26039,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteSourceControlAsync(String resourceGroupName, String name, String additionalFlags);
@@ -26379,7 +26052,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteSourceControlAsync(String resourceGroupName, String name);
@@ -26406,7 +26079,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteSourceControlWithResponse(
@@ -26422,8 +26095,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<SiteSourceControlInner>> updateSourceControlWithResponseAsync(
@@ -26439,7 +26111,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app on successful completion of {@link Mono}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SiteSourceControlInner> updateSourceControlAsync(
@@ -26472,7 +26144,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return source control configuration for an app along with {@link Response}.
+     * @return source control configuration for an app.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SiteSourceControlInner> updateSourceControlWithResponse(
@@ -26487,7 +26159,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> startWithResponseAsync(String resourceGroupName, String name);
@@ -26501,7 +26173,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> startAsync(String resourceGroupName, String name);
@@ -26529,7 +26201,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> startWithResponse(String resourceGroupName, String name, Context context);
@@ -26546,7 +26218,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> startNetworkTraceWithResponseAsync(
@@ -26564,7 +26236,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Object>, Object> beginStartNetworkTraceAsync(
@@ -26582,7 +26254,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginStartNetworkTrace(
@@ -26601,7 +26273,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of array of NetworkTrace.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Object>, Object> beginStartNetworkTrace(
@@ -26624,7 +26296,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> startNetworkTraceAsync(
@@ -26639,7 +26311,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of NetworkTrace on successful completion of {@link Mono}.
+     * @return array of NetworkTrace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Object> startNetworkTraceAsync(String resourceGroupName, String name);
@@ -26709,7 +26381,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> stopWithResponseAsync(String resourceGroupName, String name);
@@ -26723,7 +26395,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> stopAsync(String resourceGroupName, String name);
@@ -26751,7 +26423,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> stopWithResponse(String resourceGroupName, String name, Context context);
@@ -26765,7 +26437,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> stopNetworkTraceWithResponseAsync(String resourceGroupName, String name);
@@ -26779,7 +26451,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> stopNetworkTraceAsync(String resourceGroupName, String name);
@@ -26807,7 +26479,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> stopNetworkTraceWithResponse(String resourceGroupName, String name, Context context);
@@ -26821,7 +26493,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> syncRepositoryWithResponseAsync(String resourceGroupName, String name);
@@ -26835,7 +26507,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> syncRepositoryAsync(String resourceGroupName, String name);
@@ -26863,7 +26535,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> syncRepositoryWithResponse(String resourceGroupName, String name, Context context);
@@ -26877,7 +26549,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> syncFunctionTriggersWithResponseAsync(String resourceGroupName, String name);
@@ -26891,7 +26563,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> syncFunctionTriggersAsync(String resourceGroupName, String name);
@@ -26919,7 +26591,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> syncFunctionTriggersWithResponse(String resourceGroupName, String name, Context context);
@@ -26933,7 +26605,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<TriggeredWebJobInner> listTriggeredWebJobsAsync(String resourceGroupName, String name);
@@ -26947,8 +26619,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TriggeredWebJobInner> listTriggeredWebJobs(String resourceGroupName, String name);
@@ -26963,8 +26634,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TriggeredWebJobInner> listTriggeredWebJobs(String resourceGroupName, String name, Context context);
@@ -26978,7 +26648,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return triggered Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TriggeredWebJobInner>> getTriggeredWebJobWithResponseAsync(
@@ -26993,7 +26663,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job Information on successful completion of {@link Mono}.
+     * @return triggered Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<TriggeredWebJobInner> getTriggeredWebJobAsync(String resourceGroupName, String name, String webJobName);
@@ -27022,7 +26692,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job Information along with {@link Response}.
+     * @return triggered Web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TriggeredWebJobInner> getTriggeredWebJobWithResponse(
@@ -27038,7 +26708,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteTriggeredWebJobWithResponseAsync(
@@ -27054,7 +26724,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteTriggeredWebJobAsync(String resourceGroupName, String name, String webJobName);
@@ -27084,7 +26754,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteTriggeredWebJobWithResponse(
@@ -27099,7 +26769,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<TriggeredJobHistoryInner> listTriggeredWebJobHistoryAsync(
@@ -27114,8 +26784,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TriggeredJobHistoryInner> listTriggeredWebJobHistory(
@@ -27131,8 +26800,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu continuous web job information elements as paginated response with {@link
-     *     PagedIterable}.
+     * @return collection of Kudu continuous web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<TriggeredJobHistoryInner> listTriggeredWebJobHistory(
@@ -27148,7 +26816,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job History along with {@link Response} on successful completion of {@link Mono}.
+     * @return triggered Web Job History.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<TriggeredJobHistoryInner>> getTriggeredWebJobHistoryWithResponseAsync(
@@ -27164,7 +26832,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job History on successful completion of {@link Mono}.
+     * @return triggered Web Job History.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<TriggeredJobHistoryInner> getTriggeredWebJobHistoryAsync(
@@ -27197,7 +26865,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return triggered Web Job History along with {@link Response}.
+     * @return triggered Web Job History.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TriggeredJobHistoryInner> getTriggeredWebJobHistoryWithResponse(
@@ -27212,7 +26880,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> runTriggeredWebJobWithResponseAsync(String resourceGroupName, String name, String webJobName);
@@ -27226,7 +26894,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> runTriggeredWebJobAsync(String resourceGroupName, String name, String webJobName);
@@ -27254,7 +26922,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> runTriggeredWebJobWithResponse(
@@ -27272,7 +26940,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of CSM usage quotas as paginated response with {@link PagedFlux}.
+     * @return collection of CSM usage quotas.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<CsmUsageQuotaInner> listUsagesAsync(String resourceGroupName, String name, String filter);
@@ -27286,7 +26954,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of CSM usage quotas as paginated response with {@link PagedFlux}.
+     * @return collection of CSM usage quotas.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<CsmUsageQuotaInner> listUsagesAsync(String resourceGroupName, String name);
@@ -27300,7 +26968,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of CSM usage quotas as paginated response with {@link PagedIterable}.
+     * @return collection of CSM usage quotas.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CsmUsageQuotaInner> listUsages(String resourceGroupName, String name);
@@ -27318,7 +26986,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of CSM usage quotas as paginated response with {@link PagedIterable}.
+     * @return collection of CSM usage quotas.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<CsmUsageQuotaInner> listUsages(String resourceGroupName, String name, String filter, Context context);
@@ -27332,7 +27000,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of VnetInfoResource along with {@link Response} on successful completion of {@link Mono}.
+     * @return array of VnetInfoResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<VnetInfoResourceInner>>> listVnetConnectionsWithResponseAsync(
@@ -27347,7 +27015,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of VnetInfoResource on successful completion of {@link Mono}.
+     * @return array of VnetInfoResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<VnetInfoResourceInner>> listVnetConnectionsAsync(String resourceGroupName, String name);
@@ -27376,7 +27044,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return array of VnetInfoResource along with {@link Response}.
+     * @return array of VnetInfoResource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<VnetInfoResourceInner>> listVnetConnectionsWithResponse(
@@ -27392,8 +27060,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetInfoResourceInner>> getVnetConnectionWithResponseAsync(
@@ -27409,7 +27076,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource on successful completion of {@link Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetInfoResourceInner> getVnetConnectionAsync(String resourceGroupName, String name, String vnetName);
@@ -27440,7 +27107,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetInfoResourceInner> getVnetConnectionWithResponse(
@@ -27458,8 +27125,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetInfoResourceInner>> createOrUpdateVnetConnectionWithResponseAsync(
@@ -27477,7 +27143,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource on successful completion of {@link Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetInfoResourceInner> createOrUpdateVnetConnectionAsync(
@@ -27514,7 +27180,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetInfoResourceInner> createOrUpdateVnetConnectionWithResponse(
@@ -27533,7 +27199,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteVnetConnectionWithResponseAsync(String resourceGroupName, String name, String vnetName);
@@ -27547,7 +27213,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteVnetConnectionAsync(String resourceGroupName, String name, String vnetName);
@@ -27575,7 +27241,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteVnetConnectionWithResponse(
@@ -27593,8 +27259,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetInfoResourceInner>> updateVnetConnectionWithResponseAsync(
@@ -27612,7 +27277,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource on successful completion of {@link Mono}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetInfoResourceInner> updateVnetConnectionAsync(
@@ -27649,7 +27314,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual Network information ARM resource along with {@link Response}.
+     * @return virtual Network information ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetInfoResourceInner> updateVnetConnectionWithResponse(
@@ -27669,8 +27334,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetGatewayInner>> getVnetConnectionGatewayWithResponseAsync(
@@ -27686,7 +27350,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract on successful completion of {@link Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetGatewayInner> getVnetConnectionGatewayAsync(
@@ -27719,7 +27383,7 @@ public interface WebAppsClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetGatewayInner> getVnetConnectionGatewayWithResponse(
@@ -27737,8 +27401,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetGatewayInner>> createOrUpdateVnetConnectionGatewayWithResponseAsync(
@@ -27760,7 +27423,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract on successful completion of {@link Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetGatewayInner> createOrUpdateVnetConnectionGatewayAsync(
@@ -27805,7 +27468,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetGatewayInner> createOrUpdateVnetConnectionGatewayWithResponse(
@@ -27828,8 +27491,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<VnetGatewayInner>> updateVnetConnectionGatewayWithResponseAsync(
@@ -27851,7 +27513,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract on successful completion of {@link Mono}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VnetGatewayInner> updateVnetConnectionGatewayAsync(
@@ -27896,7 +27558,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Virtual Network gateway contract along with {@link Response}.
+     * @return the Virtual Network gateway contract.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VnetGatewayInner> updateVnetConnectionGatewayWithResponse(
@@ -27916,7 +27578,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu web job information elements as paginated response with {@link PagedFlux}.
+     * @return collection of Kudu web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<WebJobInner> listWebJobsAsync(String resourceGroupName, String name);
@@ -27930,7 +27592,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu web job information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WebJobInner> listWebJobs(String resourceGroupName, String name);
@@ -27945,7 +27607,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of Kudu web job information elements as paginated response with {@link PagedIterable}.
+     * @return collection of Kudu web job information elements.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WebJobInner> listWebJobs(String resourceGroupName, String name, Context context);
@@ -27960,7 +27622,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web Job Information along with {@link Response} on successful completion of {@link Mono}.
+     * @return web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<WebJobInner>> getWebJobWithResponseAsync(String resourceGroupName, String name, String webJobName);
@@ -27975,7 +27637,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web Job Information on successful completion of {@link Mono}.
+     * @return web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<WebJobInner> getWebJobAsync(String resourceGroupName, String name, String webJobName);
@@ -28006,7 +27668,7 @@ public interface WebAppsClient
      * @throws com.azure.resourcemanager.appservice.models.DefaultErrorResponseErrorException thrown if the request is
      *     rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return web Job Information along with {@link Response}.
+     * @return web Job Information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WebJobInner> getWebJobWithResponse(

@@ -96,8 +96,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionPolicy resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectionPolicy resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectionPolicyResourceInner>> listSinglePageAsync(
@@ -158,8 +157,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionPolicy resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectionPolicy resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectionPolicyResourceInner>> listSinglePageAsync(
@@ -216,7 +214,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionPolicy resources as paginated response with {@link PagedFlux}.
+     * @return list of ProtectionPolicy resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProtectionPolicyResourceInner> listAsync(
@@ -235,7 +233,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionPolicy resources as paginated response with {@link PagedFlux}.
+     * @return list of ProtectionPolicy resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProtectionPolicyResourceInner> listAsync(String vaultName, String resourceGroupName) {
@@ -256,7 +254,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionPolicy resources as paginated response with {@link PagedFlux}.
+     * @return list of ProtectionPolicy resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProtectionPolicyResourceInner> listAsync(
@@ -275,7 +273,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionPolicy resources as paginated response with {@link PagedIterable}.
+     * @return list of ProtectionPolicy resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProtectionPolicyResourceInner> list(String vaultName, String resourceGroupName) {
@@ -294,7 +292,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionPolicy resources as paginated response with {@link PagedIterable}.
+     * @return list of ProtectionPolicy resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProtectionPolicyResourceInner> list(
@@ -309,8 +307,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionPolicy resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectionPolicy resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectionPolicyResourceInner>> listNextSinglePageAsync(String nextLink) {
@@ -346,8 +343,7 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of ProtectionPolicy resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of ProtectionPolicy resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProtectionPolicyResourceInner>> listNextSinglePageAsync(

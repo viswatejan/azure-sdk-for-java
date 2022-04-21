@@ -22,8 +22,7 @@ public interface ProviderResourceTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of resource types of a resource provider along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return list of resource types of a resource provider.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ProviderResourceTypeListResultInner>> listWithResponseAsync(
@@ -38,7 +37,7 @@ public interface ProviderResourceTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of resource types of a resource provider on successful completion of {@link Mono}.
+     * @return list of resource types of a resource provider.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ProviderResourceTypeListResultInner> listAsync(String resourceProviderNamespace, String expand);
@@ -50,7 +49,7 @@ public interface ProviderResourceTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of resource types of a resource provider on successful completion of {@link Mono}.
+     * @return list of resource types of a resource provider.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ProviderResourceTypeListResultInner> listAsync(String resourceProviderNamespace);
@@ -77,7 +76,7 @@ public interface ProviderResourceTypesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of resource types of a resource provider along with {@link Response}.
+     * @return list of resource types of a resource provider.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ProviderResourceTypeListResultInner> listWithResponse(

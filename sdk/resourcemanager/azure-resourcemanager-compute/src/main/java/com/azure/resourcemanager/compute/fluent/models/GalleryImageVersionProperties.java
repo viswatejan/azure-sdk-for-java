@@ -10,11 +10,14 @@ import com.azure.resourcemanager.compute.models.GalleryImageVersionPropertiesPro
 import com.azure.resourcemanager.compute.models.GalleryImageVersionPublishingProfile;
 import com.azure.resourcemanager.compute.models.GalleryImageVersionStorageProfile;
 import com.azure.resourcemanager.compute.models.ReplicationStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Describes the properties of a gallery image version. */
 @Fluent
 public final class GalleryImageVersionProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GalleryImageVersionProperties.class);
+
     /*
      * The publishing profile of a gallery image Version.
      */
@@ -109,7 +112,7 @@ public final class GalleryImageVersionProperties {
             publishingProfile().validate();
         }
         if (storageProfile() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property storageProfile in model GalleryImageVersionProperties"));
@@ -120,6 +123,4 @@ public final class GalleryImageVersionProperties {
             replicationStatus().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(GalleryImageVersionProperties.class);
 }

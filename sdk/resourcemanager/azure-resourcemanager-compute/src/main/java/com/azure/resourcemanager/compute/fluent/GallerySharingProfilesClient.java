@@ -27,8 +27,7 @@ public interface GallerySharingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the gallery sharing profile update along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -43,7 +42,7 @@ public interface GallerySharingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of specifies information about the gallery sharing profile update.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<SharingUpdateInner>, SharingUpdateInner> beginUpdateAsync(
@@ -58,7 +57,7 @@ public interface GallerySharingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of specifies information about the gallery sharing profile update.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SharingUpdateInner>, SharingUpdateInner> beginUpdate(
@@ -74,7 +73,7 @@ public interface GallerySharingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of specifies information about the gallery sharing profile update.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<SharingUpdateInner>, SharingUpdateInner> beginUpdate(
@@ -89,7 +88,7 @@ public interface GallerySharingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.compute.models.ApiErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specifies information about the gallery sharing profile update on successful completion of {@link Mono}.
+     * @return specifies information about the gallery sharing profile update.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<SharingUpdateInner> updateAsync(

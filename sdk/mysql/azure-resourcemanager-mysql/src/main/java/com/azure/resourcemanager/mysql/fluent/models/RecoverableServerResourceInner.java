@@ -4,31 +4,54 @@
 
 package com.azure.resourcemanager.mysql.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A recoverable server resource. */
-@Fluent
-public final class RecoverableServerResourceInner extends ProxyResource {
+@JsonFlatten
+@Immutable
+public class RecoverableServerResourceInner extends ProxyResource {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(RecoverableServerResourceInner.class);
 
     /*
-     * Resource properties.
+     * The last available backup date time.
      */
-    @JsonProperty(value = "properties")
-    private RecoverableServerProperties innerProperties;
+    @JsonProperty(value = "properties.lastAvailableBackupDateTime", access = JsonProperty.Access.WRITE_ONLY)
+    private String lastAvailableBackupDateTime;
 
-    /**
-     * Get the innerProperties property: Resource properties.
-     *
-     * @return the innerProperties value.
+    /*
+     * The service level objective
      */
-    private RecoverableServerProperties innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.serviceLevelObjective", access = JsonProperty.Access.WRITE_ONLY)
+    private String serviceLevelObjective;
+
+    /*
+     * Edition of the performance tier.
+     */
+    @JsonProperty(value = "properties.edition", access = JsonProperty.Access.WRITE_ONLY)
+    private String edition;
+
+    /*
+     * vCore associated with the service level objective
+     */
+    @JsonProperty(value = "properties.vCore", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer vCore;
+
+    /*
+     * Hardware generation associated with the service level objective
+     */
+    @JsonProperty(value = "properties.hardwareGeneration", access = JsonProperty.Access.WRITE_ONLY)
+    private String hardwareGeneration;
+
+    /*
+     * The MySQL version
+     */
+    @JsonProperty(value = "properties.version", access = JsonProperty.Access.WRITE_ONLY)
+    private String version;
 
     /**
      * Get the lastAvailableBackupDateTime property: The last available backup date time.
@@ -36,7 +59,7 @@ public final class RecoverableServerResourceInner extends ProxyResource {
      * @return the lastAvailableBackupDateTime value.
      */
     public String lastAvailableBackupDateTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastAvailableBackupDateTime();
+        return this.lastAvailableBackupDateTime;
     }
 
     /**
@@ -45,7 +68,7 @@ public final class RecoverableServerResourceInner extends ProxyResource {
      * @return the serviceLevelObjective value.
      */
     public String serviceLevelObjective() {
-        return this.innerProperties() == null ? null : this.innerProperties().serviceLevelObjective();
+        return this.serviceLevelObjective;
     }
 
     /**
@@ -54,7 +77,7 @@ public final class RecoverableServerResourceInner extends ProxyResource {
      * @return the edition value.
      */
     public String edition() {
-        return this.innerProperties() == null ? null : this.innerProperties().edition();
+        return this.edition;
     }
 
     /**
@@ -63,7 +86,7 @@ public final class RecoverableServerResourceInner extends ProxyResource {
      * @return the vCore value.
      */
     public Integer vCore() {
-        return this.innerProperties() == null ? null : this.innerProperties().vCore();
+        return this.vCore;
     }
 
     /**
@@ -72,7 +95,7 @@ public final class RecoverableServerResourceInner extends ProxyResource {
      * @return the hardwareGeneration value.
      */
     public String hardwareGeneration() {
-        return this.innerProperties() == null ? null : this.innerProperties().hardwareGeneration();
+        return this.hardwareGeneration;
     }
 
     /**
@@ -81,7 +104,7 @@ public final class RecoverableServerResourceInner extends ProxyResource {
      * @return the version value.
      */
     public String version() {
-        return this.innerProperties() == null ? null : this.innerProperties().version();
+        return this.version;
     }
 
     /**
@@ -90,8 +113,5 @@ public final class RecoverableServerResourceInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
-        }
     }
 }

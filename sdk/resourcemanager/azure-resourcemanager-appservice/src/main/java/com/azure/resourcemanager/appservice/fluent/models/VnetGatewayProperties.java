@@ -6,11 +6,14 @@ package com.azure.resourcemanager.appservice.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** VnetGateway resource specific properties. */
 @Fluent
 public final class VnetGatewayProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VnetGatewayProperties.class);
+
     /*
      * The Virtual Network name.
      */
@@ -70,12 +73,10 @@ public final class VnetGatewayProperties {
      */
     public void validate() {
         if (vpnPackageUri() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property vpnPackageUri in model VnetGatewayProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(VnetGatewayProperties.class);
 }

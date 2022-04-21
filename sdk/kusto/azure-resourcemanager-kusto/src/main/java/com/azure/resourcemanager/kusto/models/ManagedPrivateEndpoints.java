@@ -34,7 +34,7 @@ public interface ManagedPrivateEndpoints {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response}.
+     * @return the result returned from a check name availability request.
      */
     Response<CheckNameResult> checkNameAvailabilityWithResponse(
         String resourceGroupName,
@@ -50,7 +50,7 @@ public interface ManagedPrivateEndpoints {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list managed private endpoints operation response as paginated response with {@link PagedIterable}.
+     * @return the list managed private endpoints operation response.
      */
     PagedIterable<ManagedPrivateEndpoint> list(String resourceGroupName, String clusterName);
 
@@ -63,7 +63,7 @@ public interface ManagedPrivateEndpoints {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list managed private endpoints operation response as paginated response with {@link PagedIterable}.
+     * @return the list managed private endpoints operation response.
      */
     PagedIterable<ManagedPrivateEndpoint> list(String resourceGroupName, String clusterName, Context context);
 
@@ -90,7 +90,7 @@ public interface ManagedPrivateEndpoints {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a managed private endpoint along with {@link Response}.
+     * @return a managed private endpoint.
      */
     Response<ManagedPrivateEndpoint> getWithResponse(
         String resourceGroupName, String clusterName, String managedPrivateEndpointName, Context context);
@@ -127,7 +127,7 @@ public interface ManagedPrivateEndpoints {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a managed private endpoint along with {@link Response}.
+     * @return a managed private endpoint.
      */
     ManagedPrivateEndpoint getById(String id);
 
@@ -139,7 +139,7 @@ public interface ManagedPrivateEndpoints {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a managed private endpoint along with {@link Response}.
+     * @return a managed private endpoint.
      */
     Response<ManagedPrivateEndpoint> getByIdWithResponse(String id, Context context);
 

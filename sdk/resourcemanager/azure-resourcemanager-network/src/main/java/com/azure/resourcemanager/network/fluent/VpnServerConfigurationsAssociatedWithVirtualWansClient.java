@@ -29,8 +29,7 @@ public interface VpnServerConfigurationsAssociatedWithVirtualWansClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnServerConfigurations list associated with VirtualWan Response along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return vpnServerConfigurations list associated with VirtualWan Response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> listWithResponseAsync(String resourceGroupName, String virtualWanName);
@@ -43,7 +42,7 @@ public interface VpnServerConfigurationsAssociatedWithVirtualWansClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of vpnServerConfigurations list associated with VirtualWan Response.
+     * @return vpnServerConfigurations list associated with VirtualWan Response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<VpnServerConfigurationsResponseInner>, VpnServerConfigurationsResponseInner> beginListAsync(
@@ -57,7 +56,7 @@ public interface VpnServerConfigurationsAssociatedWithVirtualWansClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of vpnServerConfigurations list associated with VirtualWan Response.
+     * @return vpnServerConfigurations list associated with VirtualWan Response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<VpnServerConfigurationsResponseInner>, VpnServerConfigurationsResponseInner> beginList(
@@ -72,7 +71,7 @@ public interface VpnServerConfigurationsAssociatedWithVirtualWansClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of vpnServerConfigurations list associated with VirtualWan Response.
+     * @return vpnServerConfigurations list associated with VirtualWan Response.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<VpnServerConfigurationsResponseInner>, VpnServerConfigurationsResponseInner> beginList(
@@ -86,8 +85,7 @@ public interface VpnServerConfigurationsAssociatedWithVirtualWansClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vpnServerConfigurations list associated with VirtualWan Response on successful completion of {@link
-     *     Mono}.
+     * @return vpnServerConfigurations list associated with VirtualWan Response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<VpnServerConfigurationsResponseInner> listAsync(String resourceGroupName, String virtualWanName);

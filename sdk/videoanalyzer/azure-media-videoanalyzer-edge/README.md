@@ -108,8 +108,10 @@ private static PipelineTopology buildPipeLineTopology() {
         .setSinks(Arrays.asList(msgSink))
         .setProcessors(Arrays.asList(httpExtension));
 
-    return new PipelineTopology(TOPOLOGY_NAME)
+    PipelineTopology pipelineTopology = new PipelineTopology(TOPOLOGY_NAME)
         .setProperties(pipeProps);
+
+    return pipelineTopology;
 }
 ```
 
@@ -132,8 +134,10 @@ private static LivePipeline buildLivePipeline() {
         .setParameters(Arrays.asList(urlParam, userParam, passParam, hubParam))
         .setTopologyName(TOPOLOGY_NAME);
 
-    return new LivePipeline(LIVE_PIPELINE_NAME)
+    LivePipeline livePipeline = new LivePipeline(LIVE_PIPELINE_NAME)
         .setProperties(livePipelineProps);
+
+    return livePipeline;
 }
 ```
 

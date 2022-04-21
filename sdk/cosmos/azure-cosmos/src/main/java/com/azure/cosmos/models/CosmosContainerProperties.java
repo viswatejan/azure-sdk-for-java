@@ -369,11 +369,6 @@ public final class CosmosContainerProperties {
                 public String getSelfLink(CosmosContainerProperties cosmosContainerProperties) {
                     return cosmosContainerProperties.getSelfLink();
                 }
-
-                @Override
-                public void setSelfLink(CosmosContainerProperties cosmosContainerProperties, String selfLink) {
-                    cosmosContainerProperties.documentCollection.setSelfLink(selfLink);
-                }
             });
     }
 }

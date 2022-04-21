@@ -3,7 +3,7 @@
 
 package com.azure.ai.formrecognizer.administration.models;
 
-import com.azure.ai.formrecognizer.implementation.util.DocumentModelOperationErrorHelper;
+import com.azure.ai.formrecognizer.implementation.util.FormRecognizerErrorHelper;
 
 import java.util.List;
 
@@ -132,7 +132,7 @@ public final class DocumentModelOperationError {
     }
 
     static {
-        DocumentModelOperationErrorHelper.setAccessor(new DocumentModelOperationErrorHelper.DocumentModelOperationErrorAccessor() {
+        FormRecognizerErrorHelper.setAccessor(new FormRecognizerErrorHelper.FormRecognizerErrorAccessor() {
             @Override
             public void setCode(DocumentModelOperationError documentModelOperationError, String errorCode) {
                 documentModelOperationError.setCode(errorCode);

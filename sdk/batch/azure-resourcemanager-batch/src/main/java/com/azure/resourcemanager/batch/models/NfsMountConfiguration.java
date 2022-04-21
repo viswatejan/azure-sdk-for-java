@@ -6,11 +6,14 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Information used to connect to an NFS file system. */
 @Fluent
 public final class NfsMountConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(NfsMountConfiguration.class);
+
     /*
      * The URI of the file system to mount.
      */
@@ -106,17 +109,15 @@ public final class NfsMountConfiguration {
      */
     public void validate() {
         if (source() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property source in model NfsMountConfiguration"));
         }
         if (relativeMountPath() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property relativeMountPath in model NfsMountConfiguration"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(NfsMountConfiguration.class);
 }

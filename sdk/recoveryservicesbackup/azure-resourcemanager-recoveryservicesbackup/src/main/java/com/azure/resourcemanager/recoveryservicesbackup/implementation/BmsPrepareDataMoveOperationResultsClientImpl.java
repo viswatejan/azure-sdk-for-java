@@ -86,8 +86,7 @@ public final class BmsPrepareDataMoveOperationResultsClientImpl implements BmsPr
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation result response for Vault Storage Config along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return operation result response for Vault Storage Config.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VaultStorageConfigOperationResultResponseInner>> getWithResponseAsync(
@@ -141,8 +140,7 @@ public final class BmsPrepareDataMoveOperationResultsClientImpl implements BmsPr
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation result response for Vault Storage Config along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return operation result response for Vault Storage Config.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VaultStorageConfigOperationResultResponseInner>> getWithResponseAsync(
@@ -192,7 +190,7 @@ public final class BmsPrepareDataMoveOperationResultsClientImpl implements BmsPr
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation result response for Vault Storage Config on successful completion of {@link Mono}.
+     * @return operation result response for Vault Storage Config.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VaultStorageConfigOperationResultResponseInner> getAsync(
@@ -235,7 +233,7 @@ public final class BmsPrepareDataMoveOperationResultsClientImpl implements BmsPr
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation result response for Vault Storage Config along with {@link Response}.
+     * @return operation result response for Vault Storage Config.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<VaultStorageConfigOperationResultResponseInner> getWithResponse(

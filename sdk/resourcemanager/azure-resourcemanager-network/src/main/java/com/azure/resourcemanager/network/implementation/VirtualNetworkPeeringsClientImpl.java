@@ -154,7 +154,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -213,7 +213,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -268,7 +268,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -291,7 +291,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -313,7 +313,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -331,7 +331,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -349,7 +349,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(
@@ -369,7 +369,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -420,8 +420,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified virtual network peering along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified virtual network peering.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<VirtualNetworkPeeringInner>> getWithResponseAsync(
@@ -480,8 +479,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified virtual network peering along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified virtual network peering.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VirtualNetworkPeeringInner>> getWithResponseAsync(
@@ -536,7 +534,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified virtual network peering on successful completion of {@link Mono}.
+     * @return the specified virtual network peering.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<VirtualNetworkPeeringInner> getAsync(
@@ -579,7 +577,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified virtual network peering along with {@link Response}.
+     * @return the specified virtual network peering.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<VirtualNetworkPeeringInner> getWithResponse(
@@ -600,8 +598,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return peerings in a virtual network resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return peerings in a virtual network resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -678,8 +675,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return peerings in a virtual network resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return peerings in a virtual network resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -753,7 +749,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of peerings in a virtual network resource.
+     * @return peerings in a virtual network resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<PollResult<VirtualNetworkPeeringInner>, VirtualNetworkPeeringInner> beginCreateOrUpdateAsync(
@@ -793,7 +789,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of peerings in a virtual network resource.
+     * @return peerings in a virtual network resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<VirtualNetworkPeeringInner>, VirtualNetworkPeeringInner> beginCreateOrUpdateAsync(
@@ -835,7 +831,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of peerings in a virtual network resource.
+     * @return peerings in a virtual network resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualNetworkPeeringInner>, VirtualNetworkPeeringInner> beginCreateOrUpdate(
@@ -867,7 +863,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of peerings in a virtual network resource.
+     * @return peerings in a virtual network resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualNetworkPeeringInner>, VirtualNetworkPeeringInner> beginCreateOrUpdate(
@@ -900,7 +896,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return peerings in a virtual network resource on successful completion of {@link Mono}.
+     * @return peerings in a virtual network resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<VirtualNetworkPeeringInner> createOrUpdateAsync(
@@ -930,7 +926,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return peerings in a virtual network resource on successful completion of {@link Mono}.
+     * @return peerings in a virtual network resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<VirtualNetworkPeeringInner> createOrUpdateAsync(
@@ -963,7 +959,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return peerings in a virtual network resource on successful completion of {@link Mono}.
+     * @return peerings in a virtual network resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VirtualNetworkPeeringInner> createOrUpdateAsync(
@@ -1086,8 +1082,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all virtual network peerings in a virtual network along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all virtual network peerings in a virtual network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkPeeringInner>> listSinglePageAsync(
@@ -1147,8 +1142,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all virtual network peerings in a virtual network along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all virtual network peerings in a virtual network.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkPeeringInner>> listSinglePageAsync(
@@ -1204,7 +1198,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all virtual network peerings in a virtual network as paginated response with {@link PagedFlux}.
+     * @return all virtual network peerings in a virtual network.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<VirtualNetworkPeeringInner> listAsync(String resourceGroupName, String virtualNetworkName) {
@@ -1222,7 +1216,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all virtual network peerings in a virtual network as paginated response with {@link PagedFlux}.
+     * @return all virtual network peerings in a virtual network.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualNetworkPeeringInner> listAsync(
@@ -1240,7 +1234,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all virtual network peerings in a virtual network as paginated response with {@link PagedIterable}.
+     * @return all virtual network peerings in a virtual network.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<VirtualNetworkPeeringInner> list(String resourceGroupName, String virtualNetworkName) {
@@ -1256,7 +1250,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all virtual network peerings in a virtual network as paginated response with {@link PagedIterable}.
+     * @return all virtual network peerings in a virtual network.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<VirtualNetworkPeeringInner> list(
@@ -1271,8 +1265,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListSubnets API service call along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return response for ListSubnets API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkPeeringInner>> listNextSinglePageAsync(String nextLink) {
@@ -1308,8 +1301,7 @@ public final class VirtualNetworkPeeringsClientImpl implements VirtualNetworkPee
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListSubnets API service call along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return response for ListSubnets API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualNetworkPeeringInner>> listNextSinglePageAsync(String nextLink, Context context) {

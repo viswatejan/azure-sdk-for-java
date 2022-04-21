@@ -13,6 +13,7 @@ import com.azure.cosmos.implementation.PartitionKeyRange;
 import com.azure.cosmos.implementation.PartitionKeyRangeGoneRetryPolicy;
 import com.azure.cosmos.implementation.PathsHelper;
 import com.azure.cosmos.implementation.QueryMetrics;
+import com.azure.cosmos.implementation.Resource;
 import com.azure.cosmos.implementation.ResourceType;
 import com.azure.cosmos.implementation.RxDocumentServiceRequest;
 import com.azure.cosmos.implementation.Utils.ValueHolder;
@@ -33,10 +34,10 @@ import com.azure.cosmos.models.CosmosQueryRequestOptions;
 import com.azure.cosmos.models.FeedResponse;
 import com.azure.cosmos.models.ModelBridgeInternal;
 import com.azure.cosmos.models.SqlQuerySpec;
-import com.fasterxml.jackson.databind.JsonNode;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -50,18 +51,18 @@ import static com.azure.cosmos.models.ModelBridgeInternal.getPartitionKeyRangeId
  * While this class is public, but it is not part of our published public APIs.
  * This is meant to be internally used only by our sdk.
  */
-public class DefaultDocumentQueryExecutionContext<T> extends DocumentQueryExecutionContextBase<T> {
+public class DefaultDocumentQueryExecutionContext<T extends Resource> extends DocumentQueryExecutionContextBase<T> {
 
+    private boolean isContinuationExpected;
     private volatile int retries = -1;
 
     private final SchedulingStopwatch fetchSchedulingMetrics;
     private final FetchExecutionRangeAccumulator fetchExecutionRangeAccumulator;
     private static final String DEFAULT_PARTITION_RANGE = "00-FF";
-    private final Function<JsonNode, T> factoryMethod;
 
     public DefaultDocumentQueryExecutionContext(DiagnosticsClientContext diagnosticsClientContext, IDocumentQueryClient client, ResourceType resourceTypeEnum,
                                                 Class<T> resourceType, SqlQuerySpec query, CosmosQueryRequestOptions cosmosQueryRequestOptions, String resourceLink,
-                                                UUID correlatedActivityId) {
+                                                UUID correlatedActivityId, boolean isContinuationExpected) {
 
         super(diagnosticsClientContext, client,
                 resourceTypeEnum,
@@ -69,15 +70,13 @@ public class DefaultDocumentQueryExecutionContext<T> extends DocumentQueryExecut
                 query,
                 cosmosQueryRequestOptions,
                 resourceLink,
+                false,
                 correlatedActivityId);
 
+        this.isContinuationExpected = isContinuationExpected;
         this.fetchSchedulingMetrics = new SchedulingStopwatch();
         this.fetchSchedulingMetrics.ready();
         this.fetchExecutionRangeAccumulator = new FetchExecutionRangeAccumulator(DEFAULT_PARTITION_RANGE);
-        this.factoryMethod = DocumentQueryExecutionContextBase.getEffectiveFactoryMethod(
-            cosmosQueryRequestOptions,
-            false,
-            resourceType);
     }
 
     protected PartitionKeyInternal getPartitionKeyInternal() {
@@ -109,14 +108,13 @@ public class DefaultDocumentQueryExecutionContext<T> extends DocumentQueryExecut
         Integer maxItemCount = ModelBridgeInternal.getMaxItemCountFromQueryRequestOptions(newCosmosQueryRequestOptions);
         int maxPageSize = maxItemCount != null ? maxItemCount : Constants.Properties.DEFAULT_MAX_PAGE_SIZE;
 
-        BiFunction<String, Integer, RxDocumentServiceRequest> createRequestFunc = this::createRequestAsync;
+        BiFunction<String, Integer, RxDocumentServiceRequest> createRequestFunc = (continuationToken, pageSize) -> this.createRequestAsync(continuationToken, pageSize);
 
         // TODO: clean up if we want to use single vs observable.
         Function<RxDocumentServiceRequest, Mono<FeedResponse<T>>> executeFunc = executeInternalAsyncFunc();
 
         return Paginator
-    			.getPaginatedQueryResultAsObservable(
-    			    newCosmosQueryRequestOptions, createRequestFunc, executeFunc, maxPageSize);
+    			.getPaginatedQueryResultAsObservable(newCosmosQueryRequestOptions, createRequestFunc, executeFunc, resourceType, maxPageSize);
     }
 
     public Mono<List<PartitionKeyRange>> getTargetPartitionKeyRanges(String resourceId, List<Range<String>> queryRanges) {
@@ -170,9 +168,7 @@ public class DefaultDocumentQueryExecutionContext<T> extends DocumentQueryExecut
             this.fetchSchedulingMetrics.start();
             return BackoffRetryUtility.executeRetry(() -> {
                 ++this.retries;
-                return executeRequestAsync(
-                    this.factoryMethod,
-                    req);
+                return executeRequestAsync(req);
             }, finalRetryPolicyInstance)
                     .map(tFeedResponse -> {
                         this.fetchSchedulingMetrics.stop();
@@ -188,7 +184,7 @@ public class DefaultDocumentQueryExecutionContext<T> extends DocumentQueryExecut
                                             new ClientSideMetrics(this.retries,
                                                     tFeedResponse.getRequestCharge(),
                                                     this.fetchExecutionRangeAccumulator.getExecutionRanges(),
-                                                Collections.singletonList(schedulingTimeSpanMap)),
+                                                    Arrays.asList(schedulingTimeSpanMap)),
                                             tFeedResponse.getActivityId(),
                                         tFeedResponse.getResponseHeaders().getOrDefault(HttpConstants.HttpHeaders.INDEX_UTILIZATION, null));
                             String pkrId = tFeedResponse.getResponseHeaders().get(HttpConstants.HttpHeaders.PARTITION_KEY_RANGE_ID);
@@ -223,18 +219,20 @@ public class DefaultDocumentQueryExecutionContext<T> extends DocumentQueryExecut
 
     private static boolean isClientSideContinuationToken(String continuationToken) {
         if (continuationToken != null) {
-            ValueHolder<CompositeContinuationToken> outCompositeContinuationToken = new ValueHolder<>();
+            ValueHolder<CompositeContinuationToken> outCompositeContinuationToken = new ValueHolder<CompositeContinuationToken>();
             if (CompositeContinuationToken.tryParse(continuationToken, outCompositeContinuationToken)) {
                 return true;
             }
 
-            ValueHolder<OrderByContinuationToken> outOrderByContinuationToken = new ValueHolder<>();
+            ValueHolder<OrderByContinuationToken> outOrderByContinuationToken = new ValueHolder<OrderByContinuationToken>();
             if (OrderByContinuationToken.tryParse(continuationToken, outOrderByContinuationToken)) {
                 return true;
             }
 
-            ValueHolder<TakeContinuationToken> outTakeContinuationToken = new ValueHolder<>();
-            return TakeContinuationToken.tryParse(continuationToken, outTakeContinuationToken);
+            ValueHolder<TakeContinuationToken> outTakeContinuationToken = new ValueHolder<TakeContinuationToken>();
+            if (TakeContinuationToken.tryParse(continuationToken, outTakeContinuationToken)) {
+                return true;
+            }
         }
 
         return false;

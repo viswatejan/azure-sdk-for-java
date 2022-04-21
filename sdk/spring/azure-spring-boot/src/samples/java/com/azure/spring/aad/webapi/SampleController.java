@@ -61,13 +61,11 @@ public class SampleController {
      * @param graph authorized client for Graph
      * @return Response with graph data
      */
-    // BEGIN: readme-sample-callGraph
     @PreAuthorize("hasAuthority('SCOPE_Obo.Graph.Read')")
     @GetMapping("call-graph")
     public String callGraph(@RegisteredOAuth2AuthorizedClient("graph") OAuth2AuthorizedClient graph) {
         return callMicrosoftGraphMeEndpoint(graph);
     }
-    // END: readme-sample-callGraph
 
     /**
      * Call custom resources, combine all the response and return.
@@ -75,14 +73,12 @@ public class SampleController {
      * @param webapiBClient authorized client for Custom
      * @return Response Graph and Custom data.
      */
-    // BEGIN: readme-sample-callCustom
     @PreAuthorize("hasAuthority('SCOPE_Obo.WebApiA.ExampleScope')")
     @GetMapping("webapiA/webapiB")
     public String callCustom(
         @RegisteredOAuth2AuthorizedClient("webapiB") OAuth2AuthorizedClient webapiBClient) {
         return callWebApiBEndpoint(webapiBClient);
     }
-    // END: readme-sample-callCustom
 
     /**
      * Call microsoft graph me endpoint
@@ -135,7 +131,6 @@ public class SampleController {
      *
      * @return Respond to protected data.
      */
-    // BEGIN: readme-sample-callClientCredential
     @PreAuthorize("hasAuthority('SCOPE_Obo.WebApiA.ExampleScope')")
     @GetMapping("webapiA/webapiC")
     public String callClientCredential() {
@@ -149,5 +144,4 @@ public class SampleController {
         LOGGER.info("Response from Client Credential: {}", body);
         return "client Credential response " + (null != body ? "success." : "failed.");
     }
-    // END: readme-sample-callClientCredential
 }

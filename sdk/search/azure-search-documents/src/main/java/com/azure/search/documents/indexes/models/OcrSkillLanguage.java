@@ -91,9 +91,6 @@ public final class OcrSkillLanguage extends ExpandableStringEnum<OcrSkillLanguag
     /** Static value sk for OcrSkillLanguage. */
     public static final OcrSkillLanguage SK = fromString("sk");
 
-    /** Static value unk for OcrSkillLanguage. */
-    public static final OcrSkillLanguage UNK = fromString("unk");
-
     /**
      * Creates or finds a OcrSkillLanguage from its string representation.
      *

@@ -11,20 +11,19 @@ import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.core.util.serializer.SerializerAdapter;
-import com.azure.iot.deviceupdate.DeviceUpdateServiceVersion;
 
 /** Initializes a new instance of the DeviceUpdateClient type. */
 public final class DeviceUpdateClientImpl {
     /** Account endpoint. */
-    private final String endpoint;
+    private final String accountEndpoint;
 
     /**
      * Gets Account endpoint.
      *
-     * @return the endpoint value.
+     * @return the accountEndpoint value.
      */
-    public String getEndpoint() {
-        return this.endpoint;
+    public String getAccountEndpoint() {
+        return this.accountEndpoint;
     }
 
     /** Account instance identifier. */
@@ -37,18 +36,6 @@ public final class DeviceUpdateClientImpl {
      */
     public String getInstanceId() {
         return this.instanceId;
-    }
-
-    /** Service version. */
-    private final DeviceUpdateServiceVersion serviceVersion;
-
-    /**
-     * Gets Service version.
-     *
-     * @return the serviceVersion value.
-     */
-    public DeviceUpdateServiceVersion getServiceVersion() {
-        return this.serviceVersion;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -75,59 +62,67 @@ public final class DeviceUpdateClientImpl {
         return this.serializerAdapter;
     }
 
-    /** The DeviceUpdatesImpl object to access its operations. */
-    private final DeviceUpdatesImpl deviceUpdates;
+    /** The UpdatesImpl object to access its operations. */
+    private final UpdatesImpl updates;
 
     /**
-     * Gets the DeviceUpdatesImpl object to access its operations.
+     * Gets the UpdatesImpl object to access its operations.
      *
-     * @return the DeviceUpdatesImpl object.
+     * @return the UpdatesImpl object.
      */
-    public DeviceUpdatesImpl getDeviceUpdates() {
-        return this.deviceUpdates;
+    public UpdatesImpl getUpdates() {
+        return this.updates;
     }
 
-    /** The DeviceManagementsImpl object to access its operations. */
-    private final DeviceManagementsImpl deviceManagements;
+    /** The DevicesImpl object to access its operations. */
+    private final DevicesImpl devices;
 
     /**
-     * Gets the DeviceManagementsImpl object to access its operations.
+     * Gets the DevicesImpl object to access its operations.
      *
-     * @return the DeviceManagementsImpl object.
+     * @return the DevicesImpl object.
      */
-    public DeviceManagementsImpl getDeviceManagements() {
-        return this.deviceManagements;
+    public DevicesImpl getDevices() {
+        return this.devices;
+    }
+
+    /** The DeploymentsImpl object to access its operations. */
+    private final DeploymentsImpl deployments;
+
+    /**
+     * Gets the DeploymentsImpl object to access its operations.
+     *
+     * @return the DeploymentsImpl object.
+     */
+    public DeploymentsImpl getDeployments() {
+        return this.deployments;
     }
 
     /**
      * Initializes an instance of DeviceUpdateClient client.
      *
-     * @param endpoint Account endpoint.
+     * @param accountEndpoint Account endpoint.
      * @param instanceId Account instance identifier.
-     * @param serviceVersion Service version.
      */
-    public DeviceUpdateClientImpl(String endpoint, String instanceId, DeviceUpdateServiceVersion serviceVersion) {
+    public DeviceUpdateClientImpl(String accountEndpoint, String instanceId) {
         this(
                 new HttpPipelineBuilder()
                         .policies(new UserAgentPolicy(), new RetryPolicy(), new CookiePolicy())
                         .build(),
                 JacksonAdapter.createDefaultSerializerAdapter(),
-                endpoint,
-                instanceId,
-                serviceVersion);
+                accountEndpoint,
+                instanceId);
     }
 
     /**
      * Initializes an instance of DeviceUpdateClient client.
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
-     * @param endpoint Account endpoint.
+     * @param accountEndpoint Account endpoint.
      * @param instanceId Account instance identifier.
-     * @param serviceVersion Service version.
      */
-    public DeviceUpdateClientImpl(
-            HttpPipeline httpPipeline, String endpoint, String instanceId, DeviceUpdateServiceVersion serviceVersion) {
-        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, instanceId, serviceVersion);
+    public DeviceUpdateClientImpl(HttpPipeline httpPipeline, String accountEndpoint, String instanceId) {
+        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), accountEndpoint, instanceId);
     }
 
     /**
@@ -135,22 +130,17 @@ public final class DeviceUpdateClientImpl {
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
-     * @param endpoint Account endpoint.
+     * @param accountEndpoint Account endpoint.
      * @param instanceId Account instance identifier.
-     * @param serviceVersion Service version.
      */
     public DeviceUpdateClientImpl(
-            HttpPipeline httpPipeline,
-            SerializerAdapter serializerAdapter,
-            String endpoint,
-            String instanceId,
-            DeviceUpdateServiceVersion serviceVersion) {
+            HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, String accountEndpoint, String instanceId) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
-        this.endpoint = endpoint;
+        this.accountEndpoint = accountEndpoint;
         this.instanceId = instanceId;
-        this.serviceVersion = serviceVersion;
-        this.deviceUpdates = new DeviceUpdatesImpl(this);
-        this.deviceManagements = new DeviceManagementsImpl(this);
+        this.updates = new UpdatesImpl(this);
+        this.devices = new DevicesImpl(this);
+        this.deployments = new DeploymentsImpl(this);
     }
 }

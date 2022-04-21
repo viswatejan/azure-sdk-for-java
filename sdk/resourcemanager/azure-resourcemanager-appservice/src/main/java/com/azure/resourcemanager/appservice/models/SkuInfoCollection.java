@@ -7,12 +7,15 @@ package com.azure.resourcemanager.appservice.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.fluent.models.SkuInfoInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Collection of SKU information. */
 @Fluent
 public final class SkuInfoCollection {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SkuInfoCollection.class);
+
     /*
      * Collection of resources.
      */
@@ -61,13 +64,11 @@ public final class SkuInfoCollection {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model SkuInfoCollection"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SkuInfoCollection.class);
 }

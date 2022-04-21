@@ -14,7 +14,7 @@ import java.util.List;
  * Performs custom model recognition operations.
  */
 public class DetectLanguageTest extends ServiceTest<PerfStressOptions> {
-    final List<String> documents = new ArrayList<>();
+    List<String> documents = new ArrayList<>();
 
     /**
      * The DetectLanguageTest class.

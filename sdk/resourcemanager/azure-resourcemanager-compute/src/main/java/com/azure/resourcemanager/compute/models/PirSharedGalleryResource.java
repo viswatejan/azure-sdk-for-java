@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.models.SharedGalleryIdentifier;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Base information about the shared gallery resource in pir. */
 @Fluent
 public class PirSharedGalleryResource extends PirResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PirSharedGalleryResource.class);
+
     /*
      * The identifier information of shared gallery.
      */

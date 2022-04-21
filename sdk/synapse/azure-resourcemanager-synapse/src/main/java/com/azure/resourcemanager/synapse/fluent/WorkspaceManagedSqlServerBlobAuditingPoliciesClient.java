@@ -13,7 +13,6 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.synapse.fluent.models.ServerBlobAuditingPolicyInner;
 import com.azure.resourcemanager.synapse.models.BlobAuditingPolicyName;
-import reactor.core.publisher.Mono;
 
 /**
  * An instance of this class provides access to all the operations defined in
@@ -45,7 +44,7 @@ public interface WorkspaceManagedSqlServerBlobAuditingPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace managed sql server's blob auditing policy along with {@link Response}.
+     * @return a workspace managed sql server's blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServerBlobAuditingPolicyInner> getWithResponse(
@@ -61,7 +60,7 @@ public interface WorkspaceManagedSqlServerBlobAuditingPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a server blob auditing policy along with {@link Response} on successful completion of {@link Mono}.
+     * @return a server blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ServerBlobAuditingPolicyInner>, ServerBlobAuditingPolicyInner> beginCreateOrUpdate(
@@ -81,7 +80,7 @@ public interface WorkspaceManagedSqlServerBlobAuditingPoliciesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a server blob auditing policy along with {@link Response} on successful completion of {@link Mono}.
+     * @return a server blob auditing policy.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ServerBlobAuditingPolicyInner>, ServerBlobAuditingPolicyInner> beginCreateOrUpdate(

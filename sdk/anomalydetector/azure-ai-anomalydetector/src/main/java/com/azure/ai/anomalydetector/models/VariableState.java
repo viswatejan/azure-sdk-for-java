@@ -7,6 +7,7 @@ package com.azure.ai.anomalydetector.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /** The VariableState model. */
 @Fluent
@@ -18,28 +19,34 @@ public final class VariableState {
     private String variable;
 
     /*
-     * Proportion of NaN values filled of the variable.
+     * Merged NA ratio of a variable.
      */
     @JsonProperty(value = "filledNARatio")
     private Float filledNARatio;
 
     /*
-     * Number of effective points counted.
+     * Effective time-series points count.
      */
     @JsonProperty(value = "effectiveCount")
     private Integer effectiveCount;
 
     /*
-     * Start time of the variable.
+     * Start time of a variable
      */
     @JsonProperty(value = "startTime")
     private OffsetDateTime startTime;
 
     /*
-     * End time of the variable.
+     * End time of a variable
      */
     @JsonProperty(value = "endTime")
     private OffsetDateTime endTime;
+
+    /*
+     * Error message when parse variable
+     */
+    @JsonProperty(value = "errors")
+    private List<ErrorResponse> errors;
 
     /**
      * Get the variable property: Variable name.
@@ -62,7 +69,7 @@ public final class VariableState {
     }
 
     /**
-     * Get the filledNARatio property: Proportion of NaN values filled of the variable.
+     * Get the filledNARatio property: Merged NA ratio of a variable.
      *
      * @return the filledNARatio value.
      */
@@ -71,7 +78,7 @@ public final class VariableState {
     }
 
     /**
-     * Set the filledNARatio property: Proportion of NaN values filled of the variable.
+     * Set the filledNARatio property: Merged NA ratio of a variable.
      *
      * @param filledNARatio the filledNARatio value to set.
      * @return the VariableState object itself.
@@ -82,7 +89,7 @@ public final class VariableState {
     }
 
     /**
-     * Get the effectiveCount property: Number of effective points counted.
+     * Get the effectiveCount property: Effective time-series points count.
      *
      * @return the effectiveCount value.
      */
@@ -91,7 +98,7 @@ public final class VariableState {
     }
 
     /**
-     * Set the effectiveCount property: Number of effective points counted.
+     * Set the effectiveCount property: Effective time-series points count.
      *
      * @param effectiveCount the effectiveCount value to set.
      * @return the VariableState object itself.
@@ -102,7 +109,7 @@ public final class VariableState {
     }
 
     /**
-     * Get the startTime property: Start time of the variable.
+     * Get the startTime property: Start time of a variable.
      *
      * @return the startTime value.
      */
@@ -111,7 +118,7 @@ public final class VariableState {
     }
 
     /**
-     * Set the startTime property: Start time of the variable.
+     * Set the startTime property: Start time of a variable.
      *
      * @param startTime the startTime value to set.
      * @return the VariableState object itself.
@@ -122,7 +129,7 @@ public final class VariableState {
     }
 
     /**
-     * Get the endTime property: End time of the variable.
+     * Get the endTime property: End time of a variable.
      *
      * @return the endTime value.
      */
@@ -131,13 +138,33 @@ public final class VariableState {
     }
 
     /**
-     * Set the endTime property: End time of the variable.
+     * Set the endTime property: End time of a variable.
      *
      * @param endTime the endTime value to set.
      * @return the VariableState object itself.
      */
     public VariableState setEndTime(OffsetDateTime endTime) {
         this.endTime = endTime;
+        return this;
+    }
+
+    /**
+     * Get the errors property: Error message when parse variable.
+     *
+     * @return the errors value.
+     */
+    public List<ErrorResponse> getErrors() {
+        return this.errors;
+    }
+
+    /**
+     * Set the errors property: Error message when parse variable.
+     *
+     * @param errors the errors value to set.
+     * @return the VariableState object itself.
+     */
+    public VariableState setErrors(List<ErrorResponse> errors) {
+        this.errors = errors;
         return this;
     }
 }

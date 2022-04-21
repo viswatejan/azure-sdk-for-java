@@ -203,8 +203,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the certificate from the provisioning service along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the certificate from the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CertificateResponseInner>> getWithResponseAsync(
@@ -263,8 +262,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the certificate from the provisioning service along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the certificate from the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CertificateResponseInner>> getWithResponseAsync(
@@ -323,7 +321,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the certificate from the provisioning service on successful completion of {@link Mono}.
+     * @return the certificate from the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateResponseInner> getAsync(
@@ -348,7 +346,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the certificate from the provisioning service on successful completion of {@link Mono}.
+     * @return the certificate from the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateResponseInner> getAsync(
@@ -394,7 +392,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the certificate from the provisioning service along with {@link Response}.
+     * @return the certificate from the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CertificateResponseInner> getWithResponse(
@@ -419,7 +417,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate along with {@link Response} on successful completion of {@link Mono}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CertificateResponseInner>> createOrUpdateWithResponseAsync(
@@ -492,7 +490,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate along with {@link Response} on successful completion of {@link Mono}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CertificateResponseInner>> createOrUpdateWithResponseAsync(
@@ -562,7 +560,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate on successful completion of {@link Mono}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateResponseInner> createOrUpdateAsync(
@@ -593,7 +591,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate on successful completion of {@link Mono}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateResponseInner> createOrUpdateAsync(
@@ -651,7 +649,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate along with {@link Response}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CertificateResponseInner> createOrUpdateWithResponse(
@@ -685,7 +683,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -776,7 +774,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -864,7 +862,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -907,7 +905,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -995,7 +993,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1037,8 +1035,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the certificates tied to the provisioning service along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return all the certificates tied to the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CertificateListDescriptionInner>> listWithResponseAsync(
@@ -1089,8 +1086,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the certificates tied to the provisioning service along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return all the certificates tied to the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CertificateListDescriptionInner>> listWithResponseAsync(
@@ -1137,7 +1133,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the certificates tied to the provisioning service on successful completion of {@link Mono}.
+     * @return all the certificates tied to the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateListDescriptionInner> listAsync(String resourceGroupName, String provisioningServiceName) {
@@ -1176,7 +1172,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the certificates tied to the provisioning service along with {@link Response}.
+     * @return all the certificates tied to the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CertificateListDescriptionInner> listWithResponse(
@@ -1204,8 +1200,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the response of the verification code along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return description of the response of the verification code.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VerificationCodeResponseInner>> generateVerificationCodeWithResponseAsync(
@@ -1297,8 +1292,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the response of the verification code along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return description of the response of the verification code.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VerificationCodeResponseInner>> generateVerificationCodeWithResponseAsync(
@@ -1387,7 +1381,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the response of the verification code on successful completion of {@link Mono}.
+     * @return description of the response of the verification code.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VerificationCodeResponseInner> generateVerificationCodeAsync(
@@ -1438,7 +1432,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the response of the verification code on successful completion of {@link Mono}.
+     * @return description of the response of the verification code.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VerificationCodeResponseInner> generateVerificationCodeAsync(
@@ -1536,7 +1530,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the response of the verification code along with {@link Response}.
+     * @return description of the response of the verification code.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<VerificationCodeResponseInner> generateVerificationCodeWithResponse(
@@ -1591,7 +1585,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate along with {@link Response} on successful completion of {@link Mono}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CertificateResponseInner>> verifyCertificateWithResponseAsync(
@@ -1691,7 +1685,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate along with {@link Response} on successful completion of {@link Mono}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CertificateResponseInner>> verifyCertificateWithResponseAsync(
@@ -1788,7 +1782,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate on successful completion of {@link Mono}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateResponseInner> verifyCertificateAsync(
@@ -1842,7 +1836,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate on successful completion of {@link Mono}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateResponseInner> verifyCertificateAsync(
@@ -1952,7 +1946,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate along with {@link Response}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CertificateResponseInner> verifyCertificateWithResponse(

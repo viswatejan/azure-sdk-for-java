@@ -7,12 +7,15 @@ package com.azure.resourcemanager.containerservice.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.containerservice.models.OrchestratorVersionProfile;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The list of versions for supported orchestrators. */
 @Fluent
 public final class OrchestratorVersionProfileListResultInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OrchestratorVersionProfileListResultInner.class);
+
     /*
      * Id of the orchestrator version profile list result.
      */
@@ -103,7 +106,7 @@ public final class OrchestratorVersionProfileListResultInner {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model"
@@ -112,6 +115,4 @@ public final class OrchestratorVersionProfileListResultInner {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OrchestratorVersionProfileListResultInner.class);
 }

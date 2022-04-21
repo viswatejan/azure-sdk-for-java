@@ -56,9 +56,9 @@ public final class AppConfigurationPropertySourceLocator implements PropertySour
 
     private final KeyVaultSecretProvider keyVaultSecretProvider;
 
-    private static final AtomicBoolean configloaded = new AtomicBoolean(false);
+    private static AtomicBoolean configloaded = new AtomicBoolean(false);
 
-    private static final AtomicBoolean startup = new AtomicBoolean(true);
+    private static AtomicBoolean startup = new AtomicBoolean(true);
 
     /**
      * Loads all Azure App Configuration Property Sources configured.
@@ -103,7 +103,7 @@ public final class AppConfigurationPropertySourceLocator implements PropertySour
         while (configStoreIterator.hasNext()) {
             ConfigStore configStore = configStoreIterator.next();
 
-            boolean loadNewPropertySources = startup.get() || StateHolder.getLoadState(configStore.getEndpoint());
+            Boolean loadNewPropertySources = startup.get() || StateHolder.getLoadState(configStore.getEndpoint());
 
             if (configStore.isEnabled() && loadNewPropertySources) {
                 addPropertySource(composite, configStore, profiles, !configStoreIterator.hasNext());
@@ -192,8 +192,8 @@ public final class AppConfigurationPropertySourceLocator implements PropertySour
             }
 
             // Setting new ETag values for Watch
-            List<ConfigurationSetting> watchKeysSettings = new ArrayList<>();
-            List<ConfigurationSetting> watchKeysFeatures = new ArrayList<>();
+            List<ConfigurationSetting> watchKeysSettings = new ArrayList<ConfigurationSetting>();
+            List<ConfigurationSetting> watchKeysFeatures = new ArrayList<ConfigurationSetting>();
 
             for (AppConfigurationStoreTrigger trigger : store.getMonitoring().getTriggers()) {
                 ConfigurationSetting watchKey = clients.getWatchKey(trigger.getKey(), trigger.getLabel(),
@@ -213,7 +213,9 @@ public final class AppConfigurationPropertySourceLocator implements PropertySour
                 PagedIterable<ConfigurationSetting> watchKeys = clients.getFeatureFlagWatchKey(settingSelector,
                     store.getEndpoint());
 
-                watchKeys.forEach(watchKey -> watchKeysFeatures.add(NormalizeNull.normalizeNullLabel(watchKey)));
+                watchKeys.forEach(watchKey -> {
+                    watchKeysFeatures.add(NormalizeNull.normalizeNullLabel(watchKey));
+                });
 
                 StateHolder.setStateFeatureFlag(store.getEndpoint(), watchKeysFeatures,
                     store.getMonitoring().getFeatureFlagRefreshInterval());
@@ -222,6 +224,9 @@ public final class AppConfigurationPropertySourceLocator implements PropertySour
 
             StateHolder.setState(store.getEndpoint(), watchKeysSettings, store.getMonitoring().getRefreshInterval());
             StateHolder.setLoadState(store.getEndpoint(), true);
+        } catch (RuntimeException e) {
+            delayException();
+            throw e;
         } catch (Exception e) {
             delayException();
             throw e;

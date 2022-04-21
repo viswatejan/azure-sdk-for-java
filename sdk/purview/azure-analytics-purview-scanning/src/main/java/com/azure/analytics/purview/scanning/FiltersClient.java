@@ -61,7 +61,7 @@ public final class FiltersClient {
      * @param scanName The scanName parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return a filter along with {@link Response}.
+     * @return a filter.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -118,7 +118,7 @@ public final class FiltersClient {
      * @param scanName The scanName parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)

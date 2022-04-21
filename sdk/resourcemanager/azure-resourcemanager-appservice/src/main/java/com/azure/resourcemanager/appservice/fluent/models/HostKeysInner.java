@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.appservice.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -12,6 +14,8 @@ import java.util.Map;
 /** Functions host level keys. */
 @Fluent
 public final class HostKeysInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(HostKeysInner.class);
+
     /*
      * Secret key.
      */

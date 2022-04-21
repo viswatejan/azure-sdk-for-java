@@ -165,8 +165,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workload classifier of Sql pool's workload group along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return a workload classifier of Sql pool's workload group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkloadClassifierInner>> getWithResponseAsync(
@@ -238,8 +237,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workload classifier of Sql pool's workload group along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return a workload classifier of Sql pool's workload group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkloadClassifierInner>> getWithResponseAsync(
@@ -308,7 +306,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workload classifier of Sql pool's workload group on successful completion of {@link Mono}.
+     * @return a workload classifier of Sql pool's workload group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkloadClassifierInner> getAsync(
@@ -365,7 +363,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workload classifier of Sql pool's workload group along with {@link Response}.
+     * @return a workload classifier of Sql pool's workload group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WorkloadClassifierInner> getWithResponse(
@@ -392,8 +390,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workload classifier operations for a data warehouse along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workload classifier operations for a data warehouse.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -473,8 +470,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workload classifier operations for a data warehouse along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workload classifier operations for a data warehouse.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -551,8 +547,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workload classifier operations for a data warehouse along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workload classifier operations for a data warehouse.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadClassifierInner>, WorkloadClassifierInner> beginCreateOrUpdateAsync(
@@ -572,7 +567,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
                 this.client.getHttpPipeline(),
                 WorkloadClassifierInner.class,
                 WorkloadClassifierInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -588,8 +583,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workload classifier operations for a data warehouse along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workload classifier operations for a data warehouse.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<WorkloadClassifierInner>, WorkloadClassifierInner> beginCreateOrUpdateAsync(
@@ -632,8 +626,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workload classifier operations for a data warehouse along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workload classifier operations for a data warehouse.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadClassifierInner>, WorkloadClassifierInner> beginCreateOrUpdate(
@@ -661,8 +654,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workload classifier operations for a data warehouse along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workload classifier operations for a data warehouse.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<WorkloadClassifierInner>, WorkloadClassifierInner> beginCreateOrUpdate(
@@ -696,7 +688,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workload classifier operations for a data warehouse on successful completion of {@link Mono}.
+     * @return workload classifier operations for a data warehouse.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkloadClassifierInner> createOrUpdateAsync(
@@ -725,7 +717,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workload classifier operations for a data warehouse on successful completion of {@link Mono}.
+     * @return workload classifier operations for a data warehouse.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkloadClassifierInner> createOrUpdateAsync(
@@ -821,7 +813,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -891,7 +883,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -958,7 +950,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -972,8 +964,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
                 resourceGroupName, workspaceName, sqlPoolName, workloadGroupName, workloadClassifierName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -988,7 +979,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -1018,7 +1009,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -1044,7 +1035,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -1070,7 +1061,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1097,7 +1088,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1170,8 +1161,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sql pool's workload classifier for workload groups along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return list of Sql pool's workload classifier for workload groups.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkloadClassifierInner>> listSinglePageAsync(
@@ -1241,8 +1231,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of Sql pool's workload classifier for workload groups along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return list of Sql pool's workload classifier for workload groups.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkloadClassifierInner>> listSinglePageAsync(
@@ -1384,8 +1373,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of workload classifiers for a workload group along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return a list of workload classifiers for a workload group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkloadClassifierInner>> listNextSinglePageAsync(String nextLink) {
@@ -1421,8 +1409,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of workload classifiers for a workload group along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return a list of workload classifiers for a workload group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkloadClassifierInner>> listNextSinglePageAsync(String nextLink, Context context) {

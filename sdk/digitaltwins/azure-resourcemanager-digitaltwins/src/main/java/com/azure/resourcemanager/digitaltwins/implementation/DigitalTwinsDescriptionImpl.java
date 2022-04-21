@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.digitaltwins.implementation;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager;
 import com.azure.resourcemanager.digitaltwins.fluent.models.DigitalTwinsDescriptionInner;
 import com.azure.resourcemanager.digitaltwins.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsDescription;
@@ -26,7 +26,7 @@ public final class DigitalTwinsDescriptionImpl
     implements DigitalTwinsDescription, DigitalTwinsDescription.Definition, DigitalTwinsDescription.Update {
     private DigitalTwinsDescriptionInner innerObject;
 
-    private final com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager;
+    private final AzureDigitalTwinsManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -55,10 +55,6 @@ public final class DigitalTwinsDescriptionImpl
 
     public DigitalTwinsIdentity identity() {
         return this.innerModel().identity();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public OffsetDateTime createdTime() {
@@ -107,7 +103,7 @@ public final class DigitalTwinsDescriptionImpl
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager() {
+    private AzureDigitalTwinsManager manager() {
         return this.serviceManager;
     }
 
@@ -140,8 +136,7 @@ public final class DigitalTwinsDescriptionImpl
         return this;
     }
 
-    DigitalTwinsDescriptionImpl(
-        String name, com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager) {
+    DigitalTwinsDescriptionImpl(String name, AzureDigitalTwinsManager serviceManager) {
         this.innerObject = new DigitalTwinsDescriptionInner();
         this.serviceManager = serviceManager;
         this.resourceName = name;
@@ -170,9 +165,7 @@ public final class DigitalTwinsDescriptionImpl
         return this;
     }
 
-    DigitalTwinsDescriptionImpl(
-        DigitalTwinsDescriptionInner innerObject,
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager) {
+    DigitalTwinsDescriptionImpl(DigitalTwinsDescriptionInner innerObject, AzureDigitalTwinsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");

@@ -6,11 +6,14 @@ package com.azure.resourcemanager.appservice.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Site seal. */
 @Fluent
 public final class SiteSealInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SiteSealInner.class);
+
     /*
      * HTML snippet
      */
@@ -44,11 +47,9 @@ public final class SiteSealInner {
      */
     public void validate() {
         if (html() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property html in model SiteSealInner"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SiteSealInner.class);
 }

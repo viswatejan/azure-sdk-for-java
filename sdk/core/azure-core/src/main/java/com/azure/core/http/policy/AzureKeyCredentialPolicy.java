@@ -19,8 +19,7 @@ import java.util.Objects;
  * an exception will be thrown to prevent leaking the key.
  */
 public final class AzureKeyCredentialPolicy implements HttpPipelinePolicy {
-    // AzureKeyCredentailPolicy can be a commonly used policy, use a static logger.
-    private static final ClientLogger LOGGER = new ClientLogger(AzureKeyCredentialPolicy.class);
+    private final ClientLogger logger = new ClientLogger(AzureKeyCredentialPolicy.class);
 
     private final String name;
     private final AzureKeyCredential credential;
@@ -37,7 +36,7 @@ public final class AzureKeyCredentialPolicy implements HttpPipelinePolicy {
         Objects.requireNonNull(credential, "'credential' cannot be null.");
         Objects.requireNonNull(name, "'name' cannot be null.");
         if (name.isEmpty()) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException("'name' cannot be empty."));
+            throw logger.logExceptionAsError(new IllegalArgumentException("'name' cannot be empty."));
         }
 
         this.name = name;

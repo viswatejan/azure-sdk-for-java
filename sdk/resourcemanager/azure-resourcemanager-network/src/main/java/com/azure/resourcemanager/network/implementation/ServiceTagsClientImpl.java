@@ -76,8 +76,7 @@ public final class ServiceTagsClientImpl implements ServiceTagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a list of service tag information resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ServiceTagsListResultInner>> listWithResponseAsync(String location) {
@@ -122,8 +121,7 @@ public final class ServiceTagsClientImpl implements ServiceTagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return a list of service tag information resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServiceTagsListResultInner>> listWithResponseAsync(String location, Context context) {
@@ -158,7 +156,7 @@ public final class ServiceTagsClientImpl implements ServiceTagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources on successful completion of {@link Mono}.
+     * @return a list of service tag information resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ServiceTagsListResultInner> listAsync(String location) {
@@ -199,7 +197,7 @@ public final class ServiceTagsClientImpl implements ServiceTagsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of service tag information resources along with {@link Response}.
+     * @return a list of service tag information resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ServiceTagsListResultInner> listWithResponse(String location, Context context) {

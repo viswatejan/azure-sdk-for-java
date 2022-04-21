@@ -2,6 +2,26 @@
 // Licensed under the MIT License.
 package com.microsoft.azure.spring.cloud.config;
 
+import static com.microsoft.azure.spring.cloud.config.Constants.FEATURE_FLAG_CONTENT_TYPE;
+import static com.microsoft.azure.spring.cloud.config.Constants.FEATURE_FLAG_PREFIX;
+import static com.microsoft.azure.spring.cloud.config.Constants.FEATURE_MANAGEMENT_KEY;
+import static com.microsoft.azure.spring.cloud.config.Constants.KEY_VAULT_CONTENT_TYPE;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.env.EnumerablePropertySource;
+import org.springframework.util.ReflectionUtils;
+
 import com.azure.data.appconfiguration.ConfigurationClient;
 import com.azure.data.appconfiguration.models.ConfigurationSetting;
 import com.azure.data.appconfiguration.models.SettingSelector;
@@ -15,50 +35,31 @@ import com.microsoft.azure.spring.cloud.config.feature.management.entity.Feature
 import com.microsoft.azure.spring.cloud.config.stores.ClientStore;
 import com.microsoft.azure.spring.cloud.config.stores.ConfigStore;
 import com.microsoft.azure.spring.cloud.config.stores.KeyVaultClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.env.EnumerablePropertySource;
-import org.springframework.util.ReflectionUtils;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import static com.microsoft.azure.spring.cloud.config.Constants.FEATURE_FLAG_CONTENT_TYPE;
-import static com.microsoft.azure.spring.cloud.config.Constants.FEATURE_FLAG_PREFIX;
-import static com.microsoft.azure.spring.cloud.config.Constants.FEATURE_MANAGEMENT_KEY;
-import static com.microsoft.azure.spring.cloud.config.Constants.KEY_VAULT_CONTENT_TYPE;
 
 public class AppConfigurationPropertySource extends EnumerablePropertySource<ConfigurationClient> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AppConfigurationPropertySource.class);
 
     private final String context;
 
-    private final Map<String, Object> properties = new LinkedHashMap<>();
+    private Map<String, Object> properties = new LinkedHashMap<>();
 
     private final String label;
 
-    private final AppConfigurationProperties appConfigurationProperties;
+    private AppConfigurationProperties appConfigurationProperties;
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static ObjectMapper mapper = new ObjectMapper();
 
-    private final HashMap<String, KeyVaultClient> keyVaultClients;
+    private HashMap<String, KeyVaultClient> keyVaultClients;
 
-    private final ClientStore clients;
+    private ClientStore clients;
 
-    private final KeyVaultCredentialProvider keyVaultCredentialProvider;
+    private KeyVaultCredentialProvider keyVaultCredentialProvider;
 
-    private final SecretClientBuilderSetup keyVaultClientProvider;
+    private SecretClientBuilderSetup keyVaultClientProvider;
 
-    private final AppConfigurationProviderProperties appProperties;
+    private AppConfigurationProviderProperties appProperties;
 
-    private final ConfigStore configStore;
+    private ConfigStore configStore;
 
     AppConfigurationPropertySource(String context, ConfigStore configStore, String label,
             AppConfigurationProperties appConfigurationProperties, ClientStore clients,
@@ -72,7 +73,7 @@ public class AppConfigurationPropertySource extends EnumerablePropertySource<Con
         this.label = label;
         this.appConfigurationProperties = appConfigurationProperties;
         this.appProperties = appProperties;
-        this.keyVaultClients = new HashMap<>();
+        this.keyVaultClients = new HashMap<String, KeyVaultClient>();
         this.clients = clients;
         this.keyVaultCredentialProvider = keyVaultCredentialProvider;
         this.keyVaultClientProvider = keyVaultClientProvider;
@@ -162,22 +163,21 @@ public class AppConfigurationPropertySource extends EnumerablePropertySource<Con
 
             // Check if we already have a client for this key vault, if not we will make
             // one
-            KeyVaultSecret secret = getKeyVaultClient(uri, uri.getHost())
-                .getSecret(uri, appProperties.getMaxRetryTime());
+            if (!keyVaultClients.containsKey(uri.getHost())) {
+                KeyVaultClient client = new KeyVaultClient(appConfigurationProperties, uri, keyVaultCredentialProvider,
+                        keyVaultClientProvider);
+                keyVaultClients.put(uri.getHost(), client);
+            }
+            KeyVaultSecret secret = keyVaultClients.get(uri.getHost()).getSecret(uri, appProperties.getMaxRetryTime());
             if (secret == null) {
                 throw new IOException("No Key Vault Secret found for Reference.");
             }
             secretValue = secret.getValue();
         } catch (RuntimeException | IOException e) {
-            LOGGER.error("Error Retrieving Key Vault Entry");
+            LOGGER.error("Error Retreiving Key Vault Entry");
             ReflectionUtils.rethrowRuntimeException(e);
         }
         return secretValue;
-    }
-
-    KeyVaultClient getKeyVaultClient(URI uri, String uriHost) {
-        return keyVaultClients.computeIfAbsent(uriHost, ignored ->
-            new KeyVaultClient(appConfigurationProperties, uri, keyVaultCredentialProvider, keyVaultClientProvider));
     }
 
     /**
@@ -206,7 +206,9 @@ public class AppConfigurationPropertySource extends EnumerablePropertySource<Con
         // Reading In Features
         for (ConfigurationSetting setting : settings) {
             Object feature = createFeature(setting);
-            featureSet.addFeature(setting.getKey().trim().substring(FEATURE_FLAG_PREFIX.length()), feature);
+            if (feature != null) {
+                featureSet.addFeature(setting.getKey().trim().substring(FEATURE_FLAG_PREFIX.length()), feature);
+            }
         }
         return featureSet;
     }
@@ -220,7 +222,7 @@ public class AppConfigurationPropertySource extends EnumerablePropertySource<Con
      * @throws IOException
      */
     private Object createFeature(ConfigurationSetting item) throws IOException {
-        Feature feature;
+        Feature feature = null;
         if (item.getContentType() != null && item.getContentType().equals(FEATURE_FLAG_CONTENT_TYPE)) {
             try {
                 String key = item.getKey().trim().substring(FEATURE_FLAG_PREFIX.length());
@@ -241,7 +243,7 @@ public class AppConfigurationPropertySource extends EnumerablePropertySource<Con
                 return feature;
 
             } catch (IOException e) {
-                throw new IOException("Unable to parse Feature Management values from Azure.", e);
+                throw new IOException("Unabled to parse Feature Management values from Azure.", e);
             }
 
         } else {

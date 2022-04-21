@@ -11,7 +11,7 @@ import com.azure.core.util.BinaryData;
  *
  */
 @Immutable
-public final class AttestationData {
+public final class AttestationData implements Cloneable {
     private final BinaryData data;
     private final AttestationDataInterpretation interpretation;
 
@@ -24,15 +24,6 @@ public final class AttestationData {
     public AttestationData(BinaryData data, AttestationDataInterpretation interpretation) {
         this.data = data;
         this.interpretation = interpretation;
-    }
-
-    /**
-     * Copy constructor to create a new AttestationData object from an existing AttestationData object.
-     * @param that - AttestationData object to copy values from.
-     */
-    public AttestationData(AttestationData that) {
-        this.data = that.data;
-        this.interpretation = that.interpretation;
     }
 
     /**
@@ -49,6 +40,14 @@ public final class AttestationData {
      */
     public AttestationDataInterpretation getInterpretation() {
         return interpretation;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public AttestationData clone() {
+        return new AttestationData(this.data, this.interpretation);
     }
 }
 

@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Result for utterances query. */
 @Fluent
 public final class QueryUtterancesResult {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(QueryUtterancesResult.class);
+
     /*
      * A sample utterance.
      */

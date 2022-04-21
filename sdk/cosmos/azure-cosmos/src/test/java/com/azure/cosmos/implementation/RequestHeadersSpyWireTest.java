@@ -116,7 +116,7 @@ public class RequestHeadersSpyWireTest extends TestSuiteBase {
 
         client.clearCapturedRequests();
 
-        client.queryDocuments(collectionLink, query, options, Document.class).blockLast();
+        client.queryDocuments(collectionLink, query, options).blockLast();
 
         List<HttpRequest> requests = client.getCapturedRequests();
         for (HttpRequest httpRequest : requests) {
@@ -136,9 +136,7 @@ public class RequestHeadersSpyWireTest extends TestSuiteBase {
 
         client.clearCapturedRequests();
 
-        assertThatThrownBy(() -> client
-            .queryDocuments(collectionLink, query, cosmosQueryRequestOptions, Document.class)
-            .blockLast())
+        assertThatThrownBy(() -> client.queryDocuments(collectionLink, query, cosmosQueryRequestOptions).blockLast())
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("MaxIntegratedCacheStaleness granularity is milliseconds");
     }
@@ -155,9 +153,7 @@ public class RequestHeadersSpyWireTest extends TestSuiteBase {
 
         client.clearCapturedRequests();
 
-        assertThatThrownBy(() -> client
-            .queryDocuments(collectionLink, query, cosmosQueryRequestOptions, Document.class)
-            .blockLast())
+        assertThatThrownBy(() -> client.queryDocuments(collectionLink, query, cosmosQueryRequestOptions).blockLast())
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("MaxIntegratedCacheStaleness duration cannot be negative");
     }

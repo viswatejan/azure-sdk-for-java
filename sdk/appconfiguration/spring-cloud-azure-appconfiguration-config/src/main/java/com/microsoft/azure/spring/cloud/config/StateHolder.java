@@ -26,7 +26,7 @@ final class StateHolder {
     }
 
     /**
-     * @param name the etagState name to set
+     * @param etagState the etagState to set
      */
     static void setEtagState(String name, ConfigurationSetting config) {
         etagState.put(name, config);
@@ -40,7 +40,7 @@ final class StateHolder {
     }
 
     /**
-     * @param name the loadState name to set
+     * @param loadState the loadState to set
      */
     public static void setLoadState(String name, Boolean loaded) {
         loadState.put(name, loaded);

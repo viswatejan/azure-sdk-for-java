@@ -7,12 +7,15 @@ package com.azure.resourcemanager.compute.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.models.VirtualMachineRunCommandInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The List run command operation response. */
 @Fluent
 public final class VirtualMachineRunCommandsListResult {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualMachineRunCommandsListResult.class);
+
     /*
      * The list of run commands
      */
@@ -72,7 +75,7 @@ public final class VirtualMachineRunCommandsListResult {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model VirtualMachineRunCommandsListResult"));
@@ -80,6 +83,4 @@ public final class VirtualMachineRunCommandsListResult {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(VirtualMachineRunCommandsListResult.class);
 }

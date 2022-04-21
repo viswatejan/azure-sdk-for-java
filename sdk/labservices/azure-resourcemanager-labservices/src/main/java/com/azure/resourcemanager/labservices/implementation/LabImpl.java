@@ -4,28 +4,24 @@
 
 package com.azure.resourcemanager.labservices.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.labservices.fluent.models.LabInner;
-import com.azure.resourcemanager.labservices.models.AutoShutdownProfile;
-import com.azure.resourcemanager.labservices.models.ConnectionProfile;
+import com.azure.resourcemanager.labservices.models.AddUsersPayload;
 import com.azure.resourcemanager.labservices.models.Lab;
-import com.azure.resourcemanager.labservices.models.LabNetworkProfile;
-import com.azure.resourcemanager.labservices.models.LabState;
-import com.azure.resourcemanager.labservices.models.LabUpdate;
-import com.azure.resourcemanager.labservices.models.ProvisioningState;
-import com.azure.resourcemanager.labservices.models.RosterProfile;
-import com.azure.resourcemanager.labservices.models.SecurityProfile;
-import com.azure.resourcemanager.labservices.models.VirtualMachineProfile;
+import com.azure.resourcemanager.labservices.models.LabFragment;
+import com.azure.resourcemanager.labservices.models.LabUserAccessMode;
+import com.azure.resourcemanager.labservices.models.LatestOperationResult;
+import java.time.Duration;
+import java.time.OffsetDateTime;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
     private LabInner innerObject;
 
-    private final com.azure.resourcemanager.labservices.LabServicesManager serviceManager;
+    private final com.azure.resourcemanager.labservices.ManagedLabsManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -52,52 +48,48 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
         }
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
+    public Integer maxUsersInLab() {
+        return this.innerModel().maxUsersInLab();
     }
 
-    public ProvisioningState provisioningState() {
+    public Integer userQuota() {
+        return this.innerModel().userQuota();
+    }
+
+    public String invitationCode() {
+        return this.innerModel().invitationCode();
+    }
+
+    public String createdByObjectId() {
+        return this.innerModel().createdByObjectId();
+    }
+
+    public Duration usageQuota() {
+        return this.innerModel().usageQuota();
+    }
+
+    public LabUserAccessMode userAccessMode() {
+        return this.innerModel().userAccessMode();
+    }
+
+    public String createdByUserPrincipalName() {
+        return this.innerModel().createdByUserPrincipalName();
+    }
+
+    public OffsetDateTime createdDate() {
+        return this.innerModel().createdDate();
+    }
+
+    public String provisioningState() {
         return this.innerModel().provisioningState();
     }
 
-    public LabNetworkProfile networkProfile() {
-        return this.innerModel().networkProfile();
+    public String uniqueIdentifier() {
+        return this.innerModel().uniqueIdentifier();
     }
 
-    public LabState state() {
-        return this.innerModel().state();
-    }
-
-    public AutoShutdownProfile autoShutdownProfile() {
-        return this.innerModel().autoShutdownProfile();
-    }
-
-    public ConnectionProfile connectionProfile() {
-        return this.innerModel().connectionProfile();
-    }
-
-    public VirtualMachineProfile virtualMachineProfile() {
-        return this.innerModel().virtualMachineProfile();
-    }
-
-    public SecurityProfile securityProfile() {
-        return this.innerModel().securityProfile();
-    }
-
-    public RosterProfile rosterProfile() {
-        return this.innerModel().rosterProfile();
-    }
-
-    public String labPlanId() {
-        return this.innerModel().labPlanId();
-    }
-
-    public String title() {
-        return this.innerModel().title();
-    }
-
-    public String description() {
-        return this.innerModel().description();
+    public LatestOperationResult latestOperationResult() {
+        return this.innerModel().latestOperationResult();
     }
 
     public Region region() {
@@ -112,18 +104,21 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.labservices.LabServicesManager manager() {
+    private com.azure.resourcemanager.labservices.ManagedLabsManager manager() {
         return this.serviceManager;
     }
 
     private String resourceGroupName;
 
+    private String labAccountName;
+
     private String labName;
 
-    private LabUpdate updateBody;
+    private LabFragment updateLab;
 
-    public LabImpl withExistingResourceGroup(String resourceGroupName) {
+    public LabImpl withExistingLabaccount(String resourceGroupName, String labAccountName) {
         this.resourceGroupName = resourceGroupName;
+        this.labAccountName = labAccountName;
         return this;
     }
 
@@ -132,7 +127,8 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
             serviceManager
                 .serviceClient()
                 .getLabs()
-                .createOrUpdate(resourceGroupName, labName, this.innerModel(), Context.NONE);
+                .createOrUpdateWithResponse(resourceGroupName, labAccountName, labName, this.innerModel(), Context.NONE)
+                .getValue();
         return this;
     }
 
@@ -141,74 +137,88 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
             serviceManager
                 .serviceClient()
                 .getLabs()
-                .createOrUpdate(resourceGroupName, labName, this.innerModel(), context);
+                .createOrUpdateWithResponse(resourceGroupName, labAccountName, labName, this.innerModel(), context)
+                .getValue();
         return this;
     }
 
-    LabImpl(String name, com.azure.resourcemanager.labservices.LabServicesManager serviceManager) {
+    LabImpl(String name, com.azure.resourcemanager.labservices.ManagedLabsManager serviceManager) {
         this.innerObject = new LabInner();
         this.serviceManager = serviceManager;
         this.labName = name;
     }
 
     public LabImpl update() {
-        this.updateBody = new LabUpdate();
+        this.updateLab = new LabFragment();
         return this;
     }
 
     public Lab apply() {
         this.innerObject =
-            serviceManager.serviceClient().getLabs().update(resourceGroupName, labName, updateBody, Context.NONE);
+            serviceManager
+                .serviceClient()
+                .getLabs()
+                .updateWithResponse(resourceGroupName, labAccountName, labName, updateLab, Context.NONE)
+                .getValue();
         return this;
     }
 
     public Lab apply(Context context) {
         this.innerObject =
-            serviceManager.serviceClient().getLabs().update(resourceGroupName, labName, updateBody, context);
+            serviceManager
+                .serviceClient()
+                .getLabs()
+                .updateWithResponse(resourceGroupName, labAccountName, labName, updateLab, context)
+                .getValue();
         return this;
     }
 
-    LabImpl(LabInner innerObject, com.azure.resourcemanager.labservices.LabServicesManager serviceManager) {
+    LabImpl(LabInner innerObject, com.azure.resourcemanager.labservices.ManagedLabsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.labAccountName = Utils.getValueFromIdByName(innerObject.id(), "labaccounts");
         this.labName = Utils.getValueFromIdByName(innerObject.id(), "labs");
     }
 
     public Lab refresh() {
+        String localExpand = null;
         this.innerObject =
             serviceManager
                 .serviceClient()
                 .getLabs()
-                .getByResourceGroupWithResponse(resourceGroupName, labName, Context.NONE)
+                .getWithResponse(resourceGroupName, labAccountName, labName, localExpand, Context.NONE)
                 .getValue();
         return this;
     }
 
     public Lab refresh(Context context) {
+        String localExpand = null;
         this.innerObject =
             serviceManager
                 .serviceClient()
                 .getLabs()
-                .getByResourceGroupWithResponse(resourceGroupName, labName, context)
+                .getWithResponse(resourceGroupName, labAccountName, labName, localExpand, context)
                 .getValue();
         return this;
     }
 
-    public void publish() {
-        serviceManager.labs().publish(resourceGroupName, labName);
+    public void addUsers(AddUsersPayload addUsersPayload) {
+        serviceManager.labs().addUsers(resourceGroupName, labAccountName, labName, addUsersPayload);
     }
 
-    public void publish(Context context) {
-        serviceManager.labs().publish(resourceGroupName, labName, context);
+    public Response<Void> addUsersWithResponse(AddUsersPayload addUsersPayload, Context context) {
+        return serviceManager
+            .labs()
+            .addUsersWithResponse(resourceGroupName, labAccountName, labName, addUsersPayload, context);
     }
 
-    public void syncGroup() {
-        serviceManager.labs().syncGroup(resourceGroupName, labName);
+    public void register() {
+        serviceManager.labs().register(resourceGroupName, labAccountName, labName);
     }
 
-    public void syncGroup(Context context) {
-        serviceManager.labs().syncGroup(resourceGroupName, labName, context);
+    public Response<Void> registerWithResponse(Context context) {
+        return serviceManager.labs().registerWithResponse(resourceGroupName, labAccountName, labName, context);
     }
 
     public LabImpl withRegion(Region location) {
@@ -222,98 +232,63 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
     }
 
     public LabImpl withTags(Map<String, String> tags) {
-        this.innerModel().withTags(tags);
-        return this;
-    }
-
-    public LabImpl withNetworkProfile(LabNetworkProfile networkProfile) {
-        this.innerModel().withNetworkProfile(networkProfile);
-        return this;
-    }
-
-    public LabImpl withAutoShutdownProfile(AutoShutdownProfile autoShutdownProfile) {
         if (isInCreateMode()) {
-            this.innerModel().withAutoShutdownProfile(autoShutdownProfile);
+            this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateBody.withAutoShutdownProfile(autoShutdownProfile);
+            this.updateLab.withTags(tags);
             return this;
         }
     }
 
-    public LabImpl withConnectionProfile(ConnectionProfile connectionProfile) {
+    public LabImpl withMaxUsersInLab(Integer maxUsersInLab) {
         if (isInCreateMode()) {
-            this.innerModel().withConnectionProfile(connectionProfile);
+            this.innerModel().withMaxUsersInLab(maxUsersInLab);
             return this;
         } else {
-            this.updateBody.withConnectionProfile(connectionProfile);
+            this.updateLab.withMaxUsersInLab(maxUsersInLab);
             return this;
         }
     }
 
-    public LabImpl withVirtualMachineProfile(VirtualMachineProfile virtualMachineProfile) {
+    public LabImpl withUsageQuota(Duration usageQuota) {
         if (isInCreateMode()) {
-            this.innerModel().withVirtualMachineProfile(virtualMachineProfile);
+            this.innerModel().withUsageQuota(usageQuota);
             return this;
         } else {
-            this.updateBody.withVirtualMachineProfile(virtualMachineProfile);
+            this.updateLab.withUsageQuota(usageQuota);
             return this;
         }
     }
 
-    public LabImpl withSecurityProfile(SecurityProfile securityProfile) {
+    public LabImpl withUserAccessMode(LabUserAccessMode userAccessMode) {
         if (isInCreateMode()) {
-            this.innerModel().withSecurityProfile(securityProfile);
+            this.innerModel().withUserAccessMode(userAccessMode);
             return this;
         } else {
-            this.updateBody.withSecurityProfile(securityProfile);
+            this.updateLab.withUserAccessMode(userAccessMode);
             return this;
         }
     }
 
-    public LabImpl withRosterProfile(RosterProfile rosterProfile) {
+    public LabImpl withProvisioningState(String provisioningState) {
         if (isInCreateMode()) {
-            this.innerModel().withRosterProfile(rosterProfile);
+            this.innerModel().withProvisioningState(provisioningState);
             return this;
         } else {
-            this.updateBody.withRosterProfile(rosterProfile);
+            this.updateLab.withProvisioningState(provisioningState);
             return this;
         }
     }
 
-    public LabImpl withLabPlanId(String labPlanId) {
+    public LabImpl withUniqueIdentifier(String uniqueIdentifier) {
         if (isInCreateMode()) {
-            this.innerModel().withLabPlanId(labPlanId);
+            this.innerModel().withUniqueIdentifier(uniqueIdentifier);
             return this;
         } else {
-            this.updateBody.withLabPlanId(labPlanId);
+            this.updateLab.withUniqueIdentifier(uniqueIdentifier);
             return this;
         }
-    }
-
-    public LabImpl withTitle(String title) {
-        if (isInCreateMode()) {
-            this.innerModel().withTitle(title);
-            return this;
-        } else {
-            this.updateBody.withTitle(title);
-            return this;
-        }
-    }
-
-    public LabImpl withDescription(String description) {
-        if (isInCreateMode()) {
-            this.innerModel().withDescription(description);
-            return this;
-        } else {
-            this.updateBody.withDescription(description);
-            return this;
-        }
-    }
-
-    public LabImpl withTags(List<String> tags) {
-        this.updateBody.withTags(tags);
-        return this;
     }
 
     private boolean isInCreateMode() {

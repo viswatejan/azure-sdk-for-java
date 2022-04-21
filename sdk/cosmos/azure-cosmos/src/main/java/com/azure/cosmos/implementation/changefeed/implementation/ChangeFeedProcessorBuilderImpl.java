@@ -397,13 +397,9 @@ public class ChangeFeedProcessorBuilderImpl implements ChangeFeedProcessor, Auto
             logger.warn("Found lower than expected setting for leaseAcquireInterval");
         }
 
-        if (this.changeFeedProcessorOptions == null) {
-            this.changeFeedProcessorOptions = new ChangeFeedProcessorOptions();
+        if (this.scheduler == null) {
+            this.scheduler = Schedulers.boundedElastic();
         }
-
-        this.scheduler = this.changeFeedProcessorOptions.getScheduler();
-        this.feedContextClient.setScheduler(this.scheduler);
-        this.leaseContextClient.setScheduler(this.scheduler);
 
         return this;
     }
@@ -412,6 +408,10 @@ public class ChangeFeedProcessorBuilderImpl implements ChangeFeedProcessor, Auto
     }
 
     private Mono<ChangeFeedProcessor> initializeCollectionPropertiesForBuild() {
+        if (this.changeFeedProcessorOptions == null) {
+            this.changeFeedProcessorOptions = new ChangeFeedProcessorOptions();
+        }
+
         return this.feedContextClient
             .readDatabase(this.feedContextClient.getDatabaseClient(), null)
             .map( databaseResourceResponse -> {

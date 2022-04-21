@@ -5,39 +5,31 @@
 package com.azure.resourcemanager.cdn.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.cdn.fluent.models.AfdDomainUpdatePropertiesParameters;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The domain JSON object required for domain creation or update. */
+@JsonFlatten
 @Fluent
-public final class AfdDomainUpdateParameters {
+public class AfdDomainUpdateParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(AfdDomainUpdateParameters.class);
 
     /*
-     * The JSON object that contains the properties of the domain to create.
+     * The configuration specifying how to enable HTTPS for the domain - using
+     * AzureFrontDoor managed certificate or user's own certificate. If not
+     * specified, enabling ssl uses AzureFrontDoor managed certificate by
+     * default.
      */
-    @JsonProperty(value = "properties")
-    private AfdDomainUpdatePropertiesParameters innerProperties;
+    @JsonProperty(value = "properties.tlsSettings")
+    private AfdDomainHttpsParameters tlsSettings;
 
-    /**
-     * Get the innerProperties property: The JSON object that contains the properties of the domain to create.
-     *
-     * @return the innerProperties value.
+    /*
+     * Resource reference to the Azure DNS zone
      */
-    private AfdDomainUpdatePropertiesParameters innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
-     * Get the profileName property: The name of the profile which holds the domain.
-     *
-     * @return the profileName value.
-     */
-    public String profileName() {
-        return this.innerProperties() == null ? null : this.innerProperties().profileName();
-    }
+    @JsonProperty(value = "properties.azureDnsZone")
+    private ResourceReference azureDnsZone;
 
     /**
      * Get the tlsSettings property: The configuration specifying how to enable HTTPS for the domain - using
@@ -47,7 +39,7 @@ public final class AfdDomainUpdateParameters {
      * @return the tlsSettings value.
      */
     public AfdDomainHttpsParameters tlsSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().tlsSettings();
+        return this.tlsSettings;
     }
 
     /**
@@ -59,10 +51,7 @@ public final class AfdDomainUpdateParameters {
      * @return the AfdDomainUpdateParameters object itself.
      */
     public AfdDomainUpdateParameters withTlsSettings(AfdDomainHttpsParameters tlsSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdDomainUpdatePropertiesParameters();
-        }
-        this.innerProperties().withTlsSettings(tlsSettings);
+        this.tlsSettings = tlsSettings;
         return this;
     }
 
@@ -72,7 +61,7 @@ public final class AfdDomainUpdateParameters {
      * @return the azureDnsZone value.
      */
     public ResourceReference azureDnsZone() {
-        return this.innerProperties() == null ? null : this.innerProperties().azureDnsZone();
+        return this.azureDnsZone;
     }
 
     /**
@@ -82,36 +71,7 @@ public final class AfdDomainUpdateParameters {
      * @return the AfdDomainUpdateParameters object itself.
      */
     public AfdDomainUpdateParameters withAzureDnsZone(ResourceReference azureDnsZone) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdDomainUpdatePropertiesParameters();
-        }
-        this.innerProperties().withAzureDnsZone(azureDnsZone);
-        return this;
-    }
-
-    /**
-     * Get the preValidatedCustomDomainResourceId property: Resource reference to the Azure resource where custom domain
-     * ownership was prevalidated.
-     *
-     * @return the preValidatedCustomDomainResourceId value.
-     */
-    public ResourceReference preValidatedCustomDomainResourceId() {
-        return this.innerProperties() == null ? null : this.innerProperties().preValidatedCustomDomainResourceId();
-    }
-
-    /**
-     * Set the preValidatedCustomDomainResourceId property: Resource reference to the Azure resource where custom domain
-     * ownership was prevalidated.
-     *
-     * @param preValidatedCustomDomainResourceId the preValidatedCustomDomainResourceId value to set.
-     * @return the AfdDomainUpdateParameters object itself.
-     */
-    public AfdDomainUpdateParameters withPreValidatedCustomDomainResourceId(
-        ResourceReference preValidatedCustomDomainResourceId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdDomainUpdatePropertiesParameters();
-        }
-        this.innerProperties().withPreValidatedCustomDomainResourceId(preValidatedCustomDomainResourceId);
+        this.azureDnsZone = azureDnsZone;
         return this;
     }
 
@@ -121,8 +81,11 @@ public final class AfdDomainUpdateParameters {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (tlsSettings() != null) {
+            tlsSettings().validate();
+        }
+        if (azureDnsZone() != null) {
+            azureDnsZone().validate();
         }
     }
 }

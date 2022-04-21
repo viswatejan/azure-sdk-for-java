@@ -15,10 +15,10 @@ public final class UrlRedirectActionParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(UrlRedirectActionParameters.class);
 
     /*
-     * The typeName property.
+     * The @odata.type property.
      */
-    @JsonProperty(value = "typeName", required = true)
-    private String typeName = "DeliveryRuleUrlRedirectActionParameters";
+    @JsonProperty(value = "@odata.type", required = true)
+    private String odataType;
 
     /*
      * The redirect type the rule will use when redirecting traffic.
@@ -64,26 +64,26 @@ public final class UrlRedirectActionParameters {
 
     /** Creates an instance of UrlRedirectActionParameters class. */
     public UrlRedirectActionParameters() {
-        typeName = "DeliveryRuleUrlRedirectActionParameters";
+        odataType = "#Microsoft.Azure.Cdn.Models.DeliveryRuleUrlRedirectActionParameters";
     }
 
     /**
-     * Get the typeName property: The typeName property.
+     * Get the odataType property: The @odata.type property.
      *
-     * @return the typeName value.
+     * @return the odataType value.
      */
-    public String typeName() {
-        return this.typeName;
+    public String odataType() {
+        return this.odataType;
     }
 
     /**
-     * Set the typeName property: The typeName property.
+     * Set the odataType property: The @odata.type property.
      *
-     * @param typeName the typeName value to set.
+     * @param odataType the odataType value to set.
      * @return the UrlRedirectActionParameters object itself.
      */
-    public UrlRedirectActionParameters withTypeName(String typeName) {
-        this.typeName = typeName;
+    public UrlRedirectActionParameters withOdataType(String odataType) {
+        this.odataType = odataType;
         return this;
     }
 

@@ -6,6 +6,7 @@ package com.azure.cosmos.implementation.query;
 import com.azure.cosmos.BridgeInternal;
 import com.azure.cosmos.CosmosException;
 import com.azure.cosmos.implementation.HttpConstants;
+import com.azure.cosmos.implementation.Resource;
 import com.azure.cosmos.implementation.Utils.ValueHolder;
 import com.azure.cosmos.models.FeedResponse;
 import com.azure.cosmos.models.ModelBridgeInternal;
@@ -17,19 +18,20 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class TopDocumentQueryExecutionContext<T>
-    implements IDocumentQueryExecutionComponent<T> {
+public class TopDocumentQueryExecutionContext<T extends Resource> implements IDocumentQueryExecutionComponent<T> {
 
     private final IDocumentQueryExecutionComponent<T> component;
     private final int top;
     // limit from rewritten query
+    private final int limit;
 
-    public TopDocumentQueryExecutionContext(IDocumentQueryExecutionComponent<T> component, int top) {
+    public TopDocumentQueryExecutionContext(IDocumentQueryExecutionComponent<T> component, int top, int limit) {
         this.component = component;
         this.top = top;
+        this.limit = limit;
     }
 
-    public static <T> Flux<IDocumentQueryExecutionComponent<T>> createAsync(
+    public static <T extends Resource> Flux<IDocumentQueryExecutionComponent<T>> createAsync(
             BiFunction<String, PipelinedDocumentQueryParams<T>, Flux<IDocumentQueryExecutionComponent<T>>> createSourceComponentFunction,
             int topCount,
             int limit,
@@ -40,7 +42,7 @@ public class TopDocumentQueryExecutionContext<T>
         if (topContinuationToken == null) {
             takeContinuationToken = new TakeContinuationToken(topCount, null);
         } else {
-            ValueHolder<TakeContinuationToken> outTakeContinuationToken = new ValueHolder<>();
+            ValueHolder<TakeContinuationToken> outTakeContinuationToken = new ValueHolder<TakeContinuationToken>();
             if (!TakeContinuationToken.tryParse(topContinuationToken, outTakeContinuationToken)) {
                 String message = String.format("INVALID JSON in continuation token %s for Top~Context",
                         topContinuationToken);
@@ -66,7 +68,7 @@ public class TopDocumentQueryExecutionContext<T>
         return createSourceComponentFunction
                 .apply(takeContinuationToken.getSourceToken(), documentQueryParams)
                 .map(component -> new TopDocumentQueryExecutionContext<>(component,
-                                                                         takeContinuationToken.getTakeCount()));
+                                                                         takeContinuationToken.getTakeCount(), limit));
     }
 
     @Override
@@ -88,6 +90,7 @@ public class TopDocumentQueryExecutionContext<T>
 
             private volatile int collectedItems = 0;
             private volatile boolean lastPage = false;
+
             @Override
             public FeedResponse<T> apply(FeedResponse<T> t) {
 
@@ -98,15 +101,9 @@ public class TopDocumentQueryExecutionContext<T>
                     if (top != collectedItems) {
                         // Add Take Continuation Token
                         String sourceContinuationToken = t.getContinuationToken();
-                        if (sourceContinuationToken != null) {
-                            TakeContinuationToken takeContinuationToken = new TakeContinuationToken(top - collectedItems,
+                        TakeContinuationToken takeContinuationToken = new TakeContinuationToken(top - collectedItems,
                                 sourceContinuationToken);
-                            headers.put(HttpConstants.HttpHeaders.CONTINUATION, takeContinuationToken.toJson());
-                        } else {
-                            // Null out the continuation token. The sourceContinuationToken being null means
-                            // that this is the last page and there are no more elements left to fetch.
-                            headers.put(HttpConstants.HttpHeaders.CONTINUATION, null);
-                        }
+                        headers.put(HttpConstants.HttpHeaders.CONTINUATION, takeContinuationToken.toJson());
                     } else {
                         // Null out the continuation token
                         headers.put(HttpConstants.HttpHeaders.CONTINUATION, null);
@@ -120,7 +117,7 @@ public class TopDocumentQueryExecutionContext<T>
                         false,
                         t.getCosmosDiagnostics());
                 } else {
-                    assert !lastPage;
+                    assert lastPage == false;
                     lastPage = true;
                     int lastPageSize = top - collectedItems;
                     collectedItems += lastPageSize;

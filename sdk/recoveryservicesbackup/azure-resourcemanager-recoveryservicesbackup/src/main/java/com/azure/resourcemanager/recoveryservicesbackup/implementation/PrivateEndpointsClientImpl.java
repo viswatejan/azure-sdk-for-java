@@ -83,8 +83,7 @@ public final class PrivateEndpointsClientImpl implements PrivateEndpointsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation status for a private endpoint connection along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the operation status for a private endpoint connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OperationStatusInner>> getOperationStatusWithResponseAsync(
@@ -146,8 +145,7 @@ public final class PrivateEndpointsClientImpl implements PrivateEndpointsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation status for a private endpoint connection along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the operation status for a private endpoint connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OperationStatusInner>> getOperationStatusWithResponseAsync(
@@ -209,7 +207,7 @@ public final class PrivateEndpointsClientImpl implements PrivateEndpointsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation status for a private endpoint connection on successful completion of {@link Mono}.
+     * @return the operation status for a private endpoint connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> getOperationStatusAsync(
@@ -256,7 +254,7 @@ public final class PrivateEndpointsClientImpl implements PrivateEndpointsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation status for a private endpoint connection along with {@link Response}.
+     * @return the operation status for a private endpoint connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<OperationStatusInner> getOperationStatusWithResponse(

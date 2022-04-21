@@ -4,12 +4,12 @@
 
 package com.azure.resourcemanager.digitaltwins.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/** The connection state. */
-@Fluent
+/** The ConnectionPropertiesPrivateLinkServiceConnectionState model. */
+@Immutable
 public final class ConnectionPropertiesPrivateLinkServiceConnectionState extends ConnectionState {
     @JsonIgnore
     private final ClientLogger logger = new ClientLogger(ConnectionPropertiesPrivateLinkServiceConnectionState.class);

@@ -30,13 +30,7 @@ public final class StorageConfigurationSettings {
      * SQL Server TempDb Storage Settings.
      */
     @JsonProperty(value = "sqlTempDbSettings")
-    private SqlTempDbSettings sqlTempDbSettings;
-
-    /*
-     * SQL Server SystemDb Storage on DataPool if true.
-     */
-    @JsonProperty(value = "sqlSystemDbOnDataDisk")
-    private Boolean sqlSystemDbOnDataDisk;
+    private SqlStorageSettings sqlTempDbSettings;
 
     /*
      * Disk configuration to apply to SQL Server.
@@ -95,7 +89,7 @@ public final class StorageConfigurationSettings {
      *
      * @return the sqlTempDbSettings value.
      */
-    public SqlTempDbSettings sqlTempDbSettings() {
+    public SqlStorageSettings sqlTempDbSettings() {
         return this.sqlTempDbSettings;
     }
 
@@ -105,28 +99,8 @@ public final class StorageConfigurationSettings {
      * @param sqlTempDbSettings the sqlTempDbSettings value to set.
      * @return the StorageConfigurationSettings object itself.
      */
-    public StorageConfigurationSettings withSqlTempDbSettings(SqlTempDbSettings sqlTempDbSettings) {
+    public StorageConfigurationSettings withSqlTempDbSettings(SqlStorageSettings sqlTempDbSettings) {
         this.sqlTempDbSettings = sqlTempDbSettings;
-        return this;
-    }
-
-    /**
-     * Get the sqlSystemDbOnDataDisk property: SQL Server SystemDb Storage on DataPool if true.
-     *
-     * @return the sqlSystemDbOnDataDisk value.
-     */
-    public Boolean sqlSystemDbOnDataDisk() {
-        return this.sqlSystemDbOnDataDisk;
-    }
-
-    /**
-     * Set the sqlSystemDbOnDataDisk property: SQL Server SystemDb Storage on DataPool if true.
-     *
-     * @param sqlSystemDbOnDataDisk the sqlSystemDbOnDataDisk value to set.
-     * @return the StorageConfigurationSettings object itself.
-     */
-    public StorageConfigurationSettings withSqlSystemDbOnDataDisk(Boolean sqlSystemDbOnDataDisk) {
-        this.sqlSystemDbOnDataDisk = sqlSystemDbOnDataDisk;
         return this;
     }
 

@@ -29,7 +29,7 @@ public interface Operations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return check name availability response along with {@link Response}.
+     * @return check name availability response.
      */
     Response<CheckNameAvailabilityResponse> checkNameAvailabilityWithResponse(
         CheckNameAvailabilityRequest request, Context context);
@@ -50,7 +50,7 @@ public interface Operations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all available operations along with {@link Response}.
+     * @return all available operations.
      */
     Response<List<AvailableRpOperation>> listWithResponse(Context context);
 
@@ -76,7 +76,7 @@ public interface Operations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of an operation along with {@link Response}.
+     * @return the result of an operation.
      */
     Response<Void> getLocationHeaderResultWithResponse(
         String resourceGroupName, String workspaceName, String operationId, Context context);
@@ -104,7 +104,7 @@ public interface Operations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of an operation along with {@link Response}.
+     * @return the status of an operation.
      */
     Response<OperationResource> getAzureAsyncHeaderResultWithResponse(
         String resourceGroupName, String workspaceName, String operationId, Context context);

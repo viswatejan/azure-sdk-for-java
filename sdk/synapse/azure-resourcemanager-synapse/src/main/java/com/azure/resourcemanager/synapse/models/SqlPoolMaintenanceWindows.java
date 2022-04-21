@@ -36,7 +36,7 @@ public interface SqlPoolMaintenanceWindows {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SQL pool's Maintenance Windows along with {@link Response}.
+     * @return a SQL pool's Maintenance Windows.
      */
     Response<MaintenanceWindows> getWithResponse(
         String resourceGroupName,
@@ -76,7 +76,7 @@ public interface SqlPoolMaintenanceWindows {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> createOrUpdateWithResponse(
         String resourceGroupName,

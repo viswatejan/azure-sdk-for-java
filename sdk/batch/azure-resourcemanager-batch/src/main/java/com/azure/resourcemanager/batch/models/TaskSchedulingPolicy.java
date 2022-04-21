@@ -6,11 +6,14 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Specifies how tasks should be distributed across compute nodes. */
 @Fluent
 public final class TaskSchedulingPolicy {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(TaskSchedulingPolicy.class);
+
     /*
      * How tasks should be distributed across compute nodes.
      */
@@ -44,12 +47,10 @@ public final class TaskSchedulingPolicy {
      */
     public void validate() {
         if (nodeFillType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property nodeFillType in model TaskSchedulingPolicy"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TaskSchedulingPolicy.class);
 }

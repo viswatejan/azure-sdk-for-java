@@ -223,8 +223,7 @@ public class DCDocumentCrudTest extends TestSuiteBase {
         options.setMaxDegreeOfParallelism(-1);
         ModelBridgeInternal.setQueryRequestOptionsMaxItemCount(options, 100);
 
-        Flux<FeedResponse<Document>> results = client.queryDocuments(
-            getCollectionLink(), "SELECT * FROM r", options, Document.class);
+        Flux<FeedResponse<Document>> results = client.queryDocuments(getCollectionLink(), "SELECT * FROM r", options);
 
         FeedResponseListValidator<Document> validator = new FeedResponseListValidator.Builder<Document>()
                 .totalSize(documentList.size())

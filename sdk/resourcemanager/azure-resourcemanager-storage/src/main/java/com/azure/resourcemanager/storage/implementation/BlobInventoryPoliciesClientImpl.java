@@ -141,8 +141,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the blob inventory policy associated with the specified storage account along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the blob inventory policy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BlobInventoryPolicyInner>> getWithResponseAsync(
@@ -201,8 +200,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the blob inventory policy associated with the specified storage account along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the blob inventory policy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BlobInventoryPolicyInner>> getWithResponseAsync(
@@ -260,8 +258,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the blob inventory policy associated with the specified storage account on successful completion of
-     *     {@link Mono}.
+     * @return the blob inventory policy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BlobInventoryPolicyInner> getAsync(
@@ -310,7 +307,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the blob inventory policy associated with the specified storage account along with {@link Response}.
+     * @return the blob inventory policy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BlobInventoryPolicyInner> getWithResponse(
@@ -334,8 +331,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage account blob inventory policy along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the storage account blob inventory policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BlobInventoryPolicyInner>> createOrUpdateWithResponseAsync(
@@ -404,8 +400,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage account blob inventory policy along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the storage account blob inventory policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BlobInventoryPolicyInner>> createOrUpdateWithResponseAsync(
@@ -471,7 +466,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage account blob inventory policy on successful completion of {@link Mono}.
+     * @return the storage account blob inventory policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BlobInventoryPolicyInner> createOrUpdateAsync(
@@ -528,7 +523,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the storage account blob inventory policy along with {@link Response}.
+     * @return the storage account blob inventory policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BlobInventoryPolicyInner> createOrUpdateWithResponse(
@@ -554,7 +549,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Void>> deleteWithResponseAsync(
@@ -613,7 +608,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -671,7 +666,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(
@@ -711,7 +706,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -732,8 +727,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the blob inventory policy associated with the specified storage account along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * @return the blob inventory policy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BlobInventoryPolicyInner>> listSinglePageAsync(
@@ -788,8 +782,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the blob inventory policy associated with the specified storage account along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * @return the blob inventory policy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BlobInventoryPolicyInner>> listSinglePageAsync(
@@ -840,8 +833,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the blob inventory policy associated with the specified storage account as paginated response with {@link
-     *     PagedFlux}.
+     * @return the blob inventory policy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BlobInventoryPolicyInner> listAsync(String resourceGroupName, String accountName) {
@@ -859,8 +851,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the blob inventory policy associated with the specified storage account as paginated response with {@link
-     *     PagedFlux}.
+     * @return the blob inventory policy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BlobInventoryPolicyInner> listAsync(
@@ -878,8 +869,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the blob inventory policy associated with the specified storage account as paginated response with {@link
-     *     PagedIterable}.
+     * @return the blob inventory policy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BlobInventoryPolicyInner> list(String resourceGroupName, String accountName) {
@@ -897,8 +887,7 @@ public final class BlobInventoryPoliciesClientImpl implements BlobInventoryPolic
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the blob inventory policy associated with the specified storage account as paginated response with {@link
-     *     PagedIterable}.
+     * @return the blob inventory policy associated with the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BlobInventoryPolicyInner> list(String resourceGroupName, String accountName, Context context) {

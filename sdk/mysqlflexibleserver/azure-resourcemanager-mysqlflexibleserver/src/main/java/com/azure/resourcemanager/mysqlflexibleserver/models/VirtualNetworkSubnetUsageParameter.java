@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.mysqlflexibleserver.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Virtual network subnet usage parameter. */
 @Fluent
 public final class VirtualNetworkSubnetUsageParameter {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualNetworkSubnetUsageParameter.class);
+
     /*
      * Virtual network resource id.
      */

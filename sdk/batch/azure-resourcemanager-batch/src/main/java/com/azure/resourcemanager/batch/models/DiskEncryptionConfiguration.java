@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -14,6 +16,8 @@ import java.util.List;
  */
 @Fluent
 public final class DiskEncryptionConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DiskEncryptionConfiguration.class);
+
     /*
      * The list of disk targets Batch Service will encrypt on the compute node
      * On Linux pool, only "TemporaryDisk" is supported; on Windows pool,

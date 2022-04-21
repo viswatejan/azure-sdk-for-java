@@ -6,11 +6,14 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters for an activating an application package. */
 @Fluent
 public final class ActivateApplicationPackageParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ActivateApplicationPackageParameters.class);
+
     /*
      * The format of the application package binary file.
      */
@@ -44,12 +47,10 @@ public final class ActivateApplicationPackageParameters {
      */
     public void validate() {
         if (format() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property format in model ActivateApplicationPackageParameters"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ActivateApplicationPackageParameters.class);
 }

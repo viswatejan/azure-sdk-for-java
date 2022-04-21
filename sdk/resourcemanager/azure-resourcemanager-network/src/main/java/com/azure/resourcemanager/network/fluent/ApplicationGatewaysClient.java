@@ -42,7 +42,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String applicationGatewayName);
@@ -55,7 +55,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String applicationGatewayName);
@@ -68,7 +68,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String applicationGatewayName);
@@ -82,7 +82,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -96,7 +96,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String applicationGatewayName);
@@ -134,7 +134,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified application gateway along with {@link Response} on successful completion of {@link Mono}.
+     * @return the specified application gateway.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ApplicationGatewayInner>> getByResourceGroupWithResponseAsync(
@@ -148,7 +148,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified application gateway on successful completion of {@link Mono}.
+     * @return the specified application gateway.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewayInner> getByResourceGroupAsync(String resourceGroupName, String applicationGatewayName);
@@ -175,7 +175,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified application gateway along with {@link Response}.
+     * @return the specified application gateway.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationGatewayInner> getByResourceGroupWithResponse(
@@ -190,7 +190,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return application gateway resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return application gateway resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -205,7 +205,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of application gateway resource.
+     * @return application gateway resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<ApplicationGatewayInner>, ApplicationGatewayInner> beginCreateOrUpdateAsync(
@@ -220,7 +220,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of application gateway resource.
+     * @return application gateway resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ApplicationGatewayInner>, ApplicationGatewayInner> beginCreateOrUpdate(
@@ -236,7 +236,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of application gateway resource.
+     * @return application gateway resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ApplicationGatewayInner>, ApplicationGatewayInner> beginCreateOrUpdate(
@@ -251,7 +251,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return application gateway resource on successful completion of {@link Mono}.
+     * @return application gateway resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewayInner> createOrUpdateAsync(
@@ -297,7 +297,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return application gateway resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return application gateway resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ApplicationGatewayInner>> updateTagsWithResponseAsync(
@@ -312,7 +312,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return application gateway resource on successful completion of {@link Mono}.
+     * @return application gateway resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewayInner> updateTagsAsync(
@@ -342,7 +342,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return application gateway resource along with {@link Response}.
+     * @return application gateway resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationGatewayInner> updateTagsWithResponse(
@@ -355,7 +355,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGateways API service call as paginated response with {@link PagedFlux}.
+     * @return response for ListApplicationGateways API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ApplicationGatewayInner> listByResourceGroupAsync(String resourceGroupName);
@@ -367,7 +367,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGateways API service call as paginated response with {@link PagedIterable}.
+     * @return response for ListApplicationGateways API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApplicationGatewayInner> listByResourceGroup(String resourceGroupName);
@@ -380,7 +380,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGateways API service call as paginated response with {@link PagedIterable}.
+     * @return response for ListApplicationGateways API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApplicationGatewayInner> listByResourceGroup(String resourceGroupName, Context context);
@@ -390,7 +390,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the application gateways in a subscription as paginated response with {@link PagedFlux}.
+     * @return all the application gateways in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ApplicationGatewayInner> listAsync();
@@ -400,7 +400,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the application gateways in a subscription as paginated response with {@link PagedIterable}.
+     * @return all the application gateways in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApplicationGatewayInner> list();
@@ -412,7 +412,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the application gateways in a subscription as paginated response with {@link PagedIterable}.
+     * @return all the application gateways in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApplicationGatewayInner> list(Context context);
@@ -425,7 +425,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String resourceGroupName, String applicationGatewayName);
@@ -438,7 +438,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginStartAsync(String resourceGroupName, String applicationGatewayName);
@@ -451,7 +451,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String applicationGatewayName);
@@ -465,7 +465,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginStart(
@@ -479,7 +479,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> startAsync(String resourceGroupName, String applicationGatewayName);
@@ -517,7 +517,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> stopWithResponseAsync(String resourceGroupName, String applicationGatewayName);
@@ -530,7 +530,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginStopAsync(String resourceGroupName, String applicationGatewayName);
@@ -543,7 +543,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginStop(String resourceGroupName, String applicationGatewayName);
@@ -557,7 +557,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginStop(
@@ -571,7 +571,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> stopAsync(String resourceGroupName, String applicationGatewayName);
@@ -610,8 +610,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the backend health of the specified application gateway in a resource group along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return the backend health of the specified application gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> backendHealthWithResponseAsync(
@@ -626,8 +625,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the backend health of the specified application gateway in a
-     *     resource group.
+     * @return the backend health of the specified application gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<ApplicationGatewayBackendHealthInner>, ApplicationGatewayBackendHealthInner>
@@ -642,8 +640,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the backend health of the specified application gateway in a
-     *     resource group.
+     * @return the backend health of the specified application gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ApplicationGatewayBackendHealthInner>, ApplicationGatewayBackendHealthInner>
@@ -659,8 +656,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the backend health of the specified application gateway in a
-     *     resource group.
+     * @return the backend health of the specified application gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ApplicationGatewayBackendHealthInner>, ApplicationGatewayBackendHealthInner>
@@ -675,8 +671,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the backend health of the specified application gateway in a resource group on successful completion of
-     *     {@link Mono}.
+     * @return the backend health of the specified application gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewayBackendHealthInner> backendHealthAsync(
@@ -690,8 +685,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the backend health of the specified application gateway in a resource group on successful completion of
-     *     {@link Mono}.
+     * @return the backend health of the specified application gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewayBackendHealthInner> backendHealthAsync(
@@ -753,7 +747,7 @@ public interface ApplicationGatewaysClient
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the backend health for given combination of backend pool and http setting of the specified application
-     *     gateway in a resource group along with {@link Response} on successful completion of {@link Mono}.
+     *     gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> backendHealthOnDemandWithResponseAsync(
@@ -773,8 +767,8 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the backend health for given combination of backend pool and http
-     *     setting of the specified application gateway in a resource group.
+     * @return the backend health for given combination of backend pool and http setting of the specified application
+     *     gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<ApplicationGatewayBackendHealthOnDemandInner>, ApplicationGatewayBackendHealthOnDemandInner>
@@ -795,8 +789,8 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the backend health for given combination of backend pool and http
-     *     setting of the specified application gateway in a resource group.
+     * @return the backend health for given combination of backend pool and http setting of the specified application
+     *     gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ApplicationGatewayBackendHealthOnDemandInner>, ApplicationGatewayBackendHealthOnDemandInner>
@@ -818,8 +812,8 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the backend health for given combination of backend pool and http
-     *     setting of the specified application gateway in a resource group.
+     * @return the backend health for given combination of backend pool and http setting of the specified application
+     *     gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ApplicationGatewayBackendHealthOnDemandInner>, ApplicationGatewayBackendHealthOnDemandInner>
@@ -842,7 +836,7 @@ public interface ApplicationGatewaysClient
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the backend health for given combination of backend pool and http setting of the specified application
-     *     gateway in a resource group on successful completion of {@link Mono}.
+     *     gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewayBackendHealthOnDemandInner> backendHealthOnDemandAsync(
@@ -862,7 +856,7 @@ public interface ApplicationGatewaysClient
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the backend health for given combination of backend pool and http setting of the specified application
-     *     gateway in a resource group on successful completion of {@link Mono}.
+     *     gateway in a resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewayBackendHealthOnDemandInner> backendHealthOnDemandAsync(
@@ -934,8 +928,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableServerVariables API service call along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return response for ApplicationGatewayAvailableServerVariables API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<String>>> listAvailableServerVariablesWithResponseAsync();
@@ -945,8 +938,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableServerVariables API service call on successful completion of
-     *     {@link Mono}.
+     * @return response for ApplicationGatewayAvailableServerVariables API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<String>> listAvailableServerVariablesAsync();
@@ -968,7 +960,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableServerVariables API service call along with {@link Response}.
+     * @return response for ApplicationGatewayAvailableServerVariables API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<String>> listAvailableServerVariablesWithResponse(Context context);
@@ -978,8 +970,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableRequestHeaders API service call along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return response for ApplicationGatewayAvailableRequestHeaders API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<String>>> listAvailableRequestHeadersWithResponseAsync();
@@ -989,8 +980,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableRequestHeaders API service call on successful completion of
-     *     {@link Mono}.
+     * @return response for ApplicationGatewayAvailableRequestHeaders API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<String>> listAvailableRequestHeadersAsync();
@@ -1012,7 +1002,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableRequestHeaders API service call along with {@link Response}.
+     * @return response for ApplicationGatewayAvailableRequestHeaders API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<String>> listAvailableRequestHeadersWithResponse(Context context);
@@ -1022,8 +1012,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableResponseHeaders API service call along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return response for ApplicationGatewayAvailableResponseHeaders API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<List<String>>> listAvailableResponseHeadersWithResponseAsync();
@@ -1033,8 +1022,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableResponseHeaders API service call on successful completion of
-     *     {@link Mono}.
+     * @return response for ApplicationGatewayAvailableResponseHeaders API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<List<String>> listAvailableResponseHeadersAsync();
@@ -1056,7 +1044,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.network.models.ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableResponseHeaders API service call along with {@link Response}.
+     * @return response for ApplicationGatewayAvailableResponseHeaders API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<String>> listAvailableResponseHeadersWithResponse(Context context);
@@ -1066,8 +1054,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableWafRuleSets API service call along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return response for ApplicationGatewayAvailableWafRuleSets API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ApplicationGatewayAvailableWafRuleSetsResultInner>> listAvailableWafRuleSetsWithResponseAsync();
@@ -1077,8 +1064,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableWafRuleSets API service call on successful completion of {@link
-     *     Mono}.
+     * @return response for ApplicationGatewayAvailableWafRuleSets API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewayAvailableWafRuleSetsResultInner> listAvailableWafRuleSetsAsync();
@@ -1100,7 +1086,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableWafRuleSets API service call along with {@link Response}.
+     * @return response for ApplicationGatewayAvailableWafRuleSets API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationGatewayAvailableWafRuleSetsResultInner> listAvailableWafRuleSetsWithResponse(Context context);
@@ -1110,8 +1096,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableSslOptions API service call along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return response for ApplicationGatewayAvailableSslOptions API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ApplicationGatewayAvailableSslOptionsInner>> listAvailableSslOptionsWithResponseAsync();
@@ -1121,8 +1106,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableSslOptions API service call on successful completion of {@link
-     *     Mono}.
+     * @return response for ApplicationGatewayAvailableSslOptions API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewayAvailableSslOptionsInner> listAvailableSslOptionsAsync();
@@ -1144,7 +1128,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableSslOptions API service call along with {@link Response}.
+     * @return response for ApplicationGatewayAvailableSslOptions API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationGatewayAvailableSslOptionsInner> listAvailableSslOptionsWithResponse(Context context);
@@ -1154,8 +1138,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableSslOptions API service call as paginated response with {@link
-     *     PagedFlux}.
+     * @return response for ApplicationGatewayAvailableSslOptions API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ApplicationGatewaySslPredefinedPolicyInner> listAvailableSslPredefinedPoliciesAsync();
@@ -1165,8 +1148,7 @@ public interface ApplicationGatewaysClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableSslOptions API service call as paginated response with {@link
-     *     PagedIterable}.
+     * @return response for ApplicationGatewayAvailableSslOptions API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApplicationGatewaySslPredefinedPolicyInner> listAvailableSslPredefinedPolicies();
@@ -1178,8 +1160,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ApplicationGatewayAvailableSslOptions API service call as paginated response with {@link
-     *     PagedIterable}.
+     * @return response for ApplicationGatewayAvailableSslOptions API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApplicationGatewaySslPredefinedPolicyInner> listAvailableSslPredefinedPolicies(Context context);
@@ -1191,8 +1172,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return ssl predefined policy with the specified policy name along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return ssl predefined policy with the specified policy name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ApplicationGatewaySslPredefinedPolicyInner>> getSslPredefinedPolicyWithResponseAsync(
@@ -1205,7 +1185,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return ssl predefined policy with the specified policy name on successful completion of {@link Mono}.
+     * @return ssl predefined policy with the specified policy name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewaySslPredefinedPolicyInner> getSslPredefinedPolicyAsync(String predefinedPolicyName);
@@ -1230,7 +1210,7 @@ public interface ApplicationGatewaysClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return ssl predefined policy with the specified policy name along with {@link Response}.
+     * @return ssl predefined policy with the specified policy name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationGatewaySslPredefinedPolicyInner> getSslPredefinedPolicyWithResponse(

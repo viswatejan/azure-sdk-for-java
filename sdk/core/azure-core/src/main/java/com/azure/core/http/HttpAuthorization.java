@@ -13,9 +13,6 @@ import java.util.Objects;
  */
 @Immutable
 public final class HttpAuthorization {
-    // HttpAuthorization can be used commonly, use a static logger.
-    private static final ClientLogger LOGGER = new ClientLogger(HttpAuthorization.class);
-
     private final String scheme;
     private final String parameter;
 
@@ -31,11 +28,12 @@ public final class HttpAuthorization {
         Objects.requireNonNull(scheme, "'scheme' cannot be null.");
         Objects.requireNonNull(parameter, "'parameter' cannot be null.");
 
+        ClientLogger logger = new ClientLogger(HttpAuthorization.class);
         if (scheme.isEmpty()) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException("'scheme' cannot be empty."));
+            throw logger.logExceptionAsError(new IllegalArgumentException("'scheme' cannot be empty."));
         }
         if (parameter.isEmpty()) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException("'parameter' cannot be empty."));
+            throw logger.logExceptionAsError(new IllegalArgumentException("'parameter' cannot be empty."));
         }
         this.scheme = scheme;
         this.parameter = parameter;

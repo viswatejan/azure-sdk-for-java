@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.digitaltwins.implementation;
 
+import com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager;
 import com.azure.resourcemanager.digitaltwins.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.digitaltwins.fluent.models.PrivateEndpointConnectionsResponseInner;
 import com.azure.resourcemanager.digitaltwins.models.PrivateEndpointConnection;
@@ -15,11 +16,10 @@ import java.util.stream.Collectors;
 public final class PrivateEndpointConnectionsResponseImpl implements PrivateEndpointConnectionsResponse {
     private PrivateEndpointConnectionsResponseInner innerObject;
 
-    private final com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager;
+    private final AzureDigitalTwinsManager serviceManager;
 
     PrivateEndpointConnectionsResponseImpl(
-        PrivateEndpointConnectionsResponseInner innerObject,
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager) {
+        PrivateEndpointConnectionsResponseInner innerObject, AzureDigitalTwinsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -42,7 +42,7 @@ public final class PrivateEndpointConnectionsResponseImpl implements PrivateEndp
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager() {
+    private AzureDigitalTwinsManager manager() {
         return this.serviceManager;
     }
 }

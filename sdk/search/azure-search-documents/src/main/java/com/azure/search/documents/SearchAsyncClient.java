@@ -72,8 +72,6 @@ import static com.azure.core.util.serializer.TypeReference.createInstance;
  */
 @ServiceClient(builder = SearchClientBuilder.class, isAsync = true)
 public final class SearchAsyncClient {
-    private static final ClientLogger LOGGER = new ClientLogger(SearchAsyncClient.class);
-
     /**
      * Search REST API Version
      */
@@ -88,6 +86,11 @@ public final class SearchAsyncClient {
      * The name of the Azure Cognitive Search index.
      */
     private final String indexName;
+
+    /**
+     * The logger to be used
+     */
+    private final ClientLogger logger = new ClientLogger(SearchAsyncClient.class);
 
     /**
      * The underlying AutoRest client used to interact with the Azure Cognitive Search service
@@ -595,7 +598,7 @@ public final class SearchAsyncClient {
             .collect(Collectors.toList());
 
         boolean throwOnAnyError = options == null || options.throwOnAnyError();
-        return Utility.indexDocumentsWithResponse(restClient, indexActions, throwOnAnyError, context, LOGGER);
+        return Utility.indexDocumentsWithResponse(restClient, indexActions, throwOnAnyError, context, logger);
     }
 
     /**
@@ -678,7 +681,7 @@ public final class SearchAsyncClient {
                         try {
                             return new SimpleResponse<>(res, Utility.convertValue(res.getValue(), modelClass));
                         } catch (IOException ex) {
-                            throw LOGGER.logExceptionAsError(
+                            throw logger.logExceptionAsError(
                                 new RuntimeException("Failed to deserialize document.", ex));
                         }
                     }
@@ -689,7 +692,7 @@ public final class SearchAsyncClient {
                     return new SimpleResponse<>(res, doc);
                 }).map(Function.identity());
         } catch (RuntimeException ex) {
-            return monoError(LOGGER, ex);
+            return monoError(logger, ex);
         }
     }
 
@@ -745,7 +748,7 @@ public final class SearchAsyncClient {
                 .onErrorMap(MappingUtils::exceptionMapper)
                 .map(Function.identity());
         } catch (RuntimeException ex) {
-            return monoError(LOGGER, ex);
+            return monoError(logger, ex);
         }
     }
 

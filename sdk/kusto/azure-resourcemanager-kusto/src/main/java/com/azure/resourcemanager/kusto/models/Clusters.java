@@ -32,7 +32,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto cluster along with {@link Response}.
+     * @return a Kusto cluster.
      */
     Response<Cluster> getByResourceGroupWithResponse(String resourceGroupName, String clusterName, Context context);
 
@@ -113,7 +113,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto database principals operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto database principals operation response.
      */
     PagedIterable<FollowerDatabaseDefinition> listFollowerDatabases(String resourceGroupName, String clusterName);
 
@@ -126,7 +126,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto database principals operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto database principals operation response.
      */
     PagedIterable<FollowerDatabaseDefinition> listFollowerDatabases(
         String resourceGroupName, String clusterName, Context context);
@@ -193,7 +193,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto clusters operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto clusters operation response.
      */
     PagedIterable<Cluster> listByResourceGroup(String resourceGroupName);
 
@@ -205,7 +205,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto clusters operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto clusters operation response.
      */
     PagedIterable<Cluster> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -214,7 +214,7 @@ public interface Clusters {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto clusters operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto clusters operation response.
      */
     PagedIterable<Cluster> list();
 
@@ -225,7 +225,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto clusters operation response as paginated response with {@link PagedIterable}.
+     * @return the list Kusto clusters operation response.
      */
     PagedIterable<Cluster> list(Context context);
 
@@ -234,7 +234,7 @@ public interface Clusters {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of the EngagementFabric SKU descriptions as paginated response with {@link PagedIterable}.
+     * @return the list of the EngagementFabric SKU descriptions.
      */
     PagedIterable<SkuDescription> listSkus();
 
@@ -245,7 +245,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of the EngagementFabric SKU descriptions as paginated response with {@link PagedIterable}.
+     * @return the list of the EngagementFabric SKU descriptions.
      */
     PagedIterable<SkuDescription> listSkus(Context context);
 
@@ -270,7 +270,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response}.
+     * @return the result returned from a check name availability request.
      */
     Response<CheckNameResult> checkNameAvailabilityWithResponse(
         String location, ClusterCheckNameRequest clusterName, Context context);
@@ -283,7 +283,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of available SKUs for a Kusto Cluster as paginated response with {@link PagedIterable}.
+     * @return list of available SKUs for a Kusto Cluster.
      */
     PagedIterable<AzureResourceSku> listSkusByResource(String resourceGroupName, String clusterName);
 
@@ -296,7 +296,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of available SKUs for a Kusto Cluster as paginated response with {@link PagedIterable}.
+     * @return list of available SKUs for a Kusto Cluster.
      */
     PagedIterable<AzureResourceSku> listSkusByResource(String resourceGroupName, String clusterName, Context context);
 
@@ -308,8 +308,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the network endpoints of all outbound dependencies of a Kusto cluster as paginated response with {@link
-     *     PagedIterable}.
+     * @return the network endpoints of all outbound dependencies of a Kusto cluster.
      */
     PagedIterable<OutboundNetworkDependenciesEndpoint> listOutboundNetworkDependenciesEndpoints(
         String resourceGroupName, String clusterName);
@@ -323,8 +322,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the network endpoints of all outbound dependencies of a Kusto cluster as paginated response with {@link
-     *     PagedIterable}.
+     * @return the network endpoints of all outbound dependencies of a Kusto cluster.
      */
     PagedIterable<OutboundNetworkDependenciesEndpoint> listOutboundNetworkDependenciesEndpoints(
         String resourceGroupName, String clusterName, Context context);
@@ -337,7 +335,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of language extension objects as paginated response with {@link PagedIterable}.
+     * @return the list of language extension objects.
      */
     PagedIterable<LanguageExtension> listLanguageExtensions(String resourceGroupName, String clusterName);
 
@@ -350,7 +348,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of language extension objects as paginated response with {@link PagedIterable}.
+     * @return the list of language extension objects.
      */
     PagedIterable<LanguageExtension> listLanguageExtensions(
         String resourceGroupName, String clusterName, Context context);
@@ -419,7 +417,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto cluster along with {@link Response}.
+     * @return a Kusto cluster.
      */
     Cluster getById(String id);
 
@@ -431,7 +429,7 @@ public interface Clusters {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto cluster along with {@link Response}.
+     * @return a Kusto cluster.
      */
     Response<Cluster> getByIdWithResponse(String id, Context context);
 

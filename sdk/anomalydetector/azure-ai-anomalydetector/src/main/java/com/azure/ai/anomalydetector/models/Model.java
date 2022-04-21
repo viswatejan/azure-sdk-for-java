@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-/** Response of getting a model. */
+/** Response of get model. */
 @Fluent
 public final class Model {
     /*
@@ -31,8 +31,7 @@ public final class Model {
     private OffsetDateTime lastUpdatedTime;
 
     /*
-     * Train result of a model including status, errors and diagnose info for
-     * model and variables.
+     * Training Status of the model.
      */
     @JsonProperty(value = "modelInfo")
     private ModelInfo modelInfo;
@@ -98,8 +97,7 @@ public final class Model {
     }
 
     /**
-     * Get the modelInfo property: Train result of a model including status, errors and diagnose info for model and
-     * variables.
+     * Get the modelInfo property: Training Status of the model.
      *
      * @return the modelInfo value.
      */
@@ -108,8 +106,7 @@ public final class Model {
     }
 
     /**
-     * Set the modelInfo property: Train result of a model including status, errors and diagnose info for model and
-     * variables.
+     * Set the modelInfo property: Training Status of the model.
      *
      * @param modelInfo the modelInfo value to set.
      * @return the Model object itself.

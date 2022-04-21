@@ -30,7 +30,7 @@ public interface Bots {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(String resourceGroupName, String resourceName, Context context);
 
@@ -55,7 +55,7 @@ public interface Bots {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot resource definition along with {@link Response}.
+     * @return bot resource definition.
      */
     Response<Bot> getByResourceGroupWithResponse(String resourceGroupName, String resourceName, Context context);
 
@@ -121,8 +121,7 @@ public interface Bots {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body returned for a request to Bot Service Management to check availability of a bot name
-     *     along with {@link Response}.
+     * @return the response body returned for a request to Bot Service Management to check availability of a bot name.
      */
     Response<CheckNameAvailabilityResponseBody> getCheckNameAvailabilityWithResponse(
         CheckNameAvailabilityRequestBody parameters, Context context);
@@ -134,7 +133,7 @@ public interface Bots {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot resource definition along with {@link Response}.
+     * @return bot resource definition.
      */
     Bot getById(String id);
 
@@ -146,7 +145,7 @@ public interface Bots {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot resource definition along with {@link Response}.
+     * @return bot resource definition.
      */
     Response<Bot> getByIdWithResponse(String id, Context context);
 
@@ -168,7 +167,7 @@ public interface Bots {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

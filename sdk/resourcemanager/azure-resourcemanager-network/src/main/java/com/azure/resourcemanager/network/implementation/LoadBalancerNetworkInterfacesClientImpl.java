@@ -97,8 +97,7 @@ public final class LoadBalancerNetworkInterfacesClientImpl implements LoadBalanc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return associated load balancer network interfaces along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return associated load balancer network interfaces.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NetworkInterfaceInner>> listSinglePageAsync(
@@ -158,8 +157,7 @@ public final class LoadBalancerNetworkInterfacesClientImpl implements LoadBalanc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return associated load balancer network interfaces along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return associated load balancer network interfaces.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NetworkInterfaceInner>> listSinglePageAsync(
@@ -215,7 +213,7 @@ public final class LoadBalancerNetworkInterfacesClientImpl implements LoadBalanc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return associated load balancer network interfaces as paginated response with {@link PagedFlux}.
+     * @return associated load balancer network interfaces.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<NetworkInterfaceInner> listAsync(String resourceGroupName, String loadBalancerName) {
@@ -233,7 +231,7 @@ public final class LoadBalancerNetworkInterfacesClientImpl implements LoadBalanc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return associated load balancer network interfaces as paginated response with {@link PagedFlux}.
+     * @return associated load balancer network interfaces.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NetworkInterfaceInner> listAsync(
@@ -251,7 +249,7 @@ public final class LoadBalancerNetworkInterfacesClientImpl implements LoadBalanc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return associated load balancer network interfaces as paginated response with {@link PagedIterable}.
+     * @return associated load balancer network interfaces.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NetworkInterfaceInner> list(String resourceGroupName, String loadBalancerName) {
@@ -267,7 +265,7 @@ public final class LoadBalancerNetworkInterfacesClientImpl implements LoadBalanc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return associated load balancer network interfaces as paginated response with {@link PagedIterable}.
+     * @return associated load balancer network interfaces.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<NetworkInterfaceInner> list(
@@ -282,8 +280,7 @@ public final class LoadBalancerNetworkInterfacesClientImpl implements LoadBalanc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListNetworkInterface API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for the ListNetworkInterface API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NetworkInterfaceInner>> listNextSinglePageAsync(String nextLink) {
@@ -319,8 +316,7 @@ public final class LoadBalancerNetworkInterfacesClientImpl implements LoadBalanc
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListNetworkInterface API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for the ListNetworkInterface API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NetworkInterfaceInner>> listNextSinglePageAsync(String nextLink, Context context) {

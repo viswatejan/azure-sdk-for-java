@@ -14,6 +14,7 @@ import com.azure.resourcemanager.compute.models.ImagePurchasePlan;
 import com.azure.resourcemanager.compute.models.OperatingSystemStateTypes;
 import com.azure.resourcemanager.compute.models.OperatingSystemTypes;
 import com.azure.resourcemanager.compute.models.RecommendedMachineConfiguration;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -21,6 +22,8 @@ import java.util.List;
 /** Describes the properties of a gallery image definition. */
 @Fluent
 public final class SharedGalleryImageProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(SharedGalleryImageProperties.class);
+
     /*
      * This property allows you to specify the type of the OS that is included
      * in the disk when creating a VM from a managed image. <br><br> Possible
@@ -281,19 +284,19 @@ public final class SharedGalleryImageProperties {
      */
     public void validate() {
         if (osType() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property osType in model SharedGalleryImageProperties"));
         }
         if (osState() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property osState in model SharedGalleryImageProperties"));
         }
         if (identifier() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property identifier in model SharedGalleryImageProperties"));
@@ -313,6 +316,4 @@ public final class SharedGalleryImageProperties {
             purchasePlan().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SharedGalleryImageProperties.class);
 }

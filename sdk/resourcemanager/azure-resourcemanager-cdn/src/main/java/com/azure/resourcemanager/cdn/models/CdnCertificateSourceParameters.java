@@ -15,10 +15,10 @@ public final class CdnCertificateSourceParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(CdnCertificateSourceParameters.class);
 
     /*
-     * The typeName property.
+     * The @odata.type property.
      */
-    @JsonProperty(value = "typeName", required = true)
-    private String typeName = "CdnCertificateSourceParameters";
+    @JsonProperty(value = "@odata.type", required = true)
+    private String odataType;
 
     /*
      * Type of certificate used
@@ -28,26 +28,26 @@ public final class CdnCertificateSourceParameters {
 
     /** Creates an instance of CdnCertificateSourceParameters class. */
     public CdnCertificateSourceParameters() {
-        typeName = "CdnCertificateSourceParameters";
+        odataType = "#Microsoft.Azure.Cdn.Models.CdnCertificateSourceParameters";
     }
 
     /**
-     * Get the typeName property: The typeName property.
+     * Get the odataType property: The @odata.type property.
      *
-     * @return the typeName value.
+     * @return the odataType value.
      */
-    public String typeName() {
-        return this.typeName;
+    public String odataType() {
+        return this.odataType;
     }
 
     /**
-     * Set the typeName property: The typeName property.
+     * Set the odataType property: The @odata.type property.
      *
-     * @param typeName the typeName value to set.
+     * @param odataType the odataType value to set.
      * @return the CdnCertificateSourceParameters object itself.
      */
-    public CdnCertificateSourceParameters withTypeName(String typeName) {
-        this.typeName = typeName;
+    public CdnCertificateSourceParameters withOdataType(String odataType) {
+        this.odataType = odataType;
         return this;
     }
 

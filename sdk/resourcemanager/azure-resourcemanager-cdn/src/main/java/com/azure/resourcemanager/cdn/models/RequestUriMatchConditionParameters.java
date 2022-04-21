@@ -16,10 +16,10 @@ public final class RequestUriMatchConditionParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(RequestUriMatchConditionParameters.class);
 
     /*
-     * The typeName property.
+     * The @odata.type property.
      */
-    @JsonProperty(value = "typeName", required = true)
-    private String typeName = "DeliveryRuleRequestUriConditionParameters";
+    @JsonProperty(value = "@odata.type", required = true)
+    private String odataType;
 
     /*
      * Describes operator to be matched
@@ -47,26 +47,26 @@ public final class RequestUriMatchConditionParameters {
 
     /** Creates an instance of RequestUriMatchConditionParameters class. */
     public RequestUriMatchConditionParameters() {
-        typeName = "DeliveryRuleRequestUriConditionParameters";
+        odataType = "#Microsoft.Azure.Cdn.Models.DeliveryRuleRequestUriConditionParameters";
     }
 
     /**
-     * Get the typeName property: The typeName property.
+     * Get the odataType property: The @odata.type property.
      *
-     * @return the typeName value.
+     * @return the odataType value.
      */
-    public String typeName() {
-        return this.typeName;
+    public String odataType() {
+        return this.odataType;
     }
 
     /**
-     * Set the typeName property: The typeName property.
+     * Set the odataType property: The @odata.type property.
      *
-     * @param typeName the typeName value to set.
+     * @param odataType the odataType value to set.
      * @return the RequestUriMatchConditionParameters object itself.
      */
-    public RequestUriMatchConditionParameters withTypeName(String typeName) {
-        this.typeName = typeName;
+    public RequestUriMatchConditionParameters withOdataType(String odataType) {
+        this.odataType = odataType;
         return this;
     }
 

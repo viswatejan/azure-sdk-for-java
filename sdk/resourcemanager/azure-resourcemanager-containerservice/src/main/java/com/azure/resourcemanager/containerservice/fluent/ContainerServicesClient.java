@@ -22,8 +22,7 @@ public interface ContainerServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of supported orchestrators in the specified subscription along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return a list of supported orchestrators in the specified subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<OrchestratorVersionProfileListResultInner>> listOrchestratorsWithResponseAsync(
@@ -38,7 +37,7 @@ public interface ContainerServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of supported orchestrators in the specified subscription on successful completion of {@link Mono}.
+     * @return a list of supported orchestrators in the specified subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<OrchestratorVersionProfileListResultInner> listOrchestratorsAsync(String location, String resourceType);
@@ -51,7 +50,7 @@ public interface ContainerServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of supported orchestrators in the specified subscription on successful completion of {@link Mono}.
+     * @return a list of supported orchestrators in the specified subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<OrchestratorVersionProfileListResultInner> listOrchestratorsAsync(String location);
@@ -79,7 +78,7 @@ public interface ContainerServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of supported orchestrators in the specified subscription along with {@link Response}.
+     * @return a list of supported orchestrators in the specified subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<OrchestratorVersionProfileListResultInner> listOrchestratorsWithResponse(

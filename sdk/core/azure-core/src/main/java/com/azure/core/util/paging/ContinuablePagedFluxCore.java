@@ -134,8 +134,7 @@ import java.util.function.Supplier;
  */
 public abstract class ContinuablePagedFluxCore<C, T, P extends ContinuablePage<C, T>>
     extends ContinuablePagedFlux<C, T, P> {
-    // ContinuablePagedFluxCore is a commonly used class, use a static logger.
-    private static final ClientLogger LOGGER = new ClientLogger(ContinuablePagedFluxCore.class);
+    private final ClientLogger logger = new ClientLogger(ContinuablePagedFluxCore.class);
 
     final Supplier<PageRetriever<C, P>> pageRetrieverProvider;
     final Integer defaultPageSize;
@@ -177,7 +176,7 @@ public abstract class ContinuablePagedFluxCore<C, T, P extends ContinuablePage<C
         this.pageRetrieverProvider = Objects.requireNonNull(pageRetrieverProvider,
             "'pageRetrieverProvider' function cannot be null.");
         if (pageSize != null && pageSize <= 0) {
-            throw LOGGER.logExceptionAsError(
+            throw logger.logExceptionAsError(
                 new IllegalArgumentException("'pageSize' must be greater than 0 required but provided: " + pageSize));
         }
         this.defaultPageSize = pageSize;

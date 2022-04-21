@@ -144,8 +144,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace managed sql server's security alert policy along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return a workspace managed sql server's security alert policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServerSecurityAlertPolicyInner>> getWithResponseAsync(
@@ -202,8 +201,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace managed sql server's security alert policy along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return a workspace managed sql server's security alert policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServerSecurityAlertPolicyInner>> getWithResponseAsync(
@@ -259,7 +257,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace managed sql server's security alert policy on successful completion of {@link Mono}.
+     * @return a workspace managed sql server's security alert policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ServerSecurityAlertPolicyInner> getAsync(
@@ -302,7 +300,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace managed sql server's security alert policy along with {@link Response}.
+     * @return a workspace managed sql server's security alert policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ServerSecurityAlertPolicyInner> getWithResponse(
@@ -323,8 +321,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed Sql server security alert policy along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workspace managed Sql server security alert policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -391,8 +388,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed Sql server security alert policy along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workspace managed Sql server security alert policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -456,8 +452,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed Sql server security alert policy along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workspace managed Sql server security alert policy.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ServerSecurityAlertPolicyInner>, ServerSecurityAlertPolicyInner>
@@ -475,7 +470,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
                 this.client.getHttpPipeline(),
                 ServerSecurityAlertPolicyInner.class,
                 ServerSecurityAlertPolicyInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -489,8 +484,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed Sql server security alert policy along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workspace managed Sql server security alert policy.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ServerSecurityAlertPolicyInner>, ServerSecurityAlertPolicyInner>
@@ -524,8 +518,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed Sql server security alert policy along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workspace managed Sql server security alert policy.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ServerSecurityAlertPolicyInner>, ServerSecurityAlertPolicyInner> beginCreateOrUpdate(
@@ -548,8 +541,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed Sql server security alert policy along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workspace managed Sql server security alert policy.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ServerSecurityAlertPolicyInner>, ServerSecurityAlertPolicyInner> beginCreateOrUpdate(
@@ -572,7 +564,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed Sql server security alert policy on successful completion of {@link Mono}.
+     * @return workspace managed Sql server security alert policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ServerSecurityAlertPolicyInner> createOrUpdateAsync(
@@ -596,7 +588,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed Sql server security alert policy on successful completion of {@link Mono}.
+     * @return workspace managed Sql server security alert policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ServerSecurityAlertPolicyInner> createOrUpdateAsync(
@@ -663,8 +655,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed sql server's threat detection policies along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return workspace managed sql server's threat detection policies.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServerSecurityAlertPolicyInner>> listSinglePageAsync(
@@ -723,8 +714,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed sql server's threat detection policies along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return workspace managed sql server's threat detection policies.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServerSecurityAlertPolicyInner>> listSinglePageAsync(
@@ -845,8 +835,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of the workspace managed sql server's security alert policies along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of the workspace managed sql server's security alert policies.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServerSecurityAlertPolicyInner>> listNextSinglePageAsync(String nextLink) {
@@ -882,8 +871,7 @@ public final class WorkspaceManagedSqlServerSecurityAlertPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of the workspace managed sql server's security alert policies along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of the workspace managed sql server's security alert policies.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServerSecurityAlertPolicyInner>> listNextSinglePageAsync(

@@ -22,8 +22,7 @@ public interface ResolvePrivateLinkServiceIdsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link service ID for the specified managed cluster along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the private link service ID for the specified managed cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<PrivateLinkResourceInner>> postWithResponseAsync(
@@ -38,7 +37,7 @@ public interface ResolvePrivateLinkServiceIdsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link service ID for the specified managed cluster on successful completion of {@link Mono}.
+     * @return the private link service ID for the specified managed cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<PrivateLinkResourceInner> postAsync(
@@ -68,7 +67,7 @@ public interface ResolvePrivateLinkServiceIdsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link service ID for the specified managed cluster along with {@link Response}.
+     * @return the private link service ID for the specified managed cluster.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateLinkResourceInner> postWithResponse(

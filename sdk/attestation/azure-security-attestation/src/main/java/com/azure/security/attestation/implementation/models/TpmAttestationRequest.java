@@ -25,7 +25,7 @@ public final class TpmAttestationRequest {
      */
     public byte[] getData() {
         if (this.data == null) {
-            return new byte[0];
+            return null;
         }
         return this.data.decodedBytes();
     }

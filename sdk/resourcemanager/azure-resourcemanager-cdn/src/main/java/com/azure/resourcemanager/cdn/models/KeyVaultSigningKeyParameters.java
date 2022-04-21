@@ -15,10 +15,10 @@ public final class KeyVaultSigningKeyParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(KeyVaultSigningKeyParameters.class);
 
     /*
-     * The typeName property.
+     * The @odata.type property.
      */
-    @JsonProperty(value = "typeName", required = true)
-    private String typeName = "KeyVaultSigningKeyParameters";
+    @JsonProperty(value = "@odata.type", required = true)
+    private String odataType;
 
     /*
      * Subscription Id of the user's Key Vault containing the secret
@@ -52,26 +52,26 @@ public final class KeyVaultSigningKeyParameters {
 
     /** Creates an instance of KeyVaultSigningKeyParameters class. */
     public KeyVaultSigningKeyParameters() {
-        typeName = "KeyVaultSigningKeyParameters";
+        odataType = "#Microsoft.Azure.Cdn.Models.KeyVaultSigningKeyParameters";
     }
 
     /**
-     * Get the typeName property: The typeName property.
+     * Get the odataType property: The @odata.type property.
      *
-     * @return the typeName value.
+     * @return the odataType value.
      */
-    public String typeName() {
-        return this.typeName;
+    public String odataType() {
+        return this.odataType;
     }
 
     /**
-     * Set the typeName property: The typeName property.
+     * Set the odataType property: The @odata.type property.
      *
-     * @param typeName the typeName value to set.
+     * @param odataType the odataType value to set.
      * @return the KeyVaultSigningKeyParameters object itself.
      */
-    public KeyVaultSigningKeyParameters withTypeName(String typeName) {
-        this.typeName = typeName;
+    public KeyVaultSigningKeyParameters withOdataType(String odataType) {
+        this.odataType = odataType;
         return this;
     }
 

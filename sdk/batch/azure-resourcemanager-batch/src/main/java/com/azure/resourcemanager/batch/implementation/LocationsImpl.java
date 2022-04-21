@@ -18,9 +18,10 @@ import com.azure.resourcemanager.batch.models.CheckNameAvailabilityParameters;
 import com.azure.resourcemanager.batch.models.CheckNameAvailabilityResult;
 import com.azure.resourcemanager.batch.models.Locations;
 import com.azure.resourcemanager.batch.models.SupportedSku;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class LocationsImpl implements Locations {
-    private static final ClientLogger LOGGER = new ClientLogger(LocationsImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(LocationsImpl.class);
 
     private final LocationsClient innerClient;
 

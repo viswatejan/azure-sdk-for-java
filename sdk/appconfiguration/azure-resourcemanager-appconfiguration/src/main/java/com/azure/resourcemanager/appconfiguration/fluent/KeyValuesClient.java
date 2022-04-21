@@ -23,7 +23,7 @@ public interface KeyValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list key-values as paginated response with {@link PagedIterable}.
+     * @return the result of a request to list key-values.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<KeyValueInner> listByConfigurationStore(String resourceGroupName, String configStoreName);
@@ -40,7 +40,7 @@ public interface KeyValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list key-values as paginated response with {@link PagedIterable}.
+     * @return the result of a request to list key-values.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<KeyValueInner> listByConfigurationStore(
@@ -72,7 +72,7 @@ public interface KeyValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified key-value along with {@link Response}.
+     * @return the properties of the specified key-value.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<KeyValueInner> getWithResponse(
@@ -105,7 +105,7 @@ public interface KeyValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties along with {@link Response}.
+     * @return the key-value resource along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<KeyValueInner> createOrUpdateWithResponse(
@@ -125,9 +125,9 @@ public interface KeyValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String configStoreName, String keyValueName);
 
@@ -142,9 +142,9 @@ public interface KeyValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String configStoreName, String keyValueName, Context context);
 

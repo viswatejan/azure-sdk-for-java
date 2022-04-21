@@ -96,8 +96,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a Digital Twin along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the available private link resources for a Digital Twin.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GroupIdInformationResponseInner>> listWithResponseAsync(
@@ -134,7 +133,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
                             resourceName,
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -146,8 +145,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a Digital Twin along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the available private link resources for a Digital Twin.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GroupIdInformationResponseInner>> listWithResponseAsync(
@@ -192,7 +190,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a Digital Twin on successful completion of {@link Mono}.
+     * @return the available private link resources for a Digital Twin.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GroupIdInformationResponseInner> listAsync(String resourceGroupName, String resourceName) {
@@ -231,7 +229,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for a Digital Twin along with {@link Response}.
+     * @return the available private link resources for a Digital Twin.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<GroupIdInformationResponseInner> listWithResponse(
@@ -248,8 +246,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given Digital Twin along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the specified private link resource for the given Digital Twin.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GroupIdInformationInner>> getWithResponseAsync(
@@ -290,7 +287,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
                             resourceId,
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -303,8 +300,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given Digital Twin along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the specified private link resource for the given Digital Twin.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GroupIdInformationInner>> getWithResponseAsync(
@@ -354,7 +350,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given Digital Twin on successful completion of {@link Mono}.
+     * @return the specified private link resource for the given Digital Twin.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GroupIdInformationInner> getAsync(String resourceGroupName, String resourceName, String resourceId) {
@@ -395,7 +391,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given Digital Twin along with {@link Response}.
+     * @return the specified private link resource for the given Digital Twin.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<GroupIdInformationInner> getWithResponse(

@@ -82,7 +82,8 @@ example `http://localhost:8080/login/oauth2/code/`. Note the tailing `/` cannot 
 
      (B). You can provide one by extending `AADWebSecurityConfigurerAdapter` and call `super.configure(http)` explicitly
     in the `configure(HttpSecurity http)` function. Here is an example:
-    ```java readme-sample-AADOAuth2LoginSecurityConfig
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapp/AADOAuth2LoginSecurityConfig.java#L11-L25 -->
+    ```java
     @EnableWebSecurity
     @EnableGlobalMethodSecurity(prePostEnabled = true)
     public class AADOAuth2LoginSecurityConfig extends AADWebSecurityConfigurerAdapter {
@@ -135,7 +136,8 @@ example `http://localhost:8080/login/oauth2/code/`. Note the tailing `/` cannot 
     Here, `graph` is the name of `OAuth2AuthorizedClient`, `scopes` means the scopes need to consent when login.
 
 * Step 4: Write your Java code:
-    ```java readme-sample-graph
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapp/ClientController.java#L40-L48 -->
+    ```java
     @GetMapping("/graph")
     @ResponseBody
     public String graph(
@@ -191,7 +193,8 @@ To use **aad-starter** in this scenario, we need these steps:
 
     (B). You can provide one by extending `AADResourceServerWebSecurityConfigurerAdapter` and call `super.configure(http)` explicitly
     in the `configure(HttpSecurity http)` function. Here is an example:
-    ```java readme-sample-AADOAuth2ResourceServerSecurityConfig
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapi/AADOAuth2ResourceServerSecurityConfig.java#L10-L21 -->
+    ```java
     @EnableWebSecurity
     @EnableGlobalMethodSecurity(prePostEnabled = true)
     public class AADOAuth2ResourceServerSecurityConfig extends AADResourceServerWebSecurityConfigurerAdapter {
@@ -251,7 +254,8 @@ To use **aad-starter** in this scenario, we need these steps:
 
     Using `@RegisteredOAuth2AuthorizedClient` to access related resource server:
 
-    ```java readme-sample-callGraph
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapi/SampleController.java#L64-L68 -->
+    ```java
     @PreAuthorize("hasAuthority('SCOPE_Obo.Graph.Read')")
     @GetMapping("call-graph")
     public String callGraph(@RegisteredOAuth2AuthorizedClient("graph") OAuth2AuthorizedClient graph) {
@@ -312,11 +316,12 @@ To use **aad-starter** in this scenario, we need these steps:
     
     Here is an example:
 
-    ```java readme-sample-AADWebApplicationAndResourceServerConfig
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/AADWebApplicationAndResourceServerConfig.java#L14-L42 -->
+    ```java
     @EnableWebSecurity
     @EnableGlobalMethodSecurity(prePostEnabled = true)
     public class AADWebApplicationAndResourceServerConfig {
-
+    
         @Order(1)
         @Configuration
         public static class ApiWebSecurityConfigurationAdapter extends AADResourceServerWebSecurityConfigurerAdapter {
@@ -327,10 +332,10 @@ To use **aad-starter** in this scenario, we need these steps:
                     .authorizeRequests().anyRequest().authenticated();
             }
         }
-
+    
         @Configuration
         public static class HtmlWebSecurityConfigurerAdapter extends AADWebSecurityConfigurerAdapter {
-
+    
             @Override
             protected void configure(HttpSecurity http) throws Exception {
                 super.configure(http);
@@ -406,7 +411,8 @@ Here are some examples about how to use these properties:
 
 * Step 2: Add `@EnableGlobalMethodSecurity(prePostEnabled = true)` in web application:
 
-    ```java readme-sample-AADOAuth2LoginSecurityConfig
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapp/AADOAuth2LoginSecurityConfig.java#L10-L24 -->
+    ```java
     @EnableWebSecurity
     @EnableGlobalMethodSecurity(prePostEnabled = true)
     public class AADOAuth2LoginSecurityConfig extends AADWebSecurityConfigurerAdapter {
@@ -425,7 +431,8 @@ Here are some examples about how to use these properties:
     ```
 
     Then we can protect the method by `@PreAuthorize` annotation:
-    ```java readme-sample-RoleController
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapp/RoleController.java#L11-L40 -->
+    ```java
     @Controller
     public class RoleController {
         @GetMapping("group1")
@@ -473,7 +480,8 @@ Here are some examples about how to use these properties:
     ```
 
 * Step 2: Write Java code:
-    ```java readme-sample-arm
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapp/OnDemandClientController.java#L17-L25 -->
+    ```java
     @GetMapping("/arm")
     @ResponseBody
     public String arm(
@@ -507,7 +515,8 @@ Here are some examples about how to use these properties:
     ```
 
 * Step 2: Write Java code:
-    ```java readme-sample-callClientCredential
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapi/SampleController.java#L134-L146 -->
+    ```java
     @PreAuthorize("hasAuthority('SCOPE_Obo.WebApiA.ExampleScope')")
     @GetMapping("webapiA/webapiC")
     public String callClientCredential() {
@@ -560,7 +569,8 @@ Follow the guide to [add app roles in your application and assign to users or gr
       ]
     ```
 * Step 2: Write Java code:
-    ```java readme-sample-admin
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapp/AuthorityController.java#L13-L18 -->
+    ```java
     @GetMapping("Admin")
     @ResponseBody
     @PreAuthorize("hasAuthority('APPROLE_Admin')")
@@ -637,15 +647,17 @@ In [Resource server visiting other resource server] scenario(For better descript
 
 * Step 5: Write your Java code:
     - webapp :
-    ```java readme-sample-webapiA
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapp/WebApiController.java#L34-L38 -->
+    ```java
     @GetMapping("/webapp/webapiA/webapiB")
     @ResponseBody
-    public String webapiA(@RegisteredOAuth2AuthorizedClient("webapiA") OAuth2AuthorizedClient client) {
+    public String callWebApi(@RegisteredOAuth2AuthorizedClient("webapiA") OAuth2AuthorizedClient webapiAClient) {
         return canVisitUri(client, WEB_API_A_URI);
     }
     ```
     - webapiA:
-    ```java readme-sample-callCustom
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapi/SampleController.java#L76-L81 -->
+    ```java
     @PreAuthorize("hasAuthority('SCOPE_Obo.WebApiA.ExampleScope')")
     @GetMapping("webapiA/webapiB")
     public String callCustom(
@@ -654,12 +666,13 @@ In [Resource server visiting other resource server] scenario(For better descript
     }
     ```
     - webapiB:
-    ```java readme-sample-file
+    <!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/aad/webapi/HomeController.java#L16-L21 -->
+    ```java
     @GetMapping("/webapiB")
     @ResponseBody
     @PreAuthorize("hasAuthority('SCOPE_WebApiB.ExampleScope')")
     public String file() {
-        return "Response from webApiB.";
+        return "Response from WebApiB.";
     }
     ```
 

@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 package com.azure.cosmos.implementation.changefeed;
 
-import com.azure.cosmos.ChangeFeedProcessor;
 import com.azure.cosmos.CosmosAsyncContainer;
-import com.azure.cosmos.models.ChangeFeedProcessorOptions;
 import com.azure.cosmos.models.CosmosChangeFeedRequestOptions;
 import com.azure.cosmos.models.CosmosContainerResponse;
 import com.azure.cosmos.CosmosAsyncDatabase;
@@ -19,11 +17,9 @@ import com.azure.cosmos.models.FeedResponse;
 import com.azure.cosmos.models.PartitionKey;
 import com.azure.cosmos.models.SqlQuerySpec;
 import com.azure.cosmos.implementation.PartitionKeyRange;
-import com.azure.cosmos.util.Beta;
 import com.fasterxml.jackson.databind.JsonNode;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Scheduler;
 
 import java.net.URI;
 
@@ -150,18 +146,4 @@ public interface ChangeFeedContextClient {
      * Closes the document client instance and cleans up the resources.
      */
     void close();
-
-    /**
-     * Gets the internal {@link Scheduler} that hosts a pool of ExecutorService-based workers for any change feed processor related tasks.
-     *
-     * @return a {@link Scheduler} that hosts a pool of ExecutorService-based workers..
-     */
-    Scheduler getScheduler();
-
-    /**
-     * Sets the internal {@link Scheduler} that hosts a pool of ExecutorService-based workers for any change feed processor related tasks.
-     *
-     * @param scheduler a {@link Scheduler} that hosts a pool of ExecutorService-based workers.
-     */
-    void setScheduler(Scheduler scheduler);
 }

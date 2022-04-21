@@ -18,17 +18,20 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
+import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.VirtualMachineImagesClient;
 import com.azure.resourcemanager.compute.fluent.models.VirtualMachineImageInner;
 import com.azure.resourcemanager.compute.fluent.models.VirtualMachineImageResourceInner;
-import com.azure.resourcemanager.compute.models.ApiErrorException;
 import java.util.List;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in VirtualMachineImagesClient. */
 public final class VirtualMachineImagesClientImpl implements VirtualMachineImagesClient {
+    private final ClientLogger logger = new ClientLogger(VirtualMachineImagesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final VirtualMachineImagesService service;
 
@@ -59,7 +62,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
             "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers"
                 + "/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions/{version}")
         @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ApiErrorException.class)
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualMachineImageInner>> get(
             @HostParam("$host") String endpoint,
             @PathParam("location") String location,
@@ -77,7 +80,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
             "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers"
                 + "/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions")
         @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ApiErrorException.class)
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<List<VirtualMachineImageResourceInner>>> list(
             @HostParam("$host") String endpoint,
             @PathParam("location") String location,
@@ -97,7 +100,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
             "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers"
                 + "/{publisherName}/artifacttypes/vmimage/offers")
         @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ApiErrorException.class)
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<List<VirtualMachineImageResourceInner>>> listOffers(
             @HostParam("$host") String endpoint,
             @PathParam("location") String location,
@@ -110,7 +113,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers")
         @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ApiErrorException.class)
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<List<VirtualMachineImageResourceInner>>> listPublishers(
             @HostParam("$host") String endpoint,
             @PathParam("location") String location,
@@ -124,7 +127,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
             "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers"
                 + "/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus")
         @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ApiErrorException.class)
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<List<VirtualMachineImageResourceInner>>> listSkus(
             @HostParam("$host") String endpoint,
             @PathParam("location") String location,
@@ -145,9 +148,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param skus A valid image SKU.
      * @param version A valid image SKU version.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine image along with {@link Response} on successful completion of {@link Mono}.
+     * @return a virtual machine image.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<VirtualMachineImageInner>> getWithResponseAsync(
@@ -179,7 +182,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -209,9 +212,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param version A valid image SKU version.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine image along with {@link Response} on successful completion of {@link Mono}.
+     * @return a virtual machine image.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<VirtualMachineImageInner>> getWithResponseAsync(
@@ -243,7 +246,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -269,9 +272,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param skus A valid image SKU.
      * @param version A valid image SKU version.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine image on successful completion of {@link Mono}.
+     * @return a virtual machine image.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<VirtualMachineImageInner> getAsync(
@@ -296,7 +299,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param skus A valid image SKU.
      * @param version A valid image SKU version.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a virtual machine image.
      */
@@ -316,9 +319,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param version A valid image SKU version.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine image along with {@link Response}.
+     * @return a virtual machine image.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<VirtualMachineImageInner> getWithResponse(
@@ -337,10 +340,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param top The top parameter.
      * @param orderby The orderby parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU along
-     *     with {@link Response} on successful completion of {@link Mono}.
+     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<List<VirtualMachineImageResourceInner>>> listWithResponseAsync(
@@ -369,7 +371,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -403,10 +405,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param orderby The orderby parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU along
-     *     with {@link Response} on successful completion of {@link Mono}.
+     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<List<VirtualMachineImageResourceInner>>> listWithResponseAsync(
@@ -442,7 +443,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -472,10 +473,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param top The top parameter.
      * @param orderby The orderby parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU on
-     *     successful completion of {@link Mono}.
+     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<List<VirtualMachineImageResourceInner>> listAsync(
@@ -499,10 +499,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param offer A valid image publisher offer.
      * @param skus A valid image SKU.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU on
-     *     successful completion of {@link Mono}.
+     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<List<VirtualMachineImageResourceInner>> listAsync(
@@ -529,7 +528,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param offer A valid image publisher offer.
      * @param skus A valid image SKU.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU.
      */
@@ -554,10 +553,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param orderby The orderby parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU along
-     *     with {@link Response}.
+     * @return a list of all virtual machine image versions for the specified location, publisher, offer, and SKU.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<List<VirtualMachineImageResourceInner>> listWithResponse(
@@ -578,10 +576,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param location The name of a supported Azure region.
      * @param publisherName A valid image publisher.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image offers for the specified location and publisher along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return a list of virtual machine image offers for the specified location and publisher.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<List<VirtualMachineImageResourceInner>>> listOffersWithResponseAsync(
@@ -604,7 +601,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -628,10 +625,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param publisherName A valid image publisher.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image offers for the specified location and publisher along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return a list of virtual machine image offers for the specified location and publisher.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<List<VirtualMachineImageResourceInner>>> listOffersWithResponseAsync(
@@ -654,7 +650,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -674,10 +670,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param location The name of a supported Azure region.
      * @param publisherName A valid image publisher.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image offers for the specified location and publisher on successful completion
-     *     of {@link Mono}.
+     * @return a list of virtual machine image offers for the specified location and publisher.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<List<VirtualMachineImageResourceInner>> listOffersAsync(String location, String publisherName) {
@@ -698,7 +693,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param location The name of a supported Azure region.
      * @param publisherName A valid image publisher.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of virtual machine image offers for the specified location and publisher.
      */
@@ -714,10 +709,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param publisherName A valid image publisher.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image offers for the specified location and publisher along with {@link
-     *     Response}.
+     * @return a list of virtual machine image offers for the specified location and publisher.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<List<VirtualMachineImageResourceInner>> listOffersWithResponse(
@@ -730,10 +724,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      *
      * @param location The name of a supported Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image publishers for the specified Azure location along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return a list of virtual machine image publishers for the specified Azure location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<List<VirtualMachineImageResourceInner>>> listPublishersWithResponseAsync(String location) {
@@ -752,7 +745,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -774,10 +767,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param location The name of a supported Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image publishers for the specified Azure location along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return a list of virtual machine image publishers for the specified Azure location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<List<VirtualMachineImageResourceInner>>> listPublishersWithResponseAsync(
@@ -797,7 +789,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -810,10 +802,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      *
      * @param location The name of a supported Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image publishers for the specified Azure location on successful completion of
-     *     {@link Mono}.
+     * @return a list of virtual machine image publishers for the specified Azure location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<List<VirtualMachineImageResourceInner>> listPublishersAsync(String location) {
@@ -833,7 +824,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      *
      * @param location The name of a supported Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of virtual machine image publishers for the specified Azure location.
      */
@@ -848,9 +839,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param location The name of a supported Azure region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image publishers for the specified Azure location along with {@link Response}.
+     * @return a list of virtual machine image publishers for the specified Azure location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<List<VirtualMachineImageResourceInner>> listPublishersWithResponse(
@@ -865,10 +856,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param publisherName A valid image publisher.
      * @param offer A valid image publisher offer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<List<VirtualMachineImageResourceInner>>> listSkusWithResponseAsync(
@@ -894,7 +884,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -920,10 +910,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param offer A valid image publisher offer.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<List<VirtualMachineImageResourceInner>>> listSkusWithResponseAsync(
@@ -949,7 +938,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -971,10 +960,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param publisherName A valid image publisher.
      * @param offer A valid image publisher offer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer on successful
-     *     completion of {@link Mono}.
+     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<List<VirtualMachineImageResourceInner>> listSkusAsync(
@@ -997,7 +985,7 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param publisherName A valid image publisher.
      * @param offer A valid image publisher offer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of virtual machine image SKUs for the specified location, publisher, and offer.
      */
@@ -1014,10 +1002,9 @@ public final class VirtualMachineImagesClientImpl implements VirtualMachineImage
      * @param offer A valid image publisher offer.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer along with {@link
-     *     Response}.
+     * @return a list of virtual machine image SKUs for the specified location, publisher, and offer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<List<VirtualMachineImageResourceInner>> listSkusWithResponse(

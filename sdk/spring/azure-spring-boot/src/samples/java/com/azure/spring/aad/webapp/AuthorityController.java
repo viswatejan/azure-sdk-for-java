@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class AuthorityController {
-    // BEGIN: readme-sample-admin
     @GetMapping("Admin")
     @ResponseBody
     @PreAuthorize("hasAuthority('APPROLE_Admin')")
     public String admin() {
         return "Admin message";
     }
-    // END: readme-sample-admin
 }

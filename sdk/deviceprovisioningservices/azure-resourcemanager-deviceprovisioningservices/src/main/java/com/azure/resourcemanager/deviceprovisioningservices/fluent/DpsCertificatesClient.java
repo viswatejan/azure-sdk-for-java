@@ -45,7 +45,7 @@ public interface DpsCertificatesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the certificate from the provisioning service along with {@link Response}.
+     * @return the certificate from the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CertificateResponseInner> getWithResponse(
@@ -89,7 +89,7 @@ public interface DpsCertificatesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate along with {@link Response}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CertificateResponseInner> createOrUpdateWithResponse(
@@ -137,7 +137,7 @@ public interface DpsCertificatesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
@@ -179,7 +179,7 @@ public interface DpsCertificatesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the certificates tied to the provisioning service along with {@link Response}.
+     * @return all the certificates tied to the provisioning service.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CertificateListDescriptionInner> listWithResponse(
@@ -226,7 +226,7 @@ public interface DpsCertificatesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return description of the response of the verification code along with {@link Response}.
+     * @return description of the response of the verification code.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VerificationCodeResponseInner> generateVerificationCodeWithResponse(
@@ -291,7 +291,7 @@ public interface DpsCertificatesClient {
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the X509 Certificate along with {@link Response}.
+     * @return the X509 Certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CertificateResponseInner> verifyCertificateWithResponse(

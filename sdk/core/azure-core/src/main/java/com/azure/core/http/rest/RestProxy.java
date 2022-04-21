@@ -55,6 +55,7 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import static com.azure.core.implementation.serializer.HttpResponseBodyDecoder.shouldEagerlyReadResponse;
+import static com.azure.core.util.FluxUtil.monoError;
 
 /**
  * Type to create a proxy implementation for an interface describing REST API methods.
@@ -71,9 +72,7 @@ public final class RestProxy implements InvocationHandler {
 
     private static final ResponseConstructorsCache RESPONSE_CONSTRUCTORS_CACHE = new ResponseConstructorsCache();
 
-    // RestProxy is a commonly used class, use a static logger.
-    private static final ClientLogger LOGGER = new ClientLogger(RestProxy.class);
-
+    private final ClientLogger logger = new ClientLogger(RestProxy.class);
     private final HttpPipeline httpPipeline;
     private final SerializerAdapter serializer;
     private final SwaggerInterfaceParser interfaceParser;
@@ -149,7 +148,7 @@ public final class RestProxy implements InvocationHandler {
             return handleRestReturnType(asyncDecodedResponse, methodParser,
                 methodParser.getReturnType(), context, options);
         } catch (IOException e) {
-            throw LOGGER.logExceptionAsError(Exceptions.propagate(e));
+            throw logger.logExceptionAsError(Exceptions.propagate(e));
         }
     }
 
@@ -158,7 +157,7 @@ public final class RestProxy implements InvocationHandler {
         // Use the fully-qualified class name as javac will throw deprecation warnings on imports when the class is
         // marked as deprecated.
         if (method.isAnnotationPresent(com.azure.core.annotation.ResumeOperation.class)) {
-            throw LOGGER.logExceptionAsError(Exceptions.propagate(new Exception("'ResumeOperation' isn't supported.")));
+            throw logger.logExceptionAsError(Exceptions.propagate(new Exception("'ResumeOperation' isn't supported.")));
         }
     }
 
@@ -471,50 +470,23 @@ public final class RestProxy implements InvocationHandler {
 
     @SuppressWarnings("unchecked")
     private Mono<Response<?>> createResponse(HttpDecodedResponse response, Type entityType, Object bodyAsObject) {
-        final Class<? extends Response<?>> cls = (Class<? extends Response<?>>) TypeUtil.getRawClass(entityType);
-
-        final HttpResponse httpResponse = response.getSourceResponse();
-        final HttpRequest request = httpResponse.getRequest();
-        final int statusCode = httpResponse.getStatusCode();
-        final HttpHeaders headers = httpResponse.getHeaders();
-        final Object decodedHeaders = response.getDecodedHeaders();
-        // Inspection of the response type needs to be performed to determine which course of action should be taken to
-        // instantiate the Response<?> from the HttpResponse.
-        //
-        // If the type is either the Response or PagedResponse interface from azure-core a new instance of either
-        // ResponseBase or PagedResponseBase can be returned.
+        // determine the type of response class. If the type is the 'RestResponse' interface, we will use the
+        // 'RestResponseBase' class instead.
+        Class<? extends Response<?>> cls = (Class<? extends Response<?>>) TypeUtil.getRawClass(entityType);
         if (cls.equals(Response.class)) {
-            // For Response return a new instance of ResponseBase cast to the class.
-            return Mono.defer(() -> Mono.just(cls.cast(new ResponseBase<>(request, statusCode, headers, bodyAsObject,
-                decodedHeaders))));
+            cls = (Class<? extends Response<?>>) (Object) ResponseBase.class;
         } else if (cls.equals(PagedResponse.class)) {
-            // For PagedResponse return a new instance of PagedResponseBase cast to the class.
-            //
-            // PagedResponse needs an additional check that the bodyAsObject implements Page.
-            //
-            // If the bodyAsObject is null use the constructor that take items and continuation token with null.
-            // Otherwise, use the constructor that take Page.
-            return Mono.create(sink -> {
-                if (bodyAsObject != null && !TypeUtil.isTypeOrSubTypeOf(bodyAsObject.getClass(), Page.class)) {
-                    sink.error(LOGGER.logExceptionAsError(new RuntimeException(MUST_IMPLEMENT_PAGE_ERROR)));
-                } else if (bodyAsObject == null) {
-                    sink.success(cls.cast(new PagedResponseBase<>(request, statusCode, headers, null, null,
-                        decodedHeaders)));
-                } else {
-                    sink.success(cls.cast(new PagedResponseBase<>(request, statusCode, headers, (Page<?>) bodyAsObject,
-                        decodedHeaders)));
-                }
-            });
+            cls = (Class<? extends Response<?>>) (Object) PagedResponseBase.class;
+
+            if (bodyAsObject != null && !TypeUtil.isTypeOrSubTypeOf(bodyAsObject.getClass(), Page.class)) {
+                return monoError(logger, new RuntimeException(MUST_IMPLEMENT_PAGE_ERROR));
+            }
         }
 
-        // Otherwise, rely on reflection, for now, to get the best constructor to use to create the Response sub-type.
-        //
-        // Ideally, in the future the SDKs won't need to dabble in reflection here as the Response sub-types should be
-        // given a way to register their constructor as a callback method that consumes HttpDecodedResponse and the
-        // body as an Object.
-        return Mono.just(RESPONSE_CONSTRUCTORS_CACHE.get(cls))
+        final Class<? extends Response<?>> clsFinal = cls;
+        return Mono.just(RESPONSE_CONSTRUCTORS_CACHE.get(clsFinal))
             .switchIfEmpty(Mono.defer(() ->
-                Mono.error(new RuntimeException("Cannot find suitable constructor for class " + cls))))
+                Mono.error(new RuntimeException("Cannot find suitable constructor for class " + clsFinal))))
             .flatMap(ctr -> RESPONSE_CONSTRUCTORS_CACHE.invoke(ctr, response, bodyAsObject));
     }
 

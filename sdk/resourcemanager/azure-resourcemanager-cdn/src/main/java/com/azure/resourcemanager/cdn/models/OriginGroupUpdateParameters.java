@@ -5,31 +5,46 @@
 package com.azure.resourcemanager.cdn.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.cdn.fluent.models.OriginGroupUpdatePropertiesParameters;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Origin group properties needed for origin group creation or update. */
+@JsonFlatten
 @Fluent
-public final class OriginGroupUpdateParameters {
+public class OriginGroupUpdateParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(OriginGroupUpdateParameters.class);
 
     /*
-     * The JSON object that contains the properties of the origin group.
+     * Health probe settings to the origin that is used to determine the health
+     * of the origin.
      */
-    @JsonProperty(value = "properties")
-    private OriginGroupUpdatePropertiesParameters innerProperties;
+    @JsonProperty(value = "properties.healthProbeSettings")
+    private HealthProbeParameters healthProbeSettings;
 
-    /**
-     * Get the innerProperties property: The JSON object that contains the properties of the origin group.
-     *
-     * @return the innerProperties value.
+    /*
+     * The source of the content being delivered via CDN within given origin
+     * group.
      */
-    private OriginGroupUpdatePropertiesParameters innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.origins")
+    private List<ResourceReference> origins;
+
+    /*
+     * Time in minutes to shift the traffic to the endpoint gradually when an
+     * unhealthy endpoint comes healthy or a new endpoint is added. Default is
+     * 10 mins. This property is currently not supported.
+     */
+    @JsonProperty(value = "properties.trafficRestorationTimeToHealedOrNewEndpointsInMinutes")
+    private Integer trafficRestorationTimeToHealedOrNewEndpointsInMinutes;
+
+    /*
+     * The JSON object that contains the properties to determine origin health
+     * using real requests/responses. This property is currently not supported.
+     */
+    @JsonProperty(value = "properties.responseBasedOriginErrorDetectionSettings")
+    private ResponseBasedOriginErrorDetectionParameters responseBasedOriginErrorDetectionSettings;
 
     /**
      * Get the healthProbeSettings property: Health probe settings to the origin that is used to determine the health of
@@ -38,7 +53,7 @@ public final class OriginGroupUpdateParameters {
      * @return the healthProbeSettings value.
      */
     public HealthProbeParameters healthProbeSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().healthProbeSettings();
+        return this.healthProbeSettings;
     }
 
     /**
@@ -49,10 +64,7 @@ public final class OriginGroupUpdateParameters {
      * @return the OriginGroupUpdateParameters object itself.
      */
     public OriginGroupUpdateParameters withHealthProbeSettings(HealthProbeParameters healthProbeSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginGroupUpdatePropertiesParameters();
-        }
-        this.innerProperties().withHealthProbeSettings(healthProbeSettings);
+        this.healthProbeSettings = healthProbeSettings;
         return this;
     }
 
@@ -62,7 +74,7 @@ public final class OriginGroupUpdateParameters {
      * @return the origins value.
      */
     public List<ResourceReference> origins() {
-        return this.innerProperties() == null ? null : this.innerProperties().origins();
+        return this.origins;
     }
 
     /**
@@ -72,10 +84,7 @@ public final class OriginGroupUpdateParameters {
      * @return the OriginGroupUpdateParameters object itself.
      */
     public OriginGroupUpdateParameters withOrigins(List<ResourceReference> origins) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginGroupUpdatePropertiesParameters();
-        }
-        this.innerProperties().withOrigins(origins);
+        this.origins = origins;
         return this;
     }
 
@@ -87,9 +96,7 @@ public final class OriginGroupUpdateParameters {
      * @return the trafficRestorationTimeToHealedOrNewEndpointsInMinutes value.
      */
     public Integer trafficRestorationTimeToHealedOrNewEndpointsInMinutes() {
-        return this.innerProperties() == null
-            ? null
-            : this.innerProperties().trafficRestorationTimeToHealedOrNewEndpointsInMinutes();
+        return this.trafficRestorationTimeToHealedOrNewEndpointsInMinutes;
     }
 
     /**
@@ -103,13 +110,8 @@ public final class OriginGroupUpdateParameters {
      */
     public OriginGroupUpdateParameters withTrafficRestorationTimeToHealedOrNewEndpointsInMinutes(
         Integer trafficRestorationTimeToHealedOrNewEndpointsInMinutes) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginGroupUpdatePropertiesParameters();
-        }
-        this
-            .innerProperties()
-            .withTrafficRestorationTimeToHealedOrNewEndpointsInMinutes(
-                trafficRestorationTimeToHealedOrNewEndpointsInMinutes);
+        this.trafficRestorationTimeToHealedOrNewEndpointsInMinutes =
+            trafficRestorationTimeToHealedOrNewEndpointsInMinutes;
         return this;
     }
 
@@ -120,9 +122,7 @@ public final class OriginGroupUpdateParameters {
      * @return the responseBasedOriginErrorDetectionSettings value.
      */
     public ResponseBasedOriginErrorDetectionParameters responseBasedOriginErrorDetectionSettings() {
-        return this.innerProperties() == null
-            ? null
-            : this.innerProperties().responseBasedOriginErrorDetectionSettings();
+        return this.responseBasedOriginErrorDetectionSettings;
     }
 
     /**
@@ -134,10 +134,7 @@ public final class OriginGroupUpdateParameters {
      */
     public OriginGroupUpdateParameters withResponseBasedOriginErrorDetectionSettings(
         ResponseBasedOriginErrorDetectionParameters responseBasedOriginErrorDetectionSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OriginGroupUpdatePropertiesParameters();
-        }
-        this.innerProperties().withResponseBasedOriginErrorDetectionSettings(responseBasedOriginErrorDetectionSettings);
+        this.responseBasedOriginErrorDetectionSettings = responseBasedOriginErrorDetectionSettings;
         return this;
     }
 
@@ -147,8 +144,14 @@ public final class OriginGroupUpdateParameters {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (healthProbeSettings() != null) {
+            healthProbeSettings().validate();
+        }
+        if (origins() != null) {
+            origins().forEach(e -> e.validate());
+        }
+        if (responseBasedOriginErrorDetectionSettings() != null) {
+            responseBasedOriginErrorDetectionSettings().validate();
         }
     }
 }

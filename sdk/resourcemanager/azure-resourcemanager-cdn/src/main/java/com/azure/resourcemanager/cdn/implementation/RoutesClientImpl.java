@@ -169,14 +169,12 @@ public final class RoutesClientImpl implements RoutesClient {
      * Lists all of the existing origins within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list routes along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return result of the request to list routes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RouteInner>> listByEndpointSinglePageAsync(
@@ -226,22 +224,20 @@ public final class RoutesClientImpl implements RoutesClient {
                         res.getValue().value(),
                         res.getValue().nextLink(),
                         null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
      * Lists all of the existing origins within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list routes along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return result of the request to list routes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RouteInner>> listByEndpointSinglePageAsync(
@@ -295,13 +291,12 @@ public final class RoutesClientImpl implements RoutesClient {
      * Lists all of the existing origins within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list routes as paginated response with {@link PagedFlux}.
+     * @return result of the request to list routes.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<RouteInner> listByEndpointAsync(
@@ -315,14 +310,13 @@ public final class RoutesClientImpl implements RoutesClient {
      * Lists all of the existing origins within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list routes as paginated response with {@link PagedFlux}.
+     * @return result of the request to list routes.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<RouteInner> listByEndpointAsync(
@@ -336,13 +330,12 @@ public final class RoutesClientImpl implements RoutesClient {
      * Lists all of the existing origins within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list routes as paginated response with {@link PagedIterable}.
+     * @return result of the request to list routes.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RouteInner> listByEndpoint(String resourceGroupName, String profileName, String endpointName) {
@@ -353,14 +346,13 @@ public final class RoutesClientImpl implements RoutesClient {
      * Lists all of the existing origins within a profile.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list routes as paginated response with {@link PagedIterable}.
+     * @return result of the request to list routes.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<RouteInner> listByEndpoint(
@@ -373,15 +365,14 @@ public final class RoutesClientImpl implements RoutesClient {
      * and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing route with the specified route name under the specified subscription, resource group,
-     *     profile, and AzureFrontDoor endpoint along with {@link Response} on successful completion of {@link Mono}.
+     *     profile, and AzureFrontDoor endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<RouteInner>> getWithResponseAsync(
@@ -426,7 +417,7 @@ public final class RoutesClientImpl implements RoutesClient {
                             this.client.getApiVersion(),
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -434,8 +425,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param context The context to associate with this operation.
@@ -443,7 +433,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing route with the specified route name under the specified subscription, resource group,
-     *     profile, and AzureFrontDoor endpoint along with {@link Response} on successful completion of {@link Mono}.
+     *     profile, and AzureFrontDoor endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RouteInner>> getWithResponseAsync(
@@ -493,15 +483,14 @@ public final class RoutesClientImpl implements RoutesClient {
      * and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing route with the specified route name under the specified subscription, resource group,
-     *     profile, and AzureFrontDoor endpoint on successful completion of {@link Mono}.
+     *     profile, and AzureFrontDoor endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RouteInner> getAsync(
@@ -522,8 +511,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -542,8 +530,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param context The context to associate with this operation.
@@ -551,7 +538,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an existing route with the specified route name under the specified subscription, resource group,
-     *     profile, and AzureFrontDoor endpoint along with {@link Response}.
+     *     profile, and AzureFrontDoor endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<RouteInner> getWithResponse(
@@ -564,16 +551,14 @@ public final class RoutesClientImpl implements RoutesClient {
      * AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param route Route properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return friendly Routes name mapping to the any Routes or secret related information along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -624,7 +609,7 @@ public final class RoutesClientImpl implements RoutesClient {
                             route,
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -632,8 +617,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param route Route properties.
@@ -641,8 +625,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return friendly Routes name mapping to the any Routes or secret related information along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -703,18 +686,16 @@ public final class RoutesClientImpl implements RoutesClient {
      * AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param route Route properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of friendly Routes name mapping to the any Routes or secret related
-     *     information.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public PollerFlux<PollResult<RouteInner>, RouteInner> beginCreateAsync(
         String resourceGroupName, String profileName, String endpointName, String routeName, RouteInner route) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -730,8 +711,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param route Route properties.
@@ -739,10 +719,9 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of friendly Routes name mapping to the any Routes or secret related
-     *     information.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<RouteInner>, RouteInner> beginCreateAsync(
         String resourceGroupName,
         String profileName,
@@ -764,18 +743,16 @@ public final class RoutesClientImpl implements RoutesClient {
      * AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param route Route properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of friendly Routes name mapping to the any Routes or secret related
-     *     information.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<RouteInner>, RouteInner> beginCreate(
         String resourceGroupName, String profileName, String endpointName, String routeName, RouteInner route) {
         return beginCreateAsync(resourceGroupName, profileName, endpointName, routeName, route).getSyncPoller();
@@ -786,8 +763,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param route Route properties.
@@ -795,10 +771,9 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of friendly Routes name mapping to the any Routes or secret related
-     *     information.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<RouteInner>, RouteInner> beginCreate(
         String resourceGroupName,
         String profileName,
@@ -815,16 +790,14 @@ public final class RoutesClientImpl implements RoutesClient {
      * AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param route Route properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return friendly Routes name mapping to the any Routes or secret related information on successful completion of
-     *     {@link Mono}.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RouteInner> createAsync(
@@ -839,8 +812,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param route Route properties.
@@ -848,8 +820,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return friendly Routes name mapping to the any Routes or secret related information on successful completion of
-     *     {@link Mono}.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<RouteInner> createAsync(
@@ -869,8 +840,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param route Route properties.
@@ -890,8 +860,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param route Route properties.
@@ -917,16 +886,14 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param routeUpdateProperties Route update properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return friendly Routes name mapping to the any Routes or secret related information along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -982,7 +949,7 @@ public final class RoutesClientImpl implements RoutesClient {
                             routeUpdateProperties,
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -990,8 +957,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param routeUpdateProperties Route update properties.
@@ -999,8 +965,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return friendly Routes name mapping to the any Routes or secret related information along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1062,18 +1027,16 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param routeUpdateProperties Route update properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of friendly Routes name mapping to the any Routes or secret related
-     *     information.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public PollerFlux<PollResult<RouteInner>, RouteInner> beginUpdateAsync(
         String resourceGroupName,
         String profileName,
@@ -1093,8 +1056,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param routeUpdateProperties Route update properties.
@@ -1102,10 +1064,9 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of friendly Routes name mapping to the any Routes or secret related
-     *     information.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<RouteInner>, RouteInner> beginUpdateAsync(
         String resourceGroupName,
         String profileName,
@@ -1128,18 +1089,16 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param routeUpdateProperties Route update properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of friendly Routes name mapping to the any Routes or secret related
-     *     information.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<RouteInner>, RouteInner> beginUpdate(
         String resourceGroupName,
         String profileName,
@@ -1155,8 +1114,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param routeUpdateProperties Route update properties.
@@ -1164,10 +1122,9 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of friendly Routes name mapping to the any Routes or secret related
-     *     information.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<RouteInner>, RouteInner> beginUpdate(
         String resourceGroupName,
         String profileName,
@@ -1184,16 +1141,14 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param routeUpdateProperties Route update properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return friendly Routes name mapping to the any Routes or secret related information on successful completion of
-     *     {@link Mono}.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<RouteInner> updateAsync(
@@ -1212,8 +1167,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param routeUpdateProperties Route update properties.
@@ -1221,8 +1175,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return friendly Routes name mapping to the any Routes or secret related information on successful completion of
-     *     {@link Mono}.
+     * @return friendly Routes name mapping to the any Routes or secret related information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<RouteInner> updateAsync(
@@ -1242,8 +1195,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param routeUpdateProperties Route update properties.
@@ -1267,8 +1219,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param routeUpdateProperties Route update properties.
@@ -1295,14 +1246,13 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1347,7 +1297,7 @@ public final class RoutesClientImpl implements RoutesClient {
                             this.client.getApiVersion(),
                             accept,
                             context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -1355,15 +1305,14 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1413,16 +1362,15 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String profileName, String endpointName, String routeName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -1438,17 +1386,16 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String profileName, String endpointName, String routeName, Context context) {
         context = this.client.mergeContext(context);
@@ -1464,16 +1411,15 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String profileName, String endpointName, String routeName) {
         return beginDeleteAsync(resourceGroupName, profileName, endpointName, routeName).getSyncPoller();
@@ -1484,17 +1430,16 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String profileName, String endpointName, String routeName, Context context) {
         return beginDeleteAsync(resourceGroupName, profileName, endpointName, routeName, context).getSyncPoller();
@@ -1505,14 +1450,13 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(String resourceGroupName, String profileName, String endpointName, String routeName) {
@@ -1526,15 +1470,14 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1549,8 +1492,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1567,8 +1509,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * profile, and AzureFrontDoor endpoint.
      *
      * @param resourceGroupName Name of the Resource group within the Azure subscription.
-     * @param profileName Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique
-     *     within the resource group.
+     * @param profileName Name of the CDN profile which is unique within the resource group.
      * @param endpointName Name of the endpoint under the profile which is unique globally.
      * @param routeName Name of the routing rule.
      * @param context The context to associate with this operation.
@@ -1589,8 +1530,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list routes along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return result of the request to list routes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RouteInner>> listByEndpointNextSinglePageAsync(String nextLink) {
@@ -1615,7 +1555,7 @@ public final class RoutesClientImpl implements RoutesClient {
                         res.getValue().value(),
                         res.getValue().nextLink(),
                         null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+            .subscriberContext(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext())));
     }
 
     /**
@@ -1626,8 +1566,7 @@ public final class RoutesClientImpl implements RoutesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list routes along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return result of the request to list routes.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<RouteInner>> listByEndpointNextSinglePageAsync(String nextLink, Context context) {

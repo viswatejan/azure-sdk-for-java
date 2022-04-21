@@ -20,8 +20,7 @@ public final class ServerPropertiesForDefaultCreate extends ServerPropertiesForC
 
     /*
      * The administrator's login name of a server. Can only be specified when
-     * the server is being created (and is required for creation). The login
-     * name is required when updating password.
+     * the server is being created (and is required for creation).
      */
     @JsonProperty(value = "administratorLogin", required = true)
     private String administratorLogin;
@@ -34,7 +33,7 @@ public final class ServerPropertiesForDefaultCreate extends ServerPropertiesForC
 
     /**
      * Get the administratorLogin property: The administrator's login name of a server. Can only be specified when the
-     * server is being created (and is required for creation). The login name is required when updating password.
+     * server is being created (and is required for creation).
      *
      * @return the administratorLogin value.
      */
@@ -44,7 +43,7 @@ public final class ServerPropertiesForDefaultCreate extends ServerPropertiesForC
 
     /**
      * Set the administratorLogin property: The administrator's login name of a server. Can only be specified when the
-     * server is being created (and is required for creation). The login name is required when updating password.
+     * server is being created (and is required for creation).
      *
      * @param administratorLogin the administratorLogin value to set.
      * @return the ServerPropertiesForDefaultCreate object itself.

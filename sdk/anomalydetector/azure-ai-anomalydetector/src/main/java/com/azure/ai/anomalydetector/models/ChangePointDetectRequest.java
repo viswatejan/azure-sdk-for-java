@@ -8,7 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The request of change point detection. */
+/** The ChangePointDetectRequest model. */
 @Fluent
 public final class ChangePointDetectRequest {
     /*

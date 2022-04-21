@@ -4,7 +4,6 @@
 package com.azure.ai.formrecognizer;
 
 import com.azure.ai.formrecognizer.administration.DocumentModelAdministrationClient;
-import com.azure.ai.formrecognizer.administration.models.DocumentBuildMode;
 import com.azure.ai.formrecognizer.administration.models.DocumentModel;
 import com.azure.ai.formrecognizer.models.AnalyzeDocumentOptions;
 import com.azure.ai.formrecognizer.models.AnalyzeResult;
@@ -72,12 +71,12 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
 
     private DocumentAnalysisClient getDocumentAnalysisClient(HttpClient httpClient,
                                                              DocumentAnalysisServiceVersion serviceVersion) {
-        return getDocumentAnalysisBuilder(httpClient, serviceVersion, true).buildClient();
+        return getDocumentAnalysisBuilder(httpClient, serviceVersion, false).buildClient();
     }
 
     private DocumentModelAdministrationClient getDocumentModelAdminClient(HttpClient httpClient,
                                                                           DocumentAnalysisServiceVersion serviceVersion) {
-        return getDocumentModelAdminClientBuilder(httpClient, serviceVersion, true).buildClient();
+        return getDocumentModelAdminClientBuilder(httpClient, serviceVersion, false).buildClient();
     }
 
     // Receipt recognition
@@ -550,7 +549,7 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
             buildModelRunner((trainingFilesUrl) -> {
                 SyncPoller<DocumentOperationResult, DocumentModel> buildModelPoller =
                     adminClient
-                        .beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE, null)
+                        .beginBuildModel(trainingFilesUrl, null)
                         .setPollInterval(durationTestMode);
                 buildModelPoller.waitForCompletion();
 
@@ -582,7 +581,7 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
             buildModelRunner((trainingFilesUrl) -> {
                 SyncPoller<DocumentOperationResult, DocumentModel> buildModelPoller =
                     adminClient
-                        .beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE, null)
+                        .beginBuildModel(trainingFilesUrl, null)
                         .setPollInterval(durationTestMode);
                 buildModelPoller.waitForCompletion();
 
@@ -615,7 +614,7 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
             buildModelRunner((trainingFilesUrl) -> {
                 SyncPoller<DocumentOperationResult, DocumentModel> buildModelPoller =
                     adminClient
-                        .beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE, null)
+                        .beginBuildModel(trainingFilesUrl, null)
                         .setPollInterval(durationTestMode);
                 buildModelPoller.waitForCompletion();
 
@@ -664,7 +663,7 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
             buildModelRunner((trainingFilesUrl) -> {
                 SyncPoller<DocumentOperationResult, DocumentModel> buildModelPoller =
                     adminClient
-                        .beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE, null)
+                        .beginBuildModel(trainingFilesUrl, null)
                         .setPollInterval(durationTestMode);
                 buildModelPoller.waitForCompletion();
 
@@ -693,7 +692,7 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
         dataRunner((data, dataLength) -> multipageTrainingRunner((trainingFilesUrl) -> {
             SyncPoller<DocumentOperationResult, DocumentModel> buildModelPoller
                 = adminClient
-                .beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE, null)
+                .beginBuildModel(trainingFilesUrl, null)
                 .setPollInterval(durationTestMode);
             buildModelPoller.waitForCompletion();
             String modelId = buildModelPoller.getFinalResult().getModelId();
@@ -721,7 +720,7 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
             selectionMarkTrainingRunner((trainingFilesUrl) -> {
                 SyncPoller<DocumentOperationResult, DocumentModel> buildModelPoller =
                     adminClient
-                        .beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE, null)
+                        .beginBuildModel(trainingFilesUrl, null)
                         .setPollInterval(durationTestMode);
                 buildModelPoller.waitForCompletion();
 
@@ -753,7 +752,7 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
         urlRunner((fileUrl) -> buildModelRunner((trainingFilesUrl) -> {
             SyncPoller<DocumentOperationResult, DocumentModel> buildModelPoller
                 = adminClient
-                .beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE, null)
+                .beginBuildModel(trainingFilesUrl, null)
                 .setPollInterval(durationTestMode);
             buildModelPoller.waitForCompletion();
             String modelId = buildModelPoller.getFinalResult().getModelId();
@@ -778,7 +777,7 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
         testingContainerUrlRunner((fileUrl) -> multipageTrainingRunner((trainingFilesUrl) -> {
             SyncPoller<DocumentOperationResult, DocumentModel> buildModelPoller
                 = adminClient
-                .beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE, null)
+                .beginBuildModel(trainingFilesUrl, null)
                 .setPollInterval(durationTestMode);
             buildModelPoller.waitForCompletion();
             String modelId = buildModelPoller.getFinalResult().getModelId();
@@ -807,9 +806,7 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
         DocumentModelAdministrationClient adminClient = getDocumentModelAdminClient(httpClient, serviceVersion);
         buildModelRunner((trainingFilesUrl) -> {
             SyncPoller<DocumentOperationResult, DocumentModel> syncPoller
-                = getDocumentModelAdminClient(httpClient, serviceVersion).beginBuildModel(trainingFilesUrl,
-                    DocumentBuildMode.TEMPLATE, null
-                )
+                = getDocumentModelAdminClient(httpClient, serviceVersion).beginBuildModel(trainingFilesUrl, null)
                 .setPollInterval(durationTestMode);
             syncPoller.waitForCompletion();
             DocumentModel createdModel = syncPoller.getFinalResult();
@@ -877,7 +874,7 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
             buildModelRunner((trainingFilesUrl -> {
                 SyncPoller<DocumentOperationResult, DocumentModel> buildModelPoller
                     = adminClient
-                    .beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE, null)
+                    .beginBuildModel(trainingFilesUrl, null)
                     .setPollInterval(durationTestMode);
                 buildModelPoller.waitForCompletion();
                 String modelId = buildModelPoller.getFinalResult().getModelId();
@@ -904,7 +901,7 @@ public class DocumentAnalysisClientTest extends DocumentAnalysisClientTestBase {
             client = getDocumentAnalysisClient(httpClient, serviceVersion);
 
             SyncPoller<DocumentOperationResult, DocumentModel> buildModelPoller
-                = adminClient.beginBuildModel(trainingFilesUrl, DocumentBuildMode.TEMPLATE, null)
+                = adminClient.beginBuildModel(trainingFilesUrl, null)
                 .setPollInterval(durationTestMode);
             buildModelPoller.waitForCompletion();
             String modelId = buildModelPoller.getFinalResult().getModelId();

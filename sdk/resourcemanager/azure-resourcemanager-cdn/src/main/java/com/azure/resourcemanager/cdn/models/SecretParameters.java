@@ -21,10 +21,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "UrlSigningKey", value = UrlSigningKeyParameters.class),
     @JsonSubTypes.Type(name = "ManagedCertificate", value = ManagedCertificateParameters.class),
-    @JsonSubTypes.Type(name = "CustomerCertificate", value = CustomerCertificateParameters.class),
-    @JsonSubTypes.Type(
-        name = "AzureFirstPartyManagedCertificate",
-        value = AzureFirstPartyManagedCertificateParameters.class)
+    @JsonSubTypes.Type(name = "CustomerCertificate", value = CustomerCertificateParameters.class)
 })
 @Immutable
 public class SecretParameters {

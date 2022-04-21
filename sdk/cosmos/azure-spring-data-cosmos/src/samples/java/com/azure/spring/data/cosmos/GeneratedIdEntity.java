@@ -5,7 +5,6 @@ package com.azure.spring.data.cosmos;
 import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
 import org.springframework.data.annotation.Id;
 
-// BEGIN: readme-sample-GeneratedIdEntity
 public class GeneratedIdEntity {
 
     @Id
@@ -13,4 +12,3 @@ public class GeneratedIdEntity {
     private String id;
 
 }
-// END: readme-sample-GeneratedIdEntity

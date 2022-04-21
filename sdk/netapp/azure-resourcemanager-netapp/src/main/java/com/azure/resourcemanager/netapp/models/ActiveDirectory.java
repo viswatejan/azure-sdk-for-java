@@ -156,12 +156,6 @@ public final class ActiveDirectory {
     @JsonProperty(value = "encryptDCConnections")
     private Boolean encryptDCConnections;
 
-    /*
-     * LDAP Search scope options
-     */
-    @JsonProperty(value = "ldapSearchScope")
-    private LdapSearchScopeOpt ldapSearchScope;
-
     /**
      * Get the activeDirectoryId property: Id of the Active Directory.
      *
@@ -587,33 +581,10 @@ public final class ActiveDirectory {
     }
 
     /**
-     * Get the ldapSearchScope property: LDAP Search scope options.
-     *
-     * @return the ldapSearchScope value.
-     */
-    public LdapSearchScopeOpt ldapSearchScope() {
-        return this.ldapSearchScope;
-    }
-
-    /**
-     * Set the ldapSearchScope property: LDAP Search scope options.
-     *
-     * @param ldapSearchScope the ldapSearchScope value to set.
-     * @return the ActiveDirectory object itself.
-     */
-    public ActiveDirectory withLdapSearchScope(LdapSearchScopeOpt ldapSearchScope) {
-        this.ldapSearchScope = ldapSearchScope;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (ldapSearchScope() != null) {
-            ldapSearchScope().validate();
-        }
     }
 }

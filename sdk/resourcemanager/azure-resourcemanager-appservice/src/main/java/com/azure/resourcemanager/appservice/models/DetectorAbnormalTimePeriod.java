@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.List;
 /** Class representing Abnormal Time Period detected. */
 @Fluent
 public final class DetectorAbnormalTimePeriod {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DetectorAbnormalTimePeriod.class);
+
     /*
      * Start time of the correlated event
      */

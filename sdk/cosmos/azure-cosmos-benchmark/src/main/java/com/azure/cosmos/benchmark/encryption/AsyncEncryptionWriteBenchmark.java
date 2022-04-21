@@ -10,6 +10,7 @@ import com.azure.cosmos.models.CosmosItemRequestOptions;
 import com.azure.cosmos.models.CosmosItemResponse;
 import com.azure.cosmos.models.PartitionKey;
 import com.codahale.metrics.Timer;
+import com.microsoft.data.encryption.cryptography.MicrosoftDataEncryptionException;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.reactivestreams.Subscription;
 import reactor.core.publisher.BaseSubscriber;
@@ -55,7 +56,7 @@ public class AsyncEncryptionWriteBenchmark extends AsyncEncryptionBenchmark<Cosm
         }
     }
 
-    public AsyncEncryptionWriteBenchmark(Configuration cfg) throws IOException {
+    public AsyncEncryptionWriteBenchmark(Configuration cfg) throws IOException, MicrosoftDataEncryptionException {
         super(cfg);
         uuid = UUID.randomUUID().toString();
         dataFieldValue = RandomStringUtils.randomAlphabetic(configuration.getDocumentDataFieldSize());

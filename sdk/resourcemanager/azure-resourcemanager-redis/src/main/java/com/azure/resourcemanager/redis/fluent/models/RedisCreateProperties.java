@@ -8,15 +8,17 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redis.models.PublicNetworkAccess;
 import com.azure.resourcemanager.redis.models.RedisCommonProperties;
-import com.azure.resourcemanager.redis.models.RedisConfiguration;
 import com.azure.resourcemanager.redis.models.Sku;
 import com.azure.resourcemanager.redis.models.TlsVersion;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** Properties supplied to Create Redis operation. */
 @Fluent
 public class RedisCreateProperties extends RedisCommonProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RedisCreateProperties.class);
+
     /*
      * The SKU of the Redis cache to deploy.
      */
@@ -32,9 +34,8 @@ public class RedisCreateProperties extends RedisCommonProperties {
     private String subnetId;
 
     /*
-     * Static IP address. Optionally, may be specified when deploying a Redis
-     * cache inside an existing Azure Virtual Network; auto assigned by
-     * default.
+     * Static IP address. Required when deploying a Redis cache inside an
+     * existing Azure Virtual Network.
      */
     @JsonProperty(value = "staticIP")
     private String staticIp;
@@ -84,8 +85,8 @@ public class RedisCreateProperties extends RedisCommonProperties {
     }
 
     /**
-     * Get the staticIp property: Static IP address. Optionally, may be specified when deploying a Redis cache inside an
-     * existing Azure Virtual Network; auto assigned by default.
+     * Get the staticIp property: Static IP address. Required when deploying a Redis cache inside an existing Azure
+     * Virtual Network.
      *
      * @return the staticIp value.
      */
@@ -94,8 +95,8 @@ public class RedisCreateProperties extends RedisCommonProperties {
     }
 
     /**
-     * Set the staticIp property: Static IP address. Optionally, may be specified when deploying a Redis cache inside an
-     * existing Azure Virtual Network; auto assigned by default.
+     * Set the staticIp property: Static IP address. Required when deploying a Redis cache inside an existing Azure
+     * Virtual Network.
      *
      * @param staticIp the staticIp value to set.
      * @return the RedisCreateProperties object itself.
@@ -107,7 +108,7 @@ public class RedisCreateProperties extends RedisCommonProperties {
 
     /** {@inheritDoc} */
     @Override
-    public RedisCreateProperties withRedisConfiguration(RedisConfiguration redisConfiguration) {
+    public RedisCreateProperties withRedisConfiguration(Map<String, String> redisConfiguration) {
         super.withRedisConfiguration(redisConfiguration);
         return this;
     }
@@ -177,13 +178,11 @@ public class RedisCreateProperties extends RedisCommonProperties {
     public void validate() {
         super.validate();
         if (sku() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property sku in model RedisCreateProperties"));
         } else {
             sku().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RedisCreateProperties.class);
 }

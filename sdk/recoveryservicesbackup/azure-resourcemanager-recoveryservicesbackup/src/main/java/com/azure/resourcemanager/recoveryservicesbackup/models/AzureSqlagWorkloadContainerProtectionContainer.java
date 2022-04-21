@@ -84,13 +84,6 @@ public final class AzureSqlagWorkloadContainerProtectionContainer extends AzureW
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public AzureSqlagWorkloadContainerProtectionContainer withProtectableObjectType(String protectableObjectType) {
-        super.withProtectableObjectType(protectableObjectType);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

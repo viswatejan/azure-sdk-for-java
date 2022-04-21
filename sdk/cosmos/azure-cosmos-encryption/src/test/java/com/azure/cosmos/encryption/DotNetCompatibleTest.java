@@ -3,7 +3,6 @@
 
 package com.azure.cosmos.encryption;
 
-import com.azure.core.cryptography.KeyEncryptionKeyResolver;
 import com.azure.cosmos.CosmosAsyncClient;
 import com.azure.cosmos.CosmosAsyncDatabase;
 import com.azure.cosmos.CosmosClientBuilder;
@@ -61,10 +60,10 @@ public class DotNetCompatibleTest extends TestSuiteBase {
         cosmosAsyncDatabase.createClientEncryptionKey(keyProperties1).block();
         cosmosAsyncDatabase.createClientEncryptionKey(keyProperties2).block();
 
-        KeyEncryptionKeyResolver keyEncryptionKeyResolver =
-            new TestKeyEncryptionKeyResolver();
-        cosmosEncryptionAsyncClient = new CosmosEncryptionClientBuilder().cosmosAsyncClient(this.client).keyEncryptionKeyResolver(
-            keyEncryptionKeyResolver).keyEncryptionKeyResolverName("TEST_KEY_RESOLVER").buildAsyncClient();
+        TestEncryptionKeyStoreProvider encryptionKeyStoreProvider =
+            new TestEncryptionKeyStoreProvider();
+        cosmosEncryptionAsyncClient = CosmosEncryptionAsyncClient.createCosmosEncryptionAsyncClient(this.client,
+            encryptionKeyStoreProvider);
 
         cosmosEncryptionAsyncDatabase =
             cosmosEncryptionAsyncClient.getCosmosEncryptionAsyncDatabase(cosmosAsyncDatabase.getId());

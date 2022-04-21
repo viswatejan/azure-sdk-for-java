@@ -7,7 +7,6 @@ package com.azure.analytics.synapse.artifacts;
 import com.azure.analytics.synapse.artifacts.implementation.WorkspaceGitRepoManagementsImpl;
 import com.azure.analytics.synapse.artifacts.models.GitHubAccessTokenRequest;
 import com.azure.analytics.synapse.artifacts.models.GitHubAccessTokenResponse;
-import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
 import com.azure.core.annotation.ServiceMethod;
@@ -18,14 +17,13 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the asynchronous ArtifactsClient type. */
 @ServiceClient(builder = ArtifactsClientBuilder.class, isAsync = true)
 public final class WorkspaceGitRepoManagementAsyncClient {
-    @Generated private final WorkspaceGitRepoManagementsImpl serviceClient;
+    private final WorkspaceGitRepoManagementsImpl serviceClient;
 
     /**
      * Initializes an instance of WorkspaceGitRepoManagements client.
      *
      * @param serviceClient the service client implementation.
      */
-    @Generated
     WorkspaceGitRepoManagementAsyncClient(WorkspaceGitRepoManagementsImpl serviceClient) {
         this.serviceClient = serviceClient;
     }
@@ -38,9 +36,8 @@ public final class WorkspaceGitRepoManagementAsyncClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the GitHub access token along with {@link Response} on successful completion of {@link Mono}.
+     * @return the GitHub access token.
      */
-    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<GitHubAccessTokenResponse>> getGitHubAccessTokenWithResponse(
             GitHubAccessTokenRequest gitHubAccessTokenRequest, String clientRequestId) {
@@ -55,9 +52,8 @@ public final class WorkspaceGitRepoManagementAsyncClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the GitHub access token on successful completion of {@link Mono}.
+     * @return the GitHub access token.
      */
-    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<GitHubAccessTokenResponse> getGitHubAccessToken(
             GitHubAccessTokenRequest gitHubAccessTokenRequest, String clientRequestId) {
@@ -71,9 +67,8 @@ public final class WorkspaceGitRepoManagementAsyncClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the GitHub access token on successful completion of {@link Mono}.
+     * @return the GitHub access token.
      */
-    @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<GitHubAccessTokenResponse> getGitHubAccessToken(GitHubAccessTokenRequest gitHubAccessTokenRequest) {
         return this.serviceClient.getGitHubAccessTokenAsync(gitHubAccessTokenRequest);

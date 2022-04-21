@@ -35,7 +35,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -49,7 +49,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String networkVirtualApplianceName);
@@ -62,7 +62,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String networkVirtualApplianceName);
@@ -76,7 +76,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -90,7 +90,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String networkVirtualApplianceName);
@@ -129,8 +129,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Network Virtual Appliance along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified Network Virtual Appliance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<NetworkVirtualApplianceInner>> getByResourceGroupWithResponseAsync(
@@ -145,7 +144,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Network Virtual Appliance on successful completion of {@link Mono}.
+     * @return the specified Network Virtual Appliance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<NetworkVirtualApplianceInner> getByResourceGroupAsync(
@@ -159,7 +158,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Network Virtual Appliance on successful completion of {@link Mono}.
+     * @return the specified Network Virtual Appliance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<NetworkVirtualApplianceInner> getByResourceGroupAsync(
@@ -188,7 +187,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Network Virtual Appliance along with {@link Response}.
+     * @return the specified Network Virtual Appliance.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<NetworkVirtualApplianceInner> getByResourceGroupWithResponse(
@@ -203,7 +202,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return networkVirtualAppliance Resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return networkVirtualAppliance Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<NetworkVirtualApplianceInner>> updateTagsWithResponseAsync(
@@ -218,7 +217,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return networkVirtualAppliance Resource on successful completion of {@link Mono}.
+     * @return networkVirtualAppliance Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<NetworkVirtualApplianceInner> updateTagsAsync(
@@ -249,7 +248,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return networkVirtualAppliance Resource along with {@link Response}.
+     * @return networkVirtualAppliance Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<NetworkVirtualApplianceInner> updateTagsWithResponse(
@@ -264,7 +263,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return networkVirtualAppliance Resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return networkVirtualAppliance Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -279,7 +278,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of networkVirtualAppliance Resource.
+     * @return networkVirtualAppliance Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<NetworkVirtualApplianceInner>, NetworkVirtualApplianceInner> beginCreateOrUpdateAsync(
@@ -294,7 +293,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of networkVirtualAppliance Resource.
+     * @return networkVirtualAppliance Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<NetworkVirtualApplianceInner>, NetworkVirtualApplianceInner> beginCreateOrUpdate(
@@ -310,7 +309,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of networkVirtualAppliance Resource.
+     * @return networkVirtualAppliance Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<NetworkVirtualApplianceInner>, NetworkVirtualApplianceInner> beginCreateOrUpdate(
@@ -328,7 +327,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return networkVirtualAppliance Resource on successful completion of {@link Mono}.
+     * @return networkVirtualAppliance Resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<NetworkVirtualApplianceInner> createOrUpdateAsync(
@@ -375,7 +374,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListNetworkVirtualAppliances API service call as paginated response with {@link PagedFlux}.
+     * @return response for ListNetworkVirtualAppliances API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<NetworkVirtualApplianceInner> listByResourceGroupAsync(String resourceGroupName);
@@ -387,8 +386,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListNetworkVirtualAppliances API service call as paginated response with {@link
-     *     PagedIterable}.
+     * @return response for ListNetworkVirtualAppliances API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<NetworkVirtualApplianceInner> listByResourceGroup(String resourceGroupName);
@@ -401,8 +399,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListNetworkVirtualAppliances API service call as paginated response with {@link
-     *     PagedIterable}.
+     * @return response for ListNetworkVirtualAppliances API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<NetworkVirtualApplianceInner> listByResourceGroup(String resourceGroupName, Context context);
@@ -412,7 +409,7 @@ public interface NetworkVirtualAppliancesClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Network Virtual Appliances in a subscription as paginated response with {@link PagedFlux}.
+     * @return all Network Virtual Appliances in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<NetworkVirtualApplianceInner> listAsync();
@@ -422,7 +419,7 @@ public interface NetworkVirtualAppliancesClient
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Network Virtual Appliances in a subscription as paginated response with {@link PagedIterable}.
+     * @return all Network Virtual Appliances in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<NetworkVirtualApplianceInner> list();
@@ -434,7 +431,7 @@ public interface NetworkVirtualAppliancesClient
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Network Virtual Appliances in a subscription as paginated response with {@link PagedIterable}.
+     * @return all Network Virtual Appliances in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<NetworkVirtualApplianceInner> list(Context context);

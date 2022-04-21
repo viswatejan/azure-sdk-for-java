@@ -6,12 +6,15 @@ package com.azure.resourcemanager.batch.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A network security group rule to apply to an inbound endpoint. */
 @Fluent
 public final class NetworkSecurityGroupRule {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(NetworkSecurityGroupRule.class);
+
     /*
      * The priority for this rule. Priorities within a pool must be unique and
      * are evaluated in order of priority. The lower the number the higher the
@@ -155,17 +158,15 @@ public final class NetworkSecurityGroupRule {
      */
     public void validate() {
         if (access() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property access in model NetworkSecurityGroupRule"));
         }
         if (sourceAddressPrefix() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property sourceAddressPrefix in model NetworkSecurityGroupRule"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(NetworkSecurityGroupRule.class);
 }

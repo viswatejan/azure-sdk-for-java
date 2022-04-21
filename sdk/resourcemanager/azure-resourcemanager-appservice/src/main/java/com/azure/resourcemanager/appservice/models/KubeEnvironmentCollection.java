@@ -7,12 +7,15 @@ package com.azure.resourcemanager.appservice.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.fluent.models.KubeEnvironmentInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Collection of Kubernetes Environments. */
 @Fluent
 public final class KubeEnvironmentCollection {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(KubeEnvironmentCollection.class);
+
     /*
      * Collection of resources.
      */
@@ -61,13 +64,11 @@ public final class KubeEnvironmentCollection {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property value in model KubeEnvironmentCollection"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(KubeEnvironmentCollection.class);
 }

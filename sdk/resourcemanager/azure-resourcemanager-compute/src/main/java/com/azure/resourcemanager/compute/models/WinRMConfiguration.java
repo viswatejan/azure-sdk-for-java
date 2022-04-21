@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Describes Windows Remote Management configuration of the VM. */
 @Fluent
 public final class WinRMConfiguration {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(WinRMConfiguration.class);
+
     /*
      * The list of Windows Remote Management listeners
      */

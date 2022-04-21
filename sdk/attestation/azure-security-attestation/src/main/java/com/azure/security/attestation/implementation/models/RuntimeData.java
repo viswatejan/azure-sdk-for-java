@@ -31,7 +31,7 @@ public final class RuntimeData {
      */
     public byte[] getData() {
         if (this.data == null) {
-            return new byte[0];
+            return null;
         }
         return this.data.decodedBytes();
     }

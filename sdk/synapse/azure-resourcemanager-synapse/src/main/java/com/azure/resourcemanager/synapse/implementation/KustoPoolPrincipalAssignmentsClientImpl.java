@@ -170,8 +170,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the result returned from a check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckNameResultInner>> checkNameAvailabilityWithResponseAsync(
@@ -238,8 +237,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the result returned from a check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckNameResultInner>> checkNameAvailabilityWithResponseAsync(
@@ -303,7 +301,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request on successful completion of {@link Mono}.
+     * @return the result returned from a check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CheckNameResultInner> checkNameAvailabilityAsync(
@@ -356,7 +354,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response}.
+     * @return the result returned from a check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CheckNameResultInner> checkNameAvailabilityWithResponse(
@@ -379,8 +377,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto cluster principal assignments operation response along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return the list Kusto cluster principal assignments operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterPrincipalAssignmentInner>> listSinglePageAsync(
@@ -439,8 +436,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto cluster principal assignments operation response along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return the list Kusto cluster principal assignments operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ClusterPrincipalAssignmentInner>> listSinglePageAsync(
@@ -566,7 +562,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto pool principalAssignment along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Kusto pool principalAssignment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ClusterPrincipalAssignmentInner>> getWithResponseAsync(
@@ -628,7 +624,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto pool principalAssignment along with {@link Response} on successful completion of {@link Mono}.
+     * @return a Kusto pool principalAssignment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ClusterPrincipalAssignmentInner>> getWithResponseAsync(
@@ -690,7 +686,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto pool principalAssignment on successful completion of {@link Mono}.
+     * @return a Kusto pool principalAssignment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterPrincipalAssignmentInner> getAsync(
@@ -735,7 +731,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto pool principalAssignment along with {@link Response}.
+     * @return a Kusto pool principalAssignment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ClusterPrincipalAssignmentInner> getWithResponse(
@@ -759,8 +755,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a cluster principal assignment along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return class representing a cluster principal assignment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -833,8 +828,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a cluster principal assignment along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return class representing a cluster principal assignment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -904,8 +898,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a cluster principal assignment along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return class representing a cluster principal assignment.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterPrincipalAssignmentInner>, ClusterPrincipalAssignmentInner>
@@ -925,7 +918,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
                 this.client.getHttpPipeline(),
                 ClusterPrincipalAssignmentInner.class,
                 ClusterPrincipalAssignmentInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -940,8 +933,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a cluster principal assignment along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return class representing a cluster principal assignment.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ClusterPrincipalAssignmentInner>, ClusterPrincipalAssignmentInner>
@@ -977,8 +969,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a cluster principal assignment along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return class representing a cluster principal assignment.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterPrincipalAssignmentInner>, ClusterPrincipalAssignmentInner> beginCreateOrUpdate(
@@ -1004,8 +995,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a cluster principal assignment along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return class representing a cluster principal assignment.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ClusterPrincipalAssignmentInner>, ClusterPrincipalAssignmentInner> beginCreateOrUpdate(
@@ -1031,7 +1021,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a cluster principal assignment on successful completion of {@link Mono}.
+     * @return class representing a cluster principal assignment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterPrincipalAssignmentInner> createOrUpdateAsync(
@@ -1058,7 +1048,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a cluster principal assignment on successful completion of {@link Mono}.
+     * @return class representing a cluster principal assignment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ClusterPrincipalAssignmentInner> createOrUpdateAsync(
@@ -1135,7 +1125,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1197,7 +1187,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1259,7 +1249,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -1268,8 +1258,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
             deleteWithResponseAsync(workspaceName, kustoPoolName, principalAssignmentName, resourceGroupName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -1283,7 +1272,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -1310,7 +1299,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -1330,7 +1319,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -1353,7 +1342,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1374,7 +1363,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(

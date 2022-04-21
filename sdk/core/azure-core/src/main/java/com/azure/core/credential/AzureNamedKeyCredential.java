@@ -25,8 +25,7 @@ import java.util.Objects;
  *
  */
 public final class AzureNamedKeyCredential {
-    // AzureNamedKeyCredential is a commonly used credential type, use a static logger.
-    private static final ClientLogger LOGGER = new ClientLogger(AzureNamedKeyCredential.class);
+    private final ClientLogger logger = new ClientLogger(AzureNamedKeyCredential.class);
 
     private volatile AzureNamedKey credentials;
 
@@ -71,10 +70,10 @@ public final class AzureNamedKeyCredential {
         Objects.requireNonNull(name, "'name' cannot be null.");
         Objects.requireNonNull(key, "'key' cannot be null.");
         if (name.isEmpty()) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException("'name' cannot be empty."));
+            throw logger.logExceptionAsError(new IllegalArgumentException("'name' cannot be empty."));
         }
         if (key.isEmpty()) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException("'key' cannot be empty."));
+            throw logger.logExceptionAsError(new IllegalArgumentException("'key' cannot be empty."));
         }
     }
 }

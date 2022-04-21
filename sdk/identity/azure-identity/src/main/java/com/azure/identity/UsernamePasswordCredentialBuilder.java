@@ -3,7 +3,6 @@
 
 package com.azure.identity;
 
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.identity.implementation.util.ValidationUtil;
 
 import java.util.HashMap;
@@ -14,8 +13,6 @@ import java.util.HashMap;
  * @see UsernamePasswordCredential
  */
 public class UsernamePasswordCredentialBuilder extends AadCredentialBuilderBase<UsernamePasswordCredentialBuilder> {
-    private static final ClientLogger LOGGER = new ClientLogger(UsernamePasswordCredentialBuilder.class);
-
     private String username;
     private String password;
 
@@ -86,7 +83,7 @@ public class UsernamePasswordCredentialBuilder extends AadCredentialBuilderBase<
                 put("clientId", clientId);
                 put("username", username);
                 put("password", password);
-            }}, LOGGER);
+            }});
         return new UsernamePasswordCredential(clientId, tenantId, username, password, identityClientOptions);
     }
 }

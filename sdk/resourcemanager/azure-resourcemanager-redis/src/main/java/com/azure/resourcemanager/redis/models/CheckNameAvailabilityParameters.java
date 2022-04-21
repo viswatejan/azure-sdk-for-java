@@ -6,11 +6,14 @@ package com.azure.resourcemanager.redis.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Parameters body to pass for resource name availability check. */
 @Fluent
 public final class CheckNameAvailabilityParameters {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(CheckNameAvailabilityParameters.class);
+
     /*
      * Resource name.
      */
@@ -73,18 +76,16 @@ public final class CheckNameAvailabilityParameters {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property name in model CheckNameAvailabilityParameters"));
         }
         if (type() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property type in model CheckNameAvailabilityParameters"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(CheckNameAvailabilityParameters.class);
 }

@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.containerservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -12,6 +14,8 @@ import java.util.Map;
 /** Identity for the managed cluster. */
 @Fluent
 public class ManagedClusterIdentity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedClusterIdentity.class);
+
     /*
      * The principal id of the system assigned identity which is used by master
      * components.

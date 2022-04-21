@@ -44,9 +44,8 @@ import java.util.Objects;
  */
 @Immutable
 public class ClientSecretCredential implements TokenCredential {
-    private static final ClientLogger LOGGER = new ClientLogger(ClientSecretCredential.class);
-
     private final IdentityClient identityClient;
+    private final ClientLogger logger = new ClientLogger(ClientSecretCredential.class);
 
     /**
      * Creates a ClientSecretCredential with the given identity client options.
@@ -73,8 +72,7 @@ public class ClientSecretCredential implements TokenCredential {
         return identityClient.authenticateWithConfidentialClientCache(request)
             .onErrorResume(t -> Mono.empty())
             .switchIfEmpty(Mono.defer(() -> identityClient.authenticateWithConfidentialClient(request)))
-            .doOnNext(token -> LoggingUtil.logTokenSuccess(LOGGER, request))
-            .doOnError(error -> LoggingUtil.logTokenError(LOGGER, identityClient.getIdentityClientOptions(), request,
-                error));
+            .doOnNext(token -> LoggingUtil.logTokenSuccess(logger, request))
+            .doOnError(error -> LoggingUtil.logTokenError(logger, request, error));
     }
 }

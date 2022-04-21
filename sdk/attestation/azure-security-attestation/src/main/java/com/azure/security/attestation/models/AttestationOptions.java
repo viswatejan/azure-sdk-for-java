@@ -124,7 +124,7 @@ public final class AttestationOptions {
      * @return this {@link AttestationOptions} object itself.
      */
     public AttestationOptions setRunTimeData(AttestationData attestationData) {
-        this.runTimeData = attestationData;
+        this.runTimeData = attestationData.clone();
         return this;
     }
 
@@ -139,7 +139,7 @@ public final class AttestationOptions {
      * @return The RunTimeData value set by {@link AttestationOptions#setRunTimeData}
      */
     public AttestationData getRunTimeData() {
-        return runTimeData != null ? new AttestationData(runTimeData) : null;
+        return runTimeData != null ? runTimeData.clone() : null;
     }
 
     /**
@@ -163,7 +163,7 @@ public final class AttestationOptions {
      * @return this {@link AttestationOptions} object itself.
      */
     public AttestationOptions setInitTimeData(AttestationData attestationData) {
-        this.initTimeData = attestationData;
+        this.initTimeData = attestationData.clone();
         return this;
     }
 
@@ -181,7 +181,7 @@ public final class AttestationOptions {
      * @return The InitTimeData value set by {@link AttestationOptions#setInitTimeData}
      */
     public AttestationData getInitTimeData() {
-        return initTimeData != null ? new AttestationData(initTimeData) : null;
+        return initTimeData != null ? initTimeData.clone() : null;
     }
 
     /**

@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.botservice.generated;
 
-import com.azure.core.util.Context;
-import com.azure.resourcemanager.botservice.fluent.models.BotChannelInner;
 import com.azure.resourcemanager.botservice.models.AlexaChannel;
 import com.azure.resourcemanager.botservice.models.AlexaChannelProperties;
 import com.azure.resourcemanager.botservice.models.ChannelName;
@@ -31,20 +29,17 @@ public final class ChannelsCreateSamples {
     public static void createDirectLineSpeechBot(com.azure.resourcemanager.botservice.BotServiceManager manager) {
         manager
             .channels()
-            .createWithResponse(
-                "OneResourceGroupName",
-                "samplebotname",
-                ChannelName.DIRECT_LINE_SPEECH_CHANNEL,
-                new BotChannelInner()
-                    .withLocation("global")
+            .define(ChannelName.DIRECT_LINE_SPEECH_CHANNEL)
+            .withRegion("global")
+            .withExistingBotService("OneResourceGroupName", "samplebotname")
+            .withProperties(
+                new DirectLineSpeechChannel()
                     .withProperties(
-                        new DirectLineSpeechChannel()
-                            .withProperties(
-                                new DirectLineSpeechChannelProperties()
-                                    .withCognitiveServiceRegion("XcognitiveServiceRegionX")
-                                    .withCognitiveServiceSubscriptionKey("XcognitiveServiceSubscriptionKeyX")
-                                    .withIsEnabled(true))),
-                Context.NONE);
+                        new DirectLineSpeechChannelProperties()
+                            .withCognitiveServiceRegion("XcognitiveServiceRegionX")
+                            .withCognitiveServiceSubscriptionKey("XcognitiveServiceSubscriptionKeyX")
+                            .withIsEnabled(true)))
+            .create();
     }
 
     /*
@@ -58,20 +53,17 @@ public final class ChannelsCreateSamples {
     public static void createBot(com.azure.resourcemanager.botservice.BotServiceManager manager) {
         manager
             .channels()
-            .createWithResponse(
-                "OneResourceGroupName",
-                "samplebotname",
-                ChannelName.EMAIL_CHANNEL,
-                new BotChannelInner()
-                    .withLocation("global")
+            .define(ChannelName.EMAIL_CHANNEL)
+            .withRegion("global")
+            .withExistingBotService("OneResourceGroupName", "samplebotname")
+            .withProperties(
+                new EmailChannel()
                     .withProperties(
-                        new EmailChannel()
-                            .withProperties(
-                                new EmailChannelProperties()
-                                    .withEmailAddress("a@b.com")
-                                    .withPassword("pwd")
-                                    .withIsEnabled(true))),
-                Context.NONE);
+                        new EmailChannelProperties()
+                            .withEmailAddress("a@b.com")
+                            .withPassword("pwd")
+                            .withIsEnabled(true)))
+            .create();
     }
 
     /*
@@ -85,17 +77,14 @@ public final class ChannelsCreateSamples {
     public static void createAlexaBot(com.azure.resourcemanager.botservice.BotServiceManager manager) {
         manager
             .channels()
-            .createWithResponse(
-                "OneResourceGroupName",
-                "samplebotname",
-                ChannelName.ALEXA_CHANNEL,
-                new BotChannelInner()
-                    .withLocation("global")
+            .define(ChannelName.ALEXA_CHANNEL)
+            .withRegion("global")
+            .withExistingBotService("OneResourceGroupName", "samplebotname")
+            .withProperties(
+                new AlexaChannel()
                     .withProperties(
-                        new AlexaChannel()
-                            .withProperties(
-                                new AlexaChannelProperties().withAlexaSkillId("XAlexaSkillIdX").withIsEnabled(true))),
-                Context.NONE);
+                        new AlexaChannelProperties().withAlexaSkillId("XAlexaSkillIdX").withIsEnabled(true)))
+            .create();
     }
 
     /*
@@ -109,22 +98,19 @@ public final class ChannelsCreateSamples {
     public static void createLineBot(com.azure.resourcemanager.botservice.BotServiceManager manager) {
         manager
             .channels()
-            .createWithResponse(
-                "OneResourceGroupName",
-                "samplebotname",
-                ChannelName.LINE_CHANNEL,
-                new BotChannelInner()
-                    .withLocation("global")
+            .define(ChannelName.LINE_CHANNEL)
+            .withRegion("global")
+            .withExistingBotService("OneResourceGroupName", "samplebotname")
+            .withProperties(
+                new LineChannel()
                     .withProperties(
-                        new LineChannel()
-                            .withProperties(
-                                new LineChannelProperties()
-                                    .withLineRegistrations(
-                                        Arrays
-                                            .asList(
-                                                new LineRegistration()
-                                                    .withChannelSecret("channelSecret")
-                                                    .withChannelAccessToken("channelAccessToken"))))),
-                Context.NONE);
+                        new LineChannelProperties()
+                            .withLineRegistrations(
+                                Arrays
+                                    .asList(
+                                        new LineRegistration()
+                                            .withChannelSecret("channelSecret")
+                                            .withChannelAccessToken("channelAccessToken")))))
+            .create();
     }
 }

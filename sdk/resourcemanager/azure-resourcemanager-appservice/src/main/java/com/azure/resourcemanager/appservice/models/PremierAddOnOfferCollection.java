@@ -7,12 +7,15 @@ package com.azure.resourcemanager.appservice.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.fluent.models.PremierAddOnOfferInner;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Collection of premier add-on offers. */
 @Fluent
 public final class PremierAddOnOfferCollection {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PremierAddOnOfferCollection.class);
+
     /*
      * Collection of resources.
      */
@@ -61,7 +64,7 @@ public final class PremierAddOnOfferCollection {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property value in model PremierAddOnOfferCollection"));
@@ -69,6 +72,4 @@ public final class PremierAddOnOfferCollection {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PremierAddOnOfferCollection.class);
 }

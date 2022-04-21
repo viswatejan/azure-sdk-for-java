@@ -512,7 +512,11 @@ public final class CountryIsoCode extends ExpandableStringEnum<CountryIsoCode> {
     /**
      * Country ISO code {@code MO}.
      */
-    public static final CountryIsoCode MACAO_SAR = fromString("MO");
+    public static final CountryIsoCode MACAO = fromString("MO");
+    /**
+     * Country ISO code {@code MK}.
+     */
+    public static final CountryIsoCode MACEDONIA = fromString("MK");
     /**
      * Country ISO code {@code MG}.
      */
@@ -645,10 +649,6 @@ public final class CountryIsoCode extends ExpandableStringEnum<CountryIsoCode> {
      * Country ISO code {@code MP}.
      */
     public static final CountryIsoCode NORTHERN_MARIANA_ISLANDS = fromString("MP");
-    /**
-     * Country ISO code {@code MK}.
-     */
-    public static final CountryIsoCode NORTH_MACEDONIA = fromString("MK");
     /**
      * Country ISO code {@code NO}.
      */

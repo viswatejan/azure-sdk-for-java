@@ -101,8 +101,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Location List Result along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return expressRoutePorts Location List Result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpressRoutePortsLocationInner>> listSinglePageAsync() {
@@ -145,8 +144,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Location List Result along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return expressRoutePorts Location List Result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpressRoutePortsLocationInner>> listSinglePageAsync(Context context) {
@@ -184,7 +182,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Location List Result as paginated response with {@link PagedFlux}.
+     * @return expressRoutePorts Location List Result.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<ExpressRoutePortsLocationInner> listAsync() {
@@ -199,7 +197,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Location List Result as paginated response with {@link PagedFlux}.
+     * @return expressRoutePorts Location List Result.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ExpressRoutePortsLocationInner> listAsync(Context context) {
@@ -213,7 +211,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Location List Result as paginated response with {@link PagedIterable}.
+     * @return expressRoutePorts Location List Result.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ExpressRoutePortsLocationInner> list() {
@@ -228,7 +226,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Location List Result as paginated response with {@link PagedIterable}.
+     * @return expressRoutePorts Location List Result.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ExpressRoutePortsLocationInner> list(Context context) {
@@ -243,7 +241,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Peering Location along with {@link Response} on successful completion of {@link Mono}.
+     * @return expressRoutePorts Peering Location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ExpressRoutePortsLocationInner>> getWithResponseAsync(String locationName) {
@@ -287,7 +285,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Peering Location along with {@link Response} on successful completion of {@link Mono}.
+     * @return expressRoutePorts Peering Location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ExpressRoutePortsLocationInner>> getWithResponseAsync(String locationName, Context context) {
@@ -321,7 +319,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Peering Location on successful completion of {@link Mono}.
+     * @return expressRoutePorts Peering Location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ExpressRoutePortsLocationInner> getAsync(String locationName) {
@@ -360,7 +358,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Peering Location along with {@link Response}.
+     * @return expressRoutePorts Peering Location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ExpressRoutePortsLocationInner> getWithResponse(String locationName, Context context) {
@@ -374,8 +372,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Location List Result along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return expressRoutePorts Location List Result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpressRoutePortsLocationInner>> listNextSinglePageAsync(String nextLink) {
@@ -411,8 +408,7 @@ public final class ExpressRoutePortsLocationsClientImpl implements ExpressRouteP
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return expressRoutePorts Location List Result along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return expressRoutePorts Location List Result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpressRoutePortsLocationInner>> listNextSinglePageAsync(

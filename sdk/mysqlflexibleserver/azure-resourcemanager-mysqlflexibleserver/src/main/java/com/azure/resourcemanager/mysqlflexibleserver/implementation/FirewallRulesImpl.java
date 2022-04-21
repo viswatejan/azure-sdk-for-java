@@ -13,9 +13,10 @@ import com.azure.resourcemanager.mysqlflexibleserver.fluent.FirewallRulesClient;
 import com.azure.resourcemanager.mysqlflexibleserver.fluent.models.FirewallRuleInner;
 import com.azure.resourcemanager.mysqlflexibleserver.models.FirewallRule;
 import com.azure.resourcemanager.mysqlflexibleserver.models.FirewallRules;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class FirewallRulesImpl implements FirewallRules {
-    private static final ClientLogger LOGGER = new ClientLogger(FirewallRulesImpl.class);
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(FirewallRulesImpl.class);
 
     private final FirewallRulesClient innerClient;
 
@@ -73,7 +74,7 @@ public final class FirewallRulesImpl implements FirewallRules {
     public FirewallRule getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -81,7 +82,7 @@ public final class FirewallRulesImpl implements FirewallRules {
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -89,7 +90,7 @@ public final class FirewallRulesImpl implements FirewallRules {
         }
         String firewallRuleName = Utils.getValueFromIdByName(id, "firewallRules");
         if (firewallRuleName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'firewallRules'.", id)));
@@ -100,7 +101,7 @@ public final class FirewallRulesImpl implements FirewallRules {
     public Response<FirewallRule> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -108,7 +109,7 @@ public final class FirewallRulesImpl implements FirewallRules {
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -116,7 +117,7 @@ public final class FirewallRulesImpl implements FirewallRules {
         }
         String firewallRuleName = Utils.getValueFromIdByName(id, "firewallRules");
         if (firewallRuleName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'firewallRules'.", id)));
@@ -127,7 +128,7 @@ public final class FirewallRulesImpl implements FirewallRules {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -135,7 +136,7 @@ public final class FirewallRulesImpl implements FirewallRules {
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -143,7 +144,7 @@ public final class FirewallRulesImpl implements FirewallRules {
         }
         String firewallRuleName = Utils.getValueFromIdByName(id, "firewallRules");
         if (firewallRuleName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'firewallRules'.", id)));
@@ -154,7 +155,7 @@ public final class FirewallRulesImpl implements FirewallRules {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -162,7 +163,7 @@ public final class FirewallRulesImpl implements FirewallRules {
         }
         String serverName = Utils.getValueFromIdByName(id, "flexibleServers");
         if (serverName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -170,7 +171,7 @@ public final class FirewallRulesImpl implements FirewallRules {
         }
         String firewallRuleName = Utils.getValueFromIdByName(id, "firewallRules");
         if (firewallRuleName == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'firewallRules'.", id)));

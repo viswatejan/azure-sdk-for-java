@@ -3,8 +3,6 @@
 package com.azure.resourcemanager.network.implementation;
 
 import com.azure.core.management.SubResource;
-import com.azure.core.util.CoreUtils;
-import com.azure.resourcemanager.network.fluent.models.ApplicationGatewayRequestRoutingRuleInner;
 import com.azure.resourcemanager.network.models.ApplicationGateway;
 import com.azure.resourcemanager.network.models.ApplicationGatewayBackend;
 import com.azure.resourcemanager.network.models.ApplicationGatewayBackendAddress;
@@ -17,6 +15,7 @@ import com.azure.resourcemanager.network.models.ApplicationGatewayRequestRouting
 import com.azure.resourcemanager.network.models.ApplicationGatewaySslCertificate;
 import com.azure.resourcemanager.network.models.ApplicationGatewayUrlPathMap;
 import com.azure.resourcemanager.network.models.PublicIpAddress;
+import com.azure.resourcemanager.network.fluent.models.ApplicationGatewayRequestRoutingRuleInner;
 import com.azure.resourcemanager.resources.fluentcore.arm.ResourceUtils;
 import com.azure.resourcemanager.resources.fluentcore.arm.models.implementation.ChildResourceImpl;
 import reactor.core.publisher.Mono;
@@ -26,7 +25,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 /** Implementation for ApplicationGatewayRequestRoutingRule. */
 class ApplicationGatewayRequestRoutingRuleImpl
@@ -89,12 +87,6 @@ class ApplicationGatewayRequestRoutingRuleImpl
     public String hostname() {
         final ApplicationGatewayListener listener = this.listener();
         return (listener != null) ? listener.hostname() : null;
-    }
-
-    @Override
-    public List<String> hostnames() {
-        final ApplicationGatewayListener listener = this.listener();
-        return (listener != null) ? listener.hostnames() : Collections.emptyList();
     }
 
     @Override
@@ -352,15 +344,6 @@ class ApplicationGatewayRequestRoutingRuleImpl
     @Override
     public ApplicationGatewayRequestRoutingRuleImpl withHostname(String hostName) {
         this.parent().updateListener(ensureListener().name()).withHostname(hostName);
-        return this;
-    }
-
-    @Override
-    public ApplicationGatewayRequestRoutingRuleImpl withHostnames(List<String> hostnames) {
-        if (CoreUtils.isNullOrEmpty(hostnames)) {
-            return this;
-        }
-        this.parent().updateListener(ensureListener().name()).withHostnames(hostnames);
         return this;
     }
 

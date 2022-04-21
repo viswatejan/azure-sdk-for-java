@@ -30,7 +30,6 @@ public class WebappAccessResourceConfiguration extends WebSecurityConfigurerAdap
         // @formatter:on
     }
 
-    // BEGIN: readme-sample-webClient
     @Bean
     public WebClient webClient(OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager) {
         ServletOAuth2AuthorizedClientExchangeFilterFunction function =
@@ -39,5 +38,4 @@ public class WebappAccessResourceConfiguration extends WebSecurityConfigurerAdap
                         .apply(function.oauth2Configuration())
                         .build();
     }
-    // END: readme-sample-webClient
 }

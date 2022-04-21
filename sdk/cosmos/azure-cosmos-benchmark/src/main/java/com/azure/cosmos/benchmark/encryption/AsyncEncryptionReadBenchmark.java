@@ -9,6 +9,7 @@ import com.azure.cosmos.models.CosmosItemRequestOptions;
 import com.azure.cosmos.models.CosmosItemResponse;
 import com.azure.cosmos.models.PartitionKey;
 import com.codahale.metrics.Timer;
+import com.microsoft.data.encryption.cryptography.MicrosoftDataEncryptionException;
 import org.reactivestreams.Subscription;
 import reactor.core.publisher.BaseSubscriber;
 import reactor.core.publisher.Mono;
@@ -49,7 +50,7 @@ public class AsyncEncryptionReadBenchmark extends AsyncEncryptionBenchmark<Pojoi
         }
     }
 
-    public AsyncEncryptionReadBenchmark(Configuration cfg) throws IOException {
+    public AsyncEncryptionReadBenchmark(Configuration cfg) throws IOException, MicrosoftDataEncryptionException {
         super(cfg);
     }
 

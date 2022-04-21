@@ -27,7 +27,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list storage account object replication policies as paginated response with {@link PagedFlux}.
+     * @return list storage account object replication policies.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ObjectReplicationPolicyInner> listAsync(String resourceGroupName, String accountName);
@@ -42,7 +42,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list storage account object replication policies as paginated response with {@link PagedIterable}.
+     * @return list storage account object replication policies.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ObjectReplicationPolicyInner> list(String resourceGroupName, String accountName);
@@ -58,7 +58,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list storage account object replication policies as paginated response with {@link PagedIterable}.
+     * @return list storage account object replication policies.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ObjectReplicationPolicyInner> list(String resourceGroupName, String accountName, Context context);
@@ -77,8 +77,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the object replication policy of the storage account by policy ID along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the object replication policy of the storage account by policy ID.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ObjectReplicationPolicyInner>> getWithResponseAsync(
@@ -98,8 +97,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the object replication policy of the storage account by policy ID on successful completion of {@link
-     *     Mono}.
+     * @return the object replication policy of the storage account by policy ID.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ObjectReplicationPolicyInner> getAsync(
@@ -139,7 +137,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the object replication policy of the storage account by policy ID along with {@link Response}.
+     * @return the object replication policy of the storage account by policy ID.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ObjectReplicationPolicyInner> getWithResponse(
@@ -161,8 +159,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the replication policy between two storage accounts along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return the replication policy between two storage accounts.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ObjectReplicationPolicyInner>> createOrUpdateWithResponseAsync(
@@ -187,7 +184,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the replication policy between two storage accounts on successful completion of {@link Mono}.
+     * @return the replication policy between two storage accounts.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ObjectReplicationPolicyInner> createOrUpdateAsync(
@@ -238,7 +235,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the replication policy between two storage accounts along with {@link Response}.
+     * @return the replication policy between two storage accounts.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ObjectReplicationPolicyInner> createOrUpdateWithResponse(
@@ -262,7 +259,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteWithResponseAsync(
@@ -282,7 +279,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String accountName, String objectReplicationPolicyId);
@@ -320,7 +317,7 @@ public interface ObjectReplicationPoliciesOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(

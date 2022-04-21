@@ -80,7 +80,8 @@ Call `http://{hostname}:{port}/actuator/health/cosmos` to get the Cosmos DB heal
 
 ### Define an entity
 Define a simple entity as Document in Cosmos DB.
-```java readme-sample-CosmosUser
+<!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/cosmos/User.java#L10-L65 -->
+```java
 @Container(containerName = "mycollection")
 public class User {
     @Id
@@ -144,7 +145,8 @@ Annotation `@Container(containerName = "mycollection")` is used to specify the c
 
 ### Create repositories
 Extends ReactiveCosmosRepository interface, which provides Spring Data repository support.
-```java readme-sample-UserRepository
+<!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/cosmos/UserRepository.java#L10-L14 -->
+```java
 @Repository
 public interface UserRepository extends ReactiveCosmosRepository<User, String> {
 
@@ -156,7 +158,8 @@ So far ReactiveCosmosRepository provides basic save, delete and find operations.
 
 ### Create an Application class
 Here create an application class with all the components
-```java readme-sample-CosmosSampleApplication
+<!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/cosmos/CosmosSampleApplication.java#L21-L116 -->
+```java
 @SpringBootApplication
 public class CosmosSampleApplication implements CommandLineRunner {
 

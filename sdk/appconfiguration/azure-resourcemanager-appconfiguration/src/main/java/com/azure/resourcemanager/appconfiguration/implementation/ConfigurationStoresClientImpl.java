@@ -37,11 +37,9 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appconfiguration.fluent.ConfigurationStoresClient;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ApiKeyInner;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ConfigurationStoreInner;
-import com.azure.resourcemanager.appconfiguration.fluent.models.DeletedConfigurationStoreInner;
 import com.azure.resourcemanager.appconfiguration.models.ApiKeyListResult;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreListResult;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreUpdateParameters;
-import com.azure.resourcemanager.appconfiguration.models.DeletedConfigurationStoreListResult;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -197,47 +195,6 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.AppConfiguration/deletedConfigurationStores")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeletedConfigurationStoreListResult>> listDeleted(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.AppConfiguration/locations/{location}"
-                + "/deletedConfigurationStores/{configStoreName}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeletedConfigurationStoreInner>> getDeleted(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("location") String location,
-            @PathParam("configStoreName") String configStoreName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.AppConfiguration/locations/{location}"
-                + "/deletedConfigurationStores/{configStoreName}/purge")
-        @ExpectedResponses({200, 202, 204})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> purgeDeleted(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("location") String location,
-            @PathParam("configStoreName") String configStoreName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -266,16 +223,6 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeletedConfigurationStoreListResult>> listDeletedNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
     }
 
     /**
@@ -287,8 +234,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ConfigurationStoreInner>> listSinglePageAsync(String skipToken) {
@@ -338,8 +284,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ConfigurationStoreInner>> listSinglePageAsync(String skipToken, Context context) {
@@ -385,7 +330,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores as paginated response with {@link PagedFlux}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ConfigurationStoreInner> listAsync(String skipToken) {
@@ -397,7 +342,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores as paginated response with {@link PagedFlux}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ConfigurationStoreInner> listAsync() {
@@ -415,7 +360,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores as paginated response with {@link PagedFlux}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ConfigurationStoreInner> listAsync(String skipToken, Context context) {
@@ -428,7 +373,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores as paginated response with {@link PagedIterable}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ConfigurationStoreInner> list() {
@@ -446,7 +391,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores as paginated response with {@link PagedIterable}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ConfigurationStoreInner> list(String skipToken, Context context) {
@@ -463,8 +408,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ConfigurationStoreInner>> listByResourceGroupSinglePageAsync(
@@ -521,8 +465,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ConfigurationStoreInner>> listByResourceGroupSinglePageAsync(
@@ -575,7 +518,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores as paginated response with {@link PagedFlux}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ConfigurationStoreInner> listByResourceGroupAsync(String resourceGroupName, String skipToken) {
@@ -591,7 +534,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores as paginated response with {@link PagedFlux}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ConfigurationStoreInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -612,7 +555,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores as paginated response with {@link PagedFlux}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ConfigurationStoreInner> listByResourceGroupAsync(
@@ -629,7 +572,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores as paginated response with {@link PagedIterable}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ConfigurationStoreInner> listByResourceGroup(String resourceGroupName) {
@@ -648,7 +591,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores as paginated response with {@link PagedIterable}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ConfigurationStoreInner> listByResourceGroup(
@@ -664,8 +607,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified configuration store along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return the properties of the specified configuration store.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ConfigurationStoreInner>> getByResourceGroupWithResponseAsync(
@@ -715,8 +657,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified configuration store along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return the properties of the specified configuration store.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ConfigurationStoreInner>> getByResourceGroupWithResponseAsync(
@@ -762,7 +703,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified configuration store on successful completion of {@link Mono}.
+     * @return the properties of the specified configuration store.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ConfigurationStoreInner> getByResourceGroupAsync(String resourceGroupName, String configStoreName) {
@@ -801,7 +742,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified configuration store along with {@link Response}.
+     * @return the properties of the specified configuration store.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ConfigurationStoreInner> getByResourceGroupWithResponse(
@@ -818,8 +759,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the configuration store along with all resource properties along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -879,8 +819,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the configuration store along with all resource properties along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -939,9 +878,9 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the configuration store along with all resource properties.
+     * @return the configuration store along with all resource properties.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginCreateAsync(
         String resourceGroupName, String configStoreName, ConfigurationStoreInner configStoreCreationParameters) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -953,7 +892,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
                 this.client.getHttpPipeline(),
                 ConfigurationStoreInner.class,
                 ConfigurationStoreInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -966,9 +905,9 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the configuration store along with all resource properties.
+     * @return the configuration store along with all resource properties.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginCreateAsync(
         String resourceGroupName,
         String configStoreName,
@@ -996,9 +935,9 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the configuration store along with all resource properties.
+     * @return the configuration store along with all resource properties.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginCreate(
         String resourceGroupName, String configStoreName, ConfigurationStoreInner configStoreCreationParameters) {
         return beginCreateAsync(resourceGroupName, configStoreName, configStoreCreationParameters).getSyncPoller();
@@ -1014,9 +953,9 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the configuration store along with all resource properties.
+     * @return the configuration store along with all resource properties.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginCreate(
         String resourceGroupName,
         String configStoreName,
@@ -1035,7 +974,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the configuration store along with all resource properties on successful completion of {@link Mono}.
+     * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ConfigurationStoreInner> createAsync(
@@ -1055,7 +994,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the configuration store along with all resource properties on successful completion of {@link Mono}.
+     * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ConfigurationStoreInner> createAsync(
@@ -1114,7 +1053,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String configStoreName) {
@@ -1163,7 +1102,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1209,15 +1148,14 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String configStoreName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, configStoreName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -1229,9 +1167,9 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String configStoreName, Context context) {
         context = this.client.mergeContext(context);
@@ -1249,9 +1187,9 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String configStoreName) {
         return beginDeleteAsync(resourceGroupName, configStoreName).getSyncPoller();
     }
@@ -1265,9 +1203,9 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String configStoreName, Context context) {
         return beginDeleteAsync(resourceGroupName, configStoreName, context).getSyncPoller();
@@ -1281,7 +1219,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String configStoreName) {
@@ -1299,7 +1237,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String configStoreName, Context context) {
@@ -1346,8 +1284,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the configuration store along with all resource properties along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1409,8 +1346,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the configuration store along with all resource properties along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1469,9 +1405,9 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the configuration store along with all resource properties.
+     * @return the configuration store along with all resource properties.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginUpdateAsync(
         String resourceGroupName,
         String configStoreName,
@@ -1485,7 +1421,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
                 this.client.getHttpPipeline(),
                 ConfigurationStoreInner.class,
                 ConfigurationStoreInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -1498,9 +1434,9 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the configuration store along with all resource properties.
+     * @return the configuration store along with all resource properties.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginUpdateAsync(
         String resourceGroupName,
         String configStoreName,
@@ -1528,9 +1464,9 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the configuration store along with all resource properties.
+     * @return the configuration store along with all resource properties.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginUpdate(
         String resourceGroupName,
         String configStoreName,
@@ -1548,9 +1484,9 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the configuration store along with all resource properties.
+     * @return the configuration store along with all resource properties.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<ConfigurationStoreInner>, ConfigurationStoreInner> beginUpdate(
         String resourceGroupName,
         String configStoreName,
@@ -1569,7 +1505,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the configuration store along with all resource properties on successful completion of {@link Mono}.
+     * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ConfigurationStoreInner> updateAsync(
@@ -1591,7 +1527,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the configuration store along with all resource properties on successful completion of {@link Mono}.
+     * @return the configuration store along with all resource properties.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ConfigurationStoreInner> updateAsync(
@@ -1655,8 +1591,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list API keys along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return the result of a request to list API keys.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiKeyInner>> listKeysSinglePageAsync(
@@ -1719,8 +1654,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list API keys along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return the result of a request to list API keys.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiKeyInner>> listKeysSinglePageAsync(
@@ -1779,7 +1713,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list API keys as paginated response with {@link PagedFlux}.
+     * @return the result of a request to list API keys.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiKeyInner> listKeysAsync(String resourceGroupName, String configStoreName, String skipToken) {
@@ -1796,7 +1730,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list API keys as paginated response with {@link PagedFlux}.
+     * @return the result of a request to list API keys.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiKeyInner> listKeysAsync(String resourceGroupName, String configStoreName) {
@@ -1818,7 +1752,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list API keys as paginated response with {@link PagedFlux}.
+     * @return the result of a request to list API keys.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiKeyInner> listKeysAsync(
@@ -1836,7 +1770,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list API keys as paginated response with {@link PagedIterable}.
+     * @return the result of a request to list API keys.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiKeyInner> listKeys(String resourceGroupName, String configStoreName) {
@@ -1856,7 +1790,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list API keys as paginated response with {@link PagedIterable}.
+     * @return the result of a request to list API keys.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiKeyInner> listKeys(
@@ -1873,8 +1807,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an API key used for authenticating with a configuration store endpoint along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return an API key used for authenticating with a configuration store endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApiKeyInner>> regenerateKeyWithResponseAsync(
@@ -1933,8 +1866,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an API key used for authenticating with a configuration store endpoint along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return an API key used for authenticating with a configuration store endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApiKeyInner>> regenerateKeyWithResponseAsync(
@@ -1992,8 +1924,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an API key used for authenticating with a configuration store endpoint on successful completion of {@link
-     *     Mono}.
+     * @return an API key used for authenticating with a configuration store endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiKeyInner> regenerateKeyAsync(
@@ -2036,7 +1967,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an API key used for authenticating with a configuration store endpoint along with {@link Response}.
+     * @return an API key used for authenticating with a configuration store endpoint.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ApiKeyInner> regenerateKeyWithResponse(
@@ -2049,539 +1980,13 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
     }
 
     /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeletedConfigurationStoreInner>> listDeletedSinglePageAsync() {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDeleted(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            accept,
-                            context))
-            .<PagedResponse<DeletedConfigurationStoreInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeletedConfigurationStoreInner>> listDeletedSinglePageAsync(Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listDeleted(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeletedConfigurationStoreInner> listDeletedAsync() {
-        return new PagedFlux<>(
-            () -> listDeletedSinglePageAsync(), nextLink -> listDeletedNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeletedConfigurationStoreInner> listDeletedAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listDeletedSinglePageAsync(context), nextLink -> listDeletedNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DeletedConfigurationStoreInner> listDeleted() {
-        return new PagedIterable<>(listDeletedAsync());
-    }
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DeletedConfigurationStoreInner> listDeleted(Context context) {
-        return new PagedIterable<>(listDeletedAsync(context));
-    }
-
-    /**
-     * Gets a deleted Azure app configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store along with {@link Response} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DeletedConfigurationStoreInner>> getDeletedWithResponseAsync(
-        String location, String configStoreName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
-        }
-        if (configStoreName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getDeleted(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            location,
-                            configStoreName,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets a deleted Azure app configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store along with {@link Response} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DeletedConfigurationStoreInner>> getDeletedWithResponseAsync(
-        String location, String configStoreName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
-        }
-        if (configStoreName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .getDeleted(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                location,
-                configStoreName,
-                accept,
-                context);
-    }
-
-    /**
-     * Gets a deleted Azure app configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DeletedConfigurationStoreInner> getDeletedAsync(String location, String configStoreName) {
-        return getDeletedWithResponseAsync(location, configStoreName)
-            .flatMap(
-                (Response<DeletedConfigurationStoreInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets a deleted Azure app configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DeletedConfigurationStoreInner getDeleted(String location, String configStoreName) {
-        return getDeletedAsync(location, configStoreName).block();
-    }
-
-    /**
-     * Gets a deleted Azure app configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<DeletedConfigurationStoreInner> getDeletedWithResponse(
-        String location, String configStoreName, Context context) {
-        return getDeletedWithResponseAsync(location, configStoreName, context).block();
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> purgeDeletedWithResponseAsync(String location, String configStoreName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
-        }
-        if (configStoreName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .purgeDeleted(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            location,
-                            configStoreName,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> purgeDeletedWithResponseAsync(
-        String location, String configStoreName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
-        }
-        if (configStoreName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .purgeDeleted(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                location,
-                configStoreName,
-                accept,
-                context);
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginPurgeDeletedAsync(String location, String configStoreName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = purgeDeletedWithResponseAsync(location, configStoreName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginPurgeDeletedAsync(
-        String location, String configStoreName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = purgeDeletedWithResponseAsync(location, configStoreName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginPurgeDeleted(String location, String configStoreName) {
-        return beginPurgeDeletedAsync(location, configStoreName).getSyncPoller();
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginPurgeDeleted(
-        String location, String configStoreName, Context context) {
-        return beginPurgeDeletedAsync(location, configStoreName, context).getSyncPoller();
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> purgeDeletedAsync(String location, String configStoreName) {
-        return beginPurgeDeletedAsync(location, configStoreName).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> purgeDeletedAsync(String location, String configStoreName, Context context) {
-        return beginPurgeDeletedAsync(location, configStoreName, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void purgeDeleted(String location, String configStoreName) {
-        purgeDeletedAsync(location, configStoreName).block();
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void purgeDeleted(String location, String configStoreName, Context context) {
-        purgeDeletedAsync(location, configStoreName, context).block();
-    }
-
-    /**
      * Get the next page of items.
      *
      * @param nextLink The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ConfigurationStoreInner>> listNextSinglePageAsync(String nextLink) {
@@ -2617,8 +2022,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ConfigurationStoreInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -2653,8 +2057,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ConfigurationStoreInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -2691,8 +2094,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list configuration stores along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of a request to list configuration stores.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ConfigurationStoreInner>> listByResourceGroupNextSinglePageAsync(
@@ -2728,8 +2130,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list API keys along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return the result of a request to list API keys.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiKeyInner>> listKeysNextSinglePageAsync(String nextLink) {
@@ -2765,8 +2166,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to list API keys along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return the result of a request to list API keys.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiKeyInner>> listKeysNextSinglePageAsync(String nextLink, Context context) {
@@ -2783,80 +2183,6 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
         context = this.client.mergeContext(context);
         return service
             .listKeysNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deleted configuration stores along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeletedConfigurationStoreInner>> listDeletedNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listDeletedNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DeletedConfigurationStoreInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deleted configuration stores along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeletedConfigurationStoreInner>> listDeletedNextSinglePageAsync(
-        String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listDeletedNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

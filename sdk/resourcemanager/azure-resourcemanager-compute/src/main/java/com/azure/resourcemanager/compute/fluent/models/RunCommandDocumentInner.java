@@ -8,12 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.models.OperatingSystemTypes;
 import com.azure.resourcemanager.compute.models.RunCommandParameterDefinition;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Describes the properties of a Run Command. */
 @Fluent
 public final class RunCommandDocumentInner extends RunCommandDocumentBaseInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RunCommandDocumentInner.class);
+
     /*
      * The script to be executed.
      */
@@ -110,7 +113,7 @@ public final class RunCommandDocumentInner extends RunCommandDocumentBaseInner {
     public void validate() {
         super.validate();
         if (script() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property script in model RunCommandDocumentInner"));
         }
@@ -118,6 +121,4 @@ public final class RunCommandDocumentInner extends RunCommandDocumentBaseInner {
             parameters().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RunCommandDocumentInner.class);
 }

@@ -58,10 +58,10 @@ Set the values of the client ID, tenant ID, and client secret of the AAD applica
 
 ##### Example
 ```java readme-sample-createGlossaryClient
-GlossaryClient client = new GlossaryClientBuilder()
+GlossaryClient client = new PurviewCatalogClientBuilder()
     .endpoint(System.getenv("<account-name>.purview.azure.com"))
     .credential(new DefaultAzureCredentialBuilder().build())
-    .buildClient();
+    .buildGlossaryClient();
 ```
 
 ## Key concepts

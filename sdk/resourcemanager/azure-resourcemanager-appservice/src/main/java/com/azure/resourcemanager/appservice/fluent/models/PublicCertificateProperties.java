@@ -6,12 +6,16 @@ package com.azure.resourcemanager.appservice.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.models.PublicCertificateLocation;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** PublicCertificate resource specific properties. */
 @Fluent
 public final class PublicCertificateProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(PublicCertificateProperties.class);
+
     /*
      * Public Certificate byte array
      */

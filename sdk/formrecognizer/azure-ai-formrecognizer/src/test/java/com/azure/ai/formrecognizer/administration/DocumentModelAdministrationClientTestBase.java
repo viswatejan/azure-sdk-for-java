@@ -9,17 +9,12 @@ import com.azure.ai.formrecognizer.TestUtils;
 import com.azure.ai.formrecognizer.administration.models.AccountProperties;
 import com.azure.ai.formrecognizer.administration.models.CopyAuthorization;
 import com.azure.ai.formrecognizer.administration.models.DocumentModel;
-import com.azure.ai.formrecognizer.implementation.util.Constants;
-import com.azure.ai.formrecognizer.models.FormRecognizerAudience;
 import com.azure.core.credential.AzureKeyCredential;
-import com.azure.core.credential.TokenCredential;
 import com.azure.core.http.HttpClient;
 import com.azure.core.http.policy.HttpLogDetailLevel;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.test.TestBase;
 import com.azure.core.test.TestMode;
-import com.azure.identity.AzureAuthorityHosts;
-import com.azure.identity.ClientSecretCredentialBuilder;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 
 import java.io.ByteArrayInputStream;
@@ -32,10 +27,13 @@ import java.time.Duration;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import static com.azure.ai.formrecognizer.TestUtils.AZURE_CLIENT_ID;
-import static com.azure.ai.formrecognizer.TestUtils.AZURE_FORM_RECOGNIZER_CLIENT_SECRET;
-import static com.azure.ai.formrecognizer.TestUtils.AZURE_TENANT_ID;
+import static com.azure.ai.formrecognizer.TestUtils.AZURE_FORM_RECOGNIZER_ENDPOINT_CONFIGURATION;
+import static com.azure.ai.formrecognizer.TestUtils.BLANK_PDF;
 import static com.azure.ai.formrecognizer.TestUtils.INVALID_KEY;
+import static com.azure.ai.formrecognizer.TestUtils.LOCAL_FILE_PATH;
+import static com.azure.ai.formrecognizer.TestUtils.ONE_NANO_DURATION;
+import static com.azure.ai.formrecognizer.TestUtils.TEST_DATA_PNG;
+import static com.azure.ai.formrecognizer.implementation.util.Constants.DEFAULT_POLL_INTERVAL;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public abstract class DocumentModelAdministrationClientTestBase extends TestBase {
@@ -46,22 +44,18 @@ public abstract class DocumentModelAdministrationClientTestBase extends TestBase
      */
     @Override
     protected void beforeTest() {
-        durationTestMode = interceptorManager.isPlaybackMode()
-            ? TestUtils.ONE_NANO_DURATION : Constants.DEFAULT_POLL_INTERVAL;
+        durationTestMode = interceptorManager.isPlaybackMode() ? ONE_NANO_DURATION : DEFAULT_POLL_INTERVAL;
     }
 
     DocumentModelAdministrationClientBuilder getDocumentModelAdminClientBuilder(HttpClient httpClient,
                                                                                 DocumentAnalysisServiceVersion serviceVersion,
                                                                                 boolean useKeyCredential) {
-        String endpoint = getEndpoint();
-        FormRecognizerAudience audience = TestUtils.getAudience(endpoint);
         DocumentModelAdministrationClientBuilder builder = new DocumentModelAdministrationClientBuilder()
-            .endpoint(endpoint)
+            .endpoint(getEndpoint())
             .httpClient(httpClient == null ? interceptorManager.getPlaybackClient() : httpClient)
             .httpLogOptions(new HttpLogOptions().setLogLevel(HttpLogDetailLevel.BODY_AND_HEADERS))
             .serviceVersion(serviceVersion)
-            .addPolicy(interceptorManager.getRecordPolicy())
-            .audience(audience);
+            .addPolicy(interceptorManager.getRecordPolicy());
 
         if (getTestMode() == TestMode.PLAYBACK) {
             builder.credential(new AzureKeyCredential(INVALID_KEY));
@@ -69,26 +63,11 @@ public abstract class DocumentModelAdministrationClientTestBase extends TestBase
             if (useKeyCredential) {
                 builder.credential(new AzureKeyCredential(TestUtils.AZURE_FORM_RECOGNIZER_API_KEY_CONFIGURATION));
             } else {
-                builder.credential(getCredentialByAuthority(endpoint));
+                System.out.println("In LIVE MODE");
+                builder.credential(new DefaultAzureCredentialBuilder().build());
             }
         }
         return builder;
-    }
-
-    static TokenCredential getCredentialByAuthority(String endpoint) {
-        String authority = TestUtils.getAuthority(endpoint);
-        if (authority == AzureAuthorityHosts.AZURE_PUBLIC_CLOUD) {
-            return new DefaultAzureCredentialBuilder()
-                .authorityHost(TestUtils.getAuthority(endpoint))
-                .build();
-        } else {
-            return new ClientSecretCredentialBuilder()
-                .tenantId(AZURE_TENANT_ID)
-                .clientId(AZURE_CLIENT_ID)
-                .clientSecret(AZURE_FORM_RECOGNIZER_CLIENT_SECRET)
-                .authorityHost(authority)
-                .build();
-        }
     }
 
     static void validateCopyAuthorizationResult(CopyAuthorization actualResult) {
@@ -112,13 +91,13 @@ public abstract class DocumentModelAdministrationClientTestBase extends TestBase
     }
 
     void blankPdfDataRunner(BiConsumer<InputStream, Long> testRunner) {
-        final long fileLength = new File(TestUtils.LOCAL_FILE_PATH + TestUtils.BLANK_PDF).length();
+        final long fileLength = new File(LOCAL_FILE_PATH + BLANK_PDF).length();
 
         if (interceptorManager.isPlaybackMode()) {
-            testRunner.accept(new ByteArrayInputStream(TestUtils.TEST_DATA_PNG.getBytes(StandardCharsets.UTF_8)), fileLength);
+            testRunner.accept(new ByteArrayInputStream(TEST_DATA_PNG.getBytes(StandardCharsets.UTF_8)), fileLength);
         } else {
             try {
-                testRunner.accept(new FileInputStream(TestUtils.LOCAL_FILE_PATH + TestUtils.BLANK_PDF), fileLength);
+                testRunner.accept(new FileInputStream(LOCAL_FILE_PATH + BLANK_PDF), fileLength);
             } catch (FileNotFoundException e) {
                 throw new RuntimeException("Local file not found.", e);
             }
@@ -129,17 +108,13 @@ public abstract class DocumentModelAdministrationClientTestBase extends TestBase
         TestUtils.getTrainingDataContainerHelper(testRunner, interceptorManager.isPlaybackMode());
     }
 
-    void buildModelErrorRunner(Consumer<String> testRunner) {
-        TestUtils.getErrorTrainingDataContainerHelper(testRunner, interceptorManager.isPlaybackMode());
-    }
-
     void multipageTrainingRunner(Consumer<String> testRunner) {
         TestUtils.getMultipageTrainingContainerHelper(testRunner, interceptorManager.isPlaybackMode());
     }
 
-    private String getEndpoint() {
+    String getEndpoint() {
         return interceptorManager.isPlaybackMode()
             ? "https://localhost:8080"
-            : TestUtils.AZURE_FORM_RECOGNIZER_ENDPOINT_CONFIGURATION;
+            : AZURE_FORM_RECOGNIZER_ENDPOINT_CONFIGURATION;
     }
 }

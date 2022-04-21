@@ -2,7 +2,6 @@
 parameters:
   Options: '$(DefaultOptions)'
   MavenOptions: '$(MemoryOptions) $(LoggingOptions)'
-  JdkVersion: $(JavaBuildVersion)
 
 steps:
   - task: Maven@3
@@ -12,7 +11,7 @@ steps:
       options: ${{ parameters.Options }}
       mavenOptions: ${{ parameters.MavenOptions }}
       javaHomeOption: 'JDKVersion'
-      jdkVersionOption: ${{ parameters.JdkVersion }}
+      jdkVersionOption: '1.11'
       jdkArchitectureOption: 'x64'
       publishJUnitResults: false
       goals: 'install'

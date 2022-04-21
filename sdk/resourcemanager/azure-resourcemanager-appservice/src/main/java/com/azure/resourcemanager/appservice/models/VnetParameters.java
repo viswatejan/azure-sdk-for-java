@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.appservice.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.fluent.models.VnetParametersProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The required set of inputs to validate a VNET. */
 @Fluent
 public final class VnetParameters extends ProxyOnlyResource {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VnetParameters.class);
+
     /*
      * VnetParameters resource specific properties
      */

@@ -8,7 +8,6 @@ import com.azure.core.credential.TokenCredential;
 import com.azure.core.http.HttpClient;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpPipelineBuilder;
-import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
@@ -32,7 +31,6 @@ import com.azure.resourcemanager.kusto.implementation.KustoManagementClientBuild
 import com.azure.resourcemanager.kusto.implementation.ManagedPrivateEndpointsImpl;
 import com.azure.resourcemanager.kusto.implementation.OperationsImpl;
 import com.azure.resourcemanager.kusto.implementation.OperationsResultsImpl;
-import com.azure.resourcemanager.kusto.implementation.OperationsResultsLocationsImpl;
 import com.azure.resourcemanager.kusto.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.kusto.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.kusto.implementation.ScriptsImpl;
@@ -45,7 +43,6 @@ import com.azure.resourcemanager.kusto.models.Databases;
 import com.azure.resourcemanager.kusto.models.ManagedPrivateEndpoints;
 import com.azure.resourcemanager.kusto.models.Operations;
 import com.azure.resourcemanager.kusto.models.OperationsResults;
-import com.azure.resourcemanager.kusto.models.OperationsResultsLocations;
 import com.azure.resourcemanager.kusto.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.kusto.models.PrivateLinkResources;
 import com.azure.resourcemanager.kusto.models.Scripts;
@@ -54,7 +51,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * Entry point to KustoManager. The Azure Kusto management API provides a RESTful set of web services that interact with
@@ -85,8 +81,6 @@ public final class KustoManager {
     private Operations operations;
 
     private OperationsResults operationsResults;
-
-    private OperationsResultsLocations operationsResultsLocations;
 
     private final KustoManagementClient clientObject;
 
@@ -224,7 +218,7 @@ public final class KustoManager {
                 .append("-")
                 .append("com.azure.resourcemanager.kusto")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.3");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -247,24 +241,11 @@ public final class KustoManager {
             List<HttpPipelinePolicy> policies = new ArrayList<>();
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies);
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
             HttpPipeline httpPipeline =
@@ -375,15 +356,6 @@ public final class KustoManager {
             this.operationsResults = new OperationsResultsImpl(clientObject.getOperationsResults(), this);
         }
         return operationsResults;
-    }
-
-    /** @return Resource collection API of OperationsResultsLocations. */
-    public OperationsResultsLocations operationsResultsLocations() {
-        if (this.operationsResultsLocations == null) {
-            this.operationsResultsLocations =
-                new OperationsResultsLocationsImpl(clientObject.getOperationsResultsLocations(), this);
-        }
-        return operationsResultsLocations;
     }
 
     /**

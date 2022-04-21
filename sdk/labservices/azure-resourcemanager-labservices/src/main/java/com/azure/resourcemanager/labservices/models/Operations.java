@@ -4,28 +4,33 @@
 
 package com.azure.resourcemanager.labservices.models;
 
-import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
 /** Resource collection API of Operations. */
 public interface Operations {
     /**
-     * Returns a list of all operations.
+     * Get operation.
      *
+     * @param locationName The name of the location.
+     * @param operationName The name of the operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of REST API operations supported by an Azure Resource Provider.
+     * @return operation.
      */
-    PagedIterable<Operation> list();
+    OperationResult get(String locationName, String operationName);
 
     /**
-     * Returns a list of all operations.
+     * Get operation.
      *
+     * @param locationName The name of the location.
+     * @param operationName The name of the operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of REST API operations supported by an Azure Resource Provider.
+     * @return operation.
      */
-    PagedIterable<Operation> list(Context context);
+    Response<OperationResult> getWithResponse(String locationName, String operationName, Context context);
 }

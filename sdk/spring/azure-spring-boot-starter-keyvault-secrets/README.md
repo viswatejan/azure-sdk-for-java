@@ -38,7 +38,8 @@ azure.keyvault.client-key=put-your-azure-client-key-here
 ###  Get Key Vault secret value as property
 Now, you can get Azure Key Vault secret value as a configuration property.
 
-``` readme-sample-KeyVaultSample
+<!-- embedme ../azure-spring-boot/src/samples/java/com/azure/spring/keyvault/KeyVaultSample.java#L18-L32 -->
+```
 @SpringBootApplication
 public class KeyVaultSample implements CommandLineRunner {
 

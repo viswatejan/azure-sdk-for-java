@@ -29,6 +29,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.batch.fluent.ApplicationPackagesClient;
 import com.azure.resourcemanager.batch.fluent.models.ApplicationPackageInner;
 import com.azure.resourcemanager.batch.models.ActivateApplicationPackageParameters;
@@ -37,29 +38,31 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ApplicationPackagesClient. */
 public final class ApplicationPackagesClientImpl implements ApplicationPackagesClient {
+    private final ClientLogger logger = new ClientLogger(ApplicationPackagesClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final ApplicationPackagesService service;
 
     /** The service client containing this operation class. */
-    private final BatchManagementClientImpl client;
+    private final BatchManagementImpl client;
 
     /**
      * Initializes an instance of ApplicationPackagesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ApplicationPackagesClientImpl(BatchManagementClientImpl client) {
+    ApplicationPackagesClientImpl(BatchManagementImpl client) {
         this.service =
             RestProxy.create(ApplicationPackagesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for BatchManagementClientApplicationPackages to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for BatchManagementApplicationPackages to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "BatchManagementClien")
+    @ServiceInterface(name = "BatchManagementAppli")
     private interface ApplicationPackagesService {
         @Headers({"Content-Type: application/json"})
         @Post(
@@ -171,8 +174,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application package which represents a particular version of an application along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return an application package which represents a particular version of an application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApplicationPackageInner>> activateWithResponseAsync(
@@ -244,8 +246,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application package which represents a particular version of an application along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return an application package which represents a particular version of an application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApplicationPackageInner>> activateWithResponseAsync(
@@ -314,8 +315,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application package which represents a particular version of an application on successful completion
-     *     of {@link Mono}.
+     * @return an application package which represents a particular version of an application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApplicationPackageInner> activateAsync(
@@ -372,8 +372,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application package which represents a particular version of an application along with {@link
-     *     Response}.
+     * @return an application package which represents a particular version of an application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ApplicationPackageInner> activateWithResponse(
@@ -401,8 +400,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application package which represents a particular version of an application along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return an application package which represents a particular version of an application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApplicationPackageInner>> createWithResponseAsync(
@@ -473,8 +471,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application package which represents a particular version of an application along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return an application package which represents a particular version of an application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApplicationPackageInner>> createWithResponseAsync(
@@ -542,8 +539,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application package which represents a particular version of an application on successful completion
-     *     of {@link Mono}.
+     * @return an application package which represents a particular version of an application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApplicationPackageInner> createAsync(
@@ -575,8 +571,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application package which represents a particular version of an application on successful completion
-     *     of {@link Mono}.
+     * @return an application package which represents a particular version of an application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApplicationPackageInner> createAsync(
@@ -628,8 +623,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application package which represents a particular version of an application along with {@link
-     *     Response}.
+     * @return an application package which represents a particular version of an application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ApplicationPackageInner> createWithResponse(
@@ -654,7 +648,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -714,7 +708,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -770,7 +764,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -806,7 +800,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -824,8 +818,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified application package along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return information about the specified application package.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApplicationPackageInner>> getWithResponseAsync(
@@ -885,8 +878,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified application package along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return information about the specified application package.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApplicationPackageInner>> getWithResponseAsync(
@@ -942,7 +934,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified application package on successful completion of {@link Mono}.
+     * @return information about the specified application package.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApplicationPackageInner> getAsync(
@@ -987,7 +979,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified application package along with {@link Response}.
+     * @return information about the specified application package.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ApplicationPackageInner> getWithResponse(
@@ -1005,8 +997,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list application packages along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of performing list application packages.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApplicationPackageInner>> listSinglePageAsync(
@@ -1072,8 +1063,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list application packages along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of performing list application packages.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApplicationPackageInner>> listSinglePageAsync(
@@ -1135,7 +1125,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list application packages as paginated response with {@link PagedFlux}.
+     * @return the result of performing list application packages.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApplicationPackageInner> listAsync(
@@ -1154,7 +1144,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list application packages as paginated response with {@link PagedFlux}.
+     * @return the result of performing list application packages.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApplicationPackageInner> listAsync(
@@ -1176,7 +1166,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list application packages as paginated response with {@link PagedFlux}.
+     * @return the result of performing list application packages.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApplicationPackageInner> listAsync(
@@ -1195,7 +1185,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list application packages as paginated response with {@link PagedIterable}.
+     * @return the result of performing list application packages.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApplicationPackageInner> list(
@@ -1215,7 +1205,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list application packages as paginated response with {@link PagedIterable}.
+     * @return the result of performing list application packages.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApplicationPackageInner> list(
@@ -1230,8 +1220,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list application packages along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of performing list application packages.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApplicationPackageInner>> listNextSinglePageAsync(String nextLink) {
@@ -1267,8 +1256,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list application packages along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the result of performing list application packages.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApplicationPackageInner>> listNextSinglePageAsync(String nextLink, Context context) {

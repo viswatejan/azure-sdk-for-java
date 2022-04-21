@@ -13,7 +13,7 @@ import java.util.Map;
 
 /** Recovery point tier information. */
 @Fluent
-public class RecoveryPointTierInformation {
+public final class RecoveryPointTierInformation {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(RecoveryPointTierInformation.class);
 
     /*

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.sqlvirtualmachine.implementation;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.OperationsClient;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.models.OperationInner;
 import com.azure.resourcemanager.sqlvirtualmachine.models.Operation;
@@ -18,30 +19,28 @@ public final class OperationsImpl implements Operations {
 
     private final OperationsClient innerClient;
 
-    private final com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager serviceManager;
+    private final SqlVirtualMachineManager serviceManager;
 
-    public OperationsImpl(
-        OperationsClient innerClient,
-        com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager serviceManager) {
+    public OperationsImpl(OperationsClient innerClient, SqlVirtualMachineManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
     public PagedIterable<Operation> list() {
         PagedIterable<OperationInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new OperationImpl(inner1, this.manager()));
+        return inner.mapPage(inner1 -> new OperationImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Operation> list(Context context) {
         PagedIterable<OperationInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new OperationImpl(inner1, this.manager()));
+        return inner.mapPage(inner1 -> new OperationImpl(inner1, this.manager()));
     }
 
     private OperationsClient serviceClient() {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager manager() {
+    private SqlVirtualMachineManager manager() {
         return this.serviceManager;
     }
 }

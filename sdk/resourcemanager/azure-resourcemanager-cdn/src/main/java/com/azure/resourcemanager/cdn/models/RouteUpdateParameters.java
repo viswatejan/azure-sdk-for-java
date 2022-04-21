@@ -5,48 +5,104 @@
 package com.azure.resourcemanager.cdn.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.cdn.fluent.models.RouteUpdatePropertiesParameters;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The domain JSON object required for domain creation or update. */
+@JsonFlatten
 @Fluent
-public final class RouteUpdateParameters {
+public class RouteUpdateParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(RouteUpdateParameters.class);
 
     /*
-     * The JSON object that contains the properties of the domain to create.
+     * Domains referenced by this endpoint.
      */
-    @JsonProperty(value = "properties")
-    private RouteUpdatePropertiesParameters innerProperties;
+    @JsonProperty(value = "properties.customDomains")
+    private List<ResourceReference> customDomains;
 
-    /**
-     * Get the innerProperties property: The JSON object that contains the properties of the domain to create.
-     *
-     * @return the innerProperties value.
+    /*
+     * A reference to the origin group.
      */
-    private RouteUpdatePropertiesParameters innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.originGroup")
+    private ResourceReference originGroup;
 
-    /**
-     * Get the endpointName property: The name of the endpoint which holds the route.
-     *
-     * @return the endpointName value.
+    /*
+     * A directory path on the origin that AzureFrontDoor can use to retrieve
+     * content from, e.g. contoso.cloudapp.net/originpath.
      */
-    public String endpointName() {
-        return this.innerProperties() == null ? null : this.innerProperties().endpointName();
-    }
+    @JsonProperty(value = "properties.originPath")
+    private String originPath;
+
+    /*
+     * rule sets referenced by this endpoint.
+     */
+    @JsonProperty(value = "properties.ruleSets")
+    private List<ResourceReference> ruleSets;
+
+    /*
+     * List of supported protocols for this route.
+     */
+    @JsonProperty(value = "properties.supportedProtocols")
+    private List<AfdEndpointProtocols> supportedProtocols;
+
+    /*
+     * The route patterns of the rule.
+     */
+    @JsonProperty(value = "properties.patternsToMatch")
+    private List<String> patternsToMatch;
+
+    /*
+     * compression settings.
+     */
+    @JsonProperty(value = "properties.compressionSettings")
+    private Object compressionSettings;
+
+    /*
+     * Defines how CDN caches requests that include query strings. You can
+     * ignore any query strings when caching, bypass caching to prevent
+     * requests that contain query strings from being cached, or cache every
+     * request with a unique URL.
+     */
+    @JsonProperty(value = "properties.queryStringCachingBehavior")
+    private AfdQueryStringCachingBehavior queryStringCachingBehavior;
+
+    /*
+     * Protocol this rule will use when forwarding traffic to backends.
+     */
+    @JsonProperty(value = "properties.forwardingProtocol")
+    private ForwardingProtocol forwardingProtocol;
+
+    /*
+     * whether this route will be linked to the default endpoint domain.
+     */
+    @JsonProperty(value = "properties.linkToDefaultDomain")
+    private LinkToDefaultDomain linkToDefaultDomain;
+
+    /*
+     * Whether to automatically redirect HTTP traffic to HTTPS traffic. Note
+     * that this is a easy way to set up this rule and it will be the first
+     * rule that gets executed.
+     */
+    @JsonProperty(value = "properties.httpsRedirect")
+    private HttpsRedirect httpsRedirect;
+
+    /*
+     * Whether to enable use of this rule. Permitted values are 'Enabled' or
+     * 'Disabled'
+     */
+    @JsonProperty(value = "properties.enabledState")
+    private EnabledState enabledState;
 
     /**
      * Get the customDomains property: Domains referenced by this endpoint.
      *
      * @return the customDomains value.
      */
-    public List<ActivatedResourceReference> customDomains() {
-        return this.innerProperties() == null ? null : this.innerProperties().customDomains();
+    public List<ResourceReference> customDomains() {
+        return this.customDomains;
     }
 
     /**
@@ -55,11 +111,8 @@ public final class RouteUpdateParameters {
      * @param customDomains the customDomains value to set.
      * @return the RouteUpdateParameters object itself.
      */
-    public RouteUpdateParameters withCustomDomains(List<ActivatedResourceReference> customDomains) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RouteUpdatePropertiesParameters();
-        }
-        this.innerProperties().withCustomDomains(customDomains);
+    public RouteUpdateParameters withCustomDomains(List<ResourceReference> customDomains) {
+        this.customDomains = customDomains;
         return this;
     }
 
@@ -69,7 +122,7 @@ public final class RouteUpdateParameters {
      * @return the originGroup value.
      */
     public ResourceReference originGroup() {
-        return this.innerProperties() == null ? null : this.innerProperties().originGroup();
+        return this.originGroup;
     }
 
     /**
@@ -79,10 +132,7 @@ public final class RouteUpdateParameters {
      * @return the RouteUpdateParameters object itself.
      */
     public RouteUpdateParameters withOriginGroup(ResourceReference originGroup) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RouteUpdatePropertiesParameters();
-        }
-        this.innerProperties().withOriginGroup(originGroup);
+        this.originGroup = originGroup;
         return this;
     }
 
@@ -93,7 +143,7 @@ public final class RouteUpdateParameters {
      * @return the originPath value.
      */
     public String originPath() {
-        return this.innerProperties() == null ? null : this.innerProperties().originPath();
+        return this.originPath;
     }
 
     /**
@@ -104,10 +154,7 @@ public final class RouteUpdateParameters {
      * @return the RouteUpdateParameters object itself.
      */
     public RouteUpdateParameters withOriginPath(String originPath) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RouteUpdatePropertiesParameters();
-        }
-        this.innerProperties().withOriginPath(originPath);
+        this.originPath = originPath;
         return this;
     }
 
@@ -117,7 +164,7 @@ public final class RouteUpdateParameters {
      * @return the ruleSets value.
      */
     public List<ResourceReference> ruleSets() {
-        return this.innerProperties() == null ? null : this.innerProperties().ruleSets();
+        return this.ruleSets;
     }
 
     /**
@@ -127,10 +174,7 @@ public final class RouteUpdateParameters {
      * @return the RouteUpdateParameters object itself.
      */
     public RouteUpdateParameters withRuleSets(List<ResourceReference> ruleSets) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RouteUpdatePropertiesParameters();
-        }
-        this.innerProperties().withRuleSets(ruleSets);
+        this.ruleSets = ruleSets;
         return this;
     }
 
@@ -140,7 +184,7 @@ public final class RouteUpdateParameters {
      * @return the supportedProtocols value.
      */
     public List<AfdEndpointProtocols> supportedProtocols() {
-        return this.innerProperties() == null ? null : this.innerProperties().supportedProtocols();
+        return this.supportedProtocols;
     }
 
     /**
@@ -150,10 +194,7 @@ public final class RouteUpdateParameters {
      * @return the RouteUpdateParameters object itself.
      */
     public RouteUpdateParameters withSupportedProtocols(List<AfdEndpointProtocols> supportedProtocols) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RouteUpdatePropertiesParameters();
-        }
-        this.innerProperties().withSupportedProtocols(supportedProtocols);
+        this.supportedProtocols = supportedProtocols;
         return this;
     }
 
@@ -163,7 +204,7 @@ public final class RouteUpdateParameters {
      * @return the patternsToMatch value.
      */
     public List<String> patternsToMatch() {
-        return this.innerProperties() == null ? null : this.innerProperties().patternsToMatch();
+        return this.patternsToMatch;
     }
 
     /**
@@ -173,35 +214,52 @@ public final class RouteUpdateParameters {
      * @return the RouteUpdateParameters object itself.
      */
     public RouteUpdateParameters withPatternsToMatch(List<String> patternsToMatch) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RouteUpdatePropertiesParameters();
-        }
-        this.innerProperties().withPatternsToMatch(patternsToMatch);
+        this.patternsToMatch = patternsToMatch;
         return this;
     }
 
     /**
-     * Get the cacheConfiguration property: The caching configuration for this route. To disable caching, do not provide
-     * a cacheConfiguration object.
+     * Get the compressionSettings property: compression settings.
      *
-     * @return the cacheConfiguration value.
+     * @return the compressionSettings value.
      */
-    public AfdRouteCacheConfiguration cacheConfiguration() {
-        return this.innerProperties() == null ? null : this.innerProperties().cacheConfiguration();
+    public Object compressionSettings() {
+        return this.compressionSettings;
     }
 
     /**
-     * Set the cacheConfiguration property: The caching configuration for this route. To disable caching, do not provide
-     * a cacheConfiguration object.
+     * Set the compressionSettings property: compression settings.
      *
-     * @param cacheConfiguration the cacheConfiguration value to set.
+     * @param compressionSettings the compressionSettings value to set.
      * @return the RouteUpdateParameters object itself.
      */
-    public RouteUpdateParameters withCacheConfiguration(AfdRouteCacheConfiguration cacheConfiguration) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RouteUpdatePropertiesParameters();
-        }
-        this.innerProperties().withCacheConfiguration(cacheConfiguration);
+    public RouteUpdateParameters withCompressionSettings(Object compressionSettings) {
+        this.compressionSettings = compressionSettings;
+        return this;
+    }
+
+    /**
+     * Get the queryStringCachingBehavior property: Defines how CDN caches requests that include query strings. You can
+     * ignore any query strings when caching, bypass caching to prevent requests that contain query strings from being
+     * cached, or cache every request with a unique URL.
+     *
+     * @return the queryStringCachingBehavior value.
+     */
+    public AfdQueryStringCachingBehavior queryStringCachingBehavior() {
+        return this.queryStringCachingBehavior;
+    }
+
+    /**
+     * Set the queryStringCachingBehavior property: Defines how CDN caches requests that include query strings. You can
+     * ignore any query strings when caching, bypass caching to prevent requests that contain query strings from being
+     * cached, or cache every request with a unique URL.
+     *
+     * @param queryStringCachingBehavior the queryStringCachingBehavior value to set.
+     * @return the RouteUpdateParameters object itself.
+     */
+    public RouteUpdateParameters withQueryStringCachingBehavior(
+        AfdQueryStringCachingBehavior queryStringCachingBehavior) {
+        this.queryStringCachingBehavior = queryStringCachingBehavior;
         return this;
     }
 
@@ -211,7 +269,7 @@ public final class RouteUpdateParameters {
      * @return the forwardingProtocol value.
      */
     public ForwardingProtocol forwardingProtocol() {
-        return this.innerProperties() == null ? null : this.innerProperties().forwardingProtocol();
+        return this.forwardingProtocol;
     }
 
     /**
@@ -221,10 +279,7 @@ public final class RouteUpdateParameters {
      * @return the RouteUpdateParameters object itself.
      */
     public RouteUpdateParameters withForwardingProtocol(ForwardingProtocol forwardingProtocol) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RouteUpdatePropertiesParameters();
-        }
-        this.innerProperties().withForwardingProtocol(forwardingProtocol);
+        this.forwardingProtocol = forwardingProtocol;
         return this;
     }
 
@@ -234,7 +289,7 @@ public final class RouteUpdateParameters {
      * @return the linkToDefaultDomain value.
      */
     public LinkToDefaultDomain linkToDefaultDomain() {
-        return this.innerProperties() == null ? null : this.innerProperties().linkToDefaultDomain();
+        return this.linkToDefaultDomain;
     }
 
     /**
@@ -244,10 +299,7 @@ public final class RouteUpdateParameters {
      * @return the RouteUpdateParameters object itself.
      */
     public RouteUpdateParameters withLinkToDefaultDomain(LinkToDefaultDomain linkToDefaultDomain) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RouteUpdatePropertiesParameters();
-        }
-        this.innerProperties().withLinkToDefaultDomain(linkToDefaultDomain);
+        this.linkToDefaultDomain = linkToDefaultDomain;
         return this;
     }
 
@@ -258,7 +310,7 @@ public final class RouteUpdateParameters {
      * @return the httpsRedirect value.
      */
     public HttpsRedirect httpsRedirect() {
-        return this.innerProperties() == null ? null : this.innerProperties().httpsRedirect();
+        return this.httpsRedirect;
     }
 
     /**
@@ -269,10 +321,7 @@ public final class RouteUpdateParameters {
      * @return the RouteUpdateParameters object itself.
      */
     public RouteUpdateParameters withHttpsRedirect(HttpsRedirect httpsRedirect) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RouteUpdatePropertiesParameters();
-        }
-        this.innerProperties().withHttpsRedirect(httpsRedirect);
+        this.httpsRedirect = httpsRedirect;
         return this;
     }
 
@@ -282,7 +331,7 @@ public final class RouteUpdateParameters {
      * @return the enabledState value.
      */
     public EnabledState enabledState() {
-        return this.innerProperties() == null ? null : this.innerProperties().enabledState();
+        return this.enabledState;
     }
 
     /**
@@ -292,10 +341,7 @@ public final class RouteUpdateParameters {
      * @return the RouteUpdateParameters object itself.
      */
     public RouteUpdateParameters withEnabledState(EnabledState enabledState) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new RouteUpdatePropertiesParameters();
-        }
-        this.innerProperties().withEnabledState(enabledState);
+        this.enabledState = enabledState;
         return this;
     }
 
@@ -305,8 +351,14 @@ public final class RouteUpdateParameters {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (customDomains() != null) {
+            customDomains().forEach(e -> e.validate());
+        }
+        if (originGroup() != null) {
+            originGroup().validate();
+        }
+        if (ruleSets() != null) {
+            ruleSets().forEach(e -> e.validate());
         }
     }
 }

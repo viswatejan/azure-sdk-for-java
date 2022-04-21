@@ -95,8 +95,7 @@ public final class PrivateEndPointConnectionsClientImpl implements PrivateEndPoi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of linked service resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a list of linked service resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PrivateEndpointConnectionResourceInner>> listByFactorySinglePageAsync(
@@ -154,8 +153,7 @@ public final class PrivateEndPointConnectionsClientImpl implements PrivateEndPoi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of linked service resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a list of linked service resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PrivateEndpointConnectionResourceInner>> listByFactorySinglePageAsync(
@@ -209,7 +207,7 @@ public final class PrivateEndPointConnectionsClientImpl implements PrivateEndPoi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of linked service resources as paginated response with {@link PagedFlux}.
+     * @return a list of linked service resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PrivateEndpointConnectionResourceInner> listByFactoryAsync(
@@ -228,7 +226,7 @@ public final class PrivateEndPointConnectionsClientImpl implements PrivateEndPoi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of linked service resources as paginated response with {@link PagedFlux}.
+     * @return a list of linked service resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PrivateEndpointConnectionResourceInner> listByFactoryAsync(
@@ -246,7 +244,7 @@ public final class PrivateEndPointConnectionsClientImpl implements PrivateEndPoi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of linked service resources as paginated response with {@link PagedIterable}.
+     * @return a list of linked service resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PrivateEndpointConnectionResourceInner> listByFactory(
@@ -263,7 +261,7 @@ public final class PrivateEndPointConnectionsClientImpl implements PrivateEndPoi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of linked service resources as paginated response with {@link PagedIterable}.
+     * @return a list of linked service resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PrivateEndpointConnectionResourceInner> listByFactory(
@@ -278,8 +276,7 @@ public final class PrivateEndPointConnectionsClientImpl implements PrivateEndPoi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of linked service resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a list of linked service resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PrivateEndpointConnectionResourceInner>> listByFactoryNextSinglePageAsync(
@@ -316,8 +313,7 @@ public final class PrivateEndPointConnectionsClientImpl implements PrivateEndPoi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of linked service resources along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return a list of linked service resources.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PrivateEndpointConnectionResourceInner>> listByFactoryNextSinglePageAsync(

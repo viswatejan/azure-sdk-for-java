@@ -10,7 +10,6 @@ import com.azure.communication.identity.CommunicationIdentityClientBuilder;
 import com.azure.communication.networktraversal.models.CommunicationRelayConfiguration;
 import com.azure.communication.networktraversal.models.RouteType;
 import com.azure.communication.networktraversal.models.CommunicationIceServer;
-import com.azure.communication.networktraversal.models.GetRelayConfigurationOptions;
 import java.util.List;
 
 public class ReadmeSamples {
@@ -48,45 +47,6 @@ public class ReadmeSamples {
             .credential(keyCredential)
             .buildClient();
         // END: readme-sample-createCommunicationNetworkTraversalClient
-
-        return communicationRelayClient;
-    }
-
-    /**
-     * Sample code for creating a Relay Client Builder
-     *
-     * @return the Communication Relay Client Builder
-     */
-    public CommunicationRelayClientBuilder createCommunicationNetworkTraversalClientBuilder() {
-        // BEGIN: readme-sample-createCommunicationNetworkTraversalClientBuilder
-        // You can find your endpoint and access key from your resource in the Azure Portal
-        String endpoint = "https://<RESOURCE_NAME>.communication.azure.com";
-        AzureKeyCredential keyCredential = new AzureKeyCredential("<access-key>");
-
-        CommunicationRelayClientBuilder communicationRelayClientBuilder = new CommunicationRelayClientBuilder()
-            .endpoint(endpoint)
-            .credential(keyCredential);
-        // END: readme-sample-createCommunicationNetworkTraversalClientBuilder
-
-        return communicationRelayClientBuilder;
-    }
-
-    /**
-     * Sample code for creating a sync Communication Network Traversal Client.
-     *
-     * @return the Communication Relay Async Client.
-     */
-    public CommunicationRelayAsyncClient createCommunicationNetworkTraversalAsyncClient() {
-        // BEGIN: readme-sample-createCommunicationNetworkTraversalAsyncClient
-        // You can find your endpoint and access key from your resource in the Azure Portal
-        String endpoint = "https://<RESOURCE_NAME>.communication.azure.com";
-        AzureKeyCredential keyCredential = new AzureKeyCredential("<access-key>");
-
-        CommunicationRelayAsyncClient communicationRelayClient = new CommunicationRelayClientBuilder()
-            .endpoint(endpoint)
-            .credential(keyCredential)
-            .buildAsyncClient();
-        // END: readme-sample-createCommunicationNetworkTraversalAsyncClient
 
         return communicationRelayClient;
     }
@@ -134,17 +94,13 @@ public class ReadmeSamples {
      * @return the created user
      */
     public CommunicationRelayConfiguration getRelayConfiguration() {
-        // BEGIN: readme-sample-getRelayConfiguration
         CommunicationIdentityClient communicationIdentityClient = createCommunicationIdentityClient();
 
         CommunicationUserIdentifier user = communicationIdentityClient.createUser();
         System.out.println("User id: " + user.getId());
 
-        GetRelayConfigurationOptions options = new GetRelayConfigurationOptions();
-        options.setCommunicationUserIdentifier(user);
-
         CommunicationRelayClient communicationRelayClient = createCommunicationNetworkTraversalClient();
-        CommunicationRelayConfiguration config = communicationRelayClient.getRelayConfiguration(options);
+        CommunicationRelayConfiguration config = communicationRelayClient.getRelayConfiguration(user);
 
         System.out.println("Expires on:" + config.getExpiresOn());
         List<CommunicationIceServer> iceServers = config.getIceServers();
@@ -155,7 +111,6 @@ public class ReadmeSamples {
             System.out.println("Credential: " + iceS.getCredential());
             System.out.println("RouteType: " + iceS.getRouteType());
         }
-        // END: readme-sample-getRelayConfiguration
         return config;
     }
 
@@ -165,7 +120,7 @@ public class ReadmeSamples {
      * @return the created user
      */
     public CommunicationRelayConfiguration getRelayConfigurationWithoutIdentity() {
-        // BEGIN: readme-sample-getRelayConfigurationWithoutIdentity
+
         CommunicationRelayClient communicationRelayClient = createCommunicationNetworkTraversalClient();
         CommunicationRelayConfiguration config = communicationRelayClient.getRelayConfiguration();
 
@@ -178,7 +133,6 @@ public class ReadmeSamples {
             System.out.println("Credential: " + iceS.getCredential());
             System.out.println("RouteType: " + iceS.getRouteType());
         }
-        // END: readme-sample-getRelayConfigurationWithoutIdentity
         return config;
     }
 
@@ -188,13 +142,8 @@ public class ReadmeSamples {
      * @return the created user
      */
     public CommunicationRelayConfiguration getRelayConfigurationWithRouteType() {
-        // BEGIN: readme-sample-getRelayConfigurationWithRouteType
-
-        GetRelayConfigurationOptions options = new GetRelayConfigurationOptions();
-        options.setRouteType(RouteType.ANY);
-
         CommunicationRelayClient communicationRelayClient = createCommunicationNetworkTraversalClient();
-        CommunicationRelayConfiguration config = communicationRelayClient.getRelayConfiguration(options);
+        CommunicationRelayConfiguration config = communicationRelayClient.getRelayConfiguration(RouteType.ANY);
 
         System.out.println("Expires on:" + config.getExpiresOn());
         List<CommunicationIceServer> iceServers = config.getIceServers();
@@ -205,7 +154,6 @@ public class ReadmeSamples {
             System.out.println("Credential: " + iceS.getCredential());
             System.out.println("RouteType: " + iceS.getRouteType());
         }
-        // END: readme-sample-getRelayConfigurationWithRouteType
         return config;
     }
 
@@ -218,11 +166,8 @@ public class ReadmeSamples {
         // BEGIN: readme-sample-createUserTroubleshooting
         try {
             CommunicationUserIdentifier user = communicationIdentityClient.createUser();
-            GetRelayConfigurationOptions options = new GetRelayConfigurationOptions();
-            options.setCommunicationUserIdentifier(user);
-
             CommunicationRelayClient communicationRelayClient = createCommunicationNetworkTraversalClient();
-            CommunicationRelayConfiguration config = communicationRelayClient.getRelayConfiguration(options);
+            CommunicationRelayConfiguration config = communicationRelayClient.getRelayConfiguration(user);
         } catch (RuntimeException ex) {
             System.out.println(ex.getMessage());
         }

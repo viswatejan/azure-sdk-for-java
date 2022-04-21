@@ -34,7 +34,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response schema as paginated response with {@link PagedFlux}.
+     * @return response schema.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<FileShareItemInner> listAsync(
@@ -50,7 +50,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response schema as paginated response with {@link PagedFlux}.
+     * @return response schema.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<FileShareItemInner> listAsync(String resourceGroupName, String accountName);
@@ -65,7 +65,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response schema as paginated response with {@link PagedIterable}.
+     * @return response schema.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FileShareItemInner> list(String resourceGroupName, String accountName);
@@ -85,7 +85,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response schema as paginated response with {@link PagedIterable}.
+     * @return response schema.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FileShareItemInner> list(
@@ -113,8 +113,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the file share, including Id, resource name, resource type, Etag along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return properties of the file share, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FileShareInner>> createWithResponseAsync(
@@ -137,8 +136,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the file share, including Id, resource name, resource type, Etag on successful completion
-     *     of {@link Mono}.
+     * @return properties of the file share, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FileShareInner> createAsync(
@@ -159,8 +157,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the file share, including Id, resource name, resource type, Etag on successful completion
-     *     of {@link Mono}.
+     * @return properties of the file share, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FileShareInner> createAsync(
@@ -204,8 +201,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the file share, including Id, resource name, resource type, Etag along with {@link
-     *     Response}.
+     * @return properties of the file share, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FileShareInner> createWithResponse(
@@ -231,8 +227,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the file share, including Id, resource name, resource type, Etag along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return properties of the file share, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FileShareInner>> updateWithResponseAsync(
@@ -253,8 +248,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the file share, including Id, resource name, resource type, Etag on successful completion
-     *     of {@link Mono}.
+     * @return properties of the file share, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FileShareInner> updateAsync(
@@ -296,8 +290,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of the file share, including Id, resource name, resource type, Etag along with {@link
-     *     Response}.
+     * @return properties of the file share, including Id, resource name, resource type, Etag.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FileShareInner> updateWithResponse(
@@ -319,7 +312,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a specified share along with {@link Response} on successful completion of {@link Mono}.
+     * @return properties of a specified share.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FileShareInner>> getWithResponseAsync(
@@ -341,7 +334,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a specified share on successful completion of {@link Mono}.
+     * @return properties of a specified share.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FileShareInner> getAsync(
@@ -360,7 +353,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a specified share on successful completion of {@link Mono}.
+     * @return properties of a specified share.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FileShareInner> getAsync(String resourceGroupName, String accountName, String shareName);
@@ -400,7 +393,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a specified share along with {@link Response}.
+     * @return properties of a specified share.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FileShareInner> getWithResponse(
@@ -430,7 +423,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteWithResponseAsync(
@@ -455,7 +448,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(
@@ -474,7 +467,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String accountName, String shareName);
@@ -516,7 +509,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
@@ -541,7 +534,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> restoreWithResponseAsync(
@@ -561,7 +554,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> restoreAsync(String resourceGroupName, String accountName, String shareName, DeletedShare deletedShare);
@@ -599,7 +592,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> restoreWithResponse(
@@ -621,7 +614,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lease Share response schema on successful completion of {@link Mono}.
+     * @return lease Share response schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FileSharesLeaseResponse> leaseWithResponseAsync(
@@ -647,7 +640,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lease Share response schema on successful completion of {@link Mono}.
+     * @return lease Share response schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<LeaseShareResponseInner> leaseAsync(
@@ -671,7 +664,7 @@ public interface FileSharesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lease Share response schema on successful completion of {@link Mono}.
+     * @return lease Share response schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<LeaseShareResponseInner> leaseAsync(String resourceGroupName, String accountName, String shareName);

@@ -12,11 +12,11 @@ import java.util.List;
 
 /** The properties for a group information object. */
 @Fluent
-public final class GroupIdInformationProperties {
+public class GroupIdInformationProperties {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(GroupIdInformationProperties.class);
 
     /*
-     * The group id.
+     * The group id
      */
     @JsonProperty(value = "groupId")
     private String groupId;

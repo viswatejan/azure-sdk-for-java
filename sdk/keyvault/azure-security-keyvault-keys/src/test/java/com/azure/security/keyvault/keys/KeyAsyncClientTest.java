@@ -544,7 +544,7 @@ public class KeyAsyncClientTest extends KeyClientTestBase {
             StepVerifier.create(client.createRsaKey(keyToRelease))
                 .assertNext(keyResponse -> assertKeyEquals(keyToRelease, keyResponse)).verifyComplete();
 
-            String targetAttestationToken = "testAttestationToken";
+            String target = "testAttestationToken";
 
             if (getTestMode() != TestMode.PLAYBACK) {
                 if (!attestationUrl.endsWith("/")) {
@@ -552,13 +552,13 @@ public class KeyAsyncClientTest extends KeyClientTestBase {
                 }
 
                 try {
-                    targetAttestationToken = getAttestationToken(attestationUrl + "generate-test-token");
+                    target = getAttestationToken(attestationUrl + "generate-test-token");
                 } catch (IOException e) {
                     fail("Found error when deserializing attestation token.", e);
                 }
             }
 
-            StepVerifier.create(client.releaseKey(keyToRelease.getName(), targetAttestationToken))
+            StepVerifier.create(client.releaseKey(keyToRelease.getName(), target))
                 .assertNext(releaseKeyResult -> assertNotNull(releaseKeyResult.getValue()))
                 .expectComplete()
                 .verify();
@@ -572,11 +572,7 @@ public class KeyAsyncClientTest extends KeyClientTestBase {
     @MethodSource("getTestParameters")
     @DisabledIfSystemProperty(named = "IS_SKIP_ROTATION_POLICY_TEST", matches = "true")
     public void getKeyRotationPolicyOfNonExistentKey(HttpClient httpClient, KeyServiceVersion serviceVersion) {
-        // Key Rotation is not yet enabled in Managed HSM.
-        Assumptions.assumeTrue(!isHsmEnabled);
-
         createKeyAsyncClient(httpClient, serviceVersion);
-
         StepVerifier.create(client.getKeyRotationPolicy(testResourceNamer.randomName("nonExistentKey", 20)))
             .verifyErrorSatisfies(ex ->
                 assertRestException(ex, ResourceNotFoundException.class, HttpURLConnection.HTTP_NOT_FOUND));
@@ -606,9 +602,9 @@ public class KeyAsyncClientTest extends KeyClientTestBase {
                 assertNull(keyRotationPolicy.getId());
                 assertNull(keyRotationPolicy.getCreatedOn());
                 assertNull(keyRotationPolicy.getUpdatedOn());
-                assertNull(keyRotationPolicy.getExpiresIn());
+                assertNull(keyRotationPolicy.getExpiryTime());
                 assertEquals(1, keyRotationPolicy.getLifetimeActions().size());
-                assertEquals(KeyRotationPolicyAction.NOTIFY, keyRotationPolicy.getLifetimeActions().get(0).getAction());
+                assertEquals(KeyRotationPolicyAction.NOTIFY, keyRotationPolicy.getLifetimeActions().get(0).getType());
                 assertEquals("P30D", keyRotationPolicy.getLifetimeActions().get(0).getTimeBeforeExpiry());
                 assertNull(keyRotationPolicy.getLifetimeActions().get(0).getTimeAfterCreate());
             })
@@ -626,13 +622,12 @@ public class KeyAsyncClientTest extends KeyClientTestBase {
         Assumptions.assumeTrue(!isHsmEnabled);
 
         createKeyAsyncClient(httpClient, serviceVersion);
-
-        updateGetKeyRotationPolicyWithMinimumPropertiesRunner((keyName, keyRotationPolicy) -> {
+        updateGetKeyRotationPolicyWithMinimumPropertiesRunner((keyName, keyRotationPolicyProperties) -> {
             StepVerifier.create(client.createRsaKey(new CreateRsaKeyOptions(keyName)))
                 .assertNext(Assertions::assertNotNull)
                 .verifyComplete();
 
-            StepVerifier.create(client.updateKeyRotationPolicy(keyName, keyRotationPolicy)
+            StepVerifier.create(client.updateKeyRotationPolicy(keyName, keyRotationPolicyProperties)
                     .flatMap(updatedKeyRotationPolicy -> Mono.zip(Mono.just(updatedKeyRotationPolicy),
                         client.getKeyRotationPolicy(keyName))))
                 .assertNext(tuple -> assertKeyVaultRotationPolicyEquals(tuple.getT1(), tuple.getT2()))
@@ -651,13 +646,12 @@ public class KeyAsyncClientTest extends KeyClientTestBase {
         Assumptions.assumeTrue(!isHsmEnabled);
 
         createKeyAsyncClient(httpClient, serviceVersion);
-
-        updateGetKeyRotationPolicyWithAllPropertiesRunner((keyName, keyRotationPolicy) -> {
+        updateGetKeyRotationPolicyWithAllPropertiesRunner((keyName, keyRotationPolicyProperties) -> {
             StepVerifier.create(client.createRsaKey(new CreateRsaKeyOptions(keyName)))
                 .assertNext(Assertions::assertNotNull)
                 .verifyComplete();
 
-            StepVerifier.create(client.updateKeyRotationPolicy(keyName, keyRotationPolicy)
+            StepVerifier.create(client.updateKeyRotationPolicy(keyName, keyRotationPolicyProperties)
                     .flatMap(updatedKeyRotationPolicy -> Mono.zip(Mono.just(updatedKeyRotationPolicy),
                         client.getKeyRotationPolicy(keyName))))
                 .assertNext(tuple -> assertKeyVaultRotationPolicyEquals(tuple.getT1(), tuple.getT2()))

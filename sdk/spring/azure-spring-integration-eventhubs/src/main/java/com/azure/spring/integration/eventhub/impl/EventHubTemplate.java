@@ -9,7 +9,6 @@ import com.azure.spring.integration.eventhub.api.EventHubOperation;
 import com.azure.spring.integration.eventhub.converter.EventHubMessageConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.lang.Nullable;
 import org.springframework.messaging.Message;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -36,14 +35,8 @@ public class EventHubTemplate extends AbstractEventHubTemplate implements EventH
     @Override
     public boolean subscribe(String destination, String consumerGroup, Consumer<Message<?>> consumer,
                              Class<?> messagePayloadType) {
-        return subscribe(destination, consumerGroup, consumer, null, messagePayloadType);
-    }
-
-    @Override
-    public boolean subscribe(String destination, String consumerGroup, Consumer<Message<?>> consumer,
-                             @Nullable Consumer<Throwable> errorHandler, Class<?> messagePayloadType) {
         if (subscribedNameAndGroup.putIfAbsent(Tuple.of(destination, consumerGroup), true) == null) {
-            this.createEventProcessorClient(destination, consumerGroup, createEventProcessor(consumer, errorHandler,
+            this.createEventProcessorClient(destination, consumerGroup, createEventProcessor(consumer,
                 messagePayloadType));
 
             this.startEventProcessorClient(destination, consumerGroup);
@@ -67,13 +60,7 @@ public class EventHubTemplate extends AbstractEventHubTemplate implements EventH
     }
 
     public EventHubProcessor createEventProcessor(Consumer<Message<?>> consumer, Class<?> messagePayloadType) {
-        return createEventProcessor(consumer, null, messagePayloadType);
-    }
-
-    public EventHubProcessor createEventProcessor(Consumer<Message<?>> consumer, Consumer<Throwable> errorHandler,
-                                                  Class<?> messagePayloadType) {
-        return new EventHubProcessor(consumer, errorHandler, messagePayloadType, getCheckpointConfig(),
-            getMessageConverter());
+        return new EventHubProcessor(consumer, messagePayloadType, getCheckpointConfig(), getMessageConverter());
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.azure.cosmos.implementation.ObservableHelper;
 import com.azure.cosmos.implementation.PartitionKeyRange;
 import com.azure.cosmos.implementation.QueryMetrics;
 import com.azure.cosmos.implementation.QueryMetricsConstants;
+import com.azure.cosmos.implementation.Resource;
 import com.azure.cosmos.implementation.RxDocumentServiceRequest;
 import com.azure.cosmos.implementation.Utils;
 import com.azure.cosmos.implementation.apachecommons.lang.StringUtils;
@@ -31,7 +32,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -44,7 +45,7 @@ import java.util.stream.Collectors;
  * While this class is public, but it is not part of our published public APIs.
  * This is meant to be internally used only by our sdk.
  */
-class DocumentProducer<T> {
+class DocumentProducer<T extends Resource> {
     private static final Logger logger = LoggerFactory.getLogger(DocumentProducer.class);
     private int retries;
 
@@ -78,7 +79,7 @@ class DocumentProducer<T> {
                         new ClientSideMetrics(retries,
                                 pageResult.getRequestCharge(),
                                 fetchExecutionRangeAccumulator.getExecutionRanges(),
-                            Collections.singletonList(schedulingTimeSpanMap)
+                                Arrays.asList(schedulingTimeSpanMap)
                         ), pageResult.getActivityId(),
                     pageResult.getResponseHeaders().getOrDefault(HttpConstants.HttpHeaders.INDEX_UTILIZATION, null));
                 String pkrId = pageResult.getResponseHeaders().get(HttpConstants.HttpHeaders.PARTITION_KEY_RANGE_ID);
@@ -102,6 +103,7 @@ class DocumentProducer<T> {
     public int top;
     private volatile String lastResponseContinuationToken;
     private final SchedulingStopwatch fetchSchedulingMetrics;
+    private SchedulingStopwatch moveNextSchedulingMetrics;
     private final FetchExecutionRangeAccumulator fetchExecutionRangeAccumulator;
     protected FeedRangeEpkImpl feedRange;
 
@@ -179,10 +181,9 @@ class DocumentProducer<T> {
                         ModelBridgeInternal.getRequestContinuationFromQueryRequestOptions(cosmosQueryRequestOptions),
                         sourcePartitionCreateRequestFunc,
                         executeRequestFuncWithRetries,
+                        resourceType,
                         top,
-                        pageSize,
-                        Paginator.getPreFetchCount(cosmosQueryRequestOptions, top, pageSize)
-                )
+                        pageSize)
                 .map(rsp -> {
                     lastResponseContinuationToken = rsp.getContinuationToken();
                     this.fetchExecutionRangeAccumulator.endFetchRange(rsp.getActivityId(),
@@ -243,7 +244,7 @@ class DocumentProducer<T> {
             PartitionKeyRange targetRange,
             String initialContinuationToken) {
 
-        return new DocumentProducer<>(
+        return new DocumentProducer<T>(
                 client,
                 collectionRid,
                 cosmosQueryRequestOptions,

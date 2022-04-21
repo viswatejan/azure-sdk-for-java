@@ -47,7 +47,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
-import java.util.regex.Pattern;
 
 import static com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull;
 
@@ -69,7 +68,6 @@ public class Utils {
     private static final ObjectMapper simpleObjectMapper = new ObjectMapper();
     private static final TimeBasedGenerator TIME_BASED_GENERATOR =
             Generators.timeBasedGenerator(EthernetAddress.constructMulticastAddress());
-    private static final Pattern SPACE_PATTERN = Pattern.compile("\\s");
 
     // NOTE DateTimeFormatter.RFC_1123_DATE_TIME cannot be used.
     // because cosmos db rfc1123 validation requires two digits for day.
@@ -451,7 +449,7 @@ public class Utils {
     }
 
     public static String getUserAgent() {
-        return getUserAgent(HttpConstants.Versions.SDK_NAME, HttpConstants.Versions.getSdkVersion());
+        return getUserAgent(HttpConstants.Versions.SDK_NAME, HttpConstants.Versions.SDK_VERSION);
     }
 
     public static String getUserAgent(String sdkName, String sdkVersion) {
@@ -459,7 +457,7 @@ public class Utils {
         if (osName == null) {
             osName = "Unknown";
         }
-        osName = SPACE_PATTERN.matcher(osName).replaceAll("");
+        osName = osName.replaceAll("\\s", "");
         String userAgent = String.format("%s%s/%s %s/%s JRE/%s",
                 UserAgentContainer.AZSDK_USERAGENT_PREFIX,
                 sdkName,

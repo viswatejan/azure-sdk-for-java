@@ -8,11 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appservice.fluent.models.AppServiceEnvironment;
 import com.azure.resourcemanager.appservice.fluent.models.ValidateProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Resource validation request content. */
 @Fluent
 public final class ValidateRequest {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ValidateRequest.class);
+
     /*
      * Resource name to verify.
      */
@@ -441,28 +444,26 @@ public final class ValidateRequest {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model ValidateRequest"));
         }
         if (type() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property type in model ValidateRequest"));
         }
         if (location() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property location in model ValidateRequest"));
         }
         if (innerProperties() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property innerProperties in model ValidateRequest"));
         } else {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ValidateRequest.class);
 }

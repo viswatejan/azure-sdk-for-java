@@ -4,10 +4,12 @@
 
 package com.azure.communication.networktraversal.models;
 
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** An instance of a STUN/TURN server with credentials to be used for ICE negotiation. */
+@Fluent
 public final class CommunicationIceServer {
     /*
      * List of STUN/TURN server URLs.
@@ -29,10 +31,7 @@ public final class CommunicationIceServer {
 
     /*
      * The routing methodology to where the ICE server will be located from the
-     * client. "any" will have higher reliability while "nearest" will have
-     * lower latency. It is recommended to default to use the "any" routing
-     * method unless there are specific scenarios which minimizing latency is
-     * critical.
+     * client.
      */
     @JsonProperty(value = "routeType", required = true)
     private RouteType routeType;
@@ -52,7 +51,7 @@ public final class CommunicationIceServer {
      * @param urls the urls value to set.
      * @return the CommunicationIceServer object itself.
      */
-    CommunicationIceServer setUrls(List<String> urls) {
+    public CommunicationIceServer setUrls(List<String> urls) {
         this.urls = urls;
         return this;
     }
@@ -72,7 +71,7 @@ public final class CommunicationIceServer {
      * @param username the username value to set.
      * @return the CommunicationIceServer object itself.
      */
-    CommunicationIceServer setUsername(String username) {
+    public CommunicationIceServer setUsername(String username) {
         this.username = username;
         return this;
     }
@@ -92,15 +91,13 @@ public final class CommunicationIceServer {
      * @param credential the credential value to set.
      * @return the CommunicationIceServer object itself.
      */
-    CommunicationIceServer setCredential(String credential) {
+    public CommunicationIceServer setCredential(String credential) {
         this.credential = credential;
         return this;
     }
 
     /**
      * Get the routeType property: The routing methodology to where the ICE server will be located from the client.
-     * "any" will have higher reliability while "nearest" will have lower latency. It is recommended to default to use
-     * the "any" routing method unless there are specific scenarios which minimizing latency is critical.
      *
      * @return the routeType value.
      */
@@ -110,13 +107,11 @@ public final class CommunicationIceServer {
 
     /**
      * Set the routeType property: The routing methodology to where the ICE server will be located from the client.
-     * "any" will have higher reliability while "nearest" will have lower latency. It is recommended to default to use
-     * the "any" routing method unless there are specific scenarios which minimizing latency is critical.
      *
      * @param routeType the routeType value to set.
      * @return the CommunicationIceServer object itself.
      */
-    CommunicationIceServer setRouteType(RouteType routeType) {
+    public CommunicationIceServer setRouteType(RouteType routeType) {
         this.routeType = routeType;
         return this;
     }

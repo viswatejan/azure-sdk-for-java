@@ -239,7 +239,7 @@ public final class DocumentsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Long>> countWithResponseAsync(RequestOptions requestOptions, Context context) {
@@ -268,8 +268,7 @@ public final class DocumentsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response containing search results from an index along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return response containing search results from an index.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<SearchDocumentsResult>> searchGetWithResponseAsync(
@@ -465,8 +464,7 @@ public final class DocumentsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response containing search results from an index along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return response containing search results from an index.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<SearchDocumentsResult>> searchPostWithResponseAsync(
@@ -498,7 +496,7 @@ public final class DocumentsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response} on successful completion of {@link Mono}.
+     * @return any object.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Object>> getWithResponseAsync(
@@ -535,8 +533,7 @@ public final class DocumentsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response containing suggestion query results from an index along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return response containing suggestion query results from an index.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<SuggestDocumentsResult>> suggestGetWithResponseAsync(
@@ -631,8 +628,7 @@ public final class DocumentsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response containing suggestion query results from an index along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return response containing suggestion query results from an index.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<SuggestDocumentsResult>> suggestPostWithResponseAsync(
@@ -662,8 +658,7 @@ public final class DocumentsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response containing the status of operations for all documents in the indexing request along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return response containing the status of operations for all documents in the indexing request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<IndexDocumentsResult>> indexWithResponseAsync(
@@ -696,7 +691,7 @@ public final class DocumentsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of Autocomplete query along with {@link Response} on successful completion of {@link Mono}.
+     * @return the result of Autocomplete query.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<AutocompleteResult>> autocompleteGetWithResponseAsync(
@@ -781,7 +776,7 @@ public final class DocumentsImpl {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws SearchErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of Autocomplete query along with {@link Response} on successful completion of {@link Mono}.
+     * @return the result of Autocomplete query.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<AutocompleteResult>> autocompletePostWithResponseAsync(

@@ -79,8 +79,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation result for a long running operation along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the operation result for a long running operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> getWithResponseAsync(String operationResultId) {
@@ -123,8 +122,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation result for a long running operation along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the operation result for a long running operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> getWithResponseAsync(String operationResultId, Context context) {
@@ -163,8 +161,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation result for a long running operation along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the operation result for a long running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationResultsDescriptionInner>, OperationResultsDescriptionInner> beginGetAsync(
@@ -177,7 +174,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
                 this.client.getHttpPipeline(),
                 OperationResultsDescriptionInner.class,
                 OperationResultsDescriptionInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -188,8 +185,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation result for a long running operation along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the operation result for a long running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationResultsDescriptionInner>, OperationResultsDescriptionInner> beginGetAsync(
@@ -213,8 +209,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation result for a long running operation along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the operation result for a long running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationResultsDescriptionInner>, OperationResultsDescriptionInner> beginGet(
@@ -230,8 +225,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation result for a long running operation along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the operation result for a long running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationResultsDescriptionInner>, OperationResultsDescriptionInner> beginGet(
@@ -246,7 +240,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation result for a long running operation on successful completion of {@link Mono}.
+     * @return the operation result for a long running operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationResultsDescriptionInner> getAsync(String operationResultId) {
@@ -261,7 +255,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation result for a long running operation on successful completion of {@link Mono}.
+     * @return the operation result for a long running operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationResultsDescriptionInner> getAsync(String operationResultId, Context context) {

@@ -1087,11 +1087,6 @@ public class CosmosAsyncDatabase {
                 public CosmosAsyncClient getCosmosAsyncClient(CosmosAsyncDatabase cosmosAsyncDatabase) {
                     return cosmosAsyncDatabase.getClient();
                 }
-
-                @Override
-                public String getLink(CosmosAsyncDatabase cosmosAsyncDatabase) {
-                    return cosmosAsyncDatabase.getLink();
-                }
             });
     }
 }

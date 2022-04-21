@@ -42,7 +42,7 @@ public interface SqlPoolWorkloadClassifiers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workload classifier of Sql pool's workload group along with {@link Response}.
+     * @return a workload classifier of Sql pool's workload group.
      */
     Response<WorkloadClassifier> getWithResponse(
         String resourceGroupName,
@@ -130,7 +130,7 @@ public interface SqlPoolWorkloadClassifiers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workload classifier of Sql pool's workload group along with {@link Response}.
+     * @return a workload classifier of Sql pool's workload group.
      */
     WorkloadClassifier getById(String id);
 
@@ -142,7 +142,7 @@ public interface SqlPoolWorkloadClassifiers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workload classifier of Sql pool's workload group along with {@link Response}.
+     * @return a workload classifier of Sql pool's workload group.
      */
     Response<WorkloadClassifier> getByIdWithResponse(String id, Context context);
 

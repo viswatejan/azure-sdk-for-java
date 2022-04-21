@@ -493,7 +493,7 @@ public final class AttestationResult {
      */
     public byte[] getPolicyHash() {
         if (this.policyHash == null) {
-            return new byte[0];
+            return null;
         }
         return this.policyHash.decodedBytes();
     }
@@ -620,7 +620,7 @@ public final class AttestationResult {
      */
     public byte[] getEnclaveHeldData() {
         if (this.enclaveHeldData == null) {
-            return new byte[0];
+            return null;
         }
         return this.enclaveHeldData.decodedBytes();
     }
@@ -727,7 +727,7 @@ public final class AttestationResult {
      */
     public byte[] getDeprecatedEnclaveHeldData() {
         if (this.deprecatedEnclaveHeldData == null) {
-            return new byte[0];
+            return null;
         }
         return this.deprecatedEnclaveHeldData.decodedBytes();
     }
@@ -754,7 +754,7 @@ public final class AttestationResult {
      */
     public byte[] getDeprecatedEnclaveHeldData2() {
         if (this.deprecatedEnclaveHeldData2 == null) {
-            return new byte[0];
+            return null;
         }
         return this.deprecatedEnclaveHeldData2.decodedBytes();
     }
@@ -901,7 +901,7 @@ public final class AttestationResult {
      */
     public byte[] getDeprecatedPolicyHash() {
         if (this.deprecatedPolicyHash == null) {
-            return new byte[0];
+            return null;
         }
         return this.deprecatedPolicyHash.decodedBytes();
     }

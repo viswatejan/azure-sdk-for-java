@@ -12,32 +12,57 @@ import java.util.List;
 @Fluent
 public final class AnomalyValue {
     /*
-     * True if an anomaly is detected at the current timestamp.
+     * If current timestamp is an anomaly, contributors will show potential
+     * root cause for thus anomaly. Contributors can help us understand why
+     * current timestamp has been detected as an anomaly.
+     */
+    @JsonProperty(value = "contributors")
+    private List<AnomalyContributor> contributors;
+
+    /*
+     * To indicate whether current timestamp is anomaly or not
      */
     @JsonProperty(value = "isAnomaly", required = true)
     private boolean isAnomaly;
 
     /*
-     * Indicates the significance of the anomaly. The higher the severity, the
-     * more significant the anomaly.
+     * anomaly score of the current timestamp, the more significant an anomaly
+     * is, the higher the score will be
      */
     @JsonProperty(value = "severity", required = true)
     private float severity;
 
     /*
-     * Raw score from the model.
+     * anomaly score of the current timestamp, the more significant an anomaly
+     * is, the higher the score will be, score measures global significance
      */
-    @JsonProperty(value = "score", required = true)
-    private float score;
-
-    /*
-     * The interpretation property.
-     */
-    @JsonProperty(value = "interpretation")
-    private List<AnomalyInterpretation> interpretation;
+    @JsonProperty(value = "score")
+    private Float score;
 
     /**
-     * Get the isAnomaly property: True if an anomaly is detected at the current timestamp.
+     * Get the contributors property: If current timestamp is an anomaly, contributors will show potential root cause
+     * for thus anomaly. Contributors can help us understand why current timestamp has been detected as an anomaly.
+     *
+     * @return the contributors value.
+     */
+    public List<AnomalyContributor> getContributors() {
+        return this.contributors;
+    }
+
+    /**
+     * Set the contributors property: If current timestamp is an anomaly, contributors will show potential root cause
+     * for thus anomaly. Contributors can help us understand why current timestamp has been detected as an anomaly.
+     *
+     * @param contributors the contributors value to set.
+     * @return the AnomalyValue object itself.
+     */
+    public AnomalyValue setContributors(List<AnomalyContributor> contributors) {
+        this.contributors = contributors;
+        return this;
+    }
+
+    /**
+     * Get the isAnomaly property: To indicate whether current timestamp is anomaly or not.
      *
      * @return the isAnomaly value.
      */
@@ -46,7 +71,7 @@ public final class AnomalyValue {
     }
 
     /**
-     * Set the isAnomaly property: True if an anomaly is detected at the current timestamp.
+     * Set the isAnomaly property: To indicate whether current timestamp is anomaly or not.
      *
      * @param isAnomaly the isAnomaly value to set.
      * @return the AnomalyValue object itself.
@@ -57,8 +82,8 @@ public final class AnomalyValue {
     }
 
     /**
-     * Get the severity property: Indicates the significance of the anomaly. The higher the severity, the more
-     * significant the anomaly.
+     * Get the severity property: anomaly score of the current timestamp, the more significant an anomaly is, the higher
+     * the score will be.
      *
      * @return the severity value.
      */
@@ -67,8 +92,8 @@ public final class AnomalyValue {
     }
 
     /**
-     * Set the severity property: Indicates the significance of the anomaly. The higher the severity, the more
-     * significant the anomaly.
+     * Set the severity property: anomaly score of the current timestamp, the more significant an anomaly is, the higher
+     * the score will be.
      *
      * @param severity the severity value to set.
      * @return the AnomalyValue object itself.
@@ -79,42 +104,24 @@ public final class AnomalyValue {
     }
 
     /**
-     * Get the score property: Raw score from the model.
+     * Get the score property: anomaly score of the current timestamp, the more significant an anomaly is, the higher
+     * the score will be, score measures global significance.
      *
      * @return the score value.
      */
-    public float getScore() {
+    public Float getScore() {
         return this.score;
     }
 
     /**
-     * Set the score property: Raw score from the model.
+     * Set the score property: anomaly score of the current timestamp, the more significant an anomaly is, the higher
+     * the score will be, score measures global significance.
      *
      * @param score the score value to set.
      * @return the AnomalyValue object itself.
      */
-    public AnomalyValue setScore(float score) {
+    public AnomalyValue setScore(Float score) {
         this.score = score;
-        return this;
-    }
-
-    /**
-     * Get the interpretation property: The interpretation property.
-     *
-     * @return the interpretation value.
-     */
-    public List<AnomalyInterpretation> getInterpretation() {
-        return this.interpretation;
-    }
-
-    /**
-     * Set the interpretation property: The interpretation property.
-     *
-     * @param interpretation the interpretation value to set.
-     * @return the AnomalyValue object itself.
-     */
-    public AnomalyValue setInterpretation(List<AnomalyInterpretation> interpretation) {
-        this.interpretation = interpretation;
         return this;
     }
 }

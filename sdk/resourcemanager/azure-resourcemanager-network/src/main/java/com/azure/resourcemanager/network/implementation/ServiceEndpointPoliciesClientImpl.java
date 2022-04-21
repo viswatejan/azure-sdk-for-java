@@ -194,7 +194,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -247,7 +247,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -296,7 +296,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -317,7 +317,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -338,7 +338,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String serviceEndpointPolicyName) {
@@ -354,7 +354,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -370,7 +370,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> deleteAsync(String resourceGroupName, String serviceEndpointPolicyName) {
@@ -388,7 +388,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String serviceEndpointPolicyName, Context context) {
@@ -435,8 +435,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified service Endpoint Policies in a specified resource group along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the specified service Endpoint Policies in a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ServiceEndpointPolicyInner>> getByResourceGroupWithResponseAsync(
@@ -491,8 +490,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified service Endpoint Policies in a specified resource group along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the specified service Endpoint Policies in a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServiceEndpointPolicyInner>> getByResourceGroupWithResponseAsync(
@@ -543,8 +541,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified service Endpoint Policies in a specified resource group on successful completion of {@link
-     *     Mono}.
+     * @return the specified service Endpoint Policies in a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ServiceEndpointPolicyInner> getByResourceGroupAsync(
@@ -568,8 +565,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified service Endpoint Policies in a specified resource group on successful completion of {@link
-     *     Mono}.
+     * @return the specified service Endpoint Policies in a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ServiceEndpointPolicyInner> getByResourceGroupAsync(
@@ -612,7 +608,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified service Endpoint Policies in a specified resource group along with {@link Response}.
+     * @return the specified service Endpoint Policies in a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ServiceEndpointPolicyInner> getByResourceGroupWithResponse(
@@ -630,7 +626,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service End point policy resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -690,7 +686,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service End point policy resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -749,7 +745,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of service End point policy resource.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public PollerFlux<PollResult<ServiceEndpointPolicyInner>, ServiceEndpointPolicyInner> beginCreateOrUpdateAsync(
@@ -776,7 +772,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of service End point policy resource.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ServiceEndpointPolicyInner>, ServiceEndpointPolicyInner> beginCreateOrUpdateAsync(
@@ -806,7 +802,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of service End point policy resource.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ServiceEndpointPolicyInner>, ServiceEndpointPolicyInner> beginCreateOrUpdate(
@@ -824,7 +820,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of service End point policy resource.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ServiceEndpointPolicyInner>, ServiceEndpointPolicyInner> beginCreateOrUpdate(
@@ -845,7 +841,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service End point policy resource on successful completion of {@link Mono}.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ServiceEndpointPolicyInner> createOrUpdateAsync(
@@ -865,7 +861,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service End point policy resource on successful completion of {@link Mono}.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ServiceEndpointPolicyInner> createOrUpdateAsync(
@@ -925,7 +921,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service End point policy resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<ServiceEndpointPolicyInner>> updateTagsWithResponseAsync(
@@ -985,7 +981,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service End point policy resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ServiceEndpointPolicyInner>> updateTagsWithResponseAsync(
@@ -1041,7 +1037,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service End point policy resource on successful completion of {@link Mono}.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<ServiceEndpointPolicyInner> updateTagsAsync(
@@ -1084,7 +1080,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service End point policy resource along with {@link Response}.
+     * @return service End point policy resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ServiceEndpointPolicyInner> updateTagsWithResponse(
@@ -1097,8 +1093,7 @@ public final class ServiceEndpointPoliciesClientImpl
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the service endpoint policies in a subscription along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all the service endpoint policies in a subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceEndpointPolicyInner>> listSinglePageAsync() {
@@ -1140,8 +1135,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the service endpoint policies in a subscription along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all the service endpoint policies in a subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceEndpointPolicyInner>> listSinglePageAsync(Context context) {
@@ -1178,7 +1172,7 @@ public final class ServiceEndpointPoliciesClientImpl
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the service endpoint policies in a subscription as paginated response with {@link PagedFlux}.
+     * @return all the service endpoint policies in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<ServiceEndpointPolicyInner> listAsync() {
@@ -1192,7 +1186,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the service endpoint policies in a subscription as paginated response with {@link PagedFlux}.
+     * @return all the service endpoint policies in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ServiceEndpointPolicyInner> listAsync(Context context) {
@@ -1205,7 +1199,7 @@ public final class ServiceEndpointPoliciesClientImpl
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the service endpoint policies in a subscription as paginated response with {@link PagedIterable}.
+     * @return all the service endpoint policies in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ServiceEndpointPolicyInner> list() {
@@ -1219,7 +1213,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the service endpoint policies in a subscription as paginated response with {@link PagedIterable}.
+     * @return all the service endpoint policies in a subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ServiceEndpointPolicyInner> list(Context context) {
@@ -1233,8 +1227,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all service endpoint Policies in a resource group along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all service endpoint Policies in a resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceEndpointPolicyInner>> listByResourceGroupSinglePageAsync(
@@ -1288,8 +1281,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all service endpoint Policies in a resource group along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all service endpoint Policies in a resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceEndpointPolicyInner>> listByResourceGroupSinglePageAsync(
@@ -1339,7 +1331,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all service endpoint Policies in a resource group as paginated response with {@link PagedFlux}.
+     * @return all service endpoint Policies in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<ServiceEndpointPolicyInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -1356,7 +1348,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all service endpoint Policies in a resource group as paginated response with {@link PagedFlux}.
+     * @return all service endpoint Policies in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ServiceEndpointPolicyInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -1372,7 +1364,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all service endpoint Policies in a resource group as paginated response with {@link PagedIterable}.
+     * @return all service endpoint Policies in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ServiceEndpointPolicyInner> listByResourceGroup(String resourceGroupName) {
@@ -1387,7 +1379,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all service endpoint Policies in a resource group as paginated response with {@link PagedIterable}.
+     * @return all service endpoint Policies in a resource group.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ServiceEndpointPolicyInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -1401,8 +1393,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListServiceEndpointPolicies API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for ListServiceEndpointPolicies API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceEndpointPolicyInner>> listNextSinglePageAsync(String nextLink) {
@@ -1438,8 +1429,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListServiceEndpointPolicies API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for ListServiceEndpointPolicies API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceEndpointPolicyInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -1474,8 +1464,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListServiceEndpointPolicies API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for ListServiceEndpointPolicies API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceEndpointPolicyInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1512,8 +1501,7 @@ public final class ServiceEndpointPoliciesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListServiceEndpointPolicies API service call along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return response for ListServiceEndpointPolicies API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ServiceEndpointPolicyInner>> listByResourceGroupNextSinglePageAsync(

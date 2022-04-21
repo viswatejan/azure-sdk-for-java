@@ -101,8 +101,7 @@ public final class ApplicationGatewayPrivateLinkResourcesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGatewayPrivateLinkResources API service call along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * @return response for ListApplicationGatewayPrivateLinkResources API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApplicationGatewayPrivateLinkResourceInner>> listSinglePageAsync(
@@ -163,8 +162,7 @@ public final class ApplicationGatewayPrivateLinkResourcesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGatewayPrivateLinkResources API service call along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * @return response for ListApplicationGatewayPrivateLinkResources API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApplicationGatewayPrivateLinkResourceInner>> listSinglePageAsync(
@@ -221,8 +219,7 @@ public final class ApplicationGatewayPrivateLinkResourcesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGatewayPrivateLinkResources API service call as paginated response with
-     *     {@link PagedFlux}.
+     * @return response for ListApplicationGatewayPrivateLinkResources API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<ApplicationGatewayPrivateLinkResourceInner> listAsync(
@@ -241,8 +238,7 @@ public final class ApplicationGatewayPrivateLinkResourcesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGatewayPrivateLinkResources API service call as paginated response with
-     *     {@link PagedFlux}.
+     * @return response for ListApplicationGatewayPrivateLinkResources API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApplicationGatewayPrivateLinkResourceInner> listAsync(
@@ -260,8 +256,7 @@ public final class ApplicationGatewayPrivateLinkResourcesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGatewayPrivateLinkResources API service call as paginated response with
-     *     {@link PagedIterable}.
+     * @return response for ListApplicationGatewayPrivateLinkResources API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApplicationGatewayPrivateLinkResourceInner> list(
@@ -278,8 +273,7 @@ public final class ApplicationGatewayPrivateLinkResourcesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGatewayPrivateLinkResources API service call as paginated response with
-     *     {@link PagedIterable}.
+     * @return response for ListApplicationGatewayPrivateLinkResources API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApplicationGatewayPrivateLinkResourceInner> list(
@@ -294,8 +288,7 @@ public final class ApplicationGatewayPrivateLinkResourcesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGatewayPrivateLinkResources API service call along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * @return response for ListApplicationGatewayPrivateLinkResources API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApplicationGatewayPrivateLinkResourceInner>> listNextSinglePageAsync(String nextLink) {
@@ -331,8 +324,7 @@ public final class ApplicationGatewayPrivateLinkResourcesClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGatewayPrivateLinkResources API service call along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * @return response for ListApplicationGatewayPrivateLinkResources API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApplicationGatewayPrivateLinkResourceInner>> listNextSinglePageAsync(

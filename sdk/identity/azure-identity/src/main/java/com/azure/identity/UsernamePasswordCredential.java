@@ -26,13 +26,12 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 @Immutable
 public class UsernamePasswordCredential implements TokenCredential {
-    private static final ClientLogger LOGGER = new ClientLogger(UsernamePasswordCredential.class);
-
     private final String username;
     private final String password;
     private final IdentityClient identityClient;
     private final String authorityHost;
     private final AtomicReference<MsalAuthenticationAccount> cachedToken;
+    private final ClientLogger logger = new ClientLogger(UsernamePasswordCredential.class);
 
     /**
      * Creates a UserCredential with the given identity client options.
@@ -70,9 +69,8 @@ public class UsernamePasswordCredential implements TokenCredential {
             }
         }).switchIfEmpty(Mono.defer(() -> identityClient.authenticateWithUsernamePassword(request, username, password)))
             .map(this::updateCache)
-            .doOnNext(token -> LoggingUtil.logTokenSuccess(LOGGER, request))
-            .doOnError(error -> LoggingUtil.logTokenError(LOGGER, identityClient.getIdentityClientOptions(),
-                request, error));
+            .doOnNext(token -> LoggingUtil.logTokenSuccess(logger, request))
+            .doOnError(error -> LoggingUtil.logTokenError(logger, request, error));
     }
 
     /**
@@ -96,8 +94,7 @@ public class UsernamePasswordCredential implements TokenCredential {
     public Mono<AuthenticationRecord> authenticate() {
         String defaultScope = AzureAuthorityHosts.getDefaultScope(authorityHost);
         if (defaultScope == null) {
-            return Mono.error(LoggingUtil.logCredentialUnavailableException(LOGGER,
-                identityClient.getIdentityClientOptions(), new CredentialUnavailableException("Authenticating in this "
+            return Mono.error(logger.logExceptionAsError(new CredentialUnavailableException("Authenticating in this "
                                                         + "environment requires specifying a TokenRequestContext.")));
         }
         return authenticate(new TokenRequestContext().addScopes(defaultScope));

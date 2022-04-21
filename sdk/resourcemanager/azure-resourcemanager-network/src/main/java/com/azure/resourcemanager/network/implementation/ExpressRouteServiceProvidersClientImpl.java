@@ -88,8 +88,7 @@ public final class ExpressRouteServiceProvidersClientImpl implements ExpressRout
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the available express route service providers along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all the available express route service providers.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpressRouteServiceProviderInner>> listSinglePageAsync() {
@@ -131,8 +130,7 @@ public final class ExpressRouteServiceProvidersClientImpl implements ExpressRout
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the available express route service providers along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return all the available express route service providers.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpressRouteServiceProviderInner>> listSinglePageAsync(Context context) {
@@ -169,7 +167,7 @@ public final class ExpressRouteServiceProvidersClientImpl implements ExpressRout
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the available express route service providers as paginated response with {@link PagedFlux}.
+     * @return all the available express route service providers.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<ExpressRouteServiceProviderInner> listAsync() {
@@ -183,7 +181,7 @@ public final class ExpressRouteServiceProvidersClientImpl implements ExpressRout
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the available express route service providers as paginated response with {@link PagedFlux}.
+     * @return all the available express route service providers.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ExpressRouteServiceProviderInner> listAsync(Context context) {
@@ -196,7 +194,7 @@ public final class ExpressRouteServiceProvidersClientImpl implements ExpressRout
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the available express route service providers as paginated response with {@link PagedIterable}.
+     * @return all the available express route service providers.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ExpressRouteServiceProviderInner> list() {
@@ -210,7 +208,7 @@ public final class ExpressRouteServiceProvidersClientImpl implements ExpressRout
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the available express route service providers as paginated response with {@link PagedIterable}.
+     * @return all the available express route service providers.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ExpressRouteServiceProviderInner> list(Context context) {
@@ -224,8 +222,7 @@ public final class ExpressRouteServiceProvidersClientImpl implements ExpressRout
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListExpressRouteServiceProvider API service call along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return response for the ListExpressRouteServiceProvider API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpressRouteServiceProviderInner>> listNextSinglePageAsync(String nextLink) {
@@ -261,8 +258,7 @@ public final class ExpressRouteServiceProvidersClientImpl implements ExpressRout
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for the ListExpressRouteServiceProvider API service call along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return response for the ListExpressRouteServiceProvider API service call.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExpressRouteServiceProviderInner>> listNextSinglePageAsync(

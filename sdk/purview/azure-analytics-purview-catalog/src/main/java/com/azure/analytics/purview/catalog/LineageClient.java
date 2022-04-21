@@ -4,31 +4,29 @@
 
 package com.azure.analytics.purview.catalog;
 
+import com.azure.analytics.purview.catalog.implementation.LineagesImpl;
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
 import com.azure.core.annotation.ServiceMethod;
-import com.azure.core.exception.ClientAuthenticationException;
 import com.azure.core.exception.HttpResponseException;
-import com.azure.core.exception.ResourceModifiedException;
-import com.azure.core.exception.ResourceNotFoundException;
 import com.azure.core.http.rest.RequestOptions;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.BinaryData;
 
 /** Initializes a new instance of the synchronous PurviewCatalogClient type. */
-@ServiceClient(builder = LineageClientBuilder.class)
+@ServiceClient(builder = PurviewCatalogClientBuilder.class)
 public final class LineageClient {
-    @Generated private final LineageAsyncClient asyncClient;
+    @Generated private final LineagesImpl serviceClient;
 
     /**
-     * Initializes an instance of LineageClient class.
+     * Initializes an instance of Lineages client.
      *
-     * @param asyncClient the async client.
+     * @param serviceClient the service client implementation.
      */
     @Generated
-    LineageClient(LineageAsyncClient asyncClient) {
-        this.asyncClient = asyncClient;
+    LineageClient(LineagesImpl serviceClient) {
+        this.serviceClient = serviceClient;
     }
 
     /**
@@ -136,15 +134,12 @@ public final class LineageClient {
      * @param guid The globally unique identifier of the entity.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return lineage info of the entity specified by GUID along with {@link Response}.
+     * @return lineage info of the entity specified by GUID.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getLineageGraphWithResponse(String guid, RequestOptions requestOptions) {
-        return this.asyncClient.getLineageGraphWithResponse(guid, requestOptions).block();
+        return this.serviceClient.getLineageGraphWithResponse(guid, requestOptions);
     }
 
     /**
@@ -159,7 +154,7 @@ public final class LineageClient {
      *     <tr><td>getDerivedLineage</td><td>String</td><td>No</td><td>True to include derived lineage in the response</td></tr>
      *     <tr><td>offset</td><td>String</td><td>No</td><td>The offset for pagination purpose.</td></tr>
      *     <tr><td>limit</td><td>String</td><td>No</td><td>The page size - by default there is no paging.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -252,14 +247,11 @@ public final class LineageClient {
      * @param guid The globally unique identifier of the entity.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return atlasLineageInfo along with {@link Response}.
+     * @return atlasLineageInfo.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> nextPageLineageWithResponse(String guid, RequestOptions requestOptions) {
-        return this.asyncClient.nextPageLineageWithResponse(guid, requestOptions).block();
+        return this.serviceClient.nextPageLineageWithResponse(guid, requestOptions);
     }
 }

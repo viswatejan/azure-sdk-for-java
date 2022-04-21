@@ -18,7 +18,7 @@ public interface PrivateEndpointConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of private endpoint connections as paginated response with {@link PagedIterable}.
+     * @return a list of private endpoint connections.
      */
     PagedIterable<PrivateEndpointConnection> listByConfigurationStore(String resourceGroupName, String configStoreName);
 
@@ -31,7 +31,7 @@ public interface PrivateEndpointConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of private endpoint connections as paginated response with {@link PagedIterable}.
+     * @return a list of private endpoint connections.
      */
     PagedIterable<PrivateEndpointConnection> listByConfigurationStore(
         String resourceGroupName, String configStoreName, Context context);
@@ -60,8 +60,7 @@ public interface PrivateEndpointConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the configuration store along with {@link
-     *     Response}.
+     * @return the specified private endpoint connection associated with the configuration store.
      */
     Response<PrivateEndpointConnection> getWithResponse(
         String resourceGroupName, String configStoreName, String privateEndpointConnectionName, Context context);
@@ -99,8 +98,7 @@ public interface PrivateEndpointConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the configuration store along with {@link
-     *     Response}.
+     * @return the specified private endpoint connection associated with the configuration store.
      */
     PrivateEndpointConnection getById(String id);
 
@@ -112,8 +110,7 @@ public interface PrivateEndpointConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection associated with the configuration store along with {@link
-     *     Response}.
+     * @return the specified private endpoint connection associated with the configuration store.
      */
     Response<PrivateEndpointConnection> getByIdWithResponse(String id, Context context);
 

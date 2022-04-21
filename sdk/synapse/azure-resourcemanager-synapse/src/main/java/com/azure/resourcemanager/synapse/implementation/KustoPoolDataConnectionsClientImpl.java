@@ -217,8 +217,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the result returned from a check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckNameResultInner>> checkNameAvailabilityWithResponseAsync(
@@ -290,8 +289,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the result returned from a check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckNameResultInner>> checkNameAvailabilityWithResponseAsync(
@@ -360,7 +358,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request on successful completion of {@link Mono}.
+     * @return the result returned from a check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CheckNameResultInner> checkNameAvailabilityAsync(
@@ -418,7 +416,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request along with {@link Response}.
+     * @return the result returned from a check name availability request.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CheckNameResultInner> checkNameAvailabilityWithResponse(
@@ -444,8 +442,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto data connection validation result along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the list Kusto data connection validation result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> dataConnectionValidationWithResponseAsync(
@@ -516,8 +513,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto data connection validation result along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the list Kusto data connection validation result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> dataConnectionValidationWithResponseAsync(
@@ -585,8 +581,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto data connection validation result along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the list Kusto data connection validation result.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DataConnectionValidationListResultInner>, DataConnectionValidationListResultInner>
@@ -606,7 +601,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
                 this.client.getHttpPipeline(),
                 DataConnectionValidationListResultInner.class,
                 DataConnectionValidationListResultInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -621,8 +616,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto data connection validation result along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the list Kusto data connection validation result.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DataConnectionValidationListResultInner>, DataConnectionValidationListResultInner>
@@ -658,8 +652,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto data connection validation result along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the list Kusto data connection validation result.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataConnectionValidationListResultInner>, DataConnectionValidationListResultInner>
@@ -686,8 +679,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto data connection validation result along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the list Kusto data connection validation result.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataConnectionValidationListResultInner>, DataConnectionValidationListResultInner>
@@ -714,7 +706,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto data connection validation result on successful completion of {@link Mono}.
+     * @return the list Kusto data connection validation result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataConnectionValidationListResultInner> dataConnectionValidationAsync(
@@ -741,7 +733,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto data connection validation result on successful completion of {@link Mono}.
+     * @return the list Kusto data connection validation result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataConnectionValidationListResultInner> dataConnectionValidationAsync(
@@ -818,8 +810,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto data connections operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list Kusto data connections operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DataConnectionInner>> listByDatabaseSinglePageAsync(
@@ -883,8 +874,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list Kusto data connections operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list Kusto data connections operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DataConnectionInner>> listByDatabaseSinglePageAsync(
@@ -1023,8 +1013,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DataConnectionInner>> getWithResponseAsync(
@@ -1094,8 +1083,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DataConnectionInner>> getWithResponseAsync(
@@ -1162,7 +1150,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection on successful completion of {@link Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataConnectionInner> getAsync(
@@ -1217,7 +1205,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DataConnectionInner> getWithResponse(
@@ -1244,8 +1232,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -1323,8 +1310,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -1399,8 +1385,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DataConnectionInner>, DataConnectionInner> beginCreateOrUpdateAsync(
@@ -1420,7 +1405,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
                 this.client.getHttpPipeline(),
                 DataConnectionInner.class,
                 DataConnectionInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -1436,8 +1421,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DataConnectionInner>, DataConnectionInner> beginCreateOrUpdateAsync(
@@ -1470,8 +1454,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataConnectionInner>, DataConnectionInner> beginCreateOrUpdate(
@@ -1499,8 +1482,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataConnectionInner>, DataConnectionInner> beginCreateOrUpdate(
@@ -1528,7 +1510,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection on successful completion of {@link Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataConnectionInner> createOrUpdateAsync(
@@ -1557,7 +1539,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection on successful completion of {@link Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataConnectionInner> createOrUpdateAsync(
@@ -1642,8 +1624,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1721,8 +1702,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1797,8 +1777,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DataConnectionInner>, DataConnectionInner> beginUpdateAsync(
@@ -1818,7 +1797,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
                 this.client.getHttpPipeline(),
                 DataConnectionInner.class,
                 DataConnectionInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -1834,8 +1813,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DataConnectionInner>, DataConnectionInner> beginUpdateAsync(
@@ -1868,8 +1846,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataConnectionInner>, DataConnectionInner> beginUpdate(
@@ -1897,8 +1874,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DataConnectionInner>, DataConnectionInner> beginUpdate(
@@ -1926,7 +1902,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection on successful completion of {@link Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataConnectionInner> updateAsync(
@@ -1955,7 +1931,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return class representing a data connection on successful completion of {@link Mono}.
+     * @return class representing a data connection.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataConnectionInner> updateAsync(
@@ -2039,7 +2015,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -2109,7 +2085,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -2176,7 +2152,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -2189,8 +2165,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
             deleteWithResponseAsync(resourceGroupName, workspaceName, kustoPoolName, databaseName, dataConnectionName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -2205,7 +2180,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -2235,7 +2210,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -2260,7 +2235,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -2286,7 +2261,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -2312,7 +2287,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(

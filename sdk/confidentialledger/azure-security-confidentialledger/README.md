@@ -56,7 +56,8 @@ To use the [DefaultAzureCredential][DefaultAzureCredential] provider shown below
 Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET.
 
 ##### Example
-```java readme-sample-createClient
+<!-- embedme ./src/samples/java/com/azure/security/confidentialledger/ReadmeSamples.java#L32-L56 -->
+```java
 ConfidentialLedgerIdentityServiceBaseClient identityServiceClient = new ConfidentialLedgerClientBuilder()
     .ledgerUri(new URL("<confidential-ledger-url>"))
     .identityServiceUri(new URL("<confidential-ledger-identity-service-url>"))

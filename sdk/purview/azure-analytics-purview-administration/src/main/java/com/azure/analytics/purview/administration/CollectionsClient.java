@@ -67,7 +67,7 @@ public final class CollectionsClient {
      * @param collectionName The collectionName parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return a collection along with {@link Response}.
+     * @return a collection.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -136,7 +136,7 @@ public final class CollectionsClient {
      * @param collection Collection resource.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return collection resource along with {@link Response}.
+     * @return collection resource.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -159,7 +159,7 @@ public final class CollectionsClient {
      * @param collectionName The collectionName parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -283,8 +283,7 @@ public final class CollectionsClient {
      * @param collectionName The collectionName parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the parent name and parent friendly name chains that represent the collection path along with {@link
-     *     Response}.
+     * @return the parent name and parent friendly name chains that represent the collection path.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)

@@ -5,51 +5,50 @@
 package com.azure.resourcemanager.cdn.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.Resource;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.cdn.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.cdn.models.ProfileResourceState;
 import com.azure.resourcemanager.cdn.models.Sku;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** A profile is a logical grouping of endpoints that share the same settings. */
+/**
+ * CDN profile is a logical grouping of endpoints that share the same settings, such as CDN provider and pricing tier.
+ */
+@JsonFlatten
 @Fluent
-public final class ProfileInner extends Resource {
+public class ProfileInner extends Resource {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(ProfileInner.class);
 
     /*
-     * The pricing tier (defines Azure Front Door Standard or Premium or a CDN
-     * provider, feature list and rate) of the profile.
+     * The pricing tier (defines a CDN provider, feature list and rate) of the
+     * CDN profile.
      */
     @JsonProperty(value = "sku", required = true)
     private Sku sku;
 
     /*
-     * Kind of the profile. Used by portal to differentiate traditional CDN
-     * profile and new AFD profile.
+     * Resource status of the profile.
      */
-    @JsonProperty(value = "kind", access = JsonProperty.Access.WRITE_ONLY)
-    private String kind;
+    @JsonProperty(value = "properties.resourceState", access = JsonProperty.Access.WRITE_ONLY)
+    private ProfileResourceState resourceState;
 
     /*
-     * The JSON object that contains the properties required to create a
-     * profile.
+     * Provisioning status of the profile.
      */
-    @JsonProperty(value = "properties")
-    private ProfileProperties innerProperties;
+    @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private String provisioningState;
 
     /*
-     * Read only system data
+     * The Id of the frontdoor.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    @JsonProperty(value = "properties.frontdoorId", access = JsonProperty.Access.WRITE_ONLY)
+    private String frontdoorId;
 
     /**
-     * Get the sku property: The pricing tier (defines Azure Front Door Standard or Premium or a CDN provider, feature
-     * list and rate) of the profile.
+     * Get the sku property: The pricing tier (defines a CDN provider, feature list and rate) of the CDN profile.
      *
      * @return the sku value.
      */
@@ -58,8 +57,7 @@ public final class ProfileInner extends Resource {
     }
 
     /**
-     * Set the sku property: The pricing tier (defines Azure Front Door Standard or Premium or a CDN provider, feature
-     * list and rate) of the profile.
+     * Set the sku property: The pricing tier (defines a CDN provider, feature list and rate) of the CDN profile.
      *
      * @param sku the sku value to set.
      * @return the ProfileInner object itself.
@@ -70,31 +68,30 @@ public final class ProfileInner extends Resource {
     }
 
     /**
-     * Get the kind property: Kind of the profile. Used by portal to differentiate traditional CDN profile and new AFD
-     * profile.
+     * Get the resourceState property: Resource status of the profile.
      *
-     * @return the kind value.
+     * @return the resourceState value.
      */
-    public String kind() {
-        return this.kind;
+    public ProfileResourceState resourceState() {
+        return this.resourceState;
     }
 
     /**
-     * Get the innerProperties property: The JSON object that contains the properties required to create a profile.
+     * Get the provisioningState property: Provisioning status of the profile.
      *
-     * @return the innerProperties value.
+     * @return the provisioningState value.
      */
-    private ProfileProperties innerProperties() {
-        return this.innerProperties;
+    public String provisioningState() {
+        return this.provisioningState;
     }
 
     /**
-     * Get the systemData property: Read only system data.
+     * Get the frontdoorId property: The Id of the frontdoor.
      *
-     * @return the systemData value.
+     * @return the frontdoorId value.
      */
-    public SystemData systemData() {
-        return this.systemData;
+    public String frontdoorId() {
+        return this.frontdoorId;
     }
 
     /** {@inheritDoc} */
@@ -112,81 +109,6 @@ public final class ProfileInner extends Resource {
     }
 
     /**
-     * Get the resourceState property: Resource status of the profile.
-     *
-     * @return the resourceState value.
-     */
-    public ProfileResourceState resourceState() {
-        return this.innerProperties() == null ? null : this.innerProperties().resourceState();
-    }
-
-    /**
-     * Get the identity property: Managed service identity.
-     *
-     * @return the identity value.
-     */
-    public ManagedServiceIdentity identity() {
-        return this.innerProperties() == null ? null : this.innerProperties().identity();
-    }
-
-    /**
-     * Set the identity property: Managed service identity.
-     *
-     * @param identity the identity value to set.
-     * @return the ProfileInner object itself.
-     */
-    public ProfileInner withIdentity(ManagedServiceIdentity identity) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ProfileProperties();
-        }
-        this.innerProperties().withIdentity(identity);
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: Provisioning status of the profile.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
-     * Get the frontDoorId property: The Id of the frontdoor.
-     *
-     * @return the frontDoorId value.
-     */
-    public String frontDoorId() {
-        return this.innerProperties() == null ? null : this.innerProperties().frontDoorId();
-    }
-
-    /**
-     * Get the originResponseTimeoutSeconds property: Send and receive timeout on forwarding request to the origin. When
-     * timeout is reached, the request fails and returns.
-     *
-     * @return the originResponseTimeoutSeconds value.
-     */
-    public Integer originResponseTimeoutSeconds() {
-        return this.innerProperties() == null ? null : this.innerProperties().originResponseTimeoutSeconds();
-    }
-
-    /**
-     * Set the originResponseTimeoutSeconds property: Send and receive timeout on forwarding request to the origin. When
-     * timeout is reached, the request fails and returns.
-     *
-     * @param originResponseTimeoutSeconds the originResponseTimeoutSeconds value to set.
-     * @return the ProfileInner object itself.
-     */
-    public ProfileInner withOriginResponseTimeoutSeconds(Integer originResponseTimeoutSeconds) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ProfileProperties();
-        }
-        this.innerProperties().withOriginResponseTimeoutSeconds(originResponseTimeoutSeconds);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -198,9 +120,6 @@ public final class ProfileInner extends Resource {
                     new IllegalArgumentException("Missing required property sku in model ProfileInner"));
         } else {
             sku().validate();
-        }
-        if (innerProperties() != null) {
-            innerProperties().validate();
         }
     }
 }

@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.containerservice.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Describes the properties of a Operation value. */
 @Fluent
 public final class OperationValueInner {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationValueInner.class);
+
     /*
      * The origin of the operation.
      */

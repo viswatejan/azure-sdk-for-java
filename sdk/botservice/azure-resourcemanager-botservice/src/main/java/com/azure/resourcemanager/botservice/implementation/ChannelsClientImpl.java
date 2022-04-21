@@ -33,7 +33,6 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.botservice.fluent.ChannelsClient;
 import com.azure.resourcemanager.botservice.fluent.models.BotChannelInner;
-import com.azure.resourcemanager.botservice.fluent.models.ListChannelWithKeysResponseInner;
 import com.azure.resourcemanager.botservice.models.ChannelName;
 import com.azure.resourcemanager.botservice.models.ChannelResponseList;
 import reactor.core.publisher.Mono;
@@ -137,7 +136,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
                 + "/botServices/{resourceName}/channels/{channelName}/listChannelWithKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ListChannelWithKeysResponseInner>> listWithKeys(
+        Mono<Response<BotChannelInner>> listWithKeys(
             @HostParam("$host") String endpoint,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("resourceName") String resourceName,
@@ -183,7 +182,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response} on successful completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BotChannelInner>> createWithResponseAsync(
@@ -244,7 +243,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response} on successful completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BotChannelInner>> createWithResponseAsync(
@@ -305,7 +304,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition on successful completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BotChannelInner> createAsync(
@@ -350,7 +349,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BotChannelInner> createWithResponse(
@@ -372,7 +371,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response} on successful completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BotChannelInner>> updateWithResponseAsync(
@@ -433,7 +432,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response} on successful completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BotChannelInner>> updateWithResponseAsync(
@@ -494,7 +493,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition on successful completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BotChannelInner> updateAsync(
@@ -539,7 +538,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BotChannelInner> updateWithResponse(
@@ -560,7 +559,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -614,7 +613,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -664,7 +663,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String resourceName, String channelName) {
@@ -697,7 +696,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -714,7 +713,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response} on successful completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BotChannelInner>> getWithResponseAsync(
@@ -768,7 +767,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response} on successful completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BotChannelInner>> getWithResponseAsync(
@@ -818,7 +817,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition on successful completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BotChannelInner> getAsync(String resourceGroupName, String resourceName, String channelName) {
@@ -859,7 +858,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BotChannelInner> getWithResponse(
@@ -876,11 +875,10 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ARM channel of list channel with keys operation response along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ListChannelWithKeysResponseInner>> listWithKeysWithResponseAsync(
+    private Mono<Response<BotChannelInner>> listWithKeysWithResponseAsync(
         String resourceGroupName, String resourceName, ChannelName channelName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -931,11 +929,10 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ARM channel of list channel with keys operation response along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ListChannelWithKeysResponseInner>> listWithKeysWithResponseAsync(
+    private Mono<Response<BotChannelInner>> listWithKeysWithResponseAsync(
         String resourceGroupName, String resourceName, ChannelName channelName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -982,14 +979,14 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ARM channel of list channel with keys operation response on successful completion of {@link Mono}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ListChannelWithKeysResponseInner> listWithKeysAsync(
+    private Mono<BotChannelInner> listWithKeysAsync(
         String resourceGroupName, String resourceName, ChannelName channelName) {
         return listWithKeysWithResponseAsync(resourceGroupName, resourceName, channelName)
             .flatMap(
-                (Response<ListChannelWithKeysResponseInner> res) -> {
+                (Response<BotChannelInner> res) -> {
                     if (res.getValue() != null) {
                         return Mono.just(res.getValue());
                     } else {
@@ -1007,11 +1004,10 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ARM channel of list channel with keys operation response.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ListChannelWithKeysResponseInner listWithKeys(
-        String resourceGroupName, String resourceName, ChannelName channelName) {
+    public BotChannelInner listWithKeys(String resourceGroupName, String resourceName, ChannelName channelName) {
         return listWithKeysAsync(resourceGroupName, resourceName, channelName).block();
     }
 
@@ -1025,10 +1021,10 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ARM channel of list channel with keys operation response along with {@link Response}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ListChannelWithKeysResponseInner> listWithKeysWithResponse(
+    public Response<BotChannelInner> listWithKeysWithResponse(
         String resourceGroupName, String resourceName, ChannelName channelName, Context context) {
         return listWithKeysWithResponseAsync(resourceGroupName, resourceName, channelName, context).block();
     }
@@ -1041,8 +1037,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of bot service channel operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of bot service channel operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BotChannelInner>> listByResourceGroupSinglePageAsync(
@@ -1100,8 +1095,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of bot service channel operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of bot service channel operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BotChannelInner>> listByResourceGroupSinglePageAsync(
@@ -1222,8 +1216,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of bot service channel operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of bot service channel operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BotChannelInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1260,8 +1253,7 @@ public final class ChannelsClientImpl implements ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of bot service channel operation response along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the list of bot service channel operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BotChannelInner>> listByResourceGroupNextSinglePageAsync(

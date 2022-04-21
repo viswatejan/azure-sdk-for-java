@@ -15,10 +15,10 @@ public final class HeaderActionParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(HeaderActionParameters.class);
 
     /*
-     * The typeName property.
+     * The @odata.type property.
      */
-    @JsonProperty(value = "typeName", required = true)
-    private String typeName = "DeliveryRuleHeaderActionParameters";
+    @JsonProperty(value = "@odata.type", required = true)
+    private String odataType;
 
     /*
      * Action to perform
@@ -40,26 +40,26 @@ public final class HeaderActionParameters {
 
     /** Creates an instance of HeaderActionParameters class. */
     public HeaderActionParameters() {
-        typeName = "DeliveryRuleHeaderActionParameters";
+        odataType = "#Microsoft.Azure.Cdn.Models.DeliveryRuleHeaderActionParameters";
     }
 
     /**
-     * Get the typeName property: The typeName property.
+     * Get the odataType property: The @odata.type property.
      *
-     * @return the typeName value.
+     * @return the odataType value.
      */
-    public String typeName() {
-        return this.typeName;
+    public String odataType() {
+        return this.odataType;
     }
 
     /**
-     * Set the typeName property: The typeName property.
+     * Set the odataType property: The @odata.type property.
      *
-     * @param typeName the typeName value to set.
+     * @param odataType the odataType value to set.
      * @return the HeaderActionParameters object itself.
      */
-    public HeaderActionParameters withTypeName(String typeName) {
-        this.typeName = typeName;
+    public HeaderActionParameters withOdataType(String odataType) {
+        this.odataType = odataType;
         return this;
     }
 

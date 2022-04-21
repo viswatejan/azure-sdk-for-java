@@ -30,8 +30,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the routing intent child resource of a Virtual hub along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return the routing intent child resource of a Virtual hub.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -50,7 +49,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the routing intent child resource of a Virtual hub.
+     * @return the routing intent child resource of a Virtual hub.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<RoutingIntentInner>, RoutingIntentInner> beginCreateOrUpdateAsync(
@@ -69,7 +68,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the routing intent child resource of a Virtual hub.
+     * @return the routing intent child resource of a Virtual hub.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<RoutingIntentInner>, RoutingIntentInner> beginCreateOrUpdate(
@@ -89,7 +88,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the routing intent child resource of a Virtual hub.
+     * @return the routing intent child resource of a Virtual hub.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<RoutingIntentInner>, RoutingIntentInner> beginCreateOrUpdate(
@@ -109,7 +108,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the routing intent child resource of a Virtual hub on successful completion of {@link Mono}.
+     * @return the routing intent child resource of a Virtual hub.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RoutingIntentInner> createOrUpdateAsync(
@@ -167,8 +166,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the routing intent child resource of a Virtual hub along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return the routing intent child resource of a Virtual hub.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<RoutingIntentInner>> getWithResponseAsync(
@@ -183,7 +181,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the routing intent child resource of a Virtual hub on successful completion of {@link Mono}.
+     * @return the routing intent child resource of a Virtual hub.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<RoutingIntentInner> getAsync(String resourceGroupName, String virtualHubName, String routingIntentName);
@@ -212,7 +210,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the routing intent child resource of a Virtual hub along with {@link Response}.
+     * @return the routing intent child resource of a Virtual hub.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RoutingIntentInner> getWithResponse(
@@ -227,7 +225,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -242,7 +240,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -257,7 +255,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -273,7 +271,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -288,7 +286,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String virtualHubName, String routingIntentName);
@@ -328,8 +326,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of the routing intent result and a URL nextLink to get the next set of results as paginated response
-     *     with {@link PagedFlux}.
+     * @return list of the routing intent result and a URL nextLink to get the next set of results.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<RoutingIntentInner> listAsync(String resourceGroupName, String virtualHubName);
@@ -342,8 +339,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of the routing intent result and a URL nextLink to get the next set of results as paginated response
-     *     with {@link PagedIterable}.
+     * @return list of the routing intent result and a URL nextLink to get the next set of results.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<RoutingIntentInner> list(String resourceGroupName, String virtualHubName);
@@ -357,8 +353,7 @@ public interface RoutingIntentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of the routing intent result and a URL nextLink to get the next set of results as paginated response
-     *     with {@link PagedIterable}.
+     * @return list of the routing intent result and a URL nextLink to get the next set of results.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<RoutingIntentInner> list(String resourceGroupName, String virtualHubName, Context context);

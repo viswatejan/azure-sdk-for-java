@@ -15,7 +15,7 @@ public interface Factories {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
+     * @return a list of factory resources.
      */
     PagedIterable<Factory> list();
 
@@ -26,7 +26,7 @@ public interface Factories {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
+     * @return a list of factory resources.
      */
     PagedIterable<Factory> list(Context context);
 
@@ -51,7 +51,7 @@ public interface Factories {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return factory resource type along with {@link Response}.
+     * @return factory resource type.
      */
     Response<Factory> configureFactoryRepoWithResponse(
         String locationId, FactoryRepoUpdate factoryRepoUpdate, Context context);
@@ -63,7 +63,7 @@ public interface Factories {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
+     * @return a list of factory resources.
      */
     PagedIterable<Factory> listByResourceGroup(String resourceGroupName);
 
@@ -75,7 +75,7 @@ public interface Factories {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
+     * @return a list of factory resources.
      */
     PagedIterable<Factory> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -102,7 +102,7 @@ public interface Factories {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a factory along with {@link Response}.
+     * @return a factory.
      */
     Response<Factory> getByResourceGroupWithResponse(
         String resourceGroupName, String factoryName, String ifNoneMatch, Context context);
@@ -127,7 +127,7 @@ public interface Factories {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(String resourceGroupName, String factoryName, Context context);
 
@@ -155,7 +155,7 @@ public interface Factories {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return gitHub Access Token along with {@link Response}.
+     * @return gitHub Access Token.
      */
     Response<GitHubAccessTokenResponse> getGitHubAccessTokenWithResponse(
         String resourceGroupName,
@@ -186,7 +186,7 @@ public interface Factories {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Plane access along with {@link Response}.
+     * @return data Plane access.
      */
     Response<AccessPolicyResponse> getDataPlaneAccessWithResponse(
         String resourceGroupName, String factoryName, UserAccessPolicy policy, Context context);
@@ -198,7 +198,7 @@ public interface Factories {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a factory along with {@link Response}.
+     * @return a factory.
      */
     Factory getById(String id);
 
@@ -212,7 +212,7 @@ public interface Factories {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a factory along with {@link Response}.
+     * @return a factory.
      */
     Response<Factory> getByIdWithResponse(String id, String ifNoneMatch, Context context);
 
@@ -234,7 +234,7 @@ public interface Factories {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

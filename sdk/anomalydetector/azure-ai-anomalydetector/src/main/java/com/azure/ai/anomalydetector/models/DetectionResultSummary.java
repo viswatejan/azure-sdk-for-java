@@ -12,13 +12,13 @@ import java.util.List;
 @Fluent
 public final class DetectionResultSummary {
     /*
-     * Status of detection results. One of CREATED, RUNNING, READY, and FAILED.
+     * Multivariate anomaly detection status
      */
     @JsonProperty(value = "status", required = true)
     private DetectionStatus status;
 
     /*
-     * Error message when detection is failed.
+     * Error message when creating or training model fails.
      */
     @JsonProperty(value = "errors")
     private List<ErrorResponse> errors;
@@ -30,13 +30,13 @@ public final class DetectionResultSummary {
     private List<VariableState> variableStates;
 
     /*
-     * Detection request.
+     * Request when creating the model.
      */
     @JsonProperty(value = "setupInfo", required = true)
     private DetectionRequest setupInfo;
 
     /**
-     * Get the status property: Status of detection results. One of CREATED, RUNNING, READY, and FAILED.
+     * Get the status property: Multivariate anomaly detection status.
      *
      * @return the status value.
      */
@@ -45,7 +45,7 @@ public final class DetectionResultSummary {
     }
 
     /**
-     * Set the status property: Status of detection results. One of CREATED, RUNNING, READY, and FAILED.
+     * Set the status property: Multivariate anomaly detection status.
      *
      * @param status the status value to set.
      * @return the DetectionResultSummary object itself.
@@ -56,7 +56,7 @@ public final class DetectionResultSummary {
     }
 
     /**
-     * Get the errors property: Error message when detection is failed.
+     * Get the errors property: Error message when creating or training model fails.
      *
      * @return the errors value.
      */
@@ -65,7 +65,7 @@ public final class DetectionResultSummary {
     }
 
     /**
-     * Set the errors property: Error message when detection is failed.
+     * Set the errors property: Error message when creating or training model fails.
      *
      * @param errors the errors value to set.
      * @return the DetectionResultSummary object itself.
@@ -96,7 +96,7 @@ public final class DetectionResultSummary {
     }
 
     /**
-     * Get the setupInfo property: Detection request.
+     * Get the setupInfo property: Request when creating the model.
      *
      * @return the setupInfo value.
      */
@@ -105,7 +105,7 @@ public final class DetectionResultSummary {
     }
 
     /**
-     * Set the setupInfo property: Detection request.
+     * Set the setupInfo property: Request when creating the model.
      *
      * @param setupInfo the setupInfo value to set.
      * @return the DetectionResultSummary object itself.

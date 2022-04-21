@@ -33,7 +33,7 @@ public interface SqlPools {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool properties along with {@link Response}.
+     * @return sQL pool properties.
      */
     Response<SqlPool> getWithResponse(
         String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
@@ -168,7 +168,7 @@ public interface SqlPools {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> renameWithResponse(
         String resourceGroupName,
@@ -184,7 +184,7 @@ public interface SqlPools {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool properties along with {@link Response}.
+     * @return sQL pool properties.
      */
     SqlPool getById(String id);
 
@@ -196,7 +196,7 @@ public interface SqlPools {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool properties along with {@link Response}.
+     * @return sQL pool properties.
      */
     Response<SqlPool> getByIdWithResponse(String id, Context context);
 

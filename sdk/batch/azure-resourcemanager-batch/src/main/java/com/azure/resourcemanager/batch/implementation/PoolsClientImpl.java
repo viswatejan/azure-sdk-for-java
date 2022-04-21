@@ -31,6 +31,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.batch.fluent.PoolsClient;
@@ -47,28 +48,30 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in PoolsClient. */
 public final class PoolsClientImpl implements PoolsClient {
+    private final ClientLogger logger = new ClientLogger(PoolsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final PoolsService service;
 
     /** The service client containing this operation class. */
-    private final BatchManagementClientImpl client;
+    private final BatchManagementImpl client;
 
     /**
      * Initializes an instance of PoolsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    PoolsClientImpl(BatchManagementClientImpl client) {
+    PoolsClientImpl(BatchManagementImpl client) {
         this.service = RestProxy.create(PoolsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for BatchManagementClientPools to be used by the proxy service to perform
-     * REST calls.
+     * The interface defining all the services for BatchManagementPools to be used by the proxy service to perform REST
+     * calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "BatchManagementClien")
+    @ServiceInterface(name = "BatchManagementPools")
     private interface PoolsService {
         @Headers({"Content-Type: application/json"})
         @Get(
@@ -216,8 +219,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return values returned by the List operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return values returned by the List operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PoolInner>> listByBatchAccountSinglePageAsync(
@@ -286,8 +288,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return values returned by the List operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return values returned by the List operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PoolInner>> listByBatchAccountSinglePageAsync(
@@ -357,7 +358,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return values returned by the List operation as paginated response with {@link PagedFlux}.
+     * @return values returned by the List operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PoolInner> listByBatchAccountAsync(
@@ -375,7 +376,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return values returned by the List operation as paginated response with {@link PagedFlux}.
+     * @return values returned by the List operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PoolInner> listByBatchAccountAsync(String resourceGroupName, String accountName) {
@@ -404,7 +405,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return values returned by the List operation as paginated response with {@link PagedFlux}.
+     * @return values returned by the List operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PoolInner> listByBatchAccountAsync(
@@ -428,7 +429,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return values returned by the List operation as paginated response with {@link PagedIterable}.
+     * @return values returned by the List operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PoolInner> listByBatchAccount(String resourceGroupName, String accountName) {
@@ -455,7 +456,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return values returned by the List operation as paginated response with {@link PagedIterable}.
+     * @return values returned by the List operation.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PoolInner> listByBatchAccount(
@@ -483,7 +484,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolsCreateResponse> createWithResponseAsync(
@@ -555,7 +556,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolsCreateResponse> createWithResponseAsync(
@@ -624,7 +625,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolInner> createAsync(
@@ -655,7 +656,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolInner> createAsync(
@@ -736,7 +737,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolsUpdateResponse> updateWithResponseAsync(
@@ -801,7 +802,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolsUpdateResponse> updateWithResponseAsync(
@@ -867,7 +868,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolInner> updateAsync(
@@ -894,7 +895,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolInner> updateAsync(
@@ -966,7 +967,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1020,7 +1021,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1070,16 +1071,15 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String accountName, String poolName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, accountName, poolName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -1092,9 +1092,9 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String accountName, String poolName, Context context) {
         context = this.client.mergeContext(context);
@@ -1114,9 +1114,9 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String accountName, String poolName) {
         return beginDeleteAsync(resourceGroupName, accountName, poolName).getSyncPoller();
@@ -1132,9 +1132,9 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    @ServiceMethod(returns = ReturnType.SINGLE)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String accountName, String poolName, Context context) {
         return beginDeleteAsync(resourceGroupName, accountName, poolName, context).getSyncPoller();
@@ -1149,7 +1149,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String accountName, String poolName) {
@@ -1168,7 +1168,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String accountName, String poolName, Context context) {
@@ -1217,7 +1217,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified pool on successful completion of {@link Mono}.
+     * @return information about the specified pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolsGetResponse> getWithResponseAsync(String resourceGroupName, String accountName, String poolName) {
@@ -1270,7 +1270,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified pool on successful completion of {@link Mono}.
+     * @return information about the specified pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolsGetResponse> getWithResponseAsync(
@@ -1320,7 +1320,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified pool on successful completion of {@link Mono}.
+     * @return information about the specified pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolInner> getAsync(String resourceGroupName, String accountName, String poolName) {
@@ -1378,7 +1378,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolsDisableAutoScaleResponse> disableAutoScaleWithResponseAsync(
@@ -1432,7 +1432,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolsDisableAutoScaleResponse> disableAutoScaleWithResponseAsync(
@@ -1482,7 +1482,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolInner> disableAutoScaleAsync(String resourceGroupName, String accountName, String poolName) {
@@ -1544,7 +1544,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolsStopResizeResponse> stopResizeWithResponseAsync(
@@ -1602,7 +1602,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolsStopResizeResponse> stopResizeWithResponseAsync(
@@ -1656,7 +1656,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a pool on successful completion of {@link Mono}.
+     * @return contains information about a pool.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolInner> stopResizeAsync(String resourceGroupName, String accountName, String poolName) {
@@ -1720,8 +1720,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return values returned by the List operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return values returned by the List operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PoolInner>> listByBatchAccountNextSinglePageAsync(String nextLink) {
@@ -1758,8 +1757,7 @@ public final class PoolsClientImpl implements PoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return values returned by the List operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return values returned by the List operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PoolInner>> listByBatchAccountNextSinglePageAsync(String nextLink, Context context) {

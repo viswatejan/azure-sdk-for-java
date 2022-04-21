@@ -21,7 +21,6 @@ import static com.microsoft.azure.spring.cloud.config.TestConstants.TEST_VALUE_V
 import static com.microsoft.azure.spring.cloud.config.TestUtils.createItem;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
@@ -36,9 +35,13 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.azure.core.http.rest.PagedFlux;
 import com.azure.core.http.rest.PagedResponse;
@@ -52,6 +55,8 @@ import com.microsoft.azure.spring.cloud.config.stores.KeyVaultClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({ AppConfigurationPropertySource.class })
 public class AppConfigurationPropertySourceKeyVaultTest {
     private static final String EMPTY_CONTENT_TYPE = "";
 
@@ -116,7 +121,7 @@ public class AppConfigurationPropertySourceKeyVaultTest {
 
     @Before
     public void setup() {
-        MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.initMocks(this);
         appConfigurationProperties = new AppConfigurationProperties();
         appProperties = new AppConfigurationProviderProperties();
         appProperties.setMaxRetryTime(0);
@@ -124,49 +129,25 @@ public class AppConfigurationPropertySourceKeyVaultTest {
         testStore.setEndpoint(TEST_STORE_NAME);
         ArrayList<String> contexts = new ArrayList<String>();
         contexts.add("/application/*");
-        propertySource = new KeyVaultMockingAppConfigurationPropertySource(TEST_CONTEXT, testStore, "\0",
-            appConfigurationProperties, clientStoreMock, appProperties, tokenCredentialProvider, null);
-        testItems = new ArrayList<>();
+        propertySource = new AppConfigurationPropertySource(TEST_CONTEXT, testStore, "\0",
+                appConfigurationProperties, clientStoreMock, appProperties, tokenCredentialProvider, null);
+
+        testItems = new ArrayList<ConfigurationSetting>();
         testItems.add(item1);
         testItems.add(item2);
         testItems.add(item3);
     }
 
-    static class KeyVaultMockingAppConfigurationPropertySource extends AppConfigurationPropertySource {
-        private KeyVaultClient keyVaultClient;
-
-        KeyVaultMockingAppConfigurationPropertySource(String context, ConfigStore configStore, String label,
-            AppConfigurationProperties appConfigurationProperties, ClientStore clients,
-            AppConfigurationProviderProperties appProperties, KeyVaultCredentialProvider keyVaultCredentialProvider,
-            SecretClientBuilderSetup keyVaultClientProvider) {
-            super(context, configStore, label, appConfigurationProperties, clients, appProperties,
-                keyVaultCredentialProvider, keyVaultClientProvider);
-        }
-
-        private void setKeyVaultClient(KeyVaultClient keyVaultClient) {
-            this.keyVaultClient = keyVaultClient;
-        }
-
-        @Override
-        KeyVaultClient getKeyVaultClient(URI uri, String uriHost) {
-            if (keyVaultClient == null) {
-                return super.getKeyVaultClient(uri, uriHost);
-            } else {
-                return keyVaultClient;
-            }
-        }
-    }
-
     @Test
     public void testKeyVaultTest() throws Exception {
         testItems.add(keyVaultItem);
-        when(clientStoreMock.listSettings(any(), Mockito.anyString())).thenReturn(testItems)
-                .thenReturn(new ArrayList<>());
+        when(clientStoreMock.listSettings(Mockito.any(), Mockito.anyString())).thenReturn(testItems)
+                .thenReturn(new ArrayList<ConfigurationSetting>());
         KeyVaultClient client = Mockito.mock(KeyVaultClient.class);
-        ((KeyVaultMockingAppConfigurationPropertySource) propertySource).setKeyVaultClient(client);
+        PowerMockito.whenNew(KeyVaultClient.class).withAnyArguments().thenReturn(client);
 
         KeyVaultSecret secret = new KeyVaultSecret("mySecret", "mySecretValue");
-        given(client.getSecret(any(URI.class), Mockito.anyInt())).willReturn(secret);
+        given(client.getSecret(Mockito.any(URI.class), Mockito.anyInt())).willReturn(secret);
 
         FeatureSet featureSet = new FeatureSet();
 

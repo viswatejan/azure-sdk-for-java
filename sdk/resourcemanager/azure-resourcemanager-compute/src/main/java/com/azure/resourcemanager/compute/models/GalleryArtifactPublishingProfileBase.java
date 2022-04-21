@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.List;
 /** Describes the basic gallery artifact publishing profile. */
 @Fluent
 public class GalleryArtifactPublishingProfileBase {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(GalleryArtifactPublishingProfileBase.class);
+
     /*
      * The target regions where the Image Version is going to be replicated to.
      * This property is updatable.
@@ -60,13 +64,6 @@ public class GalleryArtifactPublishingProfileBase {
      */
     @JsonProperty(value = "replicationMode")
     private ReplicationMode replicationMode;
-
-    /*
-     * The target extended locations where the Image Version is going to be
-     * replicated to. This property is updatable.
-     */
-    @JsonProperty(value = "targetExtendedLocations")
-    private List<GalleryTargetExtendedLocation> targetExtendedLocations;
 
     /**
      * Get the targetRegions property: The target regions where the Image Version is going to be replicated to. This
@@ -210,29 +207,6 @@ public class GalleryArtifactPublishingProfileBase {
     }
 
     /**
-     * Get the targetExtendedLocations property: The target extended locations where the Image Version is going to be
-     * replicated to. This property is updatable.
-     *
-     * @return the targetExtendedLocations value.
-     */
-    public List<GalleryTargetExtendedLocation> targetExtendedLocations() {
-        return this.targetExtendedLocations;
-    }
-
-    /**
-     * Set the targetExtendedLocations property: The target extended locations where the Image Version is going to be
-     * replicated to. This property is updatable.
-     *
-     * @param targetExtendedLocations the targetExtendedLocations value to set.
-     * @return the GalleryArtifactPublishingProfileBase object itself.
-     */
-    public GalleryArtifactPublishingProfileBase withTargetExtendedLocations(
-        List<GalleryTargetExtendedLocation> targetExtendedLocations) {
-        this.targetExtendedLocations = targetExtendedLocations;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -240,9 +214,6 @@ public class GalleryArtifactPublishingProfileBase {
     public void validate() {
         if (targetRegions() != null) {
             targetRegions().forEach(e -> e.validate());
-        }
-        if (targetExtendedLocations() != null) {
-            targetExtendedLocations().forEach(e -> e.validate());
         }
     }
 }

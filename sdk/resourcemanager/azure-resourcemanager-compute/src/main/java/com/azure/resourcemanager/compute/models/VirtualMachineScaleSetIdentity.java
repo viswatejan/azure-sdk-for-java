@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -12,6 +14,8 @@ import java.util.Map;
 /** Identity for the virtual machine scale set. */
 @Fluent
 public class VirtualMachineScaleSetIdentity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualMachineScaleSetIdentity.class);
+
     /*
      * The principal id of virtual machine scale set identity. This property
      * will only be provided for a system assigned identity.

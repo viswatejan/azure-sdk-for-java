@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.UUID;
 
-/** Response of the given resultId. */
+/** Anomaly Response of one detection corresponds to a resultId. */
 @Fluent
 public final class DetectionResult {
     /*
@@ -19,13 +19,13 @@ public final class DetectionResult {
     private UUID resultId;
 
     /*
-     * The summary property.
+     * Multivariate anomaly detection status
      */
     @JsonProperty(value = "summary", required = true)
     private DetectionResultSummary summary;
 
     /*
-     * Detection result for each timestamp.
+     * anomaly status of each timestamp
      */
     @JsonProperty(value = "results", required = true)
     private List<AnomalyState> results;
@@ -51,7 +51,7 @@ public final class DetectionResult {
     }
 
     /**
-     * Get the summary property: The summary property.
+     * Get the summary property: Multivariate anomaly detection status.
      *
      * @return the summary value.
      */
@@ -60,7 +60,7 @@ public final class DetectionResult {
     }
 
     /**
-     * Set the summary property: The summary property.
+     * Set the summary property: Multivariate anomaly detection status.
      *
      * @param summary the summary value to set.
      * @return the DetectionResult object itself.
@@ -71,7 +71,7 @@ public final class DetectionResult {
     }
 
     /**
-     * Get the results property: Detection result for each timestamp.
+     * Get the results property: anomaly status of each timestamp.
      *
      * @return the results value.
      */
@@ -80,7 +80,7 @@ public final class DetectionResult {
     }
 
     /**
-     * Set the results property: Detection result for each timestamp.
+     * Set the results property: anomaly status of each timestamp.
      *
      * @param results the results value to set.
      * @return the DetectionResult object itself.

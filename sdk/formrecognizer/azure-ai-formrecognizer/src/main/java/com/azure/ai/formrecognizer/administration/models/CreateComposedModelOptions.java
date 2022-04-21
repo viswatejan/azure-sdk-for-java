@@ -5,15 +5,12 @@ package com.azure.ai.formrecognizer.administration.models;
 
 import com.azure.core.annotation.Fluent;
 
-import java.util.Map;
-
 /**
  * The configurable options to pass when creating a composed model.
  */
 @Fluent
 public final class CreateComposedModelOptions {
     private String description;
-    private Map<String, String> tags;
 
     /**
      * Get the optional model description defined by the user.
@@ -33,26 +30,6 @@ public final class CreateComposedModelOptions {
      */
     public CreateComposedModelOptions setDescription(final String description) {
         this.description = description;
-        return this;
-    }
-
-    /**
-     * Get the user defined attributes associated with the model.
-     *
-     * @return the tags value.
-     */
-    public Map<String, String> getTags() {
-        return tags;
-    }
-
-    /**
-     * Set the user defined attributes associated with the model.
-     *
-     * @param tags the tags value to set.
-     * @return the CreateComposedModelOptions object itself.
-     */
-    public CreateComposedModelOptions setTags(Map<String, String> tags) {
-        this.tags = tags;
         return this;
     }
 }

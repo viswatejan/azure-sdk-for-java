@@ -57,4 +57,11 @@ public interface CommunicationServiceManagementClient {
      * @return the CommunicationServicesClient object.
      */
     CommunicationServicesClient getCommunicationServices();
+
+    /**
+     * Gets the OperationStatusesClient object to access its operations.
+     *
+     * @return the OperationStatusesClient object.
+     */
+    OperationStatusesClient getOperationStatuses();
 }

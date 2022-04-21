@@ -67,8 +67,9 @@ public final class DefaultLogger extends MarkerIgnoringBase {
             classPath = className;
         }
         this.classPath = classPath;
-        int configuredLogLevel = LogLevel.fromString(Configuration.getGlobalConfiguration().get(Configuration.PROPERTY_AZURE_LOG_LEVEL))
-            .getLogLevel();
+        int configuredLogLevel =
+            LogLevel.fromString(Configuration.getGlobalConfiguration().get(Configuration.PROPERTY_AZURE_LOG_LEVEL))
+                .getLogLevel();
 
         isTraceEnabled = LogLevel.VERBOSE.getLogLevel() > configuredLogLevel;
         isDebugEnabled = LogLevel.VERBOSE.getLogLevel() >= configuredLogLevel;

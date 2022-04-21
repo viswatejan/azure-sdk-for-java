@@ -100,8 +100,7 @@ public final class ComponentCurrentBillingFeaturesClientImpl implements Componen
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights component billing features along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return an Application Insights component billing features.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApplicationInsightsComponentBillingFeaturesInner>> getWithResponseAsync(
@@ -151,8 +150,7 @@ public final class ComponentCurrentBillingFeaturesClientImpl implements Componen
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights component billing features along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return an Application Insights component billing features.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApplicationInsightsComponentBillingFeaturesInner>> getWithResponseAsync(
@@ -198,7 +196,7 @@ public final class ComponentCurrentBillingFeaturesClientImpl implements Componen
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights component billing features on successful completion of {@link Mono}.
+     * @return an Application Insights component billing features.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApplicationInsightsComponentBillingFeaturesInner> getAsync(
@@ -238,7 +236,7 @@ public final class ComponentCurrentBillingFeaturesClientImpl implements Componen
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights component billing features along with {@link Response}.
+     * @return an Application Insights component billing features.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ApplicationInsightsComponentBillingFeaturesInner> getWithResponse(
@@ -256,8 +254,7 @@ public final class ComponentCurrentBillingFeaturesClientImpl implements Componen
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights component billing features along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return an Application Insights component billing features.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApplicationInsightsComponentBillingFeaturesInner>> updateWithResponseAsync(
@@ -320,8 +317,7 @@ public final class ComponentCurrentBillingFeaturesClientImpl implements Componen
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights component billing features along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return an Application Insights component billing features.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ApplicationInsightsComponentBillingFeaturesInner>> updateWithResponseAsync(
@@ -381,7 +377,7 @@ public final class ComponentCurrentBillingFeaturesClientImpl implements Componen
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights component billing features on successful completion of {@link Mono}.
+     * @return an Application Insights component billing features.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApplicationInsightsComponentBillingFeaturesInner> updateAsync(
@@ -430,7 +426,7 @@ public final class ComponentCurrentBillingFeaturesClientImpl implements Componen
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights component billing features along with {@link Response}.
+     * @return an Application Insights component billing features.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ApplicationInsightsComponentBillingFeaturesInner> updateWithResponse(

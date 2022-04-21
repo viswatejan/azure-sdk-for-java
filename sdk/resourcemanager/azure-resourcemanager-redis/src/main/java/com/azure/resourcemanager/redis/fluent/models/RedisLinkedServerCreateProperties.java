@@ -7,11 +7,14 @@ package com.azure.resourcemanager.redis.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redis.models.ReplicationRole;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Create properties for a linked server. */
 @Fluent
 public class RedisLinkedServerCreateProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RedisLinkedServerCreateProperties.class);
+
     /*
      * Fully qualified resourceId of the linked redis cache.
      */
@@ -97,25 +100,23 @@ public class RedisLinkedServerCreateProperties {
      */
     public void validate() {
         if (linkedRedisCacheId() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property linkedRedisCacheId in model RedisLinkedServerCreateProperties"));
         }
         if (linkedRedisCacheLocation() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property linkedRedisCacheLocation in model"
                             + " RedisLinkedServerCreateProperties"));
         }
         if (serverRole() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property serverRole in model RedisLinkedServerCreateProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(RedisLinkedServerCreateProperties.class);
 }

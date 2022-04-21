@@ -36,8 +36,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Batch service quotas for the specified subscription at the given location along with {@link
-     *     Response}.
+     * @return the Batch service quotas for the specified subscription at the given location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BatchLocationQuotaInner> getQuotasWithResponse(String locationName, Context context);
@@ -49,8 +48,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Batch supported Virtual Machine VM sizes available at the given location as paginated
-     *     response with {@link PagedIterable}.
+     * @return the list of Batch supported Virtual Machine VM sizes available at the given location.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SupportedSkuInner> listSupportedVirtualMachineSkus(String locationName);
@@ -65,8 +63,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Batch supported Virtual Machine VM sizes available at the given location as paginated
-     *     response with {@link PagedIterable}.
+     * @return the list of Batch supported Virtual Machine VM sizes available at the given location.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SupportedSkuInner> listSupportedVirtualMachineSkus(
@@ -79,8 +76,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Batch supported Cloud Service VM sizes available at the given location as paginated response
-     *     with {@link PagedIterable}.
+     * @return the list of Batch supported Cloud Service VM sizes available at the given location.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SupportedSkuInner> listSupportedCloudServiceSkus(String locationName);
@@ -95,8 +91,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Batch supported Cloud Service VM sizes available at the given location as paginated response
-     *     with {@link PagedIterable}.
+     * @return the list of Batch supported Cloud Service VM sizes available at the given location.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SupportedSkuInner> listSupportedCloudServiceSkus(
@@ -125,7 +120,7 @@ public interface LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the CheckNameAvailability operation response along with {@link Response}.
+     * @return the CheckNameAvailability operation response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CheckNameAvailabilityResultInner> checkNameAvailabilityWithResponse(

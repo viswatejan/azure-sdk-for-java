@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A site for the Webchat channel. */
 @Fluent
-public class WebChatSite {
+public final class WebChatSite {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(WebChatSite.class);
 
     /*
@@ -49,8 +49,8 @@ public class WebChatSite {
     /*
      * Whether this site is enabled for preview versions of Webchat
      */
-    @JsonProperty(value = "isWebchatPreviewEnabled", required = true)
-    private boolean isWebchatPreviewEnabled;
+    @JsonProperty(value = "enablePreview", required = true)
+    private boolean enablePreview;
 
     /**
      * Get the siteId property: Site Id.
@@ -122,22 +122,22 @@ public class WebChatSite {
     }
 
     /**
-     * Get the isWebchatPreviewEnabled property: Whether this site is enabled for preview versions of Webchat.
+     * Get the enablePreview property: Whether this site is enabled for preview versions of Webchat.
      *
-     * @return the isWebchatPreviewEnabled value.
+     * @return the enablePreview value.
      */
-    public boolean isWebchatPreviewEnabled() {
-        return this.isWebchatPreviewEnabled;
+    public boolean enablePreview() {
+        return this.enablePreview;
     }
 
     /**
-     * Set the isWebchatPreviewEnabled property: Whether this site is enabled for preview versions of Webchat.
+     * Set the enablePreview property: Whether this site is enabled for preview versions of Webchat.
      *
-     * @param isWebchatPreviewEnabled the isWebchatPreviewEnabled value to set.
+     * @param enablePreview the enablePreview value to set.
      * @return the WebChatSite object itself.
      */
-    public WebChatSite withIsWebchatPreviewEnabled(boolean isWebchatPreviewEnabled) {
-        this.isWebchatPreviewEnabled = isWebchatPreviewEnabled;
+    public WebChatSite withEnablePreview(boolean enablePreview) {
+        this.enablePreview = enablePreview;
         return this;
     }
 

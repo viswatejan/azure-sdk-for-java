@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.compute.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -12,6 +14,8 @@ import java.util.List;
 /** The DiskAccessProperties model. */
 @Immutable
 public final class DiskAccessProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(DiskAccessProperties.class);
+
     /*
      * A readonly collection of private endpoint connections created on the
      * disk. Currently only one endpoint connection is supported.

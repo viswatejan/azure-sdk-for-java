@@ -11,12 +11,15 @@ import com.azure.resourcemanager.appservice.models.LoadBalancingMode;
 import com.azure.resourcemanager.appservice.models.NameValuePair;
 import com.azure.resourcemanager.appservice.models.ProvisioningState;
 import com.azure.resourcemanager.appservice.models.VirtualNetworkProfile;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Description of an App Service Environment. */
 @Fluent
 public final class AppServiceEnvironment {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(AppServiceEnvironment.class);
+
     /*
      * Provisioning state of the App Service Environment.
      */
@@ -383,7 +386,7 @@ public final class AppServiceEnvironment {
      */
     public void validate() {
         if (virtualNetwork() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property virtualNetwork in model AppServiceEnvironment"));
@@ -394,6 +397,4 @@ public final class AppServiceEnvironment {
             clusterSettings().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AppServiceEnvironment.class);
 }

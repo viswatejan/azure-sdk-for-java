@@ -16,10 +16,10 @@ public final class RemoteAddressMatchConditionParameters {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(RemoteAddressMatchConditionParameters.class);
 
     /*
-     * The typeName property.
+     * The @odata.type property.
      */
-    @JsonProperty(value = "typeName", required = true)
-    private String typeName = "DeliveryRuleRemoteAddressConditionParameters";
+    @JsonProperty(value = "@odata.type", required = true)
+    private String odataType;
 
     /*
      * Describes operator to be matched
@@ -49,26 +49,26 @@ public final class RemoteAddressMatchConditionParameters {
 
     /** Creates an instance of RemoteAddressMatchConditionParameters class. */
     public RemoteAddressMatchConditionParameters() {
-        typeName = "DeliveryRuleRemoteAddressConditionParameters";
+        odataType = "#Microsoft.Azure.Cdn.Models.DeliveryRuleRemoteAddressConditionParameters";
     }
 
     /**
-     * Get the typeName property: The typeName property.
+     * Get the odataType property: The @odata.type property.
      *
-     * @return the typeName value.
+     * @return the odataType value.
      */
-    public String typeName() {
-        return this.typeName;
+    public String odataType() {
+        return this.odataType;
     }
 
     /**
-     * Set the typeName property: The typeName property.
+     * Set the odataType property: The @odata.type property.
      *
-     * @param typeName the typeName value to set.
+     * @param odataType the odataType value to set.
      * @return the RemoteAddressMatchConditionParameters object itself.
      */
-    public RemoteAddressMatchConditionParameters withTypeName(String typeName) {
-        this.typeName = typeName;
+    public RemoteAddressMatchConditionParameters withOdataType(String odataType) {
+        this.odataType = odataType;
         return this;
     }
 

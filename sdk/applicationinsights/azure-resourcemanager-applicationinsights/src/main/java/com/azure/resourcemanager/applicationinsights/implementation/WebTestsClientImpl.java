@@ -200,8 +200,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined within a specified resource group along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return all Application Insights web tests defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -254,8 +253,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined within a specified resource group along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return all Application Insights web tests defined within a specified resource group.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listByResourceGroupSinglePageAsync(
@@ -368,8 +366,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific Application Insights web test definition along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return a specific Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WebTestInner>> getByResourceGroupWithResponseAsync(
@@ -419,8 +416,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific Application Insights web test definition along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return a specific Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WebTestInner>> getByResourceGroupWithResponseAsync(
@@ -466,7 +462,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific Application Insights web test definition on successful completion of {@link Mono}.
+     * @return a specific Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WebTestInner> getByResourceGroupAsync(String resourceGroupName, String webTestName) {
@@ -505,7 +501,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific Application Insights web test definition along with {@link Response}.
+     * @return a specific Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WebTestInner> getByResourceGroupWithResponse(
@@ -523,8 +519,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return an Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WebTestInner>> createOrUpdateWithResponseAsync(
@@ -583,8 +578,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return an Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WebTestInner>> createOrUpdateWithResponseAsync(
@@ -639,7 +633,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition on successful completion of {@link Mono}.
+     * @return an Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WebTestInner> createOrUpdateAsync(
@@ -683,7 +677,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition along with {@link Response}.
+     * @return an Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WebTestInner> createOrUpdateWithResponse(
@@ -700,8 +694,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return an Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WebTestInner>> updateTagsWithResponseAsync(
@@ -758,8 +751,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return an Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WebTestInner>> updateTagsWithResponseAsync(
@@ -812,7 +804,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition on successful completion of {@link Mono}.
+     * @return an Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WebTestInner> updateTagsAsync(String resourceGroupName, String webTestName, TagsResource webTestTags) {
@@ -853,7 +845,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition along with {@link Response}.
+     * @return an Application Insights web test definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WebTestInner> updateTagsWithResponse(
@@ -869,7 +861,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String webTestName) {
@@ -916,7 +908,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -960,7 +952,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String webTestName) {
@@ -990,7 +982,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String resourceGroupName, String webTestName, Context context) {
@@ -1002,8 +994,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web test alerts definitions within a subscription along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return all Application Insights web test alerts definitions within a subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listSinglePageAsync() {
@@ -1045,8 +1036,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web test alerts definitions within a subscription along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return all Application Insights web test alerts definitions within a subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listSinglePageAsync(Context context) {
@@ -1139,8 +1129,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined for the specified component along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * @return all Application Insights web tests defined for the specified component.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listByComponentSinglePageAsync(
@@ -1199,8 +1188,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined for the specified component along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * @return all Application Insights web tests defined for the specified component.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listByComponentSinglePageAsync(
@@ -1322,8 +1310,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of 0 or more Application Insights web test definitions along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of 0 or more Application Insights web test definitions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1360,8 +1347,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of 0 or more Application Insights web test definitions along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of 0 or more Application Insights web test definitions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listByResourceGroupNextSinglePageAsync(String nextLink, Context context) {
@@ -1396,8 +1382,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of 0 or more Application Insights web test definitions along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of 0 or more Application Insights web test definitions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listNextSinglePageAsync(String nextLink) {
@@ -1433,8 +1418,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of 0 or more Application Insights web test definitions along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of 0 or more Application Insights web test definitions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -1469,8 +1453,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of 0 or more Application Insights web test definitions along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of 0 or more Application Insights web test definitions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listByComponentNextSinglePageAsync(String nextLink) {
@@ -1506,8 +1489,7 @@ public final class WebTestsClientImpl implements WebTestsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of 0 or more Application Insights web test definitions along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return a list of 0 or more Application Insights web test definitions.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WebTestInner>> listByComponentNextSinglePageAsync(String nextLink, Context context) {

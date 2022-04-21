@@ -373,7 +373,7 @@ public class SpringCloudLiveOnlyTest extends AppPlatformTest {
             result = br.readLine();
             process.waitFor();
             error = ebr.readLine();
-            if (error != null && (!"".equals(error))) {
+            if (error != null && (!error.equals(""))) {
                 // To do - Log error message
 
                 if (!ignoreErrorStream) {

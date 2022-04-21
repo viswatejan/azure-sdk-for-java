@@ -70,7 +70,7 @@ public interface WorkItemConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return work item configuration associated with an application insights resource along with {@link Response}.
+     * @return work item configuration associated with an application insights resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkItemConfigurationInner> createWithResponse(
@@ -101,7 +101,7 @@ public interface WorkItemConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return default work item configurations that exist for the application along with {@link Response}.
+     * @return default work item configurations that exist for the application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkItemConfigurationInner> getDefaultWithResponse(
@@ -132,7 +132,7 @@ public interface WorkItemConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
@@ -164,7 +164,7 @@ public interface WorkItemConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specified work item configuration for an Application Insights component along with {@link Response}.
+     * @return specified work item configuration for an Application Insights component.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkItemConfigurationInner> getItemWithResponse(
@@ -204,7 +204,7 @@ public interface WorkItemConfigurationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return work item configuration associated with an application insights resource along with {@link Response}.
+     * @return work item configuration associated with an application insights resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkItemConfigurationInner> updateItemWithResponse(

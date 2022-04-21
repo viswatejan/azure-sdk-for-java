@@ -16,24 +16,22 @@ public final class CustomerCertificate extends Certificate {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(CustomerCertificate.class);
 
     /*
-     * Resource reference to the Azure Key Vault certificate. Expected to be in
-     * format of
-     * /subscriptions/{​​​​​​​​​subscriptionId}​​​​​​​​​/resourceGroups/{​​​​​​​​​resourceGroupName}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​/providers/Microsoft.KeyVault/vaults/{vaultName}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​/secrets/{certificateName}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-     */
-    @JsonProperty(value = "secretSource")
-    private ResourceReference secretSource;
-
-    /*
      * Certificate version.
      */
-    @JsonProperty(value = "secretVersion")
-    private String secretVersion;
+    @JsonProperty(value = "version")
+    private String version;
 
     /*
      * Certificate issuing authority.
      */
-    @JsonProperty(value = "certificateAuthority", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "certificateAuthority")
     private String certificateAuthority;
+
+    /*
+     * Complete Url to the certificate
+     */
+    @JsonProperty(value = "certificateUrl", required = true)
+    private String certificateUrl;
 
     /*
      * Whether to use the latest version for the certificate
@@ -47,51 +45,23 @@ public final class CustomerCertificate extends Certificate {
     @JsonProperty(value = "subjectAlternativeNames")
     private List<String> subjectAlternativeNames;
 
-    /*
-     * Certificate thumbprint.
-     */
-    @JsonProperty(value = "thumbprint", access = JsonProperty.Access.WRITE_ONLY)
-    private String thumbprint;
-
     /**
-     * Get the secretSource property: Resource reference to the Azure Key Vault certificate. Expected to be in format of
-     * /subscriptions/{​​​​​​​​​subscriptionId}​​​​​​​​​/resourceGroups/{​​​​​​​​​resourceGroupName}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​/providers/Microsoft.KeyVault/vaults/{vaultName}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​/secrets/{certificateName}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​.
+     * Get the version property: Certificate version.
      *
-     * @return the secretSource value.
+     * @return the version value.
      */
-    public ResourceReference secretSource() {
-        return this.secretSource;
+    public String version() {
+        return this.version;
     }
 
     /**
-     * Set the secretSource property: Resource reference to the Azure Key Vault certificate. Expected to be in format of
-     * /subscriptions/{​​​​​​​​​subscriptionId}​​​​​​​​​/resourceGroups/{​​​​​​​​​resourceGroupName}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​/providers/Microsoft.KeyVault/vaults/{vaultName}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​/secrets/{certificateName}​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​.
+     * Set the version property: Certificate version.
      *
-     * @param secretSource the secretSource value to set.
+     * @param version the version value to set.
      * @return the CustomerCertificate object itself.
      */
-    public CustomerCertificate withSecretSource(ResourceReference secretSource) {
-        this.secretSource = secretSource;
-        return this;
-    }
-
-    /**
-     * Get the secretVersion property: Certificate version.
-     *
-     * @return the secretVersion value.
-     */
-    public String secretVersion() {
-        return this.secretVersion;
-    }
-
-    /**
-     * Set the secretVersion property: Certificate version.
-     *
-     * @param secretVersion the secretVersion value to set.
-     * @return the CustomerCertificate object itself.
-     */
-    public CustomerCertificate withSecretVersion(String secretVersion) {
-        this.secretVersion = secretVersion;
+    public CustomerCertificate withVersion(String version) {
+        this.version = version;
         return this;
     }
 
@@ -102,6 +72,37 @@ public final class CustomerCertificate extends Certificate {
      */
     public String certificateAuthority() {
         return this.certificateAuthority;
+    }
+
+    /**
+     * Set the certificateAuthority property: Certificate issuing authority.
+     *
+     * @param certificateAuthority the certificateAuthority value to set.
+     * @return the CustomerCertificate object itself.
+     */
+    public CustomerCertificate withCertificateAuthority(String certificateAuthority) {
+        this.certificateAuthority = certificateAuthority;
+        return this;
+    }
+
+    /**
+     * Get the certificateUrl property: Complete Url to the certificate.
+     *
+     * @return the certificateUrl value.
+     */
+    public String certificateUrl() {
+        return this.certificateUrl;
+    }
+
+    /**
+     * Set the certificateUrl property: Complete Url to the certificate.
+     *
+     * @param certificateUrl the certificateUrl value to set.
+     * @return the CustomerCertificate object itself.
+     */
+    public CustomerCertificate withCertificateUrl(String certificateUrl) {
+        this.certificateUrl = certificateUrl;
+        return this;
     }
 
     /**
@@ -144,19 +145,24 @@ public final class CustomerCertificate extends Certificate {
         return this;
     }
 
-    /**
-     * Get the thumbprint property: Certificate thumbprint.
-     *
-     * @return the thumbprint value.
-     */
-    public String thumbprint() {
-        return this.thumbprint;
+    /** {@inheritDoc} */
+    @Override
+    public CustomerCertificate withSubject(String subject) {
+        super.withSubject(subject);
+        return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public CustomerCertificate withType(SecretType type) {
-        super.withType(type);
+    public CustomerCertificate withExpirationDate(String expirationDate) {
+        super.withExpirationDate(expirationDate);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public CustomerCertificate withThumbprint(String thumbprint) {
+        super.withThumbprint(thumbprint);
         return this;
     }
 
@@ -168,8 +174,11 @@ public final class CustomerCertificate extends Certificate {
     @Override
     public void validate() {
         super.validate();
-        if (secretSource() != null) {
-            secretSource().validate();
+        if (certificateUrl() == null) {
+            throw logger
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property certificateUrl in model CustomerCertificate"));
         }
     }
 }

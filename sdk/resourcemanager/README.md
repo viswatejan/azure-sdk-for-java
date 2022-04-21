@@ -31,14 +31,14 @@ If you are an existing user of the older version of Azure management library for
 
 ### Include the package
 
-For your convenience, we have provided a multi-service package that includes some of the most highly used Azure services. We recommend using this package when you are dealing with multiple services.
+For your convenience, we have provided a multi-service package that includes some of the most highly used Azure services. We recommend using this package when you are dealing with mutiple services.
 
 [//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager;current})
 ```xml
 <dependency>
   <groupId>com.azure.resourcemanager</groupId>
   <artifactId>azure-resourcemanager</artifactId>
-  <version>2.13.0</version>
+  <version>2.10.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -100,7 +100,7 @@ Azure Management Libraries require a `TokenCredential` implementation for authen
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-identity</artifactId>
-  <version>1.4.6</version>
+  <version>1.4.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -112,7 +112,7 @@ Azure Management Libraries require a `TokenCredential` implementation for authen
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-core-http-netty</artifactId>
-  <version>1.11.8</version>
+  <version>1.11.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -131,7 +131,8 @@ In addition, Azure subscription ID can be configured via environment variable `A
 
 With above configuration, the manager class can be authenticated by following code:
 
-```java readme-sample-authenticate
+<!-- embedme ./azure-resourcemanager/src/samples/java/com/azure/resourcemanager/ReadmeSamples.java#L62-L68 -->
+```java
 AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
 TokenCredential credential = new DefaultAzureCredentialBuilder()
     .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
@@ -168,7 +169,8 @@ The key concepts of Azure Management Libraries includes:
 
 You can create a virtual machine instance, together with required virtual network and ip address created automatically.
 
-```java readme-sample-createVirtualMachine
+<!-- embedme ./azure-resourcemanager/src/samples/java/com/azure/resourcemanager/ReadmeSamples.java#L95-L105 -->
+```java
 VirtualMachine linuxVM = azure.virtualMachines().define("myLinuxVM")
     .withRegion(Region.US_EAST)
     .withNewResourceGroup(rgName)
@@ -184,7 +186,8 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myLinuxVM")
 
 Update.
 
-```java readme-sample-updateVirtualMachine
+<!-- embedme ./azure-resourcemanager/src/samples/java/com/azure/resourcemanager/ReadmeSamples.java#L107-L109 -->
+```java
 linuxVM.update()
     .withNewDataDisk(10, 0, CachingTypes.READ_WRITE)
     .apply();
@@ -194,7 +197,8 @@ linuxVM.update()
 
 You can create a function app, together with required storage account and app service plan created on specification.
 
-```java readme-sample-createFunctionApp
+<!-- embedme ./azure-resourcemanager/src/samples/java/com/azure/resourcemanager/ReadmeSamples.java#L115-L135 -->
+```java
 Creatable<StorageAccount> creatableStorageAccount = azure.storageAccounts()
     .define("<storage-account-name>")
     .withRegion(Region.US_EAST)
@@ -222,7 +226,8 @@ FunctionApp linuxFunctionApp = azure.functionApps().define("<function-app-name>"
 
 You can batch create and delete managed disk instances.
 
-```java readme-sample-batchCreateAndDeleteDisk
+<!-- embedme ./azure-resourcemanager/src/samples/java/com/azure/resourcemanager/ReadmeSamples.java#L141-L152 -->
+```java
 List<String> diskNames = Arrays.asList("datadisk1", "datadisk2");
 List<Creatable<Disk>> creatableDisks = diskNames.stream()
     .map(diskName -> azure.disks()
@@ -241,7 +246,8 @@ azure.disks().deleteByIds(disks.stream().map(Disk::id).collect(Collectors.toList
 
 You can assign Contributor for an Azure resource to a service principal.
 
-```java readme-sample-createRoleAssignment
+<!-- embedme ./azure-resourcemanager/src/samples/java/com/azure/resourcemanager/ReadmeSamples.java#L160-L166 -->
+```java
 String raName = UUID.randomUUID().toString();
 RoleAssignment roleAssignment = azure.accessManagement().roleAssignments()
     .define(raName)
@@ -255,7 +261,8 @@ RoleAssignment roleAssignment = azure.accessManagement().roleAssignments()
 
 You can create storage account, then blob container, in reactive programming.
 
-```java readme-sample-createStorageAccountAndBlobContainerAsync
+<!-- embedme ./azure-resourcemanager/src/samples/java/com/azure/resourcemanager/ReadmeSamples.java#L172-L185 -->
+```java
 azure.storageAccounts().define("<storage-account-name>")
     .withRegion(Region.US_EAST)
     .withNewResourceGroup(rgName)
@@ -274,7 +281,8 @@ azure.storageAccounts().define("<storage-account-name>")
 
 You can operate on virtual machines in parallel.
 
-```java readme-sample-restartVirtualMachineAsync
+<!-- embedme ./azure-resourcemanager/src/samples/java/com/azure/resourcemanager/ReadmeSamples.java#L192-L194 -->
+```java
 azure.virtualMachines().listByResourceGroupAsync(rgName)
     .flatMap(VirtualMachine::restartAsync)
     //...
@@ -284,7 +292,8 @@ azure.virtualMachines().listByResourceGroupAsync(rgName)
 
 You can customize various aspects of the client and pipeline.
 
-```java readme-sample-configureClientAndPipeline
+<!-- embedme ./azure-resourcemanager/src/samples/java/com/azure/resourcemanager/ReadmeSamples.java#L206-L210 -->
+```java
 AzureResourceManager azure = AzureResourceManager
     .configure()
     .withHttpClient(customizedHttpClient)
@@ -303,14 +312,15 @@ For example, here is sample maven dependency for Compute package.
 <dependency>
   <groupId>com.azure.resourcemanager</groupId>
   <artifactId>azure-resourcemanager-compute</artifactId>
-  <version>2.13.0</version>
+  <version>2.10.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
 
 Sample code to create the authenticated client.
 
-```java readme-sample-authenticateComputeManager
+<!-- embedme ./azure-resourcemanager/src/samples/java/com/azure/resourcemanager/ReadmeSamples.java#L88-L89 -->
+```java
 ComputeManager manager = ComputeManager.authenticate(credential, profile);
 manager.virtualMachines().list();
 ```
@@ -336,7 +346,8 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 Sample code to enable logging in Azure Management Libraries for Java.
 
-```java readme-sample-configureWithLogging
+<!-- embedme ./azure-resourcemanager/src/samples/java/com/azure/resourcemanager/ReadmeSamples.java#L76-L80 -->
+```java
 AzureResourceManager azure = AzureResourceManager
     .configure()
     .withLogLevel(HttpLogDetailLevel.BASIC)

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.digitaltwins.implementation;
 
+import com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager;
 import com.azure.resourcemanager.digitaltwins.fluent.models.CheckNameResultInner;
 import com.azure.resourcemanager.digitaltwins.models.CheckNameResult;
 import com.azure.resourcemanager.digitaltwins.models.Reason;
@@ -11,11 +12,9 @@ import com.azure.resourcemanager.digitaltwins.models.Reason;
 public final class CheckNameResultImpl implements CheckNameResult {
     private CheckNameResultInner innerObject;
 
-    private final com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager;
+    private final AzureDigitalTwinsManager serviceManager;
 
-    CheckNameResultImpl(
-        CheckNameResultInner innerObject,
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager) {
+    CheckNameResultImpl(CheckNameResultInner innerObject, AzureDigitalTwinsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -36,7 +35,7 @@ public final class CheckNameResultImpl implements CheckNameResult {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager() {
+    private AzureDigitalTwinsManager manager() {
         return this.serviceManager;
     }
 }

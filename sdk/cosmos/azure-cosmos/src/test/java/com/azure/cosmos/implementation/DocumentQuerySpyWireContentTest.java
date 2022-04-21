@@ -96,7 +96,7 @@ public class DocumentQuerySpyWireContentTest extends TestSuiteBase {
         client.clearCapturedRequests();
 
         Flux<FeedResponse<Document>> queryObservable = client
-                .queryDocuments(collectionLink, query, options, Document.class);
+                .queryDocuments(collectionLink, query, options);
 
         List<Document> results = queryObservable.flatMap(p -> Flux.fromIterable(p.getResults()))
             .collectList().block();
@@ -163,11 +163,11 @@ public class DocumentQuerySpyWireContentTest extends TestSuiteBase {
         CosmosQueryRequestOptions options = new CosmosQueryRequestOptions();
 
         // do the query once to ensure the collection is cached.
-        client.queryDocuments(getMultiPartitionCollectionLink(), "select * from root", options, Document.class)
+        client.queryDocuments(getMultiPartitionCollectionLink(), "select * from root", options)
             .then().block();
 
         // do the query once to ensure the collection is cached.
-        client.queryDocuments(getSinglePartitionCollectionLink(), "select * from root", options, Document.class)
+        client.queryDocuments(getSinglePartitionCollectionLink(), "select * from root", options)
               .then().block();
     }
 

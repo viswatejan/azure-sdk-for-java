@@ -4,31 +4,29 @@
 
 package com.azure.analytics.purview.catalog;
 
+import com.azure.analytics.purview.catalog.implementation.CollectionsImpl;
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
 import com.azure.core.annotation.ServiceMethod;
-import com.azure.core.exception.ClientAuthenticationException;
 import com.azure.core.exception.HttpResponseException;
-import com.azure.core.exception.ResourceModifiedException;
-import com.azure.core.exception.ResourceNotFoundException;
 import com.azure.core.http.rest.RequestOptions;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.BinaryData;
 
 /** Initializes a new instance of the synchronous PurviewCatalogClient type. */
-@ServiceClient(builder = CollectionClientBuilder.class)
+@ServiceClient(builder = PurviewCatalogClientBuilder.class)
 public final class CollectionClient {
-    @Generated private final CollectionAsyncClient asyncClient;
+    @Generated private final CollectionsImpl serviceClient;
 
     /**
-     * Initializes an instance of CollectionClient class.
+     * Initializes an instance of Collections client.
      *
-     * @param asyncClient the async client.
+     * @param serviceClient the service client implementation.
      */
     @Generated
-    CollectionClient(CollectionAsyncClient asyncClient) {
-        this.asyncClient = asyncClient;
+    CollectionClient(CollectionsImpl serviceClient) {
+        this.serviceClient = serviceClient;
     }
 
     /**
@@ -41,7 +39,7 @@ public final class CollectionClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Request Body Schema</strong>
@@ -197,16 +195,13 @@ public final class CollectionClient {
      * @param entity Atlas entity with extended information.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return entityMutationResponse along with {@link Response}.
+     * @return entityMutationResponse.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> createOrUpdateWithResponse(
             String collection, BinaryData entity, RequestOptions requestOptions) {
-        return this.asyncClient.createOrUpdateWithResponse(collection, entity, requestOptions).block();
+        return this.serviceClient.createOrUpdateWithResponse(collection, entity, requestOptions);
     }
 
     /**
@@ -219,7 +214,7 @@ public final class CollectionClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Request Body Schema</strong>
@@ -377,16 +372,13 @@ public final class CollectionClient {
      * @param entities Atlas entities with extended information.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return entityMutationResponse along with {@link Response}.
+     * @return entityMutationResponse.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> createOrUpdateBulkWithResponse(
             String collection, BinaryData entities, RequestOptions requestOptions) {
-        return this.asyncClient.createOrUpdateBulkWithResponse(collection, entities, requestOptions).block();
+        return this.serviceClient.createOrUpdateBulkWithResponse(collection, entities, requestOptions);
     }
 
     /**
@@ -397,7 +389,7 @@ public final class CollectionClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Request Body Schema</strong>
@@ -484,17 +476,12 @@ public final class CollectionClient {
      * @param moveEntitiesRequest Entity guids to be moved to target collection.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return entityMutationResponse along with {@link Response}.
+     * @return entityMutationResponse.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> moveEntitiesToCollectionWithResponse(
             String collection, BinaryData moveEntitiesRequest, RequestOptions requestOptions) {
-        return this.asyncClient
-                .moveEntitiesToCollectionWithResponse(collection, moveEntitiesRequest, requestOptions)
-                .block();
+        return this.serviceClient.moveEntitiesToCollectionWithResponse(collection, moveEntitiesRequest, requestOptions);
     }
 }

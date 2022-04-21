@@ -21,16 +21,19 @@ import com.azure.core.http.rest.PagedResponse;
 import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
+import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.compute.fluent.OperationsClient;
 import com.azure.resourcemanager.compute.fluent.models.ComputeOperationValueInner;
-import com.azure.resourcemanager.compute.models.ApiErrorException;
 import com.azure.resourcemanager.compute.models.ComputeOperationListResult;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in OperationsClient. */
 public final class OperationsClientImpl implements OperationsClient {
+    private final ClientLogger logger = new ClientLogger(OperationsClientImpl.class);
+
     /** The proxy service used to perform REST calls. */
     private final OperationsService service;
 
@@ -58,7 +61,7 @@ public final class OperationsClientImpl implements OperationsClient {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.Compute/operations")
         @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ApiErrorException.class)
+        @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ComputeOperationListResult>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
@@ -69,9 +72,9 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * Gets a list of compute operations.
      *
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of compute operations along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of compute operations.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ComputeOperationValueInner>> listSinglePageAsync() {
@@ -81,7 +84,7 @@ public final class OperationsClientImpl implements OperationsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, accept, context))
@@ -97,9 +100,9 @@ public final class OperationsClientImpl implements OperationsClient {
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of compute operations along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of compute operations.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ComputeOperationValueInner>> listSinglePageAsync(Context context) {
@@ -109,7 +112,7 @@ public final class OperationsClientImpl implements OperationsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        final String apiVersion = "2021-11-01";
+        final String apiVersion = "2021-07-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -123,9 +126,9 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * Gets a list of compute operations.
      *
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of compute operations as paginated response with {@link PagedFlux}.
+     * @return a list of compute operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<ComputeOperationValueInner> listAsync() {
@@ -137,9 +140,9 @@ public final class OperationsClientImpl implements OperationsClient {
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of compute operations as paginated response with {@link PagedFlux}.
+     * @return a list of compute operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ComputeOperationValueInner> listAsync(Context context) {
@@ -149,9 +152,9 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * Gets a list of compute operations.
      *
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of compute operations as paginated response with {@link PagedIterable}.
+     * @return a list of compute operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ComputeOperationValueInner> list() {
@@ -163,9 +166,9 @@ public final class OperationsClientImpl implements OperationsClient {
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ApiErrorException thrown if the request is rejected by server.
+     * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of compute operations as paginated response with {@link PagedIterable}.
+     * @return a list of compute operations.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ComputeOperationValueInner> list(Context context) {

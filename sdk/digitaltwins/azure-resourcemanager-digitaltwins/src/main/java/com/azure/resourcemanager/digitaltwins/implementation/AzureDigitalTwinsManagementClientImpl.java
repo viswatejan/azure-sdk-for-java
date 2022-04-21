@@ -27,7 +27,6 @@ import com.azure.resourcemanager.digitaltwins.fluent.DigitalTwinsEndpointsClient
 import com.azure.resourcemanager.digitaltwins.fluent.OperationsClient;
 import com.azure.resourcemanager.digitaltwins.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.digitaltwins.fluent.PrivateLinkResourcesClient;
-import com.azure.resourcemanager.digitaltwins.fluent.TimeSeriesDatabaseConnectionsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -175,18 +174,6 @@ public final class AzureDigitalTwinsManagementClientImpl implements AzureDigital
         return this.privateEndpointConnections;
     }
 
-    /** The TimeSeriesDatabaseConnectionsClient object to access its operations. */
-    private final TimeSeriesDatabaseConnectionsClient timeSeriesDatabaseConnections;
-
-    /**
-     * Gets the TimeSeriesDatabaseConnectionsClient object to access its operations.
-     *
-     * @return the TimeSeriesDatabaseConnectionsClient object.
-     */
-    public TimeSeriesDatabaseConnectionsClient getTimeSeriesDatabaseConnections() {
-        return this.timeSeriesDatabaseConnections;
-    }
-
     /**
      * Initializes an instance of AzureDigitalTwinsManagementClient client.
      *
@@ -209,13 +196,12 @@ public final class AzureDigitalTwinsManagementClientImpl implements AzureDigital
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-06-30-preview";
+        this.apiVersion = "2020-12-01";
         this.digitalTwins = new DigitalTwinsClientImpl(this);
         this.digitalTwinsEndpoints = new DigitalTwinsEndpointsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
-        this.timeSeriesDatabaseConnections = new TimeSeriesDatabaseConnectionsClientImpl(this);
     }
 
     /**

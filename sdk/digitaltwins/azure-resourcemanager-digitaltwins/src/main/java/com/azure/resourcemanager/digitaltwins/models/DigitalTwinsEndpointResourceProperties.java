@@ -43,10 +43,7 @@ public class DigitalTwinsEndpointResourceProperties {
 
     /*
      * Specifies the authentication type being used for connecting to the
-     * endpoint. Defaults to 'KeyBased'. If 'KeyBased' is selected, a
-     * connection string must be specified (at least the primary connection
-     * string). If 'IdentityBased' is select, the endpointUri and entityPath
-     * properties must be specified.
+     * endpoint.
      */
     @JsonProperty(value = "authenticationType")
     private AuthenticationType authenticationType;
@@ -84,8 +81,6 @@ public class DigitalTwinsEndpointResourceProperties {
 
     /**
      * Get the authenticationType property: Specifies the authentication type being used for connecting to the endpoint.
-     * Defaults to 'KeyBased'. If 'KeyBased' is selected, a connection string must be specified (at least the primary
-     * connection string). If 'IdentityBased' is select, the endpointUri and entityPath properties must be specified.
      *
      * @return the authenticationType value.
      */
@@ -95,8 +90,6 @@ public class DigitalTwinsEndpointResourceProperties {
 
     /**
      * Set the authenticationType property: Specifies the authentication type being used for connecting to the endpoint.
-     * Defaults to 'KeyBased'. If 'KeyBased' is selected, a connection string must be specified (at least the primary
-     * connection string). If 'IdentityBased' is select, the endpointUri and entityPath properties must be specified.
      *
      * @param authenticationType the authenticationType value to set.
      * @return the DigitalTwinsEndpointResourceProperties object itself.

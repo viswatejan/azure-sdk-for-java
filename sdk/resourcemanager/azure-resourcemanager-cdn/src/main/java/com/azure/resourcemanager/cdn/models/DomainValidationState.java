@@ -19,9 +19,6 @@ public final class DomainValidationState extends ExpandableStringEnum<DomainVali
     /** Static value Pending for DomainValidationState. */
     public static final DomainValidationState PENDING = fromString("Pending");
 
-    /** Static value Rejected for DomainValidationState. */
-    public static final DomainValidationState REJECTED = fromString("Rejected");
-
     /** Static value TimedOut for DomainValidationState. */
     public static final DomainValidationState TIMED_OUT = fromString("TimedOut");
 

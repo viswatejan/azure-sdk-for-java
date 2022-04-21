@@ -32,7 +32,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -47,7 +47,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -62,7 +62,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -78,7 +78,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -93,7 +93,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String applicationGatewayName, String connectionName);
@@ -135,8 +135,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private Endpoint connection on an application gateway along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return private Endpoint connection on an application gateway.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -155,7 +154,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of private Endpoint connection on an application gateway.
+     * @return private Endpoint connection on an application gateway.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     PollerFlux<
@@ -177,7 +176,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of private Endpoint connection on an application gateway.
+     * @return private Endpoint connection on an application gateway.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<
@@ -200,7 +199,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of private Endpoint connection on an application gateway.
+     * @return private Endpoint connection on an application gateway.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<
@@ -223,7 +222,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private Endpoint connection on an application gateway on successful completion of {@link Mono}.
+     * @return private Endpoint connection on an application gateway.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewayPrivateEndpointConnectionInner> updateAsync(
@@ -281,8 +280,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection on application gateway along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the specified private endpoint connection on application gateway.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<ApplicationGatewayPrivateEndpointConnectionInner>> getWithResponseAsync(
@@ -297,8 +295,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection on application gateway on successful completion of {@link
-     *     Mono}.
+     * @return the specified private endpoint connection on application gateway.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<ApplicationGatewayPrivateEndpointConnectionInner> getAsync(
@@ -329,7 +326,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private endpoint connection on application gateway along with {@link Response}.
+     * @return the specified private endpoint connection on application gateway.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationGatewayPrivateEndpointConnectionInner> getWithResponse(
@@ -343,8 +340,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGatewayPrivateEndpointConnection API service call as paginated response with
-     *     {@link PagedFlux}.
+     * @return response for ListApplicationGatewayPrivateEndpointConnection API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ApplicationGatewayPrivateEndpointConnectionInner> listAsync(
@@ -358,8 +354,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGatewayPrivateEndpointConnection API service call as paginated response with
-     *     {@link PagedIterable}.
+     * @return response for ListApplicationGatewayPrivateEndpointConnection API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApplicationGatewayPrivateEndpointConnectionInner> list(
@@ -374,8 +369,7 @@ public interface ApplicationGatewayPrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for ListApplicationGatewayPrivateEndpointConnection API service call as paginated response with
-     *     {@link PagedIterable}.
+     * @return response for ListApplicationGatewayPrivateEndpointConnection API service call.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApplicationGatewayPrivateEndpointConnectionInner> list(

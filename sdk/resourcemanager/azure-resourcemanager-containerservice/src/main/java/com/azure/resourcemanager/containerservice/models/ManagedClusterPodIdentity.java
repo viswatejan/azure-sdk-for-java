@@ -6,11 +6,14 @@ package com.azure.resourcemanager.containerservice.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Details about the pod identity assigned to the Managed Cluster. */
 @Fluent
 public class ManagedClusterPodIdentity {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagedClusterPodIdentity.class);
+
     /*
      * The name of the pod identity.
      */
@@ -152,18 +155,18 @@ public class ManagedClusterPodIdentity {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property name in model ManagedClusterPodIdentity"));
         }
         if (namespace() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property namespace in model ManagedClusterPodIdentity"));
         }
         if (identity() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property identity in model ManagedClusterPodIdentity"));
@@ -174,6 +177,4 @@ public class ManagedClusterPodIdentity {
             provisioningInfo().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ManagedClusterPodIdentity.class);
 }

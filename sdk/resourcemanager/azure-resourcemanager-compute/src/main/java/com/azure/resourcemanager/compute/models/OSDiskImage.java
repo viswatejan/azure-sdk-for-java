@@ -6,11 +6,14 @@ package com.azure.resourcemanager.compute.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Contains the os disk image information. */
 @Fluent
 public final class OSDiskImage {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(OSDiskImage.class);
+
     /*
      * The operating system of the osDiskImage.
      */
@@ -44,11 +47,9 @@ public final class OSDiskImage {
      */
     public void validate() {
         if (operatingSystem() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property operatingSystem in model OSDiskImage"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OSDiskImage.class);
 }

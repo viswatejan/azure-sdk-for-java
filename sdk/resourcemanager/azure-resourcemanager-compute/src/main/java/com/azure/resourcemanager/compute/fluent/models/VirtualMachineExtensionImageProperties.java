@@ -6,11 +6,14 @@ package com.azure.resourcemanager.compute.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Describes the properties of a Virtual Machine Extension Image. */
 @Fluent
 public final class VirtualMachineExtensionImageProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualMachineExtensionImageProperties.class);
+
     /*
      * The operating system this extension supports.
      */
@@ -158,24 +161,22 @@ public final class VirtualMachineExtensionImageProperties {
      */
     public void validate() {
         if (operatingSystem() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property operatingSystem in model VirtualMachineExtensionImageProperties"));
         }
         if (computeRole() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property computeRole in model VirtualMachineExtensionImageProperties"));
         }
         if (handlerSchema() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property handlerSchema in model VirtualMachineExtensionImageProperties"));
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(VirtualMachineExtensionImageProperties.class);
 }

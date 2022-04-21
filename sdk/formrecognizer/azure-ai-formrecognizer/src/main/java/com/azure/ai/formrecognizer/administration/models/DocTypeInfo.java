@@ -27,8 +27,6 @@ public final class DocTypeInfo {
      */
     private Map<String, Float> fieldConfidence;
 
-    private DocumentBuildMode buildMode;
-
     /**
      * Get the description property: Model description.
      *
@@ -82,20 +80,6 @@ public final class DocTypeInfo {
     void setFieldConfidence(Map<String, Float> fieldConfidence) {
         this.fieldConfidence = fieldConfidence;
     }
-
-    /**
-     * Get the buildMode property: Custom model build mode.
-     *
-     * @return the buildMode value.
-     */
-    public DocumentBuildMode getBuildMode() {
-        return buildMode;
-    }
-
-    void setBuildMode(DocumentBuildMode buildMode) {
-        this.buildMode = buildMode;
-    }
-
     static {
         DocTypeInfoHelper.setAccessor(new DocTypeInfoHelper.DocTypeInfoAccessor() {
             @Override
@@ -111,11 +95,6 @@ public final class DocTypeInfo {
             @Override
             public void setFieldConfidence(DocTypeInfo docTypeInfo, Map<String, Float> fieldConfidence) {
                 docTypeInfo.setFieldConfidence(fieldConfidence);
-            }
-
-            @Override
-            public void setBuildMode(DocTypeInfo docTypeInfo, DocumentBuildMode buildMode) {
-                docTypeInfo.setBuildMode(buildMode);
             }
         });
     }

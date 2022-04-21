@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-// BEGIN: readme-sample-AADWebApplicationAndResourceServerConfig
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AADWebApplicationAndResourceServerConfig {
@@ -41,4 +40,3 @@ public class AADWebApplicationAndResourceServerConfig {
         }
     }
 }
-// END: readme-sample-AADWebApplicationAndResourceServerConfig

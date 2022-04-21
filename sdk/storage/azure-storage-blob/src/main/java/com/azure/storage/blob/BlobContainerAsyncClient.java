@@ -38,9 +38,7 @@ import com.azure.storage.blob.models.ListBlobsIncludeItem;
 import com.azure.storage.blob.models.ListBlobsOptions;
 import com.azure.storage.blob.models.PublicAccessType;
 import com.azure.storage.blob.models.StorageAccountInfo;
-import com.azure.storage.blob.models.TaggedBlobItem;
 import com.azure.storage.blob.models.UserDelegationKey;
-import com.azure.storage.blob.options.FindBlobsOptions;
 import com.azure.storage.blob.sas.BlobServiceSasSignatureValues;
 import com.azure.storage.common.StorageSharedKeyCredential;
 import com.azure.storage.common.implementation.SasImplUtils;
@@ -102,7 +100,7 @@ public final class BlobContainerAsyncClient {
      */
     public static final String LOG_CONTAINER_NAME = "$logs";
 
-    private static final ClientLogger LOGGER = new ClientLogger(BlobContainerAsyncClient.class);
+    private final ClientLogger logger = new ClientLogger(BlobContainerAsyncClient.class);
     private final AzureBlobStorageImpl azureBlobStorage;
 
     private final String accountName;
@@ -145,7 +143,7 @@ public final class BlobContainerAsyncClient {
         try {
             URI.create(getBlobContainerUrl());
         } catch (IllegalArgumentException ex) {
-            throw LOGGER.logExceptionAsError(ex);
+            throw logger.logExceptionAsError(ex);
         }
     }
 
@@ -326,7 +324,11 @@ public final class BlobContainerAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Boolean> exists() {
-        return existsWithResponse().flatMap(FluxUtil::toMono);
+        try {
+            return existsWithResponse().flatMap(FluxUtil::toMono);
+        } catch (RuntimeException ex) {
+            return monoError(logger, ex);
+        }
     }
 
     /**
@@ -347,7 +349,7 @@ public final class BlobContainerAsyncClient {
         try {
             return withContext(this::existsWithResponse);
         } catch (RuntimeException ex) {
-            return monoError(LOGGER, ex);
+            return monoError(logger, ex);
         }
     }
 
@@ -386,7 +388,11 @@ public final class BlobContainerAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> create() {
-        return createWithResponse(null, null).flatMap(FluxUtil::toMono);
+        try {
+            return createWithResponse(null, null).flatMap(FluxUtil::toMono);
+        } catch (RuntimeException ex) {
+            return monoError(logger, ex);
+        }
     }
 
     /**
@@ -415,7 +421,7 @@ public final class BlobContainerAsyncClient {
         try {
             return withContext(context -> createWithResponse(metadata, accessType, context));
         } catch (RuntimeException ex) {
-            return monoError(LOGGER, ex);
+            return monoError(logger, ex);
         }
     }
 
@@ -447,7 +453,11 @@ public final class BlobContainerAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> delete() {
-        return deleteWithResponse(null).flatMap(FluxUtil::toMono);
+        try {
+            return deleteWithResponse(null).flatMap(FluxUtil::toMono);
+        } catch (RuntimeException ex) {
+            return monoError(logger, ex);
+        }
     }
 
     /**
@@ -478,7 +488,7 @@ public final class BlobContainerAsyncClient {
         try {
             return withContext(context -> deleteWithResponse(requestConditions, context));
         } catch (RuntimeException ex) {
-            return monoError(LOGGER, ex);
+            return monoError(logger, ex);
         }
     }
 
@@ -486,9 +496,9 @@ public final class BlobContainerAsyncClient {
         requestConditions = requestConditions == null ? new BlobRequestConditions() : requestConditions;
 
         if (!validateNoETag(requestConditions)) {
-            // Throwing is preferred to Mono.error because this will error out immediately instead of waiting until
+            // Throwing is preferred to Single.error because this will error out immediately instead of waiting until
             // subscription.
-            throw LOGGER.logExceptionAsError(
+            throw logger.logExceptionAsError(
                 new UnsupportedOperationException("ETag access conditions are not supported for this API."));
         }
         context = context == null ? Context.NONE : context;
@@ -521,7 +531,11 @@ public final class BlobContainerAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BlobContainerProperties> getProperties() {
-        return getPropertiesWithResponse(null).flatMap(FluxUtil::toMono);
+        try {
+            return getPropertiesWithResponse(null).flatMap(FluxUtil::toMono);
+        } catch (RuntimeException ex) {
+            return monoError(logger, ex);
+        }
     }
 
     /**
@@ -548,7 +562,7 @@ public final class BlobContainerAsyncClient {
         try {
             return withContext(context -> getPropertiesWithResponse(leaseId, context));
         } catch (RuntimeException ex) {
-            return monoError(LOGGER, ex);
+            return monoError(logger, ex);
         }
     }
 
@@ -591,7 +605,11 @@ public final class BlobContainerAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> setMetadata(Map<String, String> metadata) {
-        return setMetadataWithResponse(metadata, null).flatMap(FluxUtil::toMono);
+        try {
+            return setMetadataWithResponse(metadata, null).flatMap(FluxUtil::toMono);
+        } catch (RuntimeException ex) {
+            return monoError(logger, ex);
+        }
     }
 
     /**
@@ -623,9 +641,10 @@ public final class BlobContainerAsyncClient {
     public Mono<Response<Void>> setMetadataWithResponse(Map<String, String> metadata,
         BlobRequestConditions requestConditions) {
         try {
-            return withContext(context -> setMetadataWithResponse(metadata, requestConditions, context));
+            return withContext(context -> setMetadataWithResponse(metadata, requestConditions,
+                context));
         } catch (RuntimeException ex) {
-            return monoError(LOGGER, ex);
+            return monoError(logger, ex);
         }
     }
 
@@ -634,9 +653,9 @@ public final class BlobContainerAsyncClient {
         context = context == null ? Context.NONE : context;
         requestConditions = requestConditions == null ? new BlobRequestConditions() : requestConditions;
         if (!validateNoETag(requestConditions) || requestConditions.getIfUnmodifiedSince() != null) {
-            // Throwing is preferred to Mono.error because this will error out immediately instead of waiting until
+            // Throwing is preferred to Single.error because this will error out immediately instead of waiting until
             // subscription.
-            throw LOGGER.logExceptionAsError(new UnsupportedOperationException(
+            throw logger.logExceptionAsError(new UnsupportedOperationException(
                 "If-Modified-Since is the only HTTP access condition supported for this API"));
         }
 
@@ -671,7 +690,11 @@ public final class BlobContainerAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<BlobContainerAccessPolicies> getAccessPolicy() {
-        return getAccessPolicyWithResponse(null).flatMap(FluxUtil::toMono);
+        try {
+            return getAccessPolicyWithResponse(null).flatMap(FluxUtil::toMono);
+        } catch (RuntimeException ex) {
+            return monoError(logger, ex);
+        }
     }
 
     /**
@@ -703,7 +726,7 @@ public final class BlobContainerAsyncClient {
         try {
             return withContext(context -> getAccessPolicyWithResponse(leaseId, context));
         } catch (RuntimeException ex) {
-            return monoError(LOGGER, ex);
+            return monoError(logger, ex);
         }
     }
 
@@ -750,7 +773,11 @@ public final class BlobContainerAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Void> setAccessPolicy(PublicAccessType accessType, List<BlobSignedIdentifier> identifiers) {
-        return setAccessPolicyWithResponse(accessType, identifiers, null).flatMap(FluxUtil::toMono);
+        try {
+            return setAccessPolicyWithResponse(accessType, identifiers, null).flatMap(FluxUtil::toMono);
+        } catch (RuntimeException ex) {
+            return monoError(logger, ex);
+        }
     }
 
     /**
@@ -795,10 +822,11 @@ public final class BlobContainerAsyncClient {
     public Mono<Response<Void>> setAccessPolicyWithResponse(PublicAccessType accessType,
         List<BlobSignedIdentifier> identifiers, BlobRequestConditions requestConditions) {
         try {
-            return withContext(context ->
-                setAccessPolicyWithResponse(accessType, identifiers, requestConditions, context));
+            return withContext(
+                context -> setAccessPolicyWithResponse(accessType, identifiers, requestConditions,
+                    context));
         } catch (RuntimeException ex) {
-            return monoError(LOGGER, ex);
+            return monoError(logger, ex);
         }
     }
 
@@ -807,9 +835,9 @@ public final class BlobContainerAsyncClient {
         requestConditions = requestConditions == null ? new BlobRequestConditions() : requestConditions;
 
         if (!validateNoETag(requestConditions)) {
-            // Throwing is preferred to Mono.error because this will error out immediately instead of waiting until
+            // Throwing is preferred to Single.error because this will error out immediately instead of waiting until
             // subscription.
-            throw LOGGER.logExceptionAsError(
+            throw logger.logExceptionAsError(
                 new UnsupportedOperationException("ETag access conditions are not supported for this API."));
         }
 
@@ -871,7 +899,11 @@ public final class BlobContainerAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BlobItem> listBlobs() {
-        return this.listBlobs(new ListBlobsOptions());
+        try {
+            return this.listBlobs(new ListBlobsOptions());
+        } catch (RuntimeException ex) {
+            return pagedFluxError(logger, ex);
+        }
     }
 
     /**
@@ -916,7 +948,11 @@ public final class BlobContainerAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BlobItem> listBlobs(ListBlobsOptions options) {
-        return listBlobs(options, null);
+        try {
+            return listBlobsFlatWithOptionalTimeout(options, null, null);
+        } catch (RuntimeException ex) {
+            return pagedFluxError(logger, ex);
+        }
     }
 
     /**
@@ -967,7 +1003,7 @@ public final class BlobContainerAsyncClient {
         try {
             return listBlobsFlatWithOptionalTimeout(options, continuationToken, null);
         } catch (RuntimeException ex) {
-            return pagedFluxError(LOGGER, ex);
+            return pagedFluxError(logger, ex);
         }
     }
 
@@ -1021,13 +1057,13 @@ public final class BlobContainerAsyncClient {
     /*
      * Returns a single segment of blobs starting from the specified Marker. Use an empty
      * marker to start enumeration from the beginning. Blob names are returned in lexicographic order.
-     * After getting a segment, process it, and then call ListBlobs again (passing the previously-returned
+     * After getting a segment, process it, and then call ListBlobs again (passing the the previously-returned
      * Marker) to get the next segment. For more information, see the
      * <a href="https://docs.microsoft.com/rest/api/storageservices/list-blobs">Azure Docs</a>.
      *
      * @param marker
      *         Identifies the portion of the list to be returned with the next list operation.
-     *         This value is returned by the response of a previous list operation as the
+     *         This value is returned in the response of a previous list operation as the
      *         ListBlobsFlatSegmentResponse.body().getNextMarker(). Set to null to list the first segment.
      * @param options
      *         {@link ListBlobsOptions}
@@ -1085,7 +1121,11 @@ public final class BlobContainerAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BlobItem> listBlobsByHierarchy(String directory) {
-        return this.listBlobsByHierarchy("/", new ListBlobsOptions().setPrefix(directory));
+        try {
+            return this.listBlobsByHierarchy("/", new ListBlobsOptions().setPrefix(directory));
+        } catch (RuntimeException ex) {
+            return pagedFluxError(logger, ex);
+        }
     }
 
     /**
@@ -1140,7 +1180,7 @@ public final class BlobContainerAsyncClient {
         try {
             return listBlobsHierarchyWithOptionalTimeout(delimiter, options, null);
         } catch (RuntimeException ex) {
-            return pagedFluxError(LOGGER, ex);
+            return pagedFluxError(logger, ex);
         }
     }
 
@@ -1203,7 +1243,7 @@ public final class BlobContainerAsyncClient {
         ListBlobsOptions options, Duration timeout) {
         options = options == null ? new ListBlobsOptions() : options;
         if (options.getDetails().getRetrieveSnapshots()) {
-            throw LOGGER.logExceptionAsError(
+            throw logger.logExceptionAsError(
                 new UnsupportedOperationException("Including snapshots in a hierarchical listing is not supported."));
         }
 
@@ -1215,104 +1255,6 @@ public final class BlobContainerAsyncClient {
                 options.getPrefix(), marker, options.getMaxResultsPerPage(), include, null, null,
                 Context.NONE),
             timeout);
-    }
-
-    /**
-     * Returns a reactive Publisher emitting the blobs in this container whose tags match the query expression. For more
-     * information, including information on the query syntax, see the <a href="https://docs.microsoft.com/rest/api/storageservices/find-blobs-by-tags">Azure Docs</a>.
-     *
-     * <p><strong>Code Samples</strong></p>
-     *
-     * <!-- src_embed com.azure.storage.blob.BlobContainerAsyncClient.findBlobsByTag#String -->
-     * <pre>
-     * client.findBlobsByTags&#40;&quot;where=tag=value&quot;&#41;.subscribe&#40;blob -&gt; System.out.printf&#40;&quot;Name: %s%n&quot;, blob.getName&#40;&#41;&#41;&#41;;
-     * </pre>
-     * <!-- end com.azure.storage.blob.BlobContainerAsyncClient.findBlobsByTag#String -->
-     *
-     * @param query Filters the results to return only blobs whose tags match the specified expression.
-     * @return A reactive response emitting the list of blobs.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<TaggedBlobItem> findBlobsByTags(String query) {
-        try {
-            return this.findBlobsByTags(new FindBlobsOptions(query));
-        } catch (RuntimeException ex) {
-            return pagedFluxError(LOGGER, ex);
-        }
-    }
-
-    /**
-     * Returns a reactive Publisher emitting the blobs in this container whose tags match the query expression. For more
-     * information, including information on the query syntax, see the <a href="https://docs.microsoft.com/rest/api/storageservices/find-blobs-by-tags">Azure Docs</a>.
-     *
-     * <p><strong>Code Samples</strong></p>
-     *
-     * <!-- src_embed com.azure.storage.blob.BlobContainerAsyncClient.findBlobsByTag#FindBlobsOptions -->
-     * <pre>
-     * client.findBlobsByTags&#40;new FindBlobsOptions&#40;&quot;where=tag=value&quot;&#41;.setMaxResultsPerPage&#40;10&#41;&#41;
-     *     .subscribe&#40;blob -&gt; System.out.printf&#40;&quot;Name: %s%n&quot;, blob.getName&#40;&#41;&#41;&#41;;
-     * </pre>
-     * <!-- end com.azure.storage.blob.BlobContainerAsyncClient.findBlobsByTag#FindBlobsOptions -->
-     *
-     * @param options {@link FindBlobsOptions}
-     * @return A reactive response emitting the list of blobs.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<TaggedBlobItem> findBlobsByTags(FindBlobsOptions options) {
-        try {
-            return findBlobsByTags(options, null);
-        } catch (RuntimeException ex) {
-            return pagedFluxError(LOGGER, ex);
-        }
-    }
-
-    PagedFlux<TaggedBlobItem> findBlobsByTags(FindBlobsOptions options, Duration timeout) {
-        StorageImplUtils.assertNotNull("options", options);
-        BiFunction<String, Integer, Mono<PagedResponse<TaggedBlobItem>>> func =
-            (marker, pageSize) -> withContext(context -> this.findBlobsByTags(
-                new FindBlobsOptions(options.getQuery()).setMaxResultsPerPage(pageSize), marker, timeout, context));
-        return new PagedFlux<>(pageSize -> func.apply(null, pageSize), func);
-    }
-
-    PagedFlux<TaggedBlobItem> findBlobsByTags(FindBlobsOptions options, Duration timeout, Context context) {
-        StorageImplUtils.assertNotNull("options", options);
-        BiFunction<String, Integer, Mono<PagedResponse<TaggedBlobItem>>> func =
-            (marker, pageSize) -> {
-                FindBlobsOptions finalOptions;
-                if (pageSize != null) {
-                    finalOptions = new FindBlobsOptions(options.getQuery())
-                        .setMaxResultsPerPage(pageSize);
-                } else {
-                    finalOptions = options;
-                }
-                return this.findBlobsByTags(finalOptions, marker, timeout, context);
-            };
-        return new PagedFlux<>(pageSize -> func.apply(null, pageSize), func);
-    }
-
-    private Mono<PagedResponse<TaggedBlobItem>> findBlobsByTags(
-        FindBlobsOptions options, String marker,
-        Duration timeout, Context context) {
-        StorageImplUtils.assertNotNull("options", options);
-        return StorageImplUtils.applyOptionalTimeout(
-            this.azureBlobStorage.getContainers().filterBlobsWithResponseAsync(containerName, null, null,
-                options.getQuery(), marker, options.getMaxResultsPerPage(),
-                context.addData(AZ_TRACING_NAMESPACE_KEY, STORAGE_TRACING_NAMESPACE_VALUE)), timeout)
-            .map(response -> {
-                List<TaggedBlobItem> value = response.getValue().getBlobs() == null
-                    ? Collections.emptyList()
-                    : response.getValue().getBlobs().stream()
-                    .map(ModelHelper::populateTaggedBlobItem)
-                    .collect(Collectors.toList());
-
-                return new PagedResponseBase<>(
-                    response.getRequest(),
-                    response.getStatusCode(),
-                    response.getHeaders(),
-                    value,
-                    response.getValue().getNextMarker(),
-                    response.getDeserializedHeaders());
-            });
     }
 
     /**
@@ -1334,7 +1276,11 @@ public final class BlobContainerAsyncClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<StorageAccountInfo> getAccountInfo() {
-        return getAccountInfoWithResponse().flatMap(FluxUtil::toMono);
+        try {
+            return getAccountInfoWithResponse().flatMap(FluxUtil::toMono);
+        } catch (RuntimeException ex) {
+            return monoError(logger, ex);
+        }
     }
 
     /**
@@ -1359,7 +1305,7 @@ public final class BlobContainerAsyncClient {
         try {
             return withContext(this::getAccountInfoWithResponse);
         } catch (RuntimeException ex) {
-            return monoError(LOGGER, ex);
+            return monoError(logger, ex);
         }
     }
 
@@ -1558,7 +1504,7 @@ public final class BlobContainerAsyncClient {
             .generateSas(SasImplUtils.extractSharedKeyCredential(getHttpPipeline()), context);
     }
 
-    private static boolean validateNoETag(BlobRequestConditions modifiedRequestConditions) {
+    private boolean validateNoETag(BlobRequestConditions modifiedRequestConditions) {
         if (modifiedRequestConditions == null) {
             return true;
         }

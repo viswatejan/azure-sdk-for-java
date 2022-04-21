@@ -4,8 +4,8 @@
 
 package com.azure.resourcemanager.digitaltwins.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager;
 import com.azure.resourcemanager.digitaltwins.fluent.models.DigitalTwinsEndpointResourceInner;
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsEndpointResource;
 import com.azure.resourcemanager.digitaltwins.models.DigitalTwinsEndpointResourceProperties;
@@ -16,7 +16,7 @@ public final class DigitalTwinsEndpointResourceImpl
         DigitalTwinsEndpointResource.Update {
     private DigitalTwinsEndpointResourceInner innerObject;
 
-    private final com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager;
+    private final AzureDigitalTwinsManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -30,10 +30,6 @@ public final class DigitalTwinsEndpointResourceImpl
         return this.innerModel().type();
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public DigitalTwinsEndpointResourceProperties properties() {
         return this.innerModel().properties();
     }
@@ -42,7 +38,7 @@ public final class DigitalTwinsEndpointResourceImpl
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager manager() {
+    private AzureDigitalTwinsManager manager() {
         return this.serviceManager;
     }
 
@@ -77,8 +73,7 @@ public final class DigitalTwinsEndpointResourceImpl
         return this;
     }
 
-    DigitalTwinsEndpointResourceImpl(
-        String name, com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager) {
+    DigitalTwinsEndpointResourceImpl(String name, AzureDigitalTwinsManager serviceManager) {
         this.innerObject = new DigitalTwinsEndpointResourceInner();
         this.serviceManager = serviceManager;
         this.endpointName = name;
@@ -107,8 +102,7 @@ public final class DigitalTwinsEndpointResourceImpl
     }
 
     DigitalTwinsEndpointResourceImpl(
-        DigitalTwinsEndpointResourceInner innerObject,
-        com.azure.resourcemanager.digitaltwins.AzureDigitalTwinsManager serviceManager) {
+        DigitalTwinsEndpointResourceInner innerObject, AzureDigitalTwinsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");

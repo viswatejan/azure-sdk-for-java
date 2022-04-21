@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.cdn.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.cdn.models.AfdDomainHttpsParameters;
@@ -13,6 +14,7 @@ import com.azure.resourcemanager.cdn.models.DeploymentStatus;
 import com.azure.resourcemanager.cdn.models.DomainValidationProperties;
 import com.azure.resourcemanager.cdn.models.DomainValidationState;
 import com.azure.resourcemanager.cdn.models.ResourceReference;
+import com.azure.resourcemanager.cdn.models.SystemData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,93 +22,63 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Friendly domain name mapping to the endpoint hostname that the customer provides for branding purposes, e.g.
  * www.contoso.com.
  */
+@JsonFlatten
 @Fluent
-public final class AfdDomainInner extends ProxyResource {
+public class AfdDomainInner extends ProxyResource {
     @JsonIgnore private final ClientLogger logger = new ClientLogger(AfdDomainInner.class);
 
     /*
-     * The JSON object that contains the properties of the domain to create.
+     * The configuration specifying how to enable HTTPS for the domain - using
+     * AzureFrontDoor managed certificate or user's own certificate. If not
+     * specified, enabling ssl uses AzureFrontDoor managed certificate by
+     * default.
      */
-    @JsonProperty(value = "properties")
-    private AfdDomainProperties innerProperties;
+    @JsonProperty(value = "properties.tlsSettings")
+    private AfdDomainHttpsParameters tlsSettings;
 
-    /**
-     * Get the innerProperties property: The JSON object that contains the properties of the domain to create.
-     *
-     * @return the innerProperties value.
+    /*
+     * Resource reference to the Azure DNS zone
      */
-    private AfdDomainProperties innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "properties.azureDnsZone")
+    private ResourceReference azureDnsZone;
 
-    /**
-     * Get the domainValidationState property: Provisioning substate shows the progress of custom HTTPS
-     * enabling/disabling process step by step. DCV stands for DomainControlValidation.
-     *
-     * @return the domainValidationState value.
+    /*
+     * Provisioning status
      */
-    public DomainValidationState domainValidationState() {
-        return this.innerProperties() == null ? null : this.innerProperties().domainValidationState();
-    }
+    @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AfdProvisioningState provisioningState;
 
-    /**
-     * Get the hostname property: The host name of the domain. Must be a domain name.
-     *
-     * @return the hostname value.
+    /*
+     * The deploymentStatus property.
      */
-    public String hostname() {
-        return this.innerProperties() == null ? null : this.innerProperties().hostname();
-    }
+    @JsonProperty(value = "properties.deploymentStatus", access = JsonProperty.Access.WRITE_ONLY)
+    private DeploymentStatus deploymentStatus;
 
-    /**
-     * Set the hostname property: The host name of the domain. Must be a domain name.
-     *
-     * @param hostname the hostname value to set.
-     * @return the AfdDomainInner object itself.
+    /*
+     * Provisioning substate shows the progress of custom HTTPS
+     * enabling/disabling process step by step. DCV stands for
+     * DomainControlValidation.
      */
-    public AfdDomainInner withHostname(String hostname) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdDomainProperties();
-        }
-        this.innerProperties().withHostname(hostname);
-        return this;
-    }
+    @JsonProperty(value = "properties.domainValidationState", access = JsonProperty.Access.WRITE_ONLY)
+    private DomainValidationState domainValidationState;
 
-    /**
-     * Get the validationProperties property: Values the customer needs to validate domain ownership.
-     *
-     * @return the validationProperties value.
+    /*
+     * The host name of the domain. Must be a domain name.
      */
-    public DomainValidationProperties validationProperties() {
-        return this.innerProperties() == null ? null : this.innerProperties().validationProperties();
-    }
+    @JsonProperty(value = "properties.hostName")
+    private String hostname;
 
-    /**
-     * Get the provisioningState property: Provisioning status.
-     *
-     * @return the provisioningState value.
+    /*
+     * Values the customer needs to validate domain ownership
      */
-    public AfdProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
+    @JsonProperty(value = "properties.validationProperties", access = JsonProperty.Access.WRITE_ONLY)
+    private DomainValidationProperties validationProperties;
 
-    /**
-     * Get the deploymentStatus property: The deploymentStatus property.
-     *
-     * @return the deploymentStatus value.
+    /*
+     * Read only system data
      */
-    public DeploymentStatus deploymentStatus() {
-        return this.innerProperties() == null ? null : this.innerProperties().deploymentStatus();
-    }
-
-    /**
-     * Get the profileName property: The name of the profile which holds the domain.
-     *
-     * @return the profileName value.
-     */
-    public String profileName() {
-        return this.innerProperties() == null ? null : this.innerProperties().profileName();
-    }
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /**
      * Get the tlsSettings property: The configuration specifying how to enable HTTPS for the domain - using
@@ -116,7 +88,7 @@ public final class AfdDomainInner extends ProxyResource {
      * @return the tlsSettings value.
      */
     public AfdDomainHttpsParameters tlsSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().tlsSettings();
+        return this.tlsSettings;
     }
 
     /**
@@ -128,10 +100,7 @@ public final class AfdDomainInner extends ProxyResource {
      * @return the AfdDomainInner object itself.
      */
     public AfdDomainInner withTlsSettings(AfdDomainHttpsParameters tlsSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdDomainProperties();
-        }
-        this.innerProperties().withTlsSettings(tlsSettings);
+        this.tlsSettings = tlsSettings;
         return this;
     }
 
@@ -141,7 +110,7 @@ public final class AfdDomainInner extends ProxyResource {
      * @return the azureDnsZone value.
      */
     public ResourceReference azureDnsZone() {
-        return this.innerProperties() == null ? null : this.innerProperties().azureDnsZone();
+        return this.azureDnsZone;
     }
 
     /**
@@ -151,36 +120,74 @@ public final class AfdDomainInner extends ProxyResource {
      * @return the AfdDomainInner object itself.
      */
     public AfdDomainInner withAzureDnsZone(ResourceReference azureDnsZone) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdDomainProperties();
-        }
-        this.innerProperties().withAzureDnsZone(azureDnsZone);
+        this.azureDnsZone = azureDnsZone;
         return this;
     }
 
     /**
-     * Get the preValidatedCustomDomainResourceId property: Resource reference to the Azure resource where custom domain
-     * ownership was prevalidated.
+     * Get the provisioningState property: Provisioning status.
      *
-     * @return the preValidatedCustomDomainResourceId value.
+     * @return the provisioningState value.
      */
-    public ResourceReference preValidatedCustomDomainResourceId() {
-        return this.innerProperties() == null ? null : this.innerProperties().preValidatedCustomDomainResourceId();
+    public AfdProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
-     * Set the preValidatedCustomDomainResourceId property: Resource reference to the Azure resource where custom domain
-     * ownership was prevalidated.
+     * Get the deploymentStatus property: The deploymentStatus property.
      *
-     * @param preValidatedCustomDomainResourceId the preValidatedCustomDomainResourceId value to set.
+     * @return the deploymentStatus value.
+     */
+    public DeploymentStatus deploymentStatus() {
+        return this.deploymentStatus;
+    }
+
+    /**
+     * Get the domainValidationState property: Provisioning substate shows the progress of custom HTTPS
+     * enabling/disabling process step by step. DCV stands for DomainControlValidation.
+     *
+     * @return the domainValidationState value.
+     */
+    public DomainValidationState domainValidationState() {
+        return this.domainValidationState;
+    }
+
+    /**
+     * Get the hostname property: The host name of the domain. Must be a domain name.
+     *
+     * @return the hostname value.
+     */
+    public String hostname() {
+        return this.hostname;
+    }
+
+    /**
+     * Set the hostname property: The host name of the domain. Must be a domain name.
+     *
+     * @param hostname the hostname value to set.
      * @return the AfdDomainInner object itself.
      */
-    public AfdDomainInner withPreValidatedCustomDomainResourceId(ResourceReference preValidatedCustomDomainResourceId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AfdDomainProperties();
-        }
-        this.innerProperties().withPreValidatedCustomDomainResourceId(preValidatedCustomDomainResourceId);
+    public AfdDomainInner withHostname(String hostname) {
+        this.hostname = hostname;
         return this;
+    }
+
+    /**
+     * Get the validationProperties property: Values the customer needs to validate domain ownership.
+     *
+     * @return the validationProperties value.
+     */
+    public DomainValidationProperties validationProperties() {
+        return this.validationProperties;
+    }
+
+    /**
+     * Get the systemData property: Read only system data.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -189,8 +196,17 @@ public final class AfdDomainInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (tlsSettings() != null) {
+            tlsSettings().validate();
+        }
+        if (azureDnsZone() != null) {
+            azureDnsZone().validate();
+        }
+        if (validationProperties() != null) {
+            validationProperties().validate();
+        }
+        if (systemData() != null) {
+            systemData().validate();
         }
     }
 }

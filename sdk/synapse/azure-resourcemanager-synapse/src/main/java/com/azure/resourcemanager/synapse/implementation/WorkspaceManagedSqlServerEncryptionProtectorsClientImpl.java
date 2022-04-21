@@ -159,8 +159,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed sql server's encryption protector along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workspace managed sql server's encryption protector.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EncryptionProtectorInner>> getWithResponseAsync(
@@ -217,8 +216,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed sql server's encryption protector along with {@link Response} on successful completion
-     *     of {@link Mono}.
+     * @return workspace managed sql server's encryption protector.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EncryptionProtectorInner>> getWithResponseAsync(
@@ -274,7 +272,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed sql server's encryption protector on successful completion of {@link Mono}.
+     * @return workspace managed sql server's encryption protector.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EncryptionProtectorInner> getAsync(
@@ -317,7 +315,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspace managed sql server's encryption protector along with {@link Response}.
+     * @return workspace managed sql server's encryption protector.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EncryptionProtectorInner> getWithResponse(
@@ -338,7 +336,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the server encryption protector along with {@link Response} on successful completion of {@link Mono}.
+     * @return the server encryption protector.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -405,7 +403,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the server encryption protector along with {@link Response} on successful completion of {@link Mono}.
+     * @return the server encryption protector.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -469,7 +467,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the server encryption protector along with {@link Response} on successful completion of {@link Mono}.
+     * @return the server encryption protector.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<EncryptionProtectorInner>, EncryptionProtectorInner> beginCreateOrUpdateAsync(
@@ -486,7 +484,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
                 this.client.getHttpPipeline(),
                 EncryptionProtectorInner.class,
                 EncryptionProtectorInner.class,
-                this.client.getContext());
+                Context.NONE);
     }
 
     /**
@@ -500,7 +498,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the server encryption protector along with {@link Response} on successful completion of {@link Mono}.
+     * @return the server encryption protector.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<EncryptionProtectorInner>, EncryptionProtectorInner> beginCreateOrUpdateAsync(
@@ -533,7 +531,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the server encryption protector along with {@link Response} on successful completion of {@link Mono}.
+     * @return the server encryption protector.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<EncryptionProtectorInner>, EncryptionProtectorInner> beginCreateOrUpdate(
@@ -556,7 +554,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the server encryption protector along with {@link Response} on successful completion of {@link Mono}.
+     * @return the server encryption protector.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<EncryptionProtectorInner>, EncryptionProtectorInner> beginCreateOrUpdate(
@@ -579,7 +577,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the server encryption protector on successful completion of {@link Mono}.
+     * @return the server encryption protector.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EncryptionProtectorInner> createOrUpdateAsync(
@@ -603,7 +601,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the server encryption protector on successful completion of {@link Mono}.
+     * @return the server encryption protector.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EncryptionProtectorInner> createOrUpdateAsync(
@@ -670,8 +668,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of encryption protectors for workspace managed sql server along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return list of encryption protectors for workspace managed sql server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EncryptionProtectorInner>> listSinglePageAsync(
@@ -730,8 +727,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of encryption protectors for workspace managed sql server along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * @return list of encryption protectors for workspace managed sql server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EncryptionProtectorInner>> listSinglePageAsync(
@@ -854,7 +850,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> revalidateWithResponseAsync(
@@ -909,7 +905,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> revalidateWithResponseAsync(
@@ -963,7 +959,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginRevalidateAsync(
@@ -972,8 +968,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
             revalidateWithResponseAsync(resourceGroupName, workspaceName, encryptionProtectorName);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
     }
 
     /**
@@ -986,7 +981,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginRevalidateAsync(
@@ -1011,7 +1006,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRevalidate(
@@ -1029,7 +1024,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRevalidate(
@@ -1049,7 +1044,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> revalidateAsync(
@@ -1069,7 +1064,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> revalidateAsync(
@@ -1125,8 +1120,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of server encryption protectors along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of server encryption protectors.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EncryptionProtectorInner>> listNextSinglePageAsync(String nextLink) {
@@ -1162,8 +1156,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of server encryption protectors along with {@link PagedResponse} on successful completion of
-     *     {@link Mono}.
+     * @return a list of server encryption protectors.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<EncryptionProtectorInner>> listNextSinglePageAsync(String nextLink, Context context) {

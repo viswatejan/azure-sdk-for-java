@@ -32,7 +32,7 @@ public interface Applications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String accountName, String applicationName, Context context);
@@ -60,7 +60,7 @@ public interface Applications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified application along with {@link Response}.
+     * @return information about the specified application.
      */
     Response<Application> getWithResponse(
         String resourceGroupName, String accountName, String applicationName, Context context);
@@ -73,7 +73,7 @@ public interface Applications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list applications as paginated response with {@link PagedIterable}.
+     * @return the result of performing list applications.
      */
     PagedIterable<Application> list(String resourceGroupName, String accountName);
 
@@ -87,7 +87,7 @@ public interface Applications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list applications as paginated response with {@link PagedIterable}.
+     * @return the result of performing list applications.
      */
     PagedIterable<Application> list(String resourceGroupName, String accountName, Integer maxresults, Context context);
 
@@ -98,7 +98,7 @@ public interface Applications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified application along with {@link Response}.
+     * @return information about the specified application.
      */
     Application getById(String id);
 
@@ -110,7 +110,7 @@ public interface Applications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified application along with {@link Response}.
+     * @return information about the specified application.
      */
     Response<Application> getByIdWithResponse(String id, Context context);
 
@@ -132,7 +132,7 @@ public interface Applications {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

@@ -32,7 +32,7 @@ public interface PrivateLinkResourcesOperations {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available private link resources for an IotHub along with {@link Response}.
+     * @return the available private link resources for an IotHub.
      */
     Response<PrivateLinkResources> listWithResponse(String resourceGroupName, String resourceName, Context context);
 
@@ -61,7 +61,7 @@ public interface PrivateLinkResourcesOperations {
      * @throws com.azure.resourcemanager.iothub.models.ErrorDetailsException thrown if the request is rejected by
      *     server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified private link resource for the given IotHub along with {@link Response}.
+     * @return the specified private link resource for the given IotHub.
      */
     Response<GroupIdInformation> getWithResponse(
         String resourceGroupName, String resourceName, String groupId, Context context);

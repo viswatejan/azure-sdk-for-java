@@ -49,8 +49,7 @@ public interface ApplicationPackagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application package which represents a particular version of an application along with {@link
-     *     Response}.
+     * @return an application package which represents a particular version of an application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationPackageInner> activateWithResponse(
@@ -93,8 +92,7 @@ public interface ApplicationPackagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an application package which represents a particular version of an application along with {@link
-     *     Response}.
+     * @return an application package which represents a particular version of an application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationPackageInner> createWithResponse(
@@ -130,7 +128,7 @@ public interface ApplicationPackagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
@@ -163,7 +161,7 @@ public interface ApplicationPackagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified application package along with {@link Response}.
+     * @return information about the specified application package.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ApplicationPackageInner> getWithResponse(
@@ -178,7 +176,7 @@ public interface ApplicationPackagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list application packages as paginated response with {@link PagedIterable}.
+     * @return the result of performing list application packages.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApplicationPackageInner> list(String resourceGroupName, String accountName, String applicationName);
@@ -194,7 +192,7 @@ public interface ApplicationPackagesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of performing list application packages as paginated response with {@link PagedIterable}.
+     * @return the result of performing list application packages.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApplicationPackageInner> list(

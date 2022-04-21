@@ -52,14 +52,16 @@ public class ReadManySplitTest {
                 new CosmosQueryRequestOptions(),
                 null,
                 "Select * from C",
+                true,
+                true,
                 UUID.randomUUID()
             );
         PartitionKeyRange partitionKey = new PartitionKeyRange("0", "00", "FF");
         Map<PartitionKeyRange, SqlQuerySpec> rangeQueryMap = new HashMap<>();
         rangeQueryMap.put(partitionKey, querySpec);
-        parallelDocumentQueryExecutionContextBase.initializeReadMany(
+        parallelDocumentQueryExecutionContextBase.initializeReadMany(client, "testCollectionRid", querySpec,
             rangeQueryMap,
-            new CosmosQueryRequestOptions(), "testCollectionRid");
+            new CosmosQueryRequestOptions(), UUID.randomUUID(), "testCollectionRid");
         //Parent document producer created
         DocumentProducer<Document> documentProducer = parallelDocumentQueryExecutionContextBase.documentProducers.get(0);
 
@@ -98,9 +100,11 @@ public class ReadManySplitTest {
                                                             SqlQuerySpec query,
                                                             CosmosQueryRequestOptions cosmosQueryRequestOptions,
                                                             String resourceLink, String rewrittenQuery,
+                                                            boolean isContinuationExpected,
+                                                            boolean getLazyFeedResponse,
                                                             UUID correlatedActivityId) {
             super(diagnosticsClientContext, client, resourceTypeEnum, resourceType, query, cosmosQueryRequestOptions,
-                resourceLink, rewrittenQuery, correlatedActivityId, false);
+                resourceLink, rewrittenQuery, isContinuationExpected, getLazyFeedResponse, correlatedActivityId);
         }
 
         @Override

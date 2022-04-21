@@ -24,7 +24,7 @@ public interface FactoriesClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
+     * @return a list of factory resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FactoryInner> list();
@@ -36,7 +36,7 @@ public interface FactoriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
+     * @return a list of factory resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FactoryInner> list(Context context);
@@ -63,7 +63,7 @@ public interface FactoriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return factory resource type along with {@link Response}.
+     * @return factory resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FactoryInner> configureFactoryRepoWithResponse(
@@ -76,7 +76,7 @@ public interface FactoriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
+     * @return a list of factory resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FactoryInner> listByResourceGroup(String resourceGroupName);
@@ -89,7 +89,7 @@ public interface FactoriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
+     * @return a list of factory resources.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FactoryInner> listByResourceGroup(String resourceGroupName, Context context);
@@ -120,7 +120,7 @@ public interface FactoriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return factory resource type along with {@link Response}.
+     * @return factory resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FactoryInner> createOrUpdateWithResponse(
@@ -150,7 +150,7 @@ public interface FactoriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return factory resource type along with {@link Response}.
+     * @return factory resource type.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FactoryInner> updateWithResponse(
@@ -180,7 +180,7 @@ public interface FactoriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a factory along with {@link Response}.
+     * @return a factory.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FactoryInner> getByResourceGroupWithResponse(
@@ -207,7 +207,7 @@ public interface FactoriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(String resourceGroupName, String factoryName, Context context);
@@ -237,7 +237,7 @@ public interface FactoriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return gitHub Access Token along with {@link Response}.
+     * @return gitHub Access Token.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<GitHubAccessTokenResponseInner> getGitHubAccessTokenWithResponse(
@@ -270,7 +270,7 @@ public interface FactoriesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Plane access along with {@link Response}.
+     * @return data Plane access.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AccessPolicyResponseInner> getDataPlaneAccessWithResponse(

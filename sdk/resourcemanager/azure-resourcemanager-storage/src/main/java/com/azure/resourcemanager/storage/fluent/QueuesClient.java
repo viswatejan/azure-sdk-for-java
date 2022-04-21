@@ -30,7 +30,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StorageQueueInner>> createWithResponseAsync(
@@ -50,7 +50,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StorageQueueInner> createAsync(
@@ -90,7 +90,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StorageQueueInner> createWithResponse(
@@ -110,7 +110,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StorageQueueInner>> updateWithResponseAsync(
@@ -130,7 +130,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body on successful completion of {@link Mono}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StorageQueueInner> updateAsync(
@@ -170,7 +170,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response body along with {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StorageQueueInner> updateWithResponse(
@@ -189,8 +189,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the queue with the specified queue name, under the specified account if it exists along with {@link
-     *     Response} on successful completion of {@link Mono}.
+     * @return the queue with the specified queue name, under the specified account if it exists.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<StorageQueueInner>> getWithResponseAsync(
@@ -209,8 +208,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the queue with the specified queue name, under the specified account if it exists on successful
-     *     completion of {@link Mono}.
+     * @return the queue with the specified queue name, under the specified account if it exists.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<StorageQueueInner> getAsync(String resourceGroupName, String accountName, String queueName);
@@ -247,8 +245,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the queue with the specified queue name, under the specified account if it exists along with {@link
-     *     Response}.
+     * @return the queue with the specified queue name, under the specified account if it exists.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StorageQueueInner> getWithResponse(
@@ -267,7 +264,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String accountName, String queueName);
@@ -285,7 +282,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Void> deleteAsync(String resourceGroupName, String accountName, String queueName);
@@ -321,7 +318,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(String resourceGroupName, String accountName, String queueName, Context context);
@@ -339,8 +336,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all the queues under the specified storage account as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of all the queues under the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ListQueueInner> listAsync(
@@ -356,8 +352,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all the queues under the specified storage account as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of all the queues under the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<ListQueueInner> listAsync(String resourceGroupName, String accountName);
@@ -372,8 +367,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all the queues under the specified storage account as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of all the queues under the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ListQueueInner> list(String resourceGroupName, String accountName);
@@ -392,8 +386,7 @@ public interface QueuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of all the queues under the specified storage account as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of all the queues under the specified storage account.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ListQueueInner> list(

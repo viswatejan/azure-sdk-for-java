@@ -295,7 +295,7 @@ public class RequestResponseChannel implements AsyncCloseable {
      */
     public Mono<Message> sendWithAck(final Message message, DeliveryState deliveryState) {
         if (isDisposed()) {
-            return monoError(logger, new RequestResponseChannelClosedException());
+            return monoError(logger, new IllegalStateException("Cannot send a message when request response channel is disposed."));
         }
 
         if (message == null) {
@@ -326,12 +326,6 @@ public class RequestResponseChannel implements AsyncCloseable {
 
                     // Schedule API calls on proton-j entities on the ReactorThread associated with the connection.
                     provider.getReactorDispatcher().invoke(() -> {
-                        if (isDisposed()) {
-                            sink.error(new RequestResponseChannelClosedException(sendLink.getLocalState(),
-                                receiveLink.getLocalState()));
-                            return;
-                        }
-
                         final Delivery delivery = sendLink.delivery(UUID.randomUUID().toString()
                             .replace("-", "").getBytes(UTF_8));
 

@@ -20,8 +20,7 @@ public interface FeaturesClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the preview features that are available through AFEC for the subscription as paginated response with
-     *     {@link PagedFlux}.
+     * @return all the preview features that are available through AFEC for the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<FeatureResultInner> listAllAsync();
@@ -31,8 +30,7 @@ public interface FeaturesClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the preview features that are available through AFEC for the subscription as paginated response with
-     *     {@link PagedIterable}.
+     * @return all the preview features that are available through AFEC for the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FeatureResultInner> listAll();
@@ -44,8 +42,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the preview features that are available through AFEC for the subscription as paginated response with
-     *     {@link PagedIterable}.
+     * @return all the preview features that are available through AFEC for the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FeatureResultInner> listAll(Context context);
@@ -57,8 +54,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the preview features in a provider namespace that are available through AFEC for the subscription as
-     *     paginated response with {@link PagedFlux}.
+     * @return all the preview features in a provider namespace that are available through AFEC for the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedFlux<FeatureResultInner> listAsync(String resourceProviderNamespace);
@@ -70,8 +66,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the preview features in a provider namespace that are available through AFEC for the subscription as
-     *     paginated response with {@link PagedIterable}.
+     * @return all the preview features in a provider namespace that are available through AFEC for the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FeatureResultInner> list(String resourceProviderNamespace);
@@ -84,8 +79,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the preview features in a provider namespace that are available through AFEC for the subscription as
-     *     paginated response with {@link PagedIterable}.
+     * @return all the preview features in a provider namespace that are available through AFEC for the subscription.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FeatureResultInner> list(String resourceProviderNamespace, Context context);
@@ -98,8 +92,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the preview feature with the specified name along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the preview feature with the specified name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FeatureResultInner>> getWithResponseAsync(String resourceProviderNamespace, String featureName);
@@ -112,7 +105,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the preview feature with the specified name on successful completion of {@link Mono}.
+     * @return the preview feature with the specified name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FeatureResultInner> getAsync(String resourceProviderNamespace, String featureName);
@@ -139,7 +132,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the preview feature with the specified name along with {@link Response}.
+     * @return the preview feature with the specified name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FeatureResultInner> getWithResponse(String resourceProviderNamespace, String featureName, Context context);
@@ -152,7 +145,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return previewed feature information along with {@link Response} on successful completion of {@link Mono}.
+     * @return previewed feature information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FeatureResultInner>> registerWithResponseAsync(String resourceProviderNamespace, String featureName);
@@ -165,7 +158,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return previewed feature information on successful completion of {@link Mono}.
+     * @return previewed feature information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FeatureResultInner> registerAsync(String resourceProviderNamespace, String featureName);
@@ -192,7 +185,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return previewed feature information along with {@link Response}.
+     * @return previewed feature information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FeatureResultInner> registerWithResponse(
@@ -206,7 +199,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return previewed feature information along with {@link Response} on successful completion of {@link Mono}.
+     * @return previewed feature information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<Response<FeatureResultInner>> unregisterWithResponseAsync(
@@ -220,7 +213,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return previewed feature information on successful completion of {@link Mono}.
+     * @return previewed feature information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Mono<FeatureResultInner> unregisterAsync(String resourceProviderNamespace, String featureName);
@@ -247,7 +240,7 @@ public interface FeaturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return previewed feature information along with {@link Response}.
+     * @return previewed feature information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FeatureResultInner> unregisterWithResponse(

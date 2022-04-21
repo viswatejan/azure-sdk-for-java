@@ -275,6 +275,11 @@ public final class BigDataPoolResourceInfoImpl
         return this;
     }
 
+    public BigDataPoolResourceInfoImpl withCreationDate(OffsetDateTime creationDate) {
+        this.innerModel().withCreationDate(creationDate);
+        return this;
+    }
+
     public BigDataPoolResourceInfoImpl withAutoPause(AutoPauseProperties autoPause) {
         this.innerModel().withAutoPause(autoPause);
         return this;

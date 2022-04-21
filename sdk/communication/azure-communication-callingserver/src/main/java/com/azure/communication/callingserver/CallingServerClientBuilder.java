@@ -8,12 +8,6 @@ import com.azure.communication.callingserver.implementation.AzureCommunicationCa
 import com.azure.communication.common.implementation.CommunicationConnectionString;
 import com.azure.communication.common.implementation.HmacAuthenticationPolicy;
 import com.azure.core.annotation.ServiceClientBuilder;
-import com.azure.core.client.traits.AzureKeyCredentialTrait;
-import com.azure.core.client.traits.ConfigurationTrait;
-import com.azure.core.client.traits.ConnectionStringTrait;
-import com.azure.core.client.traits.EndpointTrait;
-import com.azure.core.client.traits.HttpTrait;
-import com.azure.core.client.traits.TokenCredentialTrait;
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.core.credential.TokenCredential;
 import com.azure.core.http.HttpClient;
@@ -23,19 +17,16 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.policy.AddHeadersPolicy;
 import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.CookiePolicy;
-import com.azure.core.http.policy.HttpLogDetailLevel;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.RedirectPolicy;
 import com.azure.core.http.policy.RequestIdPolicy;
-import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.util.ClientOptions;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.builder.ClientBuilderUtil;
 import com.azure.core.util.logging.ClientLogger;
 
 import java.net.MalformedURLException;
@@ -70,13 +61,7 @@ import java.util.Objects;
  * <!-- end com.azure.communication.callingserver.CallingServerClientBuilder.pipeline.instantiation -->
  */
 @ServiceClientBuilder(serviceClients = { CallingServerClient.class, CallingServerAsyncClient.class })
-public final class CallingServerClientBuilder implements
-    AzureKeyCredentialTrait<CallingServerClientBuilder>,
-    ConfigurationTrait<CallingServerClientBuilder>,
-    ConnectionStringTrait<CallingServerClientBuilder>,
-    EndpointTrait<CallingServerClientBuilder>,
-    HttpTrait<CallingServerClientBuilder>,
-    TokenCredentialTrait<CallingServerClientBuilder> {
+public final class CallingServerClientBuilder {
     private static final String SDK_NAME = "name";
     private static final String SDK_VERSION = "version";
     private static final String APP_CONFIG_PROPERTIES = "azure-communication-callingserver.properties";
@@ -95,7 +80,6 @@ public final class CallingServerClientBuilder implements
     private final List<HttpPipelinePolicy> customPolicies = new ArrayList<>();
     private ClientOptions clientOptions;
     private RetryPolicy retryPolicy;
-    private RetryOptions retryOptions;
 
     /**
      * Set endpoint of the service.
@@ -103,43 +87,31 @@ public final class CallingServerClientBuilder implements
      * @param endpoint url of the service.
      * @return CallingServerClientBuilder object.
      */
-    @Override
     public CallingServerClientBuilder endpoint(String endpoint) {
         this.endpoint = Objects.requireNonNull(endpoint, "'endpoint' cannot be null.");
         return this;
     }
 
     /**
-     * Sets the {@link HttpPipeline} to use for the service client.
+     * Set endpoint of the service.
      *
-     * <p><strong>Note:</strong> It is important to understand the precedence order of the HttpTrait APIs. In
-     * particular, if a {@link HttpPipeline} is specified, this takes precedence over all other APIs in the trait, and
-     * they will be ignored. If no {@link HttpPipeline} is specified, a HTTP pipeline will be constructed internally
-     * based on the settings provided to this trait. Additionally, there may be other APIs in types that implement this
-     * trait that are also ignored if an {@link HttpPipeline} is specified, so please be sure to refer to the
-     * documentation of types that implement this trait to understand the full set of implications.</p>
-     *
-     * @param pipeline {@link HttpPipeline} to use for sending service requests and receiving responses,
-     * if a pipeline is not supplied, the
+     * @param pipeline HttpPipeline to use, if a pipeline is not supplied, the
      * credential and httpClient fields must be set.
      * @return CallingServerClientBuilder object.
      */
-    @Override
     public CallingServerClientBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = Objects.requireNonNull(pipeline, "'pipeline' cannot be null.");
         return this;
     }
 
     /**
-     * Sets the {@link TokenCredential} used to authorize requests sent to the service. Refer to the Azure SDK for Java
-     * <a href="https://aka.ms/azsdk/java/docs/identity">identity and authentication</a>
-     * documentation for more details on proper usage of the {@link TokenCredential} type.
+     * Sets the {@link TokenCredential} used to authenticate HTTP requests.
      *
-     * @param tokenCredential {@link TokenCredential} used to authorize requests sent to the service.
+     * @param tokenCredential {@link TokenCredential} used to authenticate HTTP
+     * requests.
      * @return Updated {@link CallingServerClientBuilder} object.
      * @throws NullPointerException If {@code tokenCredential} is null.
      */
-    @Override
     public CallingServerClientBuilder credential(TokenCredential tokenCredential) {
         this.tokenCredential = Objects.requireNonNull(tokenCredential, "'tokenCredential' cannot be null.");
         return this;
@@ -153,8 +125,7 @@ public final class CallingServerClientBuilder implements
      * @return Updated {@link CallingServerClientBuilder} object.
      * @throws NullPointerException If {@code keyCredential} is null.
      */
-    @Override
-    public CallingServerClientBuilder credential(AzureKeyCredential keyCredential) {
+    CallingServerClientBuilder credential(AzureKeyCredential keyCredential) {
         this.azureKeyCredential = Objects.requireNonNull(keyCredential, "'keyCredential' cannot be null.");
         return this;
     }
@@ -165,7 +136,6 @@ public final class CallingServerClientBuilder implements
      * @param connectionString connection string to set.
      * @return Updated {@link CallingServerClientBuilder} object.
      */
-    @Override
     public CallingServerClientBuilder connectionString(String connectionString) {
         Objects.requireNonNull(connectionString, "'connectionString' cannot be null.");
         this.connectionString = connectionString;
@@ -174,35 +144,12 @@ public final class CallingServerClientBuilder implements
 
     /**
      * Sets the retry policy to use (using the RetryPolicy type).
-     * <p>
-     * Setting this is mutually exclusive with using {@link #retryOptions(RetryOptions)}.
      *
      * @param retryPolicy object to be applied
      * @return Updated {@link CallingServerClientBuilder} object.
      */
     public CallingServerClientBuilder retryPolicy(RetryPolicy retryPolicy) {
         this.retryPolicy = Objects.requireNonNull(retryPolicy, "'retryPolicy' cannot be null.");
-        return this;
-    }
-
-    /**
-     * Sets the {@link RetryOptions} for all the requests made through the client.
-     *
-     * <p><strong>Note:</strong> It is important to understand the precedence order of the HttpTrait APIs. In
-     * particular, if a {@link HttpPipeline} is specified, this takes precedence over all other APIs in the trait, and
-     * they will be ignored. If no {@link HttpPipeline} is specified, a HTTP pipeline will be constructed internally
-     * based on the settings provided to this trait. Additionally, there may be other APIs in types that implement this
-     * trait that are also ignored if an {@link HttpPipeline} is specified, so please be sure to refer to the
-     * documentation of types that implement this trait to understand the full set of implications.</p>
-     * <p>
-     * Setting this is mutually exclusive with using {@link #retryPolicy(RetryPolicy)}.
-     *
-     * @param retryOptions The {@link RetryOptions} to use for all the requests made through the client.
-     * @return Updated {@link CallingServerClientBuilder} object.
-     */
-    @Override
-    public CallingServerClientBuilder retryOptions(RetryOptions retryOptions) {
-        this.retryOptions = retryOptions;
         return this;
     }
 
@@ -214,28 +161,18 @@ public final class CallingServerClientBuilder implements
      * configurations.
      * @return Updated {@link CallingServerClientBuilder} object.
      */
-    @Override
     public CallingServerClientBuilder configuration(Configuration configuration) {
         this.configuration = Objects.requireNonNull(configuration, "'configuration' cannot be null.");
         return this;
     }
 
     /**
-     * Sets the {@link HttpLogOptions logging configuration} to use when sending and receiving requests to and from
-     * the service. If a {@code logLevel} is not provided, default value of {@link HttpLogDetailLevel#NONE} is set.
+     * Sets the {@link HttpLogOptions} for service requests.
      *
-     * <p><strong>Note:</strong> It is important to understand the precedence order of the HttpTrait APIs. In
-     * particular, if a {@link HttpPipeline} is specified, this takes precedence over all other APIs in the trait, and
-     * they will be ignored. If no {@link HttpPipeline} is specified, a HTTP pipeline will be constructed internally
-     * based on the settings provided to this trait. Additionally, there may be other APIs in types that implement this
-     * trait that are also ignored if an {@link HttpPipeline} is specified, so please be sure to refer to the
-     * documentation of types that implement this trait to understand the full set of implications.</p>
-     *
-     * @param logOptions The {@link HttpLogOptions logging configuration} to use when sending and receiving requests to
-     * and from the service.
+     * @param logOptions The logging configuration to use when sending and receiving
+     * HTTP requests/responses.
      * @return The updated {@link CallingServerClientBuilder} object.
      */
-    @Override
     public CallingServerClientBuilder httpLogOptions(HttpLogOptions logOptions) {
         this.httpLogOptions = Objects.requireNonNull(logOptions, "'logOptions' cannot be null.");
         return this;
@@ -258,39 +195,23 @@ public final class CallingServerClientBuilder implements
     }
 
     /**
-     * Sets the {@link HttpClient} to use for sending and receiving requests to and from the service.
+     * Set httpClient to use
      *
-     * <p><strong>Note:</strong> It is important to understand the precedence order of the HttpTrait APIs. In
-     * particular, if a {@link HttpPipeline} is specified, this takes precedence over all other APIs in the trait, and
-     * they will be ignored. If no {@link HttpPipeline} is specified, a HTTP pipeline will be constructed internally
-     * based on the settings provided to this trait. Additionally, there may be other APIs in types that implement this
-     * trait that are also ignored if an {@link HttpPipeline} is specified, so please be sure to refer to the
-     * documentation of types that implement this trait to understand the full set of implications.</p>
-     *
-     * @param httpClient The {@link HttpClient} to use for requests.
+     * @param httpClient httpClient to use, overridden by the pipeline field.
      * @return Updated {@link CallingServerClientBuilder} object.
      */
-    @Override
     public CallingServerClientBuilder httpClient(HttpClient httpClient) {
         this.httpClient = Objects.requireNonNull(httpClient, "'httpClient' cannot be null.");
         return this;
     }
 
     /**
-     * Adds a {@link HttpPipelinePolicy pipeline policy} to apply on each request sent.
+     * Apply additional HttpPipelinePolicy
      *
-     * <p><strong>Note:</strong> It is important to understand the precedence order of the HttpTrait APIs. In
-     * particular, if a {@link HttpPipeline} is specified, this takes precedence over all other APIs in the trait, and
-     * they will be ignored. If no {@link HttpPipeline} is specified, a HTTP pipeline will be constructed internally
-     * based on the settings provided to this trait. Additionally, there may be other APIs in types that implement this
-     * trait that are also ignored if an {@link HttpPipeline} is specified, so please be sure to refer to the
-     * documentation of types that implement this trait to understand the full set of implications.</p>
-     *
-     * @param customPolicy A {@link HttpPipelinePolicy pipeline policy}.
+     * @param customPolicy HttpPipelinePolicy object to be applied after
+     *                     AzureKeyCredentialPolicy, UserAgentPolicy, RetryPolicy, and CookiePolicy.
      * @return Updated {@link CallingServerClientBuilder} object.
-     * @throws NullPointerException If {@code pipelinePolicy} is {@code null}.
      */
-    @Override
     public CallingServerClientBuilder addPolicy(HttpPipelinePolicy customPolicy) {
         this.customPolicies.add(Objects.requireNonNull(customPolicy, "'customPolicy' cannot be null."));
         return this;
@@ -302,8 +223,6 @@ public final class CallingServerClientBuilder implements
      * specified by additionalPolicies will be applied after them
      *
      * @return The updated {@link CallingServerClientBuilder} object.
-     * @throws IllegalStateException If both {@link #retryOptions(RetryOptions)}
-     * and {@link #retryPolicy(RetryPolicy)} have been set.
      */
     public CallingServerAsyncClient buildAsyncClient() {
         return new CallingServerAsyncClient(createServiceImpl());
@@ -315,8 +234,6 @@ public final class CallingServerClientBuilder implements
      * additionalPolicies will be applied after them.
      *
      * @return Updated {@link CallingServerClientBuilder} object.
-     * @throws IllegalStateException If both {@link #retryOptions(RetryOptions)}
-     * and {@link #retryPolicy(RetryPolicy)} have been set.
      */
     public CallingServerClient buildClient() {
         return new CallingServerClient(buildAsyncClient());
@@ -436,7 +353,7 @@ public final class CallingServerClientBuilder implements
         String clientVersion = properties.getOrDefault(SDK_VERSION, "UnknownVersion");
         policyList.add(new UserAgentPolicy(applicationId, clientName, clientVersion, configuration));
         policyList.add(new RequestIdPolicy());
-        policyList.add(ClientBuilderUtil.validateAndGetRetryPolicy(retryPolicy, retryOptions));
+        policyList.add((retryPolicy == null) ? new RetryPolicy() : retryPolicy);
         policyList.add(new RedirectPolicy());
         policyList.addAll(createHttpPipelineAuthPolicies());
         policyList.add(new CookiePolicy());

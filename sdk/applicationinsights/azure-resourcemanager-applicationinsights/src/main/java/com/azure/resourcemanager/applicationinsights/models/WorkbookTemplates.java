@@ -54,7 +54,7 @@ public interface WorkbookTemplates {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single workbook template by its resourceName along with {@link Response}.
+     * @return a single workbook template by its resourceName.
      */
     Response<WorkbookTemplate> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context);
@@ -79,7 +79,7 @@ public interface WorkbookTemplates {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(String resourceGroupName, String resourceName, Context context);
 
@@ -90,7 +90,7 @@ public interface WorkbookTemplates {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single workbook template by its resourceName along with {@link Response}.
+     * @return a single workbook template by its resourceName.
      */
     WorkbookTemplate getById(String id);
 
@@ -102,7 +102,7 @@ public interface WorkbookTemplates {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a single workbook template by its resourceName along with {@link Response}.
+     * @return a single workbook template by its resourceName.
      */
     Response<WorkbookTemplate> getByIdWithResponse(String id, Context context);
 
@@ -124,7 +124,7 @@ public interface WorkbookTemplates {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

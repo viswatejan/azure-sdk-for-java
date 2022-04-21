@@ -10,7 +10,6 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.botservice.fluent.models.BotChannelInner;
-import com.azure.resourcemanager.botservice.fluent.models.ListChannelWithKeysResponseInner;
 import com.azure.resourcemanager.botservice.models.ChannelName;
 
 /** An instance of this class provides access to all the operations defined in ChannelsClient. */
@@ -42,7 +41,7 @@ public interface ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BotChannelInner> createWithResponse(
@@ -79,7 +78,7 @@ public interface ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BotChannelInner> updateWithResponse(
@@ -112,7 +111,7 @@ public interface ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
@@ -142,7 +141,7 @@ public interface ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return bot channel resource definition along with {@link Response}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<BotChannelInner> getWithResponse(
@@ -157,11 +156,10 @@ public interface ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ARM channel of list channel with keys operation response.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ListChannelWithKeysResponseInner listWithKeys(
-        String resourceGroupName, String resourceName, ChannelName channelName);
+    BotChannelInner listWithKeys(String resourceGroupName, String resourceName, ChannelName channelName);
 
     /**
      * Lists a Channel registration for a Bot Service including secrets.
@@ -173,10 +171,10 @@ public interface ChannelsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the ARM channel of list channel with keys operation response along with {@link Response}.
+     * @return bot channel resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ListChannelWithKeysResponseInner> listWithKeysWithResponse(
+    Response<BotChannelInner> listWithKeysWithResponse(
         String resourceGroupName, String resourceName, ChannelName channelName, Context context);
 
     /**

@@ -130,7 +130,7 @@ public final class TableAzureNamedKeyCredentialPolicy implements HttpPipelinePol
 
                 String queryParamValuesStr = String.join(",", queryParamValues);
 
-                if ("comp".equalsIgnoreCase(queryParamName)) {
+                if (queryParamName.equalsIgnoreCase("comp")) {
                     canonicalizedResource.append("?").append(queryParamName.toLowerCase(Locale.ROOT)).append("=")
                         .append(queryParamValuesStr);
                 }

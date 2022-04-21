@@ -626,7 +626,8 @@ public final class IotHubResourcesImpl implements IotHubResources {
         }
         this
             .deleteEventHubConsumerGroupWithResponse(
-                resourceGroupName, resourceName, eventHubEndpointName, name, Context.NONE);
+                resourceGroupName, resourceName, eventHubEndpointName, name, Context.NONE)
+            .getValue();
     }
 
     public Response<Void> deleteEventHubConsumerGroupByIdWithResponse(String id, Context context) {

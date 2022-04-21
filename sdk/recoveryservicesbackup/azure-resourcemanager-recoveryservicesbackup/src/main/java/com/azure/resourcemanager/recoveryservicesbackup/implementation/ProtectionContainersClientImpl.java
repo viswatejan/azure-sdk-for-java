@@ -157,8 +157,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specific container registered to your Recovery Services Vault along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return details of the specific container registered to your Recovery Services Vault.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProtectionContainerResourceInner>> getWithResponseAsync(
@@ -217,8 +216,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specific container registered to your Recovery Services Vault along with {@link Response}
-     *     on successful completion of {@link Mono}.
+     * @return details of the specific container registered to your Recovery Services Vault.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProtectionContainerResourceInner>> getWithResponseAsync(
@@ -273,8 +271,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specific container registered to your Recovery Services Vault on successful completion of
-     *     {@link Mono}.
+     * @return details of the specific container registered to your Recovery Services Vault.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ProtectionContainerResourceInner> getAsync(
@@ -319,7 +316,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specific container registered to your Recovery Services Vault along with {@link Response}.
+     * @return details of the specific container registered to your Recovery Services Vault.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ProtectionContainerResourceInner> getWithResponse(
@@ -339,8 +336,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return base class for container with backup items along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return base class for container with backup items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProtectionContainerResourceInner>> registerWithResponseAsync(
@@ -411,8 +407,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return base class for container with backup items along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return base class for container with backup items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProtectionContainerResourceInner>> registerWithResponseAsync(
@@ -480,7 +475,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return base class for container with backup items on successful completion of {@link Mono}.
+     * @return base class for container with backup items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ProtectionContainerResourceInner> registerAsync(
@@ -537,7 +532,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return base class for container with backup items along with {@link Response}.
+     * @return base class for container with backup items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ProtectionContainerResourceInner> registerWithResponse(
@@ -563,7 +558,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> unregisterWithResponseAsync(
@@ -624,7 +619,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> unregisterWithResponseAsync(
@@ -681,7 +676,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> unregisterAsync(
@@ -721,7 +716,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> unregisterWithResponse(
@@ -740,7 +735,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> inquireWithResponseAsync(
@@ -801,7 +796,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> inquireWithResponseAsync(
@@ -863,7 +858,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> inquireAsync(
@@ -882,7 +877,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> inquireAsync(
@@ -921,7 +916,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> inquireWithResponse(
@@ -946,7 +941,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> refreshWithResponseAsync(
@@ -1003,7 +998,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> refreshWithResponseAsync(
@@ -1056,7 +1051,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> refreshAsync(String vaultName, String resourceGroupName, String fabricName, String filter) {
@@ -1074,7 +1069,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the completion.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> refreshAsync(String vaultName, String resourceGroupName, String fabricName) {
@@ -1112,7 +1107,7 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> refreshWithResponse(

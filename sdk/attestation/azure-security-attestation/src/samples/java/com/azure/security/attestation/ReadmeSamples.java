@@ -8,8 +8,10 @@ import com.azure.security.attestation.models.AttestationData;
 import com.azure.security.attestation.models.AttestationDataInterpretation;
 import com.azure.security.attestation.models.AttestationOptions;
 import com.azure.security.attestation.models.AttestationResult;
-import com.azure.security.attestation.models.AttestationSignerCollection;
+import com.azure.security.attestation.models.AttestationSigner;
 import com.azure.security.attestation.models.AttestationType;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -60,9 +62,9 @@ class ReadmeSamples {
             .buildClient();
 
         // BEGIN: readme-sample-getSigningCertificates
-        AttestationSignerCollection certs = client.listAttestationSigners();
+        List<AttestationSigner> certs = client.listAttestationSigners();
 
-        certs.getAttestationSigners().forEach(cert -> {
+        certs.forEach(cert -> {
             System.out.println("Found certificate.");
             if (cert.getKeyId() != null) {
                 System.out.println("    Certificate Key ID: " + cert.getKeyId());

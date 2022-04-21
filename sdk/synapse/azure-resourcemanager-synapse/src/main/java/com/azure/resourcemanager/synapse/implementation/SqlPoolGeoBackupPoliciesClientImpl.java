@@ -124,8 +124,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SQL pool geo backup policies along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of SQL pool geo backup policies.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GeoBackupPolicyInner>> listSinglePageAsync(
@@ -184,8 +183,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of SQL pool geo backup policies along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return list of SQL pool geo backup policies.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<GeoBackupPolicyInner>> listSinglePageAsync(
@@ -312,7 +310,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a database geo backup policy along with {@link Response} on successful completion of {@link Mono}.
+     * @return a database geo backup policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GeoBackupPolicyInner>> createOrUpdateWithResponseAsync(
@@ -384,7 +382,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a database geo backup policy along with {@link Response} on successful completion of {@link Mono}.
+     * @return a database geo backup policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GeoBackupPolicyInner>> createOrUpdateWithResponseAsync(
@@ -453,7 +451,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a database geo backup policy on successful completion of {@link Mono}.
+     * @return a database geo backup policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GeoBackupPolicyInner> createOrUpdateAsync(
@@ -510,7 +508,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a database geo backup policy along with {@link Response}.
+     * @return a database geo backup policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<GeoBackupPolicyInner> createOrUpdateWithResponse(
@@ -535,8 +533,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified SQL pool geo backup policy along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified SQL pool geo backup policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GeoBackupPolicyInner>> getWithResponseAsync(
@@ -597,8 +594,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified SQL pool geo backup policy along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the specified SQL pool geo backup policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<GeoBackupPolicyInner>> getWithResponseAsync(
@@ -659,7 +655,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified SQL pool geo backup policy on successful completion of {@link Mono}.
+     * @return the specified SQL pool geo backup policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<GeoBackupPolicyInner> getAsync(
@@ -704,7 +700,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified SQL pool geo backup policy along with {@link Response}.
+     * @return the specified SQL pool geo backup policy.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<GeoBackupPolicyInner> getWithResponse(

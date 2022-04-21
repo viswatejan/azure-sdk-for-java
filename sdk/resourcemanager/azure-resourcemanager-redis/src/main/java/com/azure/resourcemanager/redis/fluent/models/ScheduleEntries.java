@@ -7,12 +7,15 @@ package com.azure.resourcemanager.redis.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redis.models.ScheduleEntry;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List of patch schedules for a Redis cache. */
 @Fluent
 public final class ScheduleEntries {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScheduleEntries.class);
+
     /*
      * List of patch schedules for a Redis cache.
      */
@@ -46,13 +49,11 @@ public final class ScheduleEntries {
      */
     public void validate() {
         if (scheduleEntries() == null) {
-            throw LOGGER
+            throw logger
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property scheduleEntries in model ScheduleEntries"));
         } else {
             scheduleEntries().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ScheduleEntries.class);
 }

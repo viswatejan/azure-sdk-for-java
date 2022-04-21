@@ -39,7 +39,7 @@ final class StateHolder {
     /**
      * @param endpoint the stores endpoint
      * @param watchKeys list of configuration watch keys that can trigger a refresh event
-     * @param duration refresh duration.
+     * @param monitoring refresh configurations
      */
     static void setState(String endpoint, List<ConfigurationSetting> watchKeys,
         Duration duration) {
@@ -49,7 +49,7 @@ final class StateHolder {
     /**
      * @param endpoint the stores endpoint
      * @param watchKeys list of configuration watch keys that can trigger a refresh event
-     * @param duration refresh duration.
+     * @param monitoring refresh configurations
      */
     static void setStateFeatureFlag(String endpoint, List<ConfigurationSetting> watchKeys,
         Duration duration) {
@@ -65,12 +65,13 @@ final class StateHolder {
     }
 
     static void expireState(String endpoint) {
-        State oldState = STATE.get(endpoint);
+        String key = endpoint;
+        State oldState = STATE.get(key);
         SecureRandom random = new SecureRandom();
         long wait = (long) (random.nextDouble() * MAX_JITTER);
         long timeLeft = (int) ((oldState.getNextRefreshCheck().getTime() - (new Date().getTime())) / 1000);
         if (wait < timeLeft) {
-            STATE.put(endpoint, new State(oldState.getWatchKeys(), (int) wait, oldState.getKey()));
+            STATE.put(key, new State(oldState.getWatchKeys(), (int) wait, oldState.getKey()));
         }
     }
 
@@ -89,14 +90,14 @@ final class StateHolder {
     }
 
     /**
-     * @param name the loadState name to set
+     * @param LOAD_STATE the loadState to set
      */
     static void setLoadState(String name, Boolean loaded) {
         LOAD_STATE.put(name, loaded);
     }
     
     /**
-     * @param name the loadState feature flag name to set
+     * @param LOAD_STATE the loadState to set
      */
     static void setLoadStateFeatureFlag(String name, Boolean loaded) {
         setLoadState(name + FEATURE_ENDPOINT, loaded);

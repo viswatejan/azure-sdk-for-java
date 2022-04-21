@@ -10,9 +10,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
-/**
- * An object representing the content and location of a field value.
- */
+/** An object representing the content and location of a field value. */
 public final class DocumentField {
     /*
      * Data type of the field value.
@@ -75,11 +73,6 @@ public final class DocumentField {
     private Map<String, DocumentField> valueMap;
 
     /*
-     * Currency value.
-     */
-    private CurrencyValue valueCurrency;
-
-    /*
      * Field content.
      */
     private String content;
@@ -112,6 +105,7 @@ public final class DocumentField {
      * Set the type property: Data type of the field value.
      *
      * @param type the type value to set.
+     * @return the DocumentField object itself.
      */
     void setType(DocumentFieldType type) {
         this.type = type;
@@ -130,6 +124,7 @@ public final class DocumentField {
      * Set the valueString property: String value.
      *
      * @param valueString the valueString value to set.
+     * @return the DocumentField object itself.
      */
     void setValueString(String valueString) {
         this.valueString = valueString;
@@ -148,6 +143,7 @@ public final class DocumentField {
      * Set the valueDate property: Date value in YYYY-MM-DD format (ISO 8601).
      *
      * @param valueDate the valueDate value to set.
+     * @return the DocumentField object itself.
      */
     void setValueDate(LocalDate valueDate) {
         this.valueDate = valueDate;
@@ -166,6 +162,7 @@ public final class DocumentField {
      * Set the valueTime property: Time value in hh:mm:ss format (ISO 8601).
      *
      * @param valueTime the valueTime value to set.
+     * @return the DocumentField object itself.
      */
     void setValueTime(LocalTime valueTime) {
         this.valueTime = valueTime;
@@ -184,6 +181,7 @@ public final class DocumentField {
      * Set the valuePhoneNumber property: Phone number value in E.164 format (ex. +19876543210).
      *
      * @param valuePhoneNumber the valuePhoneNumber value to set.
+     * @return the DocumentField object itself.
      */
     void setValuePhoneNumber(String valuePhoneNumber) {
         this.valuePhoneNumber = valuePhoneNumber;
@@ -202,6 +200,7 @@ public final class DocumentField {
      * Set the valueFloat property: Floating point value.
      *
      * @param valueFloat the valueFloat value to set.
+     * @return the DocumentField object itself.
      */
     void setValueFloat(Float valueFloat) {
         this.valueFloat = valueFloat;
@@ -220,6 +219,7 @@ public final class DocumentField {
      * Set the valueInteger property: Integer value.
      *
      * @param valueInteger the valueInteger value to set.
+     * @return the DocumentField object itself.
      */
     void setValueInteger(Long valueInteger) {
         this.valueInteger = valueInteger;
@@ -238,6 +238,7 @@ public final class DocumentField {
      * Set the valueSelectionMark property: Selection mark value.
      *
      * @param valueSelectionMark the valueSelectionMark value to set.
+     * @return the DocumentField object itself.
      */
     void setValueSelectionMark(SelectionMarkState valueSelectionMark) {
         this.valueSelectionMark = valueSelectionMark;
@@ -256,6 +257,7 @@ public final class DocumentField {
      * Set the valueSignature property: Presence of signature.
      *
      * @param valueSignature the valueSignature value to set.
+     * @return the DocumentField object itself.
      */
     void setValueSignature(DocumentSignatureType valueSignature) {
         this.valueSignature = valueSignature;
@@ -274,6 +276,7 @@ public final class DocumentField {
      * Set the valueCountryRegion property: 3-letter country code value (ISO 3166-1 alpha-3).
      *
      * @param valueCountryRegion the valueCountryRegion value to set.
+     * @return the DocumentField object itself.
      */
     void setValueCountryRegion(String valueCountryRegion) {
         this.valueCountryRegion = valueCountryRegion;
@@ -324,24 +327,6 @@ public final class DocumentField {
     }
 
     /**
-     * Get the Currency value.
-     *
-     * @return the valueCurrency value.
-     */
-    public CurrencyValue getValueCurrency() {
-        return valueCurrency;
-    }
-
-    /**
-     * Set the valueCurrency property: Currency value.
-     *
-     * @param valueCurrency the valueCurrency value to set.
-     */
-    void setValueCurrency(CurrencyValue valueCurrency) {
-        this.valueCurrency = valueCurrency;
-    }
-
-    /**
      * Get the content property: Field content.
      *
      * @return the content value.
@@ -354,6 +339,7 @@ public final class DocumentField {
      * Set the content property: Field content.
      *
      * @param content the content value to set.
+     * @return the DocumentField object itself.
      */
     void setContent(String content) {
         this.content = content;
@@ -372,13 +358,14 @@ public final class DocumentField {
      * Set the boundingRegions property: Bounding regions covering the field.
      *
      * @param boundingRegions the boundingRegions value to set.
+     * @return the DocumentField object itself.
      */
     void setBoundingRegions(List<BoundingRegion> boundingRegions) {
         this.boundingRegions = boundingRegions;
     }
 
     /**
-     * Get the location of the field in the reading order concatenated content.
+     * Get the spans property: Location of the field in the reading order concatenated content.
      *
      * @return the spans value.
      */
@@ -387,9 +374,10 @@ public final class DocumentField {
     }
 
     /**
-     * Set the location of the field in the reading order concatenated content.
+     * Set the spans property: Location of the field in the reading order concatenated content.
      *
      * @param spans the spans value to set.
+     * @return the DocumentField object itself.
      */
     void setSpans(List<DocumentSpan> spans) {
         this.spans = spans;
@@ -408,6 +396,7 @@ public final class DocumentField {
      * Set the confidence property: Confidence of correctly extracting the field.
      *
      * @param confidence the confidence value to set.
+     * @return the DocumentField object itself.
      */
     void setConfidence(Float confidence) {
         this.confidence = confidence;
@@ -477,12 +466,6 @@ public final class DocumentField {
             public void setValueObject(DocumentField documentField,
                                        Map<String, DocumentField> valueMap) {
                 documentField.setValueMap(valueMap);
-            }
-
-            @Override
-            public void setValueCurrency(DocumentField documentField,
-                                        CurrencyValue valueCurrency) {
-                documentField.setValueCurrency(valueCurrency);
             }
 
             @Override

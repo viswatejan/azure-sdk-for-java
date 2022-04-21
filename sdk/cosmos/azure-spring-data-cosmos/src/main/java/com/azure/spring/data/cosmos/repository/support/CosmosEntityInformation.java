@@ -8,16 +8,12 @@ import com.azure.cosmos.models.ExcludedPath;
 import com.azure.cosmos.models.IncludedPath;
 import com.azure.cosmos.models.IndexingMode;
 import com.azure.cosmos.models.IndexingPolicy;
-import com.azure.cosmos.models.UniqueKey;
-import com.azure.cosmos.models.UniqueKeyPolicy;
 import com.azure.spring.data.cosmos.Constants;
 import com.azure.spring.data.cosmos.core.mapping.CompositeIndex;
 import com.azure.spring.data.cosmos.core.mapping.CompositeIndexPath;
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.CosmosIndexingPolicy;
 import com.azure.spring.data.cosmos.common.Memoizer;
-import com.azure.spring.data.cosmos.core.mapping.CosmosUniqueKey;
-import com.azure.spring.data.cosmos.core.mapping.CosmosUniqueKeyPolicy;
 import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -30,7 +26,6 @@ import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
@@ -68,12 +63,12 @@ public class CosmosEntityInformation<T, ID> extends AbstractEntityInformation<T,
     private final Integer requestUnit;
     private final Integer timeToLive;
     private final IndexingPolicy indexingPolicy;
-    private final UniqueKeyPolicy uniqueKeyPolicy;
     private final boolean autoCreateContainer;
     private final boolean autoGenerateId;
     private final boolean persitable;
     private final boolean autoScale;
     private final boolean isIndexingPolicySpecified;
+
 
     /**
      * Initialization
@@ -104,7 +99,6 @@ public class CosmosEntityInformation<T, ID> extends AbstractEntityInformation<T,
         this.requestUnit = getRequestUnit(domainType);
         this.timeToLive = getTimeToLive(domainType);
         this.indexingPolicy = getIndexingPolicy(domainType);
-        this.uniqueKeyPolicy = getUniqueKeyPolicy(domainType);
         this.autoCreateContainer = getIsAutoCreateContainer(domainType);
         this.persitable = Persistable.class.isAssignableFrom(domainType);
         this.autoScale = getIsAutoScale(domainType);
@@ -207,14 +201,6 @@ public class CosmosEntityInformation<T, ID> extends AbstractEntityInformation<T,
     }
 
     /**
-     * Gets the UniqueKeyPolicy
-     * @return UniqueKeyPolicy
-     */
-    public UniqueKeyPolicy getUniqueKeyPolicy() {
-        return uniqueKeyPolicy;
-    }
-
-    /**
      * Check if is versioned
      *
      * @return boolean
@@ -313,19 +299,6 @@ public class CosmosEntityInformation<T, ID> extends AbstractEntityInformation<T,
         policy.setCompositeIndexes(this.getIndexingPolicyCompositeIndexes(domainType));
 
         return policy;
-    }
-
-    private UniqueKeyPolicy getUniqueKeyPolicy(Class<T> domainType) {
-        CosmosUniqueKeyPolicy annotation = domainType.getAnnotation(CosmosUniqueKeyPolicy.class);
-        if (annotation == null) {
-            return null;
-        }
-
-        List<UniqueKey> uniqueKeys = getUniqueKeys(domainType);
-        if (uniqueKeys.isEmpty()) {
-            return null;
-        }
-        return new UniqueKeyPolicy().setUniqueKeys(uniqueKeys);
     }
 
     private Field getIdField(Class<?> domainType) {
@@ -501,21 +474,6 @@ public class CosmosEntityInformation<T, ID> extends AbstractEntityInformation<T,
         }
 
         return compositePathList;
-    }
-
-    private List<UniqueKey> getUniqueKeys(Class<T> domainType) {
-        CosmosUniqueKeyPolicy annotation = domainType.getAnnotation(CosmosUniqueKeyPolicy.class);
-        assert annotation != null;
-        if (annotation.uniqueKeys().length == 0) {
-            return Collections.emptyList();
-        }
-        final CosmosUniqueKey[] uniqueKeysPath = annotation.uniqueKeys();
-        final List<UniqueKey> uniqueKeys = new ArrayList<>();
-        for (final CosmosUniqueKey uniqueKey : uniqueKeysPath) {
-            UniqueKey key = new UniqueKey(Arrays.asList(uniqueKey.paths()));
-            uniqueKeys.add(key);
-        }
-        return uniqueKeys;
     }
 
     private Field getVersionedField(Class<T> domainClass) {

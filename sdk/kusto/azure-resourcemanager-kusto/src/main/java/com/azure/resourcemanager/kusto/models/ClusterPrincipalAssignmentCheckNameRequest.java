@@ -24,7 +24,7 @@ public final class ClusterPrincipalAssignmentCheckNameRequest {
      * The type of resource, Microsoft.Kusto/clusters/principalAssignments.
      */
     @JsonProperty(value = "type", required = true)
-    private String type = "Microsoft.Kusto/clusters/principalAssignments";
+    private String type;
 
     /** Creates an instance of ClusterPrincipalAssignmentCheckNameRequest class. */
     public ClusterPrincipalAssignmentCheckNameRequest() {

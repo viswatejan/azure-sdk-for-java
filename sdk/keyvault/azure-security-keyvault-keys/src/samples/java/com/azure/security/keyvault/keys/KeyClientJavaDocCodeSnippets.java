@@ -22,8 +22,10 @@ import com.azure.security.keyvault.keys.models.KeyProperties;
 import com.azure.security.keyvault.keys.models.KeyRotationLifetimeAction;
 import com.azure.security.keyvault.keys.models.KeyRotationPolicy;
 import com.azure.security.keyvault.keys.models.KeyRotationPolicyAction;
+import com.azure.security.keyvault.keys.models.KeyRotationPolicyProperties;
 import com.azure.security.keyvault.keys.models.KeyType;
 import com.azure.security.keyvault.keys.models.KeyVaultKey;
+import com.azure.security.keyvault.keys.models.RandomBytes;
 import com.azure.security.keyvault.keys.models.ReleaseKeyOptions;
 import com.azure.security.keyvault.keys.models.ReleaseKeyResult;
 
@@ -515,18 +517,18 @@ public final class KeyClientJavaDocCodeSnippets {
         KeyClient keyClient = createClient();
         // BEGIN: com.azure.security.keyvault.keys.KeyClient.getRandomBytes#int
         int amount = 16;
-        byte[] randomBytes = keyClient.getRandomBytes(amount);
+        RandomBytes randomBytes = keyClient.getRandomBytes(amount);
 
-        System.out.printf("Retrieved %d random bytes: %s%n", amount, Arrays.toString(randomBytes));
+        System.out.printf("Retrieved %d random bytes: %s%n", amount, Arrays.toString(randomBytes.getBytes()));
         // END: com.azure.security.keyvault.keys.KeyClient.getRandomBytes#int
 
         // BEGIN: com.azure.security.keyvault.keys.KeyClient.getRandomBytesWithResponse#int-Context
         int amountOfBytes = 16;
-        Response<byte[]> response =
+        Response<RandomBytes> response =
             keyClient.getRandomBytesWithResponse(amountOfBytes, new Context("key1", "value1"));
 
         System.out.printf("Response received successfully with status code: %d. Retrieved %d random bytes: %s%n",
-            response.getStatusCode(), amountOfBytes, Arrays.toString(response.getValue()));
+            response.getStatusCode(), amountOfBytes, Arrays.toString(response.getValue().getBytes()));
         // END: com.azure.security.keyvault.keys.KeyClient.getRandomBytesWithResponse#int-Context
     }
 
@@ -538,31 +540,30 @@ public final class KeyClientJavaDocCodeSnippets {
     public void releaseKey() {
         KeyClient keyClient = createClient();
         // BEGIN: com.azure.security.keyvault.keys.KeyClient.releaseKey#String-String
-        String targetAttestationToken = "someAttestationToken";
-        ReleaseKeyResult releaseKeyResult = keyClient.releaseKey("keyName", targetAttestationToken);
+        String target = "someAttestationToken";
+        ReleaseKeyResult releaseKeyResult = keyClient.releaseKey("keyName", target);
 
         System.out.printf("Signed object containing released key: %s%n", releaseKeyResult);
         // END: com.azure.security.keyvault.keys.KeyClient.releaseKey#String-String
 
         // BEGIN: com.azure.security.keyvault.keys.KeyClient.releaseKey#String-String-String
         String myKeyVersion = "6A385B124DEF4096AF1361A85B16C204";
-        String myTargetAttestationToken = "someAttestationToken";
-        ReleaseKeyResult releaseKeyVersionResult =
-            keyClient.releaseKey("keyName", myKeyVersion, myTargetAttestationToken);
+        String myTarget = "someAttestationToken";
+        ReleaseKeyResult releaseKeyVersionResult = keyClient.releaseKey("keyName", myKeyVersion, myTarget);
 
         System.out.printf("Signed object containing released key: %s%n", releaseKeyVersionResult);
         // END: com.azure.security.keyvault.keys.KeyClient.releaseKey#String-String-String
 
         // BEGIN: com.azure.security.keyvault.keys.KeyClient.releaseKeyWithResponse#String-String-String-ReleaseKeyOptions-Context
         String releaseKeyVersion = "6A385B124DEF4096AF1361A85B16C204";
-        String someTargetAttestationToken = "someAttestationToken";
+        String releaseTarget = "someAttestationToken";
         ReleaseKeyOptions releaseKeyOptions = new ReleaseKeyOptions()
             .setAlgorithm(KeyExportEncryptionAlgorithm.RSA_AES_KEY_WRAP_256)
             .setNonce("someNonce");
 
         Response<ReleaseKeyResult> releaseKeyResultResponse =
-            keyClient.releaseKeyWithResponse("keyName", releaseKeyVersion, someTargetAttestationToken,
-                releaseKeyOptions, new Context("key1", "value1"));
+            keyClient.releaseKeyWithResponse("keyName", releaseKeyVersion, releaseTarget, releaseKeyOptions,
+                new Context("key1", "value1"));
 
         System.out.printf("Response received successfully with status code: %d. Signed object containing"
                 + "released key: %s%n", releaseKeyResultResponse.getStatusCode(),
@@ -614,12 +615,12 @@ public final class KeyClientJavaDocCodeSnippets {
     }
 
     /**
-     * Generates code samples for using {@link KeyClient#updateKeyRotationPolicy(String, KeyRotationPolicy)}
-     * and {@link KeyClient#updateKeyRotationPolicyWithResponse(String, KeyRotationPolicy, Context)}.
+     * Generates code samples for using {@link KeyClient#updateKeyRotationPolicy(String, KeyRotationPolicyProperties)}
+     * and {@link KeyClient#updateKeyRotationPolicyWithResponse(String, KeyRotationPolicyProperties, Context)}.
      */
     public void updateKeyRotationPolicy() {
         KeyClient keyClient = createClient();
-        // BEGIN: com.azure.security.keyvault.keys.KeyClient.updateKeyRotationPolicy#String-KeyRotationPolicy
+        // BEGIN: com.azure.security.keyvault.keys.KeyClient.updateKeyRotationPolicy#String-KeyRotationPolicyProperties
         List<KeyRotationLifetimeAction> lifetimeActions = new ArrayList<>();
         KeyRotationLifetimeAction rotateLifetimeAction = new KeyRotationLifetimeAction(KeyRotationPolicyAction.ROTATE)
             .setTimeAfterCreate("P90D");
@@ -629,17 +630,17 @@ public final class KeyClientJavaDocCodeSnippets {
         lifetimeActions.add(rotateLifetimeAction);
         lifetimeActions.add(notifyLifetimeAction);
 
-        KeyRotationPolicy keyRotationPolicy = new KeyRotationPolicy()
+        KeyRotationPolicyProperties policyProperties = new KeyRotationPolicyProperties()
             .setLifetimeActions(lifetimeActions)
-            .setExpiresIn("P6M");
+            .setExpiryTime("P6M");
 
-        KeyRotationPolicy updatedPolicy =
-            keyClient.updateKeyRotationPolicy("keyName", keyRotationPolicy);
+        KeyRotationPolicy keyRotationPolicy =
+            keyClient.updateKeyRotationPolicy("keyName", policyProperties);
 
-        System.out.printf("Updated key rotation policy with id: %s%n", updatedPolicy.getId());
-        // END: com.azure.security.keyvault.keys.KeyClient.updateKeyRotationPolicy#String-KeyRotationPolicy
+        System.out.printf("Updated key rotation policy with id: %s%n", keyRotationPolicy.getId());
+        // END: com.azure.security.keyvault.keys.KeyClient.updateKeyRotationPolicy#String-KeyRotationPolicyProperties
 
-        // BEGIN: com.azure.security.keyvault.keys.KeyClient.updateKeyRotationPolicyWithResponse#String-KeyRotationPolicy-Context
+        // BEGIN: com.azure.security.keyvault.keys.KeyClient.updateKeyRotationPolicyWithResponse#String-KeyRotationPolicyProperties-Context
         List<KeyRotationLifetimeAction> myLifetimeActions = new ArrayList<>();
         KeyRotationLifetimeAction myRotateLifetimeAction = new KeyRotationLifetimeAction(KeyRotationPolicyAction.ROTATE)
             .setTimeAfterCreate("P90D");
@@ -649,15 +650,15 @@ public final class KeyClientJavaDocCodeSnippets {
         myLifetimeActions.add(myRotateLifetimeAction);
         myLifetimeActions.add(myNotifyLifetimeAction);
 
-        KeyRotationPolicy myKeyRotationPolicy = new KeyRotationPolicy()
+        KeyRotationPolicyProperties myPolicyProperties = new KeyRotationPolicyProperties()
             .setLifetimeActions(myLifetimeActions)
-            .setExpiresIn("P6M");
+            .setExpiryTime("P6M");
 
         Response<KeyRotationPolicy> keyRotationPolicyResponse = keyClient.updateKeyRotationPolicyWithResponse(
-            "keyName", myKeyRotationPolicy, new Context("key1", "value1"));
+            "keyName", myPolicyProperties, new Context("key1", "value1"));
 
         System.out.printf("Response received successfully with status code: %d. Updated key rotation policy"
             + "with id: %s%n", keyRotationPolicyResponse.getStatusCode(), keyRotationPolicyResponse.getValue().getId());
-        // END: com.azure.security.keyvault.keys.KeyClient.updateKeyRotationPolicyWithResponse#String-KeyRotationPolicy-Context
+        // END: com.azure.security.keyvault.keys.KeyClient.updateKeyRotationPolicyWithResponse#String-KeyRotationPolicyProperties-Context
     }
 }

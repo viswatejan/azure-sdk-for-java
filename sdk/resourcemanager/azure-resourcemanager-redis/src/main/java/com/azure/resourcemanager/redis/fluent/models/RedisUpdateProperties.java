@@ -5,17 +5,20 @@
 package com.azure.resourcemanager.redis.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.redis.models.PublicNetworkAccess;
 import com.azure.resourcemanager.redis.models.RedisCommonProperties;
-import com.azure.resourcemanager.redis.models.RedisConfiguration;
 import com.azure.resourcemanager.redis.models.Sku;
 import com.azure.resourcemanager.redis.models.TlsVersion;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** Patchable properties of the redis cache. */
 @Fluent
 public final class RedisUpdateProperties extends RedisCommonProperties {
+    @JsonIgnore private final ClientLogger logger = new ClientLogger(RedisUpdateProperties.class);
+
     /*
      * The SKU of the Redis cache to deploy.
      */
@@ -44,7 +47,7 @@ public final class RedisUpdateProperties extends RedisCommonProperties {
 
     /** {@inheritDoc} */
     @Override
-    public RedisUpdateProperties withRedisConfiguration(RedisConfiguration redisConfiguration) {
+    public RedisUpdateProperties withRedisConfiguration(Map<String, String> redisConfiguration) {
         super.withRedisConfiguration(redisConfiguration);
         return this;
     }

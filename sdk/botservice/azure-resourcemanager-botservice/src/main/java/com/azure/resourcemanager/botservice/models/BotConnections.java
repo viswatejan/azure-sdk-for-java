@@ -26,7 +26,7 @@ public interface BotConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of bot service providers response along with {@link Response}.
+     * @return the list of bot service providers response.
      */
     Response<ServiceProviderResponseList> listServiceProvidersWithResponse(Context context);
 
@@ -53,7 +53,7 @@ public interface BotConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Connection Setting registration for a Bot Service along with {@link Response}.
+     * @return a Connection Setting registration for a Bot Service.
      */
     Response<ConnectionSetting> listWithSecretsWithResponse(
         String resourceGroupName, String resourceName, String connectionName, Context context);
@@ -81,7 +81,7 @@ public interface BotConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Connection Setting registration for a Bot Service along with {@link Response}.
+     * @return a Connection Setting registration for a Bot Service.
      */
     Response<ConnectionSetting> getWithResponse(
         String resourceGroupName, String resourceName, String connectionName, Context context);
@@ -108,7 +108,7 @@ public interface BotConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String resourceName, String connectionName, Context context);
@@ -145,7 +145,7 @@ public interface BotConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Connection Setting registration for a Bot Service along with {@link Response}.
+     * @return a Connection Setting registration for a Bot Service.
      */
     ConnectionSetting getById(String id);
 
@@ -157,7 +157,7 @@ public interface BotConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Connection Setting registration for a Bot Service along with {@link Response}.
+     * @return a Connection Setting registration for a Bot Service.
      */
     Response<ConnectionSetting> getByIdWithResponse(String id, Context context);
 
@@ -179,7 +179,7 @@ public interface BotConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 
