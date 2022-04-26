@@ -72,7 +72,7 @@ function GetRemoteName() {
   $mainRemoteUrl = 'https://github.com/Azure/azure-sdk-for-java.git'
   foreach ($rem in git remote show) {
     $remoteUrl = git remote get-url $rem
-    if ($mainRemoteUrl -contains $remoteUrl) {
+    if ($remoteUrl -contains $mainRemoteUrl) {
       return $rem
     }
   }
@@ -194,7 +194,7 @@ function UpdateChangeLogEntry($ChangeLogPath, $PatchVersion, $ArtifactId, $Conte
 }
   
 function GitCommit($Message) {
-  $cmdOutput = git commit -a -m $Message
+  $cmdOutput = git <#-c user.name="azure-sdk" -c user.email="azuresdk@microsoft.com"#> commit -a -m $Message
   if ($LASTEXITCODE -ne 0) {
     LogError "Could not commit the changes locally.Exiting..."
     exit $LASTEXITCODE
@@ -240,7 +240,7 @@ function GeneratePatch($PatchInfo, [string]$BranchName, [string]$RemoteName, [st
   $currentBranchName = GetCurrentBranchName
   
   if ($currentBranchName -ne $BranchName) {
-    $cmdOutput = git checkout -b $BranchName $RemoteName/main 
+    $cmdOutput = git checkout -b $BranchName #$RemoteName/main 
     if ($LASTEXITCODE -ne 0) {
       LogError "Could not checkout branch $BranchName, please check if it already exists and delete as necessary. Exiting..."
       exit $LASTEXITCODE

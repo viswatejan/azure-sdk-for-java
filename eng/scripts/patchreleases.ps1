@@ -73,7 +73,7 @@ function UpdateDependencies($ArtifactInfos) {
         $pomFileUri = "https://repo1.maven.org/maven2/com/azure/$artifactId/$sdkVersion/$artifactId-$sdkVersion.pom"
         $webResponseObj = Invoke-WebRequest -Uri $pomFileUri
         $dependencies = ([xml]$webResponseObj.Content).project.dependencies.dependency | Where-Object { (([String]::IsNullOrWhiteSpace($_.scope)) -or ($_.scope -eq 'compile')) }
-        $dependencies | Where-Object { $_.groupId -eq $GroupId } | ForEach-Object { $deps[$_.artifactId] = $_.version }
+        $dependencies | ForEach-Object { $deps[$_.artifactId] = $_.version }
         $ArtifactInfos[$artifactId].Dependencies = $deps
     }
 
@@ -98,35 +98,98 @@ function UpdateCIInformation($ArtifactInfos) {
     }
 }
 
-function FindAllArtifactsToBePatched([String]$DependencyId, [String]$PatchVersion, [hashtable]$ArtifactInfos) {
-    $artifactsToPatch = @{}
-
-    foreach ($id in $ArtifactInfos.Keys) {
-        $arInfo = $ArtifactInfos[$id]
-        $futureReleasePatchVersion = $arInfo.FutureReleasePatchVersion
-
-        if ($futureReleasePatchVersion) {
-            # This library is already being patched and hence analyzed so we don't need to analyze it again.
-            if ($id -ne 'azure-core' -or $id -ne 'azure-core-http-netty') {
-                continue;
+function CreateForwardLookingVersions($ArtifactInfos) {
+    $allDependenciesWithVersion = @{}
+    foreach ($arId in $ArtifactInfos.Keys) {
+        foreach ($depId in $ArtifactInfos[$arId].Dependencies.Keys) {
+            $depVersion = $ArtifactInfos[$arId].Dependencies[$depId]
+            $currentVersion = $allDependenciesWithVersion[$depId]
+            if ($null -eq $currentVersion) {
+                $latestVersion = $depVersion
             }
-        }
-
-        $depVersion = $arInfo.Dependencies[$DependencyId]
-        if ($depVersion -and $depVersion -ne $PatchVersion) {
-            $currentGAOrPatchVersion = $arInfo.LatestGAOrPatchVersion
-            $newPatchVersion = GetPatchVersion -ReleaseVersion $currentGAOrPatchVersion
-            $arInfo.FutureReleasePatchVersion = $newPatchVersion
-            $artifactsToPatch[$id] = $id
-            $depArtifactsToPatch = FindAllArtifactsToBePatched -DependencyId $id -PatchVersion $newPatchVersion -ArtifactInfos $ArtifactInfos
-            foreach ($recArtifacts in $depArtifactsToPatch.Keys) {
-                $artifactsToPatch[$recArtifacts] = $recArtifacts
+            else {
+                $orderedVersions = @($depVersion, $currentVersion) | ForEach-Object { [AzureEngSemanticVersion]::ParseVersionString($_) }
+                $sortedVersions = [AzureEngSemanticVersion]::SortVersions($orderedVersions)
+                if($null -eq $sortedVersions) {
+                    # We currently have a bug where semantic version may have 4 values just like jackson-databind.
+                    $latestVersion = $depVersion
+                } else {
+                $latestVersion = $sortedVersions[0].RawVersion
+                }
             }
+            
+            $allDependenciesWithVersion[$depId] = $latestVersion
         }
     }
 
-    return $artifactsToPatch
+    return $allDependenciesWithVersion
 }
+
+function FindAllArtifactsThatNeedPatching($ArtifactInfos, $AllDependenciesWithVersion) {
+    foreach($arId in $ArtifactInfos.Keys) {
+        $arInfo = $ArtifactInfos[$arId]
+        if($arInfo.GroupId -ne 'com.azure') {
+            continue;
+        }
+
+        foreach($depId in $arInfo.Dependencies.Keys) {
+            $depVersion = $arInfo.Dependencies[$depId]
+
+            if($depVersion -ne $AllDependenciesWithVersion[$depId]) {
+                $currentGAOrPatchVersion = $arInfo.LatestGAOrPatchVersion
+                $newPatchVersion = GetPatchVersion -ReleaseVersion $currentGAOrPatchVersion
+                $arInfo.FutureReleasePatchVersion = $newPatchVersion
+                $AllDependenciesWithVersion[$arId] = $newPatchVersion
+            }
+        }
+    }
+}
+
+function ArtifactsToPatchUtil([String] $DependencyId, [hashtable]$ArtifactInfos, $AllDependenciesWithVersion) {
+    $arInfo = $ArtifactInfos[$DependencyId]
+    $currentGAOrPatchVersion = $arInfo.LatestGAOrPatchVersion
+    $newPatchVersion = GetPatchVersion -ReleaseVersion $currentGAOrPatchVersion
+    $arInfo.FutureReleasePatchVersion = $newPatchVersion
+    $AllDependenciesWithVersion[$depId] = $newPatchVersion
+
+    foreach($arId in $ArtifactInfos.Keys) {
+        $arInfo = $ArtifactInfos[$arId]
+        $depVersion = $arInfo.Dependencies[$DependencyId]
+        if($depVersion -and $depVersion -ne $newPatchVersion) {
+            ArtifactsToPatchUtil -DependencyId $DependencyId -ArtifactInfos $ArtifactInfos -AllDependenciesWithVersion $AllDependenciesWithVersion
+        }
+    }
+}
+
+# function FindAllArtifactsToBePatched([String]$DependencyId, [String]$PatchVersion, [hashtable]$ArtifactInfos) {
+#     $artifactsToPatch = @{}
+
+#     foreach ($id in $ArtifactInfos.Keys) {
+#         $arInfo = $ArtifactInfos[$id]
+#         $futureReleasePatchVersion = $arInfo.FutureReleasePatchVersion
+
+#         if ($futureReleasePatchVersion) {
+#             # This library is already being patched and hence analyzed so we don't need to analyze it again.
+#             if ($id -ne 'azure-core' -or $id -ne 'azure-core-http-netty') {
+#                 continue;
+#             }
+#         }
+
+#         $depVersion = $arInfo.Dependencies[$DependencyId]
+#         if ($depVersion -and $depVersion -ne $PatchVersion) {
+#             $currentGAOrPatchVersion = $arInfo.LatestGAOrPatchVersion
+#             $newPatchVersion = GetPatchVersion -ReleaseVersion $currentGAOrPatchVersion
+#             $arInfo.FutureReleasePatchVersion = $newPatchVersion
+#             $artifactsToPatch[$id] = $id
+#             $depArtifactsToPatch = FindAllArtifactsToBePatched -DependencyId $id -PatchVersion $newPatchVersion -ArtifactInfos $ArtifactInfos
+#             foreach ($recArtifacts in $depArtifactsToPatch.Keys) {
+#                 $artifactsToPatch[$recArtifacts] = $recArtifacts
+#             }
+#         }
+#     }
+
+#     return $artifactsToPatch
+# }
 
 function UpdateDependenciesInVersionClient([hashtable]$ArtifactInfos, [string]$GroupId = "com.azure") {
     ## We need to update the version_client.txt to have the correct versions in place.
@@ -270,10 +333,8 @@ function GenerateBOMFile($ArtifactInfos, $BomFileBranchName) {
         $bomFileContent.Save($BomFilePath)
         git add $BomFilePath
         $content = GetChangeLogContentFromMessage -ContentMessage '- Updated Azure SDK dependency versions to the latest releases.'
-        UpdateChangeLogEntry -ChangeLogPath $BomChangeLogPath -PatchVersion $patchVersion -ArtifactId "azure-sdk-bom" -Content $content    
-        git add *
-        git add $BomChangeLogPath
-        git commit -m "Prepare BOM for release version $releaseVersion"
+        UpdateChangeLogEntry -ChangeLogPath $BomChangeLogPath -PatchVersion $patchVersion -ArtifactId "azure-sdk-bom" -Content $content
+        GitCommit -Message "Prepare BOM for release version $releaseVersion"
         git push -f $remoteName $BomFileBranchName
     }
     finally {
@@ -285,7 +346,8 @@ function GenerateHtmlReport($Artifacts, $PatchBranchName, $BomFileBranchName) {
     $count = $ArtifactsToPatch.Count
     $index = 0
     $html = @()
-    $html += "<head><title>Patch Report</title></head><body><table border='1'><tr><th>Release Branch</th><th>PipelineName</th><th>Artifact</th><tr>"
+    $html += "<head><title>Patch Report</title></head><body><table border='1'><tr><th>Artifact</th><th>PipelineName</th><th>Release Branch</th><tr>"
+    $pipelineCountIndex = 0
     foreach ($artifact in $Artifacts) {
         $artifactId = $artifact.ArtifactId
         $pipelineName = $artifact.PipelineName
@@ -341,7 +403,10 @@ $ArtifactInfos[$AzCoreArtifactId].FutureReleasePatchVersion = $AzCoreVersion
 $AzCoreNettyArtifactId = "azure-core-http-netty"
 $ArtifactInfos[$AzCoreNettyArtifactId].Dependencies[$AzCoreArtifactId] = $AzCoreVersion
 
-$ArtifactsToPatch = FindAllArtifactsToBePatched -DependencyId $AzCoreArtifactId -PatchVersion $AzCoreVersion -ArtifactInfos $ArtifactInfos
+$AllDependenciesWithVersion = CreateForwardLookingVersions -ArtifactInfos $ArtifactInfos
+FindAllArtifactsThatNeedPatching -ArtifactInfos $ArtifactInfos -AllDependenciesWithVersion $AllDependenciesWithVersion
+$ArtifactsToPatch =  $ArtifactInfos.Keys | Where-Object { $null -ne $ArtifactInfos[$_].FutureReleasePatchVersion } | ForEach-Object {$ArtifactInfos[$_].ArtifactId}
+
 $RemoteName = GetRemoteName
 $CurrentBranchName = GetCurrentBranchName
 if ($LASTEXITCODE -ne 0) {
@@ -358,7 +423,7 @@ try {
     git checkout -b $patchBranchName $RemoteName/main
     UpdateDependenciesInVersionClient -ArtifactInfos $ArtifactInfos
 
-    foreach ($artifactId in $ArtifactsToPatch.Keys) {
+    foreach ($artifactId in $ArtifactsToPatch) {
         $arInfo = $ArtifactInfos[$artifactId]
         $patchInfo = [ArtifactPatchInfo]::new()
         $patchInfo = ConvertToPatchInfo -ArInfo $arInfo
@@ -369,7 +434,6 @@ finally {
     $cmdOutput = git checkout $CurrentBranchName
 }
 
-GenerateBOMFile -ArtifactInfos $ArtifactInfos -BomFileBranchName $
-
+GenerateBOMFile -ArtifactInfos $ArtifactInfos -BomFileBranchName $bomBranchName
 $orderedArtifacts = GetTopologicalSort -ArtifactIds $ArtifactsToPatch.Keys -ArtifactInfos $ArtifactInfos
 GenerateHtmlReport -Artifacts $orderedArtifacts -PatchBranchName $patchBranchName -BomFileBranchName $bomBranchName
