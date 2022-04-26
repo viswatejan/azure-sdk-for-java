@@ -12,8 +12,6 @@ $BomHelpersFilePath = Join-Path $PSScriptRoot "bomhelpers.ps1"
 $PatchReportFile = Join-Path $PSScriptRoot "patchreport.html"
 $BomFilePath = Join-Path $RepoRoot "sdk" "boms" "azure-sdk-bom" "pom.xml"
 $BomChangeLogPath = Join-Path $RepoRoot "sdk" "boms" "azure-sdk-bom" "changelog.md"
-$NewBomFilePath = Join-Path $PSScriptRoot "bom.xml"
-$NewBomFileReport = Join-Path $PSScriptRoot "bompom.html" 
 . $CommonScriptFilePath
 . $BomHelpersFilePath
 
@@ -161,36 +159,6 @@ function ArtifactsToPatchUtil([String] $DependencyId, [hashtable]$ArtifactInfos,
     }
 }
 
-# function FindAllArtifactsToBePatched([String]$DependencyId, [String]$PatchVersion, [hashtable]$ArtifactInfos) {
-#     $artifactsToPatch = @{}
-
-#     foreach ($id in $ArtifactInfos.Keys) {
-#         $arInfo = $ArtifactInfos[$id]
-#         $futureReleasePatchVersion = $arInfo.FutureReleasePatchVersion
-
-#         if ($futureReleasePatchVersion) {
-#             # This library is already being patched and hence analyzed so we don't need to analyze it again.
-#             if ($id -ne 'azure-core' -or $id -ne 'azure-core-http-netty') {
-#                 continue;
-#             }
-#         }
-
-#         $depVersion = $arInfo.Dependencies[$DependencyId]
-#         if ($depVersion -and $depVersion -ne $PatchVersion) {
-#             $currentGAOrPatchVersion = $arInfo.LatestGAOrPatchVersion
-#             $newPatchVersion = GetPatchVersion -ReleaseVersion $currentGAOrPatchVersion
-#             $arInfo.FutureReleasePatchVersion = $newPatchVersion
-#             $artifactsToPatch[$id] = $id
-#             $depArtifactsToPatch = FindAllArtifactsToBePatched -DependencyId $id -PatchVersion $newPatchVersion -ArtifactInfos $ArtifactInfos
-#             foreach ($recArtifacts in $depArtifactsToPatch.Keys) {
-#                 $artifactsToPatch[$recArtifacts] = $recArtifacts
-#             }
-#         }
-#     }
-
-#     return $artifactsToPatch
-# }
-
 function UpdateDependenciesInVersionClient([hashtable]$ArtifactInfos, [string]$GroupId = "com.azure") {
     ## We need to update the version_client.txt to have the correct versions in place.
     foreach ($artifactId in $ArtifactInfos.Keys) {
@@ -335,7 +303,7 @@ function GenerateBOMFile($ArtifactInfos, $BomFileBranchName) {
         $content = GetChangeLogContentFromMessage -ContentMessage '- Updated Azure SDK dependency versions to the latest releases.'
         UpdateChangeLogEntry -ChangeLogPath $BomChangeLogPath -PatchVersion $patchVersion -ArtifactId "azure-sdk-bom" -Content $content
         GitCommit -Message "Prepare BOM for release version $releaseVersion"
-        git push -f $remoteName $BomFileBranchName
+        git push -c user.name="azure-sdk" -c user.email="azuresdk@microsoft.com" -f $remoteName $BomFileBranchName
     }
     finally {
         git checkout $currentBranchName
@@ -429,6 +397,13 @@ try {
         $patchInfo = ConvertToPatchInfo -ArInfo $arInfo
         GeneratePatches -ArtifactPatchInfos $patchInfo -BranchName $patchBranchName -RemoteName $RemoteName -GroupId $GroupId
     }
+
+    $cmdOutput = git -c user.name="azure-sdk" -c user.email="azuresdk@microsoft.com" push $RemoteName $patchBranchName
+    if ($LASTEXITCODE -ne 0) {
+      LogError "Could not push the changes to $RemoteName/$BranchName. Exiting..."
+      exit $LASTEXITCODE
+    }
+    Write-Output "Pushed the changes to remote:$RemoteName, Branch:$BranchName"
 }
 finally {
     $cmdOutput = git checkout $CurrentBranchName

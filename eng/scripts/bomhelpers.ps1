@@ -69,15 +69,17 @@ function GetPatchVersion([String]$ReleaseVersion) {
 }
 
 function GetRemoteName() {
-  $mainRemoteUrl = 'https://github.com/Azure/azure-sdk-for-java.git'
+  $mainRemoteUrl = 'https://github.com/Azure/azure-sdk-for-java'
+  $remoteName = 'origin'
   foreach ($rem in git remote show) {
     $remoteUrl = git remote get-url $rem
-    if ($remoteUrl -contains $mainRemoteUrl) {
-      return $rem
+    $remoteString = [string]$remoteUrl
+    if ($remoteString -Match $mainRemoteUrl) {
+      $remoteName = $rem
+      break;
     }
   }
-  LogWarning "Could not compute the remote name. Returning 'origin'"
-  return 'origin'
+  return $remoteName
 }
 
 function GetPipelineName([string]$ArtifactId, [string]$ArtifactDirPath) {
@@ -194,7 +196,7 @@ function UpdateChangeLogEntry($ChangeLogPath, $PatchVersion, $ArtifactId, $Conte
 }
   
 function GitCommit($Message) {
-  $cmdOutput = git <#-c user.name="azure-sdk" -c user.email="azuresdk@microsoft.com"#> commit -a -m $Message
+  $cmdOutput = git -c user.name="azure-sdk" -c user.email="azuresdk@microsoft.com" commit -am $Message
   if ($LASTEXITCODE -ne 0) {
     LogError "Could not commit the changes locally.Exiting..."
     exit $LASTEXITCODE
@@ -240,7 +242,7 @@ function GeneratePatch($PatchInfo, [string]$BranchName, [string]$RemoteName, [st
   $currentBranchName = GetCurrentBranchName
   
   if ($currentBranchName -ne $BranchName) {
-    $cmdOutput = git checkout -b $BranchName #$RemoteName/main 
+    $cmdOutput = git checkout -b $BranchName $RemoteName/main 
     if ($LASTEXITCODE -ne 0) {
       LogError "Could not checkout branch $BranchName, please check if it already exists and delete as necessary. Exiting..."
       exit $LASTEXITCODE
@@ -327,12 +329,6 @@ function GeneratePatch($PatchInfo, [string]$BranchName, [string]$RemoteName, [st
   UpdateChangeLogEntry -ChangeLogPath $changelogPath -PatchVersion $patchVersion -ArtifactId $artifactId -Content $content    
   GitCommit -Message "Prepare $artifactId for $patchVersion patch release."
   Write-Output "Pushing changes to the upstream branch: $RemoteName/$BranchName"
-  $cmdOutput = git push $RemoteName $BranchName
-  if ($LASTEXITCODE -ne 0) {
-    LogError "Could not push the changes to $RemoteName/$BranchName. Exiting..."
-    exit $LASTEXITCODE
-  }
-  Write-Output "Pushed the changes to remote:$RemoteName, Branch:$BranchName"
 
   if (!$PatchInfo.PipelineName) {
     $PatchInfo.PipelineName = GetPipelineName -ArtifactId $artifactId -ArtifactDirPath $artifactDirPath
