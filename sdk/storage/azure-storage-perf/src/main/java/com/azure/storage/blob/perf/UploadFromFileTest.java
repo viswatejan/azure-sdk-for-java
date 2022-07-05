@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class UploadFromFileTest extends BlobTestBase<BlobPerfStressOptions> {
+public class UploadFromFileTest extends BlobTestBase<PerfStressOptions> {
 
     private static final Path TEMP_FILE;
     private static final String TEMP_FILE_PATH;
@@ -26,7 +26,7 @@ public class UploadFromFileTest extends BlobTestBase<BlobPerfStressOptions> {
         }
     }
 
-    public UploadFromFileTest(BlobPerfStressOptions options) {
+    public UploadFromFileTest(PerfStressOptions options) {
         super(options);
     }
 

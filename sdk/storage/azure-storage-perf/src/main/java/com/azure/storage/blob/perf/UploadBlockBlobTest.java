@@ -14,11 +14,11 @@ import java.nio.ByteBuffer;
 import static com.azure.perf.test.core.TestDataCreationHelper.createRandomByteBufferFlux;
 import static com.azure.perf.test.core.TestDataCreationHelper.createRandomInputStream;
 
-public class UploadBlockBlobTest extends BlobTestBase<BlobPerfStressOptions> {
+public class UploadBlockBlobTest extends BlobTestBase<PerfStressOptions> {
     protected final RepeatingInputStream inputStream;
     protected final Flux<ByteBuffer> byteBufferFlux;
 
-    public UploadBlockBlobTest(BlobPerfStressOptions options) {
+    public UploadBlockBlobTest(PerfStressOptions options) {
         super(options);
         inputStream = (RepeatingInputStream) createRandomInputStream(options.getSize());
         inputStream.mark(Integer.MAX_VALUE);

@@ -6,19 +6,15 @@ package com.azure.storage.blob.perf.core;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Random;
 import java.util.UUID;
 
-import com.azure.security.keyvault.keys.cryptography.models.KeyWrapAlgorithm;
+import com.azure.perf.test.core.PerfStressOptions;
 import com.azure.storage.blob.BlobAsyncClient;
 import com.azure.storage.blob.BlobClient;
-import com.azure.storage.blob.perf.BlobPerfStressOptions;
 import com.azure.storage.blob.specialized.BlockBlobAsyncClient;
 import com.azure.storage.blob.specialized.BlockBlobClient;
-import com.azure.storage.blob.specialized.cryptography.EncryptedBlobClientBuilder;
-import com.azure.storage.blob.specialized.cryptography.EncryptionVersion;
 
-public abstract class BlobTestBase<TOptions extends BlobPerfStressOptions> extends ContainerTest<TOptions> {
+public abstract class BlobTestBase<TOptions extends PerfStressOptions> extends ContainerTest<TOptions> {
 
     public static final int DEFAULT_BUFFER_SIZE = 8192;
     protected final BlobClient blobClient;
@@ -31,22 +27,8 @@ public abstract class BlobTestBase<TOptions extends BlobPerfStressOptions> exten
 
         String blobName = "randomblobtest-" + UUID.randomUUID().toString();
 
-        if (options.getEncryptionVersion() != null) {
-            Random rand = new Random(System.currentTimeMillis());
-            byte[] data = new byte[256];
-            rand.nextBytes(data);
-            FakeKey key = new FakeKey("keyId", data);
-
-            EncryptedBlobClientBuilder builder = new EncryptedBlobClientBuilder(options.getEncryptionVersion())
-                .blobClient(blobContainerClient.getBlobClient(blobName))
-                .key(key, KeyWrapAlgorithm.A256KW.toString());
-
-            blobClient = builder.buildEncryptedBlobClient();
-            blobAsyncClient = builder.buildEncryptedBlobAsyncClient();
-        } else {
-            blobClient = blobContainerClient.getBlobClient(blobName);
-            blobAsyncClient = blobContainerAsyncClient.getBlobAsyncClient(blobName);
-        }
+        blobClient = blobContainerClient.getBlobClient(blobName);
+        blobAsyncClient = blobContainerAsyncClient.getBlobAsyncClient(blobName);
 
         blockBlobClient = blobClient.getBlockBlobClient();
         blockBlobAsyncClient = blobAsyncClient.getBlockBlobAsyncClient();

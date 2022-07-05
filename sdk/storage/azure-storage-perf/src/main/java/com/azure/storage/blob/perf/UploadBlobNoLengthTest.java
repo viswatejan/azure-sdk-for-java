@@ -16,11 +16,11 @@ import java.nio.ByteBuffer;
 import static com.azure.perf.test.core.TestDataCreationHelper.createRandomByteBufferFlux;
 import static com.azure.perf.test.core.TestDataCreationHelper.createRandomInputStream;
 
-public class UploadBlobNoLengthTest extends BlobTestBase<BlobPerfStressOptions> {
+public class UploadBlobNoLengthTest extends BlobTestBase<StoragePerfStressOptions> {
     protected final RepeatingInputStream inputStream;
     protected final Flux<ByteBuffer> byteBufferFlux;
 
-    public UploadBlobNoLengthTest(BlobPerfStressOptions options) {
+    public UploadBlobNoLengthTest(StoragePerfStressOptions options) {
         super(options);
         if (options.isSync()) {
             inputStream = (RepeatingInputStream) createRandomInputStream(options.getSize());
