@@ -464,15 +464,17 @@ function Update-java-DocsMsPackages($DocsRepoLocation, $DocsMetadata, $DocValida
   UpdateDocsMsPackages `
     (Join-Path $DocsRepoLocation 'package.json') `
     'preview' `
-    $FilteredMetadata
+    $FilteredMetadata `
+    $DocValidationImageId
 
   UpdateDocsMsPackages `
     (Join-Path $DocsRepoLocation 'package.json') `
     'latest' `
-    $FilteredMetadata
+    $FilteredMetadata`
+    $DocValidationImageId
 }
 
-function UpdateDocsMsPackages($DocConfigFile, $Mode, $DocsMetadata) {
+function UpdateDocsMsPackages($DocConfigFile, $Mode, $DocsMetadata, $DocValidationImageId) {
   $packageConfig = Get-Content $DocConfigFile -Raw | ConvertFrom-Json
 
   $packageOutputPath = 'docs-ref-autogen'
@@ -539,7 +541,7 @@ function UpdateDocsMsPackages($DocConfigFile, $Mode, $DocsMetadata) {
     # If upgrading the package, run basic sanity checks against the package
     if ($package.packageVersion -ne $packageVersion) {
       Write-Host "Validating new version detected for $packageName ($packageVersion)"
-      $validatePackageResult = ValidatePackage $package.packageGroupId $package.packageArtifactId $packageVersion 
+      $validatePackageResult = ValidatePackage $package.packageGroupId $package.packageArtifactId $packageVersion $DocValidationImageId
 
       if (!$validatePackageResult) {
         LogWarning "Package is not valid: $packageName. Keeping old version."
