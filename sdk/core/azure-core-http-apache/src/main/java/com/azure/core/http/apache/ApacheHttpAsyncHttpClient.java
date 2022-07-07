@@ -26,12 +26,15 @@ import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.MonoSink;
+import reactor.core.scheduler.Schedulers;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 /**
  * HttpClient implementation for Apache Component.
@@ -67,24 +70,47 @@ class ApacheHttpAsyncHttpClient implements HttpClient {
         Objects.requireNonNull(request.getUrl(), "'request.getUrl()' cannot be null.");
         Objects.requireNonNull(request.getUrl().getProtocol(), "'request.getUrl().getProtocol()' cannot be null.");
 
-        return Mono.create(sink -> sink.onRequest(value -> {
 
-            final String contentLength = request.getHeaders().getValue(HttpHeaders.CONTENT_LENGTH);
+        final String contentLength = request.getHeaders().getValue(HttpHeaders.CONTENT_LENGTH);
+        // Request Producer
+        final BasicRequestProducer requestProducer = new BasicRequestProducer(
+            getApacheHttpRequest(request),
+            new ReactiveEntityProducer(getRequestBody(request),
+                CoreUtils.isNullOrEmpty(contentLength) ? -1 : Long.parseLong(contentLength), null, null));
 
-            // Request Producer
-            final BasicRequestProducer requestProducer = new BasicRequestProducer(
-                getApacheHttpRequest(request),
-                new ReactiveEntityProducer(getRequestBody(request),
-                    CoreUtils.isNullOrEmpty(contentLength) ? -1 : Long.parseLong(contentLength), null, null));
+        // Response Consumer
+        final ReactiveResponseConsumer consumer = new ReactiveResponseConsumer();
 
-            // Response Consumer
-            final ReactiveResponseConsumer consumer = new ReactiveResponseConsumer(new ApacheHttpFutureCallback(
-                sink, request
-            ));
+        // Execute the request
+        apacheClient.execute(requestProducer, consumer, null, toApacheContext(context), null);
 
-            // Execute the request
-            apacheClient.execute(requestProducer, consumer, null, toApacheContext(context), null);
-        }));
+        // Convert and return Azure response
+        return Mono.fromFuture(CompletableFuture.supplyAsync(() -> {
+            try {
+                // TODO (mssfang): look at making this non-blocking
+                return consumer.getResponseFuture().get();
+            } catch (InterruptedException | ExecutionException e) {
+                throw LOGGER.logExceptionAsError(new UnexpectedLengthException(e.getMessage(), 0L, 0L));
+            }
+        })).publishOn(Schedulers.boundedElastic()).map(response -> new ApacheHttpAsyncResponse(response, request));
+//        return Mono.create(sink -> sink.onRequest(value -> {
+//
+//            final String contentLength = request.getHeaders().getValue(HttpHeaders.CONTENT_LENGTH);
+//
+//            // Request Producer
+//            final BasicRequestProducer requestProducer = new BasicRequestProducer(
+//                getApacheHttpRequest(request),
+//                new ReactiveEntityProducer(getRequestBody(request),
+//                    CoreUtils.isNullOrEmpty(contentLength) ? -1 : Long.parseLong(contentLength), null, null));
+//
+//            // Response Consumer
+//            final ReactiveResponseConsumer consumer = new ReactiveResponseConsumer(new ApacheHttpFutureCallback(
+//                sink, request
+//            ));
+//
+//            // Execute the request
+//            apacheClient.execute(requestProducer, consumer, null, toApacheContext(context), null);
+//        }));
     }
 
     private static final class ApacheHttpFutureCallback implements
