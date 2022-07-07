@@ -355,7 +355,7 @@ function PackageDependenciesResolve($artifactNamePrefix, $packageDirectory) {
 }
 
 function ValidatePackage($groupId, $artifactId, $version, $DocValidationImageId) {
-  return ValidatePackages(@{ Group = $groupId; Name = $artifactId; Version = $version; }, $DocValidationImageId)
+  return ValidatePackages @{ Group = $groupId; Name = $artifactId; Version = $version; } $DocValidationImageId
 }
 
 function ValidatePackages([array]$packageInfos, $DocValidationImageId) {
