@@ -5,6 +5,7 @@ jobs:
   - template: /eng/common/pipelines/templates/jobs/docindex.yml
 
   - job: UpdateDocsMsBuildConfig
+    timeoutInMinutes: 200
     pool:
       vmImage: ubuntu-20.04
     variables:
