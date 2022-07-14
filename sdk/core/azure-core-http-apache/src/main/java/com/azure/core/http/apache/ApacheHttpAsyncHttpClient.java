@@ -9,6 +9,8 @@ import com.azure.core.http.HttpHeader;
 import com.azure.core.http.HttpRequest;
 import com.azure.core.http.HttpResponse;
 import com.azure.core.http.apache.implementation.ApacheHttpAsyncResponse;
+import com.azure.core.http.apache.implementation.ApacheReactiveEntityProducer;
+import com.azure.core.http.apache.implementation.ApacheReactiveResponseConsumer;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -74,13 +76,12 @@ class ApacheHttpAsyncHttpClient implements HttpClient {
             // Request Producer
             final BasicRequestProducer requestProducer = new BasicRequestProducer(
                 getApacheHttpRequest(request),
-                new ReactiveEntityProducer(getRequestBody(request),
+                new ApacheReactiveEntityProducer(getRequestBody(request),
                     CoreUtils.isNullOrEmpty(contentLength) ? -1 : Long.parseLong(contentLength), null, null));
 
             // Response Consumer
-            final ReactiveResponseConsumer consumer = new ReactiveResponseConsumer(new ApacheHttpFutureCallback(
-                sink, request
-            ));
+            final ApacheReactiveResponseConsumer consumer = new ApacheReactiveResponseConsumer(
+                new ApacheHttpFutureCallback(sink, request));
 
             // Execute the request
             apacheClient.execute(requestProducer, consumer, null, toApacheContext(context), null);
