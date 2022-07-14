@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -183,8 +182,7 @@ public final class PathHierarchyTokenizer extends LexicalTokenizer {
      *     polymorphic discriminator.
      */
     public static PathHierarchyTokenizer fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.PathHierarchyTokenizerV2";
                     boolean nameFound = false;
@@ -204,15 +202,15 @@ public final class PathHierarchyTokenizer extends LexicalTokenizer {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("delimiter".equals(fieldName)) {
-                            delimiter = JsonUtils.getNullableProperty(reader, r -> reader.getStringValue().charAt(0));
+                            delimiter = reader.getNullableValue(r -> reader.getStringValue().charAt(0));
                         } else if ("replacement".equals(fieldName)) {
-                            replacement = JsonUtils.getNullableProperty(reader, r -> reader.getStringValue().charAt(0));
+                            replacement = reader.getNullableValue(r -> reader.getStringValue().charAt(0));
                         } else if ("maxTokenLength".equals(fieldName)) {
-                            maxTokenLength = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxTokenLength = reader.getIntegerNullableValue();
                         } else if ("reverse".equals(fieldName)) {
-                            tokenOrderReversed = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            tokenOrderReversed = reader.getBooleanNullableValue();
                         } else if ("skip".equals(fieldName)) {
-                            numberOfTokensToSkip = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            numberOfTokensToSkip = reader.getIntegerNullableValue();
                         } else {
                             reader.skipChildren();
                         }

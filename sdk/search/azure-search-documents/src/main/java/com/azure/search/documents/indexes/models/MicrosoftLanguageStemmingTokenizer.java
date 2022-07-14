@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -137,8 +136,7 @@ public final class MicrosoftLanguageStemmingTokenizer extends LexicalTokenizer {
      *     polymorphic discriminator.
      */
     public static MicrosoftLanguageStemmingTokenizer fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.MicrosoftLanguageStemmingTokenizer";
                     boolean nameFound = false;
@@ -156,10 +154,9 @@ public final class MicrosoftLanguageStemmingTokenizer extends LexicalTokenizer {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("maxTokenLength".equals(fieldName)) {
-                            maxTokenLength = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxTokenLength = reader.getIntegerNullableValue();
                         } else if ("isSearchTokenizer".equals(fieldName)) {
-                            isSearchTokenizerUsed =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            isSearchTokenizerUsed = reader.getBooleanNullableValue();
                         } else if ("language".equals(fieldName)) {
                             language = MicrosoftStemmingTokenizerLanguage.fromString(reader.getStringValue());
                         } else {

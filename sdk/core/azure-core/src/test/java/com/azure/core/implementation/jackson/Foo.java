@@ -3,9 +3,8 @@
 
 package com.azure.core.implementation.jackson;
 
-import com.azure.core.util.serializer.JsonUtils;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 
@@ -87,17 +86,12 @@ public class Foo implements JsonSerializable<Foo> {
                 .writeStringField("bar", bar, false);
 
             if (baz != null || qux != null) {
-                jsonWriter.writeStartObject("props");
-
-                JsonUtils.writeArray(jsonWriter, "baz", baz, JsonWriter::writeString);
+                jsonWriter.writeStartObject("props")
+                    .writeArrayField("baz", baz, false, JsonWriter::writeString);
 
                 if (qux != null) {
                     jsonWriter.writeStartObject("q")
-                        .writeStartObject("qux");
-
-                    qux.forEach(jsonWriter::writeStringField);
-
-                    jsonWriter.writeEndObject()
+                        .writeMapField("qux", qux, JsonWriter::writeString)
                         .writeEndObject();
                 }
 
@@ -115,9 +109,7 @@ public class Foo implements JsonSerializable<Foo> {
         }
 
         if (additionalProperties != null) {
-            additionalProperties.forEach((key, value) ->
-                JsonUtils.writeUntypedField(jsonWriter.writeFieldName(key), value));
-
+            additionalProperties.forEach(jsonWriter::writeUntypedField);
         }
 
         return jsonWriter.writeEndObject().flush();
@@ -128,7 +120,7 @@ public class Foo implements JsonSerializable<Foo> {
     }
 
     static Foo fromJsonInternal(JsonReader jsonReader, String expectedType) {
-        return JsonUtils.readObject(jsonReader, reader -> {
+        return jsonReader.readObject(reader -> {
             String type = null;
             String bar = null;
             List<String> baz = null;
@@ -158,7 +150,7 @@ public class Foo implements JsonSerializable<Foo> {
                                 reader.nextToken();
 
                                 if ("baz".equals(fieldName)) {
-                                    baz = JsonUtils.readArray(reader, JsonReader::getStringValue);
+                                    baz = reader.readArray(JsonReader::getStringValue);
                                 } else if ("q".equals(fieldName)) {
                                     while (reader.nextToken() != JsonToken.END_OBJECT) {
                                         fieldName = reader.getFieldName();
@@ -196,7 +188,7 @@ public class Foo implements JsonSerializable<Foo> {
                         reader.nextToken();
 
                         if ("empty".equals(fieldName)) {
-                            empty = reader.currentToken() == JsonToken.NULL ? null : reader.getIntValue();
+                            empty = reader.getIntegerNullableValue();
                         } else {
                             reader.skipChildren();
                         }
@@ -206,7 +198,7 @@ public class Foo implements JsonSerializable<Foo> {
                         additionalProperties = new LinkedHashMap<>();
                     }
 
-                    additionalProperties.put(fieldName, JsonUtils.readUntypedField(reader));
+                    additionalProperties.put(fieldName, reader.readUntyped());
                 }
             }
 

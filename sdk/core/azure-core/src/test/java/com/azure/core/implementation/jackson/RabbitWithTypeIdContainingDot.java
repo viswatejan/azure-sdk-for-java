@@ -3,7 +3,6 @@
 
 package com.azure.core.implementation.jackson;
 
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -35,20 +34,16 @@ public class RabbitWithTypeIdContainingDot extends AnimalWithTypeIdContainingDot
 
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
-        jsonWriter.writeStartObject()
-            .writeStringField("@odata.type", "#Favourite.Pet.RabbitWithTypeIdContainingDot");
-
-        if (tailLength != null) {
-            jsonWriter.writeIntField("tailLength", tailLength);
-        }
-
-        JsonUtils.writeArray(jsonWriter, "meals", meals, JsonWriter::writeString);
-
-        return jsonWriter.writeEndObject().flush();
+        return jsonWriter.writeStartObject()
+            .writeStringField("@odata.type", "#Favourite.Pet.RabbitWithTypeIdContainingDot")
+            .writeIntegerField("tailLength", tailLength, false)
+            .writeArrayField("meals", meals, false, JsonWriter::writeString)
+            .writeEndObject()
+            .flush();
     }
 
     public static RabbitWithTypeIdContainingDot fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(jsonReader, reader -> {
+        return jsonReader.readObject(reader -> {
             String odataType = null;
             Integer tailLength = null;
             List<String> meals = null;
@@ -62,7 +57,7 @@ public class RabbitWithTypeIdContainingDot extends AnimalWithTypeIdContainingDot
                 } else if ("tailLength".equals(fieldName)) {
                     tailLength = reader.getIntegerNullableValue();
                 } else if ("meals".equals(fieldName) && reader.currentToken() == JsonToken.START_ARRAY) {
-                    meals = JsonUtils.readArray(reader, JsonReader::getStringValue);
+                    meals = reader.readArray(JsonReader::getStringValue);
                 } else {
                     reader.skipChildren();
                 }

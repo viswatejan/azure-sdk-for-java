@@ -7,7 +7,6 @@
 package com.azure.search.documents.indexes.implementation.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -45,8 +44,8 @@ public final class SkillNames implements JsonSerializable<SkillNames> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(
-                jsonWriter, "skillNames", this.skillNames, (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField(
+                "skillNames", this.skillNames, false, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -58,8 +57,7 @@ public final class SkillNames implements JsonSerializable<SkillNames> {
      *     to JSON null.
      */
     public static SkillNames fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     List<String> skillNames = null;
                     while (reader.nextToken() != JsonToken.END_OBJECT) {
@@ -67,7 +65,7 @@ public final class SkillNames implements JsonSerializable<SkillNames> {
                         reader.nextToken();
 
                         if ("skillNames".equals(fieldName)) {
-                            skillNames = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            skillNames = reader.readArray(reader1 -> reader1.getStringValue());
                         } else {
                             reader.skipChildren();
                         }

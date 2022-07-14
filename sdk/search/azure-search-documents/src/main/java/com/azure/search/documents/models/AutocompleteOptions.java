@@ -7,7 +7,6 @@
 package com.azure.search.documents.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -258,8 +257,8 @@ public final class AutocompleteOptions implements JsonSerializable<AutocompleteO
         jsonWriter.writeStringField("highlightPostTag", this.highlightPostTag, false);
         jsonWriter.writeStringField("highlightPreTag", this.highlightPreTag, false);
         jsonWriter.writeDoubleField("minimumCoverage", this.minimumCoverage, false);
-        JsonUtils.writeArray(
-                jsonWriter, "searchFields", this.searchFields, (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField(
+                "searchFields", this.searchFields, false, (writer, element) -> writer.writeString(element));
         jsonWriter.writeIntegerField("$top", this.top, false);
         return jsonWriter.writeEndObject().flush();
     }
@@ -272,8 +271,7 @@ public final class AutocompleteOptions implements JsonSerializable<AutocompleteO
      *     pointing to JSON null.
      */
     public static AutocompleteOptions fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     AutocompleteMode autocompleteMode = null;
                     String filter = null;
@@ -292,17 +290,17 @@ public final class AutocompleteOptions implements JsonSerializable<AutocompleteO
                         } else if ("$filter".equals(fieldName)) {
                             filter = reader.getStringValue();
                         } else if ("UseFuzzyMatching".equals(fieldName)) {
-                            useFuzzyMatching = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            useFuzzyMatching = reader.getBooleanNullableValue();
                         } else if ("highlightPostTag".equals(fieldName)) {
                             highlightPostTag = reader.getStringValue();
                         } else if ("highlightPreTag".equals(fieldName)) {
                             highlightPreTag = reader.getStringValue();
                         } else if ("minimumCoverage".equals(fieldName)) {
-                            minimumCoverage = JsonUtils.getNullableProperty(reader, r -> reader.getDoubleValue());
+                            minimumCoverage = reader.getDoubleNullableValue();
                         } else if ("searchFields".equals(fieldName)) {
-                            searchFields = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            searchFields = reader.readArray(reader1 -> reader1.getStringValue());
                         } else if ("$top".equals(fieldName)) {
-                            top = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            top = reader.getIntegerNullableValue();
                         } else {
                             reader.skipChildren();
                         }

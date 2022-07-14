@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -161,8 +160,7 @@ public final class DictionaryDecompounderTokenFilter extends TokenFilter {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
         jsonWriter.writeStringField("name", getName(), false);
-        JsonUtils.writeArray(
-                jsonWriter, "wordList", this.wordList, (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField("wordList", this.wordList, false, (writer, element) -> writer.writeString(element));
         jsonWriter.writeIntegerField("minWordSize", this.minWordSize, false);
         jsonWriter.writeIntegerField("minSubwordSize", this.minSubwordSize, false);
         jsonWriter.writeIntegerField("maxSubwordSize", this.maxSubwordSize, false);
@@ -180,8 +178,7 @@ public final class DictionaryDecompounderTokenFilter extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static DictionaryDecompounderTokenFilter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.DictionaryDecompounderTokenFilter";
                     boolean nameFound = false;
@@ -202,16 +199,16 @@ public final class DictionaryDecompounderTokenFilter extends TokenFilter {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("wordList".equals(fieldName)) {
-                            wordList = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            wordList = reader.readArray(reader1 -> reader1.getStringValue());
                             wordListFound = true;
                         } else if ("minWordSize".equals(fieldName)) {
-                            minWordSize = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            minWordSize = reader.getIntegerNullableValue();
                         } else if ("minSubwordSize".equals(fieldName)) {
-                            minSubwordSize = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            minSubwordSize = reader.getIntegerNullableValue();
                         } else if ("maxSubwordSize".equals(fieldName)) {
-                            maxSubwordSize = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxSubwordSize = reader.getIntegerNullableValue();
                         } else if ("onlyLongestMatch".equals(fieldName)) {
-                            onlyLongestMatched = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            onlyLongestMatched = reader.getBooleanNullableValue();
                         } else {
                             reader.skipChildren();
                         }

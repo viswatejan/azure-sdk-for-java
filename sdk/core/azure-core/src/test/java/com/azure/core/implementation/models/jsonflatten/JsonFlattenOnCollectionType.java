@@ -4,9 +4,8 @@
 package com.azure.core.implementation.models.jsonflatten;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 
@@ -33,9 +32,8 @@ public final class JsonFlattenOnCollectionType implements JsonSerializable<JsonF
         jsonWriter.writeStartObject();
 
         if (jsonFlattenCollection != null) {
-            jsonWriter.writeStartObject("jsonflatten");
-
-            JsonUtils.writeArray(jsonWriter, "collection", jsonFlattenCollection, JsonWriter::writeString)
+            jsonWriter.writeStartObject("jsonflatten")
+                .writeArrayField("collection", jsonFlattenCollection, JsonWriter::writeString)
                 .writeEndObject();
         }
 
@@ -43,7 +41,7 @@ public final class JsonFlattenOnCollectionType implements JsonSerializable<JsonF
     }
 
     public static JsonFlattenOnCollectionType fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(jsonReader, reader -> {
+        return jsonReader.readObject(reader -> {
             JsonFlattenOnCollectionType flatten = new JsonFlattenOnCollectionType();
 
             while (reader.nextToken() != JsonToken.END_OBJECT) {
@@ -56,7 +54,7 @@ public final class JsonFlattenOnCollectionType implements JsonSerializable<JsonF
                         reader.nextToken();
 
                         if ("collection".equals(fieldName)) {
-                            flatten.setJsonFlattenCollection(JsonUtils.readArray(reader, JsonReader::getStringValue));
+                            flatten.setJsonFlattenCollection(reader.readArray(JsonReader::getStringValue));
                         } else {
                             reader.skipChildren();
                         }

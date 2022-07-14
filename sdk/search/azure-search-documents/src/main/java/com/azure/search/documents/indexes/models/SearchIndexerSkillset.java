@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -228,7 +227,7 @@ public final class SearchIndexerSkillset implements JsonSerializable<SearchIndex
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name, false);
         jsonWriter.writeStringField("description", this.description, false);
-        JsonUtils.writeArray(jsonWriter, "skills", this.skills, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("skills", this.skills, false, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("cognitiveServices", this.cognitiveServicesAccount, false);
         jsonWriter.writeJsonField("knowledgeStore", this.knowledgeStore, false);
         jsonWriter.writeStringField("@odata.etag", this.eTag, false);
@@ -245,8 +244,7 @@ public final class SearchIndexerSkillset implements JsonSerializable<SearchIndex
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static SearchIndexerSkillset fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean nameFound = false;
                     String name = null;
@@ -266,7 +264,7 @@ public final class SearchIndexerSkillset implements JsonSerializable<SearchIndex
                         } else if ("description".equals(fieldName)) {
                             description = reader.getStringValue();
                         } else if ("skills".equals(fieldName)) {
-                            skills = JsonUtils.readArray(reader, reader1 -> SearchIndexerSkill.fromJson(reader1));
+                            skills = reader.readArray(reader1 -> SearchIndexerSkill.fromJson(reader1));
                         } else if ("cognitiveServices".equals(fieldName)) {
                             cognitiveServicesAccount = CognitiveServicesAccount.fromJson(reader);
                         } else if ("knowledgeStore".equals(fieldName)) {

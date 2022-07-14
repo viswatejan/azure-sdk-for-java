@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -48,7 +47,7 @@ public final class TextWeights implements JsonSerializable<TextWeights> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeMap(jsonWriter, "weights", this.weights, (writer, element) -> writer.writeDouble(element));
+        jsonWriter.writeMapField("weights", this.weights, false, (writer, element) -> writer.writeDouble(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -61,8 +60,7 @@ public final class TextWeights implements JsonSerializable<TextWeights> {
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static TextWeights fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean weightsFound = false;
                     Map<String, Double> weights = null;
@@ -71,7 +69,7 @@ public final class TextWeights implements JsonSerializable<TextWeights> {
                         reader.nextToken();
 
                         if ("weights".equals(fieldName)) {
-                            weights = JsonUtils.readMap(reader, reader1 -> reader1.getDoubleValue());
+                            weights = reader.readMap(reader1 -> reader1.getDoubleValue());
                             weightsFound = true;
                         } else {
                             reader.skipChildren();

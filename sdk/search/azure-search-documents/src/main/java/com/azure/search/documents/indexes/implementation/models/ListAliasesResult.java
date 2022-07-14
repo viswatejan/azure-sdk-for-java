@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.implementation.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -46,7 +45,7 @@ public final class ListAliasesResult implements JsonSerializable<ListAliasesResu
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(jsonWriter, "value", this.aliases, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("value", this.aliases, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -59,8 +58,7 @@ public final class ListAliasesResult implements JsonSerializable<ListAliasesResu
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static ListAliasesResult fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean aliasesFound = false;
                     List<SearchAlias> aliases = null;
@@ -69,7 +67,7 @@ public final class ListAliasesResult implements JsonSerializable<ListAliasesResu
                         reader.nextToken();
 
                         if ("value".equals(fieldName)) {
-                            aliases = JsonUtils.readArray(reader, reader1 -> SearchAlias.fromJson(reader1));
+                            aliases = reader.readArray(reader1 -> SearchAlias.fromJson(reader1));
                             aliasesFound = true;
                         } else {
                             reader.skipChildren();

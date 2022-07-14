@@ -8,7 +8,6 @@ package com.azure.search.documents.implementation.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -75,8 +74,7 @@ public final class SearchError implements JsonSerializable<SearchError> {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("message", this.message, false);
         jsonWriter.writeStringField("code", this.code, false);
-        JsonUtils.writeArray(
-                jsonWriter, "details", this.details, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("details", this.details, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -89,8 +87,7 @@ public final class SearchError implements JsonSerializable<SearchError> {
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static SearchError fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean messageFound = false;
                     String message = null;
@@ -106,7 +103,7 @@ public final class SearchError implements JsonSerializable<SearchError> {
                         } else if ("code".equals(fieldName)) {
                             code = reader.getStringValue();
                         } else if ("details".equals(fieldName)) {
-                            details = JsonUtils.readArray(reader, reader1 -> SearchError.fromJson(reader1));
+                            details = reader.readArray(reader1 -> SearchError.fromJson(reader1));
                         } else {
                             reader.skipChildren();
                         }

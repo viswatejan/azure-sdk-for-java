@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -93,10 +92,10 @@ public final class CjkBigramTokenFilter extends TokenFilter {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
         jsonWriter.writeStringField("name", getName(), false);
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
                 "ignoreScripts",
                 this.ignoreScripts,
+                false,
                 (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeBooleanField("outputUnigrams", this.outputUnigrams, false);
         return jsonWriter.writeEndObject().flush();
@@ -112,8 +111,7 @@ public final class CjkBigramTokenFilter extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static CjkBigramTokenFilter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.CjkBigramTokenFilter";
                     boolean nameFound = false;
@@ -131,12 +129,11 @@ public final class CjkBigramTokenFilter extends TokenFilter {
                             nameFound = true;
                         } else if ("ignoreScripts".equals(fieldName)) {
                             ignoreScripts =
-                                    JsonUtils.readArray(
-                                            reader,
+                                    reader.readArray(
                                             reader1 ->
                                                     CjkBigramTokenFilterScripts.fromString(reader1.getStringValue()));
                         } else if ("outputUnigrams".equals(fieldName)) {
-                            outputUnigrams = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            outputUnigrams = reader.getBooleanNullableValue();
                         } else {
                             reader.skipChildren();
                         }

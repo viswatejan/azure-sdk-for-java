@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -152,8 +151,7 @@ public final class PatternTokenizer extends LexicalTokenizer {
      *     polymorphic discriminator.
      */
     public static PatternTokenizer fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.PatternTokenizer";
                     boolean nameFound = false;
@@ -175,7 +173,7 @@ public final class PatternTokenizer extends LexicalTokenizer {
                         } else if ("flags".equals(fieldName)) {
                             flags = RegexFlags.fromString(reader.getStringValue());
                         } else if ("group".equals(fieldName)) {
-                            group = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            group = reader.getIntegerNullableValue();
                         } else {
                             reader.skipChildren();
                         }

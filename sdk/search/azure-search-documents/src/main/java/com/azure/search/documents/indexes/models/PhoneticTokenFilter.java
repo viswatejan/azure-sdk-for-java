@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -105,8 +104,7 @@ public final class PhoneticTokenFilter extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static PhoneticTokenFilter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.PhoneticTokenFilter";
                     boolean nameFound = false;
@@ -125,8 +123,7 @@ public final class PhoneticTokenFilter extends TokenFilter {
                         } else if ("encoder".equals(fieldName)) {
                             encoder = PhoneticEncoder.fromString(reader.getStringValue());
                         } else if ("replace".equals(fieldName)) {
-                            originalTokensReplaced =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            originalTokensReplaced = reader.getBooleanNullableValue();
                         } else {
                             reader.skipChildren();
                         }

@@ -8,7 +8,6 @@ package com.azure.search.documents.implementation.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -45,7 +44,7 @@ public final class IndexBatch implements JsonSerializable<IndexBatch> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(jsonWriter, "value", this.actions, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("value", this.actions, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -58,8 +57,7 @@ public final class IndexBatch implements JsonSerializable<IndexBatch> {
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static IndexBatch fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean actionsFound = false;
                     List<IndexAction> actions = null;
@@ -68,7 +66,7 @@ public final class IndexBatch implements JsonSerializable<IndexBatch> {
                         reader.nextToken();
 
                         if ("value".equals(fieldName)) {
-                            actions = JsonUtils.readArray(reader, reader1 -> IndexAction.fromJson(reader1));
+                            actions = reader.readArray(reader1 -> IndexAction.fromJson(reader1));
                             actionsFound = true;
                         } else {
                             reader.skipChildren();

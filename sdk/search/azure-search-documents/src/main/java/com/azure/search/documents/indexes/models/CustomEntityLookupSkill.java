@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -202,9 +201,8 @@ public final class CustomEntityLookupSkill extends SearchIndexerSkill {
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
-        JsonUtils.writeArray(jsonWriter, "inputs", getInputs(), (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "outputs", getOutputs(), (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("inputs", getInputs(), false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("outputs", getOutputs(), false, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("name", getName(), false);
         jsonWriter.writeStringField("description", getDescription(), false);
         jsonWriter.writeStringField("context", getContext(), false);
@@ -213,11 +211,11 @@ public final class CustomEntityLookupSkill extends SearchIndexerSkill {
                 this.defaultLanguageCode == null ? null : this.defaultLanguageCode.toString(),
                 false);
         jsonWriter.writeStringField("entitiesDefinitionUri", this.entitiesDefinitionUri, false);
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
                 "inlineEntitiesDefinition",
                 this.inlineEntitiesDefinition,
-                (writer, element) -> writer.writeJson(element, false));
+                false,
+                (writer, element) -> writer.writeJson(element));
         jsonWriter.writeBooleanField("globalDefaultCaseSensitive", this.globalDefaultCaseSensitive, false);
         jsonWriter.writeBooleanField("globalDefaultAccentSensitive", this.globalDefaultAccentSensitive, false);
         jsonWriter.writeIntegerField("globalDefaultFuzzyEditDistance", this.globalDefaultFuzzyEditDistance, false);
@@ -234,8 +232,7 @@ public final class CustomEntityLookupSkill extends SearchIndexerSkill {
      *     polymorphic discriminator.
      */
     public static CustomEntityLookupSkill fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Skills.Text.CustomEntityLookupSkill";
                     boolean inputsFound = false;
@@ -258,10 +255,10 @@ public final class CustomEntityLookupSkill extends SearchIndexerSkill {
                         if ("@odata.type".equals(fieldName)) {
                             odataType = reader.getStringValue();
                         } else if ("inputs".equals(fieldName)) {
-                            inputs = JsonUtils.readArray(reader, reader1 -> InputFieldMappingEntry.fromJson(reader1));
+                            inputs = reader.readArray(reader1 -> InputFieldMappingEntry.fromJson(reader1));
                             inputsFound = true;
                         } else if ("outputs".equals(fieldName)) {
-                            outputs = JsonUtils.readArray(reader, reader1 -> OutputFieldMappingEntry.fromJson(reader1));
+                            outputs = reader.readArray(reader1 -> OutputFieldMappingEntry.fromJson(reader1));
                             outputsFound = true;
                         } else if ("name".equals(fieldName)) {
                             name = reader.getStringValue();
@@ -274,17 +271,13 @@ public final class CustomEntityLookupSkill extends SearchIndexerSkill {
                         } else if ("entitiesDefinitionUri".equals(fieldName)) {
                             entitiesDefinitionUri = reader.getStringValue();
                         } else if ("inlineEntitiesDefinition".equals(fieldName)) {
-                            inlineEntitiesDefinition =
-                                    JsonUtils.readArray(reader, reader1 -> CustomEntity.fromJson(reader1));
+                            inlineEntitiesDefinition = reader.readArray(reader1 -> CustomEntity.fromJson(reader1));
                         } else if ("globalDefaultCaseSensitive".equals(fieldName)) {
-                            globalDefaultCaseSensitive =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            globalDefaultCaseSensitive = reader.getBooleanNullableValue();
                         } else if ("globalDefaultAccentSensitive".equals(fieldName)) {
-                            globalDefaultAccentSensitive =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            globalDefaultAccentSensitive = reader.getBooleanNullableValue();
                         } else if ("globalDefaultFuzzyEditDistance".equals(fieldName)) {
-                            globalDefaultFuzzyEditDistance =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            globalDefaultFuzzyEditDistance = reader.getIntegerNullableValue();
                         } else {
                             reader.skipChildren();
                         }

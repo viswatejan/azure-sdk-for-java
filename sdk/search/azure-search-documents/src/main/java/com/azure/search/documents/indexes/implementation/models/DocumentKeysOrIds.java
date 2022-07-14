@@ -7,7 +7,6 @@
 package com.azure.search.documents.indexes.implementation.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -70,13 +69,13 @@ public final class DocumentKeysOrIds implements JsonSerializable<DocumentKeysOrI
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(
-                jsonWriter, "documentKeys", this.documentKeys, (writer, element) -> writer.writeString(element, false));
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
+                "documentKeys", this.documentKeys, false, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField(
                 "datasourceDocumentIds",
                 this.datasourceDocumentIds,
-                (writer, element) -> writer.writeString(element, false));
+                false,
+                (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -88,8 +87,7 @@ public final class DocumentKeysOrIds implements JsonSerializable<DocumentKeysOrI
      *     pointing to JSON null.
      */
     public static DocumentKeysOrIds fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     List<String> documentKeys = null;
                     List<String> datasourceDocumentIds = null;
@@ -98,9 +96,9 @@ public final class DocumentKeysOrIds implements JsonSerializable<DocumentKeysOrI
                         reader.nextToken();
 
                         if ("documentKeys".equals(fieldName)) {
-                            documentKeys = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            documentKeys = reader.readArray(reader1 -> reader1.getStringValue());
                         } else if ("datasourceDocumentIds".equals(fieldName)) {
-                            datasourceDocumentIds = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            datasourceDocumentIds = reader.readArray(reader1 -> reader1.getStringValue());
                         } else {
                             reader.skipChildren();
                         }

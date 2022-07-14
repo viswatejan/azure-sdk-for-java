@@ -7,7 +7,6 @@
 package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -134,16 +133,13 @@ public final class IndexerCurrentState implements JsonSerializable<IndexerCurren
         jsonWriter.writeStringField(
                 "resetDocsInitialChangeTrackingState", this.resetDocsInitialChangeTrackingState, false);
         jsonWriter.writeStringField("resetDocsFinalChangeTrackingState", this.resetDocsFinalChangeTrackingState, false);
-        JsonUtils.writeArray(
-                jsonWriter,
-                "resetDocumentKeys",
-                this.resetDocumentKeys,
-                (writer, element) -> writer.writeString(element, false));
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
+                "resetDocumentKeys", this.resetDocumentKeys, false, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeArrayField(
                 "resetDatasourceDocumentIds",
                 this.resetDatasourceDocumentIds,
-                (writer, element) -> writer.writeString(element, false));
+                false,
+                (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -155,8 +151,7 @@ public final class IndexerCurrentState implements JsonSerializable<IndexerCurren
      *     pointing to JSON null.
      */
     public static IndexerCurrentState fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     IndexingMode mode = null;
                     String allDocsInitialChangeTrackingState = null;
@@ -180,10 +175,9 @@ public final class IndexerCurrentState implements JsonSerializable<IndexerCurren
                         } else if ("resetDocsFinalChangeTrackingState".equals(fieldName)) {
                             resetDocsFinalChangeTrackingState = reader.getStringValue();
                         } else if ("resetDocumentKeys".equals(fieldName)) {
-                            resetDocumentKeys = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            resetDocumentKeys = reader.readArray(reader1 -> reader1.getStringValue());
                         } else if ("resetDatasourceDocumentIds".equals(fieldName)) {
-                            resetDatasourceDocumentIds =
-                                    JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            resetDatasourceDocumentIds = reader.readArray(reader1 -> reader1.getStringValue());
                         } else {
                             reader.skipChildren();
                         }

@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -58,7 +57,7 @@ public final class StemmerOverrideTokenFilter extends TokenFilter {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
         jsonWriter.writeStringField("name", getName(), false);
-        JsonUtils.writeArray(jsonWriter, "rules", this.rules, (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField("rules", this.rules, false, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -72,8 +71,7 @@ public final class StemmerOverrideTokenFilter extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static StemmerOverrideTokenFilter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.StemmerOverrideTokenFilter";
                     boolean nameFound = false;
@@ -90,7 +88,7 @@ public final class StemmerOverrideTokenFilter extends TokenFilter {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("rules".equals(fieldName)) {
-                            rules = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            rules = reader.readArray(reader1 -> reader1.getStringValue());
                             rulesFound = true;
                         } else {
                             reader.skipChildren();

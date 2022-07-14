@@ -3,9 +3,8 @@
 
 package com.azure.core.implementation.jackson;
 
-import com.azure.core.util.serializer.JsonUtils;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 
@@ -65,21 +64,18 @@ public class ComposeTurtles implements JsonSerializable<ComposeTurtles> {
 
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
-        jsonWriter.writeStartObject()
+        return jsonWriter.writeStartObject()
             .writeStringField("description", description, false)
-            .writeJsonField("turtlesSet1Lead", turtlesSet1Lead, false);
-
-        JsonUtils.writeArray(jsonWriter, "turtlesSet1", turtlesSet1, JsonWriter::writeJson);
-
-        jsonWriter.writeJsonField("turtlesSet2Lead", turtlesSet2Lead, false);
-
-        JsonUtils.writeArray(jsonWriter, "turtlesSet2", turtlesSet2, JsonWriter::writeJson);
-
-        return jsonWriter.writeEndObject().flush();
+            .writeJsonField("turtlesSet1Lead", turtlesSet1Lead, false)
+            .writeArrayField("turtlesSet1", turtlesSet1, false, JsonWriter::writeJson)
+            .writeJsonField("turtlesSet2Lead", turtlesSet2Lead, false)
+            .writeArrayField("turtlesSet2", turtlesSet2, false, JsonWriter::writeJson)
+            .writeEndObject()
+            .flush();
     }
 
     public static ComposeTurtles fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(jsonReader, reader -> {
+        return jsonReader.readObject(reader -> {
             String description = null;
             TurtleWithTypeIdContainingDot turtleSet1Lead = null;
             List<TurtleWithTypeIdContainingDot> turtleSet1 = null;
@@ -95,11 +91,11 @@ public class ComposeTurtles implements JsonSerializable<ComposeTurtles> {
                 } else if ("turtlesSet1Lead".equals(fieldName)) {
                     turtleSet1Lead = TurtleWithTypeIdContainingDot.fromJson(reader);
                 } else if ("turtlesSet1".equals(fieldName) && reader.currentToken() == JsonToken.START_ARRAY) {
-                    turtleSet1 = JsonUtils.readArray(reader, TurtleWithTypeIdContainingDot::fromJson);
+                    turtleSet1 = reader.readArray(TurtleWithTypeIdContainingDot::fromJson);
                 } else if ("turtlesSet2Lead".equals(fieldName)) {
                     turtleSet2Lead = NonEmptyAnimalWithTypeIdContainingDot.fromJson(jsonReader);
                 } else if ("turtlesSet2".equals(fieldName) && reader.currentToken() == JsonToken.START_ARRAY) {
-                    turtleSet2 = JsonUtils.readArray(reader, NonEmptyAnimalWithTypeIdContainingDot::fromJson);
+                    turtleSet2 = reader.readArray(NonEmptyAnimalWithTypeIdContainingDot::fromJson);
                 } else {
                     reader.skipChildren();
                 }

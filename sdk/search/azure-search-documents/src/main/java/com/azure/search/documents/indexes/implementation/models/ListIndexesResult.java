@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.implementation.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -46,7 +45,7 @@ public final class ListIndexesResult implements JsonSerializable<ListIndexesResu
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(jsonWriter, "value", this.indexes, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("value", this.indexes, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -59,8 +58,7 @@ public final class ListIndexesResult implements JsonSerializable<ListIndexesResu
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static ListIndexesResult fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean indexesFound = false;
                     List<SearchIndex> indexes = null;
@@ -69,7 +67,7 @@ public final class ListIndexesResult implements JsonSerializable<ListIndexesResu
                         reader.nextToken();
 
                         if ("value".equals(fieldName)) {
-                            indexes = JsonUtils.readArray(reader, reader1 -> SearchIndex.fromJson(reader1));
+                            indexes = reader.readArray(reader1 -> SearchIndex.fromJson(reader1));
                             indexesFound = true;
                         } else {
                             reader.skipChildren();

@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -83,8 +82,7 @@ public final class PatternCaptureTokenFilter extends TokenFilter {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
         jsonWriter.writeStringField("name", getName(), false);
-        JsonUtils.writeArray(
-                jsonWriter, "patterns", this.patterns, (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField("patterns", this.patterns, false, (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("preserveOriginal", this.preserveOriginal, false);
         return jsonWriter.writeEndObject().flush();
     }
@@ -99,8 +97,7 @@ public final class PatternCaptureTokenFilter extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static PatternCaptureTokenFilter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.PatternCaptureTokenFilter";
                     boolean nameFound = false;
@@ -118,10 +115,10 @@ public final class PatternCaptureTokenFilter extends TokenFilter {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("patterns".equals(fieldName)) {
-                            patterns = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            patterns = reader.readArray(reader1 -> reader1.getStringValue());
                             patternsFound = true;
                         } else if ("preserveOriginal".equals(fieldName)) {
-                            preserveOriginal = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            preserveOriginal = reader.getBooleanNullableValue();
                         } else {
                             reader.skipChildren();
                         }

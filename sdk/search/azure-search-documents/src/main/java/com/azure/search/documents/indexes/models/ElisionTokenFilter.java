@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -65,8 +64,7 @@ public final class ElisionTokenFilter extends TokenFilter {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
         jsonWriter.writeStringField("name", getName(), false);
-        JsonUtils.writeArray(
-                jsonWriter, "articles", this.articles, (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField("articles", this.articles, false, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -80,8 +78,7 @@ public final class ElisionTokenFilter extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static ElisionTokenFilter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.ElisionTokenFilter";
                     boolean nameFound = false;
@@ -97,7 +94,7 @@ public final class ElisionTokenFilter extends TokenFilter {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("articles".equals(fieldName)) {
-                            articles = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            articles = reader.readArray(reader1 -> reader1.getStringValue());
                         } else {
                             reader.skipChildren();
                         }

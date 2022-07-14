@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -119,10 +118,10 @@ public final class EdgeNGramTokenizer extends LexicalTokenizer {
         jsonWriter.writeStringField("name", getName(), false);
         jsonWriter.writeIntegerField("minGram", this.minGram, false);
         jsonWriter.writeIntegerField("maxGram", this.maxGram, false);
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
                 "tokenChars",
                 this.tokenChars,
+                false,
                 (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         return jsonWriter.writeEndObject().flush();
     }
@@ -137,8 +136,7 @@ public final class EdgeNGramTokenizer extends LexicalTokenizer {
      *     polymorphic discriminator.
      */
     public static EdgeNGramTokenizer fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.EdgeNGramTokenizer";
                     boolean nameFound = false;
@@ -156,13 +154,13 @@ public final class EdgeNGramTokenizer extends LexicalTokenizer {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("minGram".equals(fieldName)) {
-                            minGram = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            minGram = reader.getIntegerNullableValue();
                         } else if ("maxGram".equals(fieldName)) {
-                            maxGram = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxGram = reader.getIntegerNullableValue();
                         } else if ("tokenChars".equals(fieldName)) {
                             tokenChars =
-                                    JsonUtils.readArray(
-                                            reader, reader1 -> TokenCharacterKind.fromString(reader1.getStringValue()));
+                                    reader.readArray(
+                                            reader1 -> TokenCharacterKind.fromString(reader1.getStringValue()));
                         } else {
                             reader.skipChildren();
                         }

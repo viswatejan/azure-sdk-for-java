@@ -3,9 +3,8 @@
 
 package com.azure.core.implementation.jackson;
 
-import com.azure.core.util.serializer.JsonUtils;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 
@@ -42,9 +41,8 @@ public class AnimalShelter implements JsonSerializable<AnimalShelter> {
         }
 
         jsonWriter.writeStartObject("properties")
-            .writeStringField("description", description, false);
-
-        JsonUtils.writeArray(jsonWriter, "animalsInfo", animalsInfo, JsonWriter::writeJson);
+            .writeStringField("description", description, false)
+            .writeArrayField("animalsInfo", animalsInfo, false, JsonWriter::writeJson);
 
         return jsonWriter.writeEndObject().writeEndObject().flush();
     }
@@ -59,7 +57,7 @@ public class AnimalShelter implements JsonSerializable<AnimalShelter> {
      * passed.
      */
     public static AnimalShelter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(jsonReader, reader -> {
+        return jsonReader.readObject(reader -> {
             String description = null;
             List<FlattenableAnimalInfo> animalsInfo = null;
 
@@ -78,7 +76,7 @@ public class AnimalShelter implements JsonSerializable<AnimalShelter> {
 
                         if ("animalsInfo".equals(fieldName)) {
                             hasAnimalsInfo = true;
-                            animalsInfo = JsonUtils.readArray(reader, FlattenableAnimalInfo::fromJson);
+                            animalsInfo = reader.readArray(FlattenableAnimalInfo::fromJson);
                         } else if ("description".equals(fieldName)) {
                             description = reader.getStringValue();
                         } else {

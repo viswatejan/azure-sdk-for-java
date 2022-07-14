@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.implementation.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -46,8 +45,7 @@ public final class ListSkillsetsResult implements JsonSerializable<ListSkillsets
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(
-                jsonWriter, "value", this.skillsets, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("value", this.skillsets, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -60,8 +58,7 @@ public final class ListSkillsetsResult implements JsonSerializable<ListSkillsets
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static ListSkillsetsResult fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean skillsetsFound = false;
                     List<SearchIndexerSkillset> skillsets = null;
@@ -70,7 +67,7 @@ public final class ListSkillsetsResult implements JsonSerializable<ListSkillsets
                         reader.nextToken();
 
                         if ("value".equals(fieldName)) {
-                            skillsets = JsonUtils.readArray(reader, reader1 -> SearchIndexerSkillset.fromJson(reader1));
+                            skillsets = reader.readArray(reader1 -> SearchIndexerSkillset.fromJson(reader1));
                             skillsetsFound = true;
                         } else {
                             reader.skipChildren();

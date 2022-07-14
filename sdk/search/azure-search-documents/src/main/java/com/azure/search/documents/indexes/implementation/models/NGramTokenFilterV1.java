@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.implementation.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -103,8 +102,7 @@ public final class NGramTokenFilterV1 extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static NGramTokenFilterV1 fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.NGramTokenFilter";
                     boolean nameFound = false;
@@ -121,9 +119,9 @@ public final class NGramTokenFilterV1 extends TokenFilter {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("minGram".equals(fieldName)) {
-                            minGram = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            minGram = reader.getIntegerNullableValue();
                         } else if ("maxGram".equals(fieldName)) {
-                            maxGram = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxGram = reader.getIntegerNullableValue();
                         } else {
                             reader.skipChildren();
                         }

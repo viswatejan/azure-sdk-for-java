@@ -7,7 +7,6 @@
 package com.azure.search.documents.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -119,11 +118,7 @@ public final class AnswerResult implements JsonSerializable<AnswerResult> {
         jsonWriter.writeStringField("text", this.text, false);
         jsonWriter.writeStringField("highlights", this.highlights, false);
         if (additionalProperties != null) {
-            additionalProperties.forEach(
-                    (key, value) -> {
-                        jsonWriter.writeFieldName(key);
-                        JsonUtils.writeUntypedField(jsonWriter, value);
-                    });
+            additionalProperties.forEach(jsonWriter::writeUntypedField);
         }
         return jsonWriter.writeEndObject().flush();
     }
@@ -136,8 +131,7 @@ public final class AnswerResult implements JsonSerializable<AnswerResult> {
      *     pointing to JSON null.
      */
     public static AnswerResult fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     Double score = null;
                     String key = null;
@@ -149,7 +143,7 @@ public final class AnswerResult implements JsonSerializable<AnswerResult> {
                         reader.nextToken();
 
                         if ("score".equals(fieldName)) {
-                            score = JsonUtils.getNullableProperty(reader, r -> reader.getDoubleValue());
+                            score = reader.getDoubleNullableValue();
                         } else if ("key".equals(fieldName)) {
                             key = reader.getStringValue();
                         } else if ("text".equals(fieldName)) {
@@ -161,7 +155,7 @@ public final class AnswerResult implements JsonSerializable<AnswerResult> {
                                 additionalProperties = new LinkedHashMap<>();
                             }
 
-                            additionalProperties.put(fieldName, JsonUtils.readUntypedField(reader));
+                            additionalProperties.put(fieldName, reader.readUntyped());
                         }
                     }
                     AnswerResult deserializedValue = new AnswerResult();

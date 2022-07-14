@@ -7,7 +7,6 @@
 package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -45,11 +44,8 @@ public final class SemanticSettings implements JsonSerializable<SemanticSettings
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(
-                jsonWriter,
-                "configurations",
-                this.configurations,
-                (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField(
+                "configurations", this.configurations, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -61,8 +57,7 @@ public final class SemanticSettings implements JsonSerializable<SemanticSettings
      *     pointing to JSON null.
      */
     public static SemanticSettings fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     List<SemanticConfiguration> configurations = null;
                     while (reader.nextToken() != JsonToken.END_OBJECT) {
@@ -70,8 +65,7 @@ public final class SemanticSettings implements JsonSerializable<SemanticSettings
                         reader.nextToken();
 
                         if ("configurations".equals(fieldName)) {
-                            configurations =
-                                    JsonUtils.readArray(reader, reader1 -> SemanticConfiguration.fromJson(reader1));
+                            configurations = reader.readArray(reader1 -> SemanticConfiguration.fromJson(reader1));
                         } else {
                             reader.skipChildren();
                         }

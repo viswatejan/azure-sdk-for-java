@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -94,11 +93,8 @@ public final class SearchIndexerStatus implements JsonSerializable<SearchIndexer
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString(), false);
-        JsonUtils.writeArray(
-                jsonWriter,
-                "executionHistory",
-                this.executionHistory,
-                (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField(
+                "executionHistory", this.executionHistory, false, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("limits", this.limits, false);
         jsonWriter.writeJsonField("lastResult", this.lastResult, false);
         return jsonWriter.writeEndObject().flush();
@@ -113,8 +109,7 @@ public final class SearchIndexerStatus implements JsonSerializable<SearchIndexer
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static SearchIndexerStatus fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean statusFound = false;
                     IndexerStatus status = null;
@@ -131,8 +126,7 @@ public final class SearchIndexerStatus implements JsonSerializable<SearchIndexer
                             status = IndexerStatus.fromString(reader.getStringValue());
                             statusFound = true;
                         } else if ("executionHistory".equals(fieldName)) {
-                            executionHistory =
-                                    JsonUtils.readArray(reader, reader1 -> IndexerExecutionResult.fromJson(reader1));
+                            executionHistory = reader.readArray(reader1 -> IndexerExecutionResult.fromJson(reader1));
                             executionHistoryFound = true;
                         } else if ("limits".equals(fieldName)) {
                             limits = SearchIndexerLimits.fromJson(reader);

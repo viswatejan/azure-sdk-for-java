@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -78,8 +77,8 @@ public final class SearchSuggester implements JsonSerializable<SearchSuggester> 
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name, false);
-        JsonUtils.writeArray(
-                jsonWriter, "sourceFields", this.sourceFields, (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField(
+                "sourceFields", this.sourceFields, false, (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("searchMode", this.searchMode, false);
         return jsonWriter.writeEndObject().flush();
     }
@@ -93,8 +92,7 @@ public final class SearchSuggester implements JsonSerializable<SearchSuggester> 
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static SearchSuggester fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean nameFound = false;
                     String name = null;
@@ -109,7 +107,7 @@ public final class SearchSuggester implements JsonSerializable<SearchSuggester> 
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("sourceFields".equals(fieldName)) {
-                            sourceFields = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            sourceFields = reader.readArray(reader1 -> reader1.getStringValue());
                             sourceFieldsFound = true;
                         } else if ("searchMode".equals(fieldName)) {
                             searchMode = reader.getStringValue();

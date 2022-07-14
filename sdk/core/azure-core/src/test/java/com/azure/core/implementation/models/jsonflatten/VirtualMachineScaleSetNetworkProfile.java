@@ -4,9 +4,8 @@
 package com.azure.core.implementation.models.jsonflatten;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 
@@ -31,16 +30,15 @@ public final class VirtualMachineScaleSetNetworkProfile implements JsonSerializa
 
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
-        jsonWriter.writeStartObject();
-
-        JsonUtils.writeArray(jsonWriter, "networkInterfaceConfigurations", networkInterfaceConfigurations,
-            JsonWriter::writeJson);
-
-        return jsonWriter.writeEndObject().flush();
+        return jsonWriter.writeStartObject()
+            .writeArrayField("networkInterfaceConfigurations", networkInterfaceConfigurations, false,
+                JsonWriter::writeJson)
+            .writeEndObject()
+            .flush();
     }
 
     public static VirtualMachineScaleSetNetworkProfile fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(jsonReader, reader -> {
+        return jsonReader.readObject(reader -> {
             VirtualMachineScaleSetNetworkProfile profile = new VirtualMachineScaleSetNetworkProfile();
 
             while (reader.nextToken() != JsonToken.END_OBJECT) {
@@ -48,8 +46,8 @@ public final class VirtualMachineScaleSetNetworkProfile implements JsonSerializa
                 reader.nextToken();
 
                 if ("networkInterfaceConfigurations".equals(fieldName)) {
-                    profile.setNetworkInterfaceConfigurations(JsonUtils.readArray(reader,
-                        VirtualMachineScaleSetNetworkConfiguration::fromJson));
+                    profile.setNetworkInterfaceConfigurations(
+                        reader.readArray(VirtualMachineScaleSetNetworkConfiguration::fromJson));
                 } else {
                     reader.skipChildren();
                 }

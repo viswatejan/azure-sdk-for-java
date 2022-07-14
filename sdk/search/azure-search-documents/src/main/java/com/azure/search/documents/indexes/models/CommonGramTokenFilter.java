@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -113,8 +112,8 @@ public final class CommonGramTokenFilter extends TokenFilter {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
         jsonWriter.writeStringField("name", getName(), false);
-        JsonUtils.writeArray(
-                jsonWriter, "commonWords", this.commonWords, (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField(
+                "commonWords", this.commonWords, false, (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("ignoreCase", this.caseIgnored, false);
         jsonWriter.writeBooleanField("queryMode", this.queryModeUsed, false);
         return jsonWriter.writeEndObject().flush();
@@ -130,8 +129,7 @@ public final class CommonGramTokenFilter extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static CommonGramTokenFilter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.CommonGramTokenFilter";
                     boolean nameFound = false;
@@ -150,12 +148,12 @@ public final class CommonGramTokenFilter extends TokenFilter {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("commonWords".equals(fieldName)) {
-                            commonWords = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            commonWords = reader.readArray(reader1 -> reader1.getStringValue());
                             commonWordsFound = true;
                         } else if ("ignoreCase".equals(fieldName)) {
-                            caseIgnored = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            caseIgnored = reader.getBooleanNullableValue();
                         } else if ("queryMode".equals(fieldName)) {
-                            queryModeUsed = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            queryModeUsed = reader.getBooleanNullableValue();
                         } else {
                             reader.skipChildren();
                         }

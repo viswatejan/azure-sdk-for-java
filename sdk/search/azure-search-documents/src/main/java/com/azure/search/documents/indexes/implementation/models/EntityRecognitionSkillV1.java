@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.implementation.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -153,16 +152,15 @@ public final class EntityRecognitionSkillV1 extends SearchIndexerSkill {
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
-        JsonUtils.writeArray(jsonWriter, "inputs", getInputs(), (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "outputs", getOutputs(), (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("inputs", getInputs(), false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("outputs", getOutputs(), false, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("name", getName(), false);
         jsonWriter.writeStringField("description", getDescription(), false);
         jsonWriter.writeStringField("context", getContext(), false);
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
                 "categories",
                 this.categories,
+                false,
                 (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         jsonWriter.writeStringField(
                 "defaultLanguageCode",
@@ -183,8 +181,7 @@ public final class EntityRecognitionSkillV1 extends SearchIndexerSkill {
      *     polymorphic discriminator.
      */
     public static EntityRecognitionSkillV1 fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Skills.Text.EntityRecognitionSkill";
                     boolean inputsFound = false;
@@ -205,10 +202,10 @@ public final class EntityRecognitionSkillV1 extends SearchIndexerSkill {
                         if ("@odata.type".equals(fieldName)) {
                             odataType = reader.getStringValue();
                         } else if ("inputs".equals(fieldName)) {
-                            inputs = JsonUtils.readArray(reader, reader1 -> InputFieldMappingEntry.fromJson(reader1));
+                            inputs = reader.readArray(reader1 -> InputFieldMappingEntry.fromJson(reader1));
                             inputsFound = true;
                         } else if ("outputs".equals(fieldName)) {
-                            outputs = JsonUtils.readArray(reader, reader1 -> OutputFieldMappingEntry.fromJson(reader1));
+                            outputs = reader.readArray(reader1 -> OutputFieldMappingEntry.fromJson(reader1));
                             outputsFound = true;
                         } else if ("name".equals(fieldName)) {
                             name = reader.getStringValue();
@@ -218,15 +215,13 @@ public final class EntityRecognitionSkillV1 extends SearchIndexerSkill {
                             context = reader.getStringValue();
                         } else if ("categories".equals(fieldName)) {
                             categories =
-                                    JsonUtils.readArray(
-                                            reader, reader1 -> EntityCategory.fromString(reader1.getStringValue()));
+                                    reader.readArray(reader1 -> EntityCategory.fromString(reader1.getStringValue()));
                         } else if ("defaultLanguageCode".equals(fieldName)) {
                             defaultLanguageCode = EntityRecognitionSkillLanguage.fromString(reader.getStringValue());
                         } else if ("includeTypelessEntities".equals(fieldName)) {
-                            includeTypelessEntities =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            includeTypelessEntities = reader.getBooleanNullableValue();
                         } else if ("minimumPrecision".equals(fieldName)) {
-                            minimumPrecision = JsonUtils.getNullableProperty(reader, r -> reader.getDoubleValue());
+                            minimumPrecision = reader.getDoubleNullableValue();
                         } else {
                             reader.skipChildren();
                         }

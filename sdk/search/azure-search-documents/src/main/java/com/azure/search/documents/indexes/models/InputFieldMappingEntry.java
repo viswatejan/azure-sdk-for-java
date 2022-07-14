@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -123,7 +122,7 @@ public final class InputFieldMappingEntry implements JsonSerializable<InputField
         jsonWriter.writeStringField("name", this.name, false);
         jsonWriter.writeStringField("source", this.source, false);
         jsonWriter.writeStringField("sourceContext", this.sourceContext, false);
-        JsonUtils.writeArray(jsonWriter, "inputs", this.inputs, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("inputs", this.inputs, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -136,8 +135,7 @@ public final class InputFieldMappingEntry implements JsonSerializable<InputField
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static InputFieldMappingEntry fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean nameFound = false;
                     String name = null;
@@ -156,7 +154,7 @@ public final class InputFieldMappingEntry implements JsonSerializable<InputField
                         } else if ("sourceContext".equals(fieldName)) {
                             sourceContext = reader.getStringValue();
                         } else if ("inputs".equals(fieldName)) {
-                            inputs = JsonUtils.readArray(reader, reader1 -> InputFieldMappingEntry.fromJson(reader1));
+                            inputs = reader.readArray(reader1 -> InputFieldMappingEntry.fromJson(reader1));
                         } else {
                             reader.skipChildren();
                         }

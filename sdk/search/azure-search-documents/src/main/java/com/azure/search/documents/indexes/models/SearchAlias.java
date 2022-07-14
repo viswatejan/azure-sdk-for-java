@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -90,8 +89,7 @@ public final class SearchAlias implements JsonSerializable<SearchAlias> {
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name, false);
-        JsonUtils.writeArray(
-                jsonWriter, "indexes", this.indexes, (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField("indexes", this.indexes, false, (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("@odata.etag", this.eTag, false);
         return jsonWriter.writeEndObject().flush();
     }
@@ -105,8 +103,7 @@ public final class SearchAlias implements JsonSerializable<SearchAlias> {
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static SearchAlias fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean nameFound = false;
                     String name = null;
@@ -121,7 +118,7 @@ public final class SearchAlias implements JsonSerializable<SearchAlias> {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("indexes".equals(fieldName)) {
-                            indexes = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            indexes = reader.readArray(reader1 -> reader1.getStringValue());
                             indexesFound = true;
                         } else if ("@odata.etag".equals(fieldName)) {
                             eTag = reader.getStringValue();

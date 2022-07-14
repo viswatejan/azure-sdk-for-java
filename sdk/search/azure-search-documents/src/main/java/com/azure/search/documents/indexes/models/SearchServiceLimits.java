@@ -7,7 +7,6 @@
 package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -144,8 +143,7 @@ public final class SearchServiceLimits implements JsonSerializable<SearchService
      *     pointing to JSON null.
      */
     public static SearchServiceLimits fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     Integer maxFieldsPerIndex = null;
                     Integer maxFieldNestingDepthPerIndex = null;
@@ -156,16 +154,13 @@ public final class SearchServiceLimits implements JsonSerializable<SearchService
                         reader.nextToken();
 
                         if ("maxFieldsPerIndex".equals(fieldName)) {
-                            maxFieldsPerIndex = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxFieldsPerIndex = reader.getIntegerNullableValue();
                         } else if ("maxFieldNestingDepthPerIndex".equals(fieldName)) {
-                            maxFieldNestingDepthPerIndex =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxFieldNestingDepthPerIndex = reader.getIntegerNullableValue();
                         } else if ("maxComplexCollectionFieldsPerIndex".equals(fieldName)) {
-                            maxComplexCollectionFieldsPerIndex =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxComplexCollectionFieldsPerIndex = reader.getIntegerNullableValue();
                         } else if ("maxComplexObjectsInCollectionsPerDocument".equals(fieldName)) {
-                            maxComplexObjectsInCollectionsPerDocument =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxComplexObjectsInCollectionsPerDocument = reader.getIntegerNullableValue();
                         } else {
                             reader.skipChildren();
                         }

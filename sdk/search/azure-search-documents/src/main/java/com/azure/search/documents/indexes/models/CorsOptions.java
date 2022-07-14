@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -76,11 +75,8 @@ public final class CorsOptions implements JsonSerializable<CorsOptions> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(
-                jsonWriter,
-                "allowedOrigins",
-                this.allowedOrigins,
-                (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField(
+                "allowedOrigins", this.allowedOrigins, false, (writer, element) -> writer.writeString(element));
         jsonWriter.writeLongField("maxAgeInSeconds", this.maxAgeInSeconds, false);
         return jsonWriter.writeEndObject().flush();
     }
@@ -94,8 +90,7 @@ public final class CorsOptions implements JsonSerializable<CorsOptions> {
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static CorsOptions fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean allowedOriginsFound = false;
                     List<String> allowedOrigins = null;
@@ -105,10 +100,10 @@ public final class CorsOptions implements JsonSerializable<CorsOptions> {
                         reader.nextToken();
 
                         if ("allowedOrigins".equals(fieldName)) {
-                            allowedOrigins = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            allowedOrigins = reader.readArray(reader1 -> reader1.getStringValue());
                             allowedOriginsFound = true;
                         } else if ("maxAgeInSeconds".equals(fieldName)) {
-                            maxAgeInSeconds = JsonUtils.getNullableProperty(reader, r -> reader.getLongValue());
+                            maxAgeInSeconds = reader.getLongNullableValue();
                         } else {
                             reader.skipChildren();
                         }

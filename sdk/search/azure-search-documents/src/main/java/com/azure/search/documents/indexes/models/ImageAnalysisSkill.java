@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -112,9 +111,8 @@ public final class ImageAnalysisSkill extends SearchIndexerSkill {
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
-        JsonUtils.writeArray(jsonWriter, "inputs", getInputs(), (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "outputs", getOutputs(), (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("inputs", getInputs(), false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("outputs", getOutputs(), false, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("name", getName(), false);
         jsonWriter.writeStringField("description", getDescription(), false);
         jsonWriter.writeStringField("context", getContext(), false);
@@ -122,15 +120,15 @@ public final class ImageAnalysisSkill extends SearchIndexerSkill {
                 "defaultLanguageCode",
                 this.defaultLanguageCode == null ? null : this.defaultLanguageCode.toString(),
                 false);
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
                 "visualFeatures",
                 this.visualFeatures,
+                false,
                 (writer, element) -> writer.writeString(element == null ? null : element.toString()));
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
                 "details",
                 this.details,
+                false,
                 (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         return jsonWriter.writeEndObject().flush();
     }
@@ -145,8 +143,7 @@ public final class ImageAnalysisSkill extends SearchIndexerSkill {
      *     polymorphic discriminator.
      */
     public static ImageAnalysisSkill fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Skills.Vision.ImageAnalysisSkill";
                     boolean inputsFound = false;
@@ -166,10 +163,10 @@ public final class ImageAnalysisSkill extends SearchIndexerSkill {
                         if ("@odata.type".equals(fieldName)) {
                             odataType = reader.getStringValue();
                         } else if ("inputs".equals(fieldName)) {
-                            inputs = JsonUtils.readArray(reader, reader1 -> InputFieldMappingEntry.fromJson(reader1));
+                            inputs = reader.readArray(reader1 -> InputFieldMappingEntry.fromJson(reader1));
                             inputsFound = true;
                         } else if ("outputs".equals(fieldName)) {
-                            outputs = JsonUtils.readArray(reader, reader1 -> OutputFieldMappingEntry.fromJson(reader1));
+                            outputs = reader.readArray(reader1 -> OutputFieldMappingEntry.fromJson(reader1));
                             outputsFound = true;
                         } else if ("name".equals(fieldName)) {
                             name = reader.getStringValue();
@@ -181,12 +178,9 @@ public final class ImageAnalysisSkill extends SearchIndexerSkill {
                             defaultLanguageCode = ImageAnalysisSkillLanguage.fromString(reader.getStringValue());
                         } else if ("visualFeatures".equals(fieldName)) {
                             visualFeatures =
-                                    JsonUtils.readArray(
-                                            reader, reader1 -> VisualFeature.fromString(reader1.getStringValue()));
+                                    reader.readArray(reader1 -> VisualFeature.fromString(reader1.getStringValue()));
                         } else if ("details".equals(fieldName)) {
-                            details =
-                                    JsonUtils.readArray(
-                                            reader, reader1 -> ImageDetail.fromString(reader1.getStringValue()));
+                            details = reader.readArray(reader1 -> ImageDetail.fromString(reader1.getStringValue()));
                         } else {
                             reader.skipChildren();
                         }

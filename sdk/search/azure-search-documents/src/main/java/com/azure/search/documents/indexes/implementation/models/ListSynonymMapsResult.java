@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.implementation.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -46,8 +45,7 @@ public final class ListSynonymMapsResult implements JsonSerializable<ListSynonym
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(
-                jsonWriter, "value", this.synonymMaps, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("value", this.synonymMaps, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -60,8 +58,7 @@ public final class ListSynonymMapsResult implements JsonSerializable<ListSynonym
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static ListSynonymMapsResult fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean synonymMapsFound = false;
                     List<SynonymMap> synonymMaps = null;
@@ -70,7 +67,7 @@ public final class ListSynonymMapsResult implements JsonSerializable<ListSynonym
                         reader.nextToken();
 
                         if ("value".equals(fieldName)) {
-                            synonymMaps = JsonUtils.readArray(reader, reader1 -> SynonymMap.fromJson(reader1));
+                            synonymMaps = reader.readArray(reader1 -> SynonymMap.fromJson(reader1));
                             synonymMapsFound = true;
                         } else {
                             reader.skipChildren();

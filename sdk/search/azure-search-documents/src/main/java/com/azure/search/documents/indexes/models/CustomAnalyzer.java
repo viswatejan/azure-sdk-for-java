@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -121,15 +120,15 @@ public final class CustomAnalyzer extends LexicalAnalyzer {
         jsonWriter.writeStringField("@odata.type", odataType);
         jsonWriter.writeStringField("name", getName(), false);
         jsonWriter.writeStringField("tokenizer", this.tokenizer == null ? null : this.tokenizer.toString(), false);
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
                 "tokenFilters",
                 this.tokenFilters,
+                false,
                 (writer, element) -> writer.writeString(element == null ? null : element.toString()));
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
                 "charFilters",
                 this.charFilters,
+                false,
                 (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         return jsonWriter.writeEndObject().flush();
     }
@@ -144,8 +143,7 @@ public final class CustomAnalyzer extends LexicalAnalyzer {
      *     polymorphic discriminator.
      */
     public static CustomAnalyzer fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.CustomAnalyzer";
                     boolean nameFound = false;
@@ -168,12 +166,10 @@ public final class CustomAnalyzer extends LexicalAnalyzer {
                             tokenizerFound = true;
                         } else if ("tokenFilters".equals(fieldName)) {
                             tokenFilters =
-                                    JsonUtils.readArray(
-                                            reader, reader1 -> TokenFilterName.fromString(reader1.getStringValue()));
+                                    reader.readArray(reader1 -> TokenFilterName.fromString(reader1.getStringValue()));
                         } else if ("charFilters".equals(fieldName)) {
                             charFilters =
-                                    JsonUtils.readArray(
-                                            reader, reader1 -> CharFilterName.fromString(reader1.getStringValue()));
+                                    reader.readArray(reader1 -> CharFilterName.fromString(reader1.getStringValue()));
                         } else {
                             reader.skipChildren();
                         }

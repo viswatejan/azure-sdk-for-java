@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -436,26 +435,22 @@ public final class SearchIndex implements JsonSerializable<SearchIndex> {
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name, false);
-        JsonUtils.writeArray(jsonWriter, "fields", this.fields, (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter,
-                "scoringProfiles",
-                this.scoringProfiles,
-                (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("fields", this.fields, false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField(
+                "scoringProfiles", this.scoringProfiles, false, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("defaultScoringProfile", this.defaultScoringProfile, false);
         jsonWriter.writeJsonField("corsOptions", this.corsOptions, false);
-        JsonUtils.writeArray(
-                jsonWriter, "suggesters", this.suggesters, (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "analyzers", this.analyzers, (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "tokenizers", this.tokenizers, (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "tokenFilters", this.tokenFilters, (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "charFilters", this.charFilters, (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "normalizers", this.normalizers, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField(
+                "suggesters", this.suggesters, false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("analyzers", this.analyzers, false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField(
+                "tokenizers", this.tokenizers, false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField(
+                "tokenFilters", this.tokenFilters, false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField(
+                "charFilters", this.charFilters, false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField(
+                "normalizers", this.normalizers, false, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeJsonField("encryptionKey", this.encryptionKey, false);
         jsonWriter.writeJsonField("similarity", this.similarity, false);
         jsonWriter.writeJsonField("semantic", this.semanticSettings, false);
@@ -472,8 +467,7 @@ public final class SearchIndex implements JsonSerializable<SearchIndex> {
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static SearchIndex fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean nameFound = false;
                     String name = null;
@@ -499,25 +493,25 @@ public final class SearchIndex implements JsonSerializable<SearchIndex> {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("fields".equals(fieldName)) {
-                            fields = JsonUtils.readArray(reader, reader1 -> SearchField.fromJson(reader1));
+                            fields = reader.readArray(reader1 -> SearchField.fromJson(reader1));
                         } else if ("scoringProfiles".equals(fieldName)) {
-                            scoringProfiles = JsonUtils.readArray(reader, reader1 -> ScoringProfile.fromJson(reader1));
+                            scoringProfiles = reader.readArray(reader1 -> ScoringProfile.fromJson(reader1));
                         } else if ("defaultScoringProfile".equals(fieldName)) {
                             defaultScoringProfile = reader.getStringValue();
                         } else if ("corsOptions".equals(fieldName)) {
                             corsOptions = CorsOptions.fromJson(reader);
                         } else if ("suggesters".equals(fieldName)) {
-                            suggesters = JsonUtils.readArray(reader, reader1 -> SearchSuggester.fromJson(reader1));
+                            suggesters = reader.readArray(reader1 -> SearchSuggester.fromJson(reader1));
                         } else if ("analyzers".equals(fieldName)) {
-                            analyzers = JsonUtils.readArray(reader, reader1 -> LexicalAnalyzer.fromJson(reader1));
+                            analyzers = reader.readArray(reader1 -> LexicalAnalyzer.fromJson(reader1));
                         } else if ("tokenizers".equals(fieldName)) {
-                            tokenizers = JsonUtils.readArray(reader, reader1 -> LexicalTokenizer.fromJson(reader1));
+                            tokenizers = reader.readArray(reader1 -> LexicalTokenizer.fromJson(reader1));
                         } else if ("tokenFilters".equals(fieldName)) {
-                            tokenFilters = JsonUtils.readArray(reader, reader1 -> TokenFilter.fromJson(reader1));
+                            tokenFilters = reader.readArray(reader1 -> TokenFilter.fromJson(reader1));
                         } else if ("charFilters".equals(fieldName)) {
-                            charFilters = JsonUtils.readArray(reader, reader1 -> CharFilter.fromJson(reader1));
+                            charFilters = reader.readArray(reader1 -> CharFilter.fromJson(reader1));
                         } else if ("normalizers".equals(fieldName)) {
-                            normalizers = JsonUtils.readArray(reader, reader1 -> LexicalNormalizer.fromJson(reader1));
+                            normalizers = reader.readArray(reader1 -> LexicalNormalizer.fromJson(reader1));
                         } else if ("encryptionKey".equals(fieldName)) {
                             encryptionKey = SearchResourceEncryptionKey.fromJson(reader);
                         } else if ("similarity".equals(fieldName)) {

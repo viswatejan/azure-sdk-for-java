@@ -7,7 +7,6 @@
 package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -99,10 +98,9 @@ public final class SearchIndexerKnowledgeStoreProjection
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(jsonWriter, "tables", this.tables, (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "objects", this.objects, (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(jsonWriter, "files", this.files, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("tables", this.tables, false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("objects", this.objects, false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("files", this.files, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -114,8 +112,7 @@ public final class SearchIndexerKnowledgeStoreProjection
      *     or null if it was pointing to JSON null.
      */
     public static SearchIndexerKnowledgeStoreProjection fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     List<SearchIndexerKnowledgeStoreTableProjectionSelector> tables = null;
                     List<SearchIndexerKnowledgeStoreObjectProjectionSelector> objects = null;
@@ -126,22 +123,19 @@ public final class SearchIndexerKnowledgeStoreProjection
 
                         if ("tables".equals(fieldName)) {
                             tables =
-                                    JsonUtils.readArray(
-                                            reader,
+                                    reader.readArray(
                                             reader1 ->
                                                     SearchIndexerKnowledgeStoreTableProjectionSelector.fromJson(
                                                             reader1));
                         } else if ("objects".equals(fieldName)) {
                             objects =
-                                    JsonUtils.readArray(
-                                            reader,
+                                    reader.readArray(
                                             reader1 ->
                                                     SearchIndexerKnowledgeStoreObjectProjectionSelector.fromJson(
                                                             reader1));
                         } else if ("files".equals(fieldName)) {
                             files =
-                                    JsonUtils.readArray(
-                                            reader,
+                                    reader.readArray(
                                             reader1 ->
                                                     SearchIndexerKnowledgeStoreFileProjectionSelector.fromJson(
                                                             reader1));

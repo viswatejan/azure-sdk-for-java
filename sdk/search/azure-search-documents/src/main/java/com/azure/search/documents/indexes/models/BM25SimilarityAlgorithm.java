@@ -7,7 +7,6 @@
 package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -104,8 +103,7 @@ public final class BM25SimilarityAlgorithm extends SimilarityAlgorithm {
      * @throws IllegalStateException If the deserialized JSON object was missing the polymorphic discriminator.
      */
     public static BM25SimilarityAlgorithm fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.BM25Similarity";
                     Double k1 = null;
@@ -117,9 +115,9 @@ public final class BM25SimilarityAlgorithm extends SimilarityAlgorithm {
                         if ("@odata.type".equals(fieldName)) {
                             odataType = reader.getStringValue();
                         } else if ("k1".equals(fieldName)) {
-                            k1 = JsonUtils.getNullableProperty(reader, r -> reader.getDoubleValue());
+                            k1 = reader.getDoubleNullableValue();
                         } else if ("b".equals(fieldName)) {
-                            b = JsonUtils.getNullableProperty(reader, r -> reader.getDoubleValue());
+                            b = reader.getDoubleNullableValue();
                         } else {
                             reader.skipChildren();
                         }

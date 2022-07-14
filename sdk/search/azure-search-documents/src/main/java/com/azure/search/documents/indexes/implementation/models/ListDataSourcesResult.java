@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.implementation.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -46,8 +45,7 @@ public final class ListDataSourcesResult implements JsonSerializable<ListDataSou
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(
-                jsonWriter, "value", this.dataSources, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("value", this.dataSources, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -60,8 +58,7 @@ public final class ListDataSourcesResult implements JsonSerializable<ListDataSou
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static ListDataSourcesResult fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean dataSourcesFound = false;
                     List<SearchIndexerDataSourceConnection> dataSources = null;
@@ -71,8 +68,7 @@ public final class ListDataSourcesResult implements JsonSerializable<ListDataSou
 
                         if ("value".equals(fieldName)) {
                             dataSources =
-                                    JsonUtils.readArray(
-                                            reader, reader1 -> SearchIndexerDataSourceConnection.fromJson(reader1));
+                                    reader.readArray(reader1 -> SearchIndexerDataSourceConnection.fromJson(reader1));
                             dataSourcesFound = true;
                         } else {
                             reader.skipChildren();

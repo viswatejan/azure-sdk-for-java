@@ -7,7 +7,6 @@
 package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -541,11 +540,7 @@ public final class IndexingParametersConfiguration implements JsonSerializable<I
                 false);
         jsonWriter.writeStringField("queryTimeout", this.queryTimeout, false);
         if (additionalProperties != null) {
-            additionalProperties.forEach(
-                    (key, value) -> {
-                        jsonWriter.writeFieldName(key);
-                        JsonUtils.writeUntypedField(jsonWriter, value);
-                    });
+            additionalProperties.forEach(jsonWriter::writeUntypedField);
         }
         return jsonWriter.writeEndObject().flush();
     }
@@ -558,8 +553,7 @@ public final class IndexingParametersConfiguration implements JsonSerializable<I
      *     null if it was pointing to JSON null.
      */
     public static IndexingParametersConfiguration fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     BlobIndexerParsingMode parsingMode = null;
                     String excludedFileNameExtensions = null;
@@ -589,21 +583,17 @@ public final class IndexingParametersConfiguration implements JsonSerializable<I
                         } else if ("indexedFileNameExtensions".equals(fieldName)) {
                             indexedFileNameExtensions = reader.getStringValue();
                         } else if ("failOnUnsupportedContentType".equals(fieldName)) {
-                            failOnUnsupportedContentType =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            failOnUnsupportedContentType = reader.getBooleanNullableValue();
                         } else if ("failOnUnprocessableDocument".equals(fieldName)) {
-                            failOnUnprocessableDocument =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            failOnUnprocessableDocument = reader.getBooleanNullableValue();
                         } else if ("indexStorageMetadataOnlyForOversizedDocuments".equals(fieldName)) {
-                            indexStorageMetadataOnlyForOversizedDocuments =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            indexStorageMetadataOnlyForOversizedDocuments = reader.getBooleanNullableValue();
                         } else if ("delimitedTextHeaders".equals(fieldName)) {
                             delimitedTextHeaders = reader.getStringValue();
                         } else if ("delimitedTextDelimiter".equals(fieldName)) {
                             delimitedTextDelimiter = reader.getStringValue();
                         } else if ("firstLineContainsHeaders".equals(fieldName)) {
-                            firstLineContainsHeaders =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            firstLineContainsHeaders = reader.getBooleanNullableValue();
                         } else if ("documentRoot".equals(fieldName)) {
                             documentRoot = reader.getStringValue();
                         } else if ("dataToExtract".equals(fieldName)) {
@@ -611,8 +601,7 @@ public final class IndexingParametersConfiguration implements JsonSerializable<I
                         } else if ("imageAction".equals(fieldName)) {
                             imageAction = BlobIndexerImageAction.fromString(reader.getStringValue());
                         } else if ("allowSkillsetToReadFileData".equals(fieldName)) {
-                            allowSkillsetToReadFileData =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            allowSkillsetToReadFileData = reader.getBooleanNullableValue();
                         } else if ("pdfTextRotationAlgorithm".equals(fieldName)) {
                             pdfTextRotationAlgorithm =
                                     BlobIndexerPdfTextRotationAlgorithm.fromString(reader.getStringValue());
@@ -625,7 +614,7 @@ public final class IndexingParametersConfiguration implements JsonSerializable<I
                                 additionalProperties = new LinkedHashMap<>();
                             }
 
-                            additionalProperties.put(fieldName, JsonUtils.readUntypedField(reader));
+                            additionalProperties.put(fieldName, reader.readUntyped());
                         }
                     }
                     IndexingParametersConfiguration deserializedValue = new IndexingParametersConfiguration();

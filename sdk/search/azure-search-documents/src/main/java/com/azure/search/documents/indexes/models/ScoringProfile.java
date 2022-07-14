@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -125,8 +124,7 @@ public final class ScoringProfile implements JsonSerializable<ScoringProfile> {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name, false);
         jsonWriter.writeJsonField("text", this.textWeights, false);
-        JsonUtils.writeArray(
-                jsonWriter, "functions", this.functions, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("functions", this.functions, false, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField(
                 "functionAggregation",
                 this.functionAggregation == null ? null : this.functionAggregation.toString(),
@@ -143,8 +141,7 @@ public final class ScoringProfile implements JsonSerializable<ScoringProfile> {
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static ScoringProfile fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean nameFound = false;
                     String name = null;
@@ -161,7 +158,7 @@ public final class ScoringProfile implements JsonSerializable<ScoringProfile> {
                         } else if ("text".equals(fieldName)) {
                             textWeights = TextWeights.fromJson(reader);
                         } else if ("functions".equals(fieldName)) {
-                            functions = JsonUtils.readArray(reader, reader1 -> ScoringFunction.fromJson(reader1));
+                            functions = reader.readArray(reader1 -> ScoringFunction.fromJson(reader1));
                         } else if ("functionAggregation".equals(fieldName)) {
                             functionAggregation = ScoringFunctionAggregation.fromString(reader.getStringValue());
                         } else {

@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -105,8 +104,7 @@ public final class LimitTokenFilter extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static LimitTokenFilter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.LimitTokenFilter";
                     boolean nameFound = false;
@@ -123,9 +121,9 @@ public final class LimitTokenFilter extends TokenFilter {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("maxTokenCount".equals(fieldName)) {
-                            maxTokenCount = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxTokenCount = reader.getIntegerNullableValue();
                         } else if ("consumeAllTokens".equals(fieldName)) {
-                            allTokensConsumed = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            allTokensConsumed = reader.getBooleanNullableValue();
                         } else {
                             reader.skipChildren();
                         }

@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -124,8 +123,7 @@ public final class SynonymTokenFilter extends TokenFilter {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
         jsonWriter.writeStringField("name", getName(), false);
-        JsonUtils.writeArray(
-                jsonWriter, "synonyms", this.synonyms, (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField("synonyms", this.synonyms, false, (writer, element) -> writer.writeString(element));
         jsonWriter.writeBooleanField("ignoreCase", this.caseIgnored, false);
         jsonWriter.writeBooleanField("expand", this.expand, false);
         return jsonWriter.writeEndObject().flush();
@@ -141,8 +139,7 @@ public final class SynonymTokenFilter extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static SynonymTokenFilter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.SynonymTokenFilter";
                     boolean nameFound = false;
@@ -161,12 +158,12 @@ public final class SynonymTokenFilter extends TokenFilter {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("synonyms".equals(fieldName)) {
-                            synonyms = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            synonyms = reader.readArray(reader1 -> reader1.getStringValue());
                             synonymsFound = true;
                         } else if ("ignoreCase".equals(fieldName)) {
-                            caseIgnored = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            caseIgnored = reader.getBooleanNullableValue();
                         } else if ("expand".equals(fieldName)) {
-                            expand = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            expand = reader.getBooleanNullableValue();
                         } else {
                             reader.skipChildren();
                         }

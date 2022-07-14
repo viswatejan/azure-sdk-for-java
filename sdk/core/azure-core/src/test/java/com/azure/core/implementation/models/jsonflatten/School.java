@@ -3,13 +3,11 @@
 
 package com.azure.core.implementation.models.jsonflatten;
 
-import com.azure.core.util.serializer.JsonUtils;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonReader;
+import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -47,19 +45,13 @@ public class School implements JsonSerializable<School> {
                 .writeEndObject();
         }
 
-        if (tags != null) {
-            jsonWriter.writeStartObject("tags");
-
-            tags.forEach(jsonWriter::writeStringField);
-
-            jsonWriter.writeEndObject();
-        }
-
-        return jsonWriter.writeEndObject().flush();
+        return jsonWriter.writeMapField("tags", tags, false, JsonWriter::writeString)
+            .writeEndObject()
+            .flush();
     }
 
     public static School fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(jsonReader, reader -> {
+        return jsonReader.readObject(reader -> {
             Teacher teacher = null;
             String name = null;
             Map<String, String> tags = null;
@@ -82,17 +74,7 @@ public class School implements JsonSerializable<School> {
                         }
                     }
                 } else if ("tags".equals(fieldName) && reader.currentToken() == JsonToken.START_OBJECT) {
-                    if (tags == null) {
-                        tags = new LinkedHashMap<>();
-                    }
-
-                    while (reader.nextToken() != JsonToken.END_OBJECT) {
-                        String key = reader.getFieldName();
-                        reader.nextToken();
-                        String value = reader.isStartArrayOrObject() ? reader.readChildren() : reader.getTextValue();
-
-                        tags.put(key, value);
-                    }
+                    tags = reader.readMap(JsonReader::getStringValue);
                 } else {
                     reader.skipChildren();
                 }

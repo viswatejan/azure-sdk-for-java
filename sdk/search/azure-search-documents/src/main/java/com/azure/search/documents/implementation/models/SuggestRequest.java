@@ -8,7 +8,6 @@ package com.azure.search.documents.implementation.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -352,8 +351,7 @@ public final class SuggestRequest implements JsonSerializable<SuggestRequest> {
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static SuggestRequest fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean searchTextFound = false;
                     String searchText = null;
@@ -381,13 +379,13 @@ public final class SuggestRequest implements JsonSerializable<SuggestRequest> {
                         } else if ("filter".equals(fieldName)) {
                             filter = reader.getStringValue();
                         } else if ("fuzzy".equals(fieldName)) {
-                            useFuzzyMatching = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            useFuzzyMatching = reader.getBooleanNullableValue();
                         } else if ("highlightPostTag".equals(fieldName)) {
                             highlightPostTag = reader.getStringValue();
                         } else if ("highlightPreTag".equals(fieldName)) {
                             highlightPreTag = reader.getStringValue();
                         } else if ("minimumCoverage".equals(fieldName)) {
-                            minimumCoverage = JsonUtils.getNullableProperty(reader, r -> reader.getDoubleValue());
+                            minimumCoverage = reader.getDoubleNullableValue();
                         } else if ("orderby".equals(fieldName)) {
                             orderBy = reader.getStringValue();
                         } else if ("searchFields".equals(fieldName)) {
@@ -395,7 +393,7 @@ public final class SuggestRequest implements JsonSerializable<SuggestRequest> {
                         } else if ("select".equals(fieldName)) {
                             select = reader.getStringValue();
                         } else if ("top".equals(fieldName)) {
-                            top = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            top = reader.getIntegerNullableValue();
                         } else {
                             reader.skipChildren();
                         }

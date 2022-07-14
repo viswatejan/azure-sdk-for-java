@@ -7,7 +7,6 @@
 package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -117,16 +116,16 @@ public final class PrioritizedFields implements JsonSerializable<PrioritizedFiel
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeJsonField("titleField", this.titleField, false);
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
                 "prioritizedContentFields",
                 this.prioritizedContentFields,
-                (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter,
+                false,
+                (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField(
                 "prioritizedKeywordsFields",
                 this.prioritizedKeywordsFields,
-                (writer, element) -> writer.writeJson(element, false));
+                false,
+                (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -138,8 +137,7 @@ public final class PrioritizedFields implements JsonSerializable<PrioritizedFiel
      *     pointing to JSON null.
      */
     public static PrioritizedFields fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     SemanticField titleField = null;
                     List<SemanticField> prioritizedContentFields = null;
@@ -151,11 +149,9 @@ public final class PrioritizedFields implements JsonSerializable<PrioritizedFiel
                         if ("titleField".equals(fieldName)) {
                             titleField = SemanticField.fromJson(reader);
                         } else if ("prioritizedContentFields".equals(fieldName)) {
-                            prioritizedContentFields =
-                                    JsonUtils.readArray(reader, reader1 -> SemanticField.fromJson(reader1));
+                            prioritizedContentFields = reader.readArray(reader1 -> SemanticField.fromJson(reader1));
                         } else if ("prioritizedKeywordsFields".equals(fieldName)) {
-                            prioritizedKeywordsFields =
-                                    JsonUtils.readArray(reader, reader1 -> SemanticField.fromJson(reader1));
+                            prioritizedKeywordsFields = reader.readArray(reader1 -> SemanticField.fromJson(reader1));
                         } else {
                             reader.skipChildren();
                         }

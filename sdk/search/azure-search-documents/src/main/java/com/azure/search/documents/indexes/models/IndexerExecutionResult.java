@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -216,9 +215,8 @@ public final class IndexerExecutionResult implements JsonSerializable<IndexerExe
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString(), false);
-        JsonUtils.writeArray(jsonWriter, "errors", this.errors, (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "warnings", this.warnings, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("errors", this.errors, false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("warnings", this.warnings, false, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeIntField("itemsProcessed", this.itemCount);
         jsonWriter.writeIntField("itemsFailed", this.failedItemCount);
         jsonWriter.writeStringField(
@@ -241,8 +239,7 @@ public final class IndexerExecutionResult implements JsonSerializable<IndexerExe
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static IndexerExecutionResult fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean statusFound = false;
                     IndexerExecutionStatus status = null;
@@ -269,10 +266,10 @@ public final class IndexerExecutionResult implements JsonSerializable<IndexerExe
                             status = IndexerExecutionStatus.fromString(reader.getStringValue());
                             statusFound = true;
                         } else if ("errors".equals(fieldName)) {
-                            errors = JsonUtils.readArray(reader, reader1 -> SearchIndexerError.fromJson(reader1));
+                            errors = reader.readArray(reader1 -> SearchIndexerError.fromJson(reader1));
                             errorsFound = true;
                         } else if ("warnings".equals(fieldName)) {
-                            warnings = JsonUtils.readArray(reader, reader1 -> SearchIndexerWarning.fromJson(reader1));
+                            warnings = reader.readArray(reader1 -> SearchIndexerWarning.fromJson(reader1));
                             warningsFound = true;
                         } else if ("itemsProcessed".equals(fieldName)) {
                             itemCount = reader.getIntValue();
@@ -287,13 +284,9 @@ public final class IndexerExecutionResult implements JsonSerializable<IndexerExe
                         } else if ("errorMessage".equals(fieldName)) {
                             errorMessage = reader.getStringValue();
                         } else if ("startTime".equals(fieldName)) {
-                            startTime =
-                                    JsonUtils.getNullableProperty(
-                                            reader, r -> OffsetDateTime.parse(reader.getStringValue()));
+                            startTime = reader.getNullableValue(r -> OffsetDateTime.parse(reader.getStringValue()));
                         } else if ("endTime".equals(fieldName)) {
-                            endTime =
-                                    JsonUtils.getNullableProperty(
-                                            reader, r -> OffsetDateTime.parse(reader.getStringValue()));
+                            endTime = reader.getNullableValue(r -> OffsetDateTime.parse(reader.getStringValue()));
                         } else if ("initialTrackingState".equals(fieldName)) {
                             initialTrackingState = reader.getStringValue();
                         } else if ("finalTrackingState".equals(fieldName)) {

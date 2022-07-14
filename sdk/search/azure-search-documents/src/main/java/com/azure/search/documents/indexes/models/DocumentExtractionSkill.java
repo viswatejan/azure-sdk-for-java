@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -115,19 +114,15 @@ public final class DocumentExtractionSkill extends SearchIndexerSkill {
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
-        JsonUtils.writeArray(jsonWriter, "inputs", getInputs(), (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "outputs", getOutputs(), (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("inputs", getInputs(), false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("outputs", getOutputs(), false, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("name", getName(), false);
         jsonWriter.writeStringField("description", getDescription(), false);
         jsonWriter.writeStringField("context", getContext(), false);
         jsonWriter.writeStringField("parsingMode", this.parsingMode, false);
         jsonWriter.writeStringField("dataToExtract", this.dataToExtract, false);
-        JsonUtils.writeMap(
-                jsonWriter,
-                "configuration",
-                this.configuration,
-                (writer, element) -> JsonUtils.writeUntypedField(writer, element));
+        jsonWriter.writeMapField(
+                "configuration", this.configuration, false, (writer, element) -> writer.writeUntyped(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -141,8 +136,7 @@ public final class DocumentExtractionSkill extends SearchIndexerSkill {
      *     polymorphic discriminator.
      */
     public static DocumentExtractionSkill fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Skills.Util.DocumentExtractionSkill";
                     boolean inputsFound = false;
@@ -162,10 +156,10 @@ public final class DocumentExtractionSkill extends SearchIndexerSkill {
                         if ("@odata.type".equals(fieldName)) {
                             odataType = reader.getStringValue();
                         } else if ("inputs".equals(fieldName)) {
-                            inputs = JsonUtils.readArray(reader, reader1 -> InputFieldMappingEntry.fromJson(reader1));
+                            inputs = reader.readArray(reader1 -> InputFieldMappingEntry.fromJson(reader1));
                             inputsFound = true;
                         } else if ("outputs".equals(fieldName)) {
-                            outputs = JsonUtils.readArray(reader, reader1 -> OutputFieldMappingEntry.fromJson(reader1));
+                            outputs = reader.readArray(reader1 -> OutputFieldMappingEntry.fromJson(reader1));
                             outputsFound = true;
                         } else if ("name".equals(fieldName)) {
                             name = reader.getStringValue();
@@ -178,12 +172,7 @@ public final class DocumentExtractionSkill extends SearchIndexerSkill {
                         } else if ("dataToExtract".equals(fieldName)) {
                             dataToExtract = reader.getStringValue();
                         } else if ("configuration".equals(fieldName)) {
-                            configuration =
-                                    JsonUtils.readMap(
-                                            reader,
-                                            reader1 ->
-                                                    JsonUtils.getNullableProperty(
-                                                            reader1, r -> JsonUtils.readUntypedField(reader1)));
+                            configuration = reader.readMap(reader1 -> reader1.readUntyped());
                         } else {
                             reader.skipChildren();
                         }

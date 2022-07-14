@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -64,8 +63,8 @@ public final class SearchIndexerKnowledgeStore implements JsonSerializable<Searc
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("storageConnectionString", this.storageConnectionString, false);
-        JsonUtils.writeArray(
-                jsonWriter, "projections", this.projections, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField(
+                "projections", this.projections, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -78,8 +77,7 @@ public final class SearchIndexerKnowledgeStore implements JsonSerializable<Searc
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static SearchIndexerKnowledgeStore fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean storageConnectionStringFound = false;
                     String storageConnectionString = null;
@@ -94,8 +92,8 @@ public final class SearchIndexerKnowledgeStore implements JsonSerializable<Searc
                             storageConnectionStringFound = true;
                         } else if ("projections".equals(fieldName)) {
                             projections =
-                                    JsonUtils.readArray(
-                                            reader, reader1 -> SearchIndexerKnowledgeStoreProjection.fromJson(reader1));
+                                    reader.readArray(
+                                            reader1 -> SearchIndexerKnowledgeStoreProjection.fromJson(reader1));
                             projectionsFound = true;
                         } else {
                             reader.skipChildren();

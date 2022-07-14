@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -74,11 +73,8 @@ public final class FieldMappingFunction implements JsonSerializable<FieldMapping
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("name", this.name, false);
-        JsonUtils.writeMap(
-                jsonWriter,
-                "parameters",
-                this.parameters,
-                (writer, element) -> JsonUtils.writeUntypedField(writer, element));
+        jsonWriter.writeMapField(
+                "parameters", this.parameters, false, (writer, element) -> writer.writeUntyped(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -91,8 +87,7 @@ public final class FieldMappingFunction implements JsonSerializable<FieldMapping
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static FieldMappingFunction fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean nameFound = false;
                     String name = null;
@@ -105,12 +100,7 @@ public final class FieldMappingFunction implements JsonSerializable<FieldMapping
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("parameters".equals(fieldName)) {
-                            parameters =
-                                    JsonUtils.readMap(
-                                            reader,
-                                            reader1 ->
-                                                    JsonUtils.getNullableProperty(
-                                                            reader1, r -> JsonUtils.readUntypedField(reader1)));
+                            parameters = reader.readMap(reader1 -> reader1.readUntyped());
                         } else {
                             reader.skipChildren();
                         }

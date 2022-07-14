@@ -8,7 +8,6 @@ package com.azure.search.documents.implementation.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -124,24 +123,15 @@ public final class SearchResult implements JsonSerializable<SearchResult> {
         jsonWriter.writeStartObject();
         jsonWriter.writeDoubleField("@search.score", this.score);
         jsonWriter.writeDoubleField("@search.rerankerScore", this.rerankerScore, false);
-        JsonUtils.writeMap(
-                jsonWriter,
+        jsonWriter.writeMapField(
                 "@search.highlights",
                 this.highlights,
-                (writer, element) ->
-                        JsonUtils.writeArray(
-                                jsonWriter,
-                                "@search.highlights",
-                                element,
-                                (writer1, element1) -> writer1.writeString(element1, false)));
-        JsonUtils.writeArray(
-                jsonWriter, "@search.captions", this.captions, (writer, element) -> writer.writeJson(element, false));
+                false,
+                (writer, element) -> writer.writeArray(element, (writer1, element1) -> writer1.writeString(element1)));
+        jsonWriter.writeArrayField(
+                "@search.captions", this.captions, false, (writer, element) -> writer.writeJson(element));
         if (additionalProperties != null) {
-            additionalProperties.forEach(
-                    (key, value) -> {
-                        jsonWriter.writeFieldName(key);
-                        JsonUtils.writeUntypedField(jsonWriter, value);
-                    });
+            additionalProperties.forEach(jsonWriter::writeUntypedField);
         }
         return jsonWriter.writeEndObject().flush();
     }
@@ -155,8 +145,7 @@ public final class SearchResult implements JsonSerializable<SearchResult> {
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static SearchResult fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean scoreFound = false;
                     double score = 0.0;
@@ -172,21 +161,18 @@ public final class SearchResult implements JsonSerializable<SearchResult> {
                             score = reader.getDoubleValue();
                             scoreFound = true;
                         } else if ("@search.rerankerScore".equals(fieldName)) {
-                            rerankerScore = JsonUtils.getNullableProperty(reader, r -> reader.getDoubleValue());
+                            rerankerScore = reader.getDoubleNullableValue();
                         } else if ("@search.highlights".equals(fieldName)) {
                             highlights =
-                                    JsonUtils.readMap(
-                                            reader,
-                                            reader1 ->
-                                                    JsonUtils.readArray(reader1, reader2 -> reader2.getStringValue()));
+                                    reader.readMap(reader1 -> reader1.readArray(reader2 -> reader2.getStringValue()));
                         } else if ("@search.captions".equals(fieldName)) {
-                            captions = JsonUtils.readArray(reader, reader1 -> CaptionResult.fromJson(reader1));
+                            captions = reader.readArray(reader1 -> CaptionResult.fromJson(reader1));
                         } else {
                             if (additionalProperties == null) {
                                 additionalProperties = new LinkedHashMap<>();
                             }
 
-                            additionalProperties.put(fieldName, JsonUtils.readUntypedField(reader));
+                            additionalProperties.put(fieldName, reader.readUntyped());
                         }
                     }
                     List<String> missingProperties = new ArrayList<>();

@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -233,9 +232,8 @@ public final class PiiDetectionSkill extends SearchIndexerSkill {
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
-        JsonUtils.writeArray(jsonWriter, "inputs", getInputs(), (writer, element) -> writer.writeJson(element, false));
-        JsonUtils.writeArray(
-                jsonWriter, "outputs", getOutputs(), (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("inputs", getInputs(), false, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeArrayField("outputs", getOutputs(), false, (writer, element) -> writer.writeJson(element));
         jsonWriter.writeStringField("name", getName(), false);
         jsonWriter.writeStringField("description", getDescription(), false);
         jsonWriter.writeStringField("context", getContext(), false);
@@ -245,11 +243,8 @@ public final class PiiDetectionSkill extends SearchIndexerSkill {
                 "maskingMode", this.maskingMode == null ? null : this.maskingMode.toString(), false);
         jsonWriter.writeStringField("maskingCharacter", this.maskingCharacter, false);
         jsonWriter.writeStringField("modelVersion", this.modelVersion, false);
-        JsonUtils.writeArray(
-                jsonWriter,
-                "piiCategories",
-                this.piiCategories,
-                (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField(
+                "piiCategories", this.piiCategories, false, (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField("domain", this.domain, false);
         return jsonWriter.writeEndObject().flush();
     }
@@ -264,8 +259,7 @@ public final class PiiDetectionSkill extends SearchIndexerSkill {
      *     polymorphic discriminator.
      */
     public static PiiDetectionSkill fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Skills.Text.PIIDetectionSkill";
                     boolean inputsFound = false;
@@ -289,10 +283,10 @@ public final class PiiDetectionSkill extends SearchIndexerSkill {
                         if ("@odata.type".equals(fieldName)) {
                             odataType = reader.getStringValue();
                         } else if ("inputs".equals(fieldName)) {
-                            inputs = JsonUtils.readArray(reader, reader1 -> InputFieldMappingEntry.fromJson(reader1));
+                            inputs = reader.readArray(reader1 -> InputFieldMappingEntry.fromJson(reader1));
                             inputsFound = true;
                         } else if ("outputs".equals(fieldName)) {
-                            outputs = JsonUtils.readArray(reader, reader1 -> OutputFieldMappingEntry.fromJson(reader1));
+                            outputs = reader.readArray(reader1 -> OutputFieldMappingEntry.fromJson(reader1));
                             outputsFound = true;
                         } else if ("name".equals(fieldName)) {
                             name = reader.getStringValue();
@@ -303,7 +297,7 @@ public final class PiiDetectionSkill extends SearchIndexerSkill {
                         } else if ("defaultLanguageCode".equals(fieldName)) {
                             defaultLanguageCode = reader.getStringValue();
                         } else if ("minimumPrecision".equals(fieldName)) {
-                            minimumPrecision = JsonUtils.getNullableProperty(reader, r -> reader.getDoubleValue());
+                            minimumPrecision = reader.getDoubleNullableValue();
                         } else if ("maskingMode".equals(fieldName)) {
                             maskingMode = PiiDetectionSkillMaskingMode.fromString(reader.getStringValue());
                         } else if ("maskingCharacter".equals(fieldName)) {
@@ -311,7 +305,7 @@ public final class PiiDetectionSkill extends SearchIndexerSkill {
                         } else if ("modelVersion".equals(fieldName)) {
                             modelVersion = reader.getStringValue();
                         } else if ("piiCategories".equals(fieldName)) {
-                            piiCategories = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            piiCategories = reader.readArray(reader1 -> reader1.getStringValue());
                         } else if ("domain".equals(fieldName)) {
                             domain = reader.getStringValue();
                         } else {

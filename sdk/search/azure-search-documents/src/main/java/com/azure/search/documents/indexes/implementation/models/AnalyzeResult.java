@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.implementation.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -46,7 +45,7 @@ public final class AnalyzeResult implements JsonSerializable<AnalyzeResult> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(jsonWriter, "tokens", this.tokens, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("tokens", this.tokens, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -59,8 +58,7 @@ public final class AnalyzeResult implements JsonSerializable<AnalyzeResult> {
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static AnalyzeResult fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean tokensFound = false;
                     List<AnalyzedTokenInfo> tokens = null;
@@ -69,7 +67,7 @@ public final class AnalyzeResult implements JsonSerializable<AnalyzeResult> {
                         reader.nextToken();
 
                         if ("tokens".equals(fieldName)) {
-                            tokens = JsonUtils.readArray(reader, reader1 -> AnalyzedTokenInfo.fromJson(reader1));
+                            tokens = reader.readArray(reader1 -> AnalyzedTokenInfo.fromJson(reader1));
                             tokensFound = true;
                         } else {
                             reader.skipChildren();

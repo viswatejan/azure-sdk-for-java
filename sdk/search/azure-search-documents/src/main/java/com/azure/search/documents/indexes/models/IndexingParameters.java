@@ -6,7 +6,6 @@
 package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -149,8 +148,7 @@ public final class IndexingParameters implements JsonSerializable<IndexingParame
      *     pointing to JSON null.
      */
     public static IndexingParameters fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     Integer batchSize = null;
                     Integer maxFailedItems = null;
@@ -160,11 +158,11 @@ public final class IndexingParameters implements JsonSerializable<IndexingParame
                         String fieldName = reader.getFieldName();
                         reader.nextToken();
                         if ("batchSize".equals(fieldName)) {
-                            batchSize = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            batchSize = reader.getIntegerNullableValue();
                         } else if ("maxFailedItems".equals(fieldName)) {
-                            maxFailedItems = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxFailedItems = reader.getIntegerNullableValue();
                         } else if ("maxFailedItemsPerBatch".equals(fieldName)) {
-                            maxFailedItemsPerBatch = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxFailedItemsPerBatch = reader.getIntegerNullableValue();
                         } else if ("configuration".equals(fieldName)) {
                             configuration = IndexingParametersConfiguration.fromJson(reader);
                         } else {

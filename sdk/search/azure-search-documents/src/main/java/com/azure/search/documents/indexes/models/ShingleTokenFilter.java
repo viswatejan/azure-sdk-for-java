@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -218,8 +217,7 @@ public final class ShingleTokenFilter extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static ShingleTokenFilter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.ShingleTokenFilter";
                     boolean nameFound = false;
@@ -240,14 +238,13 @@ public final class ShingleTokenFilter extends TokenFilter {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("maxShingleSize".equals(fieldName)) {
-                            maxShingleSize = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            maxShingleSize = reader.getIntegerNullableValue();
                         } else if ("minShingleSize".equals(fieldName)) {
-                            minShingleSize = JsonUtils.getNullableProperty(reader, r -> reader.getIntValue());
+                            minShingleSize = reader.getIntegerNullableValue();
                         } else if ("outputUnigrams".equals(fieldName)) {
-                            outputUnigrams = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            outputUnigrams = reader.getBooleanNullableValue();
                         } else if ("outputUnigramsIfNoShingles".equals(fieldName)) {
-                            outputUnigramsIfNoShingles =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            outputUnigramsIfNoShingles = reader.getBooleanNullableValue();
                         } else if ("tokenSeparator".equals(fieldName)) {
                             tokenSeparator = reader.getStringValue();
                         } else if ("filterToken".equals(fieldName)) {

@@ -8,7 +8,6 @@ package com.azure.search.documents.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -45,7 +44,7 @@ public final class IndexDocumentsResult implements JsonSerializable<IndexDocumen
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) {
         jsonWriter.writeStartObject();
-        JsonUtils.writeArray(jsonWriter, "value", this.results, (writer, element) -> writer.writeJson(element, false));
+        jsonWriter.writeArrayField("value", this.results, false, (writer, element) -> writer.writeJson(element));
         return jsonWriter.writeEndObject().flush();
     }
 
@@ -58,8 +57,7 @@ public final class IndexDocumentsResult implements JsonSerializable<IndexDocumen
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static IndexDocumentsResult fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean resultsFound = false;
                     List<IndexingResult> results = null;
@@ -68,7 +66,7 @@ public final class IndexDocumentsResult implements JsonSerializable<IndexDocumen
                         reader.nextToken();
 
                         if ("value".equals(fieldName)) {
-                            results = JsonUtils.readArray(reader, reader1 -> IndexingResult.fromJson(reader1));
+                            results = reader.readArray(reader1 -> IndexingResult.fromJson(reader1));
                             resultsFound = true;
                         } else {
                             reader.skipChildren();

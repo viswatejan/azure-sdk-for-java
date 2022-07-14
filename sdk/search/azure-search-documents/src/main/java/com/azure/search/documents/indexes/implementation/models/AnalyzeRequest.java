@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.implementation.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
@@ -179,15 +178,15 @@ public final class AnalyzeRequest implements JsonSerializable<AnalyzeRequest> {
         jsonWriter.writeStringField("analyzer", this.analyzer == null ? null : this.analyzer.toString(), false);
         jsonWriter.writeStringField("tokenizer", this.tokenizer == null ? null : this.tokenizer.toString(), false);
         jsonWriter.writeStringField("normalizer", this.normalizer == null ? null : this.normalizer.toString(), false);
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
                 "tokenFilters",
                 this.tokenFilters,
+                false,
                 (writer, element) -> writer.writeString(element == null ? null : element.toString()));
-        JsonUtils.writeArray(
-                jsonWriter,
+        jsonWriter.writeArrayField(
                 "charFilters",
                 this.charFilters,
+                false,
                 (writer, element) -> writer.writeString(element == null ? null : element.toString()));
         return jsonWriter.writeEndObject().flush();
     }
@@ -201,8 +200,7 @@ public final class AnalyzeRequest implements JsonSerializable<AnalyzeRequest> {
      * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
      */
     public static AnalyzeRequest fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     boolean textFound = false;
                     String text = null;
@@ -226,12 +224,10 @@ public final class AnalyzeRequest implements JsonSerializable<AnalyzeRequest> {
                             normalizer = LexicalNormalizerName.fromString(reader.getStringValue());
                         } else if ("tokenFilters".equals(fieldName)) {
                             tokenFilters =
-                                    JsonUtils.readArray(
-                                            reader, reader1 -> TokenFilterName.fromString(reader1.getStringValue()));
+                                    reader.readArray(reader1 -> TokenFilterName.fromString(reader1.getStringValue()));
                         } else if ("charFilters".equals(fieldName)) {
                             charFilters =
-                                    JsonUtils.readArray(
-                                            reader, reader1 -> CharFilterName.fromString(reader1.getStringValue()));
+                                    reader.readArray(reader1 -> CharFilterName.fromString(reader1.getStringValue()));
                         } else {
                             reader.skipChildren();
                         }

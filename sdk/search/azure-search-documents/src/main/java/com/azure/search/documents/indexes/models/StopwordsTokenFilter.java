@@ -8,7 +8,6 @@ package com.azure.search.documents.indexes.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
-import com.azure.core.util.serializer.JsonUtils;
 import com.azure.json.JsonReader;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
@@ -147,8 +146,8 @@ public final class StopwordsTokenFilter extends TokenFilter {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("@odata.type", odataType);
         jsonWriter.writeStringField("name", getName(), false);
-        JsonUtils.writeArray(
-                jsonWriter, "stopwords", this.stopwords, (writer, element) -> writer.writeString(element, false));
+        jsonWriter.writeArrayField(
+                "stopwords", this.stopwords, false, (writer, element) -> writer.writeString(element));
         jsonWriter.writeStringField(
                 "stopwordsList", this.stopwordsList == null ? null : this.stopwordsList.toString(), false);
         jsonWriter.writeBooleanField("ignoreCase", this.caseIgnored, false);
@@ -166,8 +165,7 @@ public final class StopwordsTokenFilter extends TokenFilter {
      *     polymorphic discriminator.
      */
     public static StopwordsTokenFilter fromJson(JsonReader jsonReader) {
-        return JsonUtils.readObject(
-                jsonReader,
+        return jsonReader.readObject(
                 reader -> {
                     String odataType = "#Microsoft.Azure.Search.StopwordsTokenFilter";
                     boolean nameFound = false;
@@ -186,14 +184,13 @@ public final class StopwordsTokenFilter extends TokenFilter {
                             name = reader.getStringValue();
                             nameFound = true;
                         } else if ("stopwords".equals(fieldName)) {
-                            stopwords = JsonUtils.readArray(reader, reader1 -> reader1.getStringValue());
+                            stopwords = reader.readArray(reader1 -> reader1.getStringValue());
                         } else if ("stopwordsList".equals(fieldName)) {
                             stopwordsList = StopwordsList.fromString(reader.getStringValue());
                         } else if ("ignoreCase".equals(fieldName)) {
-                            caseIgnored = JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            caseIgnored = reader.getBooleanNullableValue();
                         } else if ("removeTrailing".equals(fieldName)) {
-                            trailingStopWordsRemoved =
-                                    JsonUtils.getNullableProperty(reader, r -> reader.getBooleanValue());
+                            trailingStopWordsRemoved = reader.getBooleanNullableValue();
                         } else {
                             reader.skipChildren();
                         }
