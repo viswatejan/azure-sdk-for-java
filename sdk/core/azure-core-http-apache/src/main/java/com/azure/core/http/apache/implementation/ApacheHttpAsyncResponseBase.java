@@ -7,7 +7,6 @@ import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpRequest;
 import com.azure.core.http.HttpResponse;
 import com.azure.core.util.CoreUtils;
-import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.Message;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Mono;
@@ -31,7 +30,7 @@ abstract class ApacheHttpAsyncResponseBase extends HttpResponse {
         Message<org.apache.hc.core5.http.HttpResponse, Publisher<ByteBuffer>> response, HttpRequest request) {
         super(request);
         this.statusCode = response.getHead().getCode();
-        this.headers = fromApacheHttpHeaders(response.getHead().getHeaders());
+        this.headers = new ApacheToAzureCoreHttpHeadersWrapper(response.getHead());
     }
 
     @Override
@@ -57,19 +56,5 @@ abstract class ApacheHttpAsyncResponseBase extends HttpResponse {
     @Override
     public final Mono<String> getBodyAsString(Charset charset) {
         return getBodyAsByteArray().map(bytes -> new String(bytes, charset));
-    }
-
-    /**
-     * Creates azure-core HttpHeaders from Apache Http headers.
-     *
-     * @param apacheHttpHeaders apache http headers
-     * @return azure-core HttpHeaders
-     */
-    private static HttpHeaders fromApacheHttpHeaders(Header[] apacheHttpHeaders) {
-        HttpHeaders azureHeaders = new HttpHeaders();
-        for (Header header : apacheHttpHeaders) {
-            azureHeaders.set(header.getName(), header.getValue());
-        }
-        return azureHeaders;
     }
 }

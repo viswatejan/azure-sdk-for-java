@@ -22,8 +22,6 @@ import org.apache.hc.core5.http.Message;
 import org.apache.hc.core5.http.nio.support.BasicRequestProducer;
 import org.apache.hc.core5.http.protocol.HttpContext;
 import org.apache.hc.core5.http.protocol.HttpCoreContext;
-import org.apache.hc.core5.reactive.ReactiveEntityProducer;
-import org.apache.hc.core5.reactive.ReactiveResponseConsumer;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
