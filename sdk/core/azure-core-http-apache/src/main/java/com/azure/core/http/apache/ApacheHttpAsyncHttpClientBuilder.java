@@ -154,9 +154,10 @@ public class ApacheHttpAsyncHttpClientBuilder {
             connectionManager != null ? connectionManager : PoolingAsyncClientConnectionManagerBuilder.create().build());
 
         // Shared or not connections pool
-        if (connectionManagerShared != null) {
-            httpClientBuilder.setConnectionManagerShared(connectionManagerShared);
+        if (connectionManagerShared == null) {
+            connectionManagerShared = true;
         }
+        httpClientBuilder.setConnectionManagerShared(connectionManagerShared);
 
         // HTTP/1 configuration
         httpClientBuilder.setHttp1Config(h1Config != null ? h1Config : Http1Config.DEFAULT);
