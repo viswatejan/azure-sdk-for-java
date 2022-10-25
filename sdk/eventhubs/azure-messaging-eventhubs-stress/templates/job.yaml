@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: sender
-      image: {{ .Values.image }}
+      image: {{ .Stress.imageTag }}
       imagePullPolicy: Always
       command: ['sh', '-c']
       args:
@@ -19,7 +19,7 @@ spec:
           --TEST_CLASS=EventSender
       {{- include "stress-test-addons.container-env" . | nindent 6 }}
     - name: receiver
-      image: {{ .Values.image }}
+      image: {{ .Stress.imageTag }}
       imagePullPolicy: Always
       command: ['sh', '-c']
       args:
