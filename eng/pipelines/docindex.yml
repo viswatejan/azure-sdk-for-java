@@ -27,7 +27,7 @@ jobs:
           Repositories:
             - Name: $(DocRepoOwner)/$(DocRepoName)
               WorkingDirectory: $(DocRepoLocation)
-          Commitish: e55834091609a6195c3df71baff8079fc6decd17
+              Commitish: e55834091609a6195c3df71baff8079fc6decd17
       # Pull and build the docker image.
       - template: /eng/common/pipelines/templates/steps/docker-pull-image.yml
         parameters:
