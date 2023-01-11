@@ -15,13 +15,15 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class ModifiedAccessConditions {
     /*
-     * Specify this header value to operate only on a blob if it has been modified since the specified date/time.
+     * Specify this header value to operate only on a blob if it has been
+     * modified since the specified date/time.
      */
     @JsonProperty(value = "ifModifiedSince")
     private DateTimeRfc1123 ifModifiedSince;
 
     /*
-     * Specify this header value to operate only on a blob if it has not been modified since the specified date/time.
+     * Specify this header value to operate only on a blob if it has not been
+     * modified since the specified date/time.
      */
     @JsonProperty(value = "ifUnmodifiedSince")
     private DateTimeRfc1123 ifUnmodifiedSince;
@@ -37,9 +39,6 @@ public final class ModifiedAccessConditions {
      */
     @JsonProperty(value = "ifNoneMatch")
     private String ifNoneMatch;
-
-    /** Creates an instance of ModifiedAccessConditions class. */
-    public ModifiedAccessConditions() {}
 
     /**
      * Get the ifModifiedSince property: Specify this header value to operate only on a blob if it has been modified

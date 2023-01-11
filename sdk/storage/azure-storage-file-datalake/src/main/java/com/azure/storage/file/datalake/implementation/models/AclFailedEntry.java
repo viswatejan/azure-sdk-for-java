@@ -30,9 +30,6 @@ public final class AclFailedEntry {
     @JsonProperty(value = "errorMessage")
     private String errorMessage;
 
-    /** Creates an instance of AclFailedEntry class. */
-    public AclFailedEntry() {}
-
     /**
      * Get the name property: The name property.
      *

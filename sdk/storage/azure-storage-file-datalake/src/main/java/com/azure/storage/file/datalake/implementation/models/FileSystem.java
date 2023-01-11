@@ -30,9 +30,6 @@ public final class FileSystem {
     @JsonProperty(value = "eTag")
     private String eTag;
 
-    /** Creates an instance of FileSystem class. */
-    public FileSystem() {}
-
     /**
      * Get the name property: The name property.
      *

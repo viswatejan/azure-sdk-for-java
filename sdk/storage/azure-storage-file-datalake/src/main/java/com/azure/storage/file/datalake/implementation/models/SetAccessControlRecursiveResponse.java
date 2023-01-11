@@ -38,9 +38,6 @@ public final class SetAccessControlRecursiveResponse {
     @JsonProperty("failedEntries")
     private List<AclFailedEntry> failedEntries = new ArrayList<>();
 
-    /** Creates an instance of SetAccessControlRecursiveResponse class. */
-    public SetAccessControlRecursiveResponse() {}
-
     /**
      * Get the directoriesSuccessful property: The directoriesSuccessful property.
      *

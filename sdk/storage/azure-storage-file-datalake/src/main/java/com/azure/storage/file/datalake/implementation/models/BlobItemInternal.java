@@ -54,9 +54,6 @@ public final class BlobItemInternal {
     @JsonProperty(value = "DeletionId")
     private String deletionId;
 
-    /** Creates an instance of BlobItemInternal class. */
-    public BlobItemInternal() {}
-
     /**
      * Get the name property: The Name property.
      *

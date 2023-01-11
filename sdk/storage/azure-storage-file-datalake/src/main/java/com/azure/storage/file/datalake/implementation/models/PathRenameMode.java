@@ -30,9 +30,6 @@ public enum PathRenameMode {
      */
     @JsonCreator
     public static PathRenameMode fromString(String value) {
-        if (value == null) {
-            return null;
-        }
         PathRenameMode[] items = PathRenameMode.values();
         for (PathRenameMode item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
@@ -42,7 +39,6 @@ public enum PathRenameMode {
         return null;
     }
 
-    /** {@inheritDoc} */
     @JsonValue
     @Override
     public String toString() {

@@ -39,9 +39,6 @@ public enum PathUpdateAction {
      */
     @JsonCreator
     public static PathUpdateAction fromString(String value) {
-        if (value == null) {
-            return null;
-        }
         PathUpdateAction[] items = PathUpdateAction.values();
         for (PathUpdateAction item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
@@ -51,7 +48,6 @@ public enum PathUpdateAction {
         return null;
     }
 
-    /** {@inheritDoc} */
     @JsonValue
     @Override
     public String toString() {

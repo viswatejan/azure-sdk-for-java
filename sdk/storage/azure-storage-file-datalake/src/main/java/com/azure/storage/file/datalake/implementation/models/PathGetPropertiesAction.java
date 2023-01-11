@@ -30,9 +30,6 @@ public enum PathGetPropertiesAction {
      */
     @JsonCreator
     public static PathGetPropertiesAction fromString(String value) {
-        if (value == null) {
-            return null;
-        }
         PathGetPropertiesAction[] items = PathGetPropertiesAction.values();
         for (PathGetPropertiesAction item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
@@ -42,7 +39,6 @@ public enum PathGetPropertiesAction {
         return null;
     }
 
-    /** {@inheritDoc} */
     @JsonValue
     @Override
     public String toString() {

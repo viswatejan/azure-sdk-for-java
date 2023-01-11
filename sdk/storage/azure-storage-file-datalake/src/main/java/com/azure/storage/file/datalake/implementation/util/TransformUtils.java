@@ -34,16 +34,7 @@ public class TransformUtils {
             return BlobServiceVersion.V2021_02_12;
         } else if (DataLakeServiceVersion.V2021_04_10.ordinal() == version.ordinal()) {
             return BlobServiceVersion.V2021_04_10;
-        } else if (DataLakeServiceVersion.V2021_06_08.ordinal() == version.ordinal()) {
-            return BlobServiceVersion.V2021_06_08;
-        } else if (DataLakeServiceVersion.V2021_08_06.ordinal() == version.ordinal()) {
-            return BlobServiceVersion.V2021_08_06;
-        } else if (DataLakeServiceVersion.V2021_10_04.ordinal() == version.ordinal()) {
-            return BlobServiceVersion.V2021_10_04;
-        } else if (DataLakeServiceVersion.V2021_12_02.ordinal() == version.ordinal()) {
-            return BlobServiceVersion.V2021_12_02;
         }
-
         return null;
     }
 }

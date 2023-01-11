@@ -33,11 +33,7 @@ public final class PathExpiryOptions extends ExpandableStringEnum<PathExpiryOpti
         return fromString(name, PathExpiryOptions.class);
     }
 
-    /**
-     * Gets known PathExpiryOptions values.
-     *
-     * @return known PathExpiryOptions values.
-     */
+    /** @return known PathExpiryOptions values. */
     public static Collection<PathExpiryOptions> values() {
         return values(PathExpiryOptions.class);
     }

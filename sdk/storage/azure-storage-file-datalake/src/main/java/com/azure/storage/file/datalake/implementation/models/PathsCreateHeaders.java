@@ -5,8 +5,6 @@
 package com.azure.storage.file.datalake.implementation.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.http.HttpHeaderName;
-import com.azure.core.http.HttpHeaders;
 import com.azure.core.util.DateTimeRfc1123;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
@@ -41,12 +39,6 @@ public final class PathsCreateHeaders {
     private Long contentLength;
 
     /*
-     * The x-ms-encryption-key-sha256 property.
-     */
-    @JsonProperty(value = "x-ms-encryption-key-sha256")
-    private String xMsEncryptionKeySha256;
-
-    /*
      * The x-ms-request-id property.
      */
     @JsonProperty(value = "x-ms-request-id")
@@ -59,58 +51,10 @@ public final class PathsCreateHeaders {
     private String xMsContinuation;
 
     /*
-     * The x-ms-request-server-encrypted property.
-     */
-    @JsonProperty(value = "x-ms-request-server-encrypted")
-    private Boolean xMsRequestServerEncrypted;
-
-    /*
      * The Date property.
      */
     @JsonProperty(value = "Date")
-    private DateTimeRfc1123 date;
-
-    private static final HttpHeaderName X_MS_VERSION = HttpHeaderName.fromString("x-ms-version");
-
-    private static final HttpHeaderName X_MS_ENCRYPTION_KEY_SHA256 =
-            HttpHeaderName.fromString("x-ms-encryption-key-sha256");
-
-    private static final HttpHeaderName X_MS_REQUEST_ID = HttpHeaderName.fromString("x-ms-request-id");
-
-    private static final HttpHeaderName X_MS_CONTINUATION = HttpHeaderName.fromString("x-ms-continuation");
-
-    private static final HttpHeaderName X_MS_REQUEST_SERVER_ENCRYPTED =
-            HttpHeaderName.fromString("x-ms-request-server-encrypted");
-
-    // HttpHeaders containing the raw property values.
-    /**
-     * Creates an instance of PathsCreateHeaders class.
-     *
-     * @param rawHeaders The raw HttpHeaders that will be used to create the property values.
-     */
-    public PathsCreateHeaders(HttpHeaders rawHeaders) {
-        this.xMsVersion = rawHeaders.getValue(X_MS_VERSION);
-        this.eTag = rawHeaders.getValue(HttpHeaderName.ETAG);
-        String lastModified = rawHeaders.getValue(HttpHeaderName.LAST_MODIFIED);
-        if (lastModified != null) {
-            this.lastModified = new DateTimeRfc1123(lastModified);
-        }
-        String contentLength = rawHeaders.getValue(HttpHeaderName.CONTENT_LENGTH);
-        if (contentLength != null) {
-            this.contentLength = Long.parseLong(contentLength);
-        }
-        this.xMsEncryptionKeySha256 = rawHeaders.getValue(X_MS_ENCRYPTION_KEY_SHA256);
-        this.xMsRequestId = rawHeaders.getValue(X_MS_REQUEST_ID);
-        this.xMsContinuation = rawHeaders.getValue(X_MS_CONTINUATION);
-        String xMsRequestServerEncrypted = rawHeaders.getValue(X_MS_REQUEST_SERVER_ENCRYPTED);
-        if (xMsRequestServerEncrypted != null) {
-            this.xMsRequestServerEncrypted = Boolean.parseBoolean(xMsRequestServerEncrypted);
-        }
-        String date = rawHeaders.getValue(HttpHeaderName.DATE);
-        if (date != null) {
-            this.date = new DateTimeRfc1123(date);
-        }
-    }
+    private DateTimeRfc1123 dateProperty;
 
     /**
      * Get the xMsVersion property: The x-ms-version property.
@@ -200,26 +144,6 @@ public final class PathsCreateHeaders {
     }
 
     /**
-     * Get the xMsEncryptionKeySha256 property: The x-ms-encryption-key-sha256 property.
-     *
-     * @return the xMsEncryptionKeySha256 value.
-     */
-    public String getXMsEncryptionKeySha256() {
-        return this.xMsEncryptionKeySha256;
-    }
-
-    /**
-     * Set the xMsEncryptionKeySha256 property: The x-ms-encryption-key-sha256 property.
-     *
-     * @param xMsEncryptionKeySha256 the xMsEncryptionKeySha256 value to set.
-     * @return the PathsCreateHeaders object itself.
-     */
-    public PathsCreateHeaders setXMsEncryptionKeySha256(String xMsEncryptionKeySha256) {
-        this.xMsEncryptionKeySha256 = xMsEncryptionKeySha256;
-        return this;
-    }
-
-    /**
      * Get the xMsRequestId property: The x-ms-request-id property.
      *
      * @return the xMsRequestId value.
@@ -260,48 +184,28 @@ public final class PathsCreateHeaders {
     }
 
     /**
-     * Get the xMsRequestServerEncrypted property: The x-ms-request-server-encrypted property.
+     * Get the dateProperty property: The Date property.
      *
-     * @return the xMsRequestServerEncrypted value.
+     * @return the dateProperty value.
      */
-    public Boolean isXMsRequestServerEncrypted() {
-        return this.xMsRequestServerEncrypted;
-    }
-
-    /**
-     * Set the xMsRequestServerEncrypted property: The x-ms-request-server-encrypted property.
-     *
-     * @param xMsRequestServerEncrypted the xMsRequestServerEncrypted value to set.
-     * @return the PathsCreateHeaders object itself.
-     */
-    public PathsCreateHeaders setXMsRequestServerEncrypted(Boolean xMsRequestServerEncrypted) {
-        this.xMsRequestServerEncrypted = xMsRequestServerEncrypted;
-        return this;
-    }
-
-    /**
-     * Get the date property: The Date property.
-     *
-     * @return the date value.
-     */
-    public OffsetDateTime getDate() {
-        if (this.date == null) {
+    public OffsetDateTime getDateProperty() {
+        if (this.dateProperty == null) {
             return null;
         }
-        return this.date.getDateTime();
+        return this.dateProperty.getDateTime();
     }
 
     /**
-     * Set the date property: The Date property.
+     * Set the dateProperty property: The Date property.
      *
-     * @param date the date value to set.
+     * @param dateProperty the dateProperty value to set.
      * @return the PathsCreateHeaders object itself.
      */
-    public PathsCreateHeaders setDate(OffsetDateTime date) {
-        if (date == null) {
-            this.date = null;
+    public PathsCreateHeaders setDateProperty(OffsetDateTime dateProperty) {
+        if (dateProperty == null) {
+            this.dateProperty = null;
         } else {
-            this.date = new DateTimeRfc1123(date);
+            this.dateProperty = new DateTimeRfc1123(dateProperty);
         }
         return this;
     }

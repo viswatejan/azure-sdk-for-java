@@ -5,8 +5,6 @@
 package com.azure.storage.file.datalake.implementation.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.http.HttpHeaderName;
-import com.azure.core.http.HttpHeaders;
 import com.azure.core.util.DateTimeRfc1123;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
@@ -44,32 +42,7 @@ public final class PathsDeleteHeaders {
      * The Date property.
      */
     @JsonProperty(value = "Date")
-    private DateTimeRfc1123 date;
-
-    private static final HttpHeaderName X_MS_DELETION_ID = HttpHeaderName.fromString("x-ms-deletion-id");
-
-    private static final HttpHeaderName X_MS_VERSION = HttpHeaderName.fromString("x-ms-version");
-
-    private static final HttpHeaderName X_MS_REQUEST_ID = HttpHeaderName.fromString("x-ms-request-id");
-
-    private static final HttpHeaderName X_MS_CONTINUATION = HttpHeaderName.fromString("x-ms-continuation");
-
-    // HttpHeaders containing the raw property values.
-    /**
-     * Creates an instance of PathsDeleteHeaders class.
-     *
-     * @param rawHeaders The raw HttpHeaders that will be used to create the property values.
-     */
-    public PathsDeleteHeaders(HttpHeaders rawHeaders) {
-        this.xMsDeletionId = rawHeaders.getValue(X_MS_DELETION_ID);
-        this.xMsVersion = rawHeaders.getValue(X_MS_VERSION);
-        this.xMsRequestId = rawHeaders.getValue(X_MS_REQUEST_ID);
-        this.xMsContinuation = rawHeaders.getValue(X_MS_CONTINUATION);
-        String date = rawHeaders.getValue(HttpHeaderName.DATE);
-        if (date != null) {
-            this.date = new DateTimeRfc1123(date);
-        }
-    }
+    private DateTimeRfc1123 dateProperty;
 
     /**
      * Get the xMsDeletionId property: The x-ms-deletion-id property.
@@ -152,28 +125,28 @@ public final class PathsDeleteHeaders {
     }
 
     /**
-     * Get the date property: The Date property.
+     * Get the dateProperty property: The Date property.
      *
-     * @return the date value.
+     * @return the dateProperty value.
      */
-    public OffsetDateTime getDate() {
-        if (this.date == null) {
+    public OffsetDateTime getDateProperty() {
+        if (this.dateProperty == null) {
             return null;
         }
-        return this.date.getDateTime();
+        return this.dateProperty.getDateTime();
     }
 
     /**
-     * Set the date property: The Date property.
+     * Set the dateProperty property: The Date property.
      *
-     * @param date the date value to set.
+     * @param dateProperty the dateProperty value to set.
      * @return the PathsDeleteHeaders object itself.
      */
-    public PathsDeleteHeaders setDate(OffsetDateTime date) {
-        if (date == null) {
-            this.date = null;
+    public PathsDeleteHeaders setDateProperty(OffsetDateTime dateProperty) {
+        if (dateProperty == null) {
+            this.dateProperty = null;
         } else {
-            this.date = new DateTimeRfc1123(date);
+            this.dateProperty = new DateTimeRfc1123(dateProperty);
         }
         return this;
     }

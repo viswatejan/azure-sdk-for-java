@@ -29,9 +29,6 @@ public final class BlobHierarchyListSegment {
     @JsonProperty("Blob")
     private List<BlobItemInternal> blobItems = new ArrayList<>();
 
-    /** Creates an instance of BlobHierarchyListSegment class. */
-    public BlobHierarchyListSegment() {}
-
     /**
      * Get the blobPrefixes property: The BlobPrefixes property.
      *
