@@ -32,6 +32,8 @@ import com.azure.storage.common.policy.RequestRetryOptions;
 import com.azure.storage.file.datalake.implementation.util.BuilderHelper;
 import com.azure.storage.file.datalake.implementation.util.DataLakeImplUtils;
 import com.azure.storage.file.datalake.implementation.util.TransformUtils;
+import com.azure.storage.file.datalake.models.CustomerProvidedKey;
+import com.azure.storage.file.datalake.options.FileSystemEncryptionScopeOptions;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -153,8 +155,8 @@ public class DataLakeFileSystemClientBuilder implements
             endpoint, retryOptions, coreRetryOptions, logOptions,
             clientOptions, httpClient, perCallPolicies, perRetryPolicies, configuration, LOGGER);
 
-        return new DataLakeFileSystemAsyncClient(pipeline, endpoint, serviceVersion, accountName,
-            dataLakeFileSystemName, blobContainerClientBuilder.buildAsyncClient(), azureSasCredential);
+        return new DataLakeFileSystemAsyncClient(pipeline, endpoint, serviceVersion, accountName, dataLakeFileSystemName,
+            blobContainerClientBuilder.buildAsyncClient(), azureSasCredential);
     }
 
     /**
@@ -280,6 +282,20 @@ public class DataLakeFileSystemClientBuilder implements
         this.storageSharedKeyCredential = null;
         this.tokenCredential = null;
         this.azureSasCredential = null;
+        return this;
+    }
+
+    /**
+     * Sets the {@link FileSystemEncryptionScopeOptions encryption scope} that is used to determine how file systems are
+     * encrypted on the server.
+     *
+     * @param fileSystemEncryptionScopeOptions Encryption scope containing the encryption key information.
+     * @return the updated DataLakeFileSystemClientBuilder object
+     */
+    public DataLakeFileSystemClientBuilder fileSystemEncryptionScopeOptions(
+        FileSystemEncryptionScopeOptions fileSystemEncryptionScopeOptions) {
+        blobContainerClientBuilder
+            .blobContainerEncryptionScope(Transforms.toBlobContainerEncryptionScope(fileSystemEncryptionScopeOptions));
         return this;
     }
 
@@ -495,6 +511,22 @@ public class DataLakeFileSystemClientBuilder implements
     public DataLakeFileSystemClientBuilder serviceVersion(DataLakeServiceVersion version) {
         blobContainerClientBuilder.serviceVersion(TransformUtils.toBlobServiceVersion(version));
         this.version = version;
+        return this;
+    }
+
+    /**
+     * Sets the {@link CustomerProvidedKey customer provided key} that is used to encrypt file contents on the server.
+     *
+     * @param customerProvidedKey Customer provided key containing the encryption key information.
+     * @return the updated DataLakeFileSystemClientBuilder object
+     */
+    public DataLakeFileSystemClientBuilder customerProvidedKey(CustomerProvidedKey customerProvidedKey) {
+        if (customerProvidedKey == null) {
+            blobContainerClientBuilder.customerProvidedKey(null);
+        } else {
+            blobContainerClientBuilder.customerProvidedKey(Transforms.toBlobCustomerProvidedKey(customerProvidedKey));
+        }
+
         return this;
     }
 }
