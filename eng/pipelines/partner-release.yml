@@ -1,5 +1,6 @@
 trigger: none
 pr: none
+name: $(Date:yyyyMMdd) (${{ parameters.BlobPath }}) $(Rev:r)
 
 parameters:
 - name: BlobPath
