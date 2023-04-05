@@ -1,4 +1,14 @@
 # NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+resources:
+  repositories:
+    - repository: azure-sdk-build-tools
+      type: git
+      name: internal/azure-sdk-build-tools
+      ref: refs/tags/azure-sdk-build-tools_20230321.1
+
+variables:
+  - template: /eng/pipelines/templates/variables/globals.yml
+
 trigger:
   branches:
     include:
