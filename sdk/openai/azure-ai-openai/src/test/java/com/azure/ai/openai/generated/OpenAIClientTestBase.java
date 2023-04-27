@@ -69,7 +69,7 @@ class OpenAIClientTestBase extends TestProxyTestBase {
 //        openAIAsyncClient = openAIClientbuilder.buildAsyncClient();
     }
 
-    void getCompletionsRunner(BiConsumer<String, List<String>> testRunner) {
+    protected void getCompletionsRunner(BiConsumer<String, List<String>> testRunner) {
         String deploymentId = "text-davinci-003";
         List<String> prompt = new ArrayList<>();
         prompt.add("Say this is a test");

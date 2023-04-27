@@ -12,4 +12,5 @@ module com.azure.ai.openai {
             com.azure.core,
             com.fasterxml.jackson.databind;
     exports com.azure.ai.openai.custom;
+    exports com.azure.ai.openai.custom.models;
 }
