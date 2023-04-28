@@ -62,6 +62,13 @@
       <artifactId>azure-core-http-netty</artifactId>
       <version>1.13.2</version> <!-- {x-version-update;com.azure:azure-core-http-netty;dependency} -->
     </dependency>
+    <dependency>
+      <groupId>com.azure.resourcemanager</groupId>
+      <artifactId>azure-resourcemanager-cognitiveservices</artifactId>
+      <version>1.0.0</version> <!-- {x-version-update;com.azure.resourcemanager:azure-resourcemanager-cognitiveservices;current} -->
+      <!--      <packaging>jar</packaging>-->
+      <scope>test</scope>
+    </dependency>
 
     <!-- provided scope -->
     <dependency>
@@ -90,6 +97,13 @@
       <version>1.7.36</version> <!-- {x-version-update;org.slf4j:slf4j-simple;external_dependency} -->
       <scope>test</scope>
     </dependency>
+
+<!--    <dependency>-->
+<!--      <groupId>com.azure.resourcemanager</groupId>-->
+<!--      <artifactId>azure-resourcemanager</artifactId>-->
+<!--      <version>2.29.0</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>com.azure</groupId>

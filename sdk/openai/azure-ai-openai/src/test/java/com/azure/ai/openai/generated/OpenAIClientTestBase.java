@@ -8,11 +8,15 @@ import com.azure.ai.openai.OpenAIClient;
 import com.azure.ai.openai.OpenAIClientBuilder;
 import com.azure.core.credential.AccessToken;
 import com.azure.core.credential.AzureKeyCredential;
+import com.azure.core.credential.TokenCredential;
 import com.azure.core.http.HttpClient;
 import com.azure.core.http.policy.HttpLogDetailLevel;
 import com.azure.core.http.policy.HttpLogOptions;
+import com.azure.core.management.AzureEnvironment;
+import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.test.TestMode;
 import com.azure.core.test.TestProxyTestBase;
+import com.azure.core.test.utils.TestUtils;
 import com.azure.core.util.Configuration;
 import com.azure.identity.DefaultAzureCredentialBuilder;
 import java.time.OffsetDateTime;
@@ -20,9 +24,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import com.azure.resourcemanager.cognitiveservices.CognitiveServicesManager;
 import reactor.core.publisher.Mono;
 
 class OpenAIClientTestBase extends TestProxyTestBase {
+
+    private AzureKeyCredential _apiKey;
+    private final Object _deploymentIdLock = new Object();
     protected OpenAIClient openAIClient;
 
     static {
@@ -46,6 +54,8 @@ class OpenAIClientTestBase extends TestProxyTestBase {
 
     @Override
     protected void beforeTest() {
+        createDeployment();
+
         OpenAIClientBuilder openAIClientbuilder =
             new OpenAIClientBuilder()
                 .endpoint(interceptorManager.isPlaybackMode() ? "https://localhost:8080"
@@ -59,14 +69,38 @@ class OpenAIClientTestBase extends TestProxyTestBase {
         } else if (getTestMode() == TestMode.RECORD) {
             openAIClientbuilder
                 .addPolicy(interceptorManager.getRecordPolicy())
-                .credential(new AzureKeyCredential(Configuration.getGlobalConfiguration().get("AZURE_OPENAI_KEY")));
+//                .credential(new AzureKeyCredential(Configuration.getGlobalConfiguration().get("AZURE_OPENAI_KEY")));
             // TODO: set the endpoint correctly using ArmClient (Azure Resource Management Client)
-//                    .credential(new DefaultAzureCredentialBuilder().build());
+                    .credential(new DefaultAzureCredentialBuilder().build());
         } else if (getTestMode() == TestMode.LIVE) {
             openAIClientbuilder.credential(new DefaultAzureCredentialBuilder().build());
         }
         openAIClient = openAIClientbuilder.buildClient();
 //        openAIAsyncClient = openAIClientbuilder.buildAsyncClient();
+    }
+
+    private void createDeployment() {
+        if(getTestMode() == TestMode.PLAYBACK) {
+            // TODO
+        } else if(_apiKey != null) {
+            // TODO
+        }
+        else {
+            synchronized (_deploymentIdLock) {
+                if (_apiKey == null) {
+                    AzureProfile profile = new AzureProfile(AzureEnvironment.AZURE);
+                    TokenCredential credential = new DefaultAzureCredentialBuilder()
+                        .authorityHost(profile.getEnvironment().getActiveDirectoryEndpoint())
+                        .build();
+
+                    CognitiveServicesManager manager = CognitiveServicesManager
+                        .authenticate(credential, profile);
+
+                    manager.deployments();
+                }
+            }
+        }
+
     }
 
     protected void getCompletionsRunner(BiConsumer<String, List<String>> testRunner) {

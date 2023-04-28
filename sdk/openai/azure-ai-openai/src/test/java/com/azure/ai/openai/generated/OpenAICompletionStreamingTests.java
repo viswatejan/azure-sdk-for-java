@@ -14,14 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class OpenAICompletionStreamingTests extends OpenAIClientTestBase {
 
     @Test
-    public void getCompletions() {
-        getCompletionsRunner((deploymentId, prompt) -> {
-            Completions resultCompletions = openAIClient.getCompletions(deploymentId, new CompletionsOptions(prompt));
-            assertNotNull(resultCompletions.getUsage());
-        });
-    }
-
-    @Test
     public void getCompletionsStreaming() {
         String deploymentId = "text-davinci-003";
         List<String> prompt = new ArrayList<>();
