@@ -1,5 +1,13 @@
 # Release History
 
+## 12.15.1 (2023-05-16)
+
+### Other Changes
+
+#### Dependency Updates
+
+- Upgraded `azure-storage-blob` from `12.22.0` to version `12.22.1`.
+
 ## 12.15.0 (2023-04-13)
 
 ### Features Added
