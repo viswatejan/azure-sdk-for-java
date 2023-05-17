@@ -63,7 +63,7 @@ import java.util.stream.Collectors;
  * {@link TableServiceClientBuilder} object.</p>
  *
  * <p>See {@link TableServiceClientBuilder} documentation for more information on constructing a client.</p>
- * <h4>Usage Code Samples</h4>
+ * <h2>Usage Code Samples</h2>
  *
  * <strong>Creating a Table</strong>
  * <!-- src_embed com.azure.data.tables.tableServiceClient.createTable#String -->
