@@ -59,13 +59,16 @@ import java.util.stream.Collectors;
  * invoke REST API operations to make the requests and obtain the results that are returned.</p>
  *
  * <h2>Creating a Synchronous Table Service Client</h2>
+ * 
  * <p>Instances of this client are obtained by calling the {@link TableServiceClientBuilder#buildClient()} method on a
  * {@link TableServiceClientBuilder} object.</p>
  *
  * <p>See {@link TableServiceClientBuilder} documentation for more information on constructing a client.</p>
+ * 
  * <h2>Usage Code Samples</h2>
  *
  * <strong>Creating a Table</strong>
+ * 
  * <!-- src_embed com.azure.data.tables.tableServiceClient.createTable#String -->
  * <pre>
  * TableClient tableClient = tableServiceClient.createTable&#40;&quot;myTable&quot;&#41;;
@@ -75,6 +78,7 @@ import java.util.stream.Collectors;
  * <!-- end com.azure.data.tables.tableServiceClient.createTable#String -->
  * 
  * <strong>Deleting a Table</strong>
+ * 
  * <!-- src_embed com.azure.data.tables.tableServiceClient.deleteTable#String -->
  * <pre>
  * String tableName = &quot;myTable&quot;;
@@ -86,6 +90,7 @@ import java.util.stream.Collectors;
  * <!-- end com.azure.data.tables.tableServiceClient.deleteTable#String -->
  * 
  * <strong>Getting a {@link TableClient}</strong>
+ * 
  * <!-- src_embed com.azure.data.tables.tableServiceClient.getTableClient#String -->
  * <pre>
  * TableClient tableClient = tableServiceClient.getTableClient&#40;&quot;myTable&quot;&#41;;
@@ -95,7 +100,9 @@ import java.util.stream.Collectors;
  * <!-- end com.azure.data.tables.tableServiceClient.getTableClient#String -->
  * 
  * <strong>Listing Tables</strong>
+ * 
  * <p>Without filtering:</p>
+ * 
  * <!-- src_embed com.azure.data.tables.tableServiceClient.listTables -->
  * <pre>
  * PagedIterable&lt;TableItem&gt; tableItems = tableServiceClient.listTables&#40;&#41;;
@@ -118,6 +125,7 @@ import java.util.stream.Collectors;
  * <!-- end com.azure.data.tables.tableServiceClient.listTables#ListTablesOptions-Duration-Context -->
  * 
  * <strong>Getting Properties</strong>
+ * 
  * <!-- src_embed com.azure.data.tables.tableServiceClient.getProperties -->
  * <pre>
  * TableServiceProperties properties = tableServiceClient.getProperties&#40;&#41;;
@@ -127,6 +135,7 @@ import java.util.stream.Collectors;
  * <!-- end com.azure.data.tables.tableServiceClient.getProperties -->
  * 
  * <strong>Setting Properties</strong>
+ * 
  * <!-- src_embed com.azure.data.tables.tableServiceClient.setProperties#TableServiceProperties -->
  * <pre>
  * TableServiceProperties properties = new TableServiceProperties&#40;&#41;
@@ -147,6 +156,7 @@ import java.util.stream.Collectors;
  * <!-- end com.azure.data.tables.tableServiceClient.setProperties#TableServiceProperties -->
  * 
  * <strong>Getting Statistics</strong>
+ * 
  * <!-- src_embed com.azure.data.tables.tableServiceClient.getStatistics -->
  * <pre>
  * TableServiceStatistics statistics = tableServiceClient.getStatistics&#40;&#41;;
