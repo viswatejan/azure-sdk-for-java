@@ -479,6 +479,7 @@ public abstract class IdentityClientBase {
 
     AccessToken getTokenFromAzureCLIAuthentication(StringBuilder azCommand) {
         AccessToken token;
+        LOGGER.log(LogLevel.VERBOSE, azCommand::toString);
         try {
             String starter;
             String switcher;
@@ -527,10 +528,14 @@ public abstract class IdentityClientBase {
             String processOutput = output.toString();
 
             process.waitFor(this.options.getCredentialProcessTimeout().getSeconds(), TimeUnit.SECONDS);
+            String redactedOutput = redactInfo(processOutput);
+            LOGGER.log(LogLevel.VERBOSE, () -> "COMMAND OUTPUT::");
+            LOGGER.log(LogLevel.VERBOSE, () -> redactedOutput);
+            LOGGER.log(LogLevel.VERBOSE, () -> "END COMMAND OUPTUT::");
 
             if (process.exitValue() != 0) {
                 if (processOutput.length() > 0) {
-                    String redactedOutput = redactInfo(processOutput);
+
                     if (redactedOutput.contains("az login") || redactedOutput.contains("az account set")) {
                         throw LoggingUtil.logCredentialUnavailableException(LOGGER, options,
                             new CredentialUnavailableException(
