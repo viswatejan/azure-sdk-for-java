@@ -31,7 +31,7 @@
       "type": "String"
     },
     "regionId": {
-      "defaultValue": "westus2",
+      "defaultValue": "[resourceGroup().location]",
       "type": "string",
       "metadata": {
         "description": "Which Azure Region to deploy the resource to. This must be a valid Azure regionId."
