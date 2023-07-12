@@ -73,7 +73,7 @@
     },
     "location": {
       "type": "string",
-      "defaultValue": "westus2",
+      "defaultValue": "resourceGroup().location",
       "allowedValues": [
         "westus2",
         "eastus2",
@@ -103,7 +103,7 @@
     "uniqueAzConfigName": "[concat(parameters('baseName'),'-' , parameters('configurationStores_azconfig_java_name'))]",
     "uniqueAppInsightsName": "[concat(parameters('baseName'),'-' , parameters('appinsights_java_name'))]",
     "endpointValue": "[concat('https://', parameters('baseName'), '-', parameters('configurationStores_azconfig_java_name'), parameters('endpointSuffix'))]",
-    "location": "[resourceGroup().location]",
+    "location": "[parameters('location')",
     "authorizationApiVersion": "2018-09-01-preview",
     "authorizationRulesName": "[concat('authr', parameters('baseName'))]",
     "eventHubsApiVersion": "2017-04-01",
@@ -282,7 +282,7 @@
       "type": "microsoft.operationalinsights/workspaces",
       "apiVersion": "2021-12-01-preview",
       "name": "[parameters('workspaceName')]",
-      "location": "westus2",
+      "location": "[variables('location')]",
       "properties": {
         "sku": {
           "name": "pergb2018"
