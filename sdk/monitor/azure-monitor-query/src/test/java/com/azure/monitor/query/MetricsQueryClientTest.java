@@ -46,8 +46,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 public class MetricsQueryClientTest extends TestProxyTestBase {
     private static final String RESOURCE_URI = Configuration.getGlobalConfiguration()
-            .get("AZURE_MONITOR_METRICS_RESOURCE_URI",
-                    "/subscriptions/faa080af-c1d8-40ad-9cce-e1a450ca5b57/resourceGroups/srnagar-azuresdkgroup/providers/Microsoft.CognitiveServices/accounts/srnagara-textanalytics");
+            .get("AZURE_MONITOR_METRICS_RESOURCE_URI");
     private MetricsQueryClient client;
 
     private static Stream<Arguments> getFilterPredicate() {

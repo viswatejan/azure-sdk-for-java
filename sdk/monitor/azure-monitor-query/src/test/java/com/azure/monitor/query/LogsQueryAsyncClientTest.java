@@ -48,10 +48,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class LogsQueryAsyncClientTest extends TestProxyTestBase {
 
     private static final String WORKSPACE_ID = Configuration.getGlobalConfiguration()
-            .get("AZURE_MONITOR_LOGS_WORKSPACE_ID", "d2d0e126-fa1e-4b0a-b647-250cdd471e68");
+            .get("AZURE_MONITOR_LOGS_WORKSPACE_ID");
 
     static final String RESOURCE_ID = Configuration.getGlobalConfiguration()
-        .get("AZURE_MONITOR_LOGS_RESOURCE_ID", "subscriptions/faa080af-c1d8-40ad-9cce-e1a450ca5b57/resourceGroups/srnagar-azuresdkgroup/providers/Microsoft.Storage/storageAccounts/srnagarstorage");
+        .get("AZURE_MONITOR_LOGS_RESOURCE_ID");
 
     private LogsQueryAsyncClient client;
     private static final String QUERY_STRING = "let dt = datatable (DateTime: datetime, Bool:bool, Guid: guid, Int: "
