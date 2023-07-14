@@ -372,9 +372,9 @@
       "type": "string",
       "value": "[reference(resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleName')), '2021-04-01').immutableId]"
     },
-    "LOG_ANALYTICS_WORKSPACE_ID": {
+    "AZURE_MONITOR_LOGS_WORKSPACE_ID": {
       "type": "string",
-      "value": "[reference(resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceName'))).customerId]"
+      "value": "[reference(resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))).customerId]"
     }
   }
 }
