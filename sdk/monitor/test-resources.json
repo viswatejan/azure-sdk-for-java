@@ -374,7 +374,7 @@
     },
     "AZURE_MONITOR_LOGS_WORKSPACE_ID": {
       "type": "string",
-      "value": "[reference(resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName')))].properties.customerId"
+      "value": "[reference(resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaces_azmonitorlogsws_name'))).properties.customerId]"
     }
   }
 }
