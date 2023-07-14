@@ -371,6 +371,10 @@
     "AZURE_MONITOR_DCR_ID": {
       "type": "string",
       "value": "[reference(resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleName')), '2021-04-01').immutableId]"
-    }
+    },
+    "LOG_ANALYTICS_WORKSPACE_ID": {
+      "type": "string",
+      "value": "[reference(resourceId('microsoft.operationalinsights/workspaces', parameters('workspaceName'))).customerId]"
+    },
   }
 }
