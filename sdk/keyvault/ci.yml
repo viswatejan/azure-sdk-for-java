@@ -9,6 +9,9 @@ trigger:
   paths:
     include:
       - sdk/keyvault/ci.yml
+      - sdk/keyvault/azure-keyvault-certificates/
+      - sdk/keyvault/azure-keyvault-keys/
+      - sdk/keyvault/azure-keyvault-secrets/
       - sdk/keyvault/azure-security-keyvault-administration/
       - sdk/keyvault/azure-security-keyvault-certificates/
       - sdk/keyvault/azure-security-keyvault-jca/
@@ -18,6 +21,9 @@ trigger:
       - sdk/keyvault/azure-security-test-keyvault-jca/
     exclude:
       - sdk/keyvault/pom.xml
+      - sdk/keyvault/azure-keyvault-certificates/pom.xml
+      - sdk/keyvault/azure-keyvault-keys/pom.xml
+      - sdk/keyvault/azure-keyvault-secrets/pom.xml
       - sdk/keyvault/azure-security-keyvault-administration/pom.xml
       - sdk/keyvault/azure-security-keyvault-certificates/pom.xml
       - sdk/keyvault/azure-security-keyvault-jca/pom.xml
@@ -36,6 +42,9 @@ pr:
   paths:
     include:
       - sdk/keyvault/ci.yml
+      - sdk/keyvault/azure-keyvault-certificates/
+      - sdk/keyvault/azure-keyvault-keys/
+      - sdk/keyvault/azure-keyvault-secrets/
       - sdk/keyvault/azure-security-keyvault-administration/
       - sdk/keyvault/azure-security-keyvault-certificates/
       - sdk/keyvault/azure-security-keyvault-jca/
@@ -45,6 +54,9 @@ pr:
       - sdk/keyvault/azure-security-test-keyvault-jca/
     exclude:
       - sdk/keyvault/pom.xml
+      - sdk/keyvault/azure-keyvault-certificates/pom.xml
+      - sdk/keyvault/azure-keyvault-keys/pom.xml
+      - sdk/keyvault/azure-keyvault-secrets/pom.xml
       - sdk/keyvault/azure-security-keyvault-administration/pom.xml
       - sdk/keyvault/azure-security-keyvault-certificates/pom.xml
       - sdk/keyvault/azure-security-keyvault-jca/pom.xml
@@ -54,6 +66,18 @@ pr:
       - sdk/keyvault/azure-security-test-keyvault-jca/pom.xml
 
 parameters:
+- name: release_azurekeyvaultcertificates
+  displayName: 'azure-keyvault-certificates'
+  type: boolean
+  default: true
+- name: release_azurekeyvaultkeys
+  displayName: 'azure-keyvault-keys'
+  type: boolean
+  default: true
+- name: release_azurekeyvaultsecrets
+  displayName: 'azure-keyvault-secrets'
+  type: boolean
+  default: true
 - name: release_azuresecuritykeyvaultadministration
   displayName: 'azure-security-keyvault-administration'
   type: boolean
@@ -83,6 +107,18 @@ extends:
     EnableBatchRelease: true
     AdditionalLintingOptions: '-DcreateSourcesJar=false'
     Artifacts:
+      - name: azure-keyvault-certificates
+        groupId: com.azure
+        safeName: azurekeyvaultcertificates
+        releaseInBatch: ${{ parameters.release_azurekeyvaultcertificates }}
+      - name: azure-keyvault-keys
+        groupId: com.azure
+        safeName: azurekeyvaultkeys
+        releaseInBatch: ${{ parameters.release_azurekeyvaultkeys }}
+      - name: azure-keyvault-secrets
+        groupId: com.azure
+        safeName: azurekeyvaultsecrets
+        releaseInBatch: ${{ parameters.release_azurekeyvaultsecrets }}
       - name: azure-security-keyvault-administration
         groupId: com.azure
         safeName: azuresecuritykeyvaultadministration

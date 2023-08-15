@@ -4,10 +4,48 @@
     "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
 <suppressions>
+  <!-- AutoRest generates 'final' on interfaces. Remove this suppression when:
+  https://github.com/Azure/autorest-clientruntime-for-java/issues/589 is fixed. -->
+  <suppress checks="RedundantModifier"
+            files="keyvault[/\\]microsoft-azure-.*[/\\].*[/\\](IKey|ISignatureTransform|KeyVaultClientBase|KeyVaultClientCustom)\.java"/>
+
   <!-- Add Javadoc suppression for any test files (ie. ones that live under src/test/java). -->
   <suppress checks="Javadoc" files="src[/\\](test|test-shared)[/\\]java[/\\].*.java"/>
   <suppress checks="Javadoc" files=".*[/\\]implementation[/\\].*\.java"/>
   <suppress checks="Header" files=".*package-info.java"/>
+
+  <!-- Files licensed with alternate license in the header -->
+  <suppress checks="Header" files=".*AesKwBCProviderTest.java"/>
+  <suppress checks="Header" files=".*AesKwTest.java"/>
+  <suppress checks="Header" files=".*SymmetricKeyBCProviderTest.java"/>
+  <suppress checks="Header" files=".*SymmetricKeyTest.java"/>
+  <suppress checks="Header" files=".*CachingKeyResolverTest.java"/>
+  <suppress checks="Header" files=".*KeyVaultKeyResolverBCProviderTest.java"/>
+  <suppress checks="Header" files=".*KeyVaultKeyResolverDefaultProviderTest.java"/>
+
+  <!-- Cryptography Client exception for service client instantiation as it provides client side crypto and is not entirely based on REST service -->
+  <suppress checks="com.azure.tools.checkstyle.checks.ServiceClientCheck" files=".*CryptographyAsyncClient.java"/>
+
+  <!-- Public API already released with incorrect upper-case naming pattern -->
+  <suppress checks="MethodName" files="AsymmetricEncryptionAlgorithm.java"/>
+  <suppress checks="MethodName" files="ISessionHandler.java"/>
+  <suppress checks="MethodName" files="KeyWrapAlgorithm.java"/>
+  <suppress checks="MethodName" files="SignatureEncoding.java"/>
+  <suppress checks="MethodName" files="SymmetricEncryptionAlgorithm.java"/>
+  <suppress checks="MethodName" files="RsaSignature.java"/>
+
+  <!-- Public API already released with incorrect constant variable naming -->
+  <suppress checks="ConstantName" files="AlgorithmResolver.java"/>
+  <suppress checks="ConstantName" files="AmqpErrorCode.java"/>
+  <suppress checks="ConstantName" files="BatchErrorCodeStrings.java"/>
+  <suppress checks="ConstantName" files="ConnectionStringBuilder.java"/>
+  <suppress checks="ConstantName" files="JobSchedulingErrorCodes.java"/>
+  <suppress checks="ConstantName" files="MessagingFactory.java"/>
+  <suppress checks="ConstantName" files="PartitionManagerOptions.java"/>
+  <suppress checks="ConstantName" files="PoolResizeErrorCodes.java"/>
+  <suppress checks="ConstantName" files="RsaKey.java"/>
+  <suppress checks="ConstantName" files="SymmetricKey.java"/>
+  <suppress checks="ConstantName" files="TaskFailureInformationCodes.java"/>
 
   <!-- Suppress all checkstyle rules for Track 1/management libraries. -->
   <suppress checks="[a-zA-Z0-9]*" files=".*[/\\]com[/\\]microsoft[/\\].*"/>
@@ -35,7 +73,7 @@
   <suppress checks="AvoidNestedBlocks" files=".*[/\\]src[/\\]test[/\\]java[/\\].*\.java"/>
 
   <!-- Remove this after fixing: https://github.com/Azure/azure-sdk-for-java/issues/5030 -->
-  <suppress checks="com.azure.tools.checkstyle.checks.EnforceFinalFieldsCheck" files=".*(CredentialBuilderBase|DeviceCodeCredentialBuilder|InteractiveBrowserCredentialBuilder).java"/>
+  <suppress checks="com.azure.tools.checkstyle.checks.EnforceFinalFieldsCheck" files=".*(CredentialBuilderBase|KeyCreateOptions|LocalKeyCryptographyClient|DeviceCodeCredentialBuilder|InteractiveBrowserCredentialBuilder).java"/>
 
   <!-- Fields tenantId, clientId and clientSecret are not set in all constructors. -->
   <suppress checks="com.azure.tools.checkstyle.checks.EnforceFinalFieldsCheck" files="com.azure.security.keyvault.jca.implementation.KeyVaultClient"/>
@@ -59,6 +97,9 @@
   <!-- Suppress for the OnlyFinalFieldsForImmutableClass on Form Recognizer -->
   <suppress checks="com.azure.tools.checkstyle.checks.OnlyFinalFieldsForImmutableClass"
             files="com.azure.ai.formrecognizer.documentanalysis.(models|administration).*\.java"/>
+
+  <!-- Suppress LineLength for Keyvault on Preview 3. https://github.com/Azure/azure-sdk-for-java/issues/5335 -->
+  <suppress checks="LineLength" files=".*[/\\]com[/\\]azure[/\\]security[/\\]keyvault[/\\]"/>
 
   <!-- Don't apply custom Checkstyle rules to files under checkstyle package. -->
   <suppress checks="com\.azure\.tools\.checkstyle\.checks\..+" files=".*[/\\]tools[/\\]checkstyle[/\\].*"/>
@@ -306,6 +347,9 @@ the main ServiceBusClientBuilder. -->
   <!-- Fields tenantId, clientId and clientSecret are not set in all constructors. -->
   <suppress checks="com.azure.tools.checkstyle.checks.EnforceFinalFieldsCheck" files="com.azure.security.keyvault.jca.implementation.KeyVaultClient"/>
 
+  <!-- Class has static methods which using static logger instance, issue link: https://github.com/Azure/azure-sdk-for-java/issues/5137-->
+  <suppress checks="com.azure.tools.checkstyle.checks.GoodLoggingCheck" files="CertificateUtil.java"/>
+
   <!-- Fields defaultTrustManager and keyStore might be set more than once. -->
   <suppress checks="com.azure.tools.checkstyle.checks.EnforceFinalFieldsCheck" files="com.azure.security.keyvault.jca.KeyVaultTrustManager"/>
 
@@ -345,6 +389,16 @@ the main ServiceBusClientBuilder. -->
   <!-- Only checks Public Api classes -->
   <suppress checks="com.azure.tools.checkstyle.checks.DenyListedWordsCheck" files=".*[/\\](implementation|test)[/\\].*"/>
   <suppress checks="com.azure.tools.checkstyle.checks.DenyListedWordsCheck" files=".*[/\\]storage[/\\].*samples[/\\].*"/>
+
+  <!-- Public API already exposed: Common vocabulary errors, refer to Java Spec: https://azure.github.io/azure-sdk/java_introduction.html,
+  issue link: https://github.com/Azure/azure-sdk-for-java/issues/5145 -->
+  <suppress checks="com.azure.tools.checkstyle.checks.ServiceClientCheck" files="com.azure.security.keyvault.secrets.SecretAsyncClient.java"/>
+  <suppress checks="com.azure.tools.checkstyle.checks.ServiceClientCheck" files="com.azure.security.keyvault.keys.KeyAsyncClient.java"/>
+  <suppress checks="com.azure.tools.checkstyle.checks.ServiceClientCheck" files="com.azure.security.keyvault.certificates.CertificateAsyncClient.java"/>
+  <suppress checks="com.azure.tools.checkstyle.checks.ServiceClientCheck" files="com.azure.security.keyvault.certificates.CertificateClient.java"/>
+
+  <!-- InvalidKeyException is not a runtime exception, issue link: https://github.com/Azure/azure-sdk-for-java/issues/5178 -->
+  <suppress checks="com.azure.tools.checkstyle.checks.ThrowFromClientLogger" files="com.azure.security.keyvault.keys.cryptography.AesCbc.java"/>
 
   <!-- FIXME temp -->
   <suppress checks="ServiceClient" files="com.azure.messaging.webpubsub.*"/>
