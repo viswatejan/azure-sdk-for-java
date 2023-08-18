@@ -7,6 +7,7 @@ import com.azure.core.credential.AccessToken;
 import com.azure.core.credential.TokenCredential;
 import com.azure.core.exception.HttpResponseException;
 import com.azure.core.http.HttpClient;
+import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.policy.ExponentialBackoffOptions;
 import com.azure.core.http.policy.FixedDelay;
 import com.azure.core.http.policy.HttpLogDetailLevel;
@@ -212,19 +213,21 @@ public class ConfigurationClientBuilderTest extends TestBase {
             .connectionString(connectionString)
             .retryPolicy(new RetryPolicy())
             .configuration(Configuration.getGlobalConfiguration())
-            .httpLogOptions(new HttpLogOptions().setLogLevel(HttpLogDetailLevel.BODY_AND_HEADERS));
+            .httpLogOptions(new HttpLogOptions().setLogLevel(HttpLogDetailLevel.BODY_AND_HEADERS))
+            .pipeline(new HttpPipelineBuilder().build());
 
         if (!interceptorManager.isPlaybackMode()) {
             clientBuilder.addPolicy(interceptorManager.getRecordPolicy());
-        }
 
+            assertThrows(HttpResponseException.class,
+                () -> clientBuilder.buildClient().setConfigurationSetting(key, null, value));
+        }
         HttpClient defaultHttpClient = interceptorManager.isPlaybackMode() ? interceptorManager.getPlaybackClient()
             : HttpClient.createDefault();
 
-        ConfigurationSetting addedSetting = clientBuilder
-                                                .httpClient(defaultHttpClient)
-                                                .buildClient()
-                                                .setConfigurationSetting(key, null, value);
+        clientBuilder.pipeline(null).httpClient(defaultHttpClient);
+
+        ConfigurationSetting addedSetting = clientBuilder.buildClient().setConfigurationSetting(key, null, value);
         assertEquals(addedSetting.getKey(), key);
         assertEquals(addedSetting.getValue(), value);
     }
