@@ -1,16 +1,48 @@
 # Release History
 
-## 12.4.0-beta.1 (Unreleased)
+## 12.3.13 (2023-07-25)
 
-### Features Added
+### Other Changes
 
-### Breaking Changes
+#### Dependency Updates
+
+- Upgraded `azure-core-http-netty` from `1.13.4` to version `1.13.5`.
+- Upgraded `azure-core` from `1.40.0` to version `1.41.0`.
+
+
+## 12.3.12 (2023-06-20)
+
+### Other Changes
+
+#### Dependency Updates
+
+- Upgraded `azure-core-http-netty` from `1.13.3` to version `1.13.4`.
+- Upgraded `azure-core` from `1.39.0` to version `1.40.0`.
+
+
+## 12.3.11 (2023-05-23)
+
+### Other Changes
+
+#### Dependency Updates
+
+- Upgraded `azure-core-http-netty` from `1.13.2` to version `1.13.3`.
+- Upgraded `azure-core` from `1.38.0` to version `1.39.0`.
+
+
+## 12.3.10 (2023-04-17)
 
 ### Bugs Fixed
 - Fixed bug that disallowed empty strings as partition and row keys
 - Fixed handling of paging headers when Table Storage returned a `x-ms-continuation-NextPartitionKey` but no `x-ms-continuation-NextRowKey`. This was causing the subsequent pages are not fetched.
-### Other Changes
 
+### Other Changes
+- Test proxy migration
+
+#### Dependency Updates
+
+- Upgraded `azure-core` from `1.37.0` to version `1.38.0`.
+- Upgraded `azure-core-http-netty` from `1.13.1` to version `1.13.2`.
 ## 12.3.9 (2023-03-08)
 
 ### Other Changes
